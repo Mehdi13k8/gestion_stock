@@ -5,7 +5,7 @@ from django.views.generic import ListView
 
 urlpatterns = [
     path('', views.index.as_view(), name='index'),
-    path('accounts/login/', auth_views.LoginView.as_view()),
+    #path('accounts/login/', auth_views.LoginView.as_view()),
     path('login/', views.index_login.as_view(), name='login'),
 
     path('index', views.index.as_view()),

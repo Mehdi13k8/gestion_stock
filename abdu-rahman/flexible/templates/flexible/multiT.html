@@ -1,0 +1,159 @@
+ {% extends 'flexible/base3.html' %}
+
+    {% block content3 %}
+    {% load staticfiles %}
+
+
+ {% if entrepotsRecherche %}
+  
+
+{% for entrepot in entrepotsRecherche %}
+    <p><b>entrepôt {{entrepot.designation}}</b> {{entrepot.adresse}}</p>
+    
+    {% endfor %}
+
+
+ {% endif %}
+{% if autres %}
+  
+  
+{% for partenaire in autres %}
+    <p><b>{{partenaire.nom}}</b> {{partenaire.adresse}}</p>
+    
+    
+    {% endfor %}
+
+   {% endif %}
+
+{% endblock %}
+{% block content %}
+
+    <div class="card">
+  
+    
+<h4 class="mb-3">Mes Offres reçues </h4>
+ {% if not offresT %}
+ <a href="" class="btn btn-danger " role="button" style="width: 25%;">Répondre</a>
+  {% endif %}
+  {% if offresT %}
+ <a href="{% url 'repondreT' %}" class="btn btn-info " role="button" style="width: 25%;">Répondre</a>
+  {% endif %}
+
+<table class="table mb-0 ">
+      <thead>
+        <tr>
+          <th>designation</th>
+          <th>client</th>
+          <th> voyage</th>
+          
+          <th>palettes</th>
+          <th>categorie</th>
+          <th>refproduit</th>
+          
+           <th>date arrivée</th>
+           <th>Prix</th>
+          <th>Accord</th>
+        <th>Dépassée</th>
+        
+        </tr>
+      </thead>
+      <tbody>
+        {% for offre in offresT %}
+          <tr>
+           
+            <td class="align-middle">
+             <a href="" class="btn btn-primary">{{offre.offre.designation }}</a></td>
+            <td class="align-middle">{{ offre.client }} </td>
+            <td class="align-middle">{{ offre.offre.depart }}-{{ offre.offre.arrive }}</td>
+            
+            
+            <td class="align-middle">{{ offre.offre.quantité }} </td>
+            <td class="align-middle">{{ offre.offre.categorie }} </td>
+           
+            <td class="text-middle">{{ offre.offre.produit.refproduit }} </td>
+            
+             <td class="align-middle">{{ offre.offre.datearrive }}</td>
+             <td class="align-middle">{% for tarif in tarifsT %}{% if tarif.nb_palettes == offre.offre.quantité %}
+             
+
+              {{ tarif.prix }}€
+            {% endif %} {% endfor %}</td>
+
+            <td class="align-middle">{% for reponse in reponses %}
+
+              {% if reponse.offre.offre.designation == offre.offre.designation  and reponse.client == offre.client  %} 
+                 {% if  reponse.is_accepted %}   <img src=" {{ MEDIA_URL }}photos/yes.png" height="19" width="19" /> 
+                 {% elif not reponse.is_accepted   %}  <img src=" {{ MEDIA_URL }}photos/non.png" height="19" width="19" />
+              
+             
+                 {% endif %} 
+              
+            {% endif %} {% endfor %} </td>
+            <td class="align-middle">
+              
+              {% if  offre.offre.datearrive|date:"Y-m-d" <= today|date:"Y-m-d" %} 
+                
+               <img src=" {{ MEDIA_URL }}photos/yes.png" height="19" width="19" />
+              
+             
+               
+             
+                 {% endif %} 
+              
+              </td>
+            
+            <td class="text-right">
+            
+            </td>
+          </tr>
+            
+          </tr>
+          
+
+        {% empty %}
+          <tr>
+            <td class="bg-light text-center font-italic" colspan="4">Aucune offre pour le moment.</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+   </div>
+</br>
+
+  
+
+
+ {% if taches %}
+         <div >
+
+          <tr>
+            <a href="{% url 'camions' %}" >Vous avez une tâche à faire <img src=" {{ MEDIA_URL }}timer.png" height="50" width="50" /></a>
+          </tr>
+         </div >
+
+ 
+{% endif %}
+</br>
+
+
+{% endblock %}
+
+{% block content2 %}
+
+<div class="list-group">
+   {% for message in messagesT %}
+  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
+    <div class="d-flex w-100 justify-content-between">
+       <img src=" {{ MEDIA_URL }}msg.png" width="35"  heigth="35"/> 
+      <h4 class="mb-1">admin</h4>
+      <small> {{ message.Date }}</small>
+    </div>
+    <p class="mb-1">{{ message.text }}</small>
+  </a>
+ {% empty %}
+          <tr>
+            <td class="bg-light text-center font-italic" colspan="4">Vous n'avez aucun message.</td>
+          </tr>
+        {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,365 @@
+{% extends 'flexible/base1.html' %}
+ 
+
+
+    {% block content3 %}
+    {% load staticfiles %}
+  </br>
+ <img src=" {{ MEDIA_URL }}loupe.png" width="35"  heigth="35"/> 
+<b><h4> recherche </h4> </b>
+
+ {% if entrepots %}
+  
+
+{% for entrepot in entrepots %}
+    <p><b>entrepôt {{entrepot.designation}}</b> {{entrepot.adresse}}</p>
+    
+    {% endfor %}
+{% endif %}
+
+
+  {% if autres %}
+{% for autre in autres %}
+    <p><b>{{autre.nom}}</b> {{autre.adresse}}</p>
+    
+    
+    {% endfor %}
+{% endif %}
+{% if departs %}
+{% for depart in departs %}
+    <p><b> {{depart.transporteur.user.nom}}</b> départ: {{depart.depart}} arrivé: {{depart.arrive}}</p>
+    
+    
+    {% endfor %}
+{% endif %}
+
+   
+
+{% endblock %}
+{% block content %}
+
+
+
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+    
+    </ol>
+  </nav>
+  <h3 class="mb-3">Ma liste d'offres aux Partenaires </h3>
+  
+  <div id="div" class="card">
+    
+
+
+{% for offre in homeC %}
+
+    <div class="offres">
+
+       <h3><a href="{% url 'nouvelleOffre' offre.pk %}">{{ offre.designation }}</a> </h3>
+
+       <p>--- chez {{ offre.partenaire}}--- le {{ offre.Date}}</p>
+
+      
+
+    </div>
+
+{% endfor %}
+  </div>
+<a href="{% url 'offre_ajout' %}" class="btn btn-primary " role="button">Ajouter offre</a>
+
+<a href="{% url 'reponsesClient' %}" class="btn btn-info " role="button">Repondre Offre</a>
+
+<a href="{% url 'appreciations' %}" class="btn btn-info " role="button">Voir les appréciations</a>
+
+<br />
+
+    
+
+    <div id="crumbs">
+  <ul>
+    <li><a href="#">Breadcrumb</a></li>
+  </ul>
+</div>
+
+
+
+<h3 class="mb-3">Mes Offres aux transporteurs </h3>
+<table class="table mb-0">
+      <thead>
+        <tr>
+          <th>designation</th>
+          <th>Transporteur</th>
+          <th> ville départ</th>
+          <th>ville arrivée</th>
+          <th>palettes</th>
+          <th>categorie</th>
+          <th>refproduit</th>
+          <th>date départ</th>
+        
+        </tr>
+      </thead>
+      <tbody>
+        {% for offret in offresT %}
+          <tr>
+           
+            <td class="align-middle">{{ offret.designation }}</td>
+            <td class="align-middle">{{ offret.transporteur }} </td>
+            <td class="align-middle">{{ offret.depart }}</td>
+             <td class="align-middle">{{ offret.arrive }}</td>
+            
+            <td class="align-middle">{{ offret.quantité }} </td>
+            <td class="align-middle">{{ offret.categorie }} </td>
+           
+            <td class="text-right">{{ offret.refproduit }} </td>
+            <td class="align-middle">{{ offret.datedepart }}</td>
+            
+            </td>
+          </tr>
+          
+
+        {% empty %}
+          <tr>
+            <td class="bg-light text-center font-italic" colspan="4">tarif, no livraison in this list.</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+ 
+<h4 class="mb-3">Réponses des transporteurs </h4>
+
+<br />
+<table class="table mb-0">
+      <thead>
+        <tr>
+         
+          <th>transporteur</th>
+          <th> offre</th>
+          <th>commentaire</th>
+         
+          <th>Date</th>
+          <th>is_accepted</th>
+        
+        </tr>
+      </thead>
+      <tbody>
+        {% for reponseT in reponsesT %}
+          <tr>
+           
+            <td class="align-middle">{{ reponseT.transporteur }}</td>
+            <td class="align-middle">{{ reponseT.offre }} </td>
+            <td class="align-middle">{{ reponseT.commentaire }}</td>
+             <td class="align-middle">{{ reponseT.Date }}</td>
+            
+            <td class="align-middle">{{ reponseT.is_accepted }} </td>
+            
+            </td>
+          </tr>
+          
+
+        {% empty %}
+          <tr>
+            <td class="bg-light text-center font-italic" colspan="4">reponseT, no reponseT in this list.</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+ 
+
+<br />
+
+
+
+ <h3 class="mb-3">Les entrepôts </h3>
+<br />
+
+<div id="div">
+ <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Désignation</th>
+          <th>partenaire</th>
+          <th>spécificité</th>
+          <th>capacité</th>
+          <th>adresse</th>
+          <th>distance</th>
+         
+        </tr>
+      </thead>
+      <tbody>
+        {% for entrepot in entrepots %}
+          <tr>
+            
+            <td class="align-middle">{{ entrepot.designation }}</td>
+            <td class="align-middle">{{ entrepot.partenaireProp }}</td>
+            <td class="align-middle">{{ entrepot.specificite }}</td>
+            <td class="align-middle">{{ entrepot.capacite }}</td>
+            <td class="align-middle">{{ entrepot.adresse }}</td>
+            <td class="align-middle">{{ entrepot.distance.km|floatformat:0}} km </td>
+           
+            
+            </td>
+          </tr>
+          
+
+        {% empty %}
+          <tr>
+            <td class="bg-light text-center font-italic" colspan="4">Sorry, no entrepot in this list.</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+</div>
+<br />
+<br />
+ <h3 class="mb-3">Mes produits </h3>
+
+<br />
+ <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Désignation</th>
+          <th>référence</th>
+          <th>catégorie</th>
+          
+         
+        </tr>
+      </thead>
+      <tbody>
+        {% for produit in produits %}
+          <tr>
+         
+            <td class="align-middle">{{ produit.designation }}</td>
+            <td class="align-middle">{{ produit.refproduit }}</td>
+            <td class="align-middle">{{ produit.categorie }}</td>
+           
+            <td class="text-right">
+            
+            </td>
+          </tr>
+          
+
+        {% empty %}
+          <tr>
+            <td class="bg-light text-center font-italic" colspan="4">Sorry, no produits in this list.</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+<br />
+<br />
+
+ <h3 class="mb-3">Les Tarifs des Partenaires </h3>
+    
+<div id="div" class="offres">
+
+ <table  class="table table-striped">
+      <thead>
+        <tr>
+          <th>Désignation</th>
+          <th>entrepot</th>
+          <th>adresse</th>
+          <th>catégorie</th>
+          <th>palette</th>
+          <th>prix</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for tarif in tarifs %}
+          <tr>
+            
+            <td class="align-middle">{{ tarif.designation }}</td>
+            <td class="align-middle">{{ tarif.entrepot }}</td>
+             <td class="align-middle">{{ tarif.entrepot.address }}</td>
+            <td class="align-middle">{{ tarif.categorie }}</td>
+            <td class="align-middle">{{ tarif.nb_palettes }}  </td>
+            <td class="align-middle">{{ tarif.prixFinal }} € </td>
+         
+            </td>
+          </tr>
+          
+
+        {% empty %}
+          <tr>
+            <td class="bg-light text-center font-italic" colspan="4">Sorry, no tarif in this list.</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+</div>
+
+
+ <h3 class="mb-3">Les Tarifs des transporteurs</h3>
+    
+<div id="div" class="offres">
+
+ <table  class="table table-striped">
+      <thead>
+        <tr>
+          <th>designation</th>
+          <th>départ</th>
+          <th>arrivé</th>
+          <th>categorie</th>
+          <th>Transporteur</th>
+          <th>palette</th>
+          <th>prix</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for tarif in tarifsT %}
+          <tr>
+            
+            <td class="align-middle">{{ tarif.designation }}</td>
+            <td class="align-middle">{{ tarif.depart }}</td>
+             <td class="align-middle">{{ tarif.arrive }}</td>
+            <td class="align-middle">{{ tarif.categorie }}</td>
+            <td class="align-middle">{{ tarif.transporteur }}</td>
+            <td class="align-middle">{{ tarif.nb_palettes }}  </td>
+            <td class="align-middle">{{ tarif.prixFinal }} € </td>
+         
+            </td>
+          </tr>
+          
+
+        {% empty %}
+          <tr>
+            <td class="bg-light text-center font-italic" colspan="4">Sorry, no tarif in this list.</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+</div>
+
+
+{% endblock %}
+
+{% block content2 %}
+
+ {% load staticfiles %}
+ <img src=" {{ MEDIA_URL }}msg.png" width="35"  heigth="35"/> 
+ 
+ 
+ <table class="table ">
+      
+      <tbody>
+        {% for message in messages %}
+          <tr>
+              
+            
+            <td class="align-middle"> Message: <b>{{ message.text }} </b> le  {{ message.Date }}</td>
+            
+           
+         
+            </td>
+          </tr>
+          
+
+        {% empty %}
+          <tr>
+            <td class="bg-light text-center font-italic" colspan="4">Sorry, no message in this list.</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+{% endblock %} 

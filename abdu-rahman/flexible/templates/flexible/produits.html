@@ -1,0 +1,109 @@
+{% extends 'flexible/base1.html' %}
+ 
+
+
+    {% block content3 %}
+    {% load staticfiles %}
+ 
+ {% if entrepots %}
+  
+
+{% for entrepot in entrepots %}
+    <p><b>entrepôt {{entrepot.designation}}</b> {{entrepot.adresse}}</p>
+    
+    {% endfor %}
+{% endif %}
+
+
+  {% if autres %}
+{% for autre in autres %}
+    <p><b>{{autre.nom}}</b> {{autre.adresse}}</p>
+    
+    
+    {% endfor %}
+{% endif %}
+{% if departs %}
+{% for depart in departs %}
+    <p><b> {{depart.transporteur.user.nom}}</b> départ: {{depart.depart}} arrivé: {{depart.arrive}}</p>
+    
+    
+    {% endfor %}
+{% endif %}
+
+   
+
+{% endblock %}
+{% block content  %}
+
+
+
+ <h2 class="card-title">Mes produits</h3>
+
+<a href="{% url 'produit_ajout' %}" class="btn btn-primary "  style="width:150px" role="button">Ajouter Produit</a>
+{% if produits %}
+
+ 
+
+
+
+ <table  class="table table-striped">
+      <thead>
+        <tr>
+          <th>Désignation</th>
+          <th>référence</th>
+      
+          <th>catégorie</th>
+          <th>aperçu</th>
+       
+        </tr>
+      </thead>
+      <tbody>
+        {% for prod in produits %}
+          <tr>
+            
+            <td class="align-middle"><b>{{ prod.designation }}</b></td>
+            <td class="align-middle">{{ prod.refproduit }}</td>
+           
+            <td class="align-middle">{{ prod.categorie }}</td>
+            <td class="align-middle"><img src="{{ MEDIA_URL }}{{ prod.photo }}" height="180" width="240"/></td>
+          
+         
+           
+          </tr>
+          
+
+        {% empty %}
+          <tr>
+            <td class="bg-light text-center font-italic" colspan="4">Aucun tarif de partenaires à afficher.</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+ 
+
+{% endif %}
+
+
+{% endblock %}
+
+
+ 
+ {% block content2 %}
+
+<div class="list-group">
+   {% for message in messages %}
+  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
+    <div class="d-flex w-100 justify-content-between">
+       <img src=" {{ MEDIA_URL }}msg.png" width="35"  heigth="35"/> 
+      <h4 class="mb-1">admin</h4>
+      <small> {{ message.Date }}</small>
+    </div>
+    <p class="mb-1">{{ message.text }}</small>
+  </a>
+ {% empty %}
+          <tr>
+            <td class="bg-light text-center font-italic" colspan="4">Vous n'avez aucun message.</td>
+          </tr>
+        {% endfor %}
+</div>
+{% endblock %} 

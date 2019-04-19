@@ -1,0 +1,99 @@
+{% extends 'flexible/base3.html' %}
+ 
+
+
+    {% block content3 %}
+    {% load staticfiles %}
+ 
+ {% if entrepotsRecherche %}
+  
+
+{% for entrepot in entrepotsRecherche %}
+    <p><b>entrepôt {{entrepot.designation}}</b> {{entrepot.adresse}}</p>
+    
+    {% endfor %}
+{% endif %}
+
+
+  {% if autres %}
+{% for autre in autres %}
+    <p><b>{{autre.nom}}</b> {{autre.adresse}}</p>
+    
+    
+    {% endfor %}
+{% endif %}
+
+
+   
+
+{% endblock %}
+{% block content  %}
+
+
+
+
+ <h3 class="mb-3">Mes tarifs</h3>
+
+<a href="{% url 'tarifT_ajout' %}" class="btn btn-info " role="button" style="width: 25%;">Ajouter un tarif</a>
+
+
+
+<table  class="table table-striped">
+      <thead>
+        <tr>
+          <th>designation</th>
+          <th>départ</th>
+          <th>arrivé</th>
+          <th>categorie</th>
+          <th>Transporteur</th>
+          <th>palette</th>
+          <th>prix</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for tarif in tarifs %}
+           <td class="align-middle">
+             <a href="" class="btn btn-primary">{{ tarif.designation }}</a></td>
+            <td class="align-middle">{{ tarif.depart }}</td>
+             <td class="align-middle">{{ tarif.arrive }}</td>
+            <td class="align-middle">{{ tarif.categorie }}</td>
+            <td class="align-middle">{{ tarif.transporteur }}</td>
+            <td class="align-middle">{{ tarif.nb_palettes }}  </td>
+            <td class="align-middle">{{ tarif.prix }}€ </td>
+               <td class="text-right">
+         
+            </td>
+          </tr>
+          
+
+        {% empty %}
+          <tr>
+            <td class="bg-light text-center font-italic" colspan="4">Aucun tarif de partenaires à afficher.</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+ 
+{% endblock %}
+
+
+ 
+ {% block content2 %}
+
+<div class="list-group">
+   {% for message in messagesT %}
+  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
+    <div class="d-flex w-100 justify-content-between">
+       <img src=" {{ MEDIA_URL }}msg.png" width="35"  heigth="35"/> 
+      <h4 class="mb-1">admin</h4>
+      <small> {{ message.Date }}</small>
+    </div>
+    <p class="mb-1">{{ message.text }}</small>
+  </a>
+ {% empty %}
+          <tr>
+            <td class="bg-light text-center font-italic" colspan="4">Vous n'avez aucun message.</td>
+          </tr>
+        {% endfor %}
+</div>
+{% endblock %} 

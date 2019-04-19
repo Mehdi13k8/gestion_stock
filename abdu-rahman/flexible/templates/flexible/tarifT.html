@@ -1,0 +1,61 @@
+{% extends 'flexible/base1.html' %}
+
+{% block content %}
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+    
+    </ol>
+  </nav>
+  <h2 class="mb-3">Informations tarifss</h2>
+  
+  <div class="card">
+    
+
+
+{% for entrepot in entrepots %}
+ <h3> {{ entrepot.entrepot}}</h3>
+<table class="table mb-0">
+      <thead>
+        <tr>
+          <th>designation</th>
+          <th>categorie</th>
+          <th>nb_palettes</th>
+          <th>destinataire</th>
+          <th>prix</th>
+          <th>categorie</th>
+          <th>state</th>
+        </tr>
+      </thead>
+      <tbody>
+       
+          <tr>
+            <td class="align-middle">
+            {{ entrepot.designation }}</td>
+            <td class="align-middle">{{ entrepot.categorie }}</td>
+            <td class="align-middle">{{ entrepot.nb_palettes }}</td>
+            <td class="align-middle">{{ entrepot.prixFinal }} </td>
+           
+            
+            </td>
+          </tr>
+          
+
+        {% empty %}
+          <tr>
+            <td class="bg-light text-center font-italic" colspan="4">Sorry, no tarif in this list.</td>
+          </tr>
+        
+      </tbody>
+    </table>
+   {% endfor %}
+  </div>
+<a href="{% url 'chart' %}" class="btn btn-info " role="button">Afficher Statistiques</a>
+
+
+  <h3>{{ chartTitle|safe }}</h3>
+  <div id="chart-1">{{ output|safe }}</div>
+  <div id="chart-2">{{ output_2|safe }}</div>
+  <br/>
+
+
+{% endblock %}

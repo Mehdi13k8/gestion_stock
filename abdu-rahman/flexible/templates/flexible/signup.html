@@ -1,0 +1,36 @@
+
+
+{% extends 'flexible/baseC.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+ 
+  <h2>Créer votre compte </h2>
+  
+
+
+   <table class="table ">
+      
+      <tbody>
+        
+          <tr>
+              
+            
+            <td class="align-middle"><a href="{% url 'client_signup' %}" class="btn  btn-lg" role="button"> <b>Je suis un Client </b></a>
+            <img src=" {{ MEDIA_URL }}client.jpg" height="50" width="50" /></td>
+            <td class="align-middle"> <a href="{% url 'partenaire_signup' %}" class="btn  btn-lg" role="button"> <b>Je suis un Partenaire </b></a>
+  <img src=" {{ MEDIA_URL }}partenaire.jpg" height="50" width="50"/></td>
+           <td class="align-middle"><a href="{% url 'transporteur_signup' %}" class="btn  btn-lg" role="button"> <b>Je suis un Transporteur </b></a>
+  <img src=" {{ MEDIA_URL }}transporteur.jpg" height="50" width="50" /></td>
+         
+            </td>
+          </tr>
+          
+
+        
+          
+       
+      </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,64 @@
+<h1>Bienvenue sur les clients de Logistique !</h1>
+
+
+
+
+{% for client in derniers_clients %}
+
+    <div class="client">
+        <h2>Entreprise {{ client.nom }}</h2>
+        <h3>Siret {{ client.siret }}</h3>
+
+        <p>{{ client.coordonnee|truncatewords_html:80 }}</p>
+
+    </div>
+
+{% empty %}
+
+    <p>Aucun client.</p>
+
+{% endfor %}
+
+
+
+
+{# Mise en forme de la pagination ici #}
+
+{% if is_paginated %}
+
+    <div class="pagination">
+            <span class="page-links">
+           {% if page_obj.has_previous %}
+
+               <a href="?page={{ page_obj.previous_page_number }}">Précédente</a> —
+
+           {% endif %}
+
+           Page {{ page_obj.number }} sur {{ page_obj.paginator.num_pages }} 
+
+           {% if page_obj.has_next %}
+
+              — <a href="?page={{ page_obj.next_page_number }}">Suivante</a>
+
+           {% endif %}
+            
+    </div>
+
+{% endif %}
+
+
+<h3>Catégories disponibles</h3>
+
+<ul>
+
+{% for categorie in categories %}
+
+    <li><a href="{% url "blog_categorie" categorie.id %}">{{ categorie.nom }}</a></li>
+{% empty %}
+
+    <p>Aucune categorie .</p>
+
+
+{% endfor %}
+
+</ul>

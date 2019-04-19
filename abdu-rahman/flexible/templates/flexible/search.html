@@ -1,0 +1,19 @@
+
+
+{% extends 'flexible/base1.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+ {% if entrepots %}
+{% for entrepot in entrepots %}
+   
+   
+    <p>{{entrepot.designation}}</p>
+    <p>Rs.{{entrepot.capacite}}</p>   
+{% endfor %}
+{% endif %}
+   
+
+{% endblock %}

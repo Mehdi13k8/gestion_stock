@@ -3,6 +3,16 @@ from django.db import models
 from django.utils import timezone
 # Create your models here.
 
+'''
+class User(AbstractUser):
+    is_partenaire = models.BooleanField(default=False)
+    is_client = models.BooleanField(default=False)
+    is_transporteur = models.BooleanField(default=False)
+    nom = models.CharField(max_length=100)
+    coordonnee = models.PointField(null=True, blank=True)
+    adresse = models.CharField(max_length=100)
+    '''
+
 #Models for Import_Bon_CommandeSortie
 class import_BonCommandeSortie(models.Model):
     idBonCommandeSortie = models.TextField(default='Null')

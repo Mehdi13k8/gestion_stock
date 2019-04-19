@@ -1,0 +1,181 @@
+
+
+{% extends 'flexible/base2.html' %}
+
+    {% block content3 %}
+    {% load staticfiles %}
+ <img src=" {{ MEDIA_URL }}loupe.png" width="25"  heigth="25"/> 
+<b><h4>Résultat de la recherche ...</h4> </b>
+
+ {% if entrepotsRecherche %}
+  
+
+{% for recherche in entrepotsRecherche %}
+    <p><b>{{recherche.designation}}</b> {{recherche.adresse}}</p>
+    
+    {% endfor %}
+
+
+ 
+  
+{% for recherche1 in autres %}
+    <p><b>{{recherche1.nom}}</b> {{recherche1.adresse}}</p>
+    
+    
+    {% endfor %}
+{% endif %}
+
+   
+
+{% endblock %}
+
+{% block content %}
+  <nav aria-label="breadcrumb">
+    
+  </nav>
+  <h3 class="mb-3">Mes Offres reçues</h3>
+  
+  <div class="card">
+    
+
+
+{% for offre in homeP %}
+
+    <div class="offres">
+
+       <p>{{ offre.designation }} ---- de {{ offre.client}}--- le {{ offre.Date}}</p>
+
+
+       
+
+      
+
+    </div>
+{% empty %}
+    <li>Sorry, no offre in this list.</li>
+{% endfor %}
+  </div>
+
+
+<a href="{% url 'reponses' %}" class="btn btn-info mb-3" role="button">Repondre Offre</a>
+
+
+<a href="{% url 'appreciations' %}" class="btn btn-info  mb-3 " role="button">Voir les appréciations</a>
+
+<br />
+<br />
+<br />
+
+<h3 class="mb-3">Mes Places </h3>
+<div class="offres">
+
+ <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>designation</th>
+          <th>entrepot</th>
+          <th>refproduit</th>
+          <th>categorie</th>
+          <th>state</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for place in places %}
+          <tr>
+            <td class="align-middle">
+             <a href="{% url 'placerProduit' place.pk %}" class="btn btn-primary">{{ place.designation }}</a></td>
+            <td class="align-middle">{{ place.entrepot }}</td>
+            <td class="align-middle">{{ place.refproduit }}</td>
+            <td class="align-middle">{{ place.categorie }}</td>
+            <td class="align-middle">{{ place.state }} </td>
+            <td class="text-right">
+            
+            </td>
+          </tr>
+          
+
+        {% empty %}
+          <tr>
+            <td class="bg-light text-center font-italic" colspan="4">Sorry, no places in this list.</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+</div>
+<br />
+<br />
+  <h3 class="mb-3">Mes Tarifs </h3>
+    
+<div class="offres">
+
+ <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>designation</th>
+          <th>entrepot</th>
+          <th>categorie</th>
+          <th>nb_palettes</th>
+          <th>prix</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for tarif in tarifs %}
+          <tr>
+              <td class="align-middle"><a href="{% url 'modifyTarif' tarif.pk %}" class="btn btn-primary">{{ tarif.designation }}</a></td>
+            
+            <td class="align-middle">{{ tarif.entrepot }}</td>
+            <td class="align-middle">{{ tarif.categorie }}</td>
+            <td class="align-middle">{{ tarif.nb_palettes }}  </td>
+            <td class="align-middle">{{ tarif.prix }} € </td>
+         
+            </td>
+          </tr>
+          
+
+        {% empty %}
+          <tr>
+            <td class="bg-light text-center font-italic" colspan="4">Sorry, no tarif in this list.</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+</div>
+
+
+  </div>
+
+</div>
+{% endblock %} 
+
+{% block content2 %}
+ <table class="table table-striped">
+      <thead>
+        <tr>
+          
+          <th>message</th>
+          <th>Date</th>
+          
+        </tr>
+      </thead>
+      <tbody>
+        {% for message in messages %}
+          <tr>
+              
+            
+            <td class="align-middle">{{ message.text }}</td>
+            <td class="align-middle">{{ message.Date }}</td>
+           
+         
+            </td>
+          </tr>
+          
+
+        {% empty %}
+          <tr>
+            <td class="bg-light text-center font-italic" colspan="4">Sorry, no message in this list.</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+</div>
+{% endblock %} 

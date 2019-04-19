@@ -1,0 +1,27 @@
+{% extends 'flexible/base2.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+  <nav aria-label="breadcrumb">
+    
+  </nav>
+ 
+
+  <h2 class="mb-3">Add a new appreciation about partenaire's offers</h2>
+  <div class="row mb-3">
+    
+    {% if users %}
+    <ul>
+        {% for user in users %}
+        <li>
+            {{ user.nom }}:{{user.adresse}}  : {{user.distance}} 
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+  </div>
+  
+   
+
+{% endblock %}
