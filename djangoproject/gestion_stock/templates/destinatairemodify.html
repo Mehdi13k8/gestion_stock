@@ -1,0 +1,536 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<style>
+    .ui-dialog-titlebar-close {
+        visibility: hidden;
+    }
+    input.text { margin-bottom:12px; width:95%; padding: .4em; }
+    fieldset { padding:0; border:0; margin-top:25px; }
+    .ui-dialog .ui-state-error { padding: .3em; }
+    .validateTips { border: 1px solid transparent; padding: 0.3em;}
+</style>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<div class="container"><h1 class="text-center"> Destinataire</h1></div>
+<br>
+
+<div class="container">
+    <div class="form-group row text-center">
+        <div class="col">
+            <button type="button" class="btn btn-light btn-rounded btn-outline-dark">Recherche</button>
+        </div>
+        <div class="col">
+            <button type="button" id="back-row" class="btn btn-default btn-rounded btn-outline-dark">Tout</button>
+        </div>
+        <div class="col">
+            <button type="button" id="create-row" class="btn btn-success btn-rounded btn-outline-dark">Ajouter</button>
+        </div>
+        <div class="col">
+            <button type="button" class="btn btn-default btn-rounded btn-outline-dark">Calculer</button>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="border shadow-lg p-3 mb-5 bg-white rounded col">
+            <h3 class="text-center"> identification </h3>
+            <br>
+            <div class="">
+                identifiant:<br><input type="text" id="umid" name="id_transporteur" disabled>
+            </div>
+            <div>
+                nom: <br><input type="text" id="nom" name="nom_transporteur">
+            </div>
+            <div>
+                identifiant BL: <br><input type="text" id="idbl" name="nom_transporteur">
+            </div>
+            <div>
+                téléphone: <br><input type="text" id="tel_main" name="nom_transporteur">
+            </div>
+            <div>
+                e-mail: <br><input type="text" id="mail_main" name="nom_transporteur">
+            </div>
+            <div>
+                code UM: <br><input type="text" id="um_main" name="nom_transporteur">
+            </div>
+
+            <br>
+            <input type="button" class="btn btn-primary" id="modify" value="Modif">
+        </div>
+
+        <div class="col">
+            <div class="border shadow-lg p-3 mb-5 bg-white rounded">
+                <h3 class="text-center"> UM sortie non expédiés </h3>
+                <br>
+                <div class="border shadow-lg p-3 mb-5 bg-white rounded">
+                    <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th scope="col" class="th-sm"> UM sortie </th>
+                            <th scope="col" class="th-sm"> numero </th>
+                            <th scope="col" class="th-sm"> ouverture </th>
+                            <th scope="col" class="th-sm"> fermeture </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for items in umsortie %}
+                        <tr>
+                            <td> <button id='{{ items.id }}' class="dyna"> -> </button></td>
+                            <td> {{ items.numero }} </td>
+                            <td> {{ items.dateOuverture }} </td>
+                            <td> {{ items.dateFermeture }} </td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="border shadow-lg p-3 mb-5 bg-white rounded">
+                        <h4 class="text-center"> informations supplémentaire </h3>
+                            <div class="">
+                                contact:<br><input type="text" id="contact_d" name="contact_input">
+                            </div>
+                            <div class="">
+                                délai péremption:<br><input type="text" id="peremp_d" name="contact_input">
+                            </div>
+                            adresse de livraison:<br>
+                            <div class="">
+                                <input type="text" id="addrl_1" name="contact_input" class="border-top border-bottom-0 border-right bg-light addrl">
+                                <input type="text" id="addrl_2" name="contact_input" class="border-top-0 border-bottom-0 border-right bg-light addrl">
+                                <input type="text" id="addrl_3" name="contact_input" class="border-top-0 border-bottom-0 border-right bg-light addrl">
+                                <input type="text" id="addrl_4" name="contact_input" class="border-top-0 border-bottom-0 border-right bg-light addrl">
+                                <input type="text" id="addrl_5" name="contact_input" class="border-top-0 border-bottom-0 border-right bg-light addrl">
+                                <input type="text" id="addrl_6" name="contact_input" class="border-top-0 border-bottom-0 border-right bg-light addrl">
+                                <input type="text" id="addrl_7" name="contact_input" class="border-top-0 border-bottom border-right bg-light addrl">
+                            </div>
+                            <br>
+                            <div class="">
+                                département:<br><input type="text" id="dep_d" name="contact_input">
+                            </div>
+                            <div class="">
+                                adresse de commande:<br><input type="text" id="addrc_d" name="contact_input">
+                            </div>
+                            <div class="selsel">
+                                Type de destinataire <select class="form-control" id="destitype">
+                                <script type="text/javascript">
+                                    $(document).ready(function() {
+                                        var i = 0;
+                                        "{% for items in des %}"
+                                        console.log("{{ items.fk_TypeDestinataire.nom }}");
+                                        //to change
+                                        var name = "{{ items.fk_TypeDestinataire.nom }}";
+                                        var oldname;
+                                        if (i == 0)
+                                            $("#destitype").append(new Option("{{ items.fk_TypeDestinataire.nom }}", "{{ items.fk_TypeDestinataire.nom }}"));
+                                        else if (name != oldname)
+                                            $("#destitype").append(new Option("{{ items.fk_TypeDestinataire.nom }}", "{{ items.fk_TypeDestinataire.nom }}"));
+                                        oldname = name;
+                                        i = 1;
+                                        "{% endfor %}"
+                                    });
+                                </script>
+                            </select>
+                            </div>
+                            <div class="">
+                                source:<br><input type="text" id="source_d" name="source_input">
+                            </div>
+                            <div class="">
+                                identifiant source:<br><input type="text" id="sourceid_d" name="source_input">
+                            </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="border shadow-lg p-3 mb-5 bg-white rounded">
+                        <h4 class="text-center"> Adresse de livraison </h3>
+                            <div class="">
+                                nom:<br><input type="text" id="nomadrlv" name="adressel_nom" class="form-control adrl">
+                            </div>
+                            <div class="">
+                                n° / rue:
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                    </div>
+                                    <input type="text" class="form-control adrl" id="n_rue">
+                                    <input type="text" class="form-control adrl" id="nom_rue">
+                                </div>
+                            </div>
+                            <div class="">
+                                complément 1:<br><input type="text" id="adrl_c" name="adressel_nom" class="form-control adrl">
+                            </div>
+                            <div class="">
+                                complément 2:<br><input type="text" id="adrl_cc" name="adressel_nom" class="form-control adrl">
+                            </div>
+
+                            <div class="">
+                                code postal:<br>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                    </div>
+                                    <input type="text" class="form-control adrl" id="codep_1">
+                                    <input type="text" class="form-control adrl" id="codep_2">
+                                </div>
+                            </div>
+                            <br>
+
+                            <div class="">
+                                pays: <select class="form-control adrl" id="paysid">
+                                <script type="text/javascript">
+                                    $(document).ready(function() {
+                                        var i = 0;
+                                        "{% for items in des %}"
+                                        console.log("{{ items.fk_Pays.nom }}");
+                                        //to change
+                                        var name = "{{ items.fk_Pays.nom }}";
+                                        var oldname;
+                                        if (i == 0)
+                                            $("#paysid").append(new Option("{{ items.fk_Pays.nom }}", "{{ items.fk_Pays.nom }}"));
+                                        else if (name != oldname)
+                                            $("#paysid").append(new Option("{{ items.fk_Pays.nom }}", "{{ items.fk_Pays.nom }}"));
+                                        oldname = name;
+                                        i = 1;
+                                        "{% endfor %}"
+                                    });
+                                </script>
+                            </select>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                    </div>
+                                    <input type="text" class="form-control adrl" id="iso2">
+                                    <input type="text" class="form-control adrl" id="iso3">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="border">
+                                <input type="text" id="script_nom" class="border-0" style="width: 100%" disabled>
+                                <input type="text" id="script_numero" class="border-0" style="width: 100%" disabled>
+                                <input type="text" id="script_rnom" class="border-0" style="width: 100%" disabled>
+                                <input type="text" id="script_comp" class="border-0" style="width: 100%" disabled>
+                                <input type="text" id="script_compp" class="border-0" style="width: 100%" disabled>
+                                <input type="text" id="script_post" class="border-0" style="width: 100%" disabled>
+                                <input type="text" id="script_ville" class="border-0" style="width: 100%" disabled>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#back-row").click( function() {
+                location.href = "{% url 'destinataire' %}";
+            });
+            $("#umid").val('{{ id }}');
+            $("#nom").val('{{ name }}');
+            var idDestinataire = $("#umid").val();
+            '{% for items in des %}'
+            if (idDestinataire == '{{ items.idDestinataire }}') {
+                $("#idbl").val('{{ items.identifiantBonLivraison }}');
+                $("#tel_main").val('{{ items.telephone }}');
+                $("#mail_main").val('{{ items.email }}');
+                $("#um_main").val('{{ items.codeUM }}');
+                $("#contact_d").val('{{ items.commentaire }}');
+                $("#peremp_d").val('{{ items.delaiPeremption }}');
+                $("#addr_d").val('{{ items.adresseLivraison }}');
+                $("#dep_d").val('{{ items.departement }}');
+                $("#addrc_d").val('{{ items.adresseFacturation }}');
+
+                $('#destitype').val('{{ items.fk_TypeDestinataire.nom }}');
+
+                $('#source_d').val('{{ items.source }}');
+                $('#sourceid_d').val('{{ items.identifiantSource }}');
+
+                $('#nomadrlv').val('{{ items.adresseLivraison_nom }}');
+                $('#n_rue').val('{{ items.adresseLivraison_numero }}');
+                $('#nom_rue').val('{{ items.adresseLivraison_rue }}');
+                $('#adrl_c').val('{{ items.adresseLivraison_complement_1 }}');
+                $('#adrl_cc').val('{{ items.adresseLivraison_complement_2 }}');
+                $('#codep_1').val('{{ items.adresseLivraison_codePostal }}');
+                $('#codep_2').val('{{ items.adresseLivraison_localite }}');
+
+                $('#paysid').val('{{ items.fk_Pays.nom }}');
+                $('#iso2').val('{{ items.fk_Pays.codeISO_2 }}');
+                $('#iso3').val('{{ items.fk_Pays.codeISO_3 }}');
+
+                $('#script_nom').val('{{ items.adresseLivraison_nom }}');
+                $('#script_numero').val('{{ items.adresseLivraison_numero }}');
+                $('#script_rnom').val('{{ items.adresseLivraison_rue }}');
+                $('#script_comp').val('{{ items.adresseLivraison_complement_1 }}');
+                $('#script_compp').val('{{ items.adresseLivraison_complement_2 }}');
+                $('#script_post').val('{{ items.adresseLivraison_codePostal }}');
+                $('#script_ville').val('{{ items.adresseLivraison_localite }}');
+            }
+            '{% endfor %}'
+            var nomadrlv = $('#nomadrlv').val();
+            var nrue = $('#n_rue').val();
+            var nom_rue = $('#nom_rue').val();
+            var addrl_c = $('#adrl_c').val();
+            var addrl_cc  = $('#adrl_cc').val();
+            var codep_1   = $('#codep_1').val();
+            var codep_2 = $('#codep_2').val();
+
+            $('#addrl_1').val(nomadrlv);
+            $('#addrl_2').val(nrue);
+            $('#addrl_3').val(nom_rue);
+            $('#addrl_4').val(addrl_c);
+            $('#addrl_5').val(addrl_cc);
+            $('#addrl_6').val(codep_1);
+            $('#addrl_7').val(codep_2);
+
+            $(".adrl").change(function () {
+                nomadrlv = $('#nomadrlv').val();
+                nrue = $('#n_rue').val();
+                nom_rue = $('#nom_rue').val();
+                addrl_c = $('#adrl_c').val();
+                addrl_cc  = $('#adrl_cc').val();
+                codep_1   = $('#codep_1').val();
+                codep_2 = $('#codep_2').val();
+
+                $('#addrl_1').val(nomadrlv);
+                $('#addrl_2').val(nrue);
+                $('#addrl_3').val(nom_rue);
+                $('#addrl_4').val(addrl_c);
+                $('#addrl_5').val(addrl_cc);
+                $('#addrl_6').val(codep_1);
+                $('#addrl_7').val(codep_2);
+
+
+                $('#script_nom').val(nomadrlv);
+                $('#script_numero').val(nrue);
+                $('#script_rnom').val(nom_rue);
+                $('#script_comp').val(addrl_c);
+                $('#script_compp').val(addrl_cc);
+                $('#script_post').val(codep_1);
+                $('#script_ville').val(codep_2);
+                console.log("changing adr livraison hidden");
+            });
+
+            $("#nom").change(function() {
+                console.log($(this).val());
+            });
+        });
+
+        $('#post-form').on('submit', function(event){
+            event.preventDefault();
+            console.log("form submitted!")  // sanity check
+            create_post();
+        });
+        function create_post() {
+            console.log("create post is working!") // sanity check
+            console.log($('#post-text').val())
+        };
+
+        $('#modify').click(function() {
+            console.log("form submitted!")  // sanity check
+            var name = $("#nom").val();
+            var bool = 0;
+            "{% for items in trans %}"
+            if (name == "{{ items.nom }}") {
+                alert(name);
+                bool = 1;
+            }
+            "{% endfor %}"
+            if (bool == 0) {
+            }
+            //recupération des variables de la page destinataire modify
+            $.ajax({
+                type:"POST",    //type de requête utilisé par ajax
+                url:"/modify_dest/", //lien de la view qui gère la requête post
+                data: {
+                    'name': $('#nom').val(), // nom du transporteur récuperer dans le input #nom
+                    'id': $('#umid').val(), // id du transporteur acquis grace a une incrementation en js
+                    'identifiantBL': $('#idbl').val(),
+                    'telephone': $('#tel_main').val(),
+                    'email': $('#mail_main').val(),
+                    'codeum': $('#um_main').val(),
+
+                    'contact': $('#contact_d').val(),
+                    'delaip': $('#peremp_d').val(),
+                    'adressel_1': $('#addrl_1').val(),
+                    'adressel_2': $('#addrl_2').val(),
+                    'adressel_3': $('#addrl_3').val(),
+                    'adressel_4': $('#addrl_4').val(),
+                    'adressel_5': $('#addrl_5').val(),
+                    'adressel_6': $('#addrl_6').val(),
+                    'adressel_7': $('#addrl_7').val(),
+                    'departement': $('#dep_d').val(),
+                    'adressecom': $('#addrc_d').val(),
+                    'typedest': $('#destitype').val(),
+                    'source': $('#source_d').val(),
+                    'sourceid': $('#sourceid_d').val(),
+
+                    'nom': $('#nomadrlv').val(),
+                    'num': $('#n_rue').val(),
+                    'rue': $('#nom_rue').val(),
+                    'comp1': $('#adrl_c').val(),
+                    'comp2': $('#adrl_cc').val(),
+                    'codepost': $('#codep_1').val(),
+                    'ville': $('#codep_2').val(),
+
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
+                success: function(msg, data, settings){
+                    alert("gg " + msg);
+                },
+                failure: function() {
+                    alert("fail");
+                }
+            });
+        });
+
+        $(function() {
+            $(".ui-widget").click( function() {
+                var val = $('#combobox2').val();
+                var destinat = $('#combobox2').find(":selected").text();
+                "{% for items in sortie %}"
+                if ('{{ items.fk_Destinataire.nom }}' == destinat)
+                    $("#umid").val('{{ items.fk_Destinataire.codeUM }}');
+                "{% endfor %}"
+            });
+
+            $.widget( "custom.combobox", {
+                _create: function() {
+                    this.wrapper = $( "<span>" )
+                        .addClass( "custom-combobox" )
+                        .insertAfter( this.element );
+
+                    this.element.hide();
+                    this._createAutocomplete();
+                    this._createShowAllButton();
+                },
+
+                _createAutocomplete: function() {
+                    var selected = this.element.children( ":selected" ),
+                        value = selected.val() ? selected.text() : "";
+
+                    this.input = $( "<input>" )
+                        .appendTo( this.wrapper )
+                        .val( value )
+                        .attr( "title", "" )
+                        .addClass( "custom-combobox-input ui-widget ui-widget-content ui-state-default ui-corner-left" )
+                        .autocomplete({
+                            delay: 0,
+                            minLength: 0,
+                            source: $.proxy( this, "_source" )
+                        })
+                        .tooltip({
+                            classes: {
+                                "ui-tooltip": "ui-state-highlight"
+                            }
+                        });
+
+
+                    this._on( this.input, {
+                        autocompleteselect: function( event, ui ) {
+                            ui.item.option.selected = true;
+                            this._trigger( "select", event, {
+                                item: ui.item.option
+                            });
+                        },
+                        autocompletechange: "_removeIfInvalid"
+                    });
+                },
+
+                _createShowAllButton: function() {
+                    var input = this.input,
+                        wasOpen = false;
+
+                    $( "<a>" )
+                        .attr( "tabIndex", -1 )
+                        .attr( "title", "Show All Items" )
+                        .tooltip()
+                        .appendTo( this.wrapper )
+                        .button({
+                            icons: {
+                                primary: "ui-icon-triangle-1-s"
+                            },
+                            text: false
+                        })
+                        .removeClass( "ui-corner-all" )
+                        .addClass( "custom-combobox-toggle ui-corner-right" )
+                        .on( "mousedown", function() {
+                            wasOpen = input.autocomplete( "widget" ).is( ":visible" );
+                        })
+                        .on( "click", function() {
+                            input.trigger( "focus" );
+                            // Close if already visible
+                            if (wasOpen) {
+                                return;
+                            }
+                            // Pass empty string as value to search for, displaying all results
+                            input.autocomplete( "search", "" );
+                        });
+                },
+
+                _source: function( request, response ) {
+                    var matcher = new RegExp( $.ui.autocomplete.escapeRegex(request.term), "i" );
+                    response( this.element.children( "option" ).map(function() {
+                        var text = $( this ).text();
+                        if ( this.value && ( !request.term || matcher.test(text) ) )
+                            return {
+                                label: text,
+                                value: text,
+                                option: this
+                            };
+                    }) );
+                },
+
+                _removeIfInvalid: function(event, ui) {
+
+                    // Selected an item, nothing to do
+                    if (ui.item) {
+                        return;
+                    }
+
+                    // Search for a match (case-insensitive)
+                    var value = this.input.val(),
+                        valueLowerCase = value.toLowerCase(),
+                        valid = false;
+                    this.element.children("option").each(function() {
+                        if ($(this).text().toLowerCase() === valueLowerCase ) {
+                            this.selected = valid = true;
+                            return false;
+                        }
+                    });
+
+                    // Found a match, nothing to do
+                    if (valid) {
+                        return;
+                    }
+
+                    // Remove invalid value
+                    this.input
+                        .val( "" )
+                        .attr( "title", value + " didn't match any item" )
+                        .tooltip( "open" );
+                    this.element.val( "" );
+                    this._delay(function() {
+                        this.input.tooltip( "close" ).attr( "title", "" );
+                    }, 2500 );
+                    this.input.autocomplete( "instance" ).term = "";
+                },
+
+                _destroy: function() {
+                    this.wrapper.remove();
+                    this.element.show();
+                },
+            });
+
+            $("#destitype").combobox();
+            $("#paysid").combobox();
+            $("#toggle").on("click", function() {
+                $("#destitype").toggle();
+                $("#paysid").toggle();
+            });
+        });
+    </script>
+
+    {% endblock %}

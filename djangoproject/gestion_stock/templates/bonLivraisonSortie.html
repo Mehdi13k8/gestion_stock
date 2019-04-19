@@ -1,0 +1,202 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<style>
+    .ui-dialog-titlebar-close {
+        visibility: hidden;
+    }
+    input.text { margin-bottom:12px; width:95%; padding: .4em; }
+    fieldset { padding:0; border:0; margin-top:25px; }
+    .ui-dialog .ui-state-error { padding: .3em; }
+    .validateTips { border: 1px solid transparent; padding: 0.3em;}
+</style>
+
+<div class="container"><h1 class="text-center"> Sortie Bon de Livraison</h1></div>
+<br>
+
+<div class="container">
+    <div class="form-group row text-center">
+        <div class="col">
+            <button type="button" class="btn btn-light btn-rounded btn-outline-dark">Recherche</button>
+        </div>
+        <div class="col">
+            <button type="button" class="btn btn-default btn-rounded btn-outline-dark">Tout</button>
+        </div>
+        <div class="col">
+            <button type="button" id="create-row" class="btn btn-success btn-rounded btn-outline-dark">Ajouter</button>
+        </div>
+        <div class="col">
+            <button type="button" class="btn btn-default btn-rounded btn-outline-dark">Calculer</button>
+        </div>
+    </div>
+</div>
+
+<div class="container ">
+    <table id="myprvttable" class="table table-hover container rounded table-bordered border border-dark table-responsive-md">
+        <thead>
+        <tr>
+            <th>
+                <div class="col-md-2">
+                    <button type="button" class="btn btn-default btn-rounded">-></button>
+                </div>
+            </th>
+            <th scope="col" id="dos">code U.M</th>
+            <th scope="col" id="des">numéro BL</th>
+            <th scope="col" id="code">date création</th>
+            <th scope="col" id="date">destinataire</th>
+            <th scope="col" id="nuco">Quantité colis</th>
+        </tr>
+        <tbody>
+        {% for items in sortie %}
+        <tr>
+            <td>
+                <button type="button" class="mybut btn btn-default btn-rounded" id={{ items.id }}>-></button>
+            </td>
+            <td>
+                {{ items.fk_BonCommandeSortie.fk_Destinataire.codeUM }}
+            </td>
+            <td>
+                {{ items.numeroBonLivraison }}
+            </td>
+            <td>
+                {{ items.c_horodatage }}
+            </td>
+            <td>
+                {{ items.fk_BonCommandeSortie.fk_Destinataire.nom }}
+            </td>
+            {% for itemsligne in sortieligne %}
+            <td>
+                {{ itemsligne.quantiteColis }}
+            </td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+        </tbody>
+        </thead>
+    </table>
+</div>
+
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        var i = 0;
+        "{% for items in sortie %}"
+        var name = "{{ items.fk_Transporteur.nom }}";
+        var oldname;
+        if (i == 0)
+            $("#choiceTrans").append(new Option("{{ items.fk_Transporteur.nom }}", "1"));
+        else if (name != oldname)
+            $("#choiceTrans").append(new Option("{{ items.fk_Transporteur.nom }}", "1"));
+        oldname = name;
+        i = 1;
+        "{% endfor %}"
+
+        "{% for items in sortie %}"
+        var name = "{{ items.fk_Client.nom }}";
+        var oldname;
+        if (i == 0)
+            $("#client").append(new Option("{{ items.fk_Client.nom }}", "1"));
+        else if (name != oldname)
+            $("#client").append(new Option("{{ items.fk_Client.nom }}", "1"));
+        oldname = name;
+        i = 1;
+        "{% endfor %}"
+
+        "{% for items in sortie %}"
+        var name = "{{ items.fk_Destinataire.nom }}";
+        var oldname;
+        if (i == 0)
+            $("#destin").append(new Option("{{ items.fk_Destinataire.nom }}", "1"));
+        else if (name != oldname)
+            $("#destin").append(new Option("{{ items.fk_Destinataire.nom }}", "1"));
+        oldname = name;
+        i = 1;
+        "{% endfor %}"
+    });
+</script>
+
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        var idx = 0;
+        var idDestinataire = 0;
+        var destinatairelist = [];
+        var ident = idx;//$("#identifiant");
+        var date = $("#datepicker");
+        var client = $("#client");
+        var destinataire = $("#destin");
+        var codeUm = $("#choiceUm");
+        var numcommande = $("#numcom");
+        $("#create-row").click(function() {
+            location.href = "{% url 'bonLivraisonSortieadd' %}";
+        });
+        var dos = document.getElementById("dos");
+        var des = document.getElementById("des");
+        var code = document.getElementById("code");
+        var date = document.getElementById("date");
+        var nuco = document.getElementById("nuco");
+        //var iden = document.getElementById("iden");
+        var term = document.getElementById("term");
+        dos.onclick = function() {
+            sortTable(1);
+        }
+        des.onclick = function() {
+            sortTable(2);
+        }
+        code.onclick = function() {
+            sortTable(2);
+        }
+        date.onclick = function() {
+            sortTable(3);
+        }
+        nuco.onclick = function() {
+            sortTable(4);
+        }
+        /*iden.onclick = function() {
+        sortTable(5);
+        }*/
+        /*term.onclick = function() {
+        sortTable(6);
+        }*/
+        function sortTable(n) {
+            console.log("switcy");
+            var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+            table = document.getElementById('myprvttable');
+            switching = true;
+            dir = "asc";
+            while (switching) {
+                switching = false;
+                rows = table.rows;
+                for (i = 1; i < (rows.length - 1); i++) {
+                    shouldSwitch = false;
+                    x = rows[i].getElementsByTagName("TD")[n];
+                    y = rows[i + 1].getElementsByTagName("TD")[n];
+                    if (dir == "asc") {
+                        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                            shouldSwitch= true;
+                            break;
+                        }
+                    } else if (dir == "desc") {
+                        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                            shouldSwitch = true;
+                            break;
+                        }
+                    }
+                }
+                if (shouldSwitch) {
+                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                    switching = true;
+                    switchcount ++;
+                } else {
+                    if (switchcount == 0 && dir == "asc") {
+                        dir = "desc";
+                        switching = true;
+                    }
+                }
+            }
+        }
+    });
+</script>
+
+{% endblock %}

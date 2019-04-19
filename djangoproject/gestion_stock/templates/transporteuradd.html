@@ -1,0 +1,110 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<style>
+    .ui-dialog-titlebar-close {
+        visibility: hidden;
+    }
+    input.text { margin-bottom:12px; width:95%; padding: .4em; }
+    fieldset { padding:0; border:0; margin-top:25px; }
+    .ui-dialog .ui-state-error { padding: .3em; }
+    .validateTips { border: 1px solid transparent; padding: 0.3em;}
+</style>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<div class="container"><h1 class="text-center"> Ajout de Transporteur </h1></div>
+<br>
+
+<div class="container">
+    <div class="form-group row text-center">
+        <div class="col">
+            <button type="button" class="btn btn-light btn-rounded btn-outline-dark">Recherche</button>
+        </div>
+        <div class="col">
+            <button type="button" id="back-row" class="btn btn-default btn-rounded btn-outline-dark">Tout</button>
+        </div>
+        <div class="col">
+            <button type="button" id="create-row" class="btn btn-success btn-rounded btn-outline-dark">Ajouter</button>
+        </div>
+        <div class="col">
+            <button type="button" class="btn btn-default btn-rounded btn-outline-dark">Calculer</button>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row" style="width: auto; height: 100%;">
+        <div class="border shadow-lg p-3 mb-5 bg-white rounded" style="width: 100%; height: auto;">
+            <div class="row">
+                <div class="col-md-10" >
+                    <h3 class="text-center"> identification </h3>
+                </div>
+            </div>
+            <br>
+            <br>
+            <form action="/create_trans/" method="POST" id="post-form">
+                <br>
+                <div class="">
+                    identifiant:<br><input type="text" id="umid" name="id_transporteur" disabled>
+                </div>
+                <div>
+                    nom: <br><input type="text" id="nom" name="nom_transporteur">
+                </div>
+                <br>
+                <input type="button" class="btn btn-primary" id="addtransp" value="Save">
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $("#back-row").click( function() {
+            location.href = "{% url 'transporteur' %}";
+        });
+        var upperid = "0";
+        "{% for items in trans %}"
+        if (parseInt(upperid, 10) < parseInt('{{ items.idTransporteur }}', 10)) {
+            upperid = parseInt('{{ items.idTransporteur }}', 10);
+        }
+        "{% endfor %}"
+        if (upperid == 0)
+            $("#umid").val(1);
+        else
+            $("#umid").val(upperid+1);
+
+
+        $('#addtransp').click(function() {
+            console.log("form submitted!")  // sanity check
+
+            "{% for items in trans %}"
+            var name = $("#nom").val();
+            if (name == "{{ items.nom }}") {
+                alert(name);
+            }
+            "{% endfor %}"
+
+            console.log($('#nom').val())
+
+            $.ajax({
+                type:"POST",    //type de requête utilisé par ajax
+                url:"/create_trans/", //lien de la view qui gère la requête post
+                data: {
+                    'name': $('#nom').val(), // nom du transporteur récuperer dans le input #nom
+                    'id': $('#umid').val(), // id du transporteur acquis grace a une incrementation en js
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
+                success: function(msg, data, settings){
+                    alert("gg " + msg);
+                },
+                failure: function() {
+                    alert("fail");
+                }
+            });
+
+        });
+    });
+</script>
+{% endblock %}

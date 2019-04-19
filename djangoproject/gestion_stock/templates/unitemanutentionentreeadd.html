@@ -1,0 +1,75 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<style>
+    .ui-dialog-titlebar-close {
+        visibility: hidden;
+    }
+    input.text { margin-bottom:12px; width:95%; padding: .4em; }
+    fieldset { padding:0; border:0; margin-top:25px; }
+    .ui-dialog .ui-state-error { padding: .3em; }
+    .validateTips { border: 1px solid transparent; padding: 0.3em;}
+</style>
+
+<div class="container"><h1 class="text-center"> Ajout de D'U.M Entree</h1></div>
+<br>
+
+<div class="container">
+    <div class="form-group row text-center">
+        <div class="col">
+            <button type="button" class="btn btn-light btn-rounded btn-outline-dark">Recherche</button>
+        </div>
+        <div class="col">
+            <button type="button" id="back-row" class="btn btn-default btn-rounded btn-outline-dark">Tout</button>
+        </div>
+        <div class="col">
+            <button type="button" id="create-row" class="btn btn-success btn-rounded btn-outline-dark">Ajouter</button>
+        </div>
+        <div class="col">
+            <button type="button" class="btn btn-default btn-rounded btn-outline-dark">Calculer</button>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="border shadow-lg p-3 mb-5 bg-white rounded col-md-auto">
+            <div class="col">
+
+                <div class="row">
+                    <div class="col">
+                        <div class="row">
+                            b
+                        </div>
+                        <div class="row">
+                            a
+                        </div>
+                    </div>
+                    <div class="col">
+                        bon
+                    </div>
+                    <div class="col">
+                        zone depot
+                    </div>
+                </div>
+                <div class="row">
+                    a
+                </div>
+
+                <div class="row">
+                    a
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+
+    });
+</script>
+
+{% endblock %}

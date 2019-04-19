@@ -1,0 +1,160 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<style>
+  .ui-dialog-titlebar-close {
+    visibility: hidden;
+  }
+  input.text { margin-bottom:12px; width:95%; padding: .4em; }
+  fieldset { padding:0; border:0; margin-top:25px; }
+  .ui-dialog .ui-state-error { padding: .3em; }
+  .validateTips { border: 1px solid transparent; padding: 0.3em;}
+  table.dataTable thead .sorting:after,
+  table.dataTable thead .sorting:before,
+  table.dataTable thead .sorting_asc:after,
+  table.dataTable thead .sorting_asc:before,
+  table.dataTable thead .sorting_asc_disabled:after,
+  table.dataTable thead .sorting_asc_disabled:before,
+  table.dataTable thead .sorting_desc:after,
+  table.dataTable thead .sorting_desc:before,
+  table.dataTable thead .sorting_desc_disabled:after,
+  table.dataTable thead .sorting_desc_disabled:before {
+    bottom: .5em;
+  }
+</style>
+
+<div class="container"><h1 class="text-center"> Liste des destinataires</h1></div>
+<br>
+
+<div class="container">
+  <div class="form-group row text-center">
+    <div class="col">
+      <button type="button" id="back-row" class="btn btn-default btn-rounded btn-outline-dark">Tout</button>
+    </div>
+    <div class="col">
+      <button type="button" id="create-row" class="btn btn-success btn-rounded btn-outline-dark">Ajouter</button>
+    </div>
+  </div>
+</div>
+
+<!--
+      <div class="container">
+        <div class="row">
+            <div class="col">
+              <div class="border shadow-lg p-3 mb-5 bg-white rounded">
+            <table class="table table-striped" cellspacing="0" width="100%" id="atab">
+                <thead>
+                  <tr>
+                    <th scope="col"></th>
+                    <th scope="col">nom</th>
+                  </tr>
+                </thead>
+                <tbody id="atabbody">
+                    <script type="text/javascript"> 
+                        $(document).ready(function() {
+                          var i = 0;
+                          "{% for items in trans %}"
+                            console.log("test");
+                            $("#atabbody").append("<tr>");
+                            $("#atabbody").append("<td> <button id='{{ items.idTransporteur }}' class=\"dyna\"> -> </button></td>");
+                            $("#atabbody").append("<td> {{ items.nom }} </td>");
+                            $("#atabbody").append("<td> <button id='{{ items.idTransporteur }}' class=\"dynad\"> X </button> </td>");
+                            $("#atabbody").append("</tr>");
+                          "{% endfor %}"
+                       });
+                      </script>
+                </tbody>
+              </table>
+      </div>
+    </div>
+</div>
+-->
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="border shadow-lg p-3 mb-5 bg-white rounded">
+        <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+          <thead>
+          <tr>
+            <th scope="col" class="th-sm"> modify </th>
+            <th scope="col" class="th-sm"> type destinataire </th>
+            <th scope="col" class="th-sm"> destinataire </th>
+            <th scope="col" class="th-sm"> code UM </th>
+            <th scope="col" class="th-sm"> delete </th>
+          </tr>
+          </thead>
+          <tbody>
+          {% for items in des %}
+          <tr>
+            <td> <button id='{{ items.idDestinataire }}' class="dyna"> -> </button></td>
+            <td> {{ items.fk_TypeDestinataire }} </td>
+            <td> {{ items.nom }} </td>
+            <td> {{ items.codeUM }} </td>
+            <td> <button id='{{ items.idDestinataire }}' class="dynad"> X </button> </td>
+          </tr>
+          {% endfor %}
+          </tbody>
+          <tfoot>
+          <tr>
+            <th> modify
+            </th>
+            <th>nom
+            </th>
+            <th>delete
+            </th>
+          </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+
+    $(document).ready(function () {
+      $('#dtBasicExample').DataTable();
+      $('.dataTables_length').addClass('bs-select');
+    });
+
+    $("#create-row").click(function() {
+      location.href = "{% url 'destinataireadd' %}";
+    });
+
+    $(document).on("click", "button.dyna" , function(e) { // event pour modifier les entree transporteur
+      var idClicked = e.target.id;
+      var name = "";
+      var trueid = 0;
+      alert(idClicked);
+      "{% for items in des %}"
+      if ('{{ items.idDestinataire }}' == idClicked) {
+        name = '{{ items.nom }}';
+        trueid = '{{ items.id }}';
+      }
+      "{% endfor %}"
+      window.location.href = "{% url 'destinatairemodify' %}?id=" + idClicked + "&" + "name=" + name + "&" + "trueid=" + trueid;
+    });
+
+    $(document).on("click", "button.dynad" , function(e) { // event pour delete la ligne sélectionner
+      var idClicked = e.target.id;
+      alert(idClicked);
+      $.ajax({
+        type:"POST",    //type de requête utilisé par ajax
+        url:"/delete_dest/", //lien de la view qui gère la requête post pour supprimer une entree
+        data: {
+          'name': $('#nom').val(), // nom du transporteur récuperer dans le input #nom
+          'id': idClicked, // id du transporteur acquis grace a une incrementation en js
+          csrfmiddlewaretoken: '{{ csrf_token }}'
+        },
+        success: function(msg, data, settings){
+          alert("gg " + msg);
+        },
+        failure: function() {
+          alert("fail");
+        }
+      });
+    });
+
+  </script>
+  {% endblock %}

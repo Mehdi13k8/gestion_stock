@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<header>
+  {% block title %}<title>Generic Page</title>{% endblock %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="csrf_token" content="{{ csrf_token }}">
+  {% load static %}
+  <link rel="stylesheet" href="{{ STATIC_URL }} /static/css/style.css">
+  <link href="{{ STATIC_URL }} /static/jquery-ui-1.12.1/jquery-ui.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="{{ STATIC_URL }} /static/css/bootstrap.min.css">
+  <link href=" {{ STATIC_URL }} /static/css/addons/datatables.min.css" rel="stylesheet">
+
+  <script src="{{ STATIC_URL }} /static/js/jquery-1.12.4.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }} /static/js/popper.min.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }} /static/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  <link rel="stylesheet" href="{{ STATIC_URL }} /static/css/mdb.min.css">
+  <script type="text/javascript" src="{{ STATIC_URL }} /static/js/addons/datatables.min.js"></script>
+
+  <!--
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="{{ STATIC_URL }} /static/js/jquery-ui.js"></script>
+  <link href="{{ STATIC_URL }} /static/css/jquery-ui.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="{{ STATIC_URL }} /static/css/all.css">
+  <link rel="stylesheet" href="{{ STATIC_URL }} /static/css/font-awesome.min.css">
+  -->
+
+</header>
+<body>
+
+<div class="container jumbotron">
+  <h2>Welcome</h2>
+
+  <div class="row">
+    <div class="col">
+      <!--Navbar-->
+      <nav class="navbar navbar-dark  indigo mb-2" id="hidenot  con">
+        <!-- Navbar brand -->
+        <span  class="navbar-brand">Menu</span>
+        <!-- Collapse button -->
+        <button class="navbar-toggler first-button" type="button" data-toggle="collapse" data-target="#navbarSupportedContent20"
+                aria-controls="navbarSupportedContent20" aria-expanded="false" aria-label="Toggle navigation">
+          <div class="animated-icon1"><span></span><span></span><span></span></div>
+        </button>
+
+        <!-- Collapsible content -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent20">
+          <!-- Links -->
+          {% block sidebar %}
+          <div class="row">
+            <div class="col">
+              <ul class="navbar-nav">
+                <li class="nav-item active" style="height: 141.75px;">
+                  <hr>
+                  <div class="row">
+                    <div class="mx-auto">
+                      <a class="nav-link text-center" href="{% url 'index' %}">
+                        <div class="col">
+                          <div class="mx-auto">
+                            <img src="{{ STATIC_URL }} /static/img/mailbox.jpg" class="img-fluid rounded text-left my_img" alt="accueil" height="75" width="75">
+                          </div>
+                        </div>
+                        <div class="col">
+                          <p>Accueil</p>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                  <!--<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>-->
+                </li>
+
+                <li class="nav-item"  style="height: 148px;">
+                  <hr>
+                  <div class="row">
+                    <div class="mx-auto">
+                      <a class="nav-link text-center" href="{% url 'article' %}">
+                        <div class="col">
+                          <div class="mx-auto">
+                            <img src="{{ STATIC_URL }} /static/img/AWS-icon.png" class="img-fluid rounded text-left my_img" alt="boncommandesortie" height="75" width="75">
+                          </div>
+                        </div>
+                        <div class="col">
+                          <p>Article</p>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                </li>
+
+                <li class="nav-item" style="height: 141.75px;">
+                  <hr>
+                  <div class="row">
+                    <div class="mx-auto">
+                      <a class="nav-link text-center" href="{% url 'bonCommandeSortie' %}">
+                        <div class="col">
+                        <div class="mx-auto">
+                        <img src="{{ STATIC_URL }} /static/img/ordre_du_jour.jpg" class="img-fluid rounded text-left my_img" alt="boncommandesortie" height="75" width="75">
+                        </div>
+                      </div>
+                        <div class="col">
+                    <p>Bon de commande Sortie</p>
+                      </div>
+                      </a>
+                    </div>
+                  </div>
+                </li>
+
+                <li class="nav-item"  style="height: 123.05px;">
+                  <hr>
+                  <div class="row">
+                    <div class="mx-auto">
+                      <a class="nav-link text-center" href="{% url 'bonCommandeEntree' %}">
+                        <div class="col">
+                          <div class="mx-auto">
+                            <img src="{{ STATIC_URL }} /static/img/Liste des points à traiter.png" class="img-fluid rounded text-left" alt="boncommandeentree" height="75" width="75">
+                          </div>
+                        </div>
+                        <div class="col">
+                          <p>Bon de commande Entree</p>
+                        </div>
+                      </a>
+                    </div>
+
+                  </div>
+                </li>
+
+                <li class="nav-item" style="height: 129.25px;">
+                  <hr>
+                  <div class="row">
+                    <div class="mx-auto">
+                      <a class="nav-link text-center" href="{% url 'bonLivraisonSortie' %}">
+                        <div class="col">
+                          <div class="mx-auto">
+                            <img src="{{ STATIC_URL }} /static/img/normal_ian-symbol-vehicle-suv.png" class="img-fluid rounded text-left" alt="bonlivraisonsortie" height="75" width="75">
+                          </div>
+                        </div>
+                        <div class="col">
+                          <p>Bon de livraison Sortie </p>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                </li>
+
+              </ul>
+            </div>
+
+            <div class="col">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item" style="height:141.75px;">
+                  <hr>
+                  <div class="row">
+                    <div class="mx-auto">
+
+                      <a class="nav-link text-center" href="{% url 'unitemanutentionentree' %}">
+                        <div class="col">
+                          <div class="mx-auto">
+                            <img src="{{ STATIC_URL }} /static/img/lift.jpg" class="img-fluid rounded text-left" alt="unitemanutentionentree" height="75" width="75">
+                          </div>
+                        </div>
+                        <div class="col">
+                          <p>U.M Entrée</p>
+                        </div>
+                      </a>
+
+                    </div>
+                  </div>
+                </li>
+
+                <li class="nav-item" style="height:148px;">
+                  <hr>
+                  <div class="row">
+                    <div class="mx-auto">
+                      <a class="nav-link text-center" href="{% url 'client' %}">
+                        <div class="col">
+                          <div class="mx-auto">
+                            <img src="{{ STATIC_URL }} /static/img/client-est-roi1.jpg" class="img-fluid rounded text-left" alt="clients" height="75" width="75">
+                          </div>
+                        </div>
+                        <div class="col">
+                          <p>Clients</p>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                </li>
+
+                <li class="nav-item">
+                  <hr>
+                  <div class="row">
+                    <div class="mx-auto">
+                      <img src="{{ STATIC_URL }} /static/img/mailbox.jpg" class="img-fluid rounded text-left my_img" alt="Destinatairest">
+                      <a class="nav-link text-left" href="{% url 'destinataire' %}">Destinataires</a>
+                    </div>
+                  </div>
+                </li>
+
+                <li class="nav-item">
+                  <hr>
+                  <div class="row">
+                    <div class="mx-auto">
+                      <a class="nav-link text-left my_img" href="{% url 'transporteur' %}"><img src="{{ STATIC_URL }} /static/img/Isuzu-removal-truck.jpg" class="img-fluid rounded" alt="Transporteurs">
+                        Transporteurs</a>
+                    </div>
+                  </div>
+                </li>
+
+                <li class="nav-item">
+                  <hr>
+                  <div class="row">
+                    <div class="mx-auto">
+                      <a class="nav-link text-left my_img"  href="{% url 'fournisseur' %}"><img src="{{ STATIC_URL }} /static/img/supplier-management.jpg" class="img-fluid rounded" alt="Fournisseurs">
+                        Fournisseurs</a>
+                    </div>
+                  </div>
+                </li>
+
+              </ul>
+            </div>
+          </div>
+          {% endblock %}
+          <!-- Links -->
+        </div>
+        <!-- Collapsible content -->
+      </nav>
+      <!--/.Navbar-->
+
+    </div>
+    <!--
+    <div class="col">
+      <div class="dropdown">
+      <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Navigation
+        <span class="caret"></span></button>
+        {x% block sidebar %}
+        <ul class="dropdown-menu">
+          <li class="dropdown-header">Menu Navigation</li>
+          //<li><a href="{% url 'index' %}">Accueil</a></li>
+          //<li><a href="{% url 'article' %}">Article</a></li>
+          //<li><a href="{% url 'bonCommandeSortie' %}">Bon Commande Sortie</a></li>
+          //<li><a href="{% url 'bonCommandeEntree' %}">Bon Commande d'entree</a></li>
+          //<li><a href="{% url 'bonLivraisonSortie' %}">Bon de livraison sortie</a></li>
+          //<li><a href="{% url 'unitemanutentionentree' %}">Unite Manutention Entree</a></li>
+          //<li><a href="{% url 'client' %}">Liste Clients</a></li>
+          //<li><a href="{% url 'destinataire' %}">Liste Destinataires</a></li>
+          //<li><a href="{% url 'transporteur' %}">Liste Transporteurs</a></li>
+          //<li><a href="{% url 'fournisseur' %}">Liste Fournisseurs</a></li>
+        </ul>
+        {x% endblock %}
+      </div>
+    </div>
+    -->
+  </div>
+</div>
+
+{% block content %}
+{% endblock %}
+
+<script>
+
+  $(document).ready(function () {
+
+    $("ul li div div a").on({
+      mouseenter: function () {
+        $(this).fadeTo("slow", 0.5);
+
+        console.log("enter");
+    },
+      mouseleave: function () {
+        $(this).fadeTo("slow", 1);
+        console.log("leave");
+      }
+    });
+
+    $('.first-button').on('click', function () {
+      $('.animated-icon1').toggleClass('open');
+    });
+    $('.second-button').on('click', function () {
+      $('.animated-icon2').toggleClass('open');
+    });
+    $('.third-button').on('click', function () {
+      $('.animated-icon3').toggleClass('open');
+    });
+    $("#navbarSupportedContent20 > ul > li > a").click(function () {
+      alert("there");
+    });//fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+
+    $("#navbarSupportedContent20 > div > div > ul > li > a").hover(function () {
+      //$(this).fadeOut(100).fadeIn(100);
+    });
+    $('#navbarSupportedContent20 > div > div > ul > li').each(function () {
+      //je parcours les li pour chercher celui qui est activé
+      var phrase = '';
+      $(this).find('li').each(function () {
+      });
+    });
+
+    $.ajaxSetup({  // csrf token pour django on doit modif ajax
+      beforeSend: function (xhr, settings) {
+        function getCookie(name) {
+          var cookieValue = null;
+          if (document.cookie && document.cookie != '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+              var cookie = jQuery.trim(cookies[i]);
+              // Does this cookie string begin with the name we want?
+              if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+              }
+            }
+          }
+          return cookieValue;
+        }
+
+        if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+          // Only send the token to relative URLs i.e. locally.
+          xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+        }
+      }
+    });
+
+    $.widget("custom.combobox", {
+      _create: function () {
+        this.wrapper = $("<span>")
+                .addClass("custom-combobox")
+                .insertAfter(this.element);
+        this.element.hide();
+        this._createAutocomplete();
+        this._createShowAllButton();
+      },
+      _createAutocomplete: function () {
+        var selected = this.element.children(":selected"),
+                value = selected.val() ? selected.text() : "";
+        this.input = $("<input>")
+                .appendTo(this.wrapper)
+                .val(value)
+                .attr("title", "")
+                .addClass("custom-combobox-input ui-widget ui-widget-content ui-state-default ui-corner-left")
+                .autocomplete({
+                  delay: 0,
+                  minLength: 0,
+                  source: $.proxy(this, "_source")
+                })
+                .tooltip({
+                  classes: {
+                    "ui-tooltip": "ui-state-highlight"
+                  }
+                });
+        this._on(this.input, {
+          autocompleteselect: function (event, ui) {
+            ui.item.option.selected = true;
+            this._trigger("select", event, {
+              item: ui.item.option
+            });
+          },
+          autocompletechange: "_removeIfInvalid"
+        });
+      },
+      _createShowAllButton: function () {
+        var input = this.input,
+                wasOpen = false;
+        $("<a>")
+                .attr("tabIndex", -1)
+                .attr("title", "Show All Items")
+                .tooltip()
+                .appendTo(this.wrapper)
+                .button({
+                  icons: {
+                    primary: "ui-icon-triangle-1-s"
+                  },
+                  text: false
+                })
+                .removeClass("ui-corner-all")
+                .addClass("custom-combobox-toggle ui-corner-right")
+                .on("mousedown", function () {
+                  wasOpen = input.autocomplete("widget").is(":visible");
+                })
+                .on("click", function () {
+                  input.trigger("focus");
+                  // Close if already visible
+                  if (wasOpen) {
+                    return;
+                  }
+                  // Pass empty string as value to search for, displaying all results
+                  input.autocomplete("search", "");
+                });
+      },
+      _source: function (request, response) {
+        var matcher = new RegExp($.ui.autocomplete.escapeRegex(request.term), "i");
+        response(this.element.children("option").map(function () {
+          var text = $(this).text();
+          if (this.value && (!request.term || matcher.test(text)))
+            return {
+              label: text,
+              value: text,
+              option: this
+            };
+        }));
+      },
+      _removeIfInvalid: function (event, ui) {
+        // Selected an item, nothing to do
+        if (ui.item) {
+          return;
+        }
+        // Search for a match (case-insensitive)
+        var value = this.input.val(),
+                valueLowerCase = value.toLowerCase(),
+                valid = false;
+        this.element.children("option").each(function () {
+          if ($(this).text().toLowerCase() === valueLowerCase) {
+            this.selected = valid = true;
+            return false;
+          }
+        });
+        // Found a match, nothing to do
+        if (valid) {
+          return;
+        }
+        // Remove invalid value
+        this.input
+                .val("")
+                .attr("title", value + " didn't match any item")
+                .tooltip("open");
+        this.element.val("");
+        this._delay(function () {
+          this.input.tooltip("close").attr("title", "");
+        }, 2500);
+        this.input.autocomplete("instance").term = "";
+      },
+      _destroy: function () {
+        this.wrapper.remove();
+        this.element.show();
+      },
+    });
+  });
+</script>
+<br>
+</body>
+<br>
+<br>
+<br>
+<br>
+
+<footer class="page-footer font-small blue bottom fixed-bottom">
+  <div class="footer-copyright text-center py-3">© 2019 Copyright
+  </div>
+</footer>
+
+</html>

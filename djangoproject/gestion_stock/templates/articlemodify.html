@@ -1,0 +1,299 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<style>
+    .ui-dialog-titlebar-close {
+        visibility: hidden;
+    }
+    input.text { margin-bottom:12px; width:95%; padding: .4em; }
+    fieldset { padding:0; border:0; margin-top:25px; }
+    .ui-dialog .ui-state-error { padding: .3em; }
+    .validateTips { border: 1px solid transparent; padding: 0.3em;}
+</style>
+<!--    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->
+
+<div class="container"><h1 class="text-center"> Modification d'Article </h1></div>
+<br>
+
+<div class="container">
+    <div class="form-group row text-center">
+        <div class="col">
+            <button type="button" class="btn btn-light btn-rounded btn-outline-dark">Recherche</button>
+        </div>
+        <div class="col">
+            <button type="button" id="back-row" class="btn btn-default btn-rounded btn-outline-dark">Tout</button>
+        </div>
+        <div class="col">
+            <button type="button" id="create-row" class="btn btn-success btn-rounded btn-outline-dark">Ajouter</button>
+        </div>
+        <div class="col">
+            <button type="button" class="btn btn-default btn-rounded btn-outline-dark">Calculer</button>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="border shadow-lg bg-white rounded col mr-2 pb-2">
+            <div class="row">
+                <div class="col">
+                    <h5 class="text-center"> <u>Identifiant fournisseur</u> </h5>
+                </div>
+            </div>
+            <form action="/create_four/" method="POST" id="post-form">
+                <div class="">
+                    identifiant:<br><input class="form-control" type="text" id="umid" name="identifiant fournisseur" disabled>
+                </div>
+                <div>
+                </div>
+                code: <br><input class="form-control" type="text" id="codefour" name="code four">
+                <div>
+                    désignation: <br><input class="form-control" type="text" id="desigfour" name="designation four">
+                </div>
+                <br>
+                <input type="button" class="form-control" class="btn btn-primary" id="addart" value="Save">
+            </form>
+        </div>
+        <div class="border shadow-lg bg-white rounded col">
+            <div class="row">
+                <div class="col">
+                    <h5 class="text-center"> <u>Identifiant client</u> </h5>
+                </div>
+            </div>
+            <div class="">
+                code:<br><input class="form-control" type="text" id="codecli" name="identifiant client">
+            </div>
+            <div>
+                désignation: <br><input class="form-control" type="text" id="désicli" name="code four">
+            </div>
+            <div>
+                délai péremption [jour(s)]: <br><input class="form-control" type="text" id="délaipcli" name="délai peremption/jours">
+            </div>
+            <div>
+                durée stockage: <br><input class="form-control" type="text" id="dureestock" name="durée de stockage client">
+            </div>
+        </div>
+
+        <div class="border shadow-lg bg-white rounded col ml-2">
+            <div class="row">
+                <div class="col">
+                    <h5 class="text-center"> <u>Autres</u> </h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-center">
+                    Type article <br><select class="custom-select" id="artitype">
+                    <script type="text/javascript">
+                        $(document).ready(function() {
+                            var i = 0;
+                            "{% for items in typeart %}"
+                            //to change
+                            console.log("test");
+                            var name = "{{ items.nom }}";
+                            var oldname;
+                            if (i == 0)
+                                $("#artitype").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                            else if (name != oldname)
+                                $("#artitype").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                            oldname = name;
+                            i = 1;
+                            "{% endfor %}"
+                        });
+                    </script>
+                </select>
+                </div>
+            </div>
+            <div class="row">
+                <br>
+                <div class="col text-center">
+                    fournisseur: <br><select class="form-control" id="fournitype">
+                    <script type="text/javascript">
+                        $(document).ready(function() {
+                            var i = 0;
+                            "{% for items in four %}"
+                            //to change
+                            var name = "{{ items.nom }}";
+                            var oldname;
+                            if (i == 0)
+                                $("#fournitype").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                            else if (name != oldname)
+                                $("#fournitype").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                            oldname = name;
+                            i = 1;
+                            "{% endfor %}"
+                        });
+                    </script>
+                </select>
+                </div>
+            </div>
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-sm">
+                        qte colis std : <br><input type="text" id="qtecstd" class="form-control" name="délai peremption/jours">
+                    </div>
+                    <div class="col-sm">
+                        poids colis std : <br><input type="text" id="pcstr" class="form-control" name="délai peremption/jours">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        source : <br><input type="text" id="src" class="form-control" name="délai peremption/jours">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        id. source : <br><input type="text" id="idsrc" class="form-control" name="délai peremption/jours">
+                    </div>
+                </div>
+                <br>
+
+            </div>
+
+        </div>
+    </div>
+
+    <hr>
+    <div class="row justify-content-md-center">
+        <div class="col-8">
+            <div class="border shadow-lg bg-white rounded col">
+                <h5 class="text-center"> <u>Historique</u> </h5>
+                <table id="dtBasicExample" class="table table-striped table-responsive table-bordered table-sm" cellspacing="0" width="100%">
+                    <thead>
+                    <tr>
+                        <th scope="col" class="th-sm"> modify </th>
+                        <th scope="col" class="th-sm"> stock </th>
+                        <th scope="col" class="th-sm"> type article </th>
+                        <th scope="col" class="th-sm"> fournisseur </th>
+                        <th scope="col" class="th-sm"> code client </th>
+                        <th scope="col" class="th-sm"> designation client</th>
+                        <th scope="col" class="th-sm"> produits complet </th>
+                        <th scope="col" class="th-sm"> produits incomplet </th>
+                        <th scope="col" class="th-sm"> colis incomplet </th>
+                        <th scope="col" class="th-sm"> qte colis standard </th>
+                        <th scope="col" class="th-sm"> qte colis dans UMs </th>
+                        <th scope="col" class="th-sm"> delete </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for items in histoart %}
+                    <tr>
+                        <td> <button id='{{ items.idArticle }}' class="dyna"> -> </button></td>
+                        <td> {{ items.stock }} </td>
+                        <td> {{ items.fk_TypeArticle.nom }} </td>
+                        <td> {{ items.fk_Fournisseur.nom }} </td>
+                        <td> {{ items.codeClient }} </td>
+                        <td> {{ items.designationClient }} </td>
+                        <td> {{ items.quantiteProduitStockComplet }} </td>
+                        <td> {{ items.quantiteColisStockComplet }} </td>
+                        <td> {{ items.quantiteProduitStockIncomplet }} </td>
+                        <td> {{ items.quantiteColisStockIncomplet }} </td>
+                        <td> {{ items.quantiteColisStandard }} </td>
+                        <td> {{ items.quantiteUniteManutentionSortie }} </td>
+                        <td> <button id='{{ items.idArticle }}' class="dynad"> X </button> </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <button type="button" class="btn btn-outline-success mb-2">+</button>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="row">
+                <div class="border shadow-lg bg-white rounded col-md-auto">
+                    <table id="dtBasicExample" class="table table-striped table-responsive table-bordered table-sm" cellspacing="0" width="100%">
+                        <thead>
+                        <tr>
+                            <th scope="col" class="th-sm"> modify </th>
+                            <th scope="col" class="th-sm"> stock </th>
+                            <th scope="col" class="th-sm"> type article </th>
+                            <th scope="col" class="th-sm"> fournisseur </th>
+                            <th scope="col" class="th-sm"> delete </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for items in art %}
+                        <tr>
+                            <td> <button id='{{ items.idArticle }}' class="dyna"> -> </button></td>
+                            <td> {{ items.stock }} </td>
+                            <td> {{ items.fk_TypeArticle.nom }} </td>
+                            <td> {{ items.fk_Fournisseur.nom }} </td>
+                            <td> <button id='{{ items.idArticle }}' class="dynad"> X </button> </td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<script>
+    $(document).ready(function() {
+        $("#back-row").click(function() {
+            location.href = "{% url 'article' %}";
+        });
+        var upperid = "0";
+        /*"{% for items in art %}"
+          if (parseInt(upperid, 10) < parseInt('{{ items.idArticle }}', 10)) {
+            upperid = parseInt('{{ items.idArticle }}', 10);
+           }
+          "{% endfor %}"
+          if (upperid == 0)
+            $("#umid").val(1);
+          else
+            $("#umid").val(upperid+1);
+        */
+        $("#umid").val('{{ id }}');
+        var id = $('#umid').val();
+        '{% for items in art %}'
+        if ('{{ items.idArticle }}' == id) {
+            $("#codefour").val('{{ items.codeFournisseur }}');
+            $("#desigfour").val('{{ items.designationFournisseur }}');
+            $("#codecli").val('{{ items.codeClient }}');
+            $("#désicli").val('{{ items.designationClient }}');
+            $("#délaipcli").val('{{ items.delaiPeremption }}');
+            $("#dureestock").val('{{ items.dureeStockage }}');
+
+            $("#artitype").val('{{ items.fk_TypeArticle.nom }}');
+            $("#fournitype").val('{{ items.fk_Fournisseur.nom }}');
+
+            $("#qtecstd").val('{{ items.quantiteColisStandard }}');
+            $("#pcstr").val('{{ items.poidsColisStandard }}');
+            $("#src").val('{{ items.source }}');
+            $("#idsrc").val('{{ items.identifiantSource }}');
+        }
+        '{% endfor %}'
+        $('#addart').click(function() {
+            var typef = $('#fournitype').val();
+            $.ajax({
+                type:"POST",    //type de requête utilisé par ajax
+                url:"/create_art/", //lien de la view qui gère la requête post
+                data: {
+                    'name': $('#nom').val(), // nom du transporteur récuperer dans le input #nom
+                    'id': $('#umid').val(), // id du transporteur acquis grace a une incrementation en js
+                    //'fourtype': $('#fournitype').val(),
+                    csrfmiddlewaretoken: '{{ csrf_token }}',
+                },
+                success: function(msg, data, settings){
+                    alert("gg " + msg);
+                },
+                failure: function() {
+                    alert("fail");
+                }
+            });
+        });
+
+        $("#fournitype").combobox();
+        $("#artitype").combobox();
+        $("#toggle").on("click", function() {
+            $("#fournitype").toggle();
+            $("#artitype").combobox();
+        });
+    });
+</script>
+{% endblock %}
