@@ -1,0 +1,18 @@
+Admin
+yQU7zR9BuQ
+
+vs code keybinding
+ {
+        "key": "ctrl+tab",
+        "command": "workbench.action.nextEditor"
+    },
+    {
+        "key": "ctrl+shift+tab",
+        "command": "workbench.action.previousEditor"
+    },
+    {
+        "key": "ctrl+j", "command": "workbench.action.terminal.focus"
+    },
+    { 
+        "key": "ctrl+j", "command": "workbench.action.focusActiveEditorGroup", "when": "terminalFocus"
+    }
