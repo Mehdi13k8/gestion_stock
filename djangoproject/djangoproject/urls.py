@@ -23,5 +23,7 @@ from django.urls import path, include # new
 urlpatterns = [
     path('', include('gestion_stock.urls')),
     #path('accounts/', include('django.contrib.auth.urls')), # new
+    path('accounts/', include('django.contrib.auth.urls')),
+
     path('admin/', admin.site.urls, name='root'),
 ]

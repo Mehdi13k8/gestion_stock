@@ -26,7 +26,7 @@ class index(ListView):
         return render_to_response(self.template_name, context)
 
 class index_login(ListView):
-    template_name = "index_login.html"
+    template_name = "login.html"
 
     def loginajax(request):
         manipulator = AuthenticationForm(request)

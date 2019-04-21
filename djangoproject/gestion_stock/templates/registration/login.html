@@ -1,0 +1,74 @@
+{% extends user.is_authenticated|yesno:"base_generic.html,empty.html" %}
+
+{% block content %}
+
+<html>
+<div class="container">
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <form class="text-center border border-light p-5">
+        <p class="h4 mb-4">Sign in</p>
+
+        {% if form.errors %}
+        <p>Your username and password didn't match. Please try again.</p>
+        {% endif %}
+
+        {% if next %}
+        {% if user.is_authenticated %}
+        <p>Your account doesn't have access to this page. To proceed,
+            please login with an account that has access.</p>
+        {% else %}
+        <p>Please login to see this page.</p>
+        {% endif %}
+        {% endif %}
+
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            <table>
+
+                <tr>
+                    <td>{{ form.username.label_tag }}</td>
+                    <td>{{ form.username }}</td>
+                </tr>
+
+                <tr>
+                    <td>{{ form.password.label_tag }}</td>
+                    <td>{{ form.password }}</td>
+                </tr>
+            </table>
+
+            <input type="submit" value="login" />
+            <input type="hidden" name="next" value="{{ next }}" />
+        </form>
+
+        <div class="d-flex justify-content-around">
+            <div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
+                    <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-info btn-block my-4" type="submit"><a href="#">Sign in</a></button>
+    </form>
+
+</div>
+
+<script>
+    if ('{{ activate }}')
+        console.log("{{ activate }}");
+
+    $('#id_username').addClass('form-control mb-4');
+    $('#id_password').addClass('form-control mb-4');
+</script>
+
+<footer class="page-footer font-small blue bottom fixed-bottom">
+    <div class="footer-copyright text-center py-3">© 2019 Copyright
+    </div>
+</footer>
+</html>
+
+{% endblock %}
