@@ -23,7 +23,7 @@ class index(ListView):
         context = {
             'activate' : 'on'
         }
-        return render_to_response(self.template_name, context)
+        return render(request, self.template_name, context)
 
 class index_login(ListView):
     template_name = "login.html"
@@ -156,9 +156,7 @@ class bonLivraisonSortie(ListView):
         }
        return render_to_response(self.template_name, context)
 
-
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-
 
 class bonLivraisonSortieadd(ListView):
     template_name = "bonLivraisonSortieadd.html"

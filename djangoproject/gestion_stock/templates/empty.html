@@ -44,18 +44,22 @@
 
 </body>
 <script>
+    '{% if user.is_authenticated %}'
+        window.location.href = "{% url 'index' %}";
+    '{% else %}'
+    '{% endif %}'
     $('#exampleModal').modal('show');
-
     $('.modal-body').text('You will be redirected to login page in ' + 6 + ' s...');
     var a = 5;
-    for (a = 5; a != 0; a--)
-    window.setTimeout(function(){
-        $('.modal-body').text('You will be redirected to login page in ' + a + ' s...');
-    }, 1000);
+
+    setInterval(redirect, 1000);
 
     function redirect(){
         '{% block sidebar %}'
-            //window.location.href = "{% url 'login' %}";
+            if (a == 0)
+                window.location.href = "{% url 'login' %}";
+            $('.modal-body').text('You will be redirected to login page in ' + a + ' s...');
+            a--;
         '{% endblock %}'
     }
 //    setTimeout(redirect, 6000); //2000 is equivalent to 2 seconds

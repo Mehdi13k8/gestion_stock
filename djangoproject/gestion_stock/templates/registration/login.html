@@ -1,4 +1,4 @@
-{% extends user.is_authenticated|yesno:"base_generic.html,empty.html" %}
+{% extends "base_generic.html" %}
 
 {% block content %}
 
@@ -9,7 +9,9 @@
     <br>
     <br>
     <br>
-    <form class="text-center border border-light p-5">
+    {% if user.is_authenticated %}
+    {% else %}
+    <form class="text-center border border-light p-5" method="post" action="{% url 'login' %}">
         <p class="h4 mb-4">Sign in</p>
 
         {% if form.errors %}
@@ -24,25 +26,21 @@
         <p>Please login to see this page.</p>
         {% endif %}
         {% endif %}
+        {% csrf_token %}
+        <table>
 
-        <form method="post" action="{% url 'login' %}">
-            {% csrf_token %}
-            <table>
+            <tr>
+                <td>{{ form.username.label_tag }}</td>
+                <td>{{ form.username }}</td>
+            </tr>
 
-                <tr>
-                    <td>{{ form.username.label_tag }}</td>
-                    <td>{{ form.username }}</td>
-                </tr>
+            <tr>
+                <td>{{ form.password.label_tag }}</td>
+                <td>{{ form.password }}</td>
+            </tr>
+        </table>
 
-                <tr>
-                    <td>{{ form.password.label_tag }}</td>
-                    <td>{{ form.password }}</td>
-                </tr>
-            </table>
-
-            <input type="submit" value="login" />
-            <input type="hidden" name="next" value="{{ next }}" />
-        </form>
+        <input type="hidden" name="next" value="{{ next }}" />
 
         <div class="d-flex justify-content-around">
             <div>
@@ -54,10 +52,12 @@
         </div>
         <button class="btn btn-info btn-block my-4" type="submit"><a href="#">Sign in</a></button>
     </form>
+    {% endif %}
 
 </div>
 
 <script>
+//    <input type="submit" value="login" />
     if ('{{ activate }}')
         console.log("{{ activate }}");
 

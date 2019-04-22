@@ -2,17 +2,18 @@ import datetime
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from datetime import date
+
 # Create your models here.
 
-'''
-class User(AbstractUser):
+
+class User(models.Model):
+    users = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
     is_partenaire = models.BooleanField(default=False)
     is_client = models.BooleanField(default=False)
     is_transporteur = models.BooleanField(default=False)
     nom = models.CharField(max_length=100)
-    coordonnee = models.PointField(null=True, blank=True)
     adresse = models.CharField(max_length=100)
-    '''
 
 #Models for Import_Bon_CommandeSortie
 class import_BonCommandeSortie(models.Model):

@@ -34,13 +34,24 @@
 
 
 <div class="container jumbotron">
+
   <h2>Welcome</h2>
+    {% if user.is_authenticated %}
+
+      <div style="position: static;right: 0;float: right;">
+        Hi {{ user.username }}!
+        <p><a href="{% url 'logout' %}">logout</a></p>
+      </div>
+    {% endif %}
+
 
   <div class="row">
     <div class="col">
       <!--Navbar-->
+
+      {% if user.is_authenticated %}
+      <!-- Navbar brand -->
       <nav class="navbar navbar-dark  indigo mb-2" id="hidenot  con">
-        <!-- Navbar brand -->
         <span  class="navbar-brand">Menu</span>
         <!-- Collapse button -->
         <button class="navbar-toggler first-button" type="button" data-toggle="collapse" data-target="#navbarSupportedContent20"
@@ -98,13 +109,13 @@
                     <div class="mx-auto">
                       <a class="nav-link text-center" href="{% url 'bonCommandeSortie' %}">
                         <div class="col">
-                        <div class="mx-auto">
-                        <img src="{{ STATIC_URL }} /static/img/ordre_du_jour.jpg" class="img-fluid rounded text-left my_img" alt="boncommandesortie" height="75" width="75">
+                          <div class="mx-auto">
+                            <img src="{{ STATIC_URL }} /static/img/ordre_du_jour.jpg" class="img-fluid rounded text-left my_img" alt="boncommandesortie" height="75" width="75">
+                          </div>
                         </div>
-                      </div>
                         <div class="col">
-                    <p>Bon de commande Sortie</p>
-                      </div>
+                          <p>Bon de commande Sortie</p>
+                        </div>
                       </a>
                     </div>
                   </div>
@@ -228,8 +239,11 @@
         </div>
         <!-- Collapsible content -->
       </nav>
-      <!--/.Navbar-->
+      {% else %}
+        <p>Please login to enter in sesame .</p>
+      {% endif %}
 
+      <!--/.Navbar-->
     </div>
     <!--
     <div class="col">
@@ -256,6 +270,7 @@
     -->
   </div>
 </div>
+
 
 {% block content %}
 {% endblock %}
