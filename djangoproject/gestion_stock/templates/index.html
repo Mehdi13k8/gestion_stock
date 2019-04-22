@@ -1,4 +1,4 @@
-{% extends user.is_authenticated|yesno:"base_generic.html,base_generic.html" %}
+{% extends user.is_authenticated|yesno:"base_generic.html,empty.html" %}
 
 {% block content %}
 
