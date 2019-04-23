@@ -1,4 +1,4 @@
-{% extends "base_generic.html" %}
+{% extends user.is_authenticated|yesno:"base_generic.html,empty.html" %}
 
 {% block content %}
 
@@ -29,9 +29,6 @@
 
 <div class="container">
   <div class="form-group row text-center">
-    <div class="col">
-      <i class="fa fa-chevron-circle-left" style="font-size:45px;cursor: pointer;"></i>
-    </div>
 
     <div class="col">
       <button type="button" id="back-row" class="btn btn-default btn-rounded btn-outline-dark">Tout</button>
@@ -39,10 +36,6 @@
     <div class="col">
       <button type="button" id="create-row" class="btn btn-success btn-rounded btn-outline-dark">Ajouter</button>
     </div>
-    <div class="col">
-      <i class="fa fa-chevron-circle-right" style="font-size:45px"></i>
-    </div>
-
 
   </div>
 </div>
@@ -138,6 +131,9 @@
         alert("fail");
       }
     });
+
+
+
   });
 
 </script>

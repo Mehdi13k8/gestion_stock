@@ -1,4 +1,4 @@
-{% extends "base_generic.html" %}
+{% extends user.is_authenticated|yesno:"base_generic.html,empty.html" %}
 
 {% block content %}
 
@@ -19,18 +19,24 @@
 
 <div class="container">
     <div class="form-group row text-center">
+
         <div class="col">
-            <button type="button" class="btn btn-light btn-rounded btn-outline-dark">Recherche</button>
+            <i class="fa fa-chevron-circle-left" style="font-size:45px;cursor: pointer;"></i>
         </div>
+
         <div class="col">
             <button type="button" id="back-row" class="btn btn-default btn-rounded btn-outline-dark">Tout</button>
         </div>
         <div class="col">
             <button type="button" id="create-row" class="btn btn-success btn-rounded btn-outline-dark">Ajouter</button>
         </div>
-        <div class="col">
+        <!--<div class="col">
             <button type="button" class="btn btn-default btn-rounded btn-outline-dark">Calculer</button>
+        </div>-->
+        <div class="col">
+            <i class="fa fa-chevron-circle-right" style="font-size:45px;cursor: pointer;"></i>
         </div>
+
     </div>
 </div>
 
@@ -108,7 +114,7 @@
             <div class="row">
                 <br>
                 <div class="col text-center">
-                    fournisseur: <br><select class="form-control" id="fournitype">
+                    fournisseur: <br><select class="custom-select" id="fournitype">
                     <script type="text/javascript">
                         $(document).ready(function() {
                             var i = 0;
@@ -234,6 +240,45 @@
 <br>
 <script>
     $(document).ready(function() {
+
+        $(".fa-chevron-circle-right").click(function() {
+            $.ajax({
+                type:"POST",    //type de requête utilisé par ajax
+                url:"/right_article/", //lien de la view qui gère la requête post
+                data: {
+                    'id': $('#umid').val(), // id du transporteur acquis grace a une incrementation en js
+                    csrfmiddlewaretoken: '{{ csrf_token }}',
+                },
+                success: function(msg, data, settings){
+                    console.log("gg " + msg);
+                    if (msg != "fail")
+                        window.location.href = "{% url 'articlemodify' %}?id=" +  msg;
+                },
+                failure: function() {
+                    console.log("fail");
+                }
+            });
+        });
+
+        $(".fa-chevron-circle-left").click(function() {
+            $.ajax({
+                type:"POST",    //type de requête utilisé par ajax
+                url:"/left_article/", //lien de la view qui gère la requête post
+                data: {
+                    'id': $('#umid').val(),
+                    csrfmiddlewaretoken: '{{ csrf_token }}',
+                },
+                success: function(msg, data, settings){
+                    console.log("gg " + msg);
+                    if (msg != "fail")
+                        window.location.href = "{% url 'articlemodify' %}?id=" +  msg;
+                },
+                failure: function() {
+                    console.log("fail");
+                }
+            });
+        });
+
         $("#back-row").click(function() {
             location.href = "{% url 'article' %}";
         });
@@ -288,12 +333,127 @@
             });
         });
 
+        $.widget("custom.combobox", {
+            _create: function () {
+                this.wrapper = $("<span>")
+                    .addClass("custom-combobox")
+                    .insertAfter(this.element);
+                this.element.hide();
+                this._createAutocomplete();
+                this._createShowAllButton();
+            },
+            _createAutocomplete: function () {
+                var selected = this.element.children(":selected"),
+                    value = selected.val() ? selected.text() : "";
+                this.input = $("<input>")
+                    .appendTo(this.wrapper)
+                    .val(value)
+                    .attr("title", "")
+                    .addClass("custom-combobox-input ui-widget ui-widget-content ui-state-default ui-corner-left")
+                    .autocomplete({
+                        delay: 0,
+                        minLength: 0,
+                        source: $.proxy(this, "_source")
+                    })
+                    .tooltip({
+                        classes: {
+                            "ui-tooltip": "ui-state-highlight"
+                        }
+                    });
+                this._on(this.input, {
+                    autocompleteselect: function (event, ui) {
+                        ui.item.option.selected = true;
+                        this._trigger("select", event, {
+                            item: ui.item.option
+                        });
+                    },
+                    autocompletechange: "_removeIfInvalid"
+                });
+            },
+            _createShowAllButton: function () {
+                var input = this.input,
+                    wasOpen = false;
+                $("<a>")
+                    .attr("tabIndex", -1)
+                    .attr("title", "Show All Items")
+                    .tooltip()
+                    .appendTo(this.wrapper)
+                    .button({
+                        icons: {
+                            primary: "ui-icon-triangle-1-s"
+                        },
+                        text: false
+                    })
+                    .removeClass("ui-corner-all")
+                    .addClass("custom-combobox-toggle ui-corner-right")
+                    .on("mousedown", function () {
+                        wasOpen = input.autocomplete("widget").is(":visible");
+                    })
+                    .on("click", function () {
+                        input.trigger("focus");
+                        // Close if already visible
+                        if (wasOpen) {
+                            return;
+                        }
+                        // Pass empty string as value to search for, displaying all results
+                        input.autocomplete("search", "");
+                    });
+            },
+            _source: function (request, response) {
+                var matcher = new RegExp($.ui.autocomplete.escapeRegex(request.term), "i");
+                response(this.element.children("option").map(function () {
+                    var text = $(this).text();
+                    if (this.value && (!request.term || matcher.test(text)))
+                        return {
+                            label: text,
+                            value: text,
+                            option: this
+                        };
+                }));
+            },
+            _removeIfInvalid: function (event, ui) {
+                // Selected an item, nothing to do
+                if (ui.item) {
+                    return;
+                }
+                // Search for a match (case-insensitive)
+                var value = this.input.val(),
+                    valueLowerCase = value.toLowerCase(),
+                    valid = false;
+                this.element.children("option").each(function () {
+                    if ($(this).text().toLowerCase() === valueLowerCase) {
+                        this.selected = valid = true;
+                        return false;
+                    }
+                });
+                // Found a match, nothing to do
+                if (valid) {
+                    return;
+                }
+                // Remove invalid value
+                this.input
+                    .val("")
+                    .attr("title", value + " didn't match any item")
+                    .tooltip("open");
+                this.element.val("");
+                this._delay(function () {
+                    this.input.tooltip("close").attr("title", "");
+                }, 2500);
+                this.input.autocomplete("instance").term = "";
+            },
+            _destroy: function () {
+                this.wrapper.remove();
+                this.element.show();
+            },
+        });
+
         $("#fournitype").combobox();
         $("#artitype").combobox();
         $("#toggle").on("click", function() {
-            $("#fournitype").toggle();
+            $("#fournitype").combobox();
             $("#artitype").combobox();
         });
     });
+
 </script>
 {% endblock %}

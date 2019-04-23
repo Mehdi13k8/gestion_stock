@@ -35,7 +35,7 @@
 
 <div class="container jumbotron">
 
-  <h2>Welcome</h2>
+  <h2 class="pl-3">Welcome</h2>
     {% if user.is_authenticated %}
 
       <div style="position: static;right: 0;float: right;">
@@ -205,8 +205,8 @@
                   <hr>
                   <div class="row">
                     <div class="mx-auto">
-                      <img src="{{ STATIC_URL }} /static/img/mailbox.jpg" class="img-fluid rounded text-left my_img" alt="Destinatairest">
-                      <a class="nav-link text-left" href="{% url 'destinataire' %}">Destinataires</a>
+                      <a class="nav-link text-left my_img" href="{% url 'destinataire' %}"><img src="{{ STATIC_URL }} /static/img/mailbox.jpg" class="img-fluid rounded text-left my_img" alt="Destinatairest">
+                        Destinataires</a>
                     </div>
                   </div>
                 </li>

@@ -1,6 +1,6 @@
 # Create your views here.
 
-from django.shortcuts import render, render_to_response
+from django.shortcuts import render, render_to_response, redirect
 from .models import *
 from django.views.generic import ListView
 from django import forms
@@ -67,7 +67,7 @@ class BonCommandeEntree_index(ListView):
             'bone' : BonCommandeEntree.objects.all(),
             'activate' : 'on'
         }
-        return render_to_response(self.template_name, context)
+        return render(request, self.template_name, context)
 
 class BonCommandeEntreeadd(ListView):
     template_name = "bonCommandeEntreeadd.html"
@@ -97,12 +97,10 @@ class BonCommandeEntreeadd(ListView):
             'bone' : BonCommandeEntree.objects.all(),
             'activate' : 'on'
         }
-        return render_to_response(self.template_name, context)
+        return render(request, self.template_name, context)
 
 class BonCommandeEntreemodify(ListView):
     template_name = "bonCommandeEntreemodify.html"
-
-    
 
     def get(self, request):
         context = {
@@ -110,7 +108,7 @@ class BonCommandeEntreemodify(ListView):
             'id' :request.GET.get('id'),
             'activate' : 'on'
         }
-        return render_to_response(self.template_name, context)
+        return render(request, self.template_name, context)
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
@@ -130,8 +128,7 @@ class ListeArticles(ListView):
         'umsortie':UniteManutentionSortie_pour_BonCommandeSortie.objects.all().select_related('fk_BonCommandeSortie', 'fk_TypeUniteManutentionSortie', 'fk_Etiquette'),
         'activate' : 'on'
     }
-       return render_to_response(self.template_name, context)
-
+       return render(request, self.template_name, context)
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
@@ -154,7 +151,7 @@ class bonLivraisonSortie(ListView):
             'sortieligne' :LigneBonLivraisonSortie_pour_BonLivraisonSortie.objects.all().select_related('fk_Article', 'fk_BonLivraisonSortie'),
             'activate' : 'on',
         }
-       return render_to_response(self.template_name, context)
+       return render(request, self.template_name, context)
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
@@ -167,7 +164,7 @@ class bonLivraisonSortieadd(ListView):
             'sortieligne' :LigneBonLivraisonSortie_pour_BonLivraisonSortie.objects.all().select_related('fk_Article', 'fk_BonLivraisonSortie'),
             'activate' : 'on',
         }
-       return render_to_response(self.template_name, context)
+       return render(request, self.template_name, context)
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
@@ -186,9 +183,7 @@ class article(ListView):
             'art' : Article.objects.all(),
             'activate' : 'on',
         }
-       return render_to_response(self.template_name, context)
-
-       
+       return render(request, self.template_name, context)
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
@@ -197,14 +192,14 @@ class articleadd(ListView):
 
     def create_art(request):
         if request.method == 'POST':
-            '''typefournisseur = TypeFournisseur_pour_Fournisseur.objects.all()
-            fournisseur = Fournisseur()
-            fournisseur.idFournisseur = request.POST['id']
-            fournisseur.nom =  request.POST['name']
-            for items in typefournisseur:
-                if items.nom == request.POST.get('fourtype'):
-                    fournisseur.fk_TypeFournisseur = items
-            fournisseur.save()'''
+            '''typearticle = Article.objects.all()
+            article = Article()
+            article.idArticle = request.POST['id']
+            article.nom =  request.POST['name']
+            for items in typearticle:
+                if items.nom == request.POST.get('typearticle'):
+                    fournisseur.fk_TypeArticle = items
+            article.save()'''
             return HttpResponse("New article " + request.POST['name'] + "created !")
 
     def get(self, request):
@@ -214,9 +209,11 @@ class articleadd(ListView):
             'four' : Fournisseur.objects.all(),
             'activate' : 'on',
         }
-        return render_to_response(self.template_name, context)
+        return render(request, self.template_name, context)
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
+import sys
 
 class articlemodify(ListView):
     template_name = "articlemodify.html"
@@ -234,8 +231,46 @@ class articlemodify(ListView):
             'id' :request.GET.get('id'),
             'activate' : 'on',
         }
-        return render_to_response(self.template_name, context)
+        return render(request, self.template_name, context)
 
+    def left(request):
+        if request.method == 'POST':
+            before = request.POST['id']
+            article = Article.objects.get(idArticle=request.POST['id'])
+
+            for i in range(int(before)-1, 0, -1):
+                try:
+                    go = Article.objects.get(idArticle=str(i))
+                    return HttpResponse(i)
+                except Article.DoesNotExist:
+                    go = None
+                print (i)
+            return HttpResponse("fail")
+        return HttpResponse("No Authorized Access !")
+
+    def right(request):
+        if request.method == 'POST':
+            my_total = Article.objects.count()
+            after = request.POST['id']
+            article = Article.objects.get(idArticle=request.POST['id'])
+
+            art = Article.objects.all()
+
+            id = 0
+            for myart in art:
+                if id < int(myart.idArticle):
+                    id = int(myart.idArticle)
+            print("id = " + str(id) + '\n')
+
+            for i in range(int(after)+1, id, 1):
+                try:
+                    go = Article.objects.get(idArticle=str(i))
+                    return HttpResponse(i)
+                except Article.DoesNotExist:
+                    go = None
+                print (i)
+            return HttpResponse("fail")
+        return HttpResponse("No Authorized Access !")
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
@@ -248,7 +283,7 @@ class fournisseur(ListView):
             'typef':TypeFournisseur_pour_Fournisseur.objects.all(),
             'activate' : 'on',
         }
-       return render_to_response(self.template_name, context)
+       return render(request, self.template_name, context)
 
 def create_four(request):
         typefournisseur = TypeFournisseur_pour_Fournisseur.objects.all()
@@ -280,7 +315,7 @@ class fournisseuradd(ListView):
             'typef':TypeFournisseur_pour_Fournisseur.objects.all(),
             'activate' : 'on',
         }
-       return render_to_response(self.template_name, context)
+       return render(request, self.template_name, context)
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
@@ -301,7 +336,7 @@ class fournisseurmodify(ListView):
             'id' : request.GET.get('id'),
             'activate' : 'on',
         }
-       return render_to_response(self.template_name, context)
+       return render(request, self.template_name, context)
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
@@ -313,11 +348,9 @@ class transporteur(ListView):
             'trans' :Transporteur.objects.all(),
             'activate' : 'on',
         }
-       return render_to_response(self.template_name, context)
-
+       return render(request, self.template_name, context)
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-
 
 class transporteuradd(ListView):
     template_name = "transporteuradd.html"
@@ -327,7 +360,7 @@ class transporteuradd(ListView):
             'trans' :Transporteur.objects.all(),
             'activate' : 'on',
         }
-       return render_to_response(self.template_name, context)
+       return render(request, self.template_name, context)
 
 def create_trans(request):
         if request.method == 'POST':
@@ -343,9 +376,7 @@ def delete_trans(request):
             one_task.delete()
             return HttpResponse("Transporteur " + request.POST['name'] + " deleted !")
 
-
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-
 
 class transporteurmodify(ListView):
     template_name = "transporteurmodify.html"
@@ -364,7 +395,7 @@ class transporteurmodify(ListView):
             'id' :request.GET.get('id'),
             'activate' : 'on',
         }
-       return render_to_response(self.template_name, context)
+       return render(request, self.template_name, context)
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
@@ -387,7 +418,7 @@ class destinataire(ListView):
             'des' :Destinataire.objects.all(),
             'activate' : 'on',
         }
-       return render_to_response(self.template_name, context)
+       return render(request, self.template_name, context)
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
@@ -447,7 +478,7 @@ class destinatairemodify(ListView):
             'umsortie' :UniteManutentionSortie_pour_Destinataire.objects.all().select_related('fk_BonCommandeSortie'),
             'activate' : 'on',
         }
-       return render_to_response(self.template_name, context)
+       return render(request, self.template_name, context)
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -512,7 +543,7 @@ class destinataireadd(ListView):
             'pays':Pays_pour_Destinataire.objects.all(),
             'activate' : 'on',
         }
-        return render_to_response(self.template_name, context)
+        return render(request, self.template_name, context)
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
@@ -536,7 +567,7 @@ class client(ListView):
             'cli' : Client.objects.all(),
             'activate' : 'on',
         }
-        return render_to_response(self.template_name, context)
+        return render(request, self.template_name, context)
 
 class clientmodify(ListView):
     template_name = "clientmodify.html"
@@ -700,7 +731,7 @@ class clientmodify(ListView):
             'bce' : BonCommandeEntree.objects.all(),
             'activate' : 'on',
         }
-        return render_to_response(self.template_name, context)
+        return render(request, self.template_name, context)
 
 class clientadd(ListView):
     template_name = "clientadd.html"
@@ -1012,7 +1043,7 @@ class clientadd(ListView):
             'con' : Contact_pour_Client.objects.all(),
             'activate' : 'on',
         }
-        return render_to_response(self.template_name, context)
+        return render(request, self.template_name, context)
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 #unitemanutention
@@ -1035,7 +1066,7 @@ class ume(ListView):
         context = {
             'activate' : 'on',
         }
-        return render_to_response(self.template_name, context)
+        return render(request, self.template_name, context)
 
 class umeadd(ListView):
     template_name = "unitemanutentionentreeadd.html"
@@ -1054,20 +1085,20 @@ class umeadd(ListView):
         context = {
             'activate' : 'on'
         }
-        return render_to_response(self.template_name, context)
+        return render(request, self.template_name, context)
 
 class umemodify(ListView):
 
     def modify(self, request):
         context = {
         }
-        return render_to_response(self.template_name, context)
+        return render(request, self.template_name, context)
 
 
     def get(self, request):
         context = {
             'activate' : 'on'
         }
-        return render_to_response(self.template_name, context)
+        return render(request, self.template_name, context)
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#

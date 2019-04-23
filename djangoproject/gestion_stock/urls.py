@@ -28,6 +28,8 @@ urlpatterns = [
     path('article/delete/', views.article.delete),
     path('article/add', views.articleadd.as_view(), name='articleadd'),
     path('article/modify', views.articlemodify.as_view(), name='articlemodify'),
+    path('right_article/', views.articlemodify.right),
+    path('left_article/', views.articlemodify.left),
 
     path('fournisseur', views.fournisseur.as_view(), name='fournisseur'),
     path('fournisseur/add', views.fournisseuradd.as_view(), name='fournisseuradd'),
