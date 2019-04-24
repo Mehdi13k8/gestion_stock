@@ -75,7 +75,7 @@ class BonCommandeEntreeadd(ListView):
     def add(request):
         if request.method == 'POST':
             showlist = [request.POST.get('id'),
-            request.POST.get('ncommande'), request.POST.get('datecom')]
+                        request.POST.get('ncommande'), request.POST.get('datecom')]
 
             bce = BonCommandeEntree.objects.all()
             foundit = 0
@@ -118,20 +118,19 @@ class BonCommandeEntreemodify(ListView):
 #c'est le bon de sortie pour les commande
 class ListeArticles(ListView):
     data = dict()
-   
+
     template_name = "bonCommandeSortie.html"
-    
+
     def get(self, request):
-       self.data['lesclients'] = Client_pour_import_BonCommandeSortie.objects.prefetch_related('clients').all()
-       context = {
-        'sortie' :BonCommandeSortie_pour_import_BonCommandeSortie.objects.all().select_related('fk_Client', 'fk_Destinataire', 'fk_Transporteur', 'fk_TypeBonCommandeSortie'),
-        'umsortie':UniteManutentionSortie_pour_BonCommandeSortie.objects.all().select_related('fk_BonCommandeSortie', 'fk_TypeUniteManutentionSortie', 'fk_Etiquette'),
-        'activate' : 'on'
-    }
-       return render(request, self.template_name, context)
+        self.data['lesclients'] = Client_pour_import_BonCommandeSortie.objects.prefetch_related('clients').all()
+        context = {
+            'sortie' :BonCommandeSortie_pour_import_BonCommandeSortie.objects.all().select_related('fk_Client', 'fk_Destinataire', 'fk_Transporteur', 'fk_TypeBonCommandeSortie'),
+            'umsortie':UniteManutentionSortie_pour_BonCommandeSortie.objects.all().select_related('fk_BonCommandeSortie', 'fk_TypeUniteManutentionSortie', 'fk_Etiquette'),
+            'activate' : 'on'
+        }
+        return render(request, self.template_name, context)
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-
 #useless
 def bonCommandeSortieadd(request):
     context = {
@@ -141,30 +140,45 @@ def bonCommandeSortieadd(request):
     }
     return render(request, 'bonCommandeSortieadd.html', context)
 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
+class bonLivraisonEntree(ListView):
+    template_name = "bonLivraisonEntree.html"
+
+    def get(self, request):
+        context = {
+            'entree' : BonLivraisonEntree.objects.all(),
+            #'entreeligne' : LigneBonLivraisonEntree_pour_BonLivraisonEntree.objects.all(),
+            'activate' : 'on',
+        }
+        return render(request, self.template_name, context)
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 #c'est le bon de sortie pour les commande
 class bonLivraisonSortie(ListView):
     template_name = "bonLivraisonSortie.html"
-    
+
     def get(self, request):
-       context = {
+        context = {
             'sortie' :BonLivraisonSortie.objects.all().select_related('fk_BonCommandeSortie', 'fk_LettreVoitureSortie'),
             'sortieligne' :LigneBonLivraisonSortie_pour_BonLivraisonSortie.objects.all().select_related('fk_Article', 'fk_BonLivraisonSortie'),
             'activate' : 'on',
         }
-       return render(request, self.template_name, context)
+        return render(request, self.template_name, context)
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
 class bonLivraisonSortieadd(ListView):
     template_name = "bonLivraisonSortieadd.html"
-    
+
     def get(self, request):
-       context = {
+        context = {
             'sortie' :BonLivraisonSortie.objects.all().select_related('fk_BonCommandeSortie', 'fk_LettreVoitureSortie'),
             'sortieligne' :LigneBonLivraisonSortie_pour_BonLivraisonSortie.objects.all().select_related('fk_Article', 'fk_BonLivraisonSortie'),
             'activate' : 'on',
         }
-       return render(request, self.template_name, context)
+        return render(request, self.template_name, context)
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
@@ -179,28 +193,53 @@ class article(ListView):
         return HttpResponse("No Authorized Access !")
 
     def get(self, request):
-       context = {
+        context = {
             'art' : Article.objects.all(),
             'activate' : 'on',
         }
-       return render(request, self.template_name, context)
+        return render(request, self.template_name, context)
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
 class articleadd(ListView):
     template_name = "articleadd.html"
 
-    def create_art(request):
+    def create(request):
         if request.method == 'POST':
-            '''typearticle = Article.objects.all()
+            showlist = [request.POST.get('name'), request.POST.get('id'),
+                        request.POST.get('codefour'), request.POST.get('desifour'),
+                        request.POST.get('codecli'), request.POST.get('desicli'),
+
+                        request.POST.get('delaicli'), request.POST.get('durestock'),
+                        request.POST.get('artitype'), request.POST.get('fournitype'),
+                        request.POST.get('qtecstd'), request.POST.get('pcstd'),
+                        request.POST.get('source'), request.POST.get('idsource')]
             article = Article()
-            article.idArticle = request.POST['id']
-            article.nom =  request.POST['name']
+            article.nom =  showlist[0]
+            article.idArticle = showlist[1]
+            article.codeFournisseur = showlist[2]
+            article.designationFournisseur = showlist[3]
+            article.codeClient = showlist[4]
+            article.designationClient = showlist[5]
+            article.delaiPeremption = showlist[6]
+            article.dureeStockage = showlist[7]
+
+            typearticle = typeArticle_pour_Article.objects.all()
             for items in typearticle:
-                if items.nom == request.POST.get('typearticle'):
-                    fournisseur.fk_TypeArticle = items
-            article.save()'''
-            return HttpResponse("New article " + request.POST['name'] + "created !")
+                if items.nom == showlist[8]:
+                    article.fk_TypeArticle = items
+
+            fournisseur = Fournisseur.objects.all()
+            for items in fournisseur:
+                if items.nom == showlist[9]:
+                    article.fk_Fournisseur = items
+            article.quantiteColisStandard = showlist[10]
+            article.poidsColisStandard = showlist[11]
+            article.source = showlist[12]
+            article.identifiantSource = showlist[13]
+            article.save()
+            return HttpResponse("New article created !")
+        return HttpResponse("Unauthorized page !")
 
     def get(self, request):
         context = {
@@ -218,15 +257,49 @@ import sys
 class articlemodify(ListView):
     template_name = "articlemodify.html"
 
-    def modify(request):
+    def modif(request):
         if request.method == 'POST':
-            return HttpResponse("New article " + request.POST['name'] + "created !")
-        return HttpResponse("Refused Access !")
+            showlist = [request.POST.get('name'), request.POST.get('id'),
+                        request.POST.get('codefour'), request.POST.get('desifour'),
+                        request.POST.get('codecli'), request.POST.get('desicli'),
+
+                        request.POST.get('delaicli'), request.POST.get('durestock'),
+                        request.POST.get('artitype'), request.POST.get('fournitype'),
+                        request.POST.get('qtecstd'), request.POST.get('pcstd'),
+                        request.POST.get('source'), request.POST.get('idsource')]
+            article = Article.objects.get(idArticle=showlist[1])
+            article.nom =  showlist[0]
+            article.idArticle = showlist[1]
+            article.codeFournisseur = showlist[2]
+            article.designationFournisseur = showlist[3]
+            article.codeClient = showlist[4]
+            article.designationClient = showlist[5]
+            article.delaiPeremption = showlist[6]
+            article.dureeStockage = showlist[7]
+
+            typearticle = typeArticle_pour_Article.objects.all()
+            for items in typearticle:
+                if items.nom == showlist[8]:
+                    article.fk_TypeArticle = items
+
+            fournisseur = Fournisseur.objects.all()
+            for items in fournisseur:
+                if items.nom == showlist[9]:
+                    article.fk_Fournisseur = items
+            article.quantiteColisStandard = showlist[10]
+            article.poidsColisStandard = showlist[11]
+            article.source = showlist[12]
+            article.identifiantSource = showlist[13]
+            article.save()
+            return HttpResponse(" article modified !")
+        return HttpResponse("Unauthorized page !")
 
     def get(self, request):
         context = {
             'art' : Article.objects.all(),
             'typeart' : typeArticle_pour_Article.objects.all(),
+            'desart' : Destinataire_pour_Article.objects.all(),
+            'histoart ' : Article_historique_pour_Article.objects.all(),
             'four' : Fournisseur.objects.all(),
             'id' :request.GET.get('id'),
             'activate' : 'on',
@@ -262,7 +335,7 @@ class articlemodify(ListView):
                     id = int(myart.idArticle)
             print("id = " + str(id) + '\n')
 
-            for i in range(int(after)+1, id, 1):
+            for i in range(int(after)+1, id+1, 1):
                 try:
                     go = Article.objects.get(idArticle=str(i))
                     return HttpResponse(i)
@@ -278,31 +351,31 @@ class fournisseur(ListView):
     template_name = "fournisseur.html"
 
     def get(self, request):
-       context = {
+        context = {
             'four' :Fournisseur.objects.all(),
             'typef':TypeFournisseur_pour_Fournisseur.objects.all(),
             'activate' : 'on',
         }
-       return render(request, self.template_name, context)
+        return render(request, self.template_name, context)
 
 def create_four(request):
-        typefournisseur = TypeFournisseur_pour_Fournisseur.objects.all()
+    typefournisseur = TypeFournisseur_pour_Fournisseur.objects.all()
 
-        if request.method == 'POST':
-            fournisseur = Fournisseur()
-            fournisseur.idFournisseur = request.POST['id']
-            fournisseur.nom =  request.POST['name']
-            for items in typefournisseur:
-                if items.nom == request.POST.get('fourtype'):
-                    fournisseur.fk_TypeFournisseur = items
-            fournisseur.save()
-            return HttpResponse("New fournisseur " + request.POST['name'] + "created !")
+    if request.method == 'POST':
+        fournisseur = Fournisseur()
+        fournisseur.idFournisseur = request.POST['id']
+        fournisseur.nom =  request.POST['name']
+        for items in typefournisseur:
+            if items.nom == request.POST.get('fourtype'):
+                fournisseur.fk_TypeFournisseur = items
+        fournisseur.save()
+        return HttpResponse("New fournisseur " + request.POST['name'] + "created !")
 
 def delete_four(request):
-        if request.method == 'POST':
-            fournisseur = Fournisseur.objects.get(idFournisseur=request.POST['id'])
-            fournisseur.delete()
-        return HttpResponse("New fournisseur " + request.POST.get['name'] + " del !")
+    if request.method == 'POST':
+        fournisseur = Fournisseur.objects.get(idFournisseur=request.POST['id'])
+        fournisseur.delete()
+    return HttpResponse("New fournisseur " + request.POST.get['name'] + " del !")
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
@@ -310,12 +383,12 @@ class fournisseuradd(ListView):
     template_name = "fournisseuradd.html"
 
     def get(self, request):
-       context = {
+        context = {
             'four' : Fournisseur.objects.all(),
             'typef':TypeFournisseur_pour_Fournisseur.objects.all(),
             'activate' : 'on',
         }
-       return render(request, self.template_name, context)
+        return render(request, self.template_name, context)
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
@@ -326,17 +399,62 @@ class fournisseurmodify(ListView):
         if request.method == 'POST':
             fourni = Fournisseur.objects.get(idFournisseur=request.POST.get('id'))
             fourni.nom = request.POST.get('name')
+            fournitype = TypeFournisseur_pour_Fournisseur.objects.all()
+            for items in fournitype:
+                if items.nom == request.POST.get('fournitype'):
+                    fourni.fk_TypeFournisseur = items
             fourni.save()
             return HttpResponse("you think its good ? fournisseur " + request.POST['name'] + " updated !")
 
+    def left(request):
+        if request.method == 'POST':
+            before = request.POST['id']
+            fournisseur = Fournisseur.objects.get(idFournisseur=request.POST['id'])
+
+            for i in range(int(before)-1, 0, -1):
+                try:
+                    go = Fournisseur.objects.get(idFournisseur=str(i))
+                    return HttpResponse(i)
+                except Fournisseur.DoesNotExist:
+                    go = None
+                print (i)
+            return HttpResponse("fail")
+        return HttpResponse("No Authorized Access !")
+
+    def right(request):
+        if request.method == 'POST':
+            my_total = Fournisseur.objects.count()
+            after = request.POST['id']
+            fournisseur = Fournisseur.objects.get(idFournisseur=request.POST['id'])
+
+            fou = Fournisseur.objects.all()
+
+            id = 0
+            for myfou in fou:
+                if id < int(myfou.idFournisseur):
+                    id = int(myfou.idFournisseur)
+            print("id = " + str(id))
+
+            for i in range(int(after)+1, id+1, 1):
+                try:
+                    print("id = " + str(id))
+                    go = Fournisseur.objects.get(idFournisseur=str(i))
+                    return HttpResponse(i)
+                except Fournisseur.DoesNotExist:
+                    go = None
+                print (i)
+            return HttpResponse("fail")
+        return HttpResponse("No Authorized Access !")
+
     def get(self, request):
-       context = {
-            'trans' : Fournisseur.objects.all(),
+        context = {
+            'four' : Fournisseur.objects.all(),
             'name' : request.GET.get('name'),
             'id' : request.GET.get('id'),
+            'typef': TypeFournisseur_pour_Fournisseur.objects.all(),
             'activate' : 'on',
         }
-       return render(request, self.template_name, context)
+        return render(request, self.template_name, context)
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
@@ -344,11 +462,11 @@ class transporteur(ListView):
     template_name = "transporteur.html"
 
     def get(self, request):
-       context = {
+        context = {
             'trans' :Transporteur.objects.all(),
             'activate' : 'on',
         }
-       return render(request, self.template_name, context)
+        return render(request, self.template_name, context)
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
@@ -356,25 +474,25 @@ class transporteuradd(ListView):
     template_name = "transporteuradd.html"
 
     def get(self, request):
-       context = {
+        context = {
             'trans' :Transporteur.objects.all(),
             'activate' : 'on',
         }
-       return render(request, self.template_name, context)
+        return render(request, self.template_name, context)
 
 def create_trans(request):
-        if request.method == 'POST':
-            transporteur = Transporteur()
-            transporteur.idTransporteur = request.POST['id']
-            transporteur.nom =  request.POST['name']
-            transporteur.save()
-        return HttpResponse("New Transporter " + request.POST['name'] + "created !")
+    if request.method == 'POST':
+        transporteur = Transporteur()
+        transporteur.idTransporteur = request.POST['id']
+        transporteur.nom =  request.POST['name']
+        transporteur.save()
+    return HttpResponse("New Transporter " + request.POST['name'] + "created !")
 
 def delete_trans(request):
     if request.method == 'POST':
-            one_task = Transporteur.objects.get(idTransporteur=request.POST['id'])
-            one_task.delete()
-            return HttpResponse("Transporteur " + request.POST['name'] + " deleted !")
+        one_task = Transporteur.objects.get(idTransporteur=request.POST['id'])
+        one_task.delete()
+        return HttpResponse("Transporteur " + request.POST['name'] + " deleted !")
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
@@ -389,13 +507,13 @@ class transporteurmodify(ListView):
             return HttpResponse("you think its good ? Transporteur " + request.POST['name'] + " updated !")
 
     def get(self, request):
-       context = {
+        context = {
             'trans' :Transporteur.objects.all(),
             'name' :request.GET.get('name'),
             'id' :request.GET.get('id'),
             'activate' : 'on',
         }
-       return render(request, self.template_name, context)
+        return render(request, self.template_name, context)
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
@@ -414,11 +532,11 @@ class destinataire(ListView):
             return HttpResponse("post Failure on " + request.POST.get('id'))
 
     def get(self, request):
-       context = {
+        context = {
             'des' :Destinataire.objects.all(),
             'activate' : 'on',
         }
-       return render(request, self.template_name, context)
+        return render(request, self.template_name, context)
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
@@ -429,19 +547,19 @@ class destinatairemodify(ListView):
         if request.method == 'POST':
             destinataire = Destinataire.objects.get(idDestinataire=request.POST.get('id'))
             showlist = [request.POST.get('name'), request.POST.get('identifiantBL'),
-            request.POST.get('telephone'), request.POST.get('email'),
-            request.POST.get('codeum'), request.POST.get('contact'),
-            request.POST.get('delaip'), request.POST.get('adressel_1'),
-            request.POST.get('adressel_2'), request.POST.get('adressel_3'),
-            request.POST.get('adressel_4'), request.POST.get('adressel_5'),
-            request.POST.get('adressel_6'), request.POST.get('adressel_7'),
-            request.POST.get('departement'), request.POST.get('adressecom'),
-            request.POST.get('typedest'), request.POST.get('source'),
-            request.POST.get('sourceid'), request.POST.get('nom'),
-            request.POST.get('num'), request.POST.get('rue'),
-            request.POST.get('comp1'), request.POST.get('comp2'),
-            request.POST.get('codepost'), request.POST.get('ville')]
-            
+                        request.POST.get('telephone'), request.POST.get('email'),
+                        request.POST.get('codeum'), request.POST.get('contact'),
+                        request.POST.get('delaip'), request.POST.get('adressel_1'),
+                        request.POST.get('adressel_2'), request.POST.get('adressel_3'),
+                        request.POST.get('adressel_4'), request.POST.get('adressel_5'),
+                        request.POST.get('adressel_6'), request.POST.get('adressel_7'),
+                        request.POST.get('departement'), request.POST.get('adressecom'),
+                        request.POST.get('typedest'), request.POST.get('source'),
+                        request.POST.get('sourceid'), request.POST.get('nom'),
+                        request.POST.get('num'), request.POST.get('rue'),
+                        request.POST.get('comp1'), request.POST.get('comp2'),
+                        request.POST.get('codepost'), request.POST.get('ville')]
+
             destinataire.nom = showlist[0]
             destinataire.identifiantBonLivraison = showlist[1]
             destinataire.telephone = showlist[2]
@@ -449,7 +567,7 @@ class destinatairemodify(ListView):
             destinataire.codeUM = showlist[4]
             destinataire.commentaire = showlist[5]
             destinataire.delaiPeremption = showlist[6]
-            
+
             destinataire.adresseLivraison_nom = showlist[7]
             destinataire.adresseLivraison_numero = showlist[8]
             destinataire.adresseLivraison_rue = showlist[9]
@@ -459,26 +577,65 @@ class destinatairemodify(ListView):
             destinataire.adresseLivraison_localite = showlist[13]
             destinataire.save()
             return HttpResponse("you think its good ? Destinataire " + destinataire.nom + " updated !\n and there is "
-            + showlist[0] + '\n' + showlist[1] + '\n' + showlist[2] + '\n' 
-            + showlist[3] + '\n' + showlist[4] + '\n' + showlist[5] + '\n'
-            + showlist[6] + '\n' + showlist[7] + '\n' + showlist[8] + '\n'
-            + showlist[9] + '\n' + showlist[10] + '\n' + showlist[11] + '\n'
-            + showlist[12] + '\n' + showlist[13] + '\n' + showlist[14] + '\n'
-            + showlist[15] + '\n' + showlist[16] + '\n' + showlist[17] + '\n'
-            + showlist[18] + '\n' + showlist[19] + '\n' + showlist[20] + '\n'
-            + showlist[21] + '\n' + showlist[22] + '\n' + showlist[23] + '\n'
-            + showlist[24] + '\n' + showlist[25])
+                                + showlist[0] + '\n' + showlist[1] + '\n' + showlist[2] + '\n'
+                                + showlist[3] + '\n' + showlist[4] + '\n' + showlist[5] + '\n'
+                                + showlist[6] + '\n' + showlist[7] + '\n' + showlist[8] + '\n'
+                                + showlist[9] + '\n' + showlist[10] + '\n' + showlist[11] + '\n'
+                                + showlist[12] + '\n' + showlist[13] + '\n' + showlist[14] + '\n'
+                                + showlist[15] + '\n' + showlist[16] + '\n' + showlist[17] + '\n'
+                                + showlist[18] + '\n' + showlist[19] + '\n' + showlist[20] + '\n'
+                                + showlist[21] + '\n' + showlist[22] + '\n' + showlist[23] + '\n'
+                                + showlist[24] + '\n' + showlist[25])
 
+    def left(request):
+        if request.method == 'POST':
+            before = request.POST['id']
+            destinataire = Destinataire.objects.get(idDestinataire=request.POST['id'])
+
+            for i in range(int(before)-1, 0, -1):
+                try:
+                    go = Destinataire.objects.get(idDestinataire=str(i))
+                    return HttpResponse(i)
+                except Destinataire.DoesNotExist:
+                    go = None
+                print (i)
+            return HttpResponse("fail")
+        return HttpResponse("No Authorized Access !")
+
+    def right(request):
+        if request.method == 'POST':
+            my_total = Destinataire.objects.count()
+            after = request.POST['id']
+            destinataire = Destinataire.objects.get(idDestinataire=request.POST['id'])
+
+            des = Destinataire.objects.all()
+
+            id = 0
+            for mydes in des:
+                if id < int(mydes.idDestinataire):
+                    id = int(mydes.idDestinataire)
+            print("id = " + str(id))
+
+            for i in range(int(after)+1, id+1, 1):
+                try:
+                    print("id = " + str(id))
+                    go = Destinataire.objects.get(idDestinataire=str(i))
+                    return HttpResponse(i)
+                except Destinataire.DoesNotExist:
+                    go = None
+                print (i)
+            return HttpResponse("fail")
+        return HttpResponse("No Authorized Access !")
 
     def get(self, request):
-       context = {
+        context = {
             'des' :Destinataire.objects.all(),
             'name' :request.GET.get('name'),
             'id' :request.GET.get('id'),
             'umsortie' :UniteManutentionSortie_pour_Destinataire.objects.all().select_related('fk_BonCommandeSortie'),
             'activate' : 'on',
         }
-       return render(request, self.template_name, context)
+        return render(request, self.template_name, context)
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -490,20 +647,20 @@ class destinataireadd(ListView):
         if request.method == 'POST':
             destinataire = Destinataire()
             showlist = [request.POST.get('name'), request.POST.get('identifiantBL'),
-            request.POST.get('telephone'), request.POST.get('email'),
-            request.POST.get('codeum'), request.POST.get('contact'),
-            request.POST.get('delaip'), request.POST.get('adressel_1'),
-            request.POST.get('adressel_2'), request.POST.get('adressel_3'),
-            request.POST.get('adressel_4'), request.POST.get('adressel_5'),
-            request.POST.get('adressel_6'), request.POST.get('adressel_7'),
-            request.POST.get('departement'), request.POST.get('adressecom'),
-            request.POST.get('typedest'), request.POST.get('source'),
-            request.POST.get('sourceid'), request.POST.get('nom'),
-            request.POST.get('num'), request.POST.get('rue'),
-            request.POST.get('comp1'), request.POST.get('comp2'),
-            request.POST.get('codepost'), request.POST.get('ville'),
-            request.POST.get('id')]
-            
+                        request.POST.get('telephone'), request.POST.get('email'),
+                        request.POST.get('codeum'), request.POST.get('contact'),
+                        request.POST.get('delaip'), request.POST.get('adressel_1'),
+                        request.POST.get('adressel_2'), request.POST.get('adressel_3'),
+                        request.POST.get('adressel_4'), request.POST.get('adressel_5'),
+                        request.POST.get('adressel_6'), request.POST.get('adressel_7'),
+                        request.POST.get('departement'), request.POST.get('adressecom'),
+                        request.POST.get('typedest'), request.POST.get('source'),
+                        request.POST.get('sourceid'), request.POST.get('nom'),
+                        request.POST.get('num'), request.POST.get('rue'),
+                        request.POST.get('comp1'), request.POST.get('comp2'),
+                        request.POST.get('codepost'), request.POST.get('ville'),
+                        request.POST.get('id')]
+
             destinataire.nom = showlist[0]
             destinataire.identifiantBonLivraison = showlist[1]
             destinataire.telephone = showlist[2]
@@ -511,7 +668,7 @@ class destinataireadd(ListView):
             destinataire.codeUM = showlist[4]
             destinataire.commentaire = showlist[5]
             destinataire.delaiPeremption = showlist[6]
-            
+
             destinataire.adresseLivraison_nom = showlist[7]
             destinataire.adresseLivraison_numero = showlist[8]
             destinataire.adresseLivraison_rue = showlist[9]
@@ -547,6 +704,29 @@ class destinataireadd(ListView):
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
+class colis(ListView):
+    template_name = "colis.html"
+
+    def delete(request):
+        if request.method == 'POST':
+            col = colis.objects.all()
+            for items in col:
+                if items.idColis == request.POST.get('id'):
+                    data = Colis.objects.get(idColis=request.POST['id'])
+                    data.delete()
+                    return HttpResponse("road to delete.")
+            return HttpResponse("Error on delete.")
+        return HttpResponse("Leave this place!")
+
+    def get(self, request):
+        context = {
+            'col' : Colis.objects.all(),
+            'activate' : 'on',
+        }
+        return render(request, self.template_name, context)
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 class client(ListView):
     template_name = "client.html"
 
@@ -561,7 +741,7 @@ class client(ListView):
             return HttpResponse("Error on delete.")
         return HttpResponse("Leave this place!")
 
-    
+
     def get(self, request):
         context = {
             'cli' : Client.objects.all(),
@@ -572,13 +752,13 @@ class client(ListView):
 class clientmodify(ListView):
     template_name = "clientmodify.html"
 
- #Ajout ou supression de contact si non ou existants si présent dans la zone contact
+    #Ajout ou supression de contact si non ou existants si présent dans la zone contact
     def modify_cli_contact(request):
         if request.method == 'POST':
             showlist = [request.POST.get('role'), request.POST.get('name'),
-            request.POST.get('prenom'), request.POST.get('tel'),
-            request.POST.get('mail'), request.POST.get('id'),
-            request.POST.get('idcontact'), request.POST.get('totalcontact')]
+                        request.POST.get('prenom'), request.POST.get('tel'),
+                        request.POST.get('mail'), request.POST.get('id'),
+                        request.POST.get('idcontact'), request.POST.get('totalcontact')]
             #Je cherche dans la table si les contacts recus éxistent
             modify = Contact_pour_Client.objects.all()
             role = RoleContact_pour_Client.objects.all()
@@ -621,7 +801,7 @@ class clientmodify(ListView):
                     if (itemsm.fk_Client.idClient == showlist[5]):
                         mycli = 1
                     if (role == 1 and nom == 1 and prenom == 1 and
-                    tel == 1 and mail == 1 and mycli == 1):
+                            tel == 1 and mail == 1 and mycli == 1):
                         repetition += 1
                         return HttpResponse("One of the contact aldready exist")
                         break
@@ -640,7 +820,7 @@ class clientmodify(ListView):
                         mycontact.idContact = showlist[7]
                     mycontact.save()
                     return HttpResponse("New contact " + ' ' + showlist[0] + ' ' + showlist[1] + ' ' + showlist[2] + ' ' + showlist[3] + ' ' + showlist[4] + ' ' + showlist[6])
-            #elif repetition > 0 and not showlist[6]:
+                #elif repetition > 0 and not showlist[6]:
                 '''mycontact = Contact_pour_Client.objects.get(idContact=showlist[6])
                 mycontact.fk_RoleContact = RoleContact_pour_Client.objects.get(nom=showlist[0])
                 mycontact.fk_Client = Client.objects.get(idClient=showlist[5])
@@ -667,14 +847,14 @@ class clientmodify(ListView):
     def modify(request):
         if request.method == 'POST':
             showlist = [request.POST.get('nom'), request.POST.get('id'),
-            request.POST.get('telephone'), request.POST.get('email'),
-            request.POST.get('tva'), request.POST.get('siret'),
-            request.POST.get('adresse'), request.POST.get('zone'),
-            request.POST.get('typedest'), request.POST.get('typefour'),
-            request.POST.get('typeart'), request.POST.get('source'),
-            request.POST.get('idsource'), request.POST.get('boncs'),
-            request.POST.get('bonle'), request.POST.get('odt'),
-            request.POST.get('cont'), request.POST.get('commentaire')]
+                        request.POST.get('telephone'), request.POST.get('email'),
+                        request.POST.get('tva'), request.POST.get('siret'),
+                        request.POST.get('adresse'), request.POST.get('zone'),
+                        request.POST.get('typedest'), request.POST.get('typefour'),
+                        request.POST.get('typeart'), request.POST.get('source'),
+                        request.POST.get('idsource'), request.POST.get('boncs'),
+                        request.POST.get('bonle'), request.POST.get('odt'),
+                        request.POST.get('cont'), request.POST.get('commentaire')]
 
             client = Client.objects.get(idClient=showlist[1])
 
@@ -688,8 +868,8 @@ class clientmodify(ListView):
                 tdedebug = False
             for typed in tde:
                 if request.POST.get('typedest') == typed.nom:
-                        tdedebug = True
-                        client.fk_TypeDestinataire = typed
+                    tdedebug = True
+                    client.fk_TypeDestinataire = typed
                 tfo = TypeFournisseur_pour_Client.objects.all()
                 tfodebug = False
             for typefo in tfo:
@@ -702,7 +882,7 @@ class clientmodify(ListView):
                 if request.POST.get('typeart') == typea.nom:
                     tardebug = True
                 client.fk_TypeArticle = typea
-            
+
             client.nom = showlist[0]
             client.idClient = showlist[1]
             client.telephone = showlist[2]
@@ -716,6 +896,46 @@ class clientmodify(ListView):
             client.save()
             return HttpResponse("road to post mod")
         return HttpResponse("403: what are you doing there?")
+
+    def left(request):
+        if request.method == 'POST':
+            before = request.POST['id']
+            client = Client.objects.get(idClient=request.POST['id'])
+
+            for i in range(int(before)-1, 0, -1):
+                try:
+                    go = Client.objects.get(idClient=str(i))
+                    return HttpResponse(i)
+                except Client.DoesNotExist:
+                    go = None
+                print (i)
+            return HttpResponse("fail")
+        return HttpResponse("No Authorized Access !")
+
+    def right(request):
+        if request.method == 'POST':
+            my_total = Client.objects.count()
+            after = request.POST['id']
+            client = Client.objects.get(idClient=request.POST['id'])
+
+            cli = Client.objects.all()
+
+            id = 0
+            for mycli in cli:
+                if id < int(mycli.idClient):
+                    id = int(mycli.idClient)
+            print("id = " + str(id))
+
+            for i in range(int(after)+1, id+1, 1):
+                try:
+                    print("id = " + str(id))
+                    go = Client.objects.get(idClient=str(i))
+                    return HttpResponse(i)
+                except Client.DoesNotExist:
+                    go = None
+                print (i)
+            return HttpResponse("fail")
+        return HttpResponse("No Authorized Access !")
 
     def get(self, request):
         context = {
@@ -740,14 +960,14 @@ class clientadd(ListView):
         if request.method == 'POST':
             array = {}
             showlist = [request.POST.get('nom'), request.POST.get('id'),
-            request.POST.get('telephone'), request.POST.get('email'),
-            request.POST.get('tva'), request.POST.get('siret'),
-            request.POST.get('adresse'), request.POST.get('zone'),
-            request.POST.get('typedest'), request.POST.get('typefour'),
-            request.POST.get('typeart'), request.POST.get('source'),
-            request.POST.get('idsource'), request.POST.get('boncs'),
-            request.POST.get('bonle'), request.POST.get('odt'),
-            request.POST.get('cont'), request.POST.get('commentaire')]
+                        request.POST.get('telephone'), request.POST.get('email'),
+                        request.POST.get('tva'), request.POST.get('siret'),
+                        request.POST.get('adresse'), request.POST.get('zone'),
+                        request.POST.get('typedest'), request.POST.get('typefour'),
+                        request.POST.get('typeart'), request.POST.get('source'),
+                        request.POST.get('idsource'), request.POST.get('boncs'),
+                        request.POST.get('bonle'), request.POST.get('odt'),
+                        request.POST.get('cont'), request.POST.get('commentaire')]
 
             client = Client()
             cli = Client.objects.all()
@@ -765,8 +985,8 @@ class clientadd(ListView):
                 tdedebug = False
             for typed in tde:
                 if request.POST.get('typedest') == typed.nom:
-                        tdedebug = True
-                        client.fk_TypeDestinataire = typed
+                    tdedebug = True
+                    client.fk_TypeDestinataire = typed
                 tfo = TypeFournisseur_pour_Client.objects.all()
                 tfodebug = False
             for typefo in tfo:
@@ -984,8 +1204,8 @@ class clientadd(ListView):
     def fill_contact(request):
         if request.method == 'POST':
             showlist = [request.POST.get('id'), request.POST.get('role'),
-            request.POST.get('name'), request.POST.get('prenom'),
-            request.POST.get('tel'), request.POST.get('mail')]
+                        request.POST.get('name'), request.POST.get('prenom'),
+                        request.POST.get('tel'), request.POST.get('mail')]
 
             concli = Contact_pour_Client.objects.all()
             conid = 1
@@ -1026,7 +1246,7 @@ class clientadd(ListView):
                     save += 1
             if save == 4:
                 return HttpResponse("contact aldready existing!")
-            ''' 
+            '''
             return HttpResponse("Success! ")
         return HttpResponse("Who are you?")
 

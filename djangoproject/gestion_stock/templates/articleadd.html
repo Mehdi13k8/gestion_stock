@@ -21,14 +21,14 @@
     <div class="form-group row text-center">
         <div class="mx-auto">
             <div class="row">
-            <div class="col">
-                <button type="button" id="back-row" class="btn btn-default btn-rounded btn-outline-dark">Tout</button>
-            </div>
+                <div class="col">
+                    <button type="button" id="back-row" class="btn btn-default btn-rounded btn-outline-dark">Tout</button>
+                </div>
                 <div class="col-1">
                 </div>
-            <div class="col">
-                <button type="button" id="create-row" class="btn btn-success btn-rounded btn-outline-dark">Ajouter</button>
-            </div>
+                <div class="col">
+                    <button type="button" id="create-row" class="btn btn-success btn-rounded btn-outline-dark">Ajouter</button>
+                </div>
             </div>
         </div>
     </div>
@@ -127,7 +127,7 @@
                         });
                     </script>
                 </select>
- <!--                   <button class="btn btn-danger btn-sm" type="reset" id="resetbut">Reset</button>-->
+                    <!--                   <button class="btn btn-danger btn-sm" type="reset" id="resetbut">Reset</button>-->
                 </div>
             </div>
             <div class="container">
@@ -158,10 +158,10 @@
 
     <hr>
     <div class="row justify-content-md-center">
-        <div class="col-8">
-            <div class="border shadow-lg bg-white rounded col">
+        <div class="col-sm-8">
+            <div class="border shadow-lg bg-white rounded col pb-2">
                 <h5 class="text-center"> <u>Historique</u> </h5>
-                <table id="dtBasicExample" class="table table-striped table-responsive table-bordered table-sm" cellspacing="0" width="100%">
+                <table id="dtBasicExample" class="pb-2 table table-striped table-responsive table-bordered table-sm" cellspacing="0" width="100%">
                     <thead>
                     <tr>
                         <th scope="col" class="th-sm"> modify </th>
@@ -180,50 +180,49 @@
                     </thead>
                     <tbody>
                     <tr>
-<!--                        <td> <button id='{{ items.idArticle }}' class="dyna"> -> </button></td>
-                        <td> {{ items.stock }} </td>
-                        <td> {{ items.fk_TypeArticle.nom }} </td>
-                        <td> {{ items.fk_Fournisseur.nom }} </td>
-                        <td> {{ items.codeClient }} </td>
-                        <td> {{ items.designationClient }} </td>
-                        <td> {{ items.quantiteProduitStockComplet }} </td>
-                        <td> {{ items.quantiteColisStockComplet }} </td>
-                        <td> {{ items.quantiteProduitStockIncomplet }} </td>
-                        <td> {{ items.quantiteColisStockIncomplet }} </td>
-                        <td> {{ items.quantiteColisStandard }} </td>
-                        <td> {{ items.quantiteUniteManutentionSortie }} </td>
-                        <td> <button id='{{ items.idArticle }}' class="dynad"> X </button> </td>
-                        -->
+                        <!--                        <td> <button id='{{ items.idArticle }}' class="dyna"> -> </button></td>
+                                                <td> {{ items.stock }} </td>
+                                                <td> {{ items.fk_TypeArticle.nom }} </td>
+                                                <td> {{ items.fk_Fournisseur.nom }} </td>
+                                                <td> {{ items.codeClient }} </td>
+                                                <td> {{ items.designationClient }} </td>
+                                                <td> {{ items.quantiteProduitStockComplet }} </td>
+                                                <td> {{ items.quantiteColisStockComplet }} </td>
+                                                <td> {{ items.quantiteProduitStockIncomplet }} </td>
+                                                <td> {{ items.quantiteColisStockIncomplet }} </td>
+                                                <td> {{ items.quantiteColisStandard }} </td>
+                                                <td> {{ items.quantiteUniteManutentionSortie }} </td>
+                                                <td> <button id='{{ items.idArticle }}' class="dynad"> X </button> </td>
+                                                -->
                     </tr>
                     </tbody>
                 </table>
             </div>
         </div>
-        <div class="col-4">
-            <div class="row">
-                <div class="border shadow-lg bg-white rounded col-md-auto">
-                    <table id="dtBasicExample2" class="table table-striped table-responsive table-bordered table-sm" cellspacing="0" width="100%">
-                        <thead>
-                        <tr>
-                            <th scope="col" class="th-sm"> modify </th>
-                            <th scope="col" class="th-sm"> stock </th>
-                            <th scope="col" class="th-sm"> type article </th>
-                            <th scope="col" class="th-sm"> fournisseur </th>
-                            <th scope="col" class="th-sm"> delete </th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <!--
-                            <td> <button id='{{ items.idArticle }}' class="dyna"> -> </button></td>
-                            <td> {{ items.stock }} </td>
-                            <td> {{ items.fk_TypeArticle.nom }} </td>
-                            <td> {{ items.fk_Fournisseur.nom }} </td>
-                            <td> <button id='{{ items.idArticle }}' class="dynad"> X </button> </td>-->
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
+        <div class="col-sm-4">
+            <div class="border shadow-lg bg-white rounded container">
+                <h5 class="text-center"> <u>destinataires</u> </h5>
+                <table id="dtBasicExample2" class="table table-striped table-responsive table-bordered table-sm" cellspacing="0" width="100%">
+                    <thead>
+                    <tr>
+                        <th scope="col" class="th-sm"> <i class="fas fa-cog"></i> </th>
+                        <th scope="col" class="th-sm"> stock </th>
+                        <th scope="col" class="th-sm"> type article </th>
+                        <th scope="col" class="th-sm"> fournisseur </th>
+                        <th scope="col" class="th-sm"> X </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <!--
+                        <td> <button id='{{ items.idArticle }}' class="dyna"> -> </button></td>
+                        <td> {{ items.stock }} </td>
+                        <td> {{ items.fk_TypeArticle.nom }} </td>
+                        <td> {{ items.fk_Fournisseur.nom }} </td>
+                        <td> <button id='{{ items.idArticle }}' class="dynad"> X </button> </td>-->
+                    </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
@@ -253,8 +252,8 @@
         $('#addart').click(function() {
             var typef = $('#fournitype').val();
             $.ajax({
-                type:"POST",    //type de requête utilisé par ajax
-                url:"/create_art/", //lien de la view qui gère la requête post
+                type:"POST",
+                url:"/article/add/create/",
                 data: {
                     'name': $('#nom').val(),
                     'id': $('#umid').val(),

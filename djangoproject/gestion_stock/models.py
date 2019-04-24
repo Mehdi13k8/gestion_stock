@@ -368,7 +368,6 @@ class Transporteur_pour_LettreVoitureEntree(models.Model):
 
 #End of LettreVoitureEntree
 
-
 class Transporteur(models.Model):
     idTransporteur = models.CharField(max_length=42, default='Null')
     c_nom = models.CharField(max_length=42, default='Null')
