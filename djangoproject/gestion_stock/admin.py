@@ -14,7 +14,10 @@ admin.site.register(Destinataire_pour_import_BonCommandeSortie)
 admin.site.register(TypeDestinataire_pour_BonCommandeSortie)
 #admin.site.register(Destinataire_pour_Article)
 admin.site.register(UniteManutentionSortie_pour_BonCommandeSortie)
+
 admin.site.register(BonLivraisonSortie_pour_BonCommandeSortie)
+
+admin.site.register(BonLivraisonEntree)
 
 admin.site.register(BonCommandeEntree)
 admin.site.register(LigneBonCommandeEntree_pour_BonCommandeEntree)
@@ -94,3 +97,5 @@ admin.site.register(TypeArticle_pour_Client)
 admin.site.register(Contact_pour_Client)
 
 admin.site.register(RoleContact_pour_Client)
+
+admin.site.register(ZoneDepot_pour_TypeZoneDepot)

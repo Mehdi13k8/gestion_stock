@@ -145,9 +145,40 @@ def bonCommandeSortieadd(request):
 class bonLivraisonEntree(ListView):
     template_name = "bonLivraisonEntree.html"
 
+    def delete(request):
+        if request.method == 'POST':
+            ble = BonLivraisonEntree.objects.get(idBonLivraisonEntree=request.POST['id'])
+            #article.delete()
+            return HttpResponse("Deleted !")
+        return HttpResponse("No Authorized Access !")
+
     def get(self, request):
         context = {
             'entree' : BonLivraisonEntree.objects.all(),
+            #'entreeligne' : LigneBonLivraisonEntree_pour_BonLivraisonEntree.objects.all(),
+            'activate' : 'on',
+        }
+        return render(request, self.template_name, context)
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
+class bonLivraisonEntreeadd(ListView):
+    template_name = "bonLivraisonEntreeadd.html"
+
+    def create(request):
+        if request.method == 'POST':
+            return HttpResponse("Created !")
+        return HttpResponse("No Authorized Access !")
+
+    def get(self, request):
+        context = {
+            'entree' : BonLivraisonEntree.objects.all(),
+            'cli' : Client.objects.all(),
+            'des' : Destinataire.objects.all(),
+            'four' : Fournisseur.objects.all(),
+            'typef': TypeFournisseur_pour_Fournisseur.objects.all(),
+            'zoned': ZoneDepot_pour_TypeZoneDepot.objects.all(),
+            #'lve' : LettreVoitureEntree.objects.all(),
             #'entreeligne' : LigneBonLivraisonEntree_pour_BonLivraisonEntree.objects.all(),
             'activate' : 'on',
         }

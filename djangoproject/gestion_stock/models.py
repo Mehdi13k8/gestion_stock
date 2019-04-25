@@ -291,11 +291,12 @@ class BonCommandeEntree_BonLivraisonEntree_pour_BonCommandeEntree(models.Model):
 
 class BonLivraisonEntree_pour_BonCommandeEntree(models.Model):
     idBonLivraisonEntree = models.CharField(max_length=42, default='Null')
-    fk_BonCommandeEntree = models.ForeignKey('BonCommandeEntree', on_delete=models.CASCADE, default=0)
-    fk_LettreVoitureEntree = models.ForeignKey('LettreVoitureEntree', on_delete=models.CASCADE, default=0)
-    fk_Fournisseur = models.ForeignKey('Fournisseur', on_delete=models.CASCADE, default=0)
+    #fk_BonCommandeEntree = models.ForeignKey('BonCommandeEntree', on_delete=models.CASCADE, default=0)
+    #fk_LettreVoitureEntree = models.ForeignKey('LettreVoitureEntree', on_delete=models.CASCADE, default=0)
+    fk_Fournisseur = models.ForeignKey('Fournisseur', on_delete=models.CASCADE, default=0, blank=True, null=True)
     fk_Client = models.ForeignKey('Client', on_delete=models.CASCADE, default=0)
-    fk_Destinataire_litige = models.ForeignKey('Destinataire_pour_UniteManutentionEntree_litige', on_delete=models.CASCADE, default=0)
+    fk_Fournisseur = models.ForeignKey('Fournisseur', on_delete=models.CASCADE, default=0, blank=True, null=True)
+    fk_Destinataire_litige = models.ForeignKey('Destinataire', on_delete=models.CASCADE, default=0)
     #fk_ZoneDepot_litige = models.ForeignKey('Destinataire_pour_UniteManutentionEntree_litige', on_delete=models.CASCADE, default=0)
     fichier = models.CharField(max_length=42, default='Null')
     photo = models.CharField(max_length=42, default='Null')
@@ -1189,9 +1190,69 @@ class EtiquetteUniteManutentionEntree_pour_UniteManutentionEntree(models.Model):
 #début Colis
 class Colis(models.Model):
     idColis = models.CharField(max_length=42, default='Null')
+    #fk_UniteManutentionEntree = models.ForeignKey('UniteManutentionEntree', on_delete=models.CASCADE, default=1)
+    #fk_UniteManutentionSortie= models.ForeignKey('UniteManutentionSortie', on_delete=models.CASCADE, default=1)
+    #Article_pour_Colisfk_Article= models.ForeignKey('Article', on_delete=models.CASCADE, default=1)
+    fk_litige = models.ForeignKey('Litige_pour_Colis', on_delete=models.CASCADE, default=1)
+    numeroLot = models.CharField(max_length=42, default='Null')
+    c_nom = models.CharField(max_length=42, default='Null')
+    c_nomCompte = models.CharField(max_length=42, default='Null')
+    c_horodatage = models.CharField(max_length=42, default='Null')
+    m_nom = models.CharField(max_length=42, default='Null')
+    m_nomCompte = models.CharField(max_length=42, default='Null')
+    m_horodatage = models.CharField(max_length=42, default='Null')
+    #fk_EtiquetteColis= models.ForeignKey('', on_delete=models.CASCADE, default=1)
+    #fk_ColisStandard = models.ForeignKey('', on_delete=models.CASCADE, default=1)
+    #fk_LitigeDecision = models.ForeignKey('', on_delete=models.CASCADE, default=1)
+    #fk_ZoneDepot = models.ForeignKey('', on_delete=models.CASCADE, default=1)
+    emplacementConfirme = models.CharField(max_length=42, default='Null')
+    datePeremption = models.CharField(max_length=42, default='Null')
+    quantiteProduit = models.CharField(max_length=42, default='Null')
+    numerotation = models.CharField(max_length=42, default='Null')
+
+class LotRetire_pour_Colis(models.Model):
+    fk_Article = models.ForeignKey('Article', on_delete=models.CASCADE, default=1)
+    dateRetrait = models.CharField(max_length=42, default='Null')
+    identifiantSource = models.CharField(max_length=42, default='Null')
+    idLotRetire = models.CharField(max_length=42, default='Null')
+    numeroLot = models.CharField(max_length=42, default='Null')
+    source = models.CharField(max_length=42, default='Null')
+
+class Colis_UniteManutentionSortie_pour_Colis(models.Model):
+    idColis_UniteManutentionSortie = models.CharField(max_length=42, default='Null')
+
+class UniteManutentionEntree_pour_Colis(models.Model):
+    idUniteManutentionEntree = models.CharField(max_length=42, default='Null')
+
+class UniteManutentionSortie_pour_Colis(models.Model):
+    idUniteManutentionSortie = models.CharField(max_length=42, default='Null')
+
+class Article_pour_Colis(models.Model):
+    idArticle = models.CharField(max_length=42, default='Null')
+    fk_Fournisseur = models.ForeignKey('Fournisseur', on_delete=models.CASCADE, default=1)
+    fk_TypeArticle = models.ForeignKey('typeArticle_pour_Article', on_delete=models.CASCADE, default=1)
+    codeFournisseur = models.CharField(max_length=42, default='Null')
+    codeClient = models.CharField(max_length=42, default='Null')
+    designationFournisseur = models.CharField(max_length=42, default='Null')
+    designationClient = models.CharField(max_length=42, default='Null')
+    dureeStockage = models.CharField(max_length=42, default='Null')
+    delaiPeremption = models.CharField(max_length=42, default='Null')
+    stock = models.CharField(max_length=42, default='Null')
+    poidsColisStandard = models.CharField(max_length=42, default='Null')
+    quantiteColisStandard = models.CharField(max_length=42, default='Null')
+    quantiteColisStockComplet = models.CharField(max_length=42, default='Null')
+    quantiteProduitStockComplet = models.CharField(max_length=42, default='Null')
+    quantiteColisStockIncomplet = models.CharField(max_length=42, default='Null')
+    quantiteProduitStockincomplet = models.CharField(max_length=42, default='Null')
+    quantiteUniteManutentionSortie = models.CharField(max_length=42, default='Null')
+    source = models.CharField(max_length=42, default='Null')
+    identifiantSource = models.CharField(max_length=42, default='Null')
+
+class Litige_pour_Colis(models.Model):
+    idLitige = models.CharField(max_length=42, default='Null')
+    nom = models.CharField(max_length=42, default='Null')
 
 #fin
-
 #début Bon Livraison Sortie
 
 class BonLivraisonSortie(models.Model):
@@ -1269,9 +1330,10 @@ class BonCommandeSortie(models.Model):
 
 class BonLivraisonEntree(models.Model):
     idBonLivraisonEntree = models.CharField(max_length=42, default='Null')
-    fk_LettreVoitureEntree = models.ForeignKey('LettreVoitureEntree', on_delete=models.CASCADE, default=1)
-    fk_Fournisseur = models.ForeignKey('Fournisseur', on_delete=models.CASCADE, default=1)
-    fk_Client = models.ForeignKey('Client', on_delete=models.CASCADE, default=1)
+    fk_LettreVoitureEntree  = models.ForeignKey('LettreVoitureEntree', on_delete=models.CASCADE, default=0, blank=True, null=True)
+    fk_TypeZoneDepot = models.ForeignKey('TypeZoneDepot', on_delete=models.CASCADE, default=0, blank=True, null=True)
+    fk_Fournisseur = models.ForeignKey('Fournisseur', on_delete=models.CASCADE, default=0, blank=True, null=True)
+    fk_Client  = models.ForeignKey('Client', on_delete=models.CASCADE, default=0, blank=True, null=True)
     dateReception = models.CharField(max_length=42, default='Null')
     numeroBonLivraison = models.CharField(max_length=42, default='Null')
     quantitePalette = models.CharField(max_length=42, default='Null')

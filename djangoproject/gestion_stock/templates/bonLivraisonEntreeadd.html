@@ -1,0 +1,460 @@
+{% extends user.is_authenticated|yesno:"base_generic.html,empty.html" %}
+
+{% block content %}
+<html>
+
+<style>
+    .ui-dialog-titlebar-close {
+        visibility: hidden;
+    }
+    input.text { margin-bottom:12px; width:95%; padding: .4em; }
+    fieldset { padding:0; border:0; margin-top:25px; }
+    .ui-dialog .ui-state-error { padding: .3em; }
+    .validateTips { border: 1px solid transparent; padding: 0.3em;}
+</style>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<div class="container"><h1 class="text-center"> Ajout de B.L entree</h1></div>
+<br>
+
+<div class="container">
+    <div class="form-group row text-center">
+        <div class="col">
+            <button type="button" id="back-row" class="btn btn-default btn-rounded btn-outline-dark">Tout</button>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-7">
+            <div class="border shadow-lg p-2 mb-3 bg-white rounded">
+                <div class="row">
+                    <div class="col">
+                        <h3 class="text-center"> identification BL</h3>
+                    </div>
+                </div>
+                <br>
+                <div class="container">
+                    <div class="row">
+                        <div class="text-center">
+                            <div class="row">
+                                <div class="col">
+                                    identifiant:<br><input type="text" id="umid" disabled class="form-control">
+                                </div>
+                                <div class="col-1">
+                                    <br><button class="ml-md-n3" id="accesslve"><i class="fas fa-arrow-right"></i></button>
+                                </div>
+                                <div class="col">
+                                    <div class="selsel">
+                                        Client:<br><select class="form-control" id="client">
+                                        <script type="text/javascript">
+                                            $(document).ready(function() {
+                                                var i = 0;
+                                                "{% for items in cli %}"
+                                                //to change
+                                                var name = "{{ items.nom }}";
+                                                var oldname;
+                                                if (i == 0)
+                                                    $("#client").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                                                else if (name != oldname)
+                                                    $("#client").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                                                oldname = name;
+                                                i = 1;
+                                                "{% endfor %}"
+                                            });
+                                        </script>
+                                    </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-1">
+                                    <br><button class="mt-lg-1" id="accesslve"><i class="fas fa-arrow-right"></i></button>
+                                </div>
+                                <div class="col">
+                                    lettre de voiture :<br><input type="text" id="lve" name="id_transporteur"disabled class="form-control">
+                                </div>
+                                <div class="col-4">zone:<br><input type="text" id="zone" name="id_transporteur" disabled class="form-control">
+                                </div>
+                                <div class="col">
+                                    <div class="selsel">
+                                        fournisseur:<br><select class="form-control" id="fournisseur">
+                                        <script type="text/javascript">
+                                            $(document).ready(function() {
+                                                var i = 0;
+                                                "{% for items in four %}"
+                                                console.log("fournisseur");
+                                                //to change
+                                                var name = "{{ items.nom }}";
+                                                var oldname;
+                                                if (i == 0)
+                                                    $("#fournisseur").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                                                else if (name != oldname)
+                                                    $("#fournisseur").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                                                oldname = name;
+                                                i = 1;
+                                                "{% endfor %}"
+                                            });
+                                        </script>
+                                    </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="inputnbl">numéro de Bl :</label>
+                                    <input id="inputnbl" class="form-control">
+                                </div>
+                                <div class="col">
+                                    <label for="inputMDEx">date de réception:</label>
+                                    <input type="date" id="inputMDEx" class="form-control">
+                                </div>
+                                <div class="col">
+                                    <label for="inputqpl">quantité de palettes:</label>
+                                    <input id="inputqpl" class="form-control">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col">
+                                    <input type="button" class="btn btn-primary" id="addble" value="Save">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-5">
+            <div class="border shadow-lg p-2 mb-3 bg-white rounded">
+                <h5 class="text-center"> <u>Unités de manutention entrée </u></h5>
+                <div class="container">
+                    <div class="table-responsive">
+                        <table id="tabume" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+                            <thead>
+                            <tr>
+                                <th scope="col" class="th-sm"><i class="fas fa-cog"></i></th>
+                                <th scope="col" class="th-sm"> n° UM </th>
+                                <th scope="col" class="th-sm"> emplacement </th>
+                                <th scope="col" class="th-sm"> désignation </th>
+                                <th scope="col" class="th-sm"> <i class="fa fa-trash"></i> </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for items in entree %}
+                            <tr>
+                                <td> <button id='{{ items.idBonLivraisonEntree }}' class="dyna"> -> </button></td>
+                                <td> {{ items.fk_TypeZoneDepot.nom }} </td>
+                                <td> {{ items.dateReception }} </td>
+                                <td> {{ items.numeroBonLivraison }} </td>
+                                <td> <button id='{{ items.idBonLivraisonEntree  }}' class="dynad"> X </button> </td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <br>
+                <div class="row ml-lg-1">
+                    <div class="col-4">
+                        <button><i class="fas fa-plus"></i></button>
+                    </div>
+                    <div class="col">
+                        <button>numéroter</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="border shadow-lg p-2 mb-3 bg-white rounded">
+                <div class="row">
+                    <div class="col">
+                        <h5 class="text-center"> <u> Litiges </u></h5>
+                        <div class="selsel">
+                            destinataire des retours:<br><select class="form-control" id="litiges">
+                            <script type="text/javascript">
+                                $(document).ready(function() {
+                                    var i = 0;
+                                    "{% for items in des %}"
+                                    //to change
+                                    var name = "{{ items.nom }}";
+                                    var oldname;
+                                    if (i == 0)
+                                        $("#litiges").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                                    else if (name != oldname)
+                                        $("#litiges").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                                    oldname = name;
+                                    i = 1;
+                                    "{% endfor %}"
+                                });
+                            </script>
+                        </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="selsel">
+                            zone d'attente:<br><select class="form-control" id="zatt">
+                            <script type="text/javascript">
+                                $(document).ready(function() {
+                                    var i = 0;
+                                    "{% for items in des %}"
+                                    //to change
+                                    var name = "{{ items.nom }}";
+                                    var oldname;
+/*                                    if (i == 0)
+                                        $("#zatt").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                                    else if (name != oldname)
+                                        $("#zatt").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                                        */
+                                    oldname = name;
+                                    i = 1;
+                                    "{% endfor %}"
+                                });
+                            </script>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="border shadow-lg p-2 mb-3 bg-white rounded">
+                <h5 class="text-center"> <u> Bons de commande </u></h5>
+                <div class="container">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="border shadow-lg p-2 mb-3 bg-white rounded">
+                <div class="col">
+                    <h5 class="text-center"> <u> fichiers </u></h5>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<script>
+    $(document).ready(function() {
+        $("#back-row").click( function() {
+            location.href = "{% url 'bonLivraisonEntree' %}";
+        });
+
+        $("#client").val("");
+        $("#zatt").val("");
+        $("#fournisseur").val("");
+        $("#litiges").val("");
+
+        var upperid = "0";
+        "{% for items in entree %}"
+        if (parseInt(upperid, 10) < parseInt('{{ items.idBonLivraisonEntree }}', 10)) {
+            upperid = parseInt('{{ items.idBonLivraisonEntree }}', 10);
+        }
+        "{% endfor %}"
+        if (upperid == 0)
+            $("#umid").val(1);
+        else
+            $("#umid").val(upperid+1);
+
+        $('#addble').click(function() {
+            "{% for items in four %}"
+            /*var name = $("#nom").val();
+            if (name == "{{ items.nom }}") {
+              alert(name);
+            }*/
+            "{% endfor %}"
+            var typef = $('#fournitype').val();
+            $.ajax({
+                type:"POST",    //type de requête utilisé par ajax
+                url:"/ble/create/", //lien de la view qui gère la requête post
+                data: {
+                    'name': $('#nom').val(), // nom du transporteur récuperer dans le input #nom
+                    'id': $('#umid').val(), // id du transporteur acquis grace a une incrementation en js
+                    'fourtype': $('#fournitype').val(),
+                    csrfmiddlewaretoken: '{{ csrf_token }}',
+                },
+                success: function(msg, data, settings){
+                    alert("gg " + msg);
+                },
+                failure: function() {
+                    alert("fail");
+                }
+            });
+        });
+
+        $.widget( "custom.combobox", {
+            _create: function() {
+                this.wrapper = $( "<span>" )
+                    .addClass( "custom-combobox" )
+                    .insertAfter( this.element );
+
+                this.element.hide();
+                this._createAutocomplete();
+                this._createShowAllButton();
+            },
+
+            _createAutocomplete: function() {
+                var selected = this.element.children( ":selected" ),
+                    value = selected.val() ? selected.text() : "";
+
+                this.input = $("<input>")
+                    .appendTo( this.wrapper)
+                    .val(value)
+                    .attr("title", "")
+                    .addClass("custom-combobox-input ui-widget ui-widget-content ui-state-default ui-corner-left")
+                    .autocomplete({
+                        delay: 0,
+                        minLength: 0,
+                        source: $.proxy(this, "_source")
+                    })
+                    .tooltip({
+                        classes: {
+                            "ui-tooltip": "ui-state-highlight"
+                        }
+                    });
+                this._on( this.input, {
+                    autocompleteselect: function(event, ui) {
+                        ui.item.option.selected = true;
+                        this._trigger("select", event, {
+                            item: ui.item.option
+                        });
+                    },
+                    autocompletechange: "_removeIfInvalid"
+                });
+            },
+            _createShowAllButton: function() {
+                var input = this.input,
+                    wasOpen = false;
+                $("<a>")
+                    .attr("tabIndex", -1)
+                    .attr("title", "Show All Items")
+                    .tooltip()
+                    .appendTo(this.wrapper)
+                    .button({
+                        icons: {
+                            primary: "ui-icon-triangle-1-s"
+                        },
+                        text: false
+                    })
+                    .removeClass("ui-corner-all")
+                    .addClass("custom-combobox-toggle ui-corner-right")
+                    .on("mousedown", function() {
+                        wasOpen = input.autocomplete("widget").is(":visible");
+                    })
+                    .on("click", function() {
+                        input.trigger("focus");
+                        // Close if already visible
+                        if (wasOpen) {
+                            return;
+                        }
+                        // Pass empty string as value to search for, displaying all results
+                        input.autocomplete("search", "");
+                    });
+            },
+            _source: function(request, response) {
+                var matcher = new RegExp($.ui.autocomplete.escapeRegex(request.term), "i");
+                response(this.element.children("option").map(function() {
+                    var text = $(this).text();
+                    if (this.value && (!request.term || matcher.test(text)))
+                        return {
+                            label: text,
+                            value: text,
+                            option: this
+                        };
+                }) );
+            },
+            _removeIfInvalid: function(event, ui) {
+                // Selected an item, nothing to do
+                if (ui.item) {
+                    return;
+                }
+                // Search for a match (case-insensitive)
+                var value = this.input.val(),
+                    valueLowerCase = value.toLowerCase(),
+                    valid = false;
+                this.element.children("option").each(function() {
+                    if ($(this).text().toLowerCase() === valueLowerCase) {
+                        this.selected = valid = true;
+                        return false;
+                    }
+                });
+                // Found a match, nothing to do
+                if (valid) {
+                    return;
+                }
+                // Remove invalid value
+                this.input
+                    .val("")
+                    .attr("title", value + " didn't match any item")
+                    .tooltip("open");
+                this.element.val("");
+                this._delay(function() {
+                    this.input.tooltip("close").attr("title", "");
+                }, 2500);
+                this.input.autocomplete("instance").term = "";
+            },
+
+            _destroy: function() {
+                this.wrapper.remove();
+                this.element.show();
+            },
+        });
+        $("#client").combobox();
+        $("#fournisseur").combobox();
+        $("#litiges").combobox();
+        $("#zatt").combobox();
+        $("#toggle").on("click", function() {
+            $("#client").combobox();
+            $("#fournisseur").combobox();
+            $("#litiges").combobox();
+            $("#zatt").combobox();
+        });
+
+        $("#client").combobox({
+            select: function (event, ui) {
+                console.log(this.value);
+                '{% for items in cli %}'
+                if ('{{ items.nom }}' == this.value) {
+                    console.log('{{ items.fk_TypeZone.nom }}');
+                    $('#zone').val('{{ items.fk_TypeZone.nom }}');
+
+                    '{% for items in zoned %}'
+                        console.log('there');
+                        if ('{{ items.fk_TypeZoneDepot.nom }}' == $('#zone').val()) {
+                            console.log("gg");
+                        }
+                        $("#zatt").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                    '{% endfor %}'
+
+                    //$("#").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                }
+                '{% endfor %}'
+            }
+        });
+    });
+</script>
+{% endblock %}
+
+</html>
