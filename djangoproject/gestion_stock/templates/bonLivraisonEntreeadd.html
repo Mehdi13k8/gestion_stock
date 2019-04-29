@@ -12,8 +12,6 @@
     .ui-dialog .ui-state-error { padding: .3em; }
     .validateTips { border: 1px solid transparent; padding: 0.3em;}
 </style>
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <div class="container"><h1 class="text-center"> Ajout de B.L entree</h1></div>
 <br>
@@ -74,9 +72,9 @@
                                     <br><button class="mt-lg-1" id="accesslve"><i class="fas fa-arrow-right"></i></button>
                                 </div>
                                 <div class="col">
-                                    lettre de voiture :<br><input type="text" id="lve" name="id_transporteur"disabled class="form-control">
+                                    lettre de voiture :<br><input type="text" id="lve" disabled class="form-control">
                                 </div>
-                                <div class="col-4">zone:<br><input type="text" id="zone" name="id_transporteur" disabled class="form-control">
+                                <div class="col-4">zone:<br><input type="text" id="zone" disabled class="form-control">
                                 </div>
                                 <div class="col">
                                     <div class="selsel">
@@ -144,13 +142,14 @@
                             </thead>
                             <tbody>
                             {% for items in entree %}
-                            <tr>
+                            <!--<tr>
                                 <td> <button id='{{ items.idBonLivraisonEntree }}' class="dyna"> -> </button></td>
                                 <td> {{ items.fk_TypeZoneDepot.nom }} </td>
                                 <td> {{ items.dateReception }} </td>
                                 <td> {{ items.numeroBonLivraison }} </td>
                                 <td> <button id='{{ items.idBonLivraisonEntree  }}' class="dynad"> X </button> </td>
                             </tr>
+                            -->
                             {% endfor %}
                             </tbody>
                         </table>
@@ -166,13 +165,46 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col">
+                    <div class="border shadow-lg p-2 mb-3 bg-white rounded">
+                        <h5 class="text-center"> <u> Bons de commande </u></h5>
+                        <div class="container">
+                            <div class="table-responsive">
+                                <table id="tabbcm" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col" class="th-sm"><i class="fas fa-cog"></i></th>
+                                        <th scope="col" class="th-sm"> n° UM </th>
+                                        <th scope="col" class="th-sm"> emplacement </th>
+                                        <th scope="col" class="th-sm"> désignation </th>
+                                        <th scope="col" class="th-sm"> <i class="fa fa-trash"></i> </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for items in entree %}
+                                    <!--<tr>
+                                        <td> <button id='{{ items.idBonLivraisonEntree }}' class="dyna"> -> </button></td>
+                                        <td> {{ items.fk_TypeZoneDepot.nom }} </td>
+                                        <td> {{ items.dateReception }} </td>
+                                        <td> {{ items.numeroBonLivraison }} </td>
+                                        <td> <button id='{{ items.idBonLivraisonEntree  }}' class="dynad"> X </button> </td>
+                                    </tr>-->
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
 <div class="container">
     <div class="row">
-        <div class="col">
+        <div class="col-5">
             <div class="border shadow-lg p-2 mb-3 bg-white rounded">
                 <div class="row">
                     <div class="col">
@@ -210,26 +242,34 @@
                                     //to change
                                     var name = "{{ items.nom }}";
                                     var oldname;
-/*                                    if (i == 0)
-                                        $("#zatt").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
-                                    else if (name != oldname)
-                                        $("#zatt").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
-                                        */
+                                    /*if (i == 0)
+                                     $("#zatt").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                                     else if (name != oldname)
+                                     $("#zatt").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                                     */
                                     oldname = name;
                                     i = 1;
                                     "{% endfor %}"
                                 });
                             </script>
                         </select>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col">
+        <div class="col-3 mx-auto">
             <div class="border shadow-lg p-2 mb-3 bg-white rounded">
-                <h5 class="text-center"> <u> Bons de commande </u></h5>
-                <div class="container">
-
+                <div class="col">
+                    <h5 class="text-center"> <u> fichiers </u></h5>
+                    <div class="container">
+                        <div class="row">
+                            <div class="mx-auto">
+                                <p style="cursor: pointer;">fichier <i class="fas fa-file"></i></p>
+                                <p>photo <i class="far fa-image"></i></p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -241,18 +281,75 @@
         <div class="col">
             <div class="border shadow-lg p-2 mb-3 bg-white rounded">
                 <div class="col">
-                    <h5 class="text-center"> <u> fichiers </u></h5>
+                    <h5 class="text-center"> <u> Lignes du BL</u></h5>
                     <div class="container">
                         <div class="row">
-                            <div class="col">
-
+                            <div class="container">
+                                <div class="border shadow-lg p-2 mb-3 bg-white rounded">
+                                    <div class="table-responsive text-nowrap">
+                                        <table id="tabbl" class="table table-condensed table-striped table-bordered" cellspacing="0" width="100%">
+                                            <thead>
+                                            <tr>
+                                                <th colspan="7"><button class="btn btn-sm btn-dark">Copy um entree</button>
+                                                    <button class="btn btn-sm btn-dark">copy BCE</button>
+                                                    <button class="btn btn-sm btn-dark">calcul quantité</button>
+                                                </th>
+                                                <th colspan="2" class="text-center"><button class="btn btn-sm btn-dark">calcul quantité</button></th>
+                                                <th colspan="2" class="text-center">qte reçue</th>
+                                                <th colspan="2" class="text-center">qte à livrer</th>
+                                                <th colspan="5"><h5 class="text-center"><u>Comparaison réel</u></h5></th>
+                                            </tr>
+                                            <tr>
+                                                <th scope="col">code fournisseur</i></th>
+                                                <th scope="col">désignation</th>
+                                                <th scope="col">qte produits</th>
+                                                <th scope="col"><button class="btn btn-sm btn-dark"><i class="fas fa-sync"></i></button><br>
+                                                    qte colis</th>
+                                                <th scope="col">contrôle</th>
+                                                <th scope="col">terminé</th>
+                                                <th scope="col"> <i class="fa fa-trash"></i> </th>
+                                                <th scope="col">Comm. attendu</th>
+                                                <th scope="col">Comm. reçus</th>
+                                                <th scope="col">produits</th>
+                                                <th scope="col">colis</th>
+                                                <th scope="col">produits</th>
+                                                <th scope="col">colis</th>
+                                                <th scope="col">colis litigieux</th>
+                                                <th scope="col">produits litigieux</th>
+                                                <th scope="col">autre différence</th>
+                                                <th scope="col">différence produit</th>
+                                                <th scope="col">diff. non-expliquée</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody id="tabblbody">
+                                            {% for items in entreeligne %}
+                                            <!--<tr>
+                                                <td> <button id='{{ items.idBonLivraisonEntree }}' class="dyna"> -> </button></td>
+                                                <td> {{ items.fk_TypeZoneDepot.nom }} </td>
+                                                    <td> {{ items.dateReception }} </td>
+                                                <td> {{ items.numeroBonLivraison }} </td>
+                                                <td> <button id='{{ items.idBonLivraisonEntree  }}' class="dynad"> X </button> </td>
+                                            </tr>
+                                            -->
+                                            {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
+                            <button class="btn btn-sm btn-dark" id="addligne">+</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
+
+<div id="dialog-confirm" title="Ajouter des lignes">
+    Combien de lignes faut-il ajouter ?</p>
+    <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>
+        <input id="numberligne" type="text" pattern="[0-9]+">
 </div>
 <br>
 <br>
@@ -415,21 +512,10 @@
                 }, 2500);
                 this.input.autocomplete("instance").term = "";
             },
-
             _destroy: function() {
                 this.wrapper.remove();
                 this.element.show();
             },
-        });
-        $("#client").combobox();
-        $("#fournisseur").combobox();
-        $("#litiges").combobox();
-        $("#zatt").combobox();
-        $("#toggle").on("click", function() {
-            $("#client").combobox();
-            $("#fournisseur").combobox();
-            $("#litiges").combobox();
-            $("#zatt").combobox();
         });
 
         $("#client").combobox({
@@ -439,13 +525,13 @@
                 if ('{{ items.nom }}' == this.value) {
                     console.log('{{ items.fk_TypeZone.nom }}');
                     $('#zone').val('{{ items.fk_TypeZone.nom }}');
-
-                    '{% for items in zoned %}'
+                    '{% for items in zoned %}'/*
                         console.log('there');
                         if ('{{ items.fk_TypeZoneDepot.nom }}' == $('#zone').val()) {
+                            $('#zone').val('{{ items.fk_TypeZone.nom }}');
                             console.log("gg");
-                        }
-                        $("#zatt").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                        }*/
+                    $("#zatt").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
                     '{% endfor %}'
 
                     //$("#").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
@@ -453,8 +539,114 @@
                 '{% endfor %}'
             }
         });
+
+        $("#client").combobox();
+        $("#fournisseur").combobox();
+        $("#litiges").combobox();
+        $("#zatt").combobox();
+        $("#blfournisseur").combobox();
+        $("#toggle").on("click", function() {
+            $("#client").toggle();
+            $("#fournisseur").toggle();
+            $("#litiges").toggle();
+            $("#zatt").toggle();
+            $("#blfournisseur").toggle();
+        });
+
+        $(document).on("input", "input", function (event) {
+            $("#blfournisseur").combobox();
+        });
+
+        $("body #blfournisseur").combobox();
+
+        $(document).on("input", "input", function (event) {
+            if (this.checkValidity()) {
+                $(this).data('last-valid', this.value);
+            }
+            else {
+                var myvalue = $(this).text();
+                if($.isNumeric($('#numberligne').val())) {
+                    console.log("numeric");
+                } else {
+                    console.log("not numeric");
+                    $('#numberligne').popover({
+                        trigger: 'manual',
+                        title: 'Warning!',
+                        content: 'Value can not be empty',
+                        placement: 'left',
+                    }).popover('show');
+                    setTimeout(closederror, 2000);
+                }
+                this.value = $(this).data('last-valid') || "";
+            }
+        });
+        function checkligne() {
+            $("#numberligne").popover({trigger: 'manual', content: "Input only numbers!", placement : 'right'});
+            $("#numberligne").popover('show');
+        };
+        function closederror() {
+            $("#numberligne").popover('dispose');
+        };
+
+        $('#addligne').click(function() {
+            $("#dialog-confirm").dialog("open");
+        });
+        var nbrligne = 0;
+        $("#dialog-confirm").dialog({
+            resizable: false,
+            height: "auto",
+            width: 400,
+            modal: true,
+            buttons: {
+                "Annuler": function() {
+                    $('#numberligne').val("");
+                    $(this).dialog("close");
+                },
+                ok: function() {
+                    nbrligne = $('#numberligne').val();
+                    $('#numberligne').val("");
+                    $(this).dialog("close");
+                    for (nbrligne; nbrligne > 0; nbrligne--) {
+                        $('#tabblbody').append("<tr><td><select class=\"form-control fournise\" id=\"blfournisseur\"></select></td>"+
+                            "<td><select class=\"form-control desif\" id=\"iddesif\"></select></td>" +
+                            "<td> <input class='form-control'></td>" +
+                            "<td> <input class='form-control'></td>" +
+                            "<td><button type=\"button\" class=\"btn btn-light btn-sm butctrl \"><i class=\"far fa-thumbs-down\" aria-hidden=\"true\"></i></button></td>" +
+                            "<td><input type=\"checkbox\" class=\"form-control\"></td>" +
+                            "<td><button class=\"deleteur\"> X </button> </td>"+
+                            "<td> <input class='form-control'></td>" +
+                            "<td> <input class='form-control'></td>" +
+                            "<td> <input class='form-control'></td>" +
+                            "<td> <input class='form-control'></td>" +
+                            "<td> <input class='form-control'></td>" +
+                            "<td> <input class='form-control'></td>" +
+                            "<td> <input class='form-control'></td>" +
+                            "<td> <input class='form-control'></td>" +
+                            "<td> <input class='form-control'></td>" +
+                            "<td> <input class='form-control'></td>" +
+                            "<td> <input class='form-control'></td>");
+                        '{% for items in art %}'
+                        $("select.fournise:last").append(new Option("{{ items.codeFournisseur }}", "{{ items.codeFournisseur }}"));
+                        '{% endfor %}'
+                    }
+                }
+            },
+        });
+        $("#dialog-confirm").dialog("close");
+        $('body').on('click', '.butctrl', function() {
+            if ($(this).hasClass("btn-light")) {
+                $(this).removeClass("btn-light");
+                $(this).addClass("btn-success");
+                $(this).find($("i")).removeClass('fa-thumbs-down').addClass('fa-thumbs-up');
+            }
+            else
+            {
+                $(this).removeClass("btn-success");
+                $(this).addClass("btn-light");
+                $(this).find($("i")).removeClass('fa-thumbs-up').addClass('fa-thumbs-down');
+            }
+        });
     });
 </script>
-{% endblock %}
-
 </html>
+{% endblock %}

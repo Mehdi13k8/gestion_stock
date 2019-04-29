@@ -173,13 +173,14 @@ class bonLivraisonEntreeadd(ListView):
     def get(self, request):
         context = {
             'entree' : BonLivraisonEntree.objects.all(),
+            'art' : Article.objects.all(),
             'cli' : Client.objects.all(),
             'des' : Destinataire.objects.all(),
             'four' : Fournisseur.objects.all(),
             'typef': TypeFournisseur_pour_Fournisseur.objects.all(),
             'zoned': ZoneDepot_pour_TypeZoneDepot.objects.all(),
             #'lve' : LettreVoitureEntree.objects.all(),
-            #'entreeligne' : LigneBonLivraisonEntree_pour_BonLivraisonEntree.objects.all(),
+            'entreeligne' : LigneBonLivraisonEntree_pour_BonLivraisonEntree.objects.all(),
             'activate' : 'on',
         }
         return render(request, self.template_name, context)

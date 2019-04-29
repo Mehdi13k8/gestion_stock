@@ -617,9 +617,9 @@
         $("#fournitype").combobox();
         $("#typearticle").combobox();
         $("#toggle").on("click", function() {
-            $("#typearticle").combobox();
-            $("#fournitype").combobox();
-            $("#zonetype").combobox();
+            $("#typearticle").toggle();
+            $("#fournitype").toggle();
+            $("#zonetype").toggle();
             $("#destitype").toggle();
             $("#paysid").toggle();
         });

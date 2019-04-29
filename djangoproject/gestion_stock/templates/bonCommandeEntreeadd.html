@@ -1,4 +1,4 @@
-{% extends "base_generic.html" %}
+{% extends user.is_authenticated|yesno:"base_generic.html,empty.html" %}
 
 {% block content %}
 
@@ -263,12 +263,10 @@
                 this.value = $(this).data('last-valid') || "";
             }
         });
-
         function checkligne() {
             $("#numberligne").popover({trigger: 'manual', content: "Input only numbers!", placement : 'right'});
             $("#numberligne").popover('show');
         };
-
         function closederror() {
             $("#numberligne").popover('dispose');
         };
@@ -285,7 +283,7 @@
             $("#dialog-confirm").dialog("open");
         });
 
-        var nbrligne = 0
+        var nbrligne = 0;
         $("#dialog-confirm").dialog({
             resizable: false,
             height: "auto",
@@ -302,7 +300,6 @@
                     $(this).dialog("close");
                     for (nbrligne; nbrligne > 0; nbrligne--) {
                         //crée un nombre x de lignes a remplir
-
                     }
                 }
             },

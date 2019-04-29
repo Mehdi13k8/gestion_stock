@@ -1332,6 +1332,8 @@ class BonLivraisonEntree(models.Model):
     idBonLivraisonEntree = models.CharField(max_length=42, default='Null')
     fk_LettreVoitureEntree  = models.ForeignKey('LettreVoitureEntree', on_delete=models.CASCADE, default=0, blank=True, null=True)
     fk_TypeZoneDepot = models.ForeignKey('TypeZoneDepot', on_delete=models.CASCADE, default=0, blank=True, null=True)
+    fk_UniteManutentionEntree = models.ForeignKey('UniteManutentionEntree', on_delete=models.CASCADE, default=0, blank=True, null=True)
+    fk_BonCommandeEntree = models.ForeignKey('BonCommandeEntree', on_delete=models.CASCADE, default=0, blank=True, null=True)
     fk_Fournisseur = models.ForeignKey('Fournisseur', on_delete=models.CASCADE, default=0, blank=True, null=True)
     fk_Client  = models.ForeignKey('Client', on_delete=models.CASCADE, default=0, blank=True, null=True)
     dateReception = models.CharField(max_length=42, default='Null')
@@ -1340,3 +1342,23 @@ class BonLivraisonEntree(models.Model):
     commentaire = models.CharField(max_length=42, default='Null')
     def __str__(self):
         return self.numeroBonLivraison
+
+class LigneBonLivraisonEntree_pour_BonLivraisonEntree(models.Model):
+    idLigneBonLivraisonEntree = models.CharField(max_length=42, default='Null')
+    fk_BonLivraisonEntree = models.ForeignKey('BonLivraisonEntree', on_delete=models.CASCADE, default=0)
+    fk_Article  = models.ForeignKey('Article', on_delete=models.CASCADE, default=0, blank=True, null=True)
+    controle = models.CharField(max_length=42, default='Null')
+    quantiteColis = models.CharField(max_length=42, default='Null')
+    quantiteColisAlivrer = models.CharField(max_length=42, default='Null')
+    quantiteColisLitige = models.CharField(max_length=42, default='Null')
+    quantiteColisRecu = models.CharField(max_length=42, default='Null')
+    quantiteCommande = models.CharField(max_length=42, default='Null')
+    quantiteCommandeRecue = models.CharField(max_length=42, default='Null')
+    quantiteDifference = models.CharField(max_length=42, default='Null')
+    quantiteDifferenceAutre = models.CharField(max_length=42, default='Null')
+    quantiteDifferenceRestante = models.CharField(max_length=42, default='Null')
+    quantiteProduit = models.CharField(max_length=42, default='Null')
+    quantiteProduitAlivrer = models.CharField(max_length=42, default='Null')
+    quantiteProduitLitige = models.CharField(max_length=42, default='Null')
+    quantiteProduitRecu = models.CharField(max_length=42, default='Null')
+    termine = models.CharField(max_length=42, default='Null')
