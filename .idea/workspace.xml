@@ -26,15 +26,17 @@
     <option name="isMigrated" value="true" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+    <leaf>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/djangoproject/gestion_stock/templates/clientmodify.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="97" column="105" lean-forward="true" selection-start-line="97" selection-start-column="105" selection-end-line="97" selection-end-column="105" />
+            <state>
+              <caret column="11" selection-start-column="11" selection-end-column="11" />
               <folding>
                 <element signature="n#style#0;n#i#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#i#0;n#div#3;n#div#0;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#6;n#tr#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#6;n#tr#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -43,8 +45,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/djangoproject/gestion_stock/templates/client.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="80" column="49" selection-start-line="80" selection-start-column="43" selection-end-line="80" selection-end-column="49" />
+            <state relative-caret-position="656">
+              <caret line="108" selection-start-line="108" selection-end-line="108" />
             </state>
           </provider>
         </entry>
@@ -52,8 +54,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/djangoproject/gestion_stock/templates/clientadd.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="343">
-              <caret line="621" column="33" selection-start-line="621" selection-start-column="33" selection-end-line="621" selection-end-column="33" />
+            <state relative-caret-position="-187">
+              <caret line="260" column="31" lean-forward="true" selection-start-line="260" selection-start-column="31" selection-end-line="260" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -61,8 +63,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/djangoproject/gestion_stock/templates/bonLivraisonEntree.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="214">
-              <caret line="84" column="27" selection-start-line="84" selection-start-column="27" selection-end-line="84" selection-end-column="27" />
+            <state relative-caret-position="504">
+              <caret line="115" column="14" lean-forward="true" selection-start-line="115" selection-start-column="14" selection-end-line="115" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -70,8 +72,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/djangoproject/gestion_stock/templates/bonLivraisonEntreeadd.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="559" column="16" selection-start-line="559" selection-start-column="16" selection-end-line="559" selection-end-column="16" />
+            <state relative-caret-position="289">
+              <caret line="564" column="61" lean-forward="true" selection-start-line="564" selection-start-column="61" selection-end-line="564" selection-end-column="61" />
               <folding>
                 <element signature="n#style#0;n#p#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#3;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -82,7 +84,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/djangoproject/gestion_stock/templates/bonCommandeEntreeadd.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="211">
+            <state relative-caret-position="246">
               <caret line="279" column="51" selection-start-line="279" selection-start-column="45" selection-end-line="279" selection-end-column="51" />
             </state>
           </provider>
@@ -91,7 +93,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/djangoproject/gestion_stock/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="494">
+            <state relative-caret-position="23103">
               <caret line="1363" column="12" selection-start-line="1363" selection-start-column="12" selection-end-line="1363" selection-end-column="12" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
@@ -103,7 +105,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/djangoproject/gestion_stock/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="385">
+            <state relative-caret-position="2788">
               <caret line="175" column="27" selection-start-line="175" selection-start-column="27" selection-end-line="175" selection-end-column="27" />
             </state>
           </provider>
@@ -120,36 +122,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>²</find>
-      <find>crée</find>
-      <find>&quot;client&quot;</find>
-      <find>clie</find>
-      <find>client</find>
-      <find>fournisseur</find>
-      <find>fake</find>
-      <find>ad</find>
-      <find>var i</find>
-      <find>tr</find>
-      <find>customSwitches</find>
-      <find>delete</find>
-      <find>append</find>
-      <find>customCheck1</find>
-      <find>a</find>
-      <find>terminé</find>
-      <find>controle</find>
-      <find>but</find>
-      <find>butctrl</find>
-      <find>thum</find>
-      <find>nav</find>
-      <find>colspan</find>
-      <find>bt</find>
-      <find>combob</find>
-      <find>blfournisseur</find>
-      <find>toggle</find>
-      <find>gle</find>
-      <find>select</find>
+      <find>codefour</find>
+      <find>ok</find>
+      <find>ok:</find>
+      <find>on</find>
       <find>combobox</find>
       <find>on(</find>
+      <find>on.</find>
+      <find>on</find>
+      <find>click.</find>
+      <find>select:</find>
+      <find>widget</find>
+      <find>change</find>
+      <find>fournise</find>
+      <find>combobo</find>
+      <find>role</find>
+      <find>a</find>
+      <find>togg</find>
+      <find>table</find>
+      <find>tab</find>
+      <find>append</find>
+      <find>nbrlig</find>
+      <find>.on(</find>
+      <find>select: function</find>
+      <find>togle</find>
+      <find>toggle</find>
+      <find>console.log(</find>
+      <find>desif</find>
+      <find>f</find>
+      <find>blfournisseur</find>
+      <find>select</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -172,7 +174,6 @@
         <option value="$PROJECT_DIR$/djangoproject/gestion_stock/templates/destinatairemodify.html" />
         <option value="$PROJECT_DIR$/djangoproject/gestion_stock/templates/fournisseur.html" />
         <option value="$PROJECT_DIR$/djangoproject/gestion_stock/templates/transporteurmodify.html" />
-        <option value="$PROJECT_DIR$/djangoproject/gestion_stock/templates/clientmodify.html" />
         <option value="$PROJECT_DIR$/djangoproject/gestion_stock/templates/fournisseurmodify.html" />
         <option value="$PROJECT_DIR$/djangoproject/gestion_stock/templates/fournisseuradd.html" />
         <option value="$PROJECT_DIR$/djangoproject/gestion_stock/templates/articleadd.html" />
@@ -185,6 +186,7 @@
         <option value="$PROJECT_DIR$/djangoproject/gestion_stock/models.py" />
         <option value="$PROJECT_DIR$/djangoproject/gestion_stock/views.py" />
         <option value="$PROJECT_DIR$/djangoproject/gestion_stock/templates/bonCommandeEntreeadd.html" />
+        <option value="$PROJECT_DIR$/djangoproject/gestion_stock/templates/clientmodify.html" />
         <option value="$PROJECT_DIR$/djangoproject/gestion_stock/templates/clientadd.html" />
         <option value="$PROJECT_DIR$/djangoproject/gestion_stock/templates/bonLivraisonEntreeadd.html" />
       </list>
@@ -207,8 +209,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -219,17 +221,6 @@
             <path>
               <item name="gestion_stock" type="b2602c69:ProjectViewProjectNode" />
               <item name="gestion_stock" type="462c0819:PsiDirectoryNode" />
-              <item name="abdu-rahman" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gestion_stock" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gestion_stock" type="462c0819:PsiDirectoryNode" />
-              <item name="abdu-rahman" type="462c0819:PsiDirectoryNode" />
-              <item name="flexible" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gestion_stock" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gestion_stock" type="462c0819:PsiDirectoryNode" />
               <item name="djangoproject" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -244,14 +235,6 @@
               <item name="djangoproject" type="462c0819:PsiDirectoryNode" />
               <item name="djangoproject" type="462c0819:PsiDirectoryNode" />
               <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gestion_stock" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gestion_stock" type="462c0819:PsiDirectoryNode" />
-              <item name="djangoproject" type="462c0819:PsiDirectoryNode" />
-              <item name="djangoproject" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="gestion_stock" type="b2602c69:ProjectViewProjectNode" />
@@ -321,17 +304,17 @@
       <workItem from="1556111909146" duration="4250000" />
       <workItem from="1556178663065" duration="23645000" />
       <workItem from="1556522716360" duration="23488000" />
+      <workItem from="1556608184615" duration="20451000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="96118000" />
+    <option name="totallyTimeSpent" value="116569000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12953092" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13059701" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -347,7 +330,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
-      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.31852654" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.31852654" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" weight="0.32936078" />
       <window_info anchor="bottom" id="Version Control" order="11" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -632,34 +615,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/djangoproject/gestion_stock/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="385">
-          <caret line="175" column="27" selection-start-line="175" selection-start-column="27" selection-end-line="175" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/djangoproject/gestion_stock/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="1363" column="12" selection-start-line="1363" selection-start-column="12" selection-end-line="1363" selection-end-column="12" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/djangoproject/gestion_stock/templates/clientmodify.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="97" column="105" lean-forward="true" selection-start-line="97" selection-start-column="105" selection-end-line="97" selection-end-column="105" />
-          <folding>
-            <element signature="n#style#0;n#i#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#div#3;n#div#0;n#div#1;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/djangoproject/djangoproject/static/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -679,38 +634,68 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/djangoproject/gestion_stock/templates/bonCommandeEntreeadd.html">
+    <entry file="file://$PROJECT_DIR$/djangoproject/gestion_stock/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="279" column="51" selection-start-line="279" selection-start-column="45" selection-end-line="279" selection-end-column="51" />
+        <state relative-caret-position="23103">
+          <caret line="1363" column="12" selection-start-line="1363" selection-start-column="12" selection-end-line="1363" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/djangoproject/gestion_stock/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2788">
+          <caret line="175" column="27" selection-start-line="175" selection-start-column="27" selection-end-line="175" selection-end-column="27" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/djangoproject/gestion_stock/templates/client.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="80" column="49" selection-start-line="80" selection-start-column="43" selection-end-line="80" selection-end-column="49" />
+        <state relative-caret-position="656">
+          <caret line="108" selection-start-line="108" selection-end-line="108" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/djangoproject/gestion_stock/templates/clientmodify.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="11" selection-start-column="11" selection-end-column="11" />
+          <folding>
+            <element signature="n#style#0;n#i#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#i#0;n#div#3;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#6;n#tr#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#6;n#tr#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/djangoproject/gestion_stock/templates/clientadd.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="343">
-          <caret line="621" column="33" selection-start-line="621" selection-start-column="33" selection-end-line="621" selection-end-column="33" />
+        <state relative-caret-position="-187">
+          <caret line="260" column="31" lean-forward="true" selection-start-line="260" selection-start-column="31" selection-end-line="260" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/djangoproject/gestion_stock/templates/bonCommandeEntreeadd.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="246">
+          <caret line="279" column="51" selection-start-line="279" selection-start-column="45" selection-end-line="279" selection-end-column="51" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/djangoproject/gestion_stock/templates/bonLivraisonEntree.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="84" column="27" selection-start-line="84" selection-start-column="27" selection-end-line="84" selection-end-column="27" />
+        <state relative-caret-position="504">
+          <caret line="115" column="14" lean-forward="true" selection-start-line="115" selection-start-column="14" selection-end-line="115" selection-end-column="14" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/djangoproject/gestion_stock/templates/bonLivraisonEntreeadd.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="559" column="16" selection-start-line="559" selection-start-column="16" selection-end-line="559" selection-end-column="16" />
+        <state relative-caret-position="289">
+          <caret line="564" column="61" lean-forward="true" selection-start-line="564" selection-start-column="61" selection-end-line="564" selection-end-column="61" />
           <folding>
             <element signature="n#style#0;n#p#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#3;n#html#0;n#!!top" expanded="true" />
           </folding>

@@ -411,7 +411,6 @@
                 this._createAutocomplete();
                 this._createShowAllButton();
             },
-
             _createAutocomplete: function() {
                 var selected = this.element.children( ":selected" ),
                     value = selected.val() ? selected.text() : "";
@@ -517,6 +516,101 @@
                 this.element.show();
             },
         });
+        var nbrligne = 0;
+        $("#dialog-confirm").dialog({
+            resizable: false,
+            height: "auto",
+            width: 400,
+            modal: true,
+            buttons: {
+                "Annuler": function() {
+                    $('#numberligne').val("");
+                    $(this).dialog("close");
+                },
+                ok: function() {
+                    nbrligne = $('#numberligne').val();
+                    $('#numberligne').val("");
+                    $(this).dialog("close");
+                    for (var nbr = nbrligne; nbr > 0; nbr--) {
+                        $('#tabblbody').append("<tr><td><select class=\"form-control fournise\" id=\"blfournisseur"+nbr+"\"></select></td>"+
+                            "<td><select class=\"form-control desif\" id=\"iddesif"+nbr+"\"></select></td>" +
+                            "<td><input class='form-control'></td>" +
+                            "<td><input class='form-control'></td>" +
+                            "<td><button type=\"button\" class=\"btn btn-light btn-sm butctrl \"><i class=\"far fa-thumbs-down\" aria-hidden=\"true\"></i></button></td>" +
+                            "<td><input type=\"checkbox\" class=\"form-control\"></td>" +
+                            "<td><button class=\"deleteur\"> X </button> </td>"+
+                            "<td><input class='form-control'></td>" +
+                            "<td><input class='form-control'></td>" +
+                            "<td><input class='form-control'></td>" +
+                            "<td><input class='form-control'></td>" +
+                            "<td><input class='form-control'></td>" +
+                            "<td><input class='form-control'></td>" +
+                            "<td><input class='form-control'></td>" +
+                            "<td><input class='form-control'></td>" +
+                            "<td><input class='form-control'></td>" +
+                            "<td><input class='form-control'></td>" +
+                            "<td><input class='form-control'></td>");
+                        '{% for items in art %}'
+                        $("select.fournise:last").append(new Option("{{ items.codeFournisseur }}", "{{ items.codeFournisseur }}"));
+                        $("select.desif:last").append(new Option("{{ items.designationClient }}", "{{ items.designationClient }}"));
+                        $("select.fournise:last").val("");
+                        $("select.desif:last").val("");
+                        '{% endfor %}'
+                    }
+                    //code fournisseur
+                    for (var a = nbrligne; a!= 0; a--) {
+                        $("#blfournisseur"+a).combobox();
+                    }
+                    $("#toggle").on("click", function() {
+                        for (var a = nbrligne; a != 0; a--) {
+                            $("#blfournisseur" + a).toggle();
+                        }
+                    });
+                    for (var nb = nbrligne; nb!=0; nb--) {
+                        $(".fournise").combobox({
+                            select: function (event, ui) {
+                                '{% for items in art %}'
+                                    if ('{{ items.codeFournisseur }}' == this.value) {
+                                        console.log("there");
+                                        //$(this).closest('td').next().find('select').val('{{ items.designationClient }}');
+                                    }
+                                '{% endfor %}'
+                            }
+                        });
+                    }
+                    for (var a = nbrligne; a!= 0; a--) {
+                        $("#iddesif"+a).combobox();
+                    }
+                    $("#toggle").on("click", function() {
+                        for (var a = nbrligne; a != 0; a--) {
+                            $("#iddesif" + a).toggle();
+                        }
+                    });
+                    for (var nb = nbrligne; nb!=0; nb--) {
+                        $(".desif").combobox({
+                            select: function (event, ui) {
+                                //console.log(this.value);
+                            }
+                        });
+                    }
+                }
+            },
+        });
+
+        $("#dialog-confirm").dialog("close");
+        $('body').on('click', '.butctrl', function() {
+            if ($(this).hasClass("btn-light")) {
+                $(this).removeClass("btn-light");
+                $(this).addClass("btn-success");
+                $(this).find($("i")).removeClass('fa-thumbs-down').addClass('fa-thumbs-up');
+            }
+            else
+            {
+                $(this).removeClass("btn-success");
+                $(this).addClass("btn-light");
+                $(this).find($("i")).removeClass('fa-thumbs-up').addClass('fa-thumbs-down');
+            }
+        });
 
         $("#client").combobox({
             select: function (event, ui) {
@@ -533,7 +627,6 @@
                         }*/
                     $("#zatt").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
                     '{% endfor %}'
-
                     //$("#").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
                 }
                 '{% endfor %}'
@@ -544,20 +637,13 @@
         $("#fournisseur").combobox();
         $("#litiges").combobox();
         $("#zatt").combobox();
-        $("#blfournisseur").combobox();
         $("#toggle").on("click", function() {
             $("#client").toggle();
             $("#fournisseur").toggle();
             $("#litiges").toggle();
             $("#zatt").toggle();
-            $("#blfournisseur").toggle();
         });
-
-        $(document).on("input", "input", function (event) {
-            $("#blfournisseur").combobox();
-        });
-
-        $("body #blfournisseur").combobox();
+        //$("body #blfournisseur").combobox();
 
         $(document).on("input", "input", function (event) {
             if (this.checkValidity()) {
@@ -580,6 +666,7 @@
                 this.value = $(this).data('last-valid') || "";
             }
         });
+
         function checkligne() {
             $("#numberligne").popover({trigger: 'manual', content: "Input only numbers!", placement : 'right'});
             $("#numberligne").popover('show');
@@ -591,60 +678,8 @@
         $('#addligne').click(function() {
             $("#dialog-confirm").dialog("open");
         });
-        var nbrligne = 0;
-        $("#dialog-confirm").dialog({
-            resizable: false,
-            height: "auto",
-            width: 400,
-            modal: true,
-            buttons: {
-                "Annuler": function() {
-                    $('#numberligne').val("");
-                    $(this).dialog("close");
-                },
-                ok: function() {
-                    nbrligne = $('#numberligne').val();
-                    $('#numberligne').val("");
-                    $(this).dialog("close");
-                    for (nbrligne; nbrligne > 0; nbrligne--) {
-                        $('#tabblbody').append("<tr><td><select class=\"form-control fournise\" id=\"blfournisseur\"></select></td>"+
-                            "<td><select class=\"form-control desif\" id=\"iddesif\"></select></td>" +
-                            "<td> <input class='form-control'></td>" +
-                            "<td> <input class='form-control'></td>" +
-                            "<td><button type=\"button\" class=\"btn btn-light btn-sm butctrl \"><i class=\"far fa-thumbs-down\" aria-hidden=\"true\"></i></button></td>" +
-                            "<td><input type=\"checkbox\" class=\"form-control\"></td>" +
-                            "<td><button class=\"deleteur\"> X </button> </td>"+
-                            "<td> <input class='form-control'></td>" +
-                            "<td> <input class='form-control'></td>" +
-                            "<td> <input class='form-control'></td>" +
-                            "<td> <input class='form-control'></td>" +
-                            "<td> <input class='form-control'></td>" +
-                            "<td> <input class='form-control'></td>" +
-                            "<td> <input class='form-control'></td>" +
-                            "<td> <input class='form-control'></td>" +
-                            "<td> <input class='form-control'></td>" +
-                            "<td> <input class='form-control'></td>" +
-                            "<td> <input class='form-control'></td>");
-                        '{% for items in art %}'
-                        $("select.fournise:last").append(new Option("{{ items.codeFournisseur }}", "{{ items.codeFournisseur }}"));
-                        '{% endfor %}'
-                    }
-                }
-            },
-        });
-        $("#dialog-confirm").dialog("close");
-        $('body').on('click', '.butctrl', function() {
-            if ($(this).hasClass("btn-light")) {
-                $(this).removeClass("btn-light");
-                $(this).addClass("btn-success");
-                $(this).find($("i")).removeClass('fa-thumbs-down').addClass('fa-thumbs-up');
-            }
-            else
-            {
-                $(this).removeClass("btn-success");
-                $(this).addClass("btn-light");
-                $(this).find($("i")).removeClass('fa-thumbs-up').addClass('fa-thumbs-down');
-            }
+        $('#tabblbody').on('click', '.deleteur', function() {
+            $(this).parent().parent().remove();
         });
     });
 </script>
