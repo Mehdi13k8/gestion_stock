@@ -21,7 +21,6 @@ urlpatterns = [
     path('bon', views.ListeArticles.as_view(), name='bonCommandeSortie'),
     path('bon/add', views.bonCommandeSortieadd, name ='bonCommandeSortieadd'),
 
-
     path('bonLivraisonsortie', views.bonLivraisonSortie.as_view(), name='bonLivraisonSortie'),
     path('bonLivraisonsortie/add', views.bonLivraisonSortieadd.as_view(), name='bonLivraisonSortieadd'),
 
@@ -30,6 +29,8 @@ urlpatterns = [
     path('bonLivraisonentree/modify', views.bonLivraisonEntreeadd.as_view(), name='bonLivraisonEntreemodify'),
     path('ble/delete/', views.bonLivraisonEntree.delete),
     path('ble/create/', views.bonLivraisonEntreeadd.create),
+    path('ligneble/create/', views.bonLivraisonEntreeadd.createligne),
+    path('ligneble/delete/', views.bonLivraisonEntreeadd.deleteligne),
 
     path('article', views.article.as_view(), name='article'),
     path('article/delete/', views.article.delete),

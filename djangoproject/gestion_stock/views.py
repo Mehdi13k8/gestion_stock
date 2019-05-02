@@ -167,6 +167,29 @@ class bonLivraisonEntreeadd(ListView):
 
     def create(request):
         if request.method == 'POST':
+            ble = BonLivraisonEntree.objects.all()
+            showlist = [request.POST.get('id'), request.POST.get('client'),
+                        request.POST.get('fourtype'), request.POST.get('lettre'),
+                        request.POST.get('zone'), request.POST.get('numerobl'),
+                        request.POST.get('daterecep'), request.POST.get('quantitepale'),
+                        request.POST.get('destinataireretour'), request.POST.get('zoneatt')]
+            return HttpResponse("Created !")
+        return HttpResponse("No Authorized Access !")
+
+    def createligne(request):
+        if request.method == 'POST':
+            ligne = LigneBonLivraisonEntree_pour_BonLivraisonEntree.objects.all()
+            showlist = [request.POST.get('id'), request.POST.get('client'),
+                        request.POST.get('fourtype'), request.POST.get('lettre'),
+                        request.POST.get('zone'), request.POST.get('numerobl'),
+                        request.POST.get('daterecep'), request.POST.get('quantitepale'),
+                        request.POST.get('destinataireretour'), request.POST.get('zoneatt')]
+            return HttpResponse("Created !")
+        return HttpResponse("No Authorized Access !")
+
+    def deleteligne(request):
+        if request.method == 'POST':
+            ligne = LigneBonLivraisonEntree_pour_BonLivraisonEntree.objects.all()
             return HttpResponse("Created !")
         return HttpResponse("No Authorized Access !")
 
