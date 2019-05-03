@@ -376,6 +376,8 @@
         else
             $("#umid").val(upperid+1);
 
+        var idx = 0;
+        var ligne = [];
         $('#addble').click(function() {
             "{% for items in four %}"
             /*var name = $("#nom").val();
@@ -384,7 +386,6 @@
             }*/
             "{% endfor %}"
             var typef = $('#fournitype').val();
-            var ligne = [];
             var codefournisseur = "";
             var designation = "";
             var qteproduits = "";
@@ -402,7 +403,6 @@
             var autrediff = "";
             var diffproduit = "";
             var diffnexp = "";
-            var idx = 0;
 
             $('#tabbl tr').each(function (a, b) {  //recupère les contacts entrée dans la table
                 if (a === 0) {
@@ -421,59 +421,70 @@
                                 designation = $(this).val();
                             }
                             if (a === 3) {
-                                console.log("val = " + $(this).text());
                                 qteproduits = stock;
                             }
                             if (a === 4) {
-                                contrôle = stock;
+                                qtecolis = stock;
                             }
                             if (a === 5) {
-                                terminé = stock;
+                                if ($(this).find('button').hasClass('btn btn-light btn-sm butctrl')) {
+                                    contrôle = 0;
+                                }
+                                else {
+                                    contrôle = 1;
+                                }
                             }
                             if (a === 6) {
-                                commattendu = stock;
+                                if($(this).find('input').is(':checked'))
+                                    terminé = 1;
+                                else
+                                    terminé = 0;
                             }
                             if (a === 7) {
-                                commrecus = stock;
+                                commattendu = stock;
                             }
                             if (a === 8) {
-                                produitsrec = stock;
+                                commrecus = stock;
                             }
                             if (a === 9) {
-                                colisrec = stock;
+                                produitsrec = stock;
                             }
                             if (a === 10) {
-                                produitsali = stock;
+                                colisrec = stock;
                             }
                             if (a === 11) {
-                                colisali = stock;
+                                produitsali = stock;
                             }
                             if (a === 12) {
-                                colislitigieux = stock;
+                                colisali = stock;
                             }
                             if (a === 13) {
-                                produitslitigieux = stock;
+                                colislitigieux = stock;
                             }
                             if (a === 14) {
-                                autrediff = stock;
+                                produitslitigieux = stock;
                             }
                             if (a === 15) {
-                                diffproduit = stock;
+                                autrediff = stock;
                             }
                             if (a === 16) {
+                                diffproduit = stock;
+                            }
+                            if (a === 17) {
                                 diffnexp = stock;
                             }
-                            ligne[idx] = {"codefour": codefournisseur, "desicli": designation, "quantiteprod": qteproduits, "controle": contrôle,
-                                "termine": terminé, "commattendu": commattendu, "commrecus": commrecus,
-                                "produitsrecu": produitsrec, "colisrecu": colisrec, "produitsalivrer": produitsali,
-                                "colisalivrer": colisali, "colislitigieux": colislitigieux, "produitslitgieux": produitslitigieux,
-                                "autrediffs": autrediff, "diffproduit": diffproduit, "diffnonexp": diffnexp,};
+                            ligne[idx] = {"codefour": codefournisseur, "desicli": designation, "quantiteprod": qteproduits,
+                                "quantitecolis": qtecolis, "controle": contrôle, "termine": terminé, "commattendu": commattendu,
+                                "commrecus": commrecus, "produitsrecu": produitsrec, "colisrecu": colisrec,
+                                "produitsalivrer": produitsali, "colisalivrer": colisali, "colislitigieux": colislitigieux,
+                                "produitslitgieux": produitslitigieux,"autrediffs": autrediff,
+                                "diffproduit": diffproduit, "diffnonexp": diffnexp};
                             idx++;
                         }
-                        console.log(stock);
                     });
                 }
             });
+
             $.ajax({
                 type:"POST",    //type de requête utilisé par ajax
                 url:"/ble/create/", //lien de la view qui gère la requête post
@@ -491,36 +502,49 @@
                     csrfmiddlewaretoken: '{{ csrf_token }}',
                 },
                 success: function(msg, data, settings){
-                    envoilignes();
+                    console.log("success: " + msg);
+                    idx = 0;
+                    if (Object.keys(ligne).length > 0) {
+                        console.log("create contacts");
+                        for (key in ligne) {
+                            envoilignes();
+                            idx++;
+                        }
+                    }
                 },
                 failure: function() {
                     alert("fail");
                 }
             });
 
-            if (Object.keys(ligne).length > 0) {
-                envoilignes();
-            }
-
             function envoilignes() {
                 console.log("create contacts");
-                if (Object.keys(ligne).length > 0) {
-                    for (key in ligne) {
-                        console.log(ligne[0].quantiteprod);
-                    }
-                }
                 $.ajax({
                     type:"POST",
                     url:"/ligneble/create/",
                     data: {
                         'id': $('#umid').val(),
-                        'client': $('#client').val(),
-                        'fourtype': $('#fournitype').val(),
-                        'zoneatt': $('#zatt').val(),
+                        "codefour": codefournisseur,
+                        "desicli": designation,
+                        "quantiteprod": qteproduits,
+                        "quantitecolis": qtecolis,
+                        "controle": contrôle,
+                        "termine": terminé,
+                        "commattendu": commattendu,
+                        "commrecus": commrecus,
+                        "produitsrecu": produitsrec,
+                        "colisrecu": colisrec,
+                        "produitsalivrer": produitsali,
+                        "colisalivrer": colisali,
+                        "colislitigieux": colislitigieux,
+                        "produitslitgieux": produitslitigieux,
+                        "autrediffs": autrediff,
+                        "diffproduit": diffproduit,
+                        "diffnonexp": diffnexp,
                         csrfmiddlewaretoken: '{{ csrf_token }}',
                     },
                     success: function(msg, data, settings){
-
+                        console.log(msg);
                     },
                     failure: function() {
                         alert("fail");
@@ -766,8 +790,8 @@
                 if ('{{ items.nom }}' == this.value) {
                     console.log('{{ items.fk_TypeZone.nom }}');
                     $('#zone').val('{{ items.fk_TypeZone.nom }}');
-                    '{% for items in zoned %}'/*
-                        console.log('there');
+                    '{% for items in zoned %}'
+                    /*console.log('there');
                         if ('{{ items.fk_TypeZoneDepot.nom }}' == $('#zone').val()) {
                             $('#zone').val('{{ items.fk_TypeZone.nom }}');
                             console.log("gg");

@@ -1,17 +1,11 @@
 # Create your views here.
 
-from django.shortcuts import render, render_to_response, redirect
-from .models import *
+from django.http import HttpResponse
+from django.shortcuts import render, render_to_response
 from django.views.generic import ListView
-from django import forms
-from django.template.loader import render_to_string
-from django.http import HttpResponse, JsonResponse
-from django.utils.datastructures import MultiValueDictKeyError
-from collections import namedtuple
-import json
-from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
-from django.views.generic import TemplateView
+
+from .models import *
+
 
 #https://realpython.com/django-and-ajax-form-submissions/ faut aller apprendre la connection
 #https://code.djangoproject.com/wiki/AjaxDojoLogin
@@ -168,22 +162,71 @@ class bonLivraisonEntreeadd(ListView):
     def create(request):
         if request.method == 'POST':
             ble = BonLivraisonEntree.objects.all()
+            fourtype = Fournisseur.objects.all()
+            cli = Client.objects.all()
+            bonle = BonLivraisonEntree()
+            lveo = LettreVoitureEntree.objects.all()
+            art = Article.objects.all()
+            zne = TypeZoneDepot.objects.all()
+            inzne = ZoneDepot_pour_TypeZoneDepot.objects.all()
+            litiges = Destinataire.objects.all()
+            foundcli = 0
             showlist = [request.POST.get('id'), request.POST.get('client'),
                         request.POST.get('fourtype'), request.POST.get('lettre'),
                         request.POST.get('zone'), request.POST.get('numerobl'),
                         request.POST.get('daterecep'), request.POST.get('quantitepale'),
                         request.POST.get('destinataireretour'), request.POST.get('zoneatt')]
+            for items in ble:
+                if showlist[0] == items.idBonLivraisonEntree:
+                    return HttpResponse("Ble aldready existing !")
+            bonle.idBonLivraisonEntree = showlist[0]
+            bonle.save()
+            for items in cli:
+                if showlist[1] == items.nom:
+                    bonle.fk_Client = Client.objects.get(idClient=showlist[1])
+                    #= items
+                #for myzone in zne:
+                    #if showlist[4] == items.nom:
+                        #bonle.fk_TypeZone = items
+            for items in fourtype:
+                if showlist[2] == items.nom:
+                    bonle.fk_Fournisseur = items
+            for items in lveo:
+                if showlist[3] == items.idLettreVoitureEntree:
+                    bonle.fk_LettreVoitureEntree = items
+            bonle.numeroBonLivraison = showlist[5]
+            bonle.dateReception = showlist[6]
+            bonle.quantitePalette = showlist[7]
+            for items in litiges:
+                if showlist[8] == items.nom:
+                    bonle.fk_Destinataire = items
+            for items in inzne:
+                if showlist[9] == items.nom:
+                    #bonle.fk_TypeZoneDepot = items
+                    print ("print "+ items.nom + " et "+ showlist[9])
+                    for initems in zne:
+                        if initems.nom == items.fk_TypeZoneDepot.nom:
+                            bonle.fk_TypeZoneDepot = initems
             return HttpResponse("Created !")
         return HttpResponse("No Authorized Access !")
 
     def createligne(request):
         if request.method == 'POST':
             ligne = LigneBonLivraisonEntree_pour_BonLivraisonEntree.objects.all()
-            showlist = [request.POST.get('id'), request.POST.get('client'),
-                        request.POST.get('fourtype'), request.POST.get('lettre'),
-                        request.POST.get('zone'), request.POST.get('numerobl'),
-                        request.POST.get('daterecep'), request.POST.get('quantitepale'),
-                        request.POST.get('destinataireretour'), request.POST.get('zoneatt')]
+            art = Article.objects.all()
+            ligne_eble = LigneBonLivraisonEntree_pour_BonLivraisonEntree()
+            showlist = [request.POST.get('codefour'), request.POST.get('desicli'),
+                        request.POST.get('quantiteprod'), request.POST.get('quantitecolis'),
+                        request.POST.get('controle'), request.POST.get('termine'),
+                        request.POST.get('commattendu'), request.POST.get('commrecus'),
+                        request.POST.get('produitsrecu'), request.POST.get('colisrecu'),
+                        request.POST.get('produitsalivrer'), request.POST.get('colisalivrer'),
+                        request.POST.get('colislitigieux'), request.POST.get('produitslitigieux'),
+                        request.POST.get('autrediff'), request.POST.get('diffproduit'),
+                        request.POST.get('diffnonexp'), request.POST.get('id')]
+            for items in art:
+                if items.codeFournisseur == showlist[0]:
+                    article.fk_TypeArticle = items
             return HttpResponse("Created !")
         return HttpResponse("No Authorized Access !")
 
@@ -306,8 +349,6 @@ class articleadd(ListView):
         return render(request, self.template_name, context)
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-
-import sys
 
 class articlemodify(ListView):
     template_name = "articlemodify.html"
@@ -913,7 +954,7 @@ class clientmodify(ListView):
 
             client = Client.objects.get(idClient=showlist[1])
 
-            zne = TypeZoneDepot_pour_Client.objects.all()
+            zne = TypeZoneDepot.objects.all()
             znedebug = False
             for zone in zne:
                 if request.POST.get('zone') == zone.nom:
@@ -998,7 +1039,7 @@ class clientmodify(ListView):
             'con' : Contact_pour_Client.objects.all(),
             'rlc' : RoleContact_pour_Client.objects.all(),
             'id' :request.GET.get('id'),
-            'typez' : TypeZoneDepot_pour_Client.objects.all(),
+            'typez' : TypeZoneDepot.objects.all(),
             'typed' : TypeDestinataire_pour_Client.objects.all(),
             'typef' : TypeFournisseur_pour_Client.objects.all(),
             'typea' : TypeArticle_pour_Client.objects.all(),
@@ -1030,7 +1071,7 @@ class clientadd(ListView):
                 if items.idClient == request.POST.get('id'):
                     return HttpResponse("Client aldready registered")
 
-            zne = TypeZoneDepot_pour_Client.objects.all()
+            zne = TypeZoneDepot.objects.all()
             znedebug = False
             for zone in zne:
                 if request.POST.get('zone') == zone.nom:
@@ -1055,13 +1096,13 @@ class clientadd(ListView):
                     tardebug = True
                 client.fk_TypeArticle = typea
             if tfodebug is False:
-                return HttpResponse(" Error you choosed a broken fk")
-            if znedebug is False:
-                return HttpResponse(" Error you choosed a broken fk")
+                return HttpResponse(" Error you choosed a broken fk1")
+            #if znedebug is False:
+                #return HttpResponse(" Error you choosed a broken fk2")
             if tdedebug is False:
-                return HttpResponse(" Error you choosed a broken fk")
+                return HttpResponse(" Error you choosed a broken fk3")
             if tardebug is False:
-                return HttpResponse(" Error you choosed a broken fk")
+                return HttpResponse(" Error you choosed a broken fk4")
             else:
                 client.nom = showlist[0]
                 client.idClient = showlist[1]
@@ -1092,7 +1133,7 @@ class clientadd(ListView):
                     client = Client.objects.get(idClient=request.POST.get('id'))
 
             if existcli is True:
-                zne = TypeZoneDepot_pour_Client.objects.all()
+                zne = TypeZoneDepot.objects.all()
                 znedebug = False
                 for zone in zne:
                     if request.POST.get('zone') == zone.nom:
@@ -1308,7 +1349,7 @@ class clientadd(ListView):
     def get(self, request):
         context = {
             'cli' : Client.objects.all(),
-            'typez' : TypeZoneDepot_pour_Client.objects.all(),
+            'typez' : TypeZoneDepot.objects.all(),
             'typed' : TypeDestinataire_pour_Client.objects.all(),
             'typef' : TypeFournisseur_pour_Client.objects.all(),
             'typea' : TypeArticle_pour_Client.objects.all(),

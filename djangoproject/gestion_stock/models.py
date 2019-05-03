@@ -343,7 +343,7 @@ class LigneBonLivraisonEntree_pour_BonCommandeEntree(models.Model):
 #Models for LettreVoitureEntree
 class LettreVoitureEntree(models.Model):
     idLettreVoitureEntree = models.CharField(max_length=42, default='Null')
-    fk_Transporteur = models.ForeignKey('Transporteur_pour_LettreVoitureEntree', on_delete=models.CASCADE, default=0)
+    fk_Transporteur = models.ForeignKey('Transporteur', on_delete=models.CASCADE, default=0)
     def __str__(self):
         return self.idLettreVoitureEntree
 
@@ -711,7 +711,7 @@ class Pays_pour_Destinataire(models.Model):
 
 class Client(models.Model):
     idClient = models.CharField(max_length=42, default='Null')
-    fk_TypeZone = models.ForeignKey('TypeZoneDepot_pour_Client', on_delete=models.CASCADE, default=1)
+    fk_TypeZone = models.ForeignKey('TypeZoneDepot', on_delete=models.CASCADE, default=1)
     fk_TypeFournisseur = models.ForeignKey('TypeFournisseur_pour_Client', on_delete=models.CASCADE, default=1)
     fk_TypeDestinataire = models.ForeignKey('TypeDestinataire_pour_Client', on_delete=models.CASCADE, default=1)
     fk_TypeArticle = models.ForeignKey('TypeArticle_pour_Client', on_delete=models.CASCADE, default=1)
@@ -804,7 +804,7 @@ class RoleContact_pour_Client(models.Model):
     def __str__(self):
         return self.nom
 
-class TypeZoneDepot_pour_Client(models.Model):
+'''class TypeZoneDepot_pour_Client(models.Model):
     idTypeZoneDepot = models.CharField(max_length=42, default='Null')
     c_nom = models.CharField(max_length=42, default='Null')
     c_nomCompte = models.CharField(max_length=42, default='Null')
@@ -812,7 +812,7 @@ class TypeZoneDepot_pour_Client(models.Model):
     m_nom = models.CharField(max_length=42, default='Null')
     m_nomCompte = models.CharField(max_length=42, default='Null')
     m_horodatage = models.CharField(max_length=42, default='Null')
-    nom = models.CharField(max_length=42, default='Null')
+    nom = models.CharField(max_length=42, default='Null')'''
 
 class TypeFournisseur_pour_Client(models.Model):
     idTypeFournisseur = models.CharField(max_length=42, default='Null')
@@ -1335,7 +1335,8 @@ class BonLivraisonEntree(models.Model):
     fk_UniteManutentionEntree = models.ForeignKey('UniteManutentionEntree', on_delete=models.CASCADE, default=0, blank=True, null=True)
     fk_BonCommandeEntree = models.ForeignKey('BonCommandeEntree', on_delete=models.CASCADE, default=0, blank=True, null=True)
     fk_Fournisseur = models.ForeignKey('Fournisseur', on_delete=models.CASCADE, default=0, blank=True, null=True)
-    fk_Client  = models.ForeignKey('Client', on_delete=models.CASCADE, default=0, blank=True, null=True)
+    fk_Client = models.ForeignKey('Client', on_delete=models.CASCADE, default=0, blank=True, null=True)
+    fk_Destinataire = models.ForeignKey('Destinataire', on_delete=models.CASCADE, default=0, blank=True, null=True)
     dateReception = models.CharField(max_length=42, default='Null')
     numeroBonLivraison = models.CharField(max_length=42, default='Null')
     quantitePalette = models.CharField(max_length=42, default='Null')

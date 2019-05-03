@@ -90,7 +90,7 @@ admin.site.register(Transporteur)
 
 
 admin.site.register(Client)
-admin.site.register(TypeZoneDepot_pour_Client)
+#admin.site.register(TypeZoneDepot_pour_Client)
 admin.site.register(TypeFournisseur_pour_Client)
 admin.site.register(TypeDestinataire_pour_Client)
 admin.site.register(TypeArticle_pour_Client)
