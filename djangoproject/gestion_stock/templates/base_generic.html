@@ -19,7 +19,6 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   <link rel="stylesheet" href="{{ STATIC_URL }} /static/css/mdb.min.css">
   <script type="text/javascript" src="{{ STATIC_URL }} /static/js/addons/datatables.min.js"></script>
-
   <!--
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -28,27 +27,20 @@
   <link rel="stylesheet" href="{{ STATIC_URL }} /static/css/all.css">
   <link rel="stylesheet" href="{{ STATIC_URL }} /static/css/font-awesome.min.css">
   -->
-
 </header>
 <body>
 
-
 <div class="container jumbotron">
-
   <h2 class="pl-3">Welcome</h2>
-    {% if user.is_authenticated %}
-
-      <div style="position: static;right: 0;float: right;">
-        Hi {{ user.username }}!
-        <p><a href="{% url 'logout' %}">logout</a></p>
-      </div>
-    {% endif %}
-
-
+  {% if user.is_authenticated %}
+  <div style="position: static;right: 0;float: right;">
+    Hi {{ user.username }}!
+    <p><a href="{% url 'logout' %}">logout</a></p>
+  </div>
+  {% endif %}
   <div class="row">
     <div class="col">
       <!--Navbar-->
-
       {% if user.is_authenticated %}
       <!-- Navbar brand -->
       <nav class="navbar navbar-dark  indigo mb-2" id="hidenot  con">
@@ -219,31 +211,31 @@
                   </div>
                 </li>
 
-                <li class="nav-item">
+                <li class="nav-item" style="height:141.7px">
                   <hr>
                   <div class="row">
                     <div class="mx-auto">
-                      <a class="nav-link text-left my_img" href="{% url 'destinataire' %}"><img src="{{ STATIC_URL }} /static/img/mailbox.jpg" class="img-fluid rounded text-left my_img" alt="Destinatairest">
+                      <a class="nav-link text-left my_img" href="{% url 'destinataire' %}"><img src="{{ STATIC_URL }} /static/img/mailbox.jpg" class="img-fluid rounded text-left my_img" alt="Destinatairest" height="75" width="75">
                         Destinataires</a>
                     </div>
                   </div>
                 </li>
 
-                <li class="nav-item">
+                <li class="nav-item" style="height:123px;">
                   <hr>
                   <div class="row">
                     <div class="mx-auto">
-                      <a class="nav-link text-left my_img" href="{% url 'transporteur' %}"><img src="{{ STATIC_URL }} /static/img/Isuzu-removal-truck.jpg" class="img-fluid rounded" alt="Transporteurs">
+                      <a class="nav-link text-left my_img" href="{% url 'transporteur' %}"><img src="{{ STATIC_URL }} /static/img/Isuzu-removal-truck.jpg" class="img-fluid rounded" alt="Transporteurs"  height="75" width="75">
                         Transporteurs</a>
                     </div>
                   </div>
                 </li>
 
-                <li class="nav-item">
+                <li class="nav-item" style="height: 129.9px;">
                   <hr>
                   <div class="row">
                     <div class="mx-auto">
-                      <a class="nav-link text-left my_img"  href="{% url 'fournisseur' %}"><img src="{{ STATIC_URL }} /static/img/supplier-management.jpg" class="img-fluid rounded" alt="Fournisseurs">
+                      <a class="nav-link text-left my_img"  href="{% url 'fournisseur' %}"><img src="{{ STATIC_URL }} /static/img/supplier-management.jpg" class="img-fluid rounded" alt="Fournisseurs"  height="75" width="75">
                         Fournisseurs</a>
                     </div>
                   </div>
@@ -267,6 +259,24 @@
                   </div>
                 </li>
 
+                <li class="nav-item">
+                  <hr>
+                  <div class="row">
+                    <div class="mx-auto">
+                      <a class="nav-link text-center" href="{% url 'lve' %}">
+                        <div class="col">
+                          <div class="mx-auto">
+                            <img src="{{ STATIC_URL }} /static/img/p-red-truck.png" class="img-fluid rounded text-left" alt="promotion-produit" height="75" width="75">
+                          </div>
+                        </div>
+                        <div class="col">
+                          <p>Lettre de voiture entree</p>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                </li>
+
               </ul>
             </div>
           </div>
@@ -276,7 +286,7 @@
         <!-- Collapsible content -->
       </nav>
       {% else %}
-        <p>Please login to enter in sesame .</p>
+      <p>Please login to enter in sesame .</p>
       {% endif %}
 
       <!--/.Navbar-->
@@ -320,7 +330,7 @@
         $(this).fadeTo("slow", 0.5);
 
         console.log("enter");
-    },
+      },
       mouseleave: function () {
         $(this).fadeTo("slow", 1);
         console.log("leave");

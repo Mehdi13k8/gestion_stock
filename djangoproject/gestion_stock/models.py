@@ -343,14 +343,21 @@ class LigneBonLivraisonEntree_pour_BonCommandeEntree(models.Model):
 #Models for LettreVoitureEntree
 class LettreVoitureEntree(models.Model):
     idLettreVoitureEntree = models.CharField(max_length=42, default='Null')
-    fk_Transporteur = models.ForeignKey('Transporteur', on_delete=models.CASCADE, default=0)
+    datereception = models.CharField(max_length=42, default='Null')
+    numerorecepisse = models.CharField(max_length=42, default='Null')
+    quantitepalette = models.CharField(max_length=42, default='Null')
+    quantitecolis = models.CharField(max_length=42, default='Null')
+    reclaquantitepalette = models.CharField(max_length=42, default='Null')
+    reclaquantitecolis = models.CharField(max_length=42, default='Null')
+    reclacomm = models.CharField(max_length=42, default='Null')
+    fk_Transporteur = models.ForeignKey('Transporteur', on_delete=models.SET_NULL, null=True, blank=True)
     def __str__(self):
         return self.idLettreVoitureEntree
 
 class BonLivraisonEntree_pour_LettreVoitureLettreVoitureEntree(models.Model):
     idBonLivraisonEntree = models.CharField(max_length=42, default='Null')
-    fk_LettreVoitureEntree = models.ForeignKey('LettreVoitureEntree', on_delete=models.CASCADE, default=0)
-    fk_Client = models.ForeignKey('Client_pour_LettreVoitureEntree', on_delete=models.CASCADE, default=0)
+    fk_LettreVoitureEntree = models.ForeignKey('LettreVoitureEntree', on_delete=models.SET_NULL, null=True, blank=True)
+    fk_BonLivraisonEntree = models.ForeignKey('BonLivraisonEntree', on_delete=models.SET_NULL, null=True, blank=True)
     def __str__(self):
         return self.idBonLivraisonEntree
 
@@ -1332,8 +1339,8 @@ class BonLivraisonEntree(models.Model):
     idBonLivraisonEntree = models.CharField(max_length=42, default='Null')
     fk_LettreVoitureEntree  = models.ForeignKey('LettreVoitureEntree', on_delete=models.CASCADE, default=0, blank=True, null=True)
     fk_TypeZoneDepot = models.ForeignKey('TypeZoneDepot', on_delete=models.CASCADE, default=0, blank=True, null=True)
-    fk_UniteManutentionEntree = models.ForeignKey('UniteManutentionEntree', on_delete=models.CASCADE, default=0, blank=True, null=True)
-    fk_BonCommandeEntree = models.ForeignKey('BonCommandeEntree', on_delete=models.CASCADE, default=0, blank=True, null=True)
+    #fk_UniteManutentionEntree = models.ForeignKey('UniteManutentionEntree', on_delete=models.CASCADE, default=0, blank=True, null=True)
+    #fk_BonCommandeEntree = models.ForeignKey('BonCommandeEntree', on_delete=models.CASCADE, default=0, blank=True, null=True)
     fk_Fournisseur = models.ForeignKey('Fournisseur', on_delete=models.CASCADE, default=0, blank=True, null=True)
     fk_Client = models.ForeignKey('Client', on_delete=models.CASCADE, default=0, blank=True, null=True)
     fk_Destinataire = models.ForeignKey('Destinataire', on_delete=models.CASCADE, default=0, blank=True, null=True)

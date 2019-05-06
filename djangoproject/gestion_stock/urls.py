@@ -2,7 +2,6 @@ from django.urls import path
 from . import views
 from django.contrib.auth import views as auth_views
 from django.views.generic import ListView
-
 urlpatterns = [
     path('', views.index.as_view(), name='index'),
 
@@ -24,6 +23,12 @@ urlpatterns = [
     path('bonLivraisonsortie', views.bonLivraisonSortie.as_view(), name='bonLivraisonSortie'),
     path('bonLivraisonsortie/add', views.bonLivraisonSortieadd.as_view(), name='bonLivraisonSortieadd'),
 
+    path('lettrevoitureentree', views.lettrevoitureentree.as_view(), name='lve'),
+    path('lettrevoitureentree/modify', views.lettrevoitureEntreemodify.as_view(), name='lvemodify'),
+    path('lettrevoitureentree/add', views.lettrevoitureentreeadd.as_view(), name='lveadd'),
+    path('lve/create/', views.lettrevoitureentreeadd.create),
+    path('lve/delete/', views.lettrevoitureentree.delete),
+
     path('bonLivraisonentree', views.bonLivraisonEntree.as_view(), name='bonLivraisonEntree'),
     path('bonLivraisonentree/add', views.bonLivraisonEntreeadd.as_view(), name='bonLivraisonEntreeadd'),
     path('bonLivraisonentree/modify', views.bonLivraisonEntreeadd.as_view(), name='bonLivraisonEntreemodify'),
@@ -31,6 +36,7 @@ urlpatterns = [
     path('ble/create/', views.bonLivraisonEntreeadd.create),
     path('ligneble/create/', views.bonLivraisonEntreeadd.createligne),
     path('ligneble/delete/', views.bonLivraisonEntreeadd.deleteligne),
+
 
     path('article', views.article.as_view(), name='article'),
     path('article/delete/', views.article.delete),
@@ -90,3 +96,4 @@ urlpatterns = [
 
     #path('bon/add/<int:month>/', views.),
 ]
+

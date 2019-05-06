@@ -136,6 +136,86 @@ def bonCommandeSortieadd(request):
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
+class lettrevoitureentreeadd(ListView):
+    template_name = "lettrevoitureentreeadd.html"
+
+    def create(request):
+        if request.method == 'POST':
+            lve = LettreVoitureEntree.objects.all()
+            trans = Transporteur.objects.all()
+            showlist = [request.POST.get('id'), request.POST.get('dater'),
+                        request.POST.get('numr'), request.POST.get('qpalette'),
+                        request.POST.get('transp'), request.POST.get('qcolis'),
+                        request.POST.get('quantitecolrecla'), request.POST.get('quantitepalrecla'),
+                        request.POST.get('comrecla'),]
+            lettre = LettreVoitureEntree()
+            for items in trans:
+                print("for")
+                if items.nom == showlist[4]:
+                    lettre.fk_Transporteur = items
+            lettre.idLettreVoitureEntree = showlist[0]
+            lettre.datereception = showlist[1]
+            lettre.numerorecepisse = showlist[2]
+            lettre.quantitepalette = showlist[3]
+            lettre.quantitecolis = showlist[5]
+            lettre.reclaquantitecolis = showlist[6]
+            lettre.reclaquantitepalette = showlist[7]
+            lettre.reclacomm = showlist[8]
+            lettre.save()
+            return HttpResponse("Created !")
+        return HttpResponse("No Authorized Access !")
+
+    def get(self, request):
+        context = {
+            'lve' : LettreVoitureEntree.objects.all(),
+            'four' : Fournisseur.objects.all(),
+            #'entreeligne' : LigneBonLivraisonEntree_pour_BonLivraisonEntree.objects.all(),
+            'activate' : 'on',
+        }
+        return render(request, self.template_name, context)
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
+class lettrevoitureEntreemodify(ListView):
+    template_name = "lettrevoitureentree.html"
+
+    def delete(request):
+        if request.method == 'POST':
+            #ble = BonLivraisonEntree.objects.get(idBonLivraisonEntree=request.POST['id'])
+            #article.delete()
+            return HttpResponse("Deleted !")
+        return HttpResponse("No Authorized Access !")
+
+    def get(self, request):
+        context = {
+            'lve' : LettreVoitureEntree.objects.all(),
+            #'entreeligne' : LigneBonLivraisonEntree_pour_BonLivraisonEntree.objects.all(),
+            'activate' : 'on',
+        }
+        return render(request, self.template_name, context)
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
+class lettrevoitureentree(ListView):
+    template_name = "lettrevoitureentree.html"
+
+    def delete(request):
+        if request.method == 'POST':
+            lve = LettreVoitureEntree.objects.get(idLettreVoitureEntree=request.POST['id'])
+            lve.delete()
+            return HttpResponse("Deleted !")
+        return HttpResponse("No Authorized Access !")
+
+    def get(self, request):
+        context = {
+            'lve' : LettreVoitureEntree.objects.all(),
+            #'entreeligne' : LigneBonLivraisonEntree_pour_BonLivraisonEntree.objects.all(),
+            'activate' : 'on',
+        }
+        return render(request, self.template_name, context)
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 class bonLivraisonEntree(ListView):
     template_name = "bonLivraisonEntree.html"
 
@@ -180,10 +260,16 @@ class bonLivraisonEntreeadd(ListView):
                 if showlist[0] == items.idBonLivraisonEntree:
                     return HttpResponse("Ble aldready existing !")
             bonle.idBonLivraisonEntree = showlist[0]
-            bonle.save()
+            bonle.fk_Client = None
+            bonle.fk_Fournisseur = None
+            bonle.fk_TypeZoneDepot = None
+            bonle.fk_LettreVoitureEntree = None
+            bonle.fk_BonCommandeEntree = None
+            bonle.fk_UniteManutentionEntree = None
+            bonle.fk_Destinataire = None
             for items in cli:
                 if showlist[1] == items.nom:
-                    bonle.fk_Client = Client.objects.get(idClient=showlist[1])
+                    bonle.fk_Client = items
                     #= items
                 #for myzone in zne:
                     #if showlist[4] == items.nom:
@@ -207,6 +293,7 @@ class bonLivraisonEntreeadd(ListView):
                     for initems in zne:
                         if initems.nom == items.fk_TypeZoneDepot.nom:
                             bonle.fk_TypeZoneDepot = initems
+            bonle.save()
             return HttpResponse("Created !")
         return HttpResponse("No Authorized Access !")
 

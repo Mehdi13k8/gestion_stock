@@ -385,7 +385,7 @@
               alert(name);
             }*/
             "{% endfor %}"
-            var typef = $('#fournitype').val();
+            var typef = $('#fournisseur').val();
             var codefournisseur = "";
             var designation = "";
             var qteproduits = "";
@@ -491,7 +491,7 @@
                 data: {
                     'id': $('#umid').val(),
                     'client': $('#client').val(),
-                    'fourtype': $('#fournitype').val(),
+                    'fourtype': $('#fournisseur').val(),
                     'lettre': $('#lve').val(),
                     'zone': $('#zone').val(),
                     'numerobl': $('#inputnbl').val(),
@@ -502,7 +502,7 @@
                     csrfmiddlewaretoken: '{{ csrf_token }}',
                 },
                 success: function(msg, data, settings){
-                    console.log("success: " + msg);
+                    console.log("success: " + msg + $('#fournisseur').val());
                     idx = 0;
                     if (Object.keys(ligne).length > 0) {
                         console.log("create contacts");
