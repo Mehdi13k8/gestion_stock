@@ -13,7 +13,7 @@
     .validateTips { border: 1px solid transparent; padding: 0.3em;}
 </style>
 
-<div class="container"><h1 class="text-center"> Ajout de L.V entree</h1></div>
+<div class="container"><h1 class="text-center"> Modif. L.V entree</h1></div>
 <br>
 
 <div class="container">
@@ -112,7 +112,7 @@
                                 <br>
                                 <div class="row">
                                     <div class="col">
-                                        <input type="button" class="btn btn-primary btn-sm ml-3" id="addlve" value="Save">
+                                        <input type="button" class="btn btn-primary btn-sm ml-3" id="savelve" value="Save">
                                     </div>
                                 </div>
                             </div>
@@ -216,26 +216,15 @@
 <br>
 <br>
 <script>
-    var upperid = "0";
-    "{% for items in lve %}"
-    if (parseInt(upperid, 10) < parseInt('{{ items.idLettreVoitureEntree }}', 10)) {
-        upperid = parseInt('{{ items.idLettreVoitureEntree }}', 10);
-    }
-    "{% endfor %}"
-    if (upperid == 0)
-        $("#umid").val(1);
-    else
-        $("#umid").val(upperid+1);
-
     $(document).ready(function() {
         $("#back-row").click( function() {
             location.href = "{% url 'lve' %}";
         });
 
-        $('#addlve').click(function() {
+        $('#savelve').click(function() {
             $.ajax({
-                type:"POST",    //type de requête utilisé par ajax
-                url:"/lve/create/", //lien de la view qui gère la requête post
+                type:"POST",
+                url:"/lve/modify/",
                 data: {
                     'id': $('#umid').val(),
                     'dater': $('#inputMDEx').val(),
@@ -248,7 +237,7 @@
                     'comrecla': $('#comrecla').val(),
                     csrfmiddlewaretoken: '{{ csrf_token }}',
                 },
-                success: function(msg, data, settings){
+                success: function(msg, data, settings) {
                     console.log("success: " + msg);
                 },
                 failure: function() {
@@ -256,6 +245,19 @@
                 }
             });
         });
+        $("#umid").val('{{ id }}');
+        '{% for items in lve%}'
+            if ('{{ items.idLettreVoitureEntree }}' == $("#umid").val()) {
+                $("#inputMDEx").val('{{ items.datereception }}');
+                $("#numr").val('{{ items.numerorecepisse }}');
+                $("#qpal").val('{{ items.quantitepalette }}');
+                $("#inputqc").val('{{ items.quantitecolis }}');
+                $("#qcrecla").val('{{ items.reclaquantitecolis }}');
+                $("#qprecla").val('{{ items.reclaquantitepalette }}');
+                $("#comrecla").val('{{ items.reclacomm }}');
+                $("#transporteur").val("{{ items.fk_Transporteur }}");
+            }
+        '{% endfor %}'
 
         $('#addlignebl').click(function() {
             $("#dialog-confirm").dialog("open");
@@ -276,18 +278,32 @@
                     $('#numberligne').val("");
                     $(this).dialog("close");
                     for (var nbr = nbrligne; nbr > 0; nbr--) {
-                        $('#tabblbody').append("<tr><td class='text-center'><button class='resetb' id=\"reset" + nbr + "\"><i class=\"fas fa-arrow-right\"></i></button></td>" +
+                        $('#tabblbody').append("<tr><td class='text-center'><button class='resetb' id=\""+$("#umid").val()+"\"><i class=\"fas fa-arrow-right\"></i></button></td>"+
                             "<td class='text-center'><input disabled class='form-control'></td>" +
                             "<td><input disabled class='form-control'></td>" +
                             "<td><input disabled class='form-control'></td>" +
                             "<td><input disabled class='form-control'></td>" +
-                            "<td class='text-center'><button class='resetb btn btn-light btn-sm' id=\"reset" + nbr + "\"><i class=\"fas fa-trash-alt\"></i></button></td>");
-                        '{% for items in art %}'
+                            "<td class='text-center'><button class='resetb btn btn-light btn-sm' id=\""+$("#umid").val()+"\"><i class=\"fas fa-trash-alt\"></i></button></td>");
+                        /*'{% for items in art %}'
                         $("select.fournise:last").append(new Option("{{ items.codeFournisseur }}", "{{ items.codeFournisseur }}"));
                         $("select.desif:last").append(new Option("{{ items.designationClient }}", "{{ items.designationClient }}"));
                         $("select.fournise:last").val("");
                         $("select.desif:last").val("");
-                        '{% endfor %}'
+                        '{% endfor %}'*/
+                        $.ajax({
+                            type:"POST",
+                            url:"/lve/modify/createbl/",
+                            data: {
+                                'lettre': $('#umid').val(),
+                                csrfmiddlewaretoken: '{{ csrf_token }}',
+                            },
+                            success: function(msg, data, settings) {
+                                console.log("success: " + msg);
+                            },
+                            failure: function() {
+                                alert("fail");
+                            }
+                        });
                     }
                     //code fournisseur
                     for (var a = nbrligne; a != 0; a--) {
@@ -507,7 +523,6 @@
                 this.element.show();
             },
         });
-        $("#transporteur").val("");
         $("#transporteur").combobox();
         $("#toggle").on("click", function () {
             $("#transporteur").toggle();

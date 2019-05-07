@@ -1,0 +1,867 @@
+{% extends user.is_authenticated|yesno:"base_generic.html,empty.html" %}
+
+{% block content %}
+<html>
+
+<style>
+    .ui-dialog-titlebar-close {
+        visibility: hidden;
+    }
+    input.text { margin-bottom:12px; width:95%; padding: .4em; }
+    fieldset { padding:0; border:0; margin-top:25px; }
+    .ui-dialog .ui-state-error { padding: .3em; }
+    .validateTips { border: 1px solid transparent; padding: 0.3em;}
+</style>
+
+<div class="container"><h1 class="text-center"> modif. de B.L entree</h1></div>
+<br>
+
+<div class="container">
+    <div class="form-group row text-center">
+        <div class="col">
+            <button type="button" id="back-row" class="btn btn-default btn-rounded btn-outline-dark">Tout</button>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-7">
+            <div class="border shadow-lg p-2 mb-3 bg-white rounded">
+                <div class="row">
+                    <div class="col">
+                        <h3 class="text-center"> identification BL</h3>
+                    </div>
+                </div>
+                <br>
+                <div class="container">
+                    <div class="row">
+                        <div class="text-center">
+                            <div class="row">
+                                <div class="col">
+                                    identifiant:<br><input type="text" id="umid" disabled class="form-control">
+                                </div>
+                                <div class="col-1">
+                                    <br><button class="ml-md-n3" id="accesslve"><i class="fas fa-arrow-right"></i></button>
+                                </div>
+                                <div class="col">
+                                    <div class="selsel">
+                                        Client:<br><select class="form-control" id="client">
+                                        <script type="text/javascript">
+                                            $(document).ready(function() {
+                                                var i = 0;
+                                                "{% for items in cli %}"
+                                                //to change
+                                                var name = "{{ items.nom }}";
+                                                var oldname;
+                                                if (i == 0)
+                                                    $("#client").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                                                else if (name != oldname)
+                                                    $("#client").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                                                oldname = name;
+                                                i = 1;
+                                                "{% endfor %}"
+                                            });
+                                        </script>
+                                    </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-1">
+                                    <br><button class="mt-lg-1" id="accesslve"><i class="fas fa-arrow-right"></i></button>
+                                </div>
+                                <div class="col">
+                                    lettre de voiture :<br><input type="text" id="lve" disabled class="form-control">
+                                </div>
+                                <div class="col-4">zone:<br><input type="text" id="zone" disabled class="form-control">
+                                </div>
+                                <div class="col">
+                                    <div class="selsel">
+                                        fournisseur:<br><select class="form-control" id="fournisseur">
+                                        <script type="text/javascript">
+                                            $(document).ready(function() {
+                                                var i = 0;
+                                                "{% for items in four %}"
+                                                console.log("fournisseur");
+                                                //to change
+                                                var name = "{{ items.nom }}";
+                                                var oldname;
+                                                if (i == 0)
+                                                    $("#fournisseur").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                                                else if (name != oldname)
+                                                    $("#fournisseur").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                                                oldname = name;
+                                                i = 1;
+                                                "{% endfor %}"
+                                            });
+                                        </script>
+                                    </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="inputnbl">numéro de Bl :</label>
+                                    <input id="inputnbl" class="form-control">
+                                </div>
+                                <div class="col">
+                                    <label for="inputMDEx">date de réception:</label>
+                                    <input type="date" id="inputMDEx" class="form-control">
+                                </div>
+                                <div class="col">
+                                    <label for="inputqpl">quantité de palettes:</label>
+                                    <input id="inputqpl" class="form-control">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col">
+                                    <input type="button" class="btn btn-primary" id="addble" value="Save">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-5">
+            <div class="border shadow-lg p-2 mb-3 bg-white rounded">
+                <h5 class="text-center"> <u>Unités de manutention entrée </u></h5>
+                <div class="container">
+                    <div class="table-responsive">
+                        <table id="tabume" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+                            <thead>
+                            <tr>
+                                <th scope="col" class="th-sm"><i class="fas fa-cog"></i></th>
+                                <th scope="col" class="th-sm"> n° UM </th>
+                                <th scope="col" class="th-sm"> emplacement </th>
+                                <th scope="col" class="th-sm"> désignation </th>
+                                <th scope="col" class="th-sm"> <i class="fa fa-trash"></i> </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for items in entree %}
+                            <!--<tr>
+                                <td> <button id='{{ items.idBonLivraisonEntree }}' class="dyna"> -> </button></td>
+                                <td> {{ items.fk_TypeZoneDepot.nom }} </td>
+                                <td> {{ items.dateReception }} </td>
+                                <td> {{ items.numeroBonLivraison }} </td>
+                                <td> <button id='{{ items.idBonLivraisonEntree  }}' class="dynad"> X </button> </td>
+                            </tr>
+                            -->
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <br>
+                <div class="row ml-lg-1">
+                    <div class="col-4">
+                        <button><i class="fas fa-plus"></i></button>
+                    </div>
+                    <div class="col">
+                        <button>numéroter</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="border shadow-lg p-2 mb-3 bg-white rounded">
+                        <h5 class="text-center"> <u> Bons de commande </u></h5>
+                        <div class="container">
+                            <div class="table-responsive">
+                                <table id="tabbcm" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col" class="th-sm"><i class="fas fa-cog"></i></th>
+                                        <th scope="col" class="th-sm"> n° UM </th>
+                                        <th scope="col" class="th-sm"> emplacement </th>
+                                        <th scope="col" class="th-sm"> désignation </th>
+                                        <th scope="col" class="th-sm"> <i class="fa fa-trash"></i> </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for items in entree %}
+                                    <!--<tr>
+                                        <td> <button id='{{ items.idBonLivraisonEntree }}' class="dyna"> -> </button></td>
+                                        <td> {{ items.fk_TypeZoneDepot.nom }} </td>
+                                        <td> {{ items.dateReception }} </td>
+                                        <td> {{ items.numeroBonLivraison }} </td>
+                                        <td> <button id='{{ items.idBonLivraisonEntree  }}' class="dynad"> X </button> </td>
+                                    </tr>-->
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-5">
+            <div class="border shadow-lg p-2 mb-3 bg-white rounded">
+                <div class="row">
+                    <div class="col">
+                        <h5 class="text-center"> <u> Litiges </u></h5>
+                        <div class="selsel">
+                            destinataire des retours:<br><select class="form-control" id="litiges">
+                            <script type="text/javascript">
+                                $(document).ready(function() {
+                                    var i = 0;
+                                    "{% for items in des %}"
+                                    //to change
+                                    var name = "{{ items.nom }}";
+                                    var oldname;
+                                    if (i == 0)
+                                        $("#litiges").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                                    else if (name != oldname)
+                                        $("#litiges").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                                    oldname = name;
+                                    i = 1;
+                                    "{% endfor %}"
+                                });
+                            </script>
+                        </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="selsel">
+                            zone d'attente:<br><select class="form-control" id="zatt">
+                            <script type="text/javascript">
+                                $(document).ready(function() {
+                                    var i = 0;
+                                    "{% for items in des %}"
+                                    //to change
+                                    var name = "{{ items.nom }}";
+                                    var oldname;
+                                    /*if (i == 0)
+                                     $("#zatt").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                                     else if (name != oldname)
+                                     $("#zatt").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                                     */
+                                    oldname = name;
+                                    i = 1;
+                                    "{% endfor %}"
+                                });
+                            </script>
+                        </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-3 mx-auto">
+            <div class="border shadow-lg p-2 mb-3 bg-white rounded">
+                <div class="col">
+                    <h5 class="text-center"> <u> fichiers </u></h5>
+                    <div class="container">
+                        <div class="row">
+                            <div class="mx-auto">
+                                <p style="cursor: pointer;">fichier <i class="fas fa-file"></i></p>
+                                <p>photo <i class="far fa-image"></i></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="border shadow-lg p-2 mb-3 bg-white rounded">
+                <div class="col">
+                    <h5 class="text-center"> <u> Lignes du BL</u></h5>
+                    <div class="container">
+                        <div class="row">
+                            <div class="container">
+                                <div class="border shadow-lg p-2 mb-3 bg-white rounded">
+                                    <div class="table-responsive text-nowrap">
+                                        <table id="tabbl" class="table table-condensed table-striped table-bordered" cellspacing="0" width="100%">
+                                            <thead>
+                                            <tr>
+                                                <th colspan="8"><button class="btn btn-sm btn-dark">Copy um entree</button>
+                                                    <button class="btn btn-sm btn-dark">copy BCE</button>
+                                                    <button class="btn btn-sm btn-dark">calcul quantité</button>
+                                                </th>
+                                                <th colspan="2" class="text-center"><button class="btn btn-sm btn-dark">calcul quantité</button></th>
+                                                <th colspan="2" class="text-center">qte reçue</th>
+                                                <th colspan="2" class="text-center">qte à livrer</th>
+                                                <th colspan="5"><h5 class="text-center"><u>Comparaison réel</u></h5></th>
+                                            </tr>
+                                            <tr>
+                                                <th scope="col"><i class="fas fa-redo"></i></th>
+                                                <th scope="col">code fournisseur</i></th>
+                                                <th scope="col">désignation</th>
+                                                <th scope="col">qte produits</th>
+                                                <th scope="col"><button class="btn btn-sm btn-dark"><i class="fas fa-sync"></i></button><br>
+                                                    qte colis</th>
+                                                <th scope="col">contrôle</th>
+                                                <th scope="col">terminé</th>
+                                                <th scope="col"> <i class="fa fa-trash"></i> </th>
+                                                <th scope="col">Comm. attendu</th>
+                                                <th scope="col">Comm. reçus</th>
+                                                <th scope="col">produits</th>
+                                                <th scope="col">&nbsp; &nbsp; colis &nbsp;&nbsp; </th>
+                                                <th scope="col">produits</th>
+                                                <th scope="col">&nbsp; &nbsp; colis &nbsp;&nbsp; </th>
+                                                <th scope="col">colis litigieux</th>
+                                                <th scope="col">produits litigieux</th>
+                                                <th scope="col">autre différence</th>
+                                                <th scope="col">différence produit</th>
+                                                <th scope="col">diff. non-expliquée</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody id="tabblbody">
+                                            {% for items in entreeligne %}
+                                            <!--<tr>
+                                                <td> <button id='{{ items.idBonLivraisonEntree }}' class="dyna"> -> </button></td>
+                                                <td> {{ items.fk_TypeZoneDepot.nom }} </td>
+                                                    <td> {{ items.dateReception }} </td>
+                                                <td> {{ items.numeroBonLivraison }} </td>
+                                                <td> <button id='{{ items.idBonLivraisonEntree  }}' class="dynad"> X </button> </td>
+                                            </tr>
+                                            -->
+                                            {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn btn-sm btn-dark" id="addligne">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="dialog-confirm" title="Ajouter des lignes">
+    Combien de lignes faut-il ajouter ?</p>
+    <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>
+        <input id="numberligne" type="text" pattern="[0-9]+">
+</div>
+<br>
+<br>
+<script>
+    $(document).ready(function() {
+        $("#back-row").click( function() {
+            location.href = "{% url 'bonLivraisonEntree' %}";
+        });
+
+        $("#zatt").val("");
+        $("#fournisseur").val("");
+        $("#litiges").val("");
+        $('#client').val("");
+        $("#umid").val('{{ id }}');
+        $('#zone').val("");
+        '{% for items in entree %}'
+            if ('{{ items.idBonLivraisonEntree }}' == $('#umid').val()) {
+                $('#client').val('{{ items.fk_Client.nom }}');
+                $("#client").change();
+                $('#lve').val('{{ items.fk_LettreVoitureEntree.idLettreVoitureEntree }}');
+
+                '{% for items in cli %}'
+                if ('{{ items.nom }}' == $('#client').val()) {
+                    console.log('{{ items.fk_TypeZone.nom }}');
+                    $('#zone').val('{{ items.fk_TypeZone.nom }}');
+                    '{% for items in zoned %}'
+                    $("#zatt").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                    '{% endfor %}'
+                }
+                '{% endfor %}'
+
+            }
+        '{% endfor %}'
+
+        var idx = 0;
+        var ligne = [];
+        $('#addble').click(function() {
+            "{% for items in four %}"
+            /*var name = $("#nom").val();
+            if (name == "{{ items.nom }}") {
+              alert(name);
+            }*/
+            "{% endfor %}"
+            var typef = $('#fournisseur').val();
+            var codefournisseur = "";
+            var designation = "";
+            var qteproduits = "";
+            var qtecolis = "";
+            var contrôle = "";
+            var terminé = "";
+            var commattendu = "";
+            var commrecus = "";
+            var produitsrec = "";
+            var colisrec = "";
+            var produitsali = "";
+            var colisali = "";
+            var colislitigieux = "";
+            var produitslitigieux = "";
+            var autrediff = "";
+            var diffproduit = "";
+            var diffnexp = "";
+
+            $('#tabbl tr').each(function (a, b) {  //recupère les contacts entrée dans la table
+                if (a === 0) {
+                    // Je ne prends pas en compte le "thead".
+                }
+                else {
+                    var stock = "";
+                    $(this).find('td').each(function(a, b) {
+                        if (a === 0 || a === 7) {
+                        } else {
+                            stock = $(this).find('input').val();
+                            if (a === 1) {
+                                codefournisseur = $(this).val();
+                            }
+                            if (a === 2) {
+                                designation = $(this).val();
+                            }
+                            if (a === 3) {
+                                qteproduits = stock;
+                            }
+                            if (a === 4) {
+                                qtecolis = stock;
+                            }
+                            if (a === 5) {
+                                if ($(this).find('button').hasClass('btn btn-light btn-sm butctrl')) {
+                                    contrôle = 0;
+                                }
+                                else {
+                                    contrôle = 1;
+                                }
+                            }
+                            if (a === 6) {
+                                if($(this).find('input').is(':checked'))
+                                    terminé = 1;
+                                else
+                                    terminé = 0;
+                            }
+                            if (a === 7) {
+                                commattendu = stock;
+                            }
+                            if (a === 8) {
+                                commrecus = stock;
+                            }
+                            if (a === 9) {
+                                produitsrec = stock;
+                            }
+                            if (a === 10) {
+                                colisrec = stock;
+                            }
+                            if (a === 11) {
+                                produitsali = stock;
+                            }
+                            if (a === 12) {
+                                colisali = stock;
+                            }
+                            if (a === 13) {
+                                colislitigieux = stock;
+                            }
+                            if (a === 14) {
+                                produitslitigieux = stock;
+                            }
+                            if (a === 15) {
+                                autrediff = stock;
+                            }
+                            if (a === 16) {
+                                diffproduit = stock;
+                            }
+                            if (a === 17) {
+                                diffnexp = stock;
+                            }
+                            ligne[idx] = {"codefour": codefournisseur, "desicli": designation, "quantiteprod": qteproduits,
+                                "quantitecolis": qtecolis, "controle": contrôle, "termine": terminé, "commattendu": commattendu,
+                                "commrecus": commrecus, "produitsrecu": produitsrec, "colisrecu": colisrec,
+                                "produitsalivrer": produitsali, "colisalivrer": colisali, "colislitigieux": colislitigieux,
+                                "produitslitgieux": produitslitigieux,"autrediffs": autrediff,
+                                "diffproduit": diffproduit, "diffnonexp": diffnexp};
+                            idx++;
+                        }
+                    });
+                }
+            });
+
+            $.ajax({
+                type:"POST",    //type de requête utilisé par ajax
+                url:"/ble/create/", //lien de la view qui gère la requête post
+                data: {
+                    'id': $('#umid').val(),
+                    'client': $('#client').val(),
+                    'fourtype': $('#fournisseur').val(),
+                    'lettre': $('#lve').val(),
+                    'zone': $('#zone').val(),
+                    'numerobl': $('#inputnbl').val(),
+                    'daterecep': $('#inputMDEx').val(),
+                    'quantitepale': $('#inputqpl').val(),
+                    'destinataireretour': $('#litiges').val(),
+                    'zoneatt': $('#zatt').val(),
+                    csrfmiddlewaretoken: '{{ csrf_token }}',
+                },
+                success: function(msg, data, settings){
+                    console.log("success: " + msg + $('#fournisseur').val());
+                    idx = 0;
+                    if (Object.keys(ligne).length > 0) {
+                        console.log("create contacts");
+                        for (key in ligne) {
+                            envoilignes();
+                            idx++;
+                        }
+                    }
+                },
+                failure: function() {
+                    alert("fail");
+                }
+            });
+
+            function envoilignes() {
+                console.log("create contacts");
+                $.ajax({
+                    type:"POST",
+                    url:"/ligneble/create/",
+                    data: {
+                        'id': $('#umid').val(),
+                        "codefour": codefournisseur,
+                        "desicli": designation,
+                        "quantiteprod": qteproduits,
+                        "quantitecolis": qtecolis,
+                        "controle": contrôle,
+                        "termine": terminé,
+                        "commattendu": commattendu,
+                        "commrecus": commrecus,
+                        "produitsrecu": produitsrec,
+                        "colisrecu": colisrec,
+                        "produitsalivrer": produitsali,
+                        "colisalivrer": colisali,
+                        "colislitigieux": colislitigieux,
+                        "produitslitgieux": produitslitigieux,
+                        "autrediffs": autrediff,
+                        "diffproduit": diffproduit,
+                        "diffnonexp": diffnexp,
+                        csrfmiddlewaretoken: '{{ csrf_token }}',
+                    },
+                    success: function(msg, data, settings){
+                        console.log(msg);
+                    },
+                    failure: function() {
+                        alert("fail");
+                    }
+                });
+            }
+        });
+
+        $.widget( "custom.combobox", {
+            _create: function() {
+                this.wrapper = $( "<span>" )
+                    .addClass( "custom-combobox" )
+                    .insertAfter( this.element );
+
+                this.element.hide();
+                this._createAutocomplete();
+                this._createShowAllButton();
+            },
+            _createAutocomplete: function() {
+                var selected = this.element.children( ":selected" ),
+                    value = selected.val() ? selected.text() : "";
+
+                this.input = $("<input>")
+                    .appendTo( this.wrapper)
+                    .val(value)
+                    .attr("title", "")
+                    .addClass("custom-combobox-input ui-widget ui-widget-content ui-state-default ui-corner-left")
+                    .autocomplete({
+                        delay: 0,
+                        minLength: 0,
+                        source: $.proxy(this, "_source")
+                    })
+                    .tooltip({
+                        classes: {
+                            "ui-tooltip": "ui-state-highlight"
+                        }
+                    });
+                this._on( this.input, {
+                    autocompleteselect: function(event, ui) {
+                        ui.item.option.selected = true;
+                        this._trigger("select", event, {
+                            item: ui.item.option
+                        });
+                    },
+                    autocompletechange: "_removeIfInvalid"
+                });
+            },
+            _createShowAllButton: function() {
+                var input = this.input,
+                    wasOpen = false;
+                $("<a>")
+                    .attr("tabIndex", -1)
+                    .attr("title", "Show All Items")
+                    .tooltip()
+                    .appendTo(this.wrapper)
+                    .button({
+                        icons: {
+                            primary: "ui-icon-triangle-1-s"
+                        },
+                        text: false
+                    },)
+                    .removeClass("ui-corner-all")
+                    .addClass("custom-combobox-toggle ui-corner-right")
+                    .on("mousedown", function() {
+                        wasOpen = input.autocomplete("widget").is(":visible");
+                    })
+                    .on("click", function() {
+                        input.trigger("focus");
+                        // Close if already visible
+                        if (wasOpen) {
+                            return;
+                        }
+                        // Pass empty string as value to search for, displaying all results
+                        input.autocomplete("search", "");
+                    });
+            },
+            _source: function(request, response) {
+                var matcher = new RegExp($.ui.autocomplete.escapeRegex(request.term), "i");
+                response(this.element.children("option").map(function() {
+                    var text = $(this).text();
+                    if (this.value && (!request.term || matcher.test(text)))
+                        return {
+                            label: text,
+                            value: text,
+                            option: this
+                        };
+                }) );
+            },
+            _removeIfInvalid: function(event, ui) {
+                // Selected an item, nothing to do
+                if (ui.item) {
+                    return;
+                }
+                // Search for a match (case-insensitive)
+                var value = this.input.val(),
+                    valueLowerCase = value.toLowerCase(),
+                    valid = false;
+                this.element.children("option").each(function() {
+                    if ($(this).text().toLowerCase() === valueLowerCase) {
+                        this.selected = valid = true;
+                        return false;
+                    }
+                });
+                // Found a match, nothing to do
+                if (valid) {
+                    return;
+                }
+                // Remove invalid value
+                this.input
+                    .val("")
+                    .attr("title", value + " didn't match any item")
+                    .tooltip("open");
+                this.element.val("");
+                this._delay(function() {
+                    this.input.tooltip("close").attr("title", "");
+                }, 2500);
+                this.input.autocomplete("instance").term = "";
+            },
+            _destroy: function() {
+                this.wrapper.remove();
+                this.element.show();
+            },
+        });
+        var nbrligne = 0;
+        $("#dialog-confirm").dialog({
+            resizable: false,
+            height: "auto",
+            width: 400,
+            modal: true,
+            buttons: {
+                "Annuler": function() {
+                    $('#numberligne').val("");
+                    $(this).dialog("close");
+                },
+                ok: function() {
+                    nbrligne = $('#numberligne').val();
+                    $('#numberligne').val("");
+                    $(this).dialog("close");
+                    for (var nbr = nbrligne; nbr > 0; nbr--) {
+                        $('#tabblbody').append("<tr><td><button class='resetb' id=\"reset" + nbr + "\"><i class=\"fas fa-redo\"></i></button></td>" +
+                            "<td><select class=\"form-control fournise\" id=\"blfournisseur" + nbr + "\"></select></td>" +
+                            "<td><select class=\"form-control desif\" id=\"iddesif" + nbr + "\"></select></td>" +
+                            "<td><input class='form-control'></td>" +
+                            "<td><input class='form-control'></td>" +
+                            "<td><button type=\"button\" class=\"btn btn-light btn-sm butctrl \"><i class=\"far fa-thumbs-down\" aria-hidden=\"true\"></i></button></td>" +
+                            "<td><input type=\"checkbox\" class=\"form-control\"></td>" +
+                            "<td><button class=\"deleteur\"> X </button> </td>" +
+                            "<td><input class='form-control'></td>" +
+                            "<td><input class='form-control'></td>" +
+                            "<td><input class='form-control'></td>" +
+                            "<td><input class='form-control'> </td>" +
+                            "<td><input class='form-control'></td>" +
+                            "<td><input class='form-control'></td>" +
+                            "<td><input class='form-control'></td>" +
+                            "<td><input class='form-control'></td>" +
+                            "<td><input class='form-control'></td>" +
+                            "<td><input class='form-control'></td>" +
+                            "<td><input class='form-control'></td>");
+                        '{% for items in art %}'
+                        $("select.fournise:last").append(new Option("{{ items.codeFournisseur }}", "{{ items.codeFournisseur }}"));
+                        $("select.desif:last").append(new Option("{{ items.designationClient }}", "{{ items.designationClient }}"));
+                        $("select.fournise:last").val("");
+                        $("select.desif:last").val("");
+                        '{% endfor %}'
+                    }
+                    //code fournisseur
+                    for (var a = nbrligne; a != 0; a--) {
+                        $("#blfournisseur" + a).combobox();
+                    }
+                    $("#toggle").on("click", function () {
+                        for (var a = nbrligne; a != 0; a--) {
+                            $("#blfournisseur" + a).toggle();
+                        }
+                    });
+                    for (var a = nbrligne; a != 0; a--) {
+                        $("#iddesif" + a).combobox();
+                    }
+                    $("#toggle").on("click", function () {
+                        for (var a = nbrligne; a != 0; a--) {
+                            $("#iddesif" + a).toggle();
+                        }
+                    });
+
+                    $(".fournise").combobox({
+                        select: function (event, ui) {
+                            '{% for items in art %}'
+                            if ('{{ items.codeFournisseur }}' == this.value) {
+                                console.log("therae");
+                                //$(this).closest('td').next().find('select').val('{{ items.designationClient }}');
+                                //$(this).closest('td').next().find('select').find('option').remove();
+                                $(this).closest('td').next().find('select').find('option').remove();
+                                $(this).closest('td').next().find('select').append(new Option("{{ items.designationClient }}", "{{ items.designationClient }}"));
+                            }
+                            '{% endfor %}'
+                        }
+                    });
+                    $(".desif").combobox({
+                        select: function (event, ui) {
+                            '{% for items in art %}'
+                            if ('{{ items.designationClient  }}' == this.value) {
+                                console.log("therae");
+                                //$(this).closest('td').next().find('select').val('{{ items.designationClient }}');
+                                //$(this).closest('td').next().find('select').find('option').remove();
+                                $(this).closest('td').prev().find('select').find('option').remove();
+                                $(this).closest('td').prev().find('select').append(new Option("{{ items.codeFournisseur }}", "{{ items.codeFournisseur }}"));
+                            }
+                            '{% endfor %}'
+                        }
+                    });
+                    $('.resetb').click(function () {
+                        //alert("gg " + $(this).attr('id'));
+                        //var id = $(this).attr('id');
+                        $(this).closest('td').parent().find('td').eq(0).next().find('select').find('option').remove();
+                        $(this).closest('td').parent().find('td').eq(1).next().find('select').find('option').remove();
+                        '{% for items in art %}'
+                        $(this).closest('td').parent().find('td').eq(0).next().find('select').append(new Option("{{ items.codeFournisseur }}", "{{ items.codeFournisseur }}"));
+                        $(this).closest('td').parent().find('td').eq(1).next().find('select').append(new Option("{{ items.designationClient }}", "{{ items.designationClient }}"));
+                        '{% endfor %}'
+                    });
+                }
+            },
+        });
+
+        $("#dialog-confirm").dialog("close");
+        $('body').on('click', '.butctrl', function() {
+            if ($(this).hasClass("btn-light")) {
+                $(this).removeClass("btn-light");
+                $(this).addClass("btn-success");
+                $(this).find($("i")).removeClass('fa-thumbs-down').addClass('fa-thumbs-up');
+            }
+            else
+            {
+                $(this).removeClass("btn-success");
+                $(this).addClass("btn-light");
+                $(this).find($("i")).removeClass('fa-thumbs-up').addClass('fa-thumbs-down');
+            }
+        });
+
+        $("#client").combobox({
+            select: function (event, ui) {
+                console.log(this.value);
+                '{% for items in cli %}'
+                if ('{{ items.nom }}' == this.value) {
+                    console.log('{{ items.fk_TypeZone.nom }}');
+                    $('#zone').val('{{ items.fk_TypeZone.nom }}');
+                    '{% for items in zoned %}'
+                    /*console.log('there');
+                        if ('{{ items.fk_TypeZoneDepot.nom }}' == $('#zone').val()) {
+                            $('#zone').val('{{ items.fk_TypeZone.nom }}');
+                            console.log("gg");
+                        }*/
+                    $("#zatt").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                    '{% endfor %}'
+                    //$("#").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                }
+                '{% endfor %}'
+            }
+        });
+
+        $("#client").combobox();
+        $("#fournisseur").combobox();
+        $("#litiges").combobox();
+        $("#zatt").combobox();
+        $("#toggle").on("click", function() {
+            $("#client").toggle();
+            $("#fournisseur").toggle();
+            $("#litiges").toggle();
+            $("#zatt").toggle();
+        });
+        //$("body #blfournisseur").combobox();
+
+        $(document).on("input", "input", function (event) {
+            if (this.checkValidity()) {
+                $(this).data('last-valid', this.value);
+            }
+            else {
+                var myvalue = $(this).text();
+                if($.isNumeric($('#numberligne').val())) {
+                    console.log("numeric");
+                } else {
+                    console.log("not numeric");
+                    $('#numberligne').popover({
+                        trigger: 'manual',
+                        title: 'Warning!',
+                        content: 'Value can not be empty',
+                        placement: 'left',
+                    }).popover('show');
+                    setTimeout(closederror, 2000);
+                }
+                this.value = $(this).data('last-valid') || "";
+            }
+        });
+
+        function checkligne() {
+            $("#numberligne").popover({trigger: 'manual', content: "Input only numbers!", placement : 'right'});
+            $("#numberligne").popover('show');
+        };
+        function closederror() {
+            $("#numberligne").popover('dispose');
+        };
+
+        $('#addligne').click(function() {
+            $("#dialog-confirm").dialog("open");
+        });
+        $('#tabblbody').on('click', '.deleteur', function() {
+            $(this).parent().parent().remove();
+        });
+    });
+</script>
+</html>
+{% endblock %}

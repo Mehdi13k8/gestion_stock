@@ -150,7 +150,6 @@ class lettrevoitureentreeadd(ListView):
                         request.POST.get('comrecla'),]
             lettre = LettreVoitureEntree()
             for items in trans:
-                print("for")
                 if items.nom == showlist[4]:
                     lettre.fk_Transporteur = items
             lettre.idLettreVoitureEntree = showlist[0]
@@ -169,6 +168,7 @@ class lettrevoitureentreeadd(ListView):
         context = {
             'lve' : LettreVoitureEntree.objects.all(),
             'four' : Fournisseur.objects.all(),
+            'trans' : Transporteur.objects.all(),
             #'entreeligne' : LigneBonLivraisonEntree_pour_BonLivraisonEntree.objects.all(),
             'activate' : 'on',
         }
@@ -176,11 +176,38 @@ class lettrevoitureentreeadd(ListView):
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
-class lettrevoitureEntreemodify(ListView):
-    template_name = "lettrevoitureentree.html"
+class lettrevoitureentreemodify(ListView):
+    template_name = "lettrevoitureentreemodify.html"
 
-    def delete(request):
+    def createbl(request):
         if request.method == 'POST':
+            showlist = [request.POST.get('id'), request.POST.get('dater'),]
+
+            print ("there")
+            return HttpResponse("Deleted !")
+        return HttpResponse("No Authorized Access !")
+
+    def modify(request):
+        if request.method == 'POST':
+            lettre = LettreVoitureEntree.objects.get(idLettreVoitureEntree=request.POST['id'])
+            trans = Transporteur.objects.all()
+            showlist = [request.POST.get('id'), request.POST.get('dater'),
+                        request.POST.get('numr'), request.POST.get('qpalette'),
+                        request.POST.get('transp'), request.POST.get('qcolis'),
+                        request.POST.get('quantitecolrecla'), request.POST.get('quantitepalrecla'),
+                        request.POST.get('comrecla'),]
+            for items in trans:
+                if items.nom == showlist[4]:
+                    lettre.fk_Transporteur = items
+            lettre.idLettreVoitureEntree = showlist[0]
+            lettre.datereception = showlist[1]
+            lettre.numerorecepisse = showlist[2]
+            lettre.quantitepalette = showlist[3]
+            lettre.quantitecolis = showlist[5]
+            lettre.reclaquantitecolis = showlist[6]
+            lettre.reclaquantitepalette = showlist[7]
+            lettre.reclacomm = showlist[8]
+            lettre.save()
             #ble = BonLivraisonEntree.objects.get(idBonLivraisonEntree=request.POST['id'])
             #article.delete()
             return HttpResponse("Deleted !")
@@ -190,6 +217,9 @@ class lettrevoitureEntreemodify(ListView):
         context = {
             'lve' : LettreVoitureEntree.objects.all(),
             #'entreeligne' : LigneBonLivraisonEntree_pour_BonLivraisonEntree.objects.all(),
+            'four' : Fournisseur.objects.all(),
+            'trans' : Transporteur.objects.all(),
+            'id' :request.GET.get('id'),
             'activate' : 'on',
         }
         return render(request, self.template_name, context)
@@ -236,6 +266,93 @@ class bonLivraisonEntree(ListView):
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
+class bonLivraisonentreemodify(ListView):
+    template_name = "bonlivraisonentreemodify.html"
+
+    def modify(request):
+        if request.method == 'POST':
+            ble = BonLivraisonEntree.objects.all()
+            fourtype = Fournisseur.objects.all()
+            cli = Client.objects.all()
+            bonle = BonLivraisonEntree.objects.get(idBonLivraisonEntree=showlist[1])
+            lveo = LettreVoitureEntree.objects.all()
+            art = Article.objects.all()
+            zne = TypeZoneDepot.objects.all()
+            inzne = ZoneDepot_pour_TypeZoneDepot.objects.all()
+            litiges = Destinataire.objects.all()
+            foundcli = 0
+            showlist = [request.POST.get('id'), request.POST.get('client'),
+                        request.POST.get('fourtype'), request.POST.get('lettre'),
+                        request.POST.get('zone'), request.POST.get('numerobl'),
+                        request.POST.get('daterecep'), request.POST.get('quantitepale'),
+                        request.POST.get('destinataireretour'), request.POST.get('zoneatt')]
+            for items in ble:
+                if showlist[0] == items.idBonLivraisonEntree:
+                    return HttpResponse("Ble aldready existing !")
+            if showlist[0] == None:
+                id = 0
+                for myitems in ble:
+                    if id < int(myitems.idBonLivraisonEntree):
+                        id = int(myitems.idBonLivraisonEntree)
+                        print("id = " + str(id) + '\n')
+                return HttpResponse("Ble aldready existing !")
+            else:
+                bonle.idBonLivraisonEntree = showlist[0]
+            bonle.fk_Client = None
+            bonle.fk_Fournisseur = None
+            bonle.fk_TypeZoneDepot = None
+            bonle.fk_LettreVoitureEntree = None
+            bonle.fk_BonCommandeEntree = None
+            bonle.fk_UniteManutentionEntree = None
+            bonle.fk_Destinataire = None
+            for items in cli:
+                if showlist[1] == items.nom:
+                    bonle.fk_Client = items
+                    #= items
+                #for myzone in zne:
+                #if showlist[4] == items.nom:
+                #bonle.fk_TypeZone = items
+            for items in fourtype:
+                if showlist[2] == items.nom:
+                    bonle.fk_Fournisseur = items
+            for items in lveo:
+                if showlist[3] == items.idLettreVoitureEntree:
+                    bonle.fk_LettreVoitureEntree = items
+            bonle.numeroBonLivraison = showlist[5]
+            bonle.dateReception = showlist[6]
+            bonle.quantitePalette = showlist[7]
+            for items in litiges:
+                if showlist[8] == items.nom:
+                    bonle.fk_Destinataire = items
+            for items in inzne:
+                if showlist[9] == items.nom:
+                    #bonle.fk_TypeZoneDepot = items
+                    print ("print "+ items.nom + " et "+ showlist[9])
+                    for initems in zne:
+                        if initems.nom == items.fk_TypeZoneDepot.nom:
+                            bonle.fk_TypeZoneDepot = initems
+            bonle.save()
+            return HttpResponse("Created !")
+        return HttpResponse("No Authorized Access !")
+
+    def get(self, request):
+        context = {
+            'entree' : BonLivraisonEntree.objects.all(),
+            'art' : Article.objects.all(),
+            'cli' : Client.objects.all(),
+            'des' : Destinataire.objects.all(),
+            'four' : Fournisseur.objects.all(),
+            'typef': TypeFournisseur_pour_Fournisseur.objects.all(),
+            'zoned': ZoneDepot_pour_TypeZoneDepot.objects.all(),
+            #'lve' : LettreVoitureEntree.objects.all(),
+            'entreeligne' : LigneBonLivraisonEntree_pour_BonLivraisonEntree.objects.all(),
+            'id' :request.GET.get('id'),
+            'activate' : 'on',
+        }
+        return render(request, self.template_name, context)
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 class bonLivraisonEntreeadd(ListView):
     template_name = "bonLivraisonEntreeadd.html"
 
@@ -251,6 +368,7 @@ class bonLivraisonEntreeadd(ListView):
             inzne = ZoneDepot_pour_TypeZoneDepot.objects.all()
             litiges = Destinataire.objects.all()
             foundcli = 0
+            id = 0
             showlist = [request.POST.get('id'), request.POST.get('client'),
                         request.POST.get('fourtype'), request.POST.get('lettre'),
                         request.POST.get('zone'), request.POST.get('numerobl'),
