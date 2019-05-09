@@ -42,7 +42,7 @@
                                     identifiant:<br><input type="text" id="umid" disabled class="form-control">
                                 </div>
                                 <div class="col-1">
-                                    <br><button class="ml-md-n3" id="accesslve"><i class="fas fa-arrow-right"></i></button>
+                                    <br><button class="ml-md-n3" id="accesscli"><i class="fas fa-arrow-right"></i></button>
                                 </div>
                                 <div class="col">
                                     <div class="selsel">
@@ -381,6 +381,22 @@
                     '{% endfor %}'
                 }
                 '{% endfor %}'
+                $("#fournisseur").val("{{ items.fk_Fournisseur.nom }}");
+                $("#inputMDEx").val("{{ items.dateReception }}");
+                $("#inputqpl").val("{{ items.quantitePalette }}");
+                $("#inputnbl").val("{{ items.numeroBonLivraison }}");
+                $("#litiges").val("{{ items.fk_Destinataire }}");
+                $("#client").val("{{ items.fk_Client }}");
+                $("#zatt").val("{{ items. }}");
+
+                '{% for items in cli %}'
+                if ('{{ items.nom }}' == $('#client').val()) {
+                    $('#zone').val('{{ items.fk_TypeZone.nom }}');
+                    '{% for items in zoned %}'
+                    $("#zatt").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                    '{% endfor %}'
+                }
+                '{% endfor %}'
 
             }
         '{% endfor %}'
@@ -493,10 +509,9 @@
                     });
                 }
             });
-
             $.ajax({
                 type:"POST",    //type de requête utilisé par ajax
-                url:"/ble/create/", //lien de la view qui gère la requête post
+                url:"/ble/modify/", //lien de la view qui gère la requête post
                 data: {
                     'id': $('#umid').val(),
                     'client': $('#client').val(),
@@ -512,12 +527,11 @@
                 },
                 success: function(msg, data, settings){
                     console.log("success: " + msg + $('#fournisseur').val());
-                    idx = 0;
-                    if (Object.keys(ligne).length > 0) {
-                        console.log("create contacts");
-                        for (key in ligne) {
+                    idx = Object.keys(ligne).length/17;
+                    if (idx > 0) {
+                        console.log(idx);
+                        for (idx;idx > 0; idx--) {
                             envoilignes();
-                            idx++;
                         }
                     }
                 },
@@ -527,7 +541,6 @@
             });
 
             function envoilignes() {
-                console.log("create contacts");
                 $.ajax({
                     type:"POST",
                     url:"/ligneble/create/",
@@ -860,6 +873,17 @@
         });
         $('#tabblbody').on('click', '.deleteur', function() {
             $(this).parent().parent().remove();
+        });
+
+        $('#accesslve').click(function () {
+            window.location.href = "{% url 'lvemodify' %}?id=" + $('#lve').val();
+        });
+        $('#accesscli').click(function () {
+            console.log("redirect to cli");
+            '{% for items in cli %}'
+                if ('{{ items.nom }}' == $('#client').val())
+                    window.location.href = "{% url 'clientmodify' %}?id=" + '{{ items.idClient }}';
+            '{% endfor %}'
         });
     });
 </script>

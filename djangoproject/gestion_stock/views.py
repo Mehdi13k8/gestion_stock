@@ -181,10 +181,21 @@ class lettrevoitureentreemodify(ListView):
 
     def createbl(request):
         if request.method == 'POST':
-            showlist = [request.POST.get('id'), request.POST.get('dater'),]
-
-            print ("there")
-            return HttpResponse("Deleted !")
+            showlist = [request.POST.get('id'), request.POST.get('trueid'),]
+            bonle = BonLivraisonEntree()
+            lve = LettreVoitureEntree.objects.all()
+            bonle.idBonLivraisonEntree = showlist[1]
+            bonle.fk_Client = None
+            bonle.fk_Fournisseur = None
+            bonle.fk_TypeZoneDepot = None
+            for items in lve:
+                if items.idLettreVoitureEntree == showlist[0]:
+                    bonle.fk_LettreVoitureEntree = items
+            bonle.fk_BonCommandeEntree = None
+            bonle.fk_UniteManutentionEntree = None
+            bonle.fk_Destinataire = None
+            bonle.save()
+            return HttpResponse("Created !" + str(showlist[0]) + ' '+ str(showlist[1]))
         return HttpResponse("No Authorized Access !")
 
     def modify(request):
@@ -216,6 +227,7 @@ class lettrevoitureentreemodify(ListView):
     def get(self, request):
         context = {
             'lve' : LettreVoitureEntree.objects.all(),
+            'entree' : BonLivraisonEntree.objects.all(),
             #'entreeligne' : LigneBonLivraisonEntree_pour_BonLivraisonEntree.objects.all(),
             'four' : Fournisseur.objects.all(),
             'trans' : Transporteur.objects.all(),
@@ -252,7 +264,7 @@ class bonLivraisonEntree(ListView):
     def delete(request):
         if request.method == 'POST':
             ble = BonLivraisonEntree.objects.get(idBonLivraisonEntree=request.POST['id'])
-            #article.delete()
+            ble.delete()
             return HttpResponse("Deleted !")
         return HttpResponse("No Authorized Access !")
 
@@ -274,7 +286,6 @@ class bonLivraisonentreemodify(ListView):
             ble = BonLivraisonEntree.objects.all()
             fourtype = Fournisseur.objects.all()
             cli = Client.objects.all()
-            bonle = BonLivraisonEntree.objects.get(idBonLivraisonEntree=showlist[1])
             lveo = LettreVoitureEntree.objects.all()
             art = Article.objects.all()
             zne = TypeZoneDepot.objects.all()
@@ -286,18 +297,7 @@ class bonLivraisonentreemodify(ListView):
                         request.POST.get('zone'), request.POST.get('numerobl'),
                         request.POST.get('daterecep'), request.POST.get('quantitepale'),
                         request.POST.get('destinataireretour'), request.POST.get('zoneatt')]
-            for items in ble:
-                if showlist[0] == items.idBonLivraisonEntree:
-                    return HttpResponse("Ble aldready existing !")
-            if showlist[0] == None:
-                id = 0
-                for myitems in ble:
-                    if id < int(myitems.idBonLivraisonEntree):
-                        id = int(myitems.idBonLivraisonEntree)
-                        print("id = " + str(id) + '\n')
-                return HttpResponse("Ble aldready existing !")
-            else:
-                bonle.idBonLivraisonEntree = showlist[0]
+            bonle = BonLivraisonEntree.objects.get(idBonLivraisonEntree=showlist[0])
             bonle.fk_Client = None
             bonle.fk_Fournisseur = None
             bonle.fk_TypeZoneDepot = None
@@ -419,6 +419,7 @@ class bonLivraisonEntreeadd(ListView):
         if request.method == 'POST':
             ligne = LigneBonLivraisonEntree_pour_BonLivraisonEntree.objects.all()
             art = Article.objects.all()
+            ble = BonLivraisonEntree.objects.all()
             ligne_eble = LigneBonLivraisonEntree_pour_BonLivraisonEntree()
             showlist = [request.POST.get('codefour'), request.POST.get('desicli'),
                         request.POST.get('quantiteprod'), request.POST.get('quantitecolis'),
@@ -429,10 +430,18 @@ class bonLivraisonEntreeadd(ListView):
                         request.POST.get('colislitigieux'), request.POST.get('produitslitigieux'),
                         request.POST.get('autrediff'), request.POST.get('diffproduit'),
                         request.POST.get('diffnonexp'), request.POST.get('id')]
+            ligne_eble.fk_Article = None
+            ligne_eble.fk_BonLivraisonEntree = None
             for items in art:
                 if items.codeFournisseur == showlist[0]:
-                    article.fk_TypeArticle = items
-            return HttpResponse("Created !")
+                    ligne_eble.fk_Article = items
+                #if items.designationClient == showlist[0]:
+                #ligne_eble.fk_Article = items
+            for items in ble:
+                if items.idBonLivraisonEntree == showlist[17]:
+                    ligne_eble.fk_BonLivraisonEntree = items
+            ligne_eble.save()
+            return HttpResponse("Ligne Bl Created !")
         return HttpResponse("No Authorized Access !")
 
     def deleteligne(request):
@@ -1141,7 +1150,6 @@ class clientmodify(ListView):
             print("id = "+ request.POST.get('id'))
             mycontact = Contact_pour_Client.objects.get(idContact=request.POST['id'])
             mycontact.delete()
-
             return HttpResponse("road to post del con")
         return HttpResponse("403: what are you doing there?")
 
@@ -1156,9 +1164,7 @@ class clientmodify(ListView):
                         request.POST.get('idsource'), request.POST.get('boncs'),
                         request.POST.get('bonle'), request.POST.get('odt'),
                         request.POST.get('cont'), request.POST.get('commentaire')]
-
             client = Client.objects.get(idClient=showlist[1])
-
             zne = TypeZoneDepot.objects.all()
             znedebug = False
             for zone in zne:
@@ -1250,6 +1256,7 @@ class clientmodify(ListView):
             'typea' : TypeArticle_pour_Client.objects.all(),
             'bcs' : BonCommandeSortie.objects.all(),
             'bce' : BonCommandeEntree.objects.all(),
+            'entree' : BonLivraisonEntree.objects.all(),
             'activate' : 'on',
         }
         return render(request, self.template_name, context)

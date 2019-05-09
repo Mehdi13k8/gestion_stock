@@ -100,7 +100,7 @@
         var trueid = 0;
         alert(idClicked);
         "{% for items in lve %}"
-        if ('{{ items.idClient }}' == idClicked) {
+        if ('{{ items.idLettreVoitureEntree }}' == idClicked) {
             name = '{{ items.nom }}';
             trueid = '{{ items.id }}';
         }

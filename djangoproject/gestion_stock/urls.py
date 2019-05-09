@@ -2,6 +2,7 @@ from django.urls import path
 from . import views
 from django.contrib.auth import views as auth_views
 from django.views.generic import ListView
+
 urlpatterns = [
     path('', views.index.as_view(), name='index'),
 
@@ -34,6 +35,7 @@ urlpatterns = [
     path('bonLivraisonentree', views.bonLivraisonEntree.as_view(), name='bonLivraisonEntree'),
     path('bonLivraisonentree/add', views.bonLivraisonEntreeadd.as_view(), name='bonLivraisonEntreeadd'),
     path('bonLivraisonentree/modify', views.bonLivraisonentreemodify.as_view(), name='bonLivraisonEntreemodify'),
+    path('ble/modify/', views.bonLivraisonentreemodify.modify),
     path('ble/delete/', views.bonLivraisonEntree.delete),
     path('ble/create/', views.bonLivraisonEntreeadd.create),
     path('ligneble/create/', views.bonLivraisonEntreeadd.createligne),
@@ -98,4 +100,3 @@ urlpatterns = [
 
     #path('bon/add/<int:month>/', views.),
 ]
-

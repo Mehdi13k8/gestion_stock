@@ -246,17 +246,29 @@
             });
         });
         $("#umid").val('{{ id }}');
-        '{% for items in lve%}'
-            if ('{{ items.idLettreVoitureEntree }}' == $("#umid").val()) {
-                $("#inputMDEx").val('{{ items.datereception }}');
-                $("#numr").val('{{ items.numerorecepisse }}');
-                $("#qpal").val('{{ items.quantitepalette }}');
-                $("#inputqc").val('{{ items.quantitecolis }}');
-                $("#qcrecla").val('{{ items.reclaquantitecolis }}');
-                $("#qprecla").val('{{ items.reclaquantitepalette }}');
-                $("#comrecla").val('{{ items.reclacomm }}');
-                $("#transporteur").val("{{ items.fk_Transporteur }}");
-            }
+        '{% for items in lve %}'
+        if ('{{ items.idLettreVoitureEntree }}' == $("#umid").val()) {
+            $("#inputMDEx").val('{{ items.datereception }}');
+            $("#numr").val('{{ items.numerorecepisse }}');
+            $("#qpal").val('{{ items.quantitepalette }}');
+            $("#inputqc").val('{{ items.quantitecolis }}');
+            $("#qcrecla").val('{{ items.reclaquantitecolis }}');
+            $("#qprecla").val('{{ items.reclaquantitepalette }}');
+            $("#comrecla").val('{{ items.reclacomm }}');
+            $("#transporteur").val("{{ items.fk_Transporteur }}");
+        }
+        '{% endfor %}'
+
+        '{% for items in entree %}'
+        if ('{{ items.fk_LettreVoitureEntree.idLettreVoitureEntree }}' == $("#umid").val()) {
+            console.log("bl in lv charge");
+            $('#tabblbody').append("<tr><td class='text-center'><button class='resetb dyna' id=\"{{ items.idBonLivraisonEntree }}\"><i class=\"fas fa-arrow-right\"></i></button></td>" +
+                "<td class='text-center'> <input disabled class='form-control' value='{{ items.fk_Client.nom }}'></td>" +
+                "<td><input disabled class='form-control' value='{{ items.dateReception }}'></td>" +
+                "<td><input disabled class='form-control' value='{{ items.numeroBonLivraison  }}'></td>" +
+                "<td><input disabled class='form-control' value='{{ items.quantitePalette }}'></td>" +
+                "<td class='text-center'><button class='resetb btn btn-light btn-sm dynad' id=\"{{ items.idBonLivraisonEntree }}\"><i class=\"fas fa-trash-alt\"></i></button></td>");
+        }
         '{% endfor %}'
 
         $('#addlignebl').click(function() {
@@ -277,24 +289,26 @@
                     nbrligne = $('#numberligne').val();
                     $('#numberligne').val("");
                     $(this).dialog("close");
+                    var upperid = "0";
+                    "{% for items in entree %}"
+                    if (parseInt(upperid, 10) < parseInt('{{ items.idBonLivraisonEntree }}', 10)) {
+                        upperid = parseInt('{{ items.idBonLivraisonEntree }}', 10);
+                    }
+                    "{% endfor %}"
                     for (var nbr = nbrligne; nbr > 0; nbr--) {
-                        $('#tabblbody').append("<tr><td class='text-center'><button class='resetb' id=\""+$("#umid").val()+"\"><i class=\"fas fa-arrow-right\"></i></button></td>"+
+                        upperid++;
+                        $('#tabblbody').append("<tr><td class='text-center'><button class='resetb dyna' id=\""+upperid+"\"><i class=\"fas fa-arrow-right\"></i></button></td>"+
                             "<td class='text-center'><input disabled class='form-control'></td>" +
                             "<td><input disabled class='form-control'></td>" +
                             "<td><input disabled class='form-control'></td>" +
                             "<td><input disabled class='form-control'></td>" +
-                            "<td class='text-center'><button class='resetb btn btn-light btn-sm' id=\""+$("#umid").val()+"\"><i class=\"fas fa-trash-alt\"></i></button></td>");
-                        /*'{% for items in art %}'
-                        $("select.fournise:last").append(new Option("{{ items.codeFournisseur }}", "{{ items.codeFournisseur }}"));
-                        $("select.desif:last").append(new Option("{{ items.designationClient }}", "{{ items.designationClient }}"));
-                        $("select.fournise:last").val("");
-                        $("select.desif:last").val("");
-                        '{% endfor %}'*/
+                            "<td class='text-center'><button class='resetb btn btn-light btn-sm dynad' id=\""+upperid+"\"><i class=\"fas fa-trash-alt\"></i></button></td>");
                         $.ajax({
                             type:"POST",
                             url:"/lve/modify/createbl/",
                             data: {
-                                'lettre': $('#umid').val(),
+                                'id': $('#umid').val(), //id de la lettre qui va crée un bl
+                                'trueid': upperid, //id que va prendre le bl que je prends a l'avance pour avoir un controle sur lui
                                 csrfmiddlewaretoken: '{{ csrf_token }}',
                             },
                             success: function(msg, data, settings) {
@@ -526,6 +540,21 @@
         $("#transporteur").combobox();
         $("#toggle").on("click", function () {
             $("#transporteur").toggle();
+        });
+
+        $('.dyna').click(function () {
+            console.log("this id = " + $(this).attr('id'));
+            var idClicked = $(this).attr('id');
+            var name = "";
+            var trueid = 0;
+            alert(idClicked);
+            "{% for items in entree %}"
+            if ('{{ items.id }}' == idClicked) {
+                name = '{{ items.nom }}';
+                trueid = '{{ items.id }}';
+            }
+            "{% endfor %}"
+            window.location.href = "{% url 'bonLivraisonEntreemodify' %}?id=" + idClicked + "&" + "name=" + name + "&" + "trueid=" + trueid;
         });
     });
 </script>

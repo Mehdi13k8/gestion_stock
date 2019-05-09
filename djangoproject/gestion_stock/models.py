@@ -1353,7 +1353,7 @@ class BonLivraisonEntree(models.Model):
 
 class LigneBonLivraisonEntree_pour_BonLivraisonEntree(models.Model):
     idLigneBonLivraisonEntree = models.CharField(max_length=42, default='Null')
-    fk_BonLivraisonEntree = models.ForeignKey('BonLivraisonEntree', on_delete=models.CASCADE, default=0)
+    fk_BonLivraisonEntree   = models.ForeignKey('BonLivraisonEntree', on_delete=models.CASCADE, default=0, blank=True, null=True)
     fk_Article  = models.ForeignKey('Article', on_delete=models.CASCADE, default=0, blank=True, null=True)
     controle = models.CharField(max_length=42, default='Null')
     quantiteColis = models.CharField(max_length=42, default='Null')

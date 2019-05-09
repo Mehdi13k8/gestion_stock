@@ -18,6 +18,7 @@ admin.site.register(UniteManutentionSortie_pour_BonCommandeSortie)
 admin.site.register(BonLivraisonSortie_pour_BonCommandeSortie)
 
 admin.site.register(BonLivraisonEntree)
+admin.site.register(LigneBonLivraisonEntree_pour_BonLivraisonEntree)
 
 admin.site.register(BonCommandeEntree)
 admin.site.register(LigneBonCommandeEntree_pour_BonCommandeEntree)
