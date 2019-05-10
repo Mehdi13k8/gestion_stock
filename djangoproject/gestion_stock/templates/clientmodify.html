@@ -389,7 +389,7 @@
             var mail = "";
             var role = "";
             var idcontact = "";
-            $('#contacttable tr').each(function (a, b) {  //recupère les contacts entrée dans la table
+            $('#contacttable tr').each(function (a, b) {  //recupère les entrée dans la table
                 if (a === 0) { //on veut pas récuperer le "thead" car c'est la ligne des "titres" donc useless
                 }
                 else {
@@ -480,7 +480,7 @@
                     type:"POST",    //type de requête utilisé par ajax
                     url:"/modify_cli_contact/", //lien de la view qui gère la requête post
                     data: {
-                        'id': $('#umid').val(), // id du transporteur acquis grace a une incrementation en js
+                        'id': $('#umid').val(), // id acquis grace a une incrementation en js
                         'role': contact[contactnb].role,
                         'name': contact[contactnb].nom,
                         'prenom': contact[contactnb].prenom,

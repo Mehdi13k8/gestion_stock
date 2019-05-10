@@ -390,8 +390,8 @@ class bonLivraisonEntreeadd(ListView):
                     bonle.fk_Client = items
                     #= items
                 #for myzone in zne:
-                    #if showlist[4] == items.nom:
-                        #bonle.fk_TypeZone = items
+                #if showlist[4] == items.nom:
+                #bonle.fk_TypeZone = items
             for items in fourtype:
                 if showlist[2] == items.nom:
                     bonle.fk_Fournisseur = items
@@ -420,26 +420,51 @@ class bonLivraisonEntreeadd(ListView):
             ligne = LigneBonLivraisonEntree_pour_BonLivraisonEntree.objects.all()
             art = Article.objects.all()
             ble = BonLivraisonEntree.objects.all()
-            ligne_eble = LigneBonLivraisonEntree_pour_BonLivraisonEntree()
-            showlist = [request.POST.get('codefour'), request.POST.get('desicli'),
+            showlist = [request.POST.get('id'), request.POST.get('lbid'),
+                        request.POST.get('codefour'), request.POST.get('desicli'),
                         request.POST.get('quantiteprod'), request.POST.get('quantitecolis'),
                         request.POST.get('controle'), request.POST.get('termine'),
                         request.POST.get('commattendu'), request.POST.get('commrecus'),
                         request.POST.get('produitsrecu'), request.POST.get('colisrecu'),
                         request.POST.get('produitsalivrer'), request.POST.get('colisalivrer'),
-                        request.POST.get('colislitigieux'), request.POST.get('produitslitigieux'),
-                        request.POST.get('autrediff'), request.POST.get('diffproduit'),
-                        request.POST.get('diffnonexp'), request.POST.get('id')]
-            ligne_eble.fk_Article = None
-            ligne_eble.fk_BonLivraisonEntree = None
+                        request.POST.get('colislitigieux'), request.POST.get('produitslitgieux'),
+                        request.POST.get('autrediffs'), request.POST.get('diffproduit'),
+                        request.POST.get('diffnonexp')]
+            '''if (showlist[1] == None):
+                ligne_eble = LigneBonLivraisonEntree_pour_BonLivraisonEntree.objects.get(idLigneBonLivraisonEntree=showlist[1])
+            else:
+                ligne_eble = LigneBonLivraisonEntree_pour_BonLivraisonEntree()
+                ligne_eble.idLigneBonLivraisonEntree = showlist[1]
+                ligne_eble.fk_Article = None
+                ligne_eble.fk_BonLivraisonEntree = None'''
+            try:
+                ligne_eble = LigneBonLivraisonEntree_pour_BonLivraisonEntree.objects.get(idLigneBonLivraisonEntree=showlist[1])
+            except LigneBonLivraisonEntree_pour_BonLivraisonEntree.DoesNotExist:
+                ligne_eble = LigneBonLivraisonEntree_pour_BonLivraisonEntree()
+                ligne_eble.idLigneBonLivraisonEntree = showlist[1]
+                ligne_eble.fk_Article = None
+                ligne_eble.fk_BonLivraisonEntree = None
             for items in art:
-                if items.codeFournisseur == showlist[0]:
+                print(items.designationClient + "--" + showlist[3]+"X")
+                if items.designationClient == showlist[3]:
                     ligne_eble.fk_Article = items
-                #if items.designationClient == showlist[0]:
-                #ligne_eble.fk_Article = items
             for items in ble:
-                if items.idBonLivraisonEntree == showlist[17]:
+                if items.idBonLivraisonEntree == showlist[0]:
                     ligne_eble.fk_BonLivraisonEntree = items
+            ligne_eble.controle = showlist[6]
+            ligne_eble.quantiteColis = showlist[5]
+            ligne_eble.quantiteColisAlivrer = showlist[13]
+            ligne_eble.quantiteColisLitige = showlist[14]
+            ligne_eble.quantiteColisRecu = showlist[11]
+            ligne_eble.quantiteCommande = showlist[8]
+            ligne_eble.quantiteCommandeRecue = showlist[9]
+            ligne_eble.quantiteDifferenceAutre = showlist[16]
+            ligne_eble.quantiteDifference = showlist[17]
+            ligne_eble.quantiteDifferenceRestante = showlist[18]
+            ligne_eble.quantiteProduit = showlist[4]
+            ligne_eble.quantiteProduitAlivrer = showlist[12]
+            ligne_eble.quantiteProduitLitige = showlist[15]
+            ligne_eble.termine = showlist[7]
             ligne_eble.save()
             return HttpResponse("Ligne Bl Created !")
         return HttpResponse("No Authorized Access !")
@@ -1310,7 +1335,7 @@ class clientadd(ListView):
             if tfodebug is False:
                 return HttpResponse(" Error you choosed a broken fk1")
             #if znedebug is False:
-                #return HttpResponse(" Error you choosed a broken fk2")
+            #return HttpResponse(" Error you choosed a broken fk2")
             if tdedebug is False:
                 return HttpResponse(" Error you choosed a broken fk3")
             if tardebug is False:
