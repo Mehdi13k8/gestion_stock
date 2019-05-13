@@ -281,6 +281,44 @@ class bonLivraisonEntree(ListView):
 class bonLivraisonentreemodify(ListView):
     template_name = "bonlivraisonentreemodify.html"
 
+    def left(request):
+        if request.method == 'POST':
+            before = request.POST['id']
+            bl = BonLivraisonEntree.objects.get(idBonLivraisonEntree=request.POST['id'])
+
+            for i in range(int(before)-1, 0, -1):
+                try:
+                    go = BonLivraisonEntree.objects.get(idBonLivraisonEntree=str(i))
+                    return HttpResponse(i)
+                except BonLivraisonEntree.DoesNotExist:
+                    go = None
+                print (i)
+            return HttpResponse("fail")
+        return HttpResponse("No Authorized Access !")
+
+    def right(request):
+        if request.method == 'POST':
+            my_total = BonLivraisonEntree.objects.count()
+            after = request.POST['id']
+            bl = BonLivraisonEntree.objects.get(idBonLivraisonEntree=request.POST['id'])
+
+            mybl = BonLivraisonEntree.objects.all()
+            id = 0
+            for bl in mybl:
+                if id < int(bl.idBonLivraisonEntree):
+                    id = int(bl.idBonLivraisonEntree)
+            print("id = " + str(id) + '\n')
+
+            for i in range(int(after)+1, id+1, 1):
+                try:
+                    go = BonLivraisonEntree.objects.get(idBonLivraisonEntree=str(i))
+                    return HttpResponse(i)
+                except BonLivraisonEntree.DoesNotExist:
+                    go = None
+                print (i)
+            return HttpResponse("fail")
+        return HttpResponse("No Authorized Access !")
+
     def modify(request):
         if request.method == 'POST':
             ble = BonLivraisonEntree.objects.all()
@@ -1076,7 +1114,6 @@ class client(ListView):
             return HttpResponse("Error on delete.")
         return HttpResponse("Leave this place!")
 
-
     def get(self, request):
         context = {
             'cli' : Client.objects.all(),
@@ -1196,25 +1233,24 @@ class clientmodify(ListView):
                 if request.POST.get('zone') == zone.nom:
                     znedebug = True
                     client.fk_TypeZone = zone
-                tde = TypeDestinataire_pour_Client.objects.all()
+                tde = TypeDestinataire_pour_Destinataire.objects.all()
                 tdedebug = False
             for typed in tde:
                 if request.POST.get('typedest') == typed.nom:
                     tdedebug = True
                     client.fk_TypeDestinataire = typed
-                tfo = TypeFournisseur_pour_Client.objects.all()
+                tfo = TypeFournisseur_pour_Fournisseur.objects.all()
                 tfodebug = False
             for typefo in tfo:
                 if request.POST.get('typefour') == typefo.nom:
                     tfodebug = True
                 client.fk_TypeFournisseur = typefo
-                tar = TypeArticle_pour_Client.objects.all()
+                tar = typeArticle_pour_Article.objects.all()
                 tardebug = False
             for typea in tar:
                 if request.POST.get('typeart') == typea.nom:
                     tardebug = True
                 client.fk_TypeArticle = typea
-
             client.nom = showlist[0]
             client.idClient = showlist[1]
             client.telephone = showlist[2]
@@ -1276,9 +1312,9 @@ class clientmodify(ListView):
             'rlc' : RoleContact_pour_Client.objects.all(),
             'id' :request.GET.get('id'),
             'typez' : TypeZoneDepot.objects.all(),
-            'typed' : TypeDestinataire_pour_Client.objects.all(),
-            'typef' : TypeFournisseur_pour_Client.objects.all(),
-            'typea' : TypeArticle_pour_Client.objects.all(),
+            'typed' : TypeDestinataire_pour_Destinataire.objects.all(),
+            'typef' : TypeFournisseur_pour_Fournisseur.objects.all(),
+            'typea' : typeArticle_pour_Article.objects.all(),
             'bcs' : BonCommandeSortie.objects.all(),
             'bce' : BonCommandeEntree.objects.all(),
             'entree' : BonLivraisonEntree.objects.all(),
@@ -1314,19 +1350,19 @@ class clientadd(ListView):
                 if request.POST.get('zone') == zone.nom:
                     znedebug = True
                     client.fk_TypeZone = zone
-                tde = TypeDestinataire_pour_Client.objects.all()
+                tde = TypeDestinataire_pour_Destinataire.objects.all()
                 tdedebug = False
             for typed in tde:
                 if request.POST.get('typedest') == typed.nom:
                     tdedebug = True
                     client.fk_TypeDestinataire = typed
-                tfo = TypeFournisseur_pour_Client.objects.all()
+                tfo = TypeFournisseur_pour_Fournisseur.objects.all()
                 tfodebug = False
             for typefo in tfo:
                 if request.POST.get('typefour') == typefo.nom:
                     tfodebug = True
                 client.fk_TypeFournisseur = typefo
-                tar = TypeArticle_pour_Client.objects.all()
+                tar = typeArticle_pour_Article.objects.all()
                 tardebug = False
             for typea in tar:
                 if request.POST.get('typeart') == typea.nom:
@@ -1587,9 +1623,9 @@ class clientadd(ListView):
         context = {
             'cli' : Client.objects.all(),
             'typez' : TypeZoneDepot.objects.all(),
-            'typed' : TypeDestinataire_pour_Client.objects.all(),
-            'typef' : TypeFournisseur_pour_Client.objects.all(),
-            'typea' : TypeArticle_pour_Client.objects.all(),
+            'typed' : TypeDestinataire_pour_Destinataire.objects.all(),
+            'typef' : TypeFournisseur_pour_Fournisseur.objects.all(),
+            'typea' : typeArticle_pour_Article.objects.all(),
             'bcs' : BonCommandeSortie.objects.all(),
             'bce' : BonCommandeEntree.objects.all(),
             'rlc' : RoleContact_pour_Client.objects.all(),

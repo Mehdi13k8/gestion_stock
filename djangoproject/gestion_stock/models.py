@@ -19,7 +19,7 @@ class User(models.Model):
 class import_BonCommandeSortie(models.Model):
     idBonCommandeSortie = models.TextField(default='Null')
     Client = models.TextField(default='Null')
-    Destinataire2 = models.TextField(default='Null')    
+    Destinataire2 = models.TextField(default='Null')
     Destinataire = models.TextField(default='Null')
     codeDestinataire = models.TextField(default='Null')
     Transporteur = models.TextField(default='Null')
@@ -39,7 +39,7 @@ class import_LigneBonCommandeSortie_pour_import_BonCommandeSortie(models.Model):
     source = models.TextField(default='Null')
     idArticle_CDK = models.TextField(default='Null')
     quantiteColisStandard_CDK = models.TextField(default='Null')
-    
+
     def __str__(self):
         return self.idLigneBonCommandeSortie
 
@@ -718,10 +718,10 @@ class Pays_pour_Destinataire(models.Model):
 
 class Client(models.Model):
     idClient = models.CharField(max_length=42, default='Null')
-    fk_TypeZone = models.ForeignKey('TypeZoneDepot', on_delete=models.CASCADE, default=1)
-    fk_TypeFournisseur = models.ForeignKey('TypeFournisseur_pour_Client', on_delete=models.CASCADE, default=1)
-    fk_TypeDestinataire = models.ForeignKey('TypeDestinataire_pour_Client', on_delete=models.CASCADE, default=1)
-    fk_TypeArticle = models.ForeignKey('TypeArticle_pour_Client', on_delete=models.CASCADE, default=1)
+    fk_TypeZone = models.ForeignKey('TypeZoneDepot', on_delete=models.CASCADE, default=0, blank=True, null=True)
+    fk_TypeFournisseur = models.ForeignKey('TypeFournisseur_pour_Fournisseur', on_delete=models.CASCADE, default=0, blank=True, null=True)
+    fk_TypeDestinataire = models.ForeignKey('TypeDestinataire_pour_Destinataire', on_delete=models.CASCADE, default=0, blank=True, null=True)
+    fk_TypeArticle = models.ForeignKey('typeArticle_pour_Article', on_delete=models.CASCADE, default=0, blank=True, null=True)
     c_nom = models.CharField(max_length=42, default='Null')
     c_nomCompte = models.CharField(max_length=42, default='Null')
     c_horodatage = models.CharField(max_length=42, default='Null')
@@ -741,7 +741,7 @@ class Client(models.Model):
     def __str__(self):
         return self.nom
 
-class BonCommandeSortie_pour_Client(models.Model):
+'''class BonCommandeSortie_pour_Client(models.Model):
     fk_Client = models.ForeignKey('Client', on_delete=models.CASCADE, default=1)
     c_nom = models.CharField(max_length=42, default='Null')
     c_nomCompte = models.CharField(max_length=42, default='Null')
@@ -781,6 +781,7 @@ class OrdreTransport_pour_Client(models.Model):
     m_nomCompte = models.CharField(max_length=42, default='Null')
     m_horodatage = models.CharField(max_length=42, default='Null')
     dateCreation = models.CharField(max_length=42, default='Null')
+    '''
 
 class Contact_pour_Client(models.Model):
     idContact = models.CharField(max_length=42, default='Null')
@@ -819,7 +820,7 @@ class RoleContact_pour_Client(models.Model):
     m_nom = models.CharField(max_length=42, default='Null')
     m_nomCompte = models.CharField(max_length=42, default='Null')
     m_horodatage = models.CharField(max_length=42, default='Null')
-    nom = models.CharField(max_length=42, default='Null')'''
+    nom = models.CharField(max_length=42, default='Null')
 
 class TypeFournisseur_pour_Client(models.Model):
     idTypeFournisseur = models.CharField(max_length=42, default='Null')
@@ -850,6 +851,7 @@ class TypeArticle_pour_Client(models.Model):
     m_nomCompte = models.CharField(max_length=42, default='Null')
     m_horodatage = models.CharField(max_length=42, default='Null')
     nom = models.CharField(max_length=42, default='Null')
+    '''
 
 #end of Client
 
@@ -921,9 +923,8 @@ class TypeBonCommandeSortie_pour_BonCommandeSortie(models.Model):
 #Unitemanutentionentree debut
 class UniteManutentionEntree(models.Model):
     idUnitManutentionEntree = models.CharField(max_length=42, default='Null')
-    fk_BonLivraisonEntree = models.ForeignKey('BonLivraisonEntree_pour_UniteManutentionEntree', on_delete=models.CASCADE, default=1)
-    fk_ZoneDepot = models.ForeignKey('ZoneDepot_pour_UniteManutentionEntree_colis', on_delete=models.CASCADE, default=1)
-    #plutôt que de faire des one to many je vais faire des tables indépendantes relié par moi
+    fk_BonLivraisonEntree = models.ForeignKey('BonLivraisonEntree', on_delete=models.CASCADE, default=0, blank=True, null=True)
+    fk_ZoneDepot = models.ForeignKey('ZoneDepot_pour_TypeZoneDepot', on_delete=models.CASCADE, default=0, blank=True, null=True)
     #fk_Etiquette = models.ForeignKey('EtiquetteUniteManutentionEntree_pour_UniteManutentionEntree', on_delete=models.CASCADE, default=1)
     c_nom = models.CharField(max_length=42, default='Null')
     c_nomCompte = models.CharField(max_length=42, default='Null')
@@ -1000,7 +1001,7 @@ class Colis_ZoneDepot_pour_UniteManutentionEntree(models.Model):
     dateEntree = models.CharField(max_length=42, default='Null')
     dateSortie = models.CharField(max_length=42, default='Null')
     #def __str__(self):
-        #return self.nom
+    #return self.nom
 
 class Colis_UniteManutentionSortie_pour_UniteManutentionEntree(models.Model):
     fk_Colis = models.ForeignKey('Colis_pour_UniteManutentionEntree', on_delete=models.CASCADE, default=1)
