@@ -366,7 +366,7 @@
             $("#mail").val('{{ items.email }}');
             $("#tva").val('{{ items.tva }}');
             $("#siret").val('{{ items.siret }}');
-            $("#addr").val('{{ items.adresse }}');
+            $("#addr").text('{{ items.adresse|escapejs  }}');
 
             $("#zonetype").val('{{ items.fk_TypeZone.nom }}');
             $("#destitype").val('{{ items.fk_TypeDestinataire.nom }}');
@@ -595,6 +595,9 @@
 
         $("#back-row").click( function() {
             location.href = "{% url 'client' %}";
+        });
+        $("#create-row").click( function() {
+            location.href = "{% url 'clientadd' %}";
         });
         $("#nom").change(function () {
             console.log( $(this).val() );

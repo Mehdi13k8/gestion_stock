@@ -27,40 +27,193 @@
     <div class="row">
         <div class="border shadow-lg p-3 mb-5 bg-white rounded col-md-auto table-responsive">
             <div class="row">
-                <div class="col-3 mr-lg-n5">
+                <div class="col-auto">
                     <label for="compum">UM incomplets: </label>
                     <button id="compum" class='btn btn-sm btn-success'>
                         <i class="fas fa-thumbs-up"></i>
                     </button>
                 </div>
 
-                <div class="col-2 ml-lg-n2 ">
+                <div class="col-2">
                     <div class="form-group form-inline">
                         <label for="numum">n° UM : </label>
-                        <input type="text" class="form-control ml-1 w-50" id="numum" placeholder="N°UM">
+                        <input type="text" class="form-control w-50 input-group-sm" id="numum" placeholder="N°UM">
                     </div>
                 </div>
-                <div class="col-3">
 
+                <div class="col-4">
                     <div class="form-group form-inline">
                         <label for="blum"><button class="btn btn-sm btn-light">
                             <i class="fas fa-chevron-right" style="font-size: 15px;"></i>
                         </button>bon de livraison: </label>
-                        <input type="text" class="form-control ml-1 w-25" id="blum" disabled>
+                        <input type="text" class="form-control w-25" id="blum" disabled>
                     </div>
                 </div>
 
-                <div class="col-3">
-                    <div class="form-group form-inline">
-                        <label for="seldep">zone dépôt: </label>
-                        <select type="text" class="form-control ml-1 w-25" id="seldep"></select>
+                <div class="col">
+                    <br>
+                    <div class="form-group form-inline mt-n3 ml-n5">
+                        <label for="seldep">zone dépôt :&nbsp;</label>
+                        <select type="text" class="form-control w-25" id="seldep"></select>
                     </div>
                 </div>
 
             </div>
+
+            <div class="row">
+                <div class="col text-center">
+                    <label class="" for="date">date de réception:</label>
+                    <input type="date" id="date" class="form-control">
+                </div>
+
+                <div class="col-auto">
+                    <br>
+                    <button class="btn btn-outline-blue-grey"><i class="fas fa-print" style="color: darkblue; font-size: 20px;"></i></button>
+                </div>
+
+                <div class="col-auto">
+                    <br>
+                    <label for="divbtns">filtrer liriges :&nbsp;</label>
+                    <div class="btn-group" role="group" aria-label="Basic example" id="divbtns">
+                        <button type="button" class="btn btn-sm btn-cyan">tout</button>
+                        <button type="button" class="btn btn-sm btn-cyan">livrable</button>
+                        <button type="button" class="btn btn-sm btn-cyan">litige</button>
+                    </div>
+                </div>
+
+                <div class="col-auto">
+                    <br>
+                    <div class="form-group form-inline">
+                        <label for="umid">id:&nbsp;</label>
+                        <br><input type="text" id="umid" name="id_ume" class="w-25 rounded-pill" disabled>
+                    </div>
+                </div>
+
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-auto">
+                    <br>
+                    <div class="row">
+                        <div class="col">
+                            <label for="divbtns">filtrer litiges:&nbsp;</label>
+                        </div>
+                    </div>
+                    <div class="btn-group-vertical" role="group" aria-label="Basic example" id="divbtns">
+                        <button type="button" class="btn btn-sm btn-cyan">tout</button>
+                        <button type="button" class="btn btn-sm btn-cyan">rien</button>
+                    </div>
+                </div>
+
+                <div class="col-7 border shadow-lg rounded table-responsive mr-1">
+                    <div class="col">
+
+                    </div>
+                </div>
+
+                <div class="col-2 border shadow-lg rounded table-responsive ml-1">
+                    <div class="border shadow-sm mt-1 text-center mb-1">
+                        <p> Quantités dans les colis affichés</p>
+                    </div>
+
+                    <div class="form-group form-inline">
+                        <label class="" for="clis"> Colis: &nbsp;</label>
+                        <input type="text" class="form-control" id="clis" placeholder="0" style="width: 90px;">
+                    </div>
+
+                    <div class="form-group form-inline">
+                        <label for="prod"> Produits:&nbsp; </label>
+                        <input type="text" class="form-control" id="prod" placeholder="0" style="width: 90px;">
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <br>
+                    <label for="divbtns">filtrer liriges :&nbsp;</label>
+                    <div class="btn-group" role="group" aria-label="Basic example" id="divbtns">
+                        <button type="button" class="btn btn-sm btn-cyan">tout</button>
+                        <button type="button" class="btn btn-sm btn-cyan">stock</button>
+                        <button type="button" class="btn btn-sm btn-cyan">assigné</button>
+                        <button type="button" class="btn btn-sm btn-cyan">confirmé</button>
+                    </div>
+                </div>
+                <div class="col">
+                    <br>
+                    <button type="button" class="btn btn-sm btn-cyan ">vérifier n° lot/DLUO</button>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
+
+<div class="container">
+    <div class="border shadow-lg p-2 mb-3 bg-white rounded">
+        <h5 class="text-center"> <u> Lignes de l'U.M entree</u></h5>
+        <div class="container">
+            <div class="row">
+                <div class="container">
+                    <div class="border shadow-lg p-2 mb-3 bg-white rounded">
+                        <div class="table-responsive text-nowrap">
+                            <table id="tabbl" class="table table-condensed table-sm table-striped table-bordered" cellspacing="0" width="100%">
+                                <thead>
+                                <tr>
+                                    <th scope="col"><i class="fas fa-copy"></i></th>
+                                    <th scope="col"><i class="fas fa-plus"></i></th>
+                                    <th scope="col">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n°colis&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                    <th scope="col">code fournisseur</th>
+                                    <th scope="col">&nbsp;désignation&nbsp;</th>
+                                    <th scope="col">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n°lot&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                    <th scope="col">date péremption</th>
+                                    <th scope="col" class="text-center">qte<br>par colis</th>
+                                    <th scope="col">litige</th>
+                                    <th scope="col">numéroter</th>
+                                    <th scope="col"><i class="fas fa-arrow-right"></i></th>
+                                    <th scope="col"><i class="fas fa-redo"></i> </th>
+                                    <th scope="col">U.M sortie</th>
+                                    <th scope="col">numéro </th>
+                                    <th scope="col">confirmer</th>
+                                    <th scope="col">date expédition</th>
+                                    <th scope="col"><i class="fas fa-unlink"></i></th>
+                                    <th scope="col">Retour ancien<br>n° colis</th>
+                                    <th scope="col"><i class="fas fa-trash"></i></th>
+                                    <th scope="col">collée</th>
+                                    <th scope="col">imprimer</th>
+                                </tr>
+                                </thead>
+                                <tbody id="tabblbody">
+                                {% for items in entreeligne %}
+                                <!--<tr>
+                                    <td> <button id='{{ items.idBonLivraisonEntree }}' class="dyna"> -> </button></td>
+                                    <td> {{ items.fk_TypeZoneDepot.nom }} </td>
+                                        <td> {{ items.dateReception }} </td>
+                                    <td> {{ items.numeroBonLivraison }} </td>
+                                    <td> <button id='{{ items.idBonLivraisonEntree  }}' class="dynad"> X </button> </td>
+                                </tr>
+                                -->
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-sm btn-dark" id="addligne"><i class="fas fa-plus"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="dialog-confirm" title="Ajouter des lignes">
+    Combien de lignes faut-il ajouter ?</p>
+    <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>
+        <input id="numberligne" type="text" pattern="[0-9]+">
+</div>
+<br>
+<br>
+
 <script>
     $(document).ready(function() {
         $('#compum').click(function () {
@@ -79,6 +232,167 @@
             $("#seldep").toggle();
         });
 
+        var nbrligne = 0;
+        $("#dialog-confirm").dialog({
+            resizable: false,
+            height: "auto",
+            width: 400,
+            modal: true,
+            buttons: {
+                "Annuler": function() {
+                    $('#numberligne').val("");
+                    $(this).dialog("close");
+                },
+                ok: function() {
+                    nbrligne = $('#numberligne').val();
+                    $('#numberligne').val("");
+                    $(this).dialog("close");
+                    for (var nbr = nbrligne; nbr > 0; nbr--) {
+                        $('#tabblbody').append("<tr><td><button class='duplique' id=\"duplicate" + nbr + "\"><i class=\"fas fa-copy\"></i></button></td>" +
+                            "<td><button class='ajout' id=\"add" + nbr + "\"><i class=\"fas fa-plus\"></i></button></td>" +
+                            "<td><input class='form-control'></td>" +
+                            "<td><select class=\"form-control fournise\" id=\"blfournisseur" + nbr + "\"></select></td>" +
+                            "<td><select class=\"form-control desif\" id=\"iddesif" + nbr + "\"></select></td>" +
+                            "<td><input class='form-control'></td>" +
+                            "<td><input type=\"date\" class=\"date rounded\" class=\"form-control\"></td>" +
+                            "<td><input type=\"text\" class=\"form-control\"></td>" +
+                            "<td><button class=\"litige btn btn-blue-grey btn-sm\" id=\"litige" + nbr + "\">litige</button> </td>" +
+                            "<td><input class='form-control'></td>" +
+                            "<td><input class='form-control'></td>" +
+                            "<td><input class='form-control'></td>" +
+                            "<td><input class='form-control'></td>" +
+                            "<td><input class='form-control'></td>" +
+                            "<td><input class='form-control'></td>" +
+                            "<td><input class='form-control'></td>" +
+                            "<td><button class=\"deleteur\"> X </button> </td>" +
+                            "<td><input class='form-control'></td>" +
+                            "<td><input class='form-control'></td>");
+                        '{% for items in art %}'
+                        $("select.fournise:last").append(new Option("{{ items.codeFournisseur }}", "{{ items.codeFournisseur }}"));
+                        $("select.desif:last").append(new Option("{{ items.designationClient }}", "{{ items.designationClient }}"));
+                        $("select.fournise:last").val("");
+                        $("select.desif:last").val("");
+                        '{% endfor %}'
+                    }
+                    //code fournisseur
+                    for (var a = nbrligne; a != 0; a--) {
+                        $("#blfournisseur" + a).combobox();
+                    }
+                    $("#toggle").on("click", function () {
+                        for (var a = nbrligne; a != 0; a--) {
+                            $("#blfournisseur" + a).toggle();
+                        }
+                    });
+                    for (var a = nbrligne; a != 0; a--) {
+                        $("#iddesif" + a).combobox();
+                    }
+                    $("#toggle").on("click", function () {
+                        for (var a = nbrligne; a != 0; a--) {
+                            $("#iddesif" + a).toggle();
+                        }
+                    });
+
+                    $(".fournise").combobox({
+                        select: function (event, ui) {
+                            '{% for items in art %}'
+                            if ('{{ items.codeFournisseur }}' == this.value) {
+                                console.log("therae");
+                                //$(this).closest('td').next().find('select').val('{{ items.designationClient }}');
+                                //$(this).closest('td').next().find('select').find('option').remove();
+                                $(this).closest('td').next().find('select').find('option').remove();
+                                $(this).closest('td').next().find('select').append(new Option("{{ items.designationClient }}", "{{ items.designationClient }}"));
+                            }
+                            '{% endfor %}'
+                        }
+                    });
+                    $(".desif").combobox({
+                        select: function (event, ui) {
+                            '{% for items in art %}'
+                            if ('{{ items.designationClient  }}' == this.value) {
+                                console.log("therae");
+                                //$(this).closest('td').next().find('select').val('{{ items.designationClient }}');
+                                //$(this).closest('td').next().find('select').find('option').remove();
+                                $(this).closest('td').prev().find('select').find('option').remove();
+                                $(this).closest('td').prev().find('select').append(new Option("{{ items.codeFournisseur }}", "{{ items.codeFournisseur }}"));
+                            }
+                            '{% endfor %}'
+                        }
+                    });
+                    $('.resetb').click(function () {
+                        //alert("gg " + $(this).attr('id'));
+                        //var id = $(this).attr('id');
+                        $(this).closest('td').parent().find('td').eq(0).next().find('select').find('option').remove();
+                        $(this).closest('td').parent().find('td').eq(1).next().find('select').find('option').remove();
+                        '{% for items in art %}'
+                        $(this).closest('td').parent().find('td').eq(0).next().find('select').append(new Option("{{ items.codeFournisseur }}", "{{ items.codeFournisseur }}"));
+                        $(this).closest('td').parent().find('td').eq(1).next().find('select').append(new Option("{{ items.designationClient }}", "{{ items.designationClient }}"));
+                        '{% endfor %}'
+                    });
+                }
+            },
+        });
+
+        $("#dialog-confirm").dialog("close");
+        $('body').on('click', '.butctrl', function() {
+            if ($(this).hasClass("btn-light")) {
+                $(this).removeClass("btn-light");
+                $(this).addClass("btn-success");
+                $(this).find($("i")).removeClass('fa-thumbs-down').addClass('fa-thumbs-up');
+            }
+            else
+            {
+                $(this).removeClass("btn-success");
+                $(this).addClass("btn-light");
+                $(this).find($("i")).removeClass('fa-thumbs-up').addClass('fa-thumbs-down');
+            }
+        });
+        $(document).on("input", "input", function (event) {
+            if (this.checkValidity()) {
+                $(this).data('last-valid', this.value);
+            }
+            else {
+                var myvalue = $(this).text();
+                if($.isNumeric($('#numberligne').val())) {
+                    console.log("numeric");
+                } else {
+                    console.log("not numeric");
+                    $('#numberligne').popover({
+                        trigger: 'manual',
+                        title: 'Warning!',
+                        content: 'Value can not be empty',
+                        placement: 'left',
+                    }).popover('show');
+                    setTimeout(closederror, 2000);
+                }
+                this.value = $(this).data('last-valid') || "";
+            }
+        });
+
+        function checkligne() {
+            $("#numberligne").popover({trigger: 'manual', content: "Input only numbers!", placement : 'right'});
+            $("#numberligne").popover('show');
+        };
+        function closederror() {
+            $("#numberligne").popover('dispose');
+        };
+        $('#addligne').click(function() {
+            $("#dialog-confirm").dialog("open");
+        });
+
+        var upperid = "0";
+        "{% for items in entree %}"
+        if (parseInt(upperid, 10) < parseInt('{{ items.idBonLivraisonEntree }}', 10)) {
+            upperid = parseInt('{{ items.idBonLivraisonEntree }}', 10);
+        }
+        "{% endfor %}"
+        if (upperid == 0)
+            $("#umid").val(1);
+        else
+            $("#umid").val(upperid+1);
+
+        $('#tabblbody').on('click', '.deleteur', function() {
+            $(this).parent().parent().remove();
+        });
     });
 </script>
 
