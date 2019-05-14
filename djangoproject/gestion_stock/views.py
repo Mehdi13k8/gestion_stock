@@ -1233,20 +1233,20 @@ class clientmodify(ListView):
                 if request.POST.get('zone') == zone.nom:
                     znedebug = True
                     client.fk_TypeZone = zone
-                tde = TypeDestinataire_pour_Destinataire.objects.all()
-                tdedebug = False
+            tde = TypeDestinataire_pour_Destinataire.objects.all()
+            tdedebug = False
             for typed in tde:
                 if request.POST.get('typedest') == typed.nom:
                     tdedebug = True
                     client.fk_TypeDestinataire = typed
-                tfo = TypeFournisseur_pour_Fournisseur.objects.all()
-                tfodebug = False
+            tfo = TypeFournisseur_pour_Fournisseur.objects.all()
+            tfodebug = False
             for typefo in tfo:
                 if request.POST.get('typefour') == typefo.nom:
                     tfodebug = True
                 client.fk_TypeFournisseur = typefo
-                tar = typeArticle_pour_Article.objects.all()
-                tardebug = False
+            tar = typeArticle_pour_Article.objects.all()
+            tardebug = False
             for typea in tar:
                 if request.POST.get('typeart') == typea.nom:
                     tardebug = True

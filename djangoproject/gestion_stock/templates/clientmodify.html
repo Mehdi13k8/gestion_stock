@@ -361,21 +361,21 @@
         '{% for items in cli %}'
         if ('{{ items.idClient }}' == $("#umid").val()) {
             //console.log("gg hit");
-            $("#nom").val('{{ items.nom }}');
-            $("#tel").val('{{ items.telephone }}');
-            $("#mail").val('{{ items.email }}');
-            $("#tva").val('{{ items.tva }}');
-            $("#siret").val('{{ items.siret }}');
-            $("#addr").text('{{ items.adresse|escapejs  }}');
+            $("#nom").val('{{ items.nom|escapejs }}');
+            $("#tel").val('{{ items.telephone|escapejs }}');
+            $("#mail").val('{{ items.email|escapejs }}');
+            $("#tva").val('{{ items.tva|escapejs }}');
+            $("#siret").val('{{ items.siret|escapejs }}');
+            $("#addr").text('{{ items.adresse|escapejs }}');
 
-            $("#zonetype").val('{{ items.fk_TypeZone.nom }}');
-            $("#destitype").val('{{ items.fk_TypeDestinataire.nom }}');
-            $("#fournitype").val('{{ items.fk_TypeFournisseur.nom }}');
-            $("#typearticle").val('{{ items.fk_TypeArticle.nom }}');
+            $("#zonetype").val('{{ items.fk_TypeZone.nom|escapejs }}');
+            $("#destitype").val('{{ items.fk_TypeDestinataire.nom|escapejs }}');
+            $("#fournitype").val('{{ items.fk_TypeFournisseur.nom|escapejs }}');
+            $("#typearticle").val('{{ items.fk_TypeArticle.nom|escapejs }}');
 
-            $("#src").val('{{ items.source }}');
-            $("#srcid").val('{{ items.identifiantSource }}');
-            $("#comtxt").val('{{ items.commentaire }}');
+            $("#src").val('{{ items.source|escapejs }}');
+            $("#srcid").val('{{ items.identifiantSource|escapejs }}');
+            $("#comtxt").val('{{ items.commentaire|escapejs }}');
         }
         '{% endfor %}'
         $("#sendclient").click(function() {
