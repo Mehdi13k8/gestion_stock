@@ -72,9 +72,9 @@
                             var name = "{{ items.nom }}";
                             var oldname;
                             if (i == 0)
-                                $("#zonetype").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                                $("#zonetype").append(new Option("{{ items.nom|safe }}", "{{ items.nom|safe }}"));
                             else if (name != oldname)
-                                $("#zonetype").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                                $("#zonetype").append(new Option("{{ items.nom|safe }}", "{{ items.nom|safe }}"));
                             oldname = name;
                             i = 1;
                             "{% endfor %}"
@@ -92,12 +92,12 @@
                             "{% for items in typed %}"
                             //console.log("{{ items.nom }}");
                             //to change
-                            var name = "{{ items.nom }}";
+                            var name = "{{ items.nom|safe }}";
                             var oldname;
                             if (i == 0)
-                                $("#destitype").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                                $("#destitype").append(new Option("{{ items.nom|safe }}", "{{ items.nom|safe }}"));
                             else if (name != oldname)
-                                $("#destitype").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                                $("#destitype").append(new Option("{{ items.nom|safe }}", "{{ items.nom|safe }}"));
                             oldname = name;
                             i = 1;
                             "{% endfor %}"
@@ -115,12 +115,12 @@
                             "{% for items in typef %}"
                             //console.log("{{ items.nom }}");
                             //to change
-                            var name = "{{ items.nom }}";
+                            var name = "{{ items.nom|safe }}";
                             var oldname;
                             if (i == 0)
-                                $("#fournitype").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                                $("#fournitype").append(new Option("{{ items.nom|safe }}", "{{ items.nom|safe }}"));
                             else if (name != oldname)
-                                $("#fournitype").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                                $("#fournitype").append(new Option("{{ items.nom|safe }}", "{{ items.nom|safe }}"));
                             oldname = name;
                             i = 1;
                             "{% endfor %}"
@@ -138,12 +138,12 @@
                             "{% for items in typea %}"
                             //console.log("{{ items.nom }}");
                             //to change
-                            var name = "{{ items.nom }}";
+                            var name = "{{ items.nom|safe }}";
                             var oldname;
                             if (i == 0)
-                                $("#typearticle").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                                $("#typearticle").append(new Option("{{ items.nom|safe }}", "{{ items.nom|safe }}"));
                             else if (name != oldname)
-                                $("#typearticle").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                                $("#typearticle").append(new Option("{{ items.nom|safe }}", "{{ items.nom|safe }}"));
                             oldname = name;
                             i = 1;
                             "{% endfor %}"
@@ -265,7 +265,7 @@
                                         var idx = 0;
                                         var nm = $("#contacttable > tbody > tr").length;
                                         $('#contactbody')
-                                            .append('<tr><td><select class="myselects" name="role" id=' + nm +'></select></td><td contenteditable=\'true\'>{{ items.nom }}</td><td contenteditable=\'true\'>{{ items.prenom }}</td><td contenteditable=\'true\'>{{ items.telephone }}</td><td contenteditable=\'true\'>{{ items.email }}</td><td><button class="deleteur">X</button></td><td style="display:none;">{{ items.idContact }}</td></tr>');
+                                            .append('<tr><td><select class="myselects" name="role" id=' + nm +'></select></td><td contenteditable=\'true\'>{{ items.nom|safe }}</td><td contenteditable=\'true\'>{{ items.prenom|safe }}</td><td contenteditable=\'true\'>{{ items.telephone|safe }}</td><td contenteditable=\'true\'>{{ items.email|safe }}</td><td><button class="deleteur">X</button></td><td style="display:none;">{{ items.idContact }}</td></tr>');
                                         "{% for items in rlc %}"
                                         rolenamez[idx] = "{{ items.nom }}";
                                         idx++;
@@ -277,7 +277,7 @@
                                         $("#"+nm+" option[name='1']").attr({value: "{{ items.fk_RoleContact.nom }}",
                                             selected: 'selected'});
                                         $("#"+nm+" option[name='1']").attr("value", "{{ items.fk_RoleContact }}").filter(function() {
-                                            return ($(this).text() == '{{ items.fk_RoleContact.nom }}'); //To select Blue
+                                            return ($(this).text() == '{{ items.fk_RoleContact.nom|safe }}'); //To select Blue
                                         }).prop('selected', true);
                                         console.log($("#"+nm+" option[name='1']").attr('selected', "selected").val());
                                     }

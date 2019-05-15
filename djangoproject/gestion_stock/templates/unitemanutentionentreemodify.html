@@ -12,7 +12,7 @@
     .validateTips { border: 1px solid transparent; padding: 0.3em;}
 </style>
 
-<div class="container"><h1 class="text-center"> Ajout d'U.M Entree</h1></div>
+<div class="container"><h1 class="text-center"> modif U.M Entree</h1></div>
 <br>
 
 <div class="container">
@@ -145,9 +145,7 @@
                     <button type="button" class="btn btn-sm btn-cyan ">vérifier n° lot/DLUO</button>
                 </div>
             </div>
-            <div class="text-right">
-                <button type="button" class="btn btn-blue-grey" id="saveume">Save&nbsp;<i class="fas fa-check"></i></button>
-            </div>
+
         </div>
     </div>
 </div>
@@ -202,7 +200,7 @@
                         </div>
                     </div>
                 </div>
-                <button class="btn btn-sm btn-dark" id="addligne" disabled><i class="fas fa-plus"></i></button>
+                <button class="btn btn-sm btn-dark" id="addligne"><i class="fas fa-plus"></i></button>
             </div>
         </div>
     </div>
@@ -227,6 +225,9 @@
                 $(this).attr('class', 'btn btn-sm btn-success');
                 $(this).find('i').attr('class', 'fas fa-thumbs-up');
             }
+        });
+        $('#back-row').click(function () {
+           //href=
         });
 
         $("#seldep").combobox();
@@ -382,9 +383,9 @@
         });
 
         var upperid = "0";
-        "{% for items in ume %}"
-        if (parseInt(upperid, 10) < parseInt('{{ items.idUniteManutentionEntree }}', 10)) {
-            upperid = parseInt('{{ items.idUniteManutentionEntree }}', 10);
+        "{% for items in entree %}"
+        if (parseInt(upperid, 10) < parseInt('{{ items.idBonLivraisonEntree }}', 10)) {
+            upperid = parseInt('{{ items.idBonLivraisonEntree }}', 10);
         }
         "{% endfor %}"
         if (upperid == 0)
@@ -394,25 +395,6 @@
 
         $('#tabblbody').on('click', '.deleteur', function() {
             $(this).parent().parent().remove();
-        });
-
-        $('#saveume').click(function () {
-            $.ajax({
-                type:"POST",    //type de requête utilisé par ajax
-                url:"/create_ume/", //lien de la view qui gère la requête post
-                data: {
-                    'id': $('#umid').val(), // id du transporteur acquis grace a une incrementation en js
-                    csrfmiddlewaretoken: '{{ csrf_token }}',
-                },
-                success: function(msg, data, settings){
-                    console.log("gg " + msg);
-                    //if (msg != "fail")
-                        //window.location.href = "{% url 'articlemodify' %}?id=" +  msg;
-                },
-                failure: function() {
-                    console.log("fail");
-                }
-            });
         });
     });
 </script>

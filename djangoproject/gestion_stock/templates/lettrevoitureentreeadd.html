@@ -87,12 +87,12 @@
                                                                     "{% for items in trans %}"
                                                                     console.log("transporteur");
                                                                     //to change
-                                                                    var name = "{{ items.nom }}";
+                                                                    var name = "{{ items.nom|escapejs }}";
                                                                     var oldname;
                                                                     if (i == 0)
-                                                                        $("#transporteur").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                                                                        $("#transporteur").append(new Option("{{ items.nom|escapejs }}", "{{ items.nom|escapejs }}"));
                                                                     else if (name != oldname)
-                                                                        $("#transporteur").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                                                                        $("#transporteur").append(new Option("{{ items.nom|escapejs }}", "{{ items.nom|escapejs }}"));
                                                                     oldname = name;
                                                                     i = 1;
                                                                     "{% endfor %}"

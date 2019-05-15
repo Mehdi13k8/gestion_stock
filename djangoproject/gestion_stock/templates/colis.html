@@ -68,17 +68,20 @@
                         {% for items in col %}
                         <tr>
                             <td> <button id='{{ items.idColi }}' class="dyna"> -> </button></td>
-                            <td> {{ items.stock }} </td>
-                            <td> {{ items.fk_TypeArticle.nom }} </td>
-                            <td> {{ items.fk_Fournisseur.nom }} </td>
+                            <td> {{ items.idColis }} </td>
+                            <td> {{ items.fk_Article.designationFournisseur|safe }} </td>
+                            <td> {{ items.fk_Article.codeclient }} </td>
                             <td> {{ items.codeClient }} </td>
-                            <td> {{ items.designationClient }} </td>
-                            <td> {{ items.quantiteProduitStockComplet }} </td>
-                            <td> {{ items.quantiteColisStockComplet }} </td>
-                            <td> {{ items.quantiteProduitStockIncomplet }} </td>
-                            <td> {{ items.quantiteColisStockIncomplet }} </td>
-                            <td> {{ items.quantiteColisStandard }} </td>
-                            <td> {{ items.quantiteUniteManutentionSortie }} </td>
+                            <td> {{ items.numeroLot|safe }} </td>
+                            <td> {{ items.datePeremption }} </td>
+                            <td> {{ items.quantititeProduit }} </td>
+                            <td> {{ items.fk_ZoneDepot.nom|safe }} </td>
+                            <td> {{ items.fk_UniteManutentionEntree.idUniteManutentionEntree }} </td>
+                            <td> {{ items.fk_UniteManutentionSortie.idUniteManutentionEntree }} </td>
+                            <td> {{ items.fk_Destinataire.codeUM }} </td>
+                            <td> {{ items.dateExpedition }} </td>
+                            <td> {{ items.fk_UniteManutentionSortie.dateExpedition }} </td>
+                            <td> {{ items.emplacementConfirme }} </td>
                             <td> <button id='{{ items.idArticle }}' class="dynad"> X </button> </td>
                         </tr>
                         {% endfor %}
@@ -90,14 +93,14 @@
     </div>
 </div>
 
-<script type="text/ja   vascript">
+<script type="text/javascript">
     $(document).ready(function () {
         $('#dtBasicExample').DataTable();
         $('.dataTables_length').addClass('bs-select');
     });
 
     $("#create-row").click(function() {
-        location.href = "{% url 'articleadd' %}";
+        location.href = "{% url 'colisadd' %}";
     });
 
     $(document).on("click", "button.dyna" , function(e) { // event pour modifier les entree transporteur

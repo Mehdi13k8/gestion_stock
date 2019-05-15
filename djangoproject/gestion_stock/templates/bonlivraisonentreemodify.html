@@ -445,6 +445,7 @@
             '{% for items in cli %}'
             if ('{{ items.nom }}' == $('#client').val()) {
                 $('#zone').val('{{ items.fk_TypeZone.nom }}');
+                $('#zatt').empty();
                 '{% for items in zoned %}'
                 $("#zatt").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
                 '{% endfor %}'
@@ -457,16 +458,7 @@
             $("#inputnbl").val("{{ items.numeroBonLivraison }}");
             $("#litiges").val("{{ items.fk_Destinataire }}");
             $("#client").val("{{ items.fk_Client }}");
-            $("#zatt").val("{{ items. }}");
-
-            '{% for items in cli %}'
-            if ('{{ items.nom }}' == $('#client').val()) {
-                $('#zone').val('{{ items.fk_TypeZone.nom }}');
-                '{% for items in zoned %}'
-                $("#zatt").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
-                '{% endfor %}'
-            }
-            '{% endfor %}'
+            $("#zatt").val("{{ items.fk_ZoneDepot_pour_TypeZoneDepot }}");
 
             '{% for itemslb in entreeligne %}'
             if ('{{ itemslb.fk_BonLivraisonEntree }}' == '{{ items.idBonLivraisonEntree }}') {
@@ -884,11 +876,6 @@
                 if ('{{ items.nom }}' == this.value) {
                     $('#zone').val('{{ items.fk_TypeZone.nom }}');
                     '{% for items in zoned %}'
-                    /*console.log('there');
-                        if ('{{ items.fk_TypeZoneDepot.nom }}' == $('#zone').val()) {
-                            $('#zone').val('{{ items.fk_TypeZone.nom }}');
-                            console.log("gg");
-                        }*/
                     $("#zatt").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
                     '{% endfor %}'
                     //$("#").append(new Option("{{ items.nom }}", "{{ items.nom }}"));

@@ -7,8 +7,7 @@ urlpatterns = [
     path('', views.index.as_view(), name='index'),
 
     #path('accounts/login/', auth_views.LoginView.as_view()),
-    path('login/', views.index_login.as_view(), name='login'),
-
+    #path('login/', views.index_login.as_view(), name='login'),
     path('index', views.index.as_view()),
 
     path('bon_entree', views.BonCommandeEntree_index.as_view(), name='bonCommandeEntree'), #page des bon de commande entree
@@ -18,7 +17,7 @@ urlpatterns = [
     path('bon_entree/modify', views.BonCommandeEntreemodify.as_view(), name='bonCommandeEntreemodify'),
     path('delete_bon_entree/', views.BonCommandeEntree_index.delete),
 
-    path('bon', views.ListeArticles.as_view(), name='bonCommandeSortie'),
+    path('bon', views.bonCommandeSortie.as_view(), name='bonCommandeSortie'),
     path('bon/add', views.bonCommandeSortieadd, name ='bonCommandeSortieadd'),
 
     path('bonLivraisonsortie', views.bonLivraisonSortie.as_view(), name='bonLivraisonSortie'),
@@ -92,6 +91,7 @@ urlpatterns = [
     path('delete_cli_contact/', views.clientmodify.delete_cli_contact, name='clientmodifydeletecontact'),
 
     path('colis', views.colis.as_view(), name='colis'),
+    path('colis/add', views.colisadd.as_view(), name='colisadd'),
 
     path('umentree', views.ume.as_view(), name='unitemanutentionentree'),
     path('umentree/add', views.umeadd.as_view(), name='unitemanutentionentreeadd'),

@@ -7,19 +7,20 @@ from django.views.generic import ListView
 from .models import *
 
 
-#https://realpython.com/django-and-ajax-form-submissions/ faut aller apprendre la connection
+#https://realpython.com/django-and-ajax-form-submissions/ faut aller apprendre la connection | plus besoin, connection acquise
 #https://code.djangoproject.com/wiki/AjaxDojoLogin
 
-class index(ListView):
-    template_name = "index.html"
+class index(ListView):              #Page d'acceuil vide pour l'instant
+    template_name = "index.html" #template html visé situé dans /templates
 
     def get(self, request):
         context = {
-            'activate' : 'on'
+            'activate' : 'on' #cette donnée me permettra de savoir dans quel view je suis pour mettre en surbrillance la page choisie
         }
-        return render(request, self.template_name, context)
+        return render(request, self.template_name, context) #je retourne le template via self car il se trouve dans la classe la request que django sache ce que je fais et context pour les variables
 
-class index_login(ListView):
+#J'étais partie sur cette façon de me connecter, mais je suis retournée a la manière standard offerte par django via un "form standard"
+'''class index_login(ListView): 
     template_name = "login.html"
 
     def loginajax(request):
@@ -40,7 +41,8 @@ class index_login(ListView):
         context = {
             'activate' : 'on'
         }
-        return render_to_response(self.template_name, context)
+        return render_to_response(self.template_name, context)'''
+
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
@@ -110,7 +112,7 @@ class BonCommandeEntreemodify(ListView):
 
 
 #c'est le bon de sortie pour les commande
-class ListeArticles(ListView):
+class bonCommandeSortie(ListView):
     data = dict()
 
     template_name = "bonCommandeSortie.html"
@@ -125,7 +127,8 @@ class ListeArticles(ListView):
         return render(request, self.template_name, context)
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-#useless
+
+#page d'ajout des bon commandes sortie
 def bonCommandeSortieadd(request):
     context = {
         'sortie' :BonCommandeSortie_pour_import_BonCommandeSortie.objects.all().select_related('fk_Client', 'fk_Destinataire', 'fk_Transporteur', 'fk_TypeBonCommandeSortie'),
@@ -136,23 +139,24 @@ def bonCommandeSortieadd(request):
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
+#ici je crée les lettre de voiture entree
 class lettrevoitureentreeadd(ListView):
-    template_name = "lettrevoitureentreeadd.html"
+    template_name = "lettrevoitureentreeadd.html"   #template pour crée une LV.entree
 
-    def create(request):
-        if request.method == 'POST':
-            lve = LettreVoitureEntree.objects.all()
-            trans = Transporteur.objects.all()
+    def create(request): #fonction qui crée une L.V entree via les donnée rempli dans le template html
+        if request.method == 'POST': #je vérifie que la requête reçus est bien une reqête POST
+            lve = LettreVoitureEntree.objects.all() #je recupère toutes les entrées que contient LettreVoitureEntree
+            trans = Transporteur.objects.all() # je fais pareil pour les entrées Transporteur
             showlist = [request.POST.get('id'), request.POST.get('dater'),
                         request.POST.get('numr'), request.POST.get('qpalette'),
                         request.POST.get('transp'), request.POST.get('qcolis'),
-                        request.POST.get('quantitecolrecla'), request.POST.get('quantitepalrecla'),
+                    request.POST.get('quantitecolrecla'), request.POST.get('quantitepalrecla'),             #ici je recois les donnée reçus via la requete ajax en js
                         request.POST.get('comrecla'),]
             lettre = LettreVoitureEntree()
             for items in trans:
                 if items.nom == showlist[4]:
-                    lettre.fk_Transporteur = items
-            lettre.idLettreVoitureEntree = showlist[0]
+                    lettre.fk_Transporteur = items #si je trouve un Transporteur qui a le même nom que celui choisis dans le template, je rentre l'objet dans la clé Fk_Transporteur
+            lettre.idLettreVoitureEntree = showlist[0] #je rentre l'id recus via ajax
             lettre.datereception = showlist[1]
             lettre.numerorecepisse = showlist[2]
             lettre.quantitepalette = showlist[3]
@@ -160,11 +164,11 @@ class lettrevoitureentreeadd(ListView):
             lettre.reclaquantitecolis = showlist[6]
             lettre.reclaquantitepalette = showlist[7]
             lettre.reclacomm = showlist[8]
-            lettre.save()
-            return HttpResponse("Created !")
+            lettre.save()   #quand toute les variables a modifié l'ont été je sauvegard mon "object" qui devient un nouvel enregistrement dans ma BDD
+            return HttpResponse("Created !")    #retours pour signifier un succès
         return HttpResponse("No Authorized Access !")
 
-    def get(self, request):
+    def get(self, request): #get équivaut a un "main" on lui envoi les ressource nécessaire a la completion de la page, par ex lve pourra être utiliser dans le template html
         context = {
             'lve' : LettreVoitureEntree.objects.all(),
             'four' : Fournisseur.objects.all(),
@@ -190,10 +194,11 @@ class lettrevoitureentreemodify(ListView):
             bonle.fk_TypeZoneDepot = None
             for items in lve:
                 if items.idLettreVoitureEntree == showlist[0]:
-                    bonle.fk_LettreVoitureEntree = items
+                    bonle.fk_LettreVoitureEntree = items #je parcours les LettreVoiturEentree pour trouver celui qui me sert a crée un bl
             bonle.fk_BonCommandeEntree = None
             bonle.fk_UniteManutentionEntree = None
             bonle.fk_Destinataire = None
+            bonle.fk_ZoneDepot_pour_TypeZoneDepot = None
             bonle.save()
             return HttpResponse("Created !" + str(showlist[0]) + ' '+ str(showlist[1]))
         return HttpResponse("No Authorized Access !")
@@ -261,12 +266,12 @@ class lettrevoitureentree(ListView):
 class bonLivraisonEntree(ListView):
     template_name = "bonLivraisonEntree.html"
 
-    def delete(request):
+    def delete(request): #fonction pour supprimer un B.L entree dans la page Bonlivraisonentree via les "X" sur la ligne des bl
         if request.method == 'POST':
             ble = BonLivraisonEntree.objects.get(idBonLivraisonEntree=request.POST['id'])
             ble.delete()
-            return HttpResponse("Deleted !")
-        return HttpResponse("No Authorized Access !")
+            return HttpResponse("Deleted !") #réponse renvoyer pour savoir si aucun problème
+        return HttpResponse("No Authorized Access !") #retour a envoyé si une personne accède au lien directement hors les requete pré-établies
 
     def get(self, request):
         context = {
@@ -296,7 +301,7 @@ class bonLivraisonentreemodify(ListView):
             return HttpResponse("fail")
         return HttpResponse("No Authorized Access !")
 
-    def right(request):
+    def right(request): #C'est grace a cette fontion que je peux aller a "droite" d'un BonLivraisonentree via le template Bonlivraisonentremodify
         if request.method == 'POST':
             my_total = BonLivraisonEntree.objects.count()
             after = request.POST['id']
@@ -419,6 +424,7 @@ class bonLivraisonEntreeadd(ListView):
             bonle.fk_Client = None
             bonle.fk_Fournisseur = None
             bonle.fk_TypeZoneDepot = None
+            bonle.fk_ZoneDepot_pour_TypeZoneDepot = None
             bonle.fk_LettreVoitureEntree = None
             bonle.fk_BonCommandeEntree = None
             bonle.fk_UniteManutentionEntree = None
@@ -449,6 +455,12 @@ class bonLivraisonEntreeadd(ListView):
                     for initems in zne:
                         if initems.nom == items.fk_TypeZoneDepot.nom:
                             bonle.fk_TypeZoneDepot = initems
+            inzone = ZoneDepot_pour_TypeZoneDepot.objects.all()
+            for zone in inzone:
+                if request.POST.get('zoneatt') == zone.nom:
+                    bonle.fk_ZoneDepot_pour_TypeZoneDepot = zone
+                if request.POST.get('zoneatt') == "":
+                    bonle.fk_ZoneDepot_pour_TypeZoneDepot = None
             bonle.save()
             return HttpResponse("Created !")
         return HttpResponse("No Authorized Access !")
@@ -671,7 +683,7 @@ class articlemodify(ListView):
         context = {
             'art' : Article.objects.all(),
             'typeart' : typeArticle_pour_Article.objects.all(),
-            'desart' : Destinataire_pour_Article.objects.all(),
+            'desart' : Destinataire.objects.all(),
             'histoart ' : Article_historique_pour_Article.objects.all(),
             'four' : Fournisseur.objects.all(),
             'id' :request.GET.get('id'),
@@ -1100,6 +1112,29 @@ class colis(ListView):
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
+class colisadd(ListView):
+    template_name = "colisadd.html"
+
+    def delete(request):
+        if request.method == 'POST':
+            col = colis.objects.all()
+            for items in col:
+                if items.idColis == request.POST.get('id'):
+                    data = Colis.objects.get(idColis=request.POST['id'])
+                    data.delete()
+                    return HttpResponse("road to delete.")
+            return HttpResponse("Error on delete.")
+        return HttpResponse("Leave this place!")
+
+    def get(self, request):
+        context = {
+            'col' : Colis.objects.all(),
+            'activate' : 'on',
+        }
+        return render(request, self.template_name, context)
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 class client(ListView):
     template_name = "client.html"
 
@@ -1225,7 +1260,7 @@ class clientmodify(ListView):
                         request.POST.get('typeart'), request.POST.get('source'),
                         request.POST.get('idsource'), request.POST.get('boncs'),
                         request.POST.get('bonle'), request.POST.get('odt'),
-                        request.POST.get('cont'), request.POST.get('commentaire')]
+                        request.POST.get('cont'), request.POST.get('commentaire'),]
             client = Client.objects.get(idClient=showlist[1])
             zne = TypeZoneDepot.objects.all()
             znedebug = False
@@ -1233,24 +1268,32 @@ class clientmodify(ListView):
                 if request.POST.get('zone') == zone.nom:
                     znedebug = True
                     client.fk_TypeZone = zone
+                if showlist[7] == "":
+                    client.fk_TypeZone = None
             tde = TypeDestinataire_pour_Destinataire.objects.all()
             tdedebug = False
             for typed in tde:
                 if request.POST.get('typedest') == typed.nom:
                     tdedebug = True
                     client.fk_TypeDestinataire = typed
+                if request.POST.get('typedest') == "":
+                    client.fk_TypeDestinataire = None
             tfo = TypeFournisseur_pour_Fournisseur.objects.all()
             tfodebug = False
             for typefo in tfo:
                 if request.POST.get('typefour') == typefo.nom:
                     tfodebug = True
-                client.fk_TypeFournisseur = typefo
+                    client.fk_TypeFournisseur = typefo
+                if request.POST.get('typefour') == "":
+                    client.fk_TypeFournisseur = None
             tar = typeArticle_pour_Article.objects.all()
             tardebug = False
             for typea in tar:
                 if request.POST.get('typeart') == typea.nom:
                     tardebug = True
-                client.fk_TypeArticle = typea
+                    client.fk_TypeArticle = typea
+                if request.POST.get('typeart') == "":
+                    client.fk_TypeArticle = None
             client.nom = showlist[0]
             client.idClient = showlist[1]
             client.telephone = showlist[2]
@@ -1646,18 +1689,18 @@ class ume(ListView):
 
     def delete(request):
         if request.method == 'POST':
-            cli = Client.objects.all()
-            for items in cli:
-                if items.idClient == request.POST.get('id'):
-                    data = Client.objects.get(idClient=request.POST['id'])
+            ume = UniteManutentionEntree.objects.all()
+            for items in ume:
+                if items.idUniteManutentionEntree == request.POST.get('id'):
+                    data = UniteManutentionEntree.objects.get(idUniteManutentionEntree=request.POST['id'])
                     data.delete()
                     return HttpResponse("road to delete.")
             return HttpResponse("Error on delete.")
-        return HttpResponse("Leave this place!")
 
     def get(self, request):
         context = {
             'activate' : 'on',
+            'ume' : UniteManutentionEntree.objects.all(),
         }
         return render(request, self.template_name, context)
 
@@ -1666,21 +1709,34 @@ class umeadd(ListView):
 
     def create(request):
         if request.method == 'POST':
-            cli = Client.objects.all()
-            for items in cli:
-                if items.idClient == request.POST.get('id'):
-                    data = Client.objects.get(idClient=request.POST['id'])
-                    data.delete()
-                    return HttpResponse("road to delete.")
-            return HttpResponse("Error on delete.")
+            showlist = [request.POST.get('id'),]
+            umentree = UniteManutentionEntree.objects.all()
+            ume = UniteManutentionEntree()
+            ume.idUniteManutentionEntree = showlist[0]
+            ume.fk_BonLivraisonEntree = None
+            ume.fk_ZoneDepot = None
+            ume.c_nom = ""
+            ume.c_nomCompte = ""
+            ume.c_horodatage = ""
+            ume.m_nom = ""
+            ume.m_nomCompte = ""
+            ume.m_horodatage = ""
+            ume.numero = ""
+            ume.dateReception = ""
+            ume.stock = ""
+            ume.save()
+            return HttpResponse("road to create ume.")
+        return HttpResponse("Error on delete.")
 
     def get(self, request):
         context = {
-            'activate' : 'on'
+            'activate' : 'on',
+            'ume' : UniteManutentionEntree.objects.all(),
         }
         return render(request, self.template_name, context)
 
 class umemodify(ListView):
+    template_name = "unitemanutentionentreemodify.html"
 
     def modify(self, request):
         context = {

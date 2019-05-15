@@ -7,13 +7,13 @@ from datetime import date
 # Create your models here.
 
 
-class User(models.Model):
+'''class User(models.Model):
     users = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
     is_partenaire = models.BooleanField(default=False)
     is_client = models.BooleanField(default=False)
     is_transporteur = models.BooleanField(default=False)
     nom = models.CharField(max_length=100)
-    adresse = models.CharField(max_length=100)
+    adresse = models.CharField(max_length=100)'''
 
 #Models for Import_Bon_CommandeSortie
 class import_BonCommandeSortie(models.Model):
@@ -43,7 +43,7 @@ class import_LigneBonCommandeSortie_pour_import_BonCommandeSortie(models.Model):
     def __str__(self):
         return self.idLigneBonCommandeSortie
 
-class UniteManutentionSortie_pour_BonCommandeSortie(models.Model):
+'''class UniteManutentionSortie_pour_BonCommandeSortie(models.Model):
     idUniteManutentionSortie = models.TextField()
     fk_TypeUniteManutentionSortie = models.ForeignKey('TypeUniteManutention_pour_UniteManutentionSortie', on_delete=models.CASCADE, default=0)
     fk_BonCommandeSortie = models.ForeignKey('BonCommandeSortie_pour_import_BonCommandeSortie', on_delete=models.CASCADE, default=0)
@@ -57,13 +57,13 @@ class UniteManutentionSortie_pour_BonCommandeSortie(models.Model):
     poidsTare = models.TextField()
     poidsNet = models.TextField()
     poidsDifference = models.TextField()
-    stat_poidsBrut = models.TextField()
+    stat_poidsBrut = models.TextField()'''
 
-class TypeUniteManutention_pour_UniteManutentionSortie(models.Model):
+'''class TypeUniteManutention_pour_UniteManutentionSortie(models.Model):
     idTypeUniteManutention = models.TextField()
-    nom = models.TextField()
+    nom = models.TextField()'''
 
-class BonCommandeSortie_pour_import_BonCommandeSortie(models.Model):
+'''class BonCommandeSortie_pour_import_BonCommandeSortie(models.Model):
     #idBonCommandeSortie = models.CharField(max_length=42)
     idBonCommandeSortie = models.TextField()#db_index=True)
     c_nom = models.TextField()#db_index=True)
@@ -82,11 +82,11 @@ class BonCommandeSortie_pour_import_BonCommandeSortie(models.Model):
     source = models.TextField(default='Null')
     identifiantSource = models.TextField(default='Null')
     def __str__(self):
-        return self.idBonCommandeSortie
+        return self.idBonCommandeSortie'''
 
 class LigneBonCommandeSortie_pour_import_BonCommandeSortie(models.Model):
-    fk_BonCommandeSortie = models.ForeignKey('BonCommandeSortie_pour_import_BonCommandeSortie', on_delete=models.CASCADE, default=0)
-    fk_Article = models.ForeignKey('Article_pour_BonCommandeSortie', on_delete=models.CASCADE, default=0)
+    fk_BonCommandeSortie = models.ForeignKey('BonCommandeSortie', on_delete=models.CASCADE, default=0)
+    fk_Article = models.ForeignKey('Article', on_delete=models.CASCADE, default=0)
     c_nom = models.CharField(max_length=42, default='Null')
     c_nomCompte = models.CharField(max_length=42, default='Null')
     c_horodatage = models.CharField(max_length=42, default='Null')
@@ -111,7 +111,7 @@ class LigneBonCommandeSortie_pour_import_BonCommandeSortie(models.Model):
     def __str__(self):
         return self.idLigneBonCommandeSortie
 
-class Article_pour_BonCommandeSortie(models.Model):
+'''class Article_pour_BonCommandeSortie(models.Model):
     idArticle = models.CharField(max_length=42)
     c_nom = models.CharField(max_length=42, default='Null')
     c_nomCompte = models.CharField(max_length=42, default='Null')
@@ -138,9 +138,9 @@ class Article_pour_BonCommandeSortie(models.Model):
     source = models.CharField(max_length=42, default='Null')
     identifiantSource = models.CharField(max_length=42, default='Null')
     def __str__(self):
-        return self.idArticle
+        return self.idArticle'''
 
-class Client_pour_import_BonCommandeSortie(models.Model):
+'''class Client_pour_import_BonCommandeSortie(models.Model):
     idClient = models.CharField(max_length=42)
     c_nom = models.CharField(max_length=42, default='Null')
     c_nomCompte = models.CharField(max_length=42, default='Null')
@@ -163,9 +163,9 @@ class Client_pour_import_BonCommandeSortie(models.Model):
     identifiantSource = models.CharField(max_length=42, default='Null')
     nomCompte = models.CharField(max_length=42, default='Null')
     def __str__(self):
-        return self.idClient
+        return self.idClient'''
 
-class Destinataire_pour_import_BonCommandeSortie(models.Model):
+'''class Destinataire_pour_import_BonCommandeSortie(models.Model):
     idDestinataire = models.CharField(max_length=42, default=0)
     fk_TypeDestinataire = models.ForeignKey('TypeDestinataire_pour_BonCommandeSortie', on_delete=models.CASCADE, default=0)
     c_nom = models.CharField(max_length=42, default=0)
@@ -196,9 +196,9 @@ class Destinataire_pour_import_BonCommandeSortie(models.Model):
     delaiPeremption = models.CharField(max_length=42, default=0)
     ordreTri = models.CharField(max_length=42, default=0)
     def __str__(self):
-        return self.nom
+        return self.nom'''
 
-class TypeDestinataire_pour_BonCommandeSortie(models.Model):
+'''class TypeDestinataire_pour_BonCommandeSortie(models.Model):
     c_nom = models.CharField(max_length=42, default=0)
     c_nomCompte = models.CharField(max_length=42, default=0)
     c_horodatage = models.CharField(max_length=42, default=0)
@@ -208,9 +208,9 @@ class TypeDestinataire_pour_BonCommandeSortie(models.Model):
     idTypeDestinataire = models.CharField(max_length=42, default=0)
     nom = models.CharField(max_length=42, default=0)
     def __str__(self):
-        return self.nom
+        return self.nom'''
 
-class Transporteur_pour_import_BonCommandeSortie(models.Model):
+'''class Transporteur_pour_import_BonCommandeSortie(models.Model):
     idTransporteur = models.CharField(max_length=42, default='0')
     c_nom = models.CharField(max_length=42, default=0)
     c_nomCompte = models.CharField(max_length=42, default=0)
@@ -220,13 +220,13 @@ class Transporteur_pour_import_BonCommandeSortie(models.Model):
     m_horodatage = models.CharField(max_length=42, default=0)
     nom = models.CharField(max_length=42, default=0)
     def __str__(self):
-        return self.nom
+        return self.nom'''
 
-class BonLivraisonSortie_pour_BonCommandeSortie(models.Model):
+'''class BonLivraisonSortie_pour_BonCommandeSortie(models.Model):
     idBonLivraisonSortie = models.CharField(max_length=42, default='0')
     c_horodatage = models.CharField(max_length=42, default='0')
     fk_BonCommandeSortie = models.ForeignKey('BonCommandeSortie_pour_import_BonCommandeSortie', on_delete=models.CASCADE, default=0)
-    numeroBonLivraison = models.CharField(max_length=42, default='0')
+    numeroBonLivraison = models.CharField(max_length=42, default='0')'''
 
 #End of Import_BonCommandeSortie
 
@@ -255,10 +255,10 @@ class LigneBonCommandeEntree_pour_BonCommandeEntree(models.Model):
     quantiteColis = models.CharField(max_length=42, default='Null')
     quantiteProduit = models.CharField(max_length=42, default='Null')
     quantiteRecue = models.CharField(max_length=42, default='Null')
-    fk_Article = models.ForeignKey('Article_pour_BonCommandeEntree', on_delete=models.CASCADE, default=0)
+    fk_Article = models.ForeignKey('Article', on_delete=models.CASCADE, default=0)
     fk_BonCommandeEntree = models.ForeignKey('BonCommandeEntree', on_delete=models.CASCADE, default=0)
 
-class Article_pour_BonCommandeEntree(models.Model):
+'''class Article_pour_BonCommandeEntree(models.Model):
     idArticle = models.CharField(max_length=42, default='Null')
     fk_BonCommandeEntree = models.ForeignKey('BonCommandeEntree', on_delete=models.CASCADE, default=0)
     fk_Fournisseur = models.ForeignKey('Fournisseur_pour_Article', on_delete=models.CASCADE, default=0)
@@ -279,17 +279,17 @@ class Article_pour_BonCommandeEntree(models.Model):
     source = models.CharField(max_length=42, default='Null')
     identifiantSource = models.CharField(max_length=42, default='Null')
     def __str__(self):
-        return self.idArticle
+        return self.idArticle'''
 
-class BonCommandeEntree_BonLivraisonEntree_pour_BonCommandeEntree(models.Model):
+'''class BonCommandeEntree_BonLivraisonEntree_pour_BonCommandeEntree(models.Model):
     idBonCommandeEntree_BonLivraisonEntree = models.CharField(max_length=42, default='Null')
     fk_BonCommandeEntree = models.ForeignKey('BonCommandeEntree', on_delete=models.CASCADE, default=0)
     fk_BonLivraisonEntree = models.ForeignKey('BonLivraisonEntree_pour_BonCommandeEntree', on_delete=models.CASCADE, default=0)
     source = models.CharField(max_length=42, default='Null')
     def __str__(self):
-        return self.idArticle
+        return self.idArticle'''
 
-class BonLivraisonEntree_pour_BonCommandeEntree(models.Model):
+'''class BonLivraisonEntree_pour_BonCommandeEntree(models.Model):
     idBonLivraisonEntree = models.CharField(max_length=42, default='Null')
     #fk_BonCommandeEntree = models.ForeignKey('BonCommandeEntree', on_delete=models.CASCADE, default=0)
     #fk_LettreVoitureEntree = models.ForeignKey('LettreVoitureEntree', on_delete=models.CASCADE, default=0)
@@ -301,23 +301,23 @@ class BonLivraisonEntree_pour_BonCommandeEntree(models.Model):
     fichier = models.CharField(max_length=42, default='Null')
     photo = models.CharField(max_length=42, default='Null')
     def __str__(self):
-        return self.idBonLivraisonEntree
+        return self.idBonLivraisonEntree'''
 
-class UniteManutentionEntree_pour_BonCommandeEntree(models.Model):
+'''class UniteManutentionEntree_pour_BonCommandeEntree(models.Model):
     id_BonCommandeEntree = models.CharField(max_length=42, default='Null')
     id_dateReception = models.CharField(max_length=42, default='Null')
     #fk_BonLivraisonEntree = models.ForeignKey('BonLivraisonEntree_pour_BonCommandeEntree', on_delete=models.CASCADE, default=0)
     def __str__(self):
-        return self.id_BonCommandeEntree
+        return self.id_BonCommandeEntree'''
 
-class Colis_pour_BonCommandeEntree(models.Model):
+'''class Colis_pour_BonCommandeEntree(models.Model):
     idColis = models.CharField(max_length=42, default='Null')
     #fk_UniteManutentionEntree = models.ForeignKey('UniteManutentionEntree', on_delete=models.CASCADE, default=0)
     #fk_UniteManutentionSortie = models.ForeignKey('UniteManutentionSortie', on_delete=models.CASCADE, default=0)
     #fk_EtiquetteColis = models.ForeignKey('', on_delete=models.CASCADE, default=0)
-    #fk_UniteManutentionEntree = models.ForeignKey('UniteManutentionEntree_pour_BonCommandeEntree', on_delete=models.CASCADE, default=0)
+    #fk_UniteManutentionEntree = models.ForeignKey('UniteManutentionEntree_pour_BonCommandeEntree', on_delete=models.CASCADE, default=0)'''
 
-class LigneBonLivraisonEntree_pour_BonCommandeEntree(models.Model):
+'''class LigneBonLivraisonEntree_pour_BonCommandeEntree(models.Model):
     idLigneBonLivraisonEntree = models.CharField(max_length=42, default='Null')
     fk_BonLivraisonEntree = models.ForeignKey('BonLivraisonEntree', on_delete=models.CASCADE, default=0)
     fk_Article = models.ForeignKey('Article', on_delete=models.CASCADE, default=0)
@@ -336,7 +336,7 @@ class LigneBonLivraisonEntree_pour_BonCommandeEntree(models.Model):
     quantiteProduitLitige = models.CharField(max_length=42, default='Null')
     quantiteProduitRecu = models.CharField(max_length=42, default='Null')
     quantiteRecue = models.CharField(max_length=42, default='Null')
-    termine = models.CharField(max_length=42, default='Null')
+    termine = models.CharField(max_length=42, default='Null')'''
 
 #End of BonCommandeEntree
 
@@ -354,27 +354,40 @@ class LettreVoitureEntree(models.Model):
     def __str__(self):
         return self.idLettreVoitureEntree
 
-class BonLivraisonEntree_pour_LettreVoitureLettreVoitureEntree(models.Model):
+'''class BonLivraisonEntree_pour_LettreVoitureLettreVoitureEntree(models.Model):
     idBonLivraisonEntree = models.CharField(max_length=42, default='Null')
     fk_LettreVoitureEntree = models.ForeignKey('LettreVoitureEntree', on_delete=models.SET_NULL, null=True, blank=True)
     fk_BonLivraisonEntree = models.ForeignKey('BonLivraisonEntree', on_delete=models.SET_NULL, null=True, blank=True)
     def __str__(self):
-        return self.idBonLivraisonEntree
+        return self.idBonLivraisonEntree'''
 
-class Client_pour_LettreVoitureEntree(models.Model):
+'''class Client_pour_LettreVoitureEntree(models.Model):
     idClient = models.CharField(max_length=42, default='Null')
     def __str__(self):
-        return self.idClient
+        return self.idClient'''
 
-class OrdreTransport_pour_LettreVoitureEntree(models.Model):
-    fk_LettreVoitureEntree = models.ForeignKey('LettreVoitureEntree', on_delete=models.CASCADE, default=0)
+'''class OrdreTransport_pour_LettreVoitureEntree(models.Model):
+    fk_LettreVoitureEntree = models.ForeignKey('LettreVoitureEntree', on_delete=models.CASCADE, default=0)'''
 
-class Transporteur_pour_LettreVoitureEntree(models.Model):
+'''class Transporteur_pour_LettreVoitureEntree(models.Model):
     idTransporteur = models.CharField(max_length=42, default='Null')
     def __str__(self):
-        return self.idTransporteur
+        return self.idTransporteur'''
 
 #End of LettreVoitureEntree
+
+class LettreVoitureSortie(models.Model):
+    idLettreVoitureSortie = models.CharField(max_length=42, default='Null')
+    datereception = models.CharField(max_length=42, default='Null')
+    numerorecepisse = models.CharField(max_length=42, default='Null')
+    quantitepalette = models.CharField(max_length=42, default='Null')
+    quantitecolis = models.CharField(max_length=42, default='Null')
+    reclaquantitepalette = models.CharField(max_length=42, default='Null')
+    reclaquantitecolis = models.CharField(max_length=42, default='Null')
+    reclacomm = models.CharField(max_length=42, default='Null')
+    fk_Transporteur = models.ForeignKey('Transporteur', on_delete=models.SET_NULL, null=True, blank=True)
+    def __str__(self):
+        return self.idLettreVoitureSortie
 
 class Transporteur(models.Model):
     idTransporteur = models.CharField(max_length=42, default='Null')
@@ -419,7 +432,7 @@ class Article(models.Model):
     def __str__(self):
         return self.designationClient
 
-class Colis_pour_Article(models.Model):
+'''class Colis_pour_Article(models.Model):
     fk_Article = models.ForeignKey('Article', on_delete=models.CASCADE, default=0)
     c_nom = models.CharField(max_length=42, default='Null')
     c_nomCompte = models.CharField(max_length=42, default='Null')
@@ -442,7 +455,7 @@ class Colis_pour_Article(models.Model):
     quantiteProduit = models.CharField(max_length=42, default='Null')
     numerotation = models.CharField(max_length=42, default='Null')
     def __str__(self):
-        return self.idColis
+        return self.idColis'''
 
 class Article_historique_pour_Article(models.Model):
     fk_Article = models.ForeignKey('Article', on_delete=models.CASCADE, default=0)
@@ -466,7 +479,7 @@ class Article_historique_pour_Article(models.Model):
     def __str__(self):
         return self.idArticle_historique
 
-class Fournisseur_pour_Article_historique(models.Model):
+'''class Fournisseur_pour_Article_historique(models.Model):
     c_nom = models.CharField(max_length=42, default='Null')
     c_nomCompte = models.CharField(max_length=42, default='Null')
     c_horodatage = models.CharField(max_length=42, default='Null')
@@ -479,9 +492,9 @@ class Fournisseur_pour_Article_historique(models.Model):
     source = models.CharField(max_length=42, default='Null')
     identifiantSource = models.CharField(max_length=42, default='Null')
     def __str__(self):
-        return self.nom
+        return self.nom'''
 
-class Article_Destinataire_pour_Article(models.Model):
+'''class Article_Destinataire_pour_Article(models.Model):
     fk_Article = models.ForeignKey('Article', on_delete=models.CASCADE, default=0)
     fk_Destinataire = models.ForeignKey('Destinataire_pour_Article', on_delete=models.CASCADE, default=0)
     idArticle_Destinataire = models.CharField(max_length=42, default='Null')
@@ -494,9 +507,9 @@ class Article_Destinataire_pour_Article(models.Model):
     delaiPeremption = models.CharField(max_length=42, default='Null')
     #Rubrique11 = models.CharField(max_length=42, default='Null')
     def __str__(self):
-        return self.idArticle_Destinataire
+        return self.idArticle_Destinataire'''
 
-class Destinataire_pour_Article(models.Model):
+'''class Destinataire_pour_Article(models.Model):
     idDestinataire = models.CharField(max_length=42, default='Null')
     fk_TypeDestinataire = models.ForeignKey('TypeDestinataire_pour_Destinataire', on_delete=models.CASCADE, default=0)
     #fk_BonLivraisonEntree = models.ForeignKey('client_pour_import_boncommandesortie', on_delete=models.CASCADE, default=0)
@@ -528,9 +541,9 @@ class Destinataire_pour_Article(models.Model):
     delaiPeremption = models.CharField(max_length=42, default='Null')
     ordreTri = models.CharField(max_length=42, default='Null')
     def __str__(self):
-        return self.nom
+        return self.nom'''
 
-class Client_pour_Article_typeDestinataire(models.Model):
+'''class Client_pour_Article_typeDestinataire(models.Model):
     fk_TypeDestinataire = models.ForeignKey('TypeDestinataire_pour_Destinataire', on_delete=models.CASCADE, default=0)
     c_nom = models.CharField(max_length=42, default='Null')
     c_nomCompte = models.CharField(max_length=42, default='Null')
@@ -553,9 +566,9 @@ class Client_pour_Article_typeDestinataire(models.Model):
     identifiantSource = models.CharField(max_length=42, default='Null')
     nomCompte = models.CharField(max_length=42, default='Null')
     def __str__(self):
-        return self.nom
+        return self.nom'''
 
-class Fournisseur_pour_Article(models.Model):
+'''class Fournisseur_pour_Article(models.Model):
     idFournisseur = models.CharField(max_length=42, default='Null')
     fk_TypeFournisseur = models.ForeignKey('TypeFournisseur_pour_Fournisseur', on_delete=models.CASCADE, default=0)
     c_nom = models.CharField(max_length=42, default='Null')
@@ -568,9 +581,9 @@ class Fournisseur_pour_Article(models.Model):
     source = models.CharField(max_length=42, default='Null')
     identifiantSource = models.CharField(max_length=42, default='Null')
     def __str__(self):
-        return self.nom
+        return self.nom'''
 
-class Client_pour_Article_typeArticle(models.Model):
+'''class Client_pour_Article_typeArticle(models.Model):
     fk_TypeZone = models.ForeignKey('TypeZoneDepot', on_delete=models.CASCADE, default=0)
     fk_TypeFournisseur = models.ForeignKey('TypeFournisseur_pour_Fournisseur', on_delete=models.CASCADE, default=0)
     fk_TypeDestinataire = models.ForeignKey('TypeDestinataire_pour_Destinataire', on_delete=models.CASCADE, default=0)
@@ -593,7 +606,7 @@ class Client_pour_Article_typeArticle(models.Model):
     identifiantSource = models.CharField(max_length=42, default='Null')
     nomCompte = models.CharField(max_length=42, default='Null')
     def __str__(self):
-        return self.nom
+        return self.nom'''
 
 class typeArticle_pour_Article(models.Model):
     c_nom = models.CharField(max_length=42, default='Null')
@@ -643,7 +656,7 @@ class Destinataire(models.Model):
     def __str__(self):
         return self.nom
 
-class BonCommandeSortie_pour_Destinataire(models.Model):
+'''class BonCommandeSortie_pour_Destinataire(models.Model):
     idBonCommandeSortie = models.CharField(max_length=42, default='Null')
     fk_Destinataire = models.ForeignKey('Destinataire', on_delete=models.CASCADE, default=0)
     c_nom = models.CharField(max_length=42, default='Null')
@@ -662,9 +675,9 @@ class BonCommandeSortie_pour_Destinataire(models.Model):
     source = models.CharField(max_length=42, default='Null')
     identifiantSource = models.CharField(max_length=42, default='Null')
     def __str__(self):
-        return self.numeroCommande
+        return self.numeroCommande'''
 
-class UniteManutentionSortie_pour_Destinataire(models.Model):
+'''class UniteManutentionSortie_pour_Destinataire(models.Model):
     fk_BonCommandeSortie = models.ForeignKey('BonCommandeSortie_pour_Destinataire', on_delete=models.CASCADE, default=0)
     c_nom = models.CharField(max_length=42, default='Null')
     c_nomCompte = models.CharField(max_length=42, default='Null')
@@ -685,7 +698,7 @@ class UniteManutentionSortie_pour_Destinataire(models.Model):
     poidsNet = models.CharField(max_length=42, default='Null')
     poidsDifference = models.CharField(max_length=42, default='Null')
     def __str__(self):
-        return self.numero
+        return self.numero'''
 
 class TypeDestinataire_pour_Destinataire(models.Model):
     idTypeDestinataire = models.CharField(max_length=42, default='Null')
@@ -921,8 +934,9 @@ class TypeBonCommandeSortie_pour_BonCommandeSortie(models.Model):
         return self.nom
 
 #Unitemanutentionentree debut
+
 class UniteManutentionEntree(models.Model):
-    idUnitManutentionEntree = models.CharField(max_length=42, default='Null')
+    idUniteManutentionEntree = models.CharField(max_length=42, default='Null')
     fk_BonLivraisonEntree = models.ForeignKey('BonLivraisonEntree', on_delete=models.CASCADE, default=0, blank=True, null=True)
     fk_ZoneDepot = models.ForeignKey('ZoneDepot_pour_TypeZoneDepot', on_delete=models.CASCADE, default=0, blank=True, null=True)
     #fk_Etiquette = models.ForeignKey('EtiquetteUniteManutentionEntree_pour_UniteManutentionEntree', on_delete=models.CASCADE, default=1)
@@ -936,9 +950,9 @@ class UniteManutentionEntree(models.Model):
     dateReception = models.CharField(max_length=42, default='Null')
     stock = models.CharField(max_length=42, default='Null')
     def __str__(self):
-        return self.numero
+        return self.idUniteManutentionEntree
 
-class Colis_pour_UniteManutentionEntree(models.Model):
+'''class Colis_pour_UniteManutentionEntree(models.Model):
     idColis = models.CharField(max_length=42, default='Null')
     #fk_UniteManutentionEntree = models.ForeignKey('UniteManutentionEntree', on_delete=models.CASCADE, default=1)
     fk_UniteManutentionSortie = models.ForeignKey('UniteManutentionSortie_pour_UniteManutentionEntree', on_delete=models.CASCADE, default=1)
@@ -961,9 +975,9 @@ class Colis_pour_UniteManutentionEntree(models.Model):
     quantiteProduit = models.CharField(max_length=42, default='Null')
     numerotation = models.CharField(max_length=42, default='Null')
     def __str__(self):
-        return self.idClois
+        return self.idColis'''
 
-class EtiquetteColis_pour_UniteManutentionEntree_historique(models.Model):
+'''class EtiquetteColis_pour_UniteManutentionEntree_historique(models.Model):
     fk_Colis = models.ForeignKey('Colis_pour_UniteManutentionEntree', on_delete=models.CASCADE, default=1)
     c_nom = models.CharField(max_length=42, default='Null')
     c_nomCompte = models.CharField(max_length=42, default='Null')
@@ -986,9 +1000,9 @@ class EtiquetteColis_pour_UniteManutentionEntree_historique(models.Model):
     collee = models.CharField(max_length=42, default='Null')
     afficherExpediteur = models.CharField(max_length=42, default='Null')
     def __str__(self):
-        return self.nom
+        return self.nom'''
 
-class Colis_ZoneDepot_pour_UniteManutentionEntree(models.Model):
+'''class Colis_ZoneDepot_pour_UniteManutentionEntree(models.Model):
     fk_Colis = models.ForeignKey('Colis_pour_UniteManutentionEntree', on_delete=models.CASCADE, default=1)
     c_nom = models.CharField(max_length=42, default='Null')
     c_nomCompte = models.CharField(max_length=42, default='Null')
@@ -999,52 +1013,51 @@ class Colis_ZoneDepot_pour_UniteManutentionEntree(models.Model):
     idColis_ZoneDepot = models.CharField(max_length=42, default='Null')
     fk_ZoneDepot = models.ForeignKey('ZoneDepot_pour_UniteManutentionEntree_colis', on_delete=models.CASCADE, default=1)
     dateEntree = models.CharField(max_length=42, default='Null')
-    dateSortie = models.CharField(max_length=42, default='Null')
+    dateSortie = models.CharField(max_length=42, default='Null')'''
     #def __str__(self):
     #return self.nom
 
-class Colis_UniteManutentionSortie_pour_UniteManutentionEntree(models.Model):
+'''class Colis_UniteManutentionSortie_pour_UniteManutentionEntree(models.Model):
     fk_Colis = models.ForeignKey('Colis_pour_UniteManutentionEntree', on_delete=models.CASCADE, default=1)
     fk_UniteManutentionSortie = models.ForeignKey('UniteManutentionSortie_pour_UniteManutentionEntree', on_delete=models.CASCADE, default=1)
-    idColis_UniteManutentionSortie = models.CharField(max_length=42, default='Null')
+    idColis_UniteManutentionSortie = models.CharField(max_length=42, default='Null')'''
 
-
-class UniteManutentionSortie_pour_UniteManutentionEntree(models.Model):
+'''class UniteManutentionSortie_pour_UniteManutentionEntree(models.Model):
     idColis = models.CharField(max_length=42, default='Null')
-    fk_BonCommandeSortie = models.ForeignKey('BonCommandeSortie_pour_UniteManutentionEntree', on_delete=models.CASCADE, default=1)
+    fk_BonCommandeSortie = models.ForeignKey('BonCommandeSortie_pour_UniteManutentionEntree', on_delete=models.CASCADE, default=1)'''
 
-class BonCommandeSortie_pour_UniteManutentionEntree(models.Model):
+'''class BonCommandeSortie_pour_UniteManutentionEntree(models.Model):
     idBonCommandeSortie = models.CharField(max_length=42, default='Null')
     fk_Destinataire = models.ForeignKey('Destinataire_pour_UniteManutentionEntree', on_delete=models.CASCADE, default=1)
-    fk_TypeBonCommandeSortie = models.ForeignKey('TypeBonCommandeSortie_pour_UniteManutentionEntree', on_delete=models.CASCADE, default=1)
+    fk_TypeBonCommandeSortie = models.ForeignKey('TypeBonCommandeSortie_pour_UniteManutentionEntree', on_delete=models.CASCADE, default=1)'''
 
-class Destinataire_pour_UniteManutentionEntree(models.Model):
-    idDestinataire = models.CharField(max_length=42, default='Null')
+'''class Destinataire_pour_UniteManutentionEntree(models.Model):
+    idDestinataire = models.CharField(max_length=42, default='Null')'''
 
-class TypeBonCommandeSortie_pour_UniteManutentionEntree(models.Model):
-    idTypeBonCommandeSortie = models.CharField(max_length=42, default='Null')
+'''class TypeBonCommandeSortie_pour_UniteManutentionEntree(models.Model):
+    idTypeBonCommandeSortie = models.CharField(max_length=42, default='Null')'''
 
-class EtiquetteColis_pour_UniteManutentionEntree(models.Model):
-    idEtiquetteColis = models.CharField(max_length=42, default='Null')
+'''class EtiquetteColis_pour_UniteManutentionEntree(models.Model):
+    idEtiquetteColis = models.CharField(max_length=42, default='Null')'''
 
-class Article_pour_UniteManutentionEntree(models.Model):
+'''class Article_pour_UniteManutentionEntree(models.Model):
     idArticle = models.CharField(max_length=42, default='Null')
     fk_Fournisseur = models.ForeignKey('Fournisseur_pour_UniteManutentionEntree', on_delete=models.CASCADE, default=1)
-    fk_TypeFournisseur = models.ForeignKey('TypeArticle_pour_UniteManutentionEntree', on_delete=models.CASCADE, default=1)
+    fk_TypeFournisseur = models.ForeignKey('TypeArticle_pour_UniteManutentionEntree', on_delete=models.CASCADE, default=1)'''
 
-class Fournisseur_pour_UniteManutentionEntree(models.Model):
-    idFournisseur = models.CharField(max_length=42, default='Null')
+'''class Fournisseur_pour_UniteManutentionEntree(models.Model):
+    idFournisseur = models.CharField(max_length=42, default='Null')'''
 
-class TypeArticle_pour_UniteManutentionEntree(models.Model):
-    idTypeArticle = models.CharField(max_length=42, default='Null')
+'''class TypeArticle_pour_UniteManutentionEntree(models.Model):
+    idTypeArticle = models.CharField(max_length=42, default='Null')'''
 
-class Litige_pour_UniteManutentionEntree(models.Model):
-    idLitige = models.CharField(max_length=42, default='Null')
+'''class Litige_pour_UniteManutentionEntree(models.Model):
+    idLitige = models.CharField(max_length=42, default='Null')'''
 
-class LitigeDecision_pour_UniteManutentionEntree(models.Model):
-    idLitigeDecision = models.CharField(max_length=42, default='Null')
+'''class LitigeDecision_pour_UniteManutentionEntree(models.Model):
+    idLitigeDecision = models.CharField(max_length=42, default='Null')'''
 
-class ZoneDepot_pour_UniteManutentionEntree_colis(models.Model):
+'''class ZoneDepot_pour_UniteManutentionEntree_colis(models.Model):
     idZoneDepot = models.CharField(max_length=42, default='Null')
     fk_TypeZoneDepot = models.ForeignKey('TypeZoneDepot_pour_UniteManutentionEntree', on_delete=models.CASCADE, default=1)
     c_nom = models.CharField(max_length=42, default='Null')
@@ -1055,17 +1068,17 @@ class ZoneDepot_pour_UniteManutentionEntree_colis(models.Model):
     m_horodatage = models.CharField(max_length=42, default='Null')
     nom = models.CharField(max_length=42, default='Null')
     def __str__(self):
-        return self.nom
+        return self.nom'''
 
-class LotRetire_pour_UniteManutentionEntree_pour_UniteManutentionEntree_historique(models.Model):
+'''class LotRetire_pour_UniteManutentionEntree_pour_UniteManutentionEntree_historique(models.Model):
     fk_Article = models.ForeignKey('UniteManutentionEntree', on_delete=models.CASCADE, default=1)
     numeroLot = models.ForeignKey('Colis_pour_UniteManutentionEntree', on_delete=models.CASCADE, default=1)
     c_nom = models.CharField(max_length=42, default='Null')
     idLotRetire = models.CharField(max_length=42, default='Null')
     def __str__(self):
-        return self.idLotRetire
+        return self.idLotRetire'''
 
-class EtiquetteUniteManutentionEntree_pour_UniteManutentionEntree_historique(models.Model):
+'''class EtiquetteUniteManutentionEntree_pour_UniteManutentionEntree_historique(models.Model):
     fk_UniteManutentionEntree = models.ForeignKey('UniteManutentionEntree', on_delete=models.CASCADE, default=1)
     c_nom = models.CharField(max_length=42, default='Null')
     c_nomCompte = models.CharField(max_length=42, default='Null')
@@ -1075,9 +1088,9 @@ class EtiquetteUniteManutentionEntree_pour_UniteManutentionEntree_historique(mod
     m_horodatage = models.CharField(max_length=42, default='Null')
     idEtiquetteUniteManutentionEntree = models.CharField(max_length=42, default='Null')
     def __str__(self):
-        return self.idEtiquetteUniteManutentionEntree
+        return self.idEtiquetteUniteManutentionEntree'''
 
-class BonLivraisonEntree_pour_UniteManutentionEntree(models.Model):
+'''class BonLivraisonEntree_pour_UniteManutentionEntree(models.Model):
     idBonLivraisonEntree = models.CharField(max_length=42, default='Null')
     fk_Client = models.ForeignKey('Client_pour_UniteManutentionEntree', on_delete=models.CASCADE, default=1)
     fk_Destinataire_litige = models.ForeignKey('Destinataire_pour_UniteManutentionEntree_litige', on_delete=models.CASCADE, default=1)
@@ -1095,9 +1108,9 @@ class BonLivraisonEntree_pour_UniteManutentionEntree(models.Model):
     quantitePalette = models.CharField(max_length=42, default='Null')
     commentaire = models.CharField(max_length=42, default='Null')
     def __str__(self):
-        return self.idBonLivraisonEntree
+        return self.idBonLivraisonEntree'''
 
-class Client_pour_UniteManutentionEntree(models.Model):
+'''class Client_pour_UniteManutentionEntree(models.Model):
     idClient = models.CharField(max_length=42, default='Null')
     fk_TypeZone = models.ForeignKey('TypeZoneDepot_pour_UniteManutentionEntree', on_delete=models.CASCADE, default=1)
     #fk_TypeFournisseur = models.ForeignKey('TypeFournisseur_pour_Fournisseur', on_delete=models.CASCADE, default=1)
@@ -1114,9 +1127,9 @@ class Client_pour_UniteManutentionEntree(models.Model):
     identifiantSource = models.CharField(max_length=42, default='Null')
     nomCompte = models.CharField(max_length=42, default='Null')
     def __str__(self):
-        return self.nom
+        return self.nom'''
 
-class Destinataire_pour_UniteManutentionEntree_litige(models.Model):
+'''class Destinataire_pour_UniteManutentionEntree_litige(models.Model):
     idDestinataire = models.CharField(max_length=42, default='Null')
     #fk_TypeDestinataire = models.ForeignKey('', on_delete=models.CASCADE, default=1)
     c_nom = models.CharField(max_length=42, default='Null')
@@ -1147,9 +1160,9 @@ class Destinataire_pour_UniteManutentionEntree_litige(models.Model):
     delaiPeremption = models.CharField(max_length=42, default='Null')
     ordreTri = models.CharField(max_length=42, default='Null')
     def __str__(self):
-        return self.nom
+        return self.nom'''
 
-class TypeZoneDepot_pour_UniteManutentionEntree(models.Model):
+'''class TypeZoneDepot_pour_UniteManutentionEntree(models.Model):
     c_nom = models.CharField(max_length=42, default='Null')
     c_nomCompte = models.CharField(max_length=42, default='Null')
     c_horodatage = models.CharField(max_length=42, default='Null')
@@ -1159,9 +1172,9 @@ class TypeZoneDepot_pour_UniteManutentionEntree(models.Model):
     idTypeZoneDepot = models.CharField(max_length=42, default='Null')
     nom = models.CharField(max_length=42, default='Null')
     def __str__(self):
-        return self.nom
+        return self.nom'''
 
-class ZoneDepot_pour_UniteManutentionEntree(models.Model):
+'''class ZoneDepot_pour_UniteManutentionEntree(models.Model):
     idZoneDepot = models.CharField(max_length=42, default='Null')
     #fk_TypeZoneDepot = models.ForeignKey('', on_delete=models.CASCADE, default=1)
     c_nom = models.CharField(max_length=42, default='Null')
@@ -1172,9 +1185,9 @@ class ZoneDepot_pour_UniteManutentionEntree(models.Model):
     m_horodatage = models.CharField(max_length=42, default='Null')
     nom = models.CharField(max_length=42, default='Null')
     def __str__(self):
-        return self.nom
+        return self.nom'''
 
-class EtiquetteUniteManutentionEntree_pour_UniteManutentionEntree(models.Model):
+'''class EtiquetteUniteManutentionEntree_pour_UniteManutentionEntree(models.Model):
     #fk_UniteManutentionEntree = models.ForeignKey('UniteManutentionEntree', on_delete=models.CASCADE, default=1)
     idEtiquetteUniteManutentionEntree = models.CharField(max_length=42, default='Null')
     c_nom = models.CharField(max_length=42, default='Null')
@@ -1192,7 +1205,7 @@ class EtiquetteUniteManutentionEntree_pour_UniteManutentionEntree(models.Model):
     nomCompte = models.CharField(max_length=42, default='Null')
     collee = models.CharField(max_length=42, default='Null')
     def __str__(self):
-        return self.nomCompte
+        return self.nomCompte'''
 #fin
 
 #début Colis
@@ -1218,24 +1231,24 @@ class Colis(models.Model):
     quantiteProduit = models.CharField(max_length=42, default='Null')
     numerotation = models.CharField(max_length=42, default='Null')
 
-class LotRetire_pour_Colis(models.Model):
+'''class LotRetire_pour_Colis(models.Model):
     fk_Article = models.ForeignKey('Article', on_delete=models.CASCADE, default=1)
     dateRetrait = models.CharField(max_length=42, default='Null')
     identifiantSource = models.CharField(max_length=42, default='Null')
     idLotRetire = models.CharField(max_length=42, default='Null')
     numeroLot = models.CharField(max_length=42, default='Null')
-    source = models.CharField(max_length=42, default='Null')
+    source = models.CharField(max_length=42, default='Null')'''
 
-class Colis_UniteManutentionSortie_pour_Colis(models.Model):
-    idColis_UniteManutentionSortie = models.CharField(max_length=42, default='Null')
+'''class Colis_UniteManutentionSortie_pour_Colis(models.Model):
+    idColis_UniteManutentionSortie = models.CharField(max_length=42, default='Null')'''
 
-class UniteManutentionEntree_pour_Colis(models.Model):
-    idUniteManutentionEntree = models.CharField(max_length=42, default='Null')
+'''class UniteManutentionEntree_pour_Colis(models.Model):
+    idUniteManutentionEntree = models.CharField(max_length=42, default='Null')'''
 
-class UniteManutentionSortie_pour_Colis(models.Model):
-    idUniteManutentionSortie = models.CharField(max_length=42, default='Null')
+'''class UniteManutentionSortie_pour_Colis(models.Model):
+    idUniteManutentionSortie = models.CharField(max_length=42, default='Null')'''
 
-class Article_pour_Colis(models.Model):
+'''class Article_pour_Colis(models.Model):
     idArticle = models.CharField(max_length=42, default='Null')
     fk_Fournisseur = models.ForeignKey('Fournisseur', on_delete=models.CASCADE, default=1)
     fk_TypeArticle = models.ForeignKey('typeArticle_pour_Article', on_delete=models.CASCADE, default=1)
@@ -1254,7 +1267,7 @@ class Article_pour_Colis(models.Model):
     quantiteProduitStockincomplet = models.CharField(max_length=42, default='Null')
     quantiteUniteManutentionSortie = models.CharField(max_length=42, default='Null')
     source = models.CharField(max_length=42, default='Null')
-    identifiantSource = models.CharField(max_length=42, default='Null')
+    identifiantSource = models.CharField(max_length=42, default='Null')'''
 
 class Litige_pour_Colis(models.Model):
     idLitige = models.CharField(max_length=42, default='Null')
@@ -1265,8 +1278,8 @@ class Litige_pour_Colis(models.Model):
 
 class BonLivraisonSortie(models.Model):
     idBonLivraisonSortie = models.CharField(max_length=42, default='Null')
-    fk_BonCommandeSortie = models.ForeignKey('BonCommandeSortie_pour_BonLivraisonSortie', on_delete=models.CASCADE, default=1)
-    fk_LettreVoitureSortie = models.ForeignKey('LettreVoitureSortie_pour_BonLivraisonSortie', on_delete=models.CASCADE, default=1)
+    fk_BonCommandeSortie = models.ForeignKey('BonCommandeSortie', on_delete=models.CASCADE, default=1)
+    fk_LettreVoitureSortie = models.ForeignKey('LettreVoitureSortie', on_delete=models.CASCADE, default=1)
     dateImpression = models.CharField(max_length=42, default='Null')
     numeroBonLivraison = models.CharField(max_length=42, default='Null')
     prixExpedition = models.CharField(max_length=42, default='Null')
@@ -1274,53 +1287,52 @@ class BonLivraisonSortie(models.Model):
     c_horodatage = models.CharField(max_length=42, default='Null')
     #fk_Transporteur = models.ForeignKey('', on_delete=models.CASCADE, default=1)
 
-class UniteManutentionSortie_pour_BonLivraisonSortie(models.Model):
+'''class UniteManutentionSortie_pour_BonLivraisonSortie(models.Model):
     idUniteManutentionSortie = models.CharField(max_length=42, default='Null')
     fk_BonLivraisonSortie = models.ForeignKey('Colis_pour_BonLivraisonSortie', on_delete=models.CASCADE, default=1)
-    numero = models.CharField(max_length=42, default='Null')
+    numero = models.CharField(max_length=42, default='Null')'''
 
-class Colis_pour_BonLivraisonSortie(models.Model):
+'''class Colis_pour_BonLivraisonSortie(models.Model):
     idColis = models.CharField(max_length=42, default='Null')
     #fk_UniteManutentionSortie = models.ForeignKey('UniteManutentionSortie_pour_BonLivraisonSortie', on_delete=models.CASCADE, default=1)
-    fk_Article = models.ForeignKey('Article_pour_BonLivraisonSortie_Colis', on_delete=models.CASCADE, default=1)
+    fk_Article = models.ForeignKey('Article_pour_BonLivraisonSortie_Colis', on_delete=models.CASCADE, default=1)'''
 
-class Article_pour_BonLivraisonSortie_Colis(models.Model):
-    idArticle = models.CharField(max_length=42, default='Null')
-
+'''class Article_pour_BonLivraisonSortie_Colis(models.Model):
+    idArticle = models.CharField(max_length=42, default='Null')'''
 
 class LigneBonLivraisonSortie_pour_BonLivraisonSortie(models.Model):
     idLigneBonLivraisonSortie = models.CharField(max_length=42, default='Null')
-    fk_BonLivraisonSortie = models.ForeignKey('UniteManutentionSortie_pour_BonLivraisonSortie', on_delete=models.CASCADE, default=1)
-    fk_Article = models.ForeignKey('Article_pour_BonLivraisonSortie', on_delete=models.CASCADE, default=1)
+    fk_BonLivraisonSortie = models.ForeignKey('BonLivraisonSortie', on_delete=models.CASCADE, default=1)
+    fk_Article = models.ForeignKey('Article', on_delete=models.CASCADE, default=1)
     fk_Transporteur = models.ForeignKey('Transporteur', on_delete=models.CASCADE, default=1)
     quantiteColis = models.CharField(max_length=42, default='Null')
     stat_quantiteColis = models.CharField(max_length=42, default='Null')
 
-class Article_pour_BonLivraisonSortie(models.Model):
-    idArticle = models.CharField(max_length=42, default='Null')
+'''class Article_pour_BonLivraisonSortie(models.Model):
+    idArticle = models.CharField(max_length=42, default='Null')'''
 
-class BonCommandeSortie_pour_BonLivraisonSortie(models.Model):
+'''class BonCommandeSortie_pour_BonLivraisonSortie(models.Model):
     idBonCommandeSortie = models.CharField(max_length=42, default='Null')
     fk_Client = models.ForeignKey('Client_pour_BonLivraisonSortie', on_delete=models.CASCADE, default=1)
-    fk_Destinataire = models.ForeignKey('Destinataire_pour_BonLivraisonSortie', on_delete=models.CASCADE, default=1)
+    fk_Destinataire = models.ForeignKey('Destinataire_pour_BonLivraisonSortie', on_delete=models.CASCADE, default=1)'''
 
-class LigneBonCommandeSortie_pour_BonLivraisonSortie(models.Model):
+'''class LigneBonCommandeSortie_pour_BonLivraisonSortie(models.Model):
     fk_BonCommandeSortie = models.ForeignKey('BonCommandeSortie_pour_BonLivraisonSortie', on_delete=models.CASCADE, default=1)
-    idLigneBonCommandeSortie = models.CharField(max_length=42, default='Null')
+    idLigneBonCommandeSortie = models.CharField(max_length=42, default='Null')'''
 
-class Client_pour_BonLivraisonSortie(models.Model):
+'''class Client_pour_BonLivraisonSortie(models.Model):
     idClient = models.CharField(max_length=42, default='Null')
-    nom = models.CharField(max_length=42, default='Null')
+    nom = models.CharField(max_length=42, default='Null')'''
 
-class Destinataire_pour_BonLivraisonSortie(models.Model):
+'''class Destinataire_pour_BonLivraisonSortie(models.Model):
     idDestinataire = models.CharField(max_length=42, default='Null')
     nom = models.CharField(max_length=42, default='Null')
     identifiantBonLivraison = models.CharField(max_length=42, default='Null')
-    codeUM = models.CharField(max_length=42, default='Null')
+    codeUM = models.CharField(max_length=42, default='Null')'''
 
-class LettreVoitureSortie_pour_BonLivraisonSortie(models.Model):
+'''class LettreVoitureSortie_pour_BonLivraisonSortie(models.Model):
     idLettreVoitureSortie = models.CharField(max_length=42, default='Null')
-    numeroRecepisse = models.CharField(max_length=42, default='Null')
+    numeroRecepisse = models.CharField(max_length=42, default='Null')'''
 
 class BonCommandeSortie(models.Model):
     idBonCommandeSortie = models.CharField(max_length=42, default='Null')
@@ -1340,6 +1352,7 @@ class BonLivraisonEntree(models.Model):
     idBonLivraisonEntree = models.CharField(max_length=42, default='Null')
     fk_LettreVoitureEntree  = models.ForeignKey('LettreVoitureEntree', on_delete=models.CASCADE, default=0, blank=True, null=True)
     fk_TypeZoneDepot = models.ForeignKey('TypeZoneDepot', on_delete=models.CASCADE, default=0, blank=True, null=True)
+    fk_ZoneDepot_pour_TypeZoneDepot = models.ForeignKey('ZoneDepot_pour_TypeZoneDepot', on_delete=models.CASCADE, default=0, blank=True, null=True)
     #fk_UniteManutentionEntree = models.ForeignKey('UniteManutentionEntree', on_delete=models.CASCADE, default=0, blank=True, null=True)
     #fk_BonCommandeEntree = models.ForeignKey('BonCommandeEntree', on_delete=models.CASCADE, default=0, blank=True, null=True)
     fk_Fournisseur = models.ForeignKey('Fournisseur', on_delete=models.CASCADE, default=0, blank=True, null=True)
