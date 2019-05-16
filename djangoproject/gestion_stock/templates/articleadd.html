@@ -91,12 +91,12 @@
                             "{% for items in typeart %}"
                             //to change
                             console.log("test");
-                            var name = "{{ items.nom }}";
+                                var name = "{{ items.nom|safe }}";
                             var oldname;
                             if (i == 0)
-                                $("#artitype").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                                $("#artitype").append(new Option("{{ items.nom|safe }}", "{{ items.nom|safe }}"));
                             else if (name != oldname)
-                                $("#artitype").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                                $("#artitype").append(new Option("{{ items.nom|safe }}", "{{ items.nom|safe }}"));
                             oldname = name;
                             i = 1;
                             "{% endfor %}"
@@ -114,16 +114,16 @@
                             var i = 0;
                             "{% for items in four %}"
                             //to change
-                            var name = "{{ items.nom }}";
+                            var name = "{{ items.nom|safe }}";
                             var oldname;
                             if (i == 0)
-                                $("#fournitype").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                                $("#fournitype").append(new Option("{{ items.nom|safe }}", "{{ items.nom|safe }}"));
                             else if (name != oldname)
-                                $("#fournitype").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                                $("#fournitype").append(new Option("{{ items.nom|safe }}", "{{ items.nom|safe }}"));
                             oldname = name;
                             i = 1;
                             "{% endfor %}"
-                            $("#fournitype").append(new Option("", ""));
+                            //$("#fournitype").append(new Option("", ""));
                         });
                     </script>
                 </select>

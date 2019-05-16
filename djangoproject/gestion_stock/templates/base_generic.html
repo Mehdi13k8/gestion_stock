@@ -49,7 +49,11 @@
 <body>
 
 <div class="container jumbotron">
-  <h2 class="pl-3">Welcome</h2>
+  <div class="row">
+    <div class="col">
+      <h2 class="pl-3">Welcome</h2>
+    </div>
+  </div>
   {% if user.is_authenticated %}
   <div style="position: static;right: 0;float: right;">
     Hi {{ user.username }}!
@@ -64,8 +68,12 @@
       <nav class="navbar navbar-dark  indigo mb-2" id="hidenot  con">
         <span  class="navbar-brand">Menu</span>
         <!-- Collapse button -->
+        <div class="col text-right">
+          <i id="settings" class="fas fa-cog" style="cursor: pointer;"></i>
+        </div>
+
         <button class="navbar-toggler first-button" type="button" data-toggle="collapse" data-target="#navbarSupportedContent20"
-                aria-controls="navbarSupportedContent20" aria-expanded="false" aria-label="Toggle navigation">
+                aria-controls="navbarSupportedContent20" aria-expanded="false" aria-label="Toggle navigation" id="openmenu">
           <div class="animated-icon1"><span></span><span></span><span></span></div>
         </button>
 
@@ -76,7 +84,7 @@
           <div class="row">
             <div class="col">
               <ul class="navbar-nav">
-                <li class="nav-item active" style="height: 141.75px;">
+                <li class="nav-item active" style="height: 141.75px;" id="accueil">
                   <hr>
                   <div class="row">
                     <div class="mx-auto">
@@ -89,13 +97,14 @@
                         <div class="col">
                           <p>Accueil</p>
                         </div>
+
                       </a>
                     </div>
                   </div>
                   <!--<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>-->
                 </li>
 
-                <li class="nav-item"  style="height: 148px;">
+                <li class="nav-item"  style="height: 148px;" id="article">
                   <hr>
                   <div class="row">
                     <div class="mx-auto">
@@ -113,7 +122,7 @@
                   </div>
                 </li>
 
-                <li class="nav-item" style="height: 141.75px;">
+                <li class="nav-item" style="height: 141.75px;" id="boncommandesortie" disabled>
                   <hr>
                   <div class="row">
                     <div class="mx-auto">
@@ -131,7 +140,7 @@
                   </div>
                 </li>
 
-                <li class="nav-item"  style="height: 123.05px;">
+                <li class="nav-item"  style="height: 123.05px;" id="boncommandeentree">
                   <hr>
                   <div class="row">
                     <div class="mx-auto">
@@ -150,7 +159,7 @@
                   </div>
                 </li>
 
-                <li class="nav-item" style="height: 129.25px;">
+                <li class="nav-item" style="height: 129.25px;" id="bonlivraisonsortie">
                   <hr>
                   <div class="row">
                     <div class="mx-auto">
@@ -168,7 +177,7 @@
                   </div>
                 </li>
 
-                <li class="nav-item" style="height: 129.25px;">
+                <li class="nav-item" style="height: 129.25px;" id="bonlivraisonentree">
                   <hr>
                   <div class="row">
                     <div class="mx-auto">
@@ -191,7 +200,7 @@
 
             <div class="col">
               <ul class="navbar-nav mr-auto">
-                <li class="nav-item" style="height:141.75px;">
+                <li class="nav-item" style="height:141.75px;" id="umentree">
                   <hr>
                   <div class="row">
                     <div class="mx-auto">
@@ -211,7 +220,7 @@
                   </div>
                 </li>
 
-                <li class="nav-item" style="height:148px;">
+                <li class="nav-item" style="height:148px;" id="clients">
                   <hr>
                   <div class="row">
                     <div class="mx-auto">
@@ -229,7 +238,7 @@
                   </div>
                 </li>
 
-                <li class="nav-item" style="height:141.7px">
+                <li class="nav-item" style="height:141.7px" id="destinataires">
                   <hr>
                   <div class="row">
                     <div class="mx-auto">
@@ -239,7 +248,7 @@
                   </div>
                 </li>
 
-                <li class="nav-item" style="height:123px;">
+                <li class="nav-item" style="height:123px;" id="transporteurs">
                   <hr>
                   <div class="row">
                     <div class="mx-auto">
@@ -249,7 +258,7 @@
                   </div>
                 </li>
 
-                <li class="nav-item" style="height: 129.9px;">
+                <li class="nav-item" style="height: 129.9px;" id="fournisseurs">
                   <hr>
                   <div class="row">
                     <div class="mx-auto">
@@ -259,7 +268,7 @@
                   </div>
                 </li>
 
-                <li class="nav-item">
+                <li class="nav-item" id="colis">
                   <hr>
                   <div class="row">
                     <div class="mx-auto">
@@ -277,7 +286,7 @@
                   </div>
                 </li>
 
-                <li class="nav-item">
+                <li class="nav-item" id="lve">
                   <hr>
                   <div class="row">
                     <div class="mx-auto">
@@ -335,7 +344,6 @@
   </div>
 </div>
 
-
 {% block content %}
 {% endblock %}
 
@@ -354,6 +362,8 @@
         console.log("leave");
       }
     });
+
+
 
     $('.first-button').on('click', function () {
       $('.animated-icon1').toggleClass('open');
@@ -402,7 +412,12 @@
         }
       }
     });
+    $('#settings').click(function () {
+      location.href = "{% url 'setting' %}";
+    });
   });
+
+  //ce widget permet d'avoir des input qui servent aussi de select donc 2 en 1 je l'utilise dans plusieurs templates il vient de JQuery UI
   $.widget("custom.combobox", {
     _create: function () {
       this.wrapper = $("<span>")

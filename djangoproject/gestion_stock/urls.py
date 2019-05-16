@@ -9,6 +9,7 @@ urlpatterns = [
     #path('accounts/login/', auth_views.LoginView.as_view()),
     #path('login/', views.index_login.as_view(), name='login'),
     path('index', views.index.as_view()),
+    path('setting', views.setting.as_view(), name='setting'),
 
     path('bon_entree', views.BonCommandeEntree_index.as_view(), name='bonCommandeEntree'), #page des bon de commande entree
     path('bon_entree/add', views.BonCommandeEntreeadd.as_view(), name='bonCommandeEntreeadd'), #page des possibilité a ajouter au bon de commande entree
@@ -64,7 +65,9 @@ urlpatterns = [
     path('transporteur', views.transporteur.as_view(), name='transporteur'),
     path('transporteur/add', views.transporteuradd.as_view(), name='transporteuradd'),
     path('transporteur/modify/', views.transporteurmodify.as_view(), name='transporteurmodify'),
-    path('modify_trans/', views.transporteurmodify.modify, name='transporteurmodifysave'),
+    path('modify_trans/', views.transporteurmodify.modify),
+    path('right_trans/', views.transporteurmodify.right),
+    path('left_trans/', views.transporteurmodify.left),
     path('create_trans/', views.create_trans),
     path('delete_trans/', views.delete_trans),
 
@@ -96,9 +99,8 @@ urlpatterns = [
     path('umentree', views.ume.as_view(), name='unitemanutentionentree'),
     path('umentree/add', views.umeadd.as_view(), name='unitemanutentionentreeadd'),
     path('umentree/modify/', views.umemodify.as_view(), name='unitemanutentionentreemodify'),
-    path('modify_ume/', views.umemodify.modify, name='transporteurmodifysave'),
+    path('modify_ume/', views.umemodify.modify, name='unitemanutentionentreemodifysave'),
     path('create_ume/', views.umeadd.create),
     path('delete_ume/', views.ume.delete),
-
     #path('bon/add/<int:month>/', views.),
 ]

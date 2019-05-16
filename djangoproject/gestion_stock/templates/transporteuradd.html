@@ -20,25 +20,16 @@
 <div class="container">
     <div class="form-group row text-center">
         <div class="col">
-            <button type="button" class="btn btn-light btn-rounded btn-outline-dark">Recherche</button>
-        </div>
-        <div class="col">
             <button type="button" id="back-row" class="btn btn-default btn-rounded btn-outline-dark">Tout</button>
-        </div>
-        <div class="col">
-            <button type="button" id="create-row" class="btn btn-success btn-rounded btn-outline-dark">Ajouter</button>
-        </div>
-        <div class="col">
-            <button type="button" class="btn btn-default btn-rounded btn-outline-dark">Calculer</button>
         </div>
     </div>
 </div>
 
 <div class="container">
-    <div class="row" style="width: auto; height: 100%;">
-        <div class="border shadow-lg p-3 mb-5 bg-white rounded" style="width: 100%; height: auto;">
+    <div class="row">
+        <div class="border shadow-lg bg-white rounded col text-center">
             <div class="row">
-                <div class="col-md-10" >
+                <div class="col">
                     <h3 class="text-center"> identification </h3>
                 </div>
             </div>
@@ -47,10 +38,10 @@
             <form action="/create_trans/" method="POST" id="post-form">
                 <br>
                 <div class="">
-                    identifiant:<br><input type="text" id="umid" name="id_transporteur" disabled>
+                    identifiant:<br><input class="text-center" type="text" id="umid" name="id_transporteur" disabled>
                 </div>
                 <div>
-                    nom: <br><input type="text" id="nom" name="nom_transporteur">
+                    nom: <br><input class="text-center" type="text" id="nom" name="nom_transporteur">
                 </div>
                 <br>
                 <input type="button" class="btn btn-primary" id="addtransp" value="Save">

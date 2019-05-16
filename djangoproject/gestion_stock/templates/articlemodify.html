@@ -98,12 +98,12 @@
                             "{% for items in typeart %}"
                             //to change
                             console.log("test");
-                            var name = "{{ items.nom }}";
+                            var name = "{{ items.nom|safe }}";
                             var oldname;
                             if (i == 0)
-                                $("#artitype").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                                $("#artitype").append(new Option("{{ items.nom|safe }}", "{{ items.nom|safe }}"));
                             else if (name != oldname)
-                                $("#artitype").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                                $("#artitype").append(new Option("{{ items.nom|safe }}", "{{ items.nom|safe }}"));
                             oldname = name;
                             i = 1;
                             "{% endfor %}"
@@ -121,12 +121,12 @@
                             var i = 0;
                             "{% for items in four %}"
                             //to change
-                            var name = "{{ items.nom }}";
+                            var name = "{{ items.nom|safe }}";
                             var oldname;
                             if (i == 0)
-                                $("#fournitype").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                                $("#fournitype").append(new Option("{{ items.nom|safe }}", "{{ items.nom|safe }}"));
                             else if (name != oldname)
-                                $("#fournitype").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                                $("#fournitype").append(new Option("{{ items.nom|safe }}", "{{ items.nom|safe }}"));
                             oldname = name;
                             i = 1;
                             "{% endfor %}"
@@ -189,17 +189,17 @@
                     {% for items in histoart %}
                     <tr>
                         <td> <button id='{{ items.idArticle }}' class="dyna"> -> </button></td>
-                        <td> {{ items.stock }} </td>
-                        <td> {{ items.fk_TypeArticle.nom }} </td>
-                        <td> {{ items.fk_Fournisseur.nom }} </td>
-                        <td> {{ items.codeClient }} </td>
-                        <td> {{ items.designationClient }} </td>
-                        <td> {{ items.quantiteProduitStockComplet }} </td>
-                        <td> {{ items.quantiteColisStockComplet }} </td>
-                        <td> {{ items.quantiteProduitStockIncomplet }} </td>
-                        <td> {{ items.quantiteColisStockIncomplet }} </td>
-                        <td> {{ items.quantiteColisStandard }} </td>
-                        <td> {{ items.quantiteUniteManutentionSortie }} </td>
+                        <td> {{ items.stock|safe }} </td>
+                        <td> {{ items.fk_TypeArticle.nom|safe }} </td>
+                        <td> {{ items.fk_Fournisseur.nom|safe }} </td>
+                        <td> {{ items.codeClient|safe }} </td>
+                        <td> {{ items.designationClient|safe }} </td>
+                        <td> {{ items.quantiteProduitStockComplet|safe }} </td>
+                        <td> {{ items.quantiteColisStockComplet|safe }} </td>
+                        <td> {{ items.quantiteProduitStockIncomplet|safe }} </td>
+                        <td> {{ items.quantiteColisStockIncomplet|safe }} </td>
+                        <td> {{ items.quantiteColisStandard|safe }} </td>
+                        <td> {{ items.quantiteUniteManutentionSortie|safe }} </td>
                         <td> <button id='{{ items.idArticle }}' class="dynad"> X </button> </td>
                     </tr>
                     {% endfor %}
@@ -299,20 +299,20 @@
         var id = $('#umid').val();
         '{% for items in art %}'
         if ('{{ items.idArticle }}' == id) {
-            $("#codefour").val('{{ items.codeFournisseur }}');
-            $("#desigfour").val('{{ items.designationFournisseur }}');
-            $("#codecli").val('{{ items.codeClient }}');
-            $("#désicli").val('{{ items.designationClient }}');
-            $("#délaipcli").val('{{ items.delaiPeremption }}');
-            $("#dureestock").val('{{ items.dureeStockage }}');
+            $("#codefour").val('{{ items.codeFournisseur|safe }}');
+            $("#desigfour").val('{{ items.designationFournisseur|safe }}');
+            $("#codecli").val('{{ items.codeClient|safe }}');
+            $("#désicli").val('{{ items.designationClient|safe }}');
+            $("#délaipcli").val('{{ items.delaiPeremption|safe }}');
+            $("#dureestock").val('{{ items.dureeStockage|safe }}');
 
-            $("#artitype").val('{{ items.fk_TypeArticle.nom }}');
-            $("#fournitype").val('{{ items.fk_Fournisseur.nom }}');
+            $("#artitype").val('{{ items.fk_TypeArticle.nom|safe }}');
+            $("#fournitype").val('{{ items.fk_Fournisseur.nom|safe }}');
 
-            $("#qtecstd").val('{{ items.quantiteColisStandard }}');
-            $("#pcstr").val('{{ items.poidsColisStandard }}');
-            $("#src").val('{{ items.source }}');
-            $("#idsrc").val('{{ items.identifiantSource }}');
+            $("#qtecstd").val('{{ items.quantiteColisStandard|safe }}');
+            $("#pcstr").val('{{ items.poidsColisStandard|safe }}');
+            $("#src").val('{{ items.source|safe }}');
+            $("#idsrc").val('{{ items.identifiantSource|safe }}');
         }
         '{% endfor %}'
         $('#addart').click(function() {

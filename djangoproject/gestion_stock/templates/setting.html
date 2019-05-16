@@ -1,0 +1,48 @@
+{% extends user.is_authenticated|yesno:"base_generic.html,empty.html" %}
+
+{% block content %}
+
+<body>
+<div class="container">
+    <!--Navbar-->
+    <nav class="navbar navbar-dark red lighten-1 mb-4">
+
+        <!-- Navbar brand -->
+        <a class="navbar-brand" href="#">Navbar</a>
+
+        <!-- Collapse button -->
+        <button class="navbar-toggler second-button" type="button" data-toggle="collapse" data-target="#navbarSupportedContent23"
+                aria-controls="navbarSupportedContent23" aria-expanded="false" aria-label="Toggle navigation" id="openmenu2">
+            <div class="animated-icon2"><span></span><span></span><span></span><span></span></div>
+        </button>
+
+        <!-- Collapsible content -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent23">
+
+            <!-- Links -->
+            <ul class="navbar-nav mr-auto">
+                <!--<li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>-->
+            </ul>
+            <!-- Links -->
+
+        </div>
+        <!-- Collapsible content -->
+
+    </nav>
+    <form action="/upload/" method="post" id="file-upload-form" enctype="multipart/form-data"> {% csrf_token %}
+        {{ form }}
+        <button type="submit" class="btn btn-primary" id='upload-btn'>Upload</button>
+    </form>
+</div>
+</body>
+
+<script>
+    setTimeout( function(){
+        $("#openmenu").trigger("click");
+        $("#openmenu2").trigger("click");
+        console.log("menu oppening");
+    },1000);
+</script>
+{% endblock %}

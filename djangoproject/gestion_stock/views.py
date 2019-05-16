@@ -5,7 +5,8 @@ from django.shortcuts import render, render_to_response
 from django.views.generic import ListView
 
 from .models import *
-
+#from .forms import UploadFileForm
+#from .models import ModelWithFileField
 
 #https://realpython.com/django-and-ajax-form-submissions/ faut aller apprendre la connection | plus besoin, connection acquise
 #https://code.djangoproject.com/wiki/AjaxDojoLogin
@@ -18,6 +19,31 @@ class index(ListView):              #Page d'acceuil vide pour l'instant
             'activate' : 'on' #cette donnée me permettra de savoir dans quel view je suis pour mettre en surbrillance la page choisie
         }
         return render(request, self.template_name, context) #je retourne le template via self car il se trouve dans la classe la request que django sache ce que je fais et context pour les variables
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
+class setting(ListView):
+    template_name = "setting.html"
+
+    def upload_file(request):
+        if request.method == 'POST':
+            return HttpResponse("deleted !")
+        return HttpResponse("No authorized access !")
+
+    def changeacceuil(request):
+        if request.method == 'POST':
+            #objects.get avec un filtre retourne le seul objet a avoir le même idboncommandeentree
+            one_task = BonCommandeEntree.objects.get(idBonCommandeEntree=request.POST['id'])
+            one_task.delete()
+            return HttpResponse("deleted !")
+
+    def get(self, request):
+        context = {
+            'activate' : 'on'
+        }
+        return render(request, self.template_name, context) #request permet de savoir si je suis connecté
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
 #J'étais partie sur cette façon de me connecter, mais je suis retournée a la manière standard offerte par django via un "form standard"
 '''class index_login(ListView): 
@@ -43,9 +69,7 @@ class index(ListView):              #Page d'acceuil vide pour l'instant
         }
         return render_to_response(self.template_name, context)'''
 
-
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-
 #site d'importation
 
 class BonCommandeEntree_index(ListView):
@@ -110,11 +134,9 @@ class BonCommandeEntreemodify(ListView):
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
-
 #c'est le bon de sortie pour les commande
 class bonCommandeSortie(ListView):
     data = dict()
-
     template_name = "bonCommandeSortie.html"
 
     def get(self, request):
@@ -306,7 +328,6 @@ class bonLivraisonentreemodify(ListView):
             my_total = BonLivraisonEntree.objects.count()
             after = request.POST['id']
             bl = BonLivraisonEntree.objects.get(idBonLivraisonEntree=request.POST['id'])
-
             mybl = BonLivraisonEntree.objects.all()
             id = 0
             for bl in mybl:
@@ -596,7 +617,6 @@ class articleadd(ListView):
             showlist = [request.POST.get('name'), request.POST.get('id'),
                         request.POST.get('codefour'), request.POST.get('desifour'),
                         request.POST.get('codecli'), request.POST.get('desicli'),
-
                         request.POST.get('delaicli'), request.POST.get('durestock'),
                         request.POST.get('artitype'), request.POST.get('fournitype'),
                         request.POST.get('qtecstd'), request.POST.get('pcstd'),
@@ -647,7 +667,6 @@ class articlemodify(ListView):
             showlist = [request.POST.get('name'), request.POST.get('id'),
                         request.POST.get('codefour'), request.POST.get('desifour'),
                         request.POST.get('codecli'), request.POST.get('desicli'),
-
                         request.POST.get('delaicli'), request.POST.get('durestock'),
                         request.POST.get('artitype'), request.POST.get('fournitype'),
                         request.POST.get('qtecstd'), request.POST.get('pcstd'),
@@ -745,7 +764,6 @@ class fournisseur(ListView):
 
 def create_four(request):
     typefournisseur = TypeFournisseur_pour_Fournisseur.objects.all()
-
     if request.method == 'POST':
         fournisseur = Fournisseur()
         fournisseur.idFournisseur = request.POST['id']
@@ -811,9 +829,7 @@ class fournisseurmodify(ListView):
             my_total = Fournisseur.objects.count()
             after = request.POST['id']
             fournisseur = Fournisseur.objects.get(idFournisseur=request.POST['id'])
-
             fou = Fournisseur.objects.all()
-
             id = 0
             for myfou in fou:
                 if id < int(myfou.idFournisseur):
@@ -891,6 +907,44 @@ class transporteurmodify(ListView):
             transp.save()
             return HttpResponse("you think its good ? Transporteur " + request.POST['name'] + " updated !")
 
+    def left(request):
+        if request.method == 'POST':
+            before = request.POST['id']
+            transporteur = Transporteur.objects.get(idTransporteur=request.POST['id'])
+            for i in range(int(before)-1, 0, -1):
+                try:
+                    go = Transporteur.objects.get(idTransporteur=str(i))
+                    return HttpResponse(i)
+                except Transporteur.DoesNotExist:
+                    go = None
+                print (i)
+            return HttpResponse("fail")
+        return HttpResponse("No Authorized Access !")
+
+    def right(request):
+        if request.method == 'POST':
+            my_total = Transporteur.objects.count()
+            after = request.POST['id']
+            transporteur = Transporteur.objects.get(idTransporteur=request.POST['id'])
+
+            trans = Transporteur.objects.all()
+            id = 0
+            for mytrans in trans:
+                if id < int(mytrans.idTransporteur):
+                    id = int(mytrans.idTransporteur)
+            print("id = " + str(id))
+
+            for i in range(int(after)+1, id+1, 1):
+                try:
+                    print("id = " + str(id))
+                    go = Transporteur.objects.get(idTransporteur=str(i))
+                    return HttpResponse(i)
+                except Transporteur.DoesNotExist:
+                    go = None
+                print (i)
+            return HttpResponse("fail")
+        return HttpResponse("No Authorized Access !")
+
     def get(self, request):
         context = {
             'trans' :Transporteur.objects.all(),
@@ -906,7 +960,6 @@ class destinataire(ListView):
     template_name = "destinataire.html"
 
     def delete(request):
-
         dest = Destinataire.objects.all()
         if request.method == 'POST':
             for items in dest:
@@ -953,6 +1006,11 @@ class destinatairemodify(ListView):
             destinataire.commentaire = showlist[5]
             destinataire.delaiPeremption = showlist[6]
 
+            destinataire.departement = showlist[14]
+            destinataire.adresseFacturation = showlist[15]
+            destinataire.source = showlist[17]
+            destinataire.identifiantSource = showlist[18]
+
             destinataire.adresseLivraison_nom = showlist[7]
             destinataire.adresseLivraison_numero = showlist[8]
             destinataire.adresseLivraison_rue = showlist[9]
@@ -992,7 +1050,6 @@ class destinatairemodify(ListView):
             my_total = Destinataire.objects.count()
             after = request.POST['id']
             destinataire = Destinataire.objects.get(idDestinataire=request.POST['id'])
-
             des = Destinataire.objects.all()
 
             id = 0
@@ -1017,11 +1074,10 @@ class destinatairemodify(ListView):
             'des' :Destinataire.objects.all(),
             'name' :request.GET.get('name'),
             'id' :request.GET.get('id'),
-            'umsortie' :UniteManutentionSortie_pour_Destinataire.objects.all().select_related('fk_BonCommandeSortie'),
+            #'umsortie' :UniteManutentionSortie_pour_Destinataire.objects.all().select_related('fk_BonCommandeSortie'),
             'activate' : 'on',
         }
         return render(request, self.template_name, context)
-
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
@@ -1053,7 +1109,10 @@ class destinataireadd(ListView):
             destinataire.codeUM = showlist[4]
             destinataire.commentaire = showlist[5]
             destinataire.delaiPeremption = showlist[6]
-
+            destinataire.departement = showlist[14]
+            destinataire.adresseFacturation = showlist[15]
+            destinataire.source = showlist[17]
+            destinataire.identifiantSource = showlist[18]
             destinataire.adresseLivraison_nom = showlist[7]
             destinataire.adresseLivraison_numero = showlist[8]
             destinataire.adresseLivraison_rue = showlist[9]
@@ -1061,14 +1120,11 @@ class destinataireadd(ListView):
             destinataire.adresseLivraison_complement_2 = showlist[11]
             destinataire.adresseLivraison_codePostal = showlist[12]
             destinataire.adresseLivraison_localite = showlist[13]
-
             destinataire.idDestinataire = showlist[26]
-
             pays = Pays_pour_Destinataire.objects.all()
             for items in pays:
                 if items.nom == request.POST.get('pays'):
                     destinataire.fk_Pays = items
-
             typedest = TypeDestinataire_pour_Destinataire.objects.all()
             for items in typedest:
                 if items.nom == request.POST.get('typedest'):
@@ -1742,7 +1798,6 @@ class umemodify(ListView):
         context = {
         }
         return render(request, self.template_name, context)
-
 
     def get(self, request):
         context = {
