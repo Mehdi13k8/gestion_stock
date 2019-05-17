@@ -2,11 +2,17 @@
 
 from django.http import HttpResponse
 from django.shortcuts import render, render_to_response
-from django.views.generic import ListView
+from django.views.generic import ListView, CreateView
 
 from .models import *
 #from .forms import UploadFileForm
 #from .models import ModelWithFileField
+from django import forms
+#from gestion_stock.forms import ImgaccueilForm
+#from gestion_stock.forms import MyCommentForm
+#from .forms import UploadFileForm
+from .forms import PostForm
+from django.urls import reverse_lazy # new
 
 #https://realpython.com/django-and-ajax-form-submissions/ faut aller apprendre la connection | plus besoin, connection acquise
 #https://code.djangoproject.com/wiki/AjaxDojoLogin
@@ -21,30 +27,6 @@ class index(ListView):              #Page d'acceuil vide pour l'instant
         return render(request, self.template_name, context) #je retourne le template via self car il se trouve dans la classe la request que django sache ce que je fais et context pour les variables
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-
-class setting(ListView):
-    template_name = "setting.html"
-
-    def upload_file(request):
-        if request.method == 'POST':
-            return HttpResponse("deleted !")
-        return HttpResponse("No authorized access !")
-
-    def changeacceuil(request):
-        if request.method == 'POST':
-            #objects.get avec un filtre retourne le seul objet a avoir le même idboncommandeentree
-            one_task = BonCommandeEntree.objects.get(idBonCommandeEntree=request.POST['id'])
-            one_task.delete()
-            return HttpResponse("deleted !")
-
-    def get(self, request):
-        context = {
-            'activate' : 'on'
-        }
-        return render(request, self.template_name, context) #request permet de savoir si je suis connecté
-
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-
 #J'étais partie sur cette façon de me connecter, mais je suis retournée a la manière standard offerte par django via un "form standard"
 '''class index_login(ListView): 
     template_name = "login.html"
@@ -172,7 +154,7 @@ class lettrevoitureentreeadd(ListView):
             showlist = [request.POST.get('id'), request.POST.get('dater'),
                         request.POST.get('numr'), request.POST.get('qpalette'),
                         request.POST.get('transp'), request.POST.get('qcolis'),
-                    request.POST.get('quantitecolrecla'), request.POST.get('quantitepalrecla'),             #ici je recois les donnée reçus via la requete ajax en js
+                        request.POST.get('quantitecolrecla'), request.POST.get('quantitepalrecla'),             #ici je recois les donnée reçus via la requete ajax en js
                         request.POST.get('comrecla'),]
             lettre = LettreVoitureEntree()
             for items in trans:
@@ -410,7 +392,7 @@ class bonLivraisonentreemodify(ListView):
             'zoned': ZoneDepot_pour_TypeZoneDepot.objects.all(),
             #'lve' : LettreVoitureEntree.objects.all(),
             'entreeligne' : LigneBonLivraisonEntree_pour_BonLivraisonEntree.objects.all(),
-                'id' :request.GET.get('id'),
+            'id' :request.GET.get('id'),
             'activate' : 'on',
         }
         return render(request, self.template_name, context)
@@ -1806,3 +1788,46 @@ class umemodify(ListView):
         return render(request, self.template_name, context)
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
+class setting(CreateView):
+    '''template_name = "setting.html"
+    #success_url = reverse_lazy('')
+    form_class = PostForm
+    initial = {'key': 'value'}
+
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            obj = imgaccueil()
+            obj.title = form['title']
+            obj.cover = form['cover']
+            obj.save()
+            return HttpResponse("good input.")
+        return HttpResponse("bad input.")
+
+    def get(self, request):
+        #success_url = reverse_lazy('')
+        form = self.form_class(initial=self.initial)
+        context = {
+            'activate' : 'on',
+            'object_list': imgaccueil.objects.all(),
+            'form': form,
+        }
+        return render(request, self.template_name, context) #request permet de savoir si je suis connecté'''
+    model = PostForm
+    fields = ('title', 'cover')
+    template_name = 'setting.html'
+    def get(self, request):
+        context = {
+            'activate' : 'on',
+            'form':self.model,
+        }
+        return render(request, self.template_name, context) #request permet de savoir si je suis connecté'''
+
+    def form_valid(self, form):
+        #form.instance.clientProp = self.request.user.client
+        #offre = form.save(commit=False)
+        #offre.save()
+        return redirect('setting')
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#

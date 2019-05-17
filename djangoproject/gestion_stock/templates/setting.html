@@ -31,9 +31,11 @@
         <!-- Collapsible content -->
 
     </nav>
-    <form action="/upload/" method="post" id="file-upload-form" enctype="multipart/form-data"> {% csrf_token %}
-        {{ form }}
-        <button type="submit" class="btn btn-primary" id='upload-btn'>Upload</button>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit New Post</button>
     </form>
 </div>
 </body>
@@ -44,5 +46,29 @@
         $("#openmenu2").trigger("click");
         console.log("menu oppening");
     },1000);
+
+    $("#image_to_upload").on("change", function(e) {
+        /*e.preventDefault();
+        var form_data = new FormData();
+        var image = document.getElementById('image_to_upload').files[0].name;
+        form_data.append('image', image);
+        $.ajax({
+            type:"POST",
+            url: '/settings/change/accueil/',
+            contentType: "multipart/form-data",
+            data: {
+                form_data : form_data,
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+            },
+            traditional: true,
+            cache: false,
+            success: function(msg, data, settings) {
+                console.log("success: " + msg);
+            },
+            failure: function() {
+                alert("fail");
+            }
+        });*/
+    });
 </script>
 {% endblock %}

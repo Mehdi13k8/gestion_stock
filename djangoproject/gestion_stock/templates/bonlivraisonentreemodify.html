@@ -68,12 +68,12 @@
                                                     var i = 0;
                                                     "{% for items in cli %}"
                                                     //to change
-                                                    var name = "{{ items.nom }}";
+                                                    var name = "{{ items.nom|safe }}";
                                                     var oldname;
                                                     if (i == 0)
-                                                        $("#client").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                                                        $("#client").append(new Option("{{ items.nom|safe }}", "{{ items.nom|safe }}"));
                                                     else if (name != oldname)
-                                                        $("#client").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                                                        $("#client").append(new Option("{{ items.nom|safe }}", "{{ items.nom|safe }}"));
                                                     oldname = name;
                                                     i = 1;
                                                     "{% endfor %}"
@@ -94,7 +94,7 @@
                                         <button class="btn btn-default btn-sm w-25" id="accesslve" type="button"><i class="fas fa-arrow-right"></i></button>
                                     </span>
                                         <div class="w-25">
-                                            <input type="text" id="lve" disabled class="form-control">
+                                            <input type="text" id="lve" class="form-control" disabled>
                                         </div>
                                     </div>
                                 </div>
@@ -108,12 +108,12 @@
                                                 var i = 0;
                                                 "{% for items in four %}"
                                                 //to change
-                                                var name = "{{ items.nom }}";
+                                                var name = "{{ items.nom|safe }}";
                                                 var oldname;
                                                 if (i == 0)
-                                                    $("#fournisseur").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                                                    $("#fournisseur").append(new Option("{{ items.nom|safe }}", "{{ items.nom|safe }}"));
                                                 else if (name != oldname)
-                                                    $("#fournisseur").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                                                    $("#fournisseur").append(new Option("{{ items.nom|safe }}", "{{ items.nom|safe }}"));
                                                 oldname = name;
                                                 i = 1;
                                                 "{% endfor %}"
@@ -239,12 +239,12 @@
                                     var i = 0;
                                     "{% for items in des %}"
                                     //to change
-                                    var name = "{{ items.nom }}";
+                                    var name = "{{ items.nom|safe }}";
                                     var oldname;
                                     if (i == 0)
-                                        $("#litiges").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                                        $("#litiges").append(new Option("{{ items.nom|safe }}", "{{ items.nom|safe }}"));
                                     else if (name != oldname)
-                                        $("#litiges").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                                        $("#litiges").append(new Option("{{ items.nom|safe }}", "{{ items.nom|safe }}"));
                                     oldname = name;
                                     i = 1;
                                     "{% endfor %}"
@@ -263,7 +263,7 @@
                                     var i = 0;
                                     "{% for items in des %}"
                                     //to change
-                                    var name = "{{ items.nom }}";
+                                    var name = "{{ items.nom|safe }}";
                                     var oldname;
                                     /*if (i == 0)
                                      $("#zatt").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
@@ -439,26 +439,27 @@
         var nbr = 0;
         '{% for items in entree %}'
         if ('{{ items.idBonLivraisonEntree }}' == $('#umid').val()) {
-            $('#client').val('{{ items.fk_Client.nom }}');
-            $('#lve').val('{{ items.fk_LettreVoitureEntree.idLettreVoitureEntree }}');
+            $('#client').val('{{ items.fk_Client.nom|safe }}');
+            $('#lve').val('{{ items.fk_LettreVoitureEntree }}');
+            $('#lve').text('{{ items.fk_LettreVoitureEntree }}');
 
             '{% for items in cli %}'
             if ('{{ items.nom }}' == $('#client').val()) {
-                $('#zone').val('{{ items.fk_TypeZone.nom }}');
+                $('#zone').val('{{ items.fk_TypeZone.nom|safe }}');
                 $('#zatt').empty();
                 '{% for items in zoned %}'
-                $("#zatt").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                $("#zatt").append(new Option("{{ items.nom|safe }}", "{{ items.nom|safe }}"));
                 '{% endfor %}'
             }
             '{% endfor %}'
 
-            $("#fournisseur").val("{{ items.fk_Fournisseur.nom }}");
-            $("#inputMDEx").val("{{ items.dateReception }}");
-            $("#inputqpl").val("{{ items.quantitePalette }}");
-            $("#inputnbl").val("{{ items.numeroBonLivraison }}");
-            $("#litiges").val("{{ items.fk_Destinataire }}");
-            $("#client").val("{{ items.fk_Client }}");
-            $("#zatt").val("{{ items.fk_ZoneDepot_pour_TypeZoneDepot }}");
+            $("#fournisseur").val("{{ items.fk_Fournisseur.nom|safe }}");
+            $("#inputMDEx").val("{{ items.dateReception|safe }}");
+            $("#inputqpl").val("{{ items.quantitePalette|safe }}");
+            $("#inputnbl").val("{{ items.numeroBonLivraison|safe }}");
+            $("#litiges").val("{{ items.fk_Destinataire|safe }}");
+            $("#client").val("{{ items.fk_Client|safe }}");
+            $("#zatt").val("{{ items.fk_ZoneDepot_pour_TypeZoneDepot|safe }}");
 
             '{% for itemslb in entreeligne %}'
             if ('{{ itemslb.fk_BonLivraisonEntree }}' == '{{ items.idBonLivraisonEntree }}') {
@@ -484,16 +485,16 @@
                 nbr++;
                 //upperid++;
                 '{% for itemsart in art %}'
-                $("select.fournise:last").append(new Option("{{ itemsart.codeFournisseur }}", "{{ itemsart.codeFournisseur }}"));
-                $("select.desif:last").append(new Option("{{ itemsart.designationClient }}", "{{ itemsart.designationClient }}"));
+                $("select.fournise:last").append(new Option("{{ itemsart.codeFournisseur|safe }}", "{{ itemsart.codeFournisseur|safe }}"));
+                $("select.desif:last").append(new Option("{{ itemsart.designationClient|safe }}", "{{ itemsart.designationClient|safe }}"));
                 //console.log("{{ itemsart.idArticle }} and {{ itemslb.fk_Article.idArticle }}");
                 if ('{{ itemsart.idArticle }}' == '{{ itemslb.fk_Article.idArticle }}') {
-                    $("select.fournise:last").val("{{ itemsart.codeFournisseur }}");
-                    $("select.desif:last").val("{{ itemsart.designationClient }}");
+                    $("select.fournise:last").val("{{ itemsart.codeFournisseur|safe }}");
+                    $("select.desif:last").val("{{ itemsart.designationClient|safe }}");
                 }
                 '{% endfor %}'
-                $("select.desif:last").parent('td').nextAll('td').eq('0').find('input').val("{{ itemslb.quantiteProduit }}");
-                $("select.desif:last").parent('td').nextAll('td').eq('1').find('input').val("{{ itemslb.quantiteColis }}");
+                $("select.desif:last").parent('td').nextAll('td').eq('0').find('input').val("{{ itemslb.quantiteProduit|safe }}");
+                $("select.desif:last").parent('td').nextAll('td').eq('1').find('input').val("{{ itemslb.quantiteColis|safe }}");
                 if ('{{ itemslb.controle }}' == 1) {
                     $("select.desif:last").parent('td').nextAll('td').eq('2').find('button').attr('class', 'btn btn-sm butctrl btn-success');
                     $("select.desif:last").parent('td').nextAll('td').eq('2').find('i').attr('class', 'far fa-thumbs-up');
@@ -501,17 +502,17 @@
                 if ('{{ itemslb.termine }}' == 1) {
                     $("select.desif:last").parent('td').nextAll('td').eq('3').find('input').prop('checked', true);
                 }
-                $("select.desif:last").parent('td').nextAll('td').eq('5').find('input').val("{{ itemslb.quantiteCommande }}");
-                $("select.desif:last").parent('td').nextAll('td').eq('6').find('input').val("{{ itemslb.quantiteCommandeRecue }}");
-                $("select.desif:last").parent('td').nextAll('td').eq('7').find('input').val("{{ itemslb.quantiteProduitRecu }}");
-                $("select.desif:last").parent('td').nextAll('td').eq('8').find('input').val("{{ itemslb.quantiteColisRecu }}");
-                $("select.desif:last").parent('td').nextAll('td').eq('9').find('input').val("{{ itemslb.quantiteProduitAlivrer }}");
-                $("select.desif:last").parent('td').nextAll('td').eq('10').find('input').val("{{ itemslb.quantiteColisAlivrer }}");
-                $("select.desif:last").parent('td').nextAll('td').eq('11').find('input').val("{{ itemslb.quantiteColisLitige }}");
-                $("select.desif:last").parent('td').nextAll('td').eq('12').find('input').val("{{ itemslb.quantiteProduitLitige }}");
-                $("select.desif:last").parent('td').nextAll('td').eq('13').find('input').val("{{ itemslb.quantiteDifferenceAutre }}");
-                $("select.desif:last").parent('td').nextAll('td').eq('14').find('input').val("{{ itemslb.quantiteDifference }}");
-                $("select.desif:last").parent('td').nextAll('td').eq('15').find('input').val("{{ itemslb.quantiteDifferenceRestante }}");
+                $("select.desif:last").parent('td').nextAll('td').eq('5').find('input').val("{{ itemslb.quantiteCommande|safe }}");
+                $("select.desif:last").parent('td').nextAll('td').eq('6').find('input').val("{{ itemslb.quantiteCommandeRecue|safe }}");
+                $("select.desif:last").parent('td').nextAll('td').eq('7').find('input').val("{{ itemslb.quantiteProduitRecu|safe }}");
+                $("select.desif:last").parent('td').nextAll('td').eq('8').find('input').val("{{ itemslb.quantiteColisRecu|safe }}");
+                $("select.desif:last").parent('td').nextAll('td').eq('9').find('input').val("{{ itemslb.quantiteProduitAlivrer|safe }}");
+                $("select.desif:last").parent('td').nextAll('td').eq('10').find('input').val("{{ itemslb.quantiteColisAlivrer|safe }}");
+                $("select.desif:last").parent('td').nextAll('td').eq('11').find('input').val("{{ itemslb.quantiteColisLitige|safe }}");
+                $("select.desif:last").parent('td').nextAll('td').eq('12').find('input').val("{{ itemslb.quantiteProduitLitige|safe }}");
+                $("select.desif:last").parent('td').nextAll('td').eq('13').find('input').val("{{ itemslb.quantiteDifferenceAutre|safe }}");
+                $("select.desif:last").parent('td').nextAll('td').eq('14').find('input').val("{{ itemslb.quantiteDifference|safe }}");
+                $("select.desif:last").parent('td').nextAll('td').eq('15').find('input').val("{{ itemslb.quantiteDifferenceRestante|safe }}");
 
                 for (var a = nbr; a != 0; a--) {
                     $("#blfournisseur" + a).combobox();
@@ -534,7 +535,7 @@
                         '{% for items in art %}'
                         if ('{{ items.codeFournisseur }}' == this.value) {
                             $(this).closest('td').next().find('select').find('option').remove();
-                            $(this).closest('td').next().find('select').append(new Option("{{ items.designationClient }}", "{{ items.designationClient }}"));
+                            $(this).closest('td').next().find('select').append(new Option("{{ items.designationClient|safe }}", "{{ items.designationClient|safe }}"));
                         }
                         '{% endfor %}'
                     }
@@ -542,9 +543,9 @@
                 $(".desif").combobox({
                     select: function (event, ui) {
                         '{% for items in art %}'
-                        if ('{{ items.designationClient  }}' == this.value) {
+                        if ('{{ items.designationClient|safe }}' == this.value) {
                             $(this).closest('td').prev().find('select').find('option').remove();
-                            $(this).closest('td').prev().find('select').append(new Option("{{ items.codeFournisseur }}", "{{ items.codeFournisseur }}"));
+                            $(this).closest('td').prev().find('select').append(new Option("{{ items.codeFournisseur|safe }}", "{{ items.codeFournisseur|safe }}"));
                         }
                         '{% endfor %}'
                     }
@@ -553,8 +554,8 @@
                     $(this).closest('td').parent().find('td').eq(0).next().find('select').find('option').remove();
                     $(this).closest('td').parent().find('td').eq(1).next().find('select').find('option').remove();
                     '{% for items in art %}'
-                    $(this).closest('td').parent().find('td').eq(0).next().find('select').append(new Option("{{ items.codeFournisseur }}", "{{ items.codeFournisseur }}"));
-                    $(this).closest('td').parent().find('td').eq(1).next().find('select').append(new Option("{{ items.designationClient }}", "{{ items.designationClient }}"));
+                    $(this).closest('td').parent().find('td').eq(0).next().find('select').append(new Option("{{ items.codeFournisseur|safe }}", "{{ items.codeFournisseur|safe }}"));
+                    $(this).closest('td').parent().find('td').eq(1).next().find('select').append(new Option("{{ items.designationClient|safe }}", "{{ items.designationClient|safe }}"));
                     '{% endfor %}'
                 });
             }
@@ -794,8 +795,8 @@
                             "<td><input class='form-control'></td>" +
                             "<td><input class='form-control'></td>");
                         '{% for items in art %}'
-                        $("select.fournise:last").append(new Option("{{ items.codeFournisseur }}", "{{ items.codeFournisseur }}"));
-                        $("select.desif:last").append(new Option("{{ items.designationClient }}", "{{ items.designationClient }}"));
+                        $("select.fournise:last").append(new Option("{{ items.codeFournisseur|safe }}", "{{ items.codeFournisseur|safe }}"));
+                        $("select.desif:last").append(new Option("{{ items.designationClient|safe }}", "{{ items.designationClient|safe }}"));
                         $("select.fournise:last").val("");
                         $("select.desif:last").val("");
                         '{% endfor %}'
@@ -820,11 +821,11 @@
                     $(".fournise").combobox({
                         select: function (event, ui) {
                             '{% for items in art %}'
-                            if ('{{ items.codeFournisseur }}' == this.value) {
+                            if ('{{ items.codeFournisseur|safe }}' == this.value) {
                                 //$(this).closest('td').next().find('select').val('{{ items.designationClient }}');
                                 //$(this).closest('td').next().find('select').find('option').remove();
                                 $(this).closest('td').next().find('select').find('option').remove();
-                                $(this).closest('td').next().find('select').append(new Option("{{ items.designationClient }}", "{{ items.designationClient }}"));
+                                $(this).closest('td').next().find('select').append(new Option("{{ items.designationClient|safe }}", "{{ items.designationClient|safe }}"));
                             }
                             '{% endfor %}'
                         }
@@ -832,11 +833,11 @@
                     $(".desif").combobox({
                         select: function (event, ui) {
                             '{% for items in art %}'
-                            if ('{{ items.designationClient  }}' == this.value) {
+                            if ('{{ items.designationClient|safe }}' == this.value) {
                                 //$(this).closest('td').next().find('select').val('{{ items.designationClient }}');
                                 //$(this).closest('td').next().find('select').find('option').remove();
                                 $(this).closest('td').prev().find('select').find('option').remove();
-                                $(this).closest('td').prev().find('select').append(new Option("{{ items.codeFournisseur }}", "{{ items.codeFournisseur }}"));
+                                $(this).closest('td').prev().find('select').append(new Option("{{ items.codeFournisseur|safe }}", "{{ items.codeFournisseur|safe }}"));
                             }
                             '{% endfor %}'
                         }
@@ -847,8 +848,8 @@
                         $(this).closest('td').parent().find('td').eq(0).next().find('select').find('option').remove();
                         $(this).closest('td').parent().find('td').eq(1).next().find('select').find('option').remove();
                         '{% for items in art %}'
-                        $(this).closest('td').parent().find('td').eq(0).next().find('select').append(new Option("{{ items.codeFournisseur }}", "{{ items.codeFournisseur }}"));
-                        $(this).closest('td').parent().find('td').eq(1).next().find('select').append(new Option("{{ items.designationClient }}", "{{ items.designationClient }}"));
+                        $(this).closest('td').parent().find('td').eq(0).next().find('select').append(new Option("{{ items.codeFournisseur|safe }}", "{{ items.codeFournisseur|safe }}"));
+                        $(this).closest('td').parent().find('td').eq(1).next().find('select').append(new Option("{{ items.designationClient|safe }}", "{{ items.designationClient|safe }}"));
                         '{% endfor %}'
                     });
                 }
@@ -873,10 +874,10 @@
         $("#client").combobox({
             select: function (event, ui) {
                 '{% for items in cli %}'
-                if ('{{ items.nom }}' == this.value) {
-                    $('#zone').val('{{ items.fk_TypeZone.nom }}');
+                if ('{{ items.nom|safe }}' == this.value) {
+                    $('#zone').val('{{ items.fk_TypeZone.nom|safe }}');
                     '{% for items in zoned %}'
-                    $("#zatt").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                    $("#zatt").append(new Option("{{ items.nom|safe }}", "{{ items.nom|safe }}"));
                     '{% endfor %}'
                     //$("#").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
                 }
@@ -939,7 +940,7 @@
         $('#accesscli').click(function () {
             console.log("redirect to cli");
             '{% for items in cli %}'
-            if ('{{ items.nom }}' == $('#client').val())
+            if ('{{ items.nom|safe }}' == $('#client').val())
                 window.location.href = "{% url 'clientmodify' %}?id=" + '{{ items.idClient }}';
             '{% endfor %}'
         });

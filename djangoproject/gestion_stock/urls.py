@@ -10,6 +10,7 @@ urlpatterns = [
     #path('login/', views.index_login.as_view(), name='login'),
     path('index', views.index.as_view()),
     path('setting', views.setting.as_view(), name='setting'),
+    #path('settings/change/accueil/', views.setting.accueilchange), #renvoie vers la fonction qui changera l'image de l'accueil via settings.accueilchange
 
     path('bon_entree', views.BonCommandeEntree_index.as_view(), name='bonCommandeEntree'), #page des bon de commande entree
     path('bon_entree/add', views.BonCommandeEntreeadd.as_view(), name='bonCommandeEntreeadd'), #page des possibilité a ajouter au bon de commande entree

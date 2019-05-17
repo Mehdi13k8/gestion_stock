@@ -3,9 +3,8 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from datetime import date
-
+from django import forms
 # Create your models here.
-
 
 '''class User(models.Model):
     users = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
@@ -1384,3 +1383,42 @@ class LigneBonLivraisonEntree_pour_BonLivraisonEntree(models.Model):
     quantiteProduitLitige = models.CharField(max_length=42, default='Null')
     quantiteProduitRecu = models.CharField(max_length=42, default='Null')
     termine = models.CharField(max_length=42, default='Null')
+
+class imgaccueil(models.Model):
+    title = models.TextField(default="null", blank=True, null=True)
+    cover = models.ImageField(upload_to='images/', blank=True, null=True)
+    def __str__(self):
+        return self.title
+
+class imgumentree(models.Model):
+    photo = models.ImageField(upload_to='imgumentree')
+
+class imgarticle(models.Model):
+    photo = models.ImageField(upload_to='imgarticle')
+
+class imgclient(models.Model):
+    photo = models.ImageField(upload_to='imgclient')
+
+class imgbcs(models.Model):
+    photo = models.ImageField(upload_to='imgbcs')
+
+class imgdestinataires(models.Model):
+    photo = models.ImageField(upload_to='imgdestinataires')
+
+class imgtransporteurs(models.Model):
+    photo = models.ImageField(upload_to='imgtransporteurs')
+
+class imgbls(models.Model):
+    photo = models.ImageField(upload_to='imgbls')
+
+class imgfournisseurs(models.Model):
+    photo = models.ImageField(upload_to='imgfournisseurs')
+
+class imgble(models.Model):
+    photo = models.ImageField(upload_to='imgble')
+
+class imgcolis(models.Model):
+    photo = models.ImageField(upload_to='imgcolis')
+
+class imglve(models.Model):
+    photo = models.ImageField(upload_to='imglve')

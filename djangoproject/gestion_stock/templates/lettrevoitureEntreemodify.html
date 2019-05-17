@@ -87,12 +87,12 @@
                                                                     "{% for items in trans %}"
                                                                     console.log("transporteur");
                                                                     //to change
-                                                                    var name = "{{ items.nom }}";
+                                                                    var name = "{{ items.nom|safe }}";
                                                                     var oldname;
                                                                     if (i == 0)
-                                                                        $("#transporteur").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                                                                        $("#transporteur").append(new Option("{{ items.nom|safe }}", "{{ items.nom|safe }}"));
                                                                     else if (name != oldname)
-                                                                        $("#transporteur").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                                                                        $("#transporteur").append(new Option("{{ items.nom|safe }}", "{{ items.nom|safe }}"));
                                                                     oldname = name;
                                                                     i = 1;
                                                                     "{% endfor %}"
@@ -248,14 +248,14 @@
         $("#umid").val('{{ id }}');
         '{% for items in lve %}'
         if ('{{ items.idLettreVoitureEntree }}' == $("#umid").val()) {
-            $("#inputMDEx").val('{{ items.datereception }}');
-            $("#numr").val('{{ items.numerorecepisse }}');
-            $("#qpal").val('{{ items.quantitepalette }}');
-            $("#inputqc").val('{{ items.quantitecolis }}');
-            $("#qcrecla").val('{{ items.reclaquantitecolis }}');
-            $("#qprecla").val('{{ items.reclaquantitepalette }}');
-            $("#comrecla").val('{{ items.reclacomm }}');
-            $("#transporteur").val("{{ items.fk_Transporteur }}");
+            $("#inputMDEx").val('{{ items.datereception|safe }}');
+            $("#numr").val('{{ items.numerorecepisse|safe }}');
+            $("#qpal").val('{{ items.quantitepalette|safe }}');
+            $("#inputqc").val('{{ items.quantitecolis|safe }}');
+            $("#qcrecla").val('{{ items.reclaquantitecolis|safe }}');
+            $("#qprecla").val('{{ items.reclaquantitepalette|safe }}');
+            $("#comrecla").val('{{ items.reclacomm|safe }}');
+            $("#transporteur").val("{{ items.fk_Transporteur|escapejs }}");
         }
         '{% endfor %}'
 
@@ -264,9 +264,9 @@
             console.log("bl in lv charge");
             $('#tabblbody').append("<tr><td class='text-center'><button class='resetb dyna' id=\"{{ items.idBonLivraisonEntree }}\"><i class=\"fas fa-arrow-right\"></i></button></td>" +
                 "<td class='text-center'> <input disabled class='form-control' value='{{ items.fk_Client.nom }}'></td>" +
-                "<td><input disabled class='form-control' value='{{ items.dateReception }}'></td>" +
-                "<td><input disabled class='form-control' value='{{ items.numeroBonLivraison  }}'></td>" +
-                "<td><input disabled class='form-control' value='{{ items.quantitePalette }}'></td>" +
+                "<td><input disabled class='form-control' value='{{ items.dateReception|safe }}'></td>" +
+                "<td><input disabled class='form-control' value='{{ items.numeroBonLivraison|safe  }}'></td>" +
+                "<td><input disabled class='form-control' value='{{ items.quantitePalette|safe }}'></td>" +
                 "<td class='text-center'><button class='resetb btn btn-light btn-sm dynad' id=\"{{ items.idBonLivraisonEntree }}\"><i class=\"fas fa-trash-alt\"></i></button></td>");
         }
         '{% endfor %}'
@@ -340,12 +340,12 @@
                     $(".fournise").combobox({
                         select: function (event, ui) {
                             '{% for items in art %}'
-                            if ('{{ items.codeFournisseur }}' == this.value) {
+                            if ('{{ items.codeFournisseur|safe }}' == this.value) {
                                 console.log("therae");
                                 //$(this).closest('td').next().find('select').val('{{ items.designationClient }}');
                                 //$(this).closest('td').next().find('select').find('option').remove();
                                 $(this).closest('td').next().find('select').find('option').remove();
-                                $(this).closest('td').next().find('select').append(new Option("{{ items.designationClient }}", "{{ items.designationClient }}"));
+                                $(this).closest('td').next().find('select').append(new Option("{{ items.designationClient|safe }}", "{{ items.designationClient|safe }}"));
                             }
                             '{% endfor %}'
                         }
@@ -353,12 +353,12 @@
                     $(".desif").combobox({
                         select: function (event, ui) {
                             '{% for items in art %}'
-                            if ('{{ items.designationClient  }}' == this.value) {
+                            if ('{{ items.designationClient|safe }}' == this.value) {
                                 console.log("therae");
                                 //$(this).closest('td').next().find('select').val('{{ items.designationClient }}');
                                 //$(this).closest('td').next().find('select').find('option').remove();
                                 $(this).closest('td').prev().find('select').find('option').remove();
-                                $(this).closest('td').prev().find('select').append(new Option("{{ items.codeFournisseur }}", "{{ items.codeFournisseur }}"));
+                                $(this).closest('td').prev().find('select').append(new Option("{{ items.codeFournisseur|safe }}", "{{ items.codeFournisseur|safe }}"));
                             }
                             '{% endfor %}'
                         }
@@ -369,8 +369,8 @@
                         $(this).closest('td').parent().find('td').eq(0).next().find('select').find('option').remove();
                         $(this).closest('td').parent().find('td').eq(1).next().find('select').find('option').remove();
                         '{% for items in art %}'
-                        $(this).closest('td').parent().find('td').eq(0).next().find('select').append(new Option("{{ items.codeFournisseur }}", "{{ items.codeFournisseur }}"));
-                        $(this).closest('td').parent().find('td').eq(1).next().find('select').append(new Option("{{ items.designationClient }}", "{{ items.designationClient }}"));
+                        $(this).closest('td').parent().find('td').eq(0).next().find('select').append(new Option("{{ items.codeFournisseur|safe }}", "{{ items.codeFournisseur|safe }}"));
+                        $(this).closest('td').parent().find('td').eq(1).next().find('select').append(new Option("{{ items.designationClient|safe }}", "{{ items.designationClient|safe }}"));
                         '{% endfor %}'
                     });
                 }

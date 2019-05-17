@@ -346,11 +346,10 @@
 
 {% block content %}
 {% endblock %}
+</body>
 
 <script>
-
   $(document).ready(function () {
-
     $("ul li div div a").on({
       mouseenter: function () {
         $(this).fadeTo("slow", 0.5);
@@ -362,8 +361,6 @@
         console.log("leave");
       }
     });
-
-
 
     $('.first-button').on('click', function () {
       $('.animated-icon1').toggleClass('open');
@@ -533,7 +530,6 @@
   });
 </script>
 <br>
-</body>
 <br>
 <br>
 <br>
@@ -543,5 +539,4 @@
   <div class="footer-copyright text-center py-3">© 2019 Copyright
   </div>
 </footer>
-
 </html>
