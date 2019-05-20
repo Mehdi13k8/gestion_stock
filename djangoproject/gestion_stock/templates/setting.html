@@ -32,12 +32,12 @@
 
     </nav>
 
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Submit New Post</button>
-    </form>
 </div>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success" style="position:sticky;bottom: 0; margin-left: 45%;">Valider</button>
+</form>
 </body>
 
 <script>
@@ -69,6 +69,27 @@
                 alert("fail");
             }
         });*/
+    });
+    $( document ).ready(function() {
+        $("#hidenot li").height(200);
+        //$("#id_cover1").parent('p').insertAfter("#accueil");
+        $("#id_cover2").parent('p').insertAfter("#umentree");
+        $("#id_cover3").parent('p').insertAfter("#article");
+        $("#id_cover4").parent('p').insertAfter("#clients");
+        $("#id_cover5").parent('p').insertAfter("#boncommandesortie");
+        $("#id_cover6").parent('p').insertAfter("#destinataires");
+        $("#id_cover7").parent('p').insertAfter("#boncommandeentree");
+        $("#id_cover8").parent('p').insertAfter("#transporteurs");
+        $("#id_cover9").parent('p').insertAfter("#bonlivraisonsortie");
+        $("#id_cover10").parent('p').insertAfter("#fournisseurs");
+        $("#id_cover11").parent('p').insertAfter("#bonlivraisonentree");
+        $("#id_cover12").parent('p').insertAfter("#colis");
+        $("#id_cover13").parent('p').insertAfter("#lve");
+        $("label").remove();
+        $("input").addClass("w-responsive");
+        $('input').css({ 'marginLeft': '100px' });
+        //$('button').eq('1').insertAfter('#hidenot');
+        $('button').eq('1').addClass('btn btn-sm btn-blue-grey');
     });
 </script>
 {% endblock %}

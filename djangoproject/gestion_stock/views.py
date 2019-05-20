@@ -1,9 +1,8 @@
 # Create your views here.
 
 from django.http import HttpResponse
-from django.shortcuts import render, render_to_response
-from django.views.generic import ListView, CreateView
-
+from django.shortcuts import render, render_to_response, redirect
+from django.views.generic import ListView, CreateView, UpdateView
 from .models import *
 #from .forms import UploadFileForm
 #from .models import ModelWithFileField
@@ -22,7 +21,8 @@ class index(ListView):              #Page d'acceuil vide pour l'instant
 
     def get(self, request):
         context = {
-            'activate' : 'on' #cette donnée me permettra de savoir dans quel view je suis pour mettre en surbrillance la page choisie
+            'activate' : 'on', #cette donnée me permettra de savoir dans quel view je suis pour mettre en surbrillance la page choisie
+            'settings' : menuimages.objects.all(),
         }
         return render(request, self.template_name, context) #je retourne le template via self car il se trouve dans la classe la request que django sache ce que je fais et context pour les variables
 
@@ -1789,7 +1789,7 @@ class umemodify(ListView):
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
-class setting(CreateView):
+class setting(UpdateView):
     '''template_name = "setting.html"
     #success_url = reverse_lazy('')
     form_class = PostForm
@@ -1814,20 +1814,16 @@ class setting(CreateView):
             'form': form,
         }
         return render(request, self.template_name, context) #request permet de savoir si je suis connecté'''
-    model = PostForm
-    fields = ('title', 'cover')
-    template_name = 'setting.html'
-    def get(self, request):
-        context = {
-            'activate' : 'on',
-            'form':self.model,
-        }
-        return render(request, self.template_name, context) #request permet de savoir si je suis connecté'''
 
-    def form_valid(self, form):
-        #form.instance.clientProp = self.request.user.client
-        #offre = form.save(commit=False)
-        #offre.save()
-        return redirect('setting')
+    model = menuimages.objects.get(title="first")
+    form_class = PostForm
+    template_name = 'setting.html'
+    success_url = reverse_lazy('setting')
+    #return HttpResponse("No access there")
+    def get_queryset(self):
+        queryset = menuimages.objects.filter(pk=1)
+        return queryset
+    def get_success_url(self):
+        return reverse('setting')
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#

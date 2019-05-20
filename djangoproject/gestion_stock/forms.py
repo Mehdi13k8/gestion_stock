@@ -12,14 +12,16 @@ from gestion_stock.models import Comment'''
         fields = ['title', 'text', 'notes']'''
 
 from django import forms
+from django.forms import ModelForm
 
 class UploadFileForm(forms.Form):
     title = forms.CharField(max_length=50)
     file = forms.FileField()
 
-from .models import imgaccueil
+from .models import menuimages
 
-class PostForm(forms.ModelForm):
+class PostForm(ModelForm):
+
     class Meta:
-        model = imgaccueil
-        fields = ['title', 'cover']
+        model = menuimages
+        fields = ['cover1']

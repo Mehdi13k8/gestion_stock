@@ -83,4 +83,4 @@ admin.site.register(Contact_pour_Client)
 admin.site.register(RoleContact_pour_Client)
 admin.site.register(ZoneDepot_pour_TypeZoneDepot)
 
-admin.site.register(imgaccueil)
+admin.site.register(menuimages)

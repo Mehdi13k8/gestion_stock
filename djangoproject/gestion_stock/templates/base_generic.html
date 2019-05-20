@@ -65,7 +65,7 @@
       <!--Navbar-->
       {% if user.is_authenticated %}
       <!-- Navbar brand -->
-      <nav class="navbar navbar-dark  indigo mb-2" id="hidenot  con">
+      <nav class="navbar navbar-dark  indigo mb-2" id="hidenot">
         <span  class="navbar-brand">Menu</span>
         <!-- Collapse button -->
         <div class="col text-right">
@@ -410,7 +410,9 @@
       }
     });
     $('#settings').click(function () {
-      location.href = "{% url 'setting' %}";
+      '{% for items in settings %}'
+        location.href = "{% url 'setting' items.pk %}";
+      '{% endfor %}'
     });
   });
 

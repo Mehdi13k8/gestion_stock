@@ -1384,9 +1384,9 @@ class LigneBonLivraisonEntree_pour_BonLivraisonEntree(models.Model):
     quantiteProduitRecu = models.CharField(max_length=42, default='Null')
     termine = models.CharField(max_length=42, default='Null')
 
-class imgaccueil(models.Model):
-    title = models.TextField(default="null", blank=True, null=True)
-    cover = models.ImageField(upload_to='images/', blank=True, null=True)
+'''class imgaccueil(models.Model):
+    title = models.TextField()
+    cover = models.ImageField(upload_to='images/')
     def __str__(self):
         return self.title
 
@@ -1422,3 +1422,22 @@ class imgcolis(models.Model):
 
 class imglve(models.Model):
     photo = models.ImageField(upload_to='imglve')
+'''
+
+class menuimages(models.Model):
+    title = models.TextField()
+    cover1 = models.ImageField(upload_to='images/')
+    cover2 = models.ImageField(upload_to='images/')
+    cover3 = models.ImageField(upload_to='images/')
+    cover4 = models.ImageField(upload_to='images/')
+    cover5 = models.ImageField(upload_to='images/')
+    cover6 = models.ImageField(upload_to='images/')
+    cover7 = models.ImageField(upload_to='images/')
+    cover8 = models.ImageField(upload_to='images/')
+    cover9 = models.ImageField(upload_to='images/')
+    cover10 = models.ImageField(upload_to='images/')
+    cover11 = models.ImageField(upload_to='images/')
+    cover12 = models.ImageField(upload_to='images/')
+    cover13 = models.ImageField(upload_to='images/')
+    def __str__(self):
+        return self.title

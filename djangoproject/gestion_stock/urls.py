@@ -9,7 +9,10 @@ urlpatterns = [
     #path('accounts/login/', auth_views.LoginView.as_view()),
     #path('login/', views.index_login.as_view(), name='login'),
     path('index', views.index.as_view()),
-    path('setting', views.setting.as_view(), name='setting'),
+    #path('setting', views.setting.as_view(), name='setting'),
+    path('setting/<int:pk>/', views.setting.as_view(), name='setting'),
+    #path('accueil/', views.setting.accueilchange),
+
     #path('settings/change/accueil/', views.setting.accueilchange), #renvoie vers la fonction qui changera l'image de l'accueil via settings.accueilchange
 
     path('bon_entree', views.BonCommandeEntree_index.as_view(), name='bonCommandeEntree'), #page des bon de commande entree
