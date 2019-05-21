@@ -11,6 +11,7 @@ urlpatterns = [
     path('index', views.index.as_view()),
     #path('setting', views.setting.as_view(), name='setting'),
     path('setting/<int:pk>/', views.setting.as_view(), name='setting'),
+    path('setting/reset/', views.setting.reset),
     #path('accueil/', views.setting.accueilchange),
 
     #path('settings/change/accueil/', views.setting.accueilchange), #renvoie vers la fonction qui changera l'image de l'accueil via settings.accueilchange

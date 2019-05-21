@@ -33,19 +33,36 @@
     </nav>
 
 </div>
-<form method="post" enctype="multipart/form-data">
+<form method="post" novalidate enctype="multipart/form-data"  style="text-align: left;font-weight:bold;">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit" class="btn btn-success" style="position:sticky;bottom: 0; margin-left: 45%;">Valider</button>
+    <button id="resetimg" type="button" class="btn btn-outline-blue-grey btn-sm"><i class="fas fa-undo"></i></button>
 </form>
 </body>
 
 <script>
-    setTimeout( function(){
+    setTimeout(function() {
         $("#openmenu").trigger("click");
         $("#openmenu2").trigger("click");
-        console.log("menu oppening");
     },1000);
+
+    $('#resetimg').click(function () {
+        $.ajax({
+            type:"POST",
+            url:"/setting/reset/",
+            data: {
+                'id': 1,
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+            },
+            success: function(msg, data, settings) {
+                location.reload();
+            },
+            failure: function() {
+                alert("Error");
+            }
+        });
+    });
 
     $("#image_to_upload").on("change", function(e) {
         /*e.preventDefault();
@@ -71,8 +88,9 @@
         });*/
     });
     $( document ).ready(function() {
+        /*
         $("#hidenot li").height(200);
-        //$("#id_cover1").parent('p').insertAfter("#accueil");
+        $("#id_cover1").parent('p').appendTo("#hidenot");
         $("#id_cover2").parent('p').insertAfter("#umentree");
         $("#id_cover3").parent('p').insertAfter("#article");
         $("#id_cover4").parent('p').insertAfter("#clients");
@@ -84,12 +102,25 @@
         $("#id_cover10").parent('p').insertAfter("#fournisseurs");
         $("#id_cover11").parent('p').insertAfter("#bonlivraisonentree");
         $("#id_cover12").parent('p').insertAfter("#colis");
-        $("#id_cover13").parent('p').insertAfter("#lve");
-        $("label").remove();
+        $("#id_cover13").parent('p').insertAfter("#lve");*/
+        //$("label").remove();
         $("input").addClass("w-responsive");
-        $('input').css({ 'marginLeft': '100px' });
-        //$('button').eq('1').insertAfter('#hidenot');
-        $('button').eq('1').addClass('btn btn-sm btn-blue-grey');
+        //$('button').eq('2').insertAfter('#hidenot');
+        $('button').eq('2').addClass('btn btn-sm btn-blue-grey');
+        $('form').appendTo($('#hidenot').parent('div'));
+        $('label').eq(0).text("Accueil").append("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
+        $('label').eq(1).text("U.M entree");
+        $('label').eq(2).text("Article").append("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
+        $('label').eq(3).text("Client").append("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
+        $('label').eq(4).text("B.C sortie").append("&nbsp;&nbsp;");
+        $('label').eq(5).text("Destinataire");
+        $('label').eq(6).text("B.C entree").append("&nbsp;&nbsp;&nbsp;");
+        $('label').eq(7).text("Transporteur");
+        $('label').eq(8).text("B.L Sortie").append("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
+        $('label').eq(9).text("Fournisseur");
+        $('label').eq(10).text("B.L Entree");
+        $('label').eq(11).text("Colis").append("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
+        $('label').eq(12).text("L.V entree");
     });
 </script>
 {% endblock %}

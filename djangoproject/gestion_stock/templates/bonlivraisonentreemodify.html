@@ -85,19 +85,11 @@
                                 </div>
                             </div>
                             <div class="row">
-
-                                <div class="col">
-
-                                    <div class="input-group">
-                                    lettre de voiture :
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-default btn-sm w-25" id="accesslve" type="button"><i class="fas fa-arrow-right"></i></button>
-                                    </span>
-                                        <div class="w-25">
-                                            <input type="text" id="lve" class="form-control" disabled>
-                                        </div>
+                                    <div class="col-3">
+                                        lettre de voiture :
+                                        <br><input type="text" id="lveinput" class="form-control w-responsive mx-auto text-center" disabled>
+                                        <button class="btn btn-default btn-sm w-25" id="accesslve" type="button"><i class="fas fa-arrow-up"></i></button>
                                     </div>
-                                </div>
                                 <div class="col-3">zone:<br><input type="text" id="zone" disabled class="form-control">
                                 </div>
                                 <div class="col-4 mr-4">
@@ -440,9 +432,7 @@
         '{% for items in entree %}'
         if ('{{ items.idBonLivraisonEntree }}' == $('#umid').val()) {
             $('#client').val('{{ items.fk_Client.nom|safe }}');
-            $('#lve').val('{{ items.fk_LettreVoitureEntree }}');
-            $('#lve').text('{{ items.fk_LettreVoitureEntree }}');
-
+            $('#lveinput').val('{{ items.fk_LettreVoitureEntree }}');
             '{% for items in cli %}'
             if ('{{ items.nom }}' == $('#client').val()) {
                 $('#zone').val('{{ items.fk_TypeZone.nom|safe }}');
@@ -687,7 +677,7 @@
                     'id': $('#umid').val(),
                     'client': $('#client').val(),
                     'fourtype': $('#fournisseur').val(),
-                    'lettre': $('#lve').val(),
+                    'lettre': $('#lveinput').val(),
                     'zone': $('#zone').val(),
                     'numerobl': $('#inputnbl').val(),
                     'daterecep': $('#inputMDEx').val(),
@@ -935,7 +925,7 @@
         });
 
         $('#accesslve').click(function () {
-            window.location.href = "{% url 'lvemodify' %}?id=" + $('#lve').val();
+            window.location.href = "{% url 'lvemodify' %}?id=" + $('#lveinput').val();
         });
         $('#accesscli').click(function () {
             console.log("redirect to cli");

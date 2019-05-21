@@ -11,7 +11,7 @@ from django import forms
 #from gestion_stock.forms import MyCommentForm
 #from .forms import UploadFileForm
 from .forms import PostForm
-from django.urls import reverse_lazy # new
+from django.urls import reverse, reverse_lazy # new
 
 #https://realpython.com/django-and-ajax-form-submissions/ faut aller apprendre la connection | plus besoin, connection acquise
 #https://code.djangoproject.com/wiki/AjaxDojoLogin
@@ -67,7 +67,8 @@ class BonCommandeEntree_index(ListView):
     def get(self, request):
         context = {
             'bone' : BonCommandeEntree.objects.all(),
-            'activate' : 'on'
+            'activate' : 'on',
+            'settings' : menuimages.objects.all(),
         }
         return render(request, self.template_name, context)
 
@@ -97,6 +98,7 @@ class BonCommandeEntreeadd(ListView):
     def get(self, request):
         context = {
             'bone' : BonCommandeEntree.objects.all(),
+            'settings' : menuimages.objects.all(),
             'activate' : 'on'
         }
         return render(request, self.template_name, context)
@@ -108,6 +110,7 @@ class BonCommandeEntreemodify(ListView):
         context = {
             'bone' : BonCommandeEntree.objects.all(),
             'id' :request.GET.get('id'),
+            'settings' : menuimages.objects.all(),
             'activate' : 'on'
         }
         return render(request, self.template_name, context)
@@ -122,10 +125,11 @@ class bonCommandeSortie(ListView):
     template_name = "bonCommandeSortie.html"
 
     def get(self, request):
-        self.data['lesclients'] = Client_pour_import_BonCommandeSortie.objects.prefetch_related('clients').all()
+        #self.data['lesclients'] = Client_pour_import_BonCommandeSortie.objects.prefetch_related('clients').all()
         context = {
-            'sortie' :BonCommandeSortie_pour_import_BonCommandeSortie.objects.all().select_related('fk_Client', 'fk_Destinataire', 'fk_Transporteur', 'fk_TypeBonCommandeSortie'),
-            'umsortie':UniteManutentionSortie_pour_BonCommandeSortie.objects.all().select_related('fk_BonCommandeSortie', 'fk_TypeUniteManutentionSortie', 'fk_Etiquette'),
+            #'sortie' :BonCommandeSortie_pour_import_BonCommandeSortie.objects.all().select_related('fk_Client', 'fk_Destinataire', 'fk_Transporteur', 'fk_TypeBonCommandeSortie'),
+            #'umsortie':UniteManutentionSortie_pour_BonCommandeSortie.objects.all().select_related('fk_BonCommandeSortie', 'fk_TypeUniteManutentionSortie', 'fk_Etiquette'),
+            'settings' : menuimages.objects.all(),
             'activate' : 'on'
         }
         return render(request, self.template_name, context)
@@ -135,9 +139,9 @@ class bonCommandeSortie(ListView):
 #page d'ajout des bon commandes sortie
 def bonCommandeSortieadd(request):
     context = {
-        'sortie' :BonCommandeSortie_pour_import_BonCommandeSortie.objects.all().select_related('fk_Client', 'fk_Destinataire', 'fk_Transporteur', 'fk_TypeBonCommandeSortie'),
-        'umsortie':UniteManutentionSortie_pour_BonCommandeSortie.objects.all().select_related('fk_BonCommandeSortie', 'fk_TypeUniteManutentionSortie', 'fk_Etiquette'),
-        'sortiebl':BonLivraisonSortie_pour_BonCommandeSortie.objects.all().select_related('fk_BonCommandeSortie'),
+        #'sortie' :BonCommandeSortie_pour_import_BonCommandeSortie.objects.all().select_related('fk_Client', 'fk_Destinataire', 'fk_Transporteur', 'fk_TypeBonCommandeSortie'),
+        #'umsortie':UniteManutentionSortie_pour_BonCommandeSortie.objects.all().select_related('fk_BonCommandeSortie', 'fk_TypeUniteManutentionSortie', 'fk_Etiquette'),
+        #'sortiebl':BonLivraisonSortie_pour_BonCommandeSortie.objects.all().select_related('fk_BonCommandeSortie'),
     }
     return render(request, 'bonCommandeSortieadd.html', context)
 
@@ -177,6 +181,7 @@ class lettrevoitureentreeadd(ListView):
             'lve' : LettreVoitureEntree.objects.all(),
             'four' : Fournisseur.objects.all(),
             'trans' : Transporteur.objects.all(),
+            'settings' : menuimages.objects.all(),
             #'entreeligne' : LigneBonLivraisonEntree_pour_BonLivraisonEntree.objects.all(),
             'activate' : 'on',
         }
@@ -241,6 +246,7 @@ class lettrevoitureentreemodify(ListView):
             'four' : Fournisseur.objects.all(),
             'trans' : Transporteur.objects.all(),
             'id' :request.GET.get('id'),
+            'settings' : menuimages.objects.all(),
             'activate' : 'on',
         }
         return render(request, self.template_name, context)
@@ -260,6 +266,7 @@ class lettrevoitureentree(ListView):
     def get(self, request):
         context = {
             'lve' : LettreVoitureEntree.objects.all(),
+            'settings' : menuimages.objects.all(),
             #'entreeligne' : LigneBonLivraisonEntree_pour_BonLivraisonEntree.objects.all(),
             'activate' : 'on',
         }
@@ -280,6 +287,7 @@ class bonLivraisonEntree(ListView):
     def get(self, request):
         context = {
             'entree' : BonLivraisonEntree.objects.all(),
+            'settings' : menuimages.objects.all(),
             #'entreeligne' : LigneBonLivraisonEntree_pour_BonLivraisonEntree.objects.all(),
             'activate' : 'on',
         }
@@ -377,6 +385,12 @@ class bonLivraisonentreemodify(ListView):
                     for initems in zne:
                         if initems.nom == items.fk_TypeZoneDepot.nom:
                             bonle.fk_TypeZoneDepot = initems
+            inzone = ZoneDepot_pour_TypeZoneDepot.objects.all()
+            for zone in inzone:
+                if request.POST.get('zoneatt') == zone.nom:
+                    bonle.fk_ZoneDepot_pour_TypeZoneDepot = zone
+                if request.POST.get('zoneatt') == "":
+                    bonle.fk_ZoneDepot_pour_TypeZoneDepot = None
             bonle.save()
             return HttpResponse("Created !")
         return HttpResponse("No Authorized Access !")
@@ -393,6 +407,7 @@ class bonLivraisonentreemodify(ListView):
             #'lve' : LettreVoitureEntree.objects.all(),
             'entreeligne' : LigneBonLivraisonEntree_pour_BonLivraisonEntree.objects.all(),
             'id' :request.GET.get('id'),
+            'settings' : menuimages.objects.all(),
             'activate' : 'on',
         }
         return render(request, self.template_name, context)
@@ -538,6 +553,7 @@ class bonLivraisonEntreeadd(ListView):
             'typef': TypeFournisseur_pour_Fournisseur.objects.all(),
             'zoned': ZoneDepot_pour_TypeZoneDepot.objects.all(),
             #'lve' : LettreVoitureEntree.objects.all(),
+            'settings' : menuimages.objects.all(),
             'entreeligne' : LigneBonLivraisonEntree_pour_BonLivraisonEntree.objects.all(),
             'activate' : 'on',
         }
@@ -553,6 +569,7 @@ class bonLivraisonSortie(ListView):
         context = {
             'sortie' :BonLivraisonSortie.objects.all().select_related('fk_BonCommandeSortie', 'fk_LettreVoitureSortie'),
             'sortieligne' :LigneBonLivraisonSortie_pour_BonLivraisonSortie.objects.all().select_related('fk_Article', 'fk_BonLivraisonSortie'),
+            'settings' : menuimages.objects.all(),
             'activate' : 'on',
         }
         return render(request, self.template_name, context)
@@ -566,6 +583,7 @@ class bonLivraisonSortieadd(ListView):
         context = {
             'sortie' :BonLivraisonSortie.objects.all().select_related('fk_BonCommandeSortie', 'fk_LettreVoitureSortie'),
             'sortieligne' :LigneBonLivraisonSortie_pour_BonLivraisonSortie.objects.all().select_related('fk_Article', 'fk_BonLivraisonSortie'),
+            'settings' : menuimages.objects.all(),
             'activate' : 'on',
         }
         return render(request, self.template_name, context)
@@ -585,6 +603,7 @@ class article(ListView):
     def get(self, request):
         context = {
             'art' : Article.objects.all(),
+            'settings' : menuimages.objects.all(),
             'activate' : 'on',
         }
         return render(request, self.template_name, context)
@@ -635,6 +654,7 @@ class articleadd(ListView):
             'art' : Article.objects.all(),
             'typeart' : typeArticle_pour_Article.objects.all(),
             'four' : Fournisseur.objects.all(),
+            'settings' : menuimages.objects.all(),
             'activate' : 'on',
         }
         return render(request, self.template_name, context)
@@ -687,6 +707,7 @@ class articlemodify(ListView):
             'desart' : Destinataire.objects.all(),
             'histoart ' : Article_historique_pour_Article.objects.all(),
             'four' : Fournisseur.objects.all(),
+            'settings' : menuimages.objects.all(),
             'id' :request.GET.get('id'),
             'activate' : 'on',
         }
@@ -740,6 +761,7 @@ class fournisseur(ListView):
         context = {
             'four' :Fournisseur.objects.all(),
             'typef':TypeFournisseur_pour_Fournisseur.objects.all(),
+            'settings' : menuimages.objects.all(),
             'activate' : 'on',
         }
         return render(request, self.template_name, context)
@@ -771,6 +793,7 @@ class fournisseuradd(ListView):
         context = {
             'four' : Fournisseur.objects.all(),
             'typef':TypeFournisseur_pour_Fournisseur.objects.all(),
+            'settings' : menuimages.objects.all(),
             'activate' : 'on',
         }
         return render(request, self.template_name, context)
@@ -834,6 +857,7 @@ class fournisseurmodify(ListView):
             'four' : Fournisseur.objects.all(),
             'name' : request.GET.get('name'),
             'id' : request.GET.get('id'),
+            'settings' : menuimages.objects.all(),
             'typef': TypeFournisseur_pour_Fournisseur.objects.all(),
             'activate' : 'on',
         }
@@ -847,6 +871,7 @@ class transporteur(ListView):
     def get(self, request):
         context = {
             'trans' :Transporteur.objects.all(),
+            'settings' : menuimages.objects.all(),
             'activate' : 'on',
         }
         return render(request, self.template_name, context)
@@ -859,6 +884,7 @@ class transporteuradd(ListView):
     def get(self, request):
         context = {
             'trans' :Transporteur.objects.all(),
+            'settings' : menuimages.objects.all(),
             'activate' : 'on',
         }
         return render(request, self.template_name, context)
@@ -932,6 +958,7 @@ class transporteurmodify(ListView):
             'trans' :Transporteur.objects.all(),
             'name' :request.GET.get('name'),
             'id' :request.GET.get('id'),
+            'settings' : menuimages.objects.all(),
             'activate' : 'on',
         }
         return render(request, self.template_name, context)
@@ -954,6 +981,7 @@ class destinataire(ListView):
     def get(self, request):
         context = {
             'des' :Destinataire.objects.all(),
+            'settings' : menuimages.objects.all(),
             'activate' : 'on',
         }
         return render(request, self.template_name, context)
@@ -1055,6 +1083,7 @@ class destinatairemodify(ListView):
         context = {
             'des' :Destinataire.objects.all(),
             'name' :request.GET.get('name'),
+            'settings' : menuimages.objects.all(),
             'id' :request.GET.get('id'),
             #'umsortie' :UniteManutentionSortie_pour_Destinataire.objects.all().select_related('fk_BonCommandeSortie'),
             'activate' : 'on',
@@ -1121,6 +1150,7 @@ class destinataireadd(ListView):
             'destype' :TypeDestinataire_pour_Destinataire.objects.all(),
             'des' :Destinataire.objects.all(),
             'pays':Pays_pour_Destinataire.objects.all(),
+            'settings' : menuimages.objects.all(),
             'activate' : 'on',
         }
         return render(request, self.template_name, context)
@@ -1144,6 +1174,7 @@ class colis(ListView):
     def get(self, request):
         context = {
             'col' : Colis.objects.all(),
+            'settings' : menuimages.objects.all(),
             'activate' : 'on',
         }
         return render(request, self.template_name, context)
@@ -1167,6 +1198,7 @@ class colisadd(ListView):
     def get(self, request):
         context = {
             'col' : Colis.objects.all(),
+            'settings' : menuimages.objects.all(),
             'activate' : 'on',
         }
         return render(request, self.template_name, context)
@@ -1190,6 +1222,7 @@ class client(ListView):
     def get(self, request):
         context = {
             'cli' : Client.objects.all(),
+            'settings' : menuimages.objects.all(),
             'activate' : 'on',
         }
         return render(request, self.template_name, context)
@@ -1399,6 +1432,7 @@ class clientmodify(ListView):
             'bcs' : BonCommandeSortie.objects.all(),
             'bce' : BonCommandeEntree.objects.all(),
             'entree' : BonLivraisonEntree.objects.all(),
+            'settings' : menuimages.objects.all(),
             'activate' : 'on',
         }
         return render(request, self.template_name, context)
@@ -1715,6 +1749,7 @@ class clientadd(ListView):
             'bce' : BonCommandeEntree.objects.all(),
             'rlc' : RoleContact_pour_Client.objects.all(),
             'con' : Contact_pour_Client.objects.all(),
+            'settings' : menuimages.objects.all(),
             'activate' : 'on',
         }
         return render(request, self.template_name, context)
@@ -1739,6 +1774,7 @@ class ume(ListView):
         context = {
             'activate' : 'on',
             'ume' : UniteManutentionEntree.objects.all(),
+            'settings' : menuimages.objects.all(),
         }
         return render(request, self.template_name, context)
 
@@ -1769,6 +1805,7 @@ class umeadd(ListView):
     def get(self, request):
         context = {
             'activate' : 'on',
+            'settings' : menuimages.objects.all(),
             'ume' : UniteManutentionEntree.objects.all(),
         }
         return render(request, self.template_name, context)
@@ -1783,6 +1820,7 @@ class umemodify(ListView):
 
     def get(self, request):
         context = {
+            'settings' : menuimages.objects.all(),
             'activate' : 'on'
         }
         return render(request, self.template_name, context)
@@ -1815,15 +1853,43 @@ class setting(UpdateView):
         }
         return render(request, self.template_name, context) #request permet de savoir si je suis connecté'''
 
-    model = menuimages.objects.get(title="first")
+    model = menuimages.objects.filter(pk=1)
     form_class = PostForm
     template_name = 'setting.html'
     success_url = reverse_lazy('setting')
     #return HttpResponse("No access there")
+
+    def get_context_data(self, **kwargs):
+        context = super(setting, self).get_context_data(**kwargs)
+        context['settings'] = menuimages.objects.all()
+        return context
+
+    def reset(request):
+        if request.method == 'POST':
+            showlist = [request.POST.get('id'),]
+            img = menuimages.objects.get(pk=1)
+            img.cover1.delete(save=True)
+            img.cover2.delete(save=True)
+            img.cover3.delete(save=True)
+            img.cover4.delete(save=True)
+            img.cover5.delete(save=True)
+            img.cover6.delete(save=True)
+            img.cover7.delete(save=True)
+            img.cover8.delete(save=True)
+            img.cover9.delete(save=True)
+            img.cover10.delete(save=True)
+            img.cover11.delete(save=True)
+            img.cover12.delete(save=True)
+            img.cover13.delete(save=True)
+            #img.save()
+            return HttpResponse("road to create ume.")
+        return HttpResponse("Error on delete.")
+
     def get_queryset(self):
         queryset = menuimages.objects.filter(pk=1)
         return queryset
     def get_success_url(self):
-        return reverse('setting')
+        return reverse('setting', kwargs={'pk': 1})
+        #return reverse('index')
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#

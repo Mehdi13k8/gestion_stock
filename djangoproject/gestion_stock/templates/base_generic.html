@@ -385,6 +385,51 @@
       });
     });
 
+    '{% for items in settings %}'
+    if ('{{ items.id }}' == 1) {
+      '{% if items.cover1 %}'
+      $('#accueil img').attr('src', '{{ items.cover1.url }}');
+      '{% endif%}'
+      '{% if items.cover2 %}'
+      $('#umentree img').attr('src', '{{ items.cover2.url }}');
+      '{% endif%}'
+      '{% if items.cover3 %}'
+      $('#article img').attr('src', '{{ items.cover3.url }}');
+      '{% endif%}'
+      '{% if items.cover4 %}'
+      $('#client img').attr('src', '{{ items.cover4.url }}');
+      '{% endif%}'
+      '{% if items.cover5 %}'
+      $('#boncommandesortie img').attr('src', '{{ items.cover5.url }}');
+      '{% endif%}'
+      '{% if items.cover6 %}'
+      $('#destinataires img').attr('src', '{{ items.cover6.url }}');
+      '{% endif%}'
+      '{% if items.cover7 %}'
+      $('#boncommandeentree img').attr('src', '{{ items.cover7.url }}');
+      '{% endif%}'
+      '{% if items.cover8 %}'
+      $('#transporteurs img').attr('src', '{{ items.cover8.url }}');
+      '{% endif%}'
+      '{% if items.cover9 %}'
+      $('#bonlivraisonsortie img').attr('src', '{{ items.cover9.url }}');
+      '{% endif%}'
+      '{% if items.cover10 %}'
+      $('#fournisseurs img').attr('src', '{{ items.cover10.url }}');
+      '{% endif%}'
+      '{% if items.cover11 %}'
+      $('#bonlivraisonentree img').attr('src', '{{ items.cover11.url }}');
+      '{% endif%}'
+      '{% if items.cover12 %}'
+      $('#colis img').attr('src', '{{ items.cover12.url }}');
+      '{% endif%}'
+      '{% if items.cover13 %}'
+      $('#lve img').attr('src', '{{ items.cover13.url }}');
+      '{% endif%}'
+      $('img').height('75');
+    }
+    '{%endfor%}'
+
     $.ajaxSetup({  // csrf token pour django on doit modif ajax
       beforeSend: function (xhr, settings) {
         function getCookie(name) {
@@ -411,7 +456,7 @@
     });
     $('#settings').click(function () {
       '{% for items in settings %}'
-        location.href = "{% url 'setting' items.pk %}";
+      location.href = "{% url 'setting' items.pk %}";
       '{% endfor %}'
     });
   });
