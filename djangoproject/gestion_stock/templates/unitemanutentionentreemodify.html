@@ -161,27 +161,27 @@
                             <table id="tabbl" class="table table-condensed table-sm table-striped table-bordered" cellspacing="0" width="100%">
                                 <thead>
                                 <tr>
-                                    <th scope="col"><i class="fas fa-copy"></i></th>
-                                    <th scope="col"><i class="fas fa-plus"></i></th>
-                                    <th scope="col">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n°colis&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-                                    <th scope="col">code fournisseur</th>
-                                    <th scope="col">&nbsp;désignation&nbsp;</th>
-                                    <th scope="col">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n°lot&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-                                    <th scope="col">date péremption</th>
+                                    <th scope="col" class="text-center"><i class="fas fa-copy"></i></th>
+                                    <th scope="col" class="text-center"><i class="fas fa-plus"></i></th>
+                                    <th scope="col" class="text-center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n°colis&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                    <th scope="col" class="text-center">code fournisseur</th>
+                                    <th scope="col" class="text-center">&nbsp;désignation&nbsp;</th>
+                                    <th scope="col" class="text-center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n°lot&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                    <th scope="col" class="text-center">date péremption</th>
                                     <th scope="col" class="text-center">qte<br>par colis</th>
-                                    <th scope="col">litige</th>
-                                    <th scope="col">numéroter</th>
-                                    <th scope="col"><i class="fas fa-arrow-right"></i></th>
-                                    <th scope="col"><i class="fas fa-redo"></i> </th>
-                                    <th scope="col">U.M sortie</th>
-                                    <th scope="col">numéro </th>
-                                    <th scope="col">confirmer</th>
-                                    <th scope="col">date expédition</th>
-                                    <th scope="col"><i class="fas fa-unlink"></i></th>
-                                    <th scope="col">Retour ancien<br>n° colis</th>
-                                    <th scope="col"><i class="fas fa-trash"></i></th>
-                                    <th scope="col">collée</th>
-                                    <th scope="col">imprimer</th>
+                                    <th scope="col" class="text-center">litige</th>
+                                    <th scope="col" class="text-center">numéroter</th>
+                                    <th scope="col" class="text-center"><i class="fas fa-arrow-right"></i></th>
+                                    <th scope="col" class="text-center"><i class="fas fa-redo"></i> </th>
+                                    <th scope="col" class="text-center">U.M sortie</th>
+                                    <th scope="col" class="text-center">numéro </th>
+                                    <th scope="col" class="text-center">confirmer</th>
+                                    <th scope="col" class="text-center">date expédition</th>
+                                    <th scope="col" class="text-center"><i class="fas fa-unlink"></i></th>
+                                    <th scope="col" class="text-center">Retour ancien<br>n° colis</th>
+                                    <th scope="col" class="text-center"><i class="fas fa-trash"></i></th>
+                                    <th scope="col" class="text-center">collée</th>
+                                    <th scope="col" class="text-center">imprimer</th>
                                 </tr>
                                 </thead>
                                 <tbody id="tabblbody">
@@ -227,7 +227,7 @@
             }
         });
         $('#back-row').click(function () {
-           //href=
+            window.location.href = "{% url 'unitemanutentionentree' %}";
         });
 
         $("#seldep").combobox();
@@ -259,7 +259,8 @@
                             "<td><input class='form-control'></td>" +
                             "<td><input type=\"date\" class=\"date rounded\" class=\"form-control\"></td>" +
                             "<td><input type=\"text\" class=\"form-control\"></td>" +
-                            "<td><button class=\"litige btn btn-blue-grey btn-sm\" id=\"litige" + nbr + "\">litige</button> </td>" +
+                            "<td><button type=\"button\" class=\"btn btn-lg btn-grey btn-sm addpopover\" data-toggle=\"popover\" title=\"\" data-html=\"true\"" +
+                            "data-content=\"so my button <button class=\"eeaz\">button</button><br> a<a href='mailto:someone@example.com?Subject=Hello' target='_top'>Send Mail to:</a>\">Litige</button></td>" +
                             "<td><input class='form-control'></td>" +
                             "<td><input class='form-control'></td>" +
                             "<td><input class='form-control'></td>" +
@@ -267,9 +268,11 @@
                             "<td><input class='form-control'></td>" +
                             "<td><input class='form-control'></td>" +
                             "<td><input class='form-control'></td>" +
-                            "<td><button class=\"deleteur\"> X </button> </td>" +
+                            "<td><button class='btn btn-sm rounded-pill'><i class=\"fas fa-unlink\" style='color: red;'></i></button></td>" +
                             "<td><input class='form-control'></td>" +
-                            "<td><input class='form-control'></td>");
+                            "<td><button class=\"deleteur btn btn-sm rounded-pill\"> <i class=\"fas fa-trash\" style='color: red;'></i> </button> </td>" +
+                            "<td><input class='form-control'></td>" +
+                            "<td><button class=\"print btn btn-sm rounded-pill\"> <i class=\"fas fa-print\" style='color: lightblue;font-size: 15px;'></i></button></td>");
                         '{% for items in art %}'
                         $("select.fournise:last").append(new Option("{{ items.codeFournisseur }}", "{{ items.codeFournisseur }}"));
                         $("select.desif:last").append(new Option("{{ items.designationClient }}", "{{ items.designationClient }}"));
@@ -277,6 +280,11 @@
                         $("select.desif:last").val("");
                         '{% endfor %}'
                     }
+
+                    $('.addpopover').click(function() {
+                        $(this).popover('show');
+                    });
+
                     //code fournisseur
                     for (var a = nbrligne; a != 0; a--) {
                         $("#blfournisseur" + a).combobox();
@@ -388,10 +396,8 @@
             upperid = parseInt('{{ items.idBonLivraisonEntree }}', 10);
         }
         "{% endfor %}"
-        if (upperid == 0)
-            $("#umid").val(1);
-        else
-            $("#umid").val(upperid+1);
+
+        $("#umid").val('{{ id }}');
 
         $('#tabblbody').on('click', '.deleteur', function() {
             $(this).parent().parent().remove();

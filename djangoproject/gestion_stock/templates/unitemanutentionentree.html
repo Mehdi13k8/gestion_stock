@@ -2,27 +2,7 @@
 
 {% block content %}
 
-<style>
-    .ui-dialog-titlebar-close {
-        visibility: hidden;
-    }
-    input.text { margin-bottom:12px; width:95%; padding: .4em; }
-    fieldset { padding:0; border:0; margin-top:25px; }
-    .ui-dialog .ui-state-error { padding: .3em; }
-    .validateTips { border: 1px solid transparent; padding: 0.3em;}
-    table.dataTable thead .sorting:after,
-    table.dataTable thead .sorting:before,
-    table.dataTable thead .sorting_asc:after,
-    table.dataTable thead .sorting_asc:before,
-    table.dataTable thead .sorting_asc_disabled:after,
-    table.dataTable thead .sorting_asc_disabled:before,
-    table.dataTable thead .sorting_desc:after,
-    table.dataTable thead .sorting_desc:before,
-    table.dataTable thead .sorting_desc_disabled:after,
-    table.dataTable thead .sorting_desc_disabled:before {
-        bottom: .5em;
-    }
-</style>
+<body>
 
 <div class="container"><h1 class="text-center"> U.M. Entrées </h1></div>
 <br>
@@ -42,97 +22,102 @@
     <div class="row">
         <div class="col">
             <div class="border shadow-lg p-3 mb-5 bg-white rounded">
-                <table id="dtBasicExample" class="table table-striped table-bordered table-sm table-responsive" cellspacing="0" width="100%">
-                    <thead>
-                    <tr>
-                        <th scope="col" class="th-sm"> modify </th>
-                        <th scope="col" class="th-sm"> emplacement </th>
-                        <th scope="col" class="th-sm"> type zone </th>
-                        <th scope="col" class="th-sm"> n° BL </th>
-                        <th scope="col" class="th-sm"> date création </th>
-                        <th scope="col" class="th-sm"> date réception </th>
-                        <th scope="col" class="th-sm"> identifiant </th>
-                        <th scope="col" class="th-sm"> stock </th>
-                        <th scope="col" class="th-sm"> delete </th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for items in ume %}
-                    <tr>
-                        <td> <button id='{{ items.idUniteManutentionEntree }}' class="dyna"> -> </button></td>
-                        <td> {{ items.fk_ZoneDepot.nom }} </td>
-                        <td> {{ items.fk_TypeZoneDepot.nom }} </td>
-                        <td> {{ items.fk_BonLivraisonEntree.numeroBonLivraison }} </td>
-                        <td> {{ items.c_horodatage }} </td>
-                        <td> {{ items.dateReception }} </td>
-                        <td> {{ items.idUniteManutentionEntree }} </td>
-                        <td> {{ items.stock }} </td>
-                        <td> <button id='{{ items.idUniteManutentionEntree }}' class="dynad"> X </button> </td>
-                    </tr>
-                    {% endfor %}
-                    </tbody>
-                    <tfoot>
-                    <tr>
-                        <th>modify </th>
-                        <th>emplacement </th>
-                        <th>type zone </th>
-                        <th>n° BL </th>
-                        <th>date création </th>
-                        <th>date réception </th>
-                        <th>identifiant </th>
-                        <th>stock </th>
-                        <th>delete </th>
-                    </tr>
-                    </tfoot>
-                </table>
+                <div class="table-responsive">
+                    <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+                        <thead>
+                        <tr>
+                            <th scope="col" class="th-sm"> modify </th>
+                            <th scope="col" class="th-sm"> emplacement </th>
+                            <th scope="col" class="th-sm"> type zone </th>
+                            <th scope="col" class="th-sm"> n° BL </th>
+                            <th scope="col" class="th-sm"> date création </th>
+                            <th scope="col" class="th-sm"> date réception </th>
+                            <th scope="col" class="th-sm"> identifiant </th>
+                            <th scope="col" class="th-sm"> stock </th>
+                            <th scope="col" class="th-sm"> delete </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for items in ume %}
+                        <tr>
+                            <td> <button type="button" id='{{ items.idUniteManutentionEntree }}' class="dyna btn btn-sm btn-outline-grey rounded"> <i class="fas fa-arrow-right"></i> </button></td>
+                            <td> {{ items.fk_ZoneDepot.nom }} </td>
+                            <td> {{ items.fk_TypeZoneDepot.nom }} </td>
+                            <td> {{ items.fk_BonLivraisonEntree.numeroBonLivraison }} </td>
+                            <td> {{ items.c_horodatage }} </td>
+                            <td> {{ items.dateReception }} </td>
+                            <td> {{ items.idUniteManutentionEntree }} </td>
+                            <td> {{ items.stock }} </td>
+                            <td> <button id='{{ items.idUniteManutentionEntree }}' class="dynad btn btn-sm btn-outline-grey rounded-pill"> <i class="fas fa-minus"></i>   </button> </td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <th>modify </th>
+                            <th>emplacement </th>
+                            <th>type zone </th>
+                            <th>n° BL </th>
+                            <th>date création </th>
+                            <th>date réception </th>
+                            <th>identifiant </th>
+                            <th>stock </th>
+                            <th>delete </th>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
+</div>
 
-    <script type="text/javascript">
+</body>
+<script type="text/javascript">
 
-        $(document).ready(function () {
-            $('#dtBasicExample').DataTable();
-            $('.dataTables_length').addClass('bs-select');
-        });
+    $(document).ready(function () {
+        $('#dtBasicExample').DataTable();
+        $('.dataTables_length').addClass('bs-select');
+    });
 
-        $("#create-row").click(function() {
-            location.href = "{% url 'unitemanutentionentreeadd' %}";
-        });
+    $("#create-row").click(function() {
+        location.href = "{% url 'unitemanutentionentreeadd' %}";
+    });
 
-        $(document).on("click", "button.dyna" , function(e) { // event pour modifier les entree transporteur
-            var idClicked = e.target.id;
-            var name = "";
-            var trueid = 0;
-            alert(idClicked);
-            "{% for items in ume %}"
-            if ('{{ items.idUniteManutentionEntree }}' == idClicked) {
-                name = '{{ items.nom }}';
-                trueid = '{{ items.id }}';
+    $(document).on("click", "button.dyna" , function(e) { // event pour modifier les entree transporteur
+        var idClicked = e.target.id;
+        var name = "";
+        var trueid = 0;
+        alert(idClicked);
+        "{% for items in ume %}"
+        if ('{{ items.idUniteManutentionEntree }}' == idClicked) {
+            name = '{{ items.nom }}';
+            trueid = '{{ items.id }}';
+        }
+        "{% endfor %}"
+        window.location.href = "{% url 'unitemanutentionentreemodify' %}?id=" + idClicked + "&" + "name=" + name + "&" + "trueid=" + trueid;
+    });
+
+    $(document).on("click", "button.dynad" , function(e) { // event pour delete la ligne sélectionner
+        var idClicked = e.target.id;
+        alert(idClicked);
+        $.ajax({
+            type:"POST",    //type de requête utilisé par ajax
+            url:"/delete_ume/", //lien de la view qui gère la requête post pour supprimer une entree
+            data: {
+                'name': $('#nom').val(), // nom du transporteur récuperer dans le input #nom
+                'id': idClicked, // id du transporteur acquis grace a une incrementation en js
+                csrfmiddlewaretoken: '{{ csrf_token }}'
+            },
+            success: function(msg, data, settings){
+                console.log("gg " + msg);
+                location.reload();
+            },
+            failure: function() {
+                console.log("fail");
+                location.reload();
             }
-            "{% endfor %}"
-            window.location.href = "{% url 'unitemanutentionentreemodify' %}?id=" + idClicked + "&" + "name=" + name + "&" + "trueid=" + trueid;
         });
-
-        $(document).on("click", "button.dynad" , function(e) { // event pour delete la ligne sélectionner
-            var idClicked = e.target.id;
-            alert(idClicked);
-            $.ajax({
-                type:"POST",    //type de requête utilisé par ajax
-                url:"/delete_ume/", //lien de la view qui gère la requête post pour supprimer une entree
-                data: {
-                    'name': $('#nom').val(), // nom du transporteur récuperer dans le input #nom
-                    'id': idClicked, // id du transporteur acquis grace a une incrementation en js
-                    csrfmiddlewaretoken: '{{ csrf_token }}'
-                },
-                success: function(msg, data, settings){
-                    alert("gg " + msg);
-                },
-                failure: function() {
-                    alert("fail");
-                }
-            });
-        });
-
-    </script>
-    {% endblock %}
+    });
+</script>
+{% endblock %}

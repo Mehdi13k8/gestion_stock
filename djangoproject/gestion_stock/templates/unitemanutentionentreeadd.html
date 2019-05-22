@@ -266,7 +266,7 @@
                             "<td><input class='form-control'></td>" +
                             "<td><input class='form-control'></td>" +
                             "<td><input class='form-control'></td>" +
-                            "<td><button class=\"deleteur\"> X </button> </td>" +
+                            "<td><button class=\"deleteur btn btn-sm rounded-pill\"> <i class=\"fas fa-trash\"></i> </button> </td>" +
                             "<td><input class='form-control'></td>" +
                             "<td><input class='form-control'></td>");
                         '{% for items in art %}'
@@ -380,6 +380,9 @@
         $('#addligne').click(function() {
             $("#dialog-confirm").dialog("open");
         });
+        $('#back-row').click(function () {
+            window.location.href = "{% url 'unitemanutentionentree' %}";
+        });
 
         var upperid = "0";
         "{% for items in ume %}"
@@ -401,16 +404,17 @@
                 type:"POST",    //type de requête utilisé par ajax
                 url:"/create_ume/", //lien de la view qui gère la requête post
                 data: {
-                    'id': $('#umid').val(), // id du transporteur acquis grace a une incrementation en js
+                    'id': $('#umid').val(),
                     csrfmiddlewaretoken: '{{ csrf_token }}',
                 },
                 success: function(msg, data, settings){
                     console.log("gg " + msg);
-                    //if (msg != "fail")
-                        //window.location.href = "{% url 'articlemodify' %}?id=" +  msg;
+                    window.location.href = "{% url 'unitemanutentionentreemodify' %}?id=" + $('#umid').val() + "&" + "name=" + null + "&" + "trueid=" + null;
                 },
                 failure: function() {
                     console.log("fail");
+                    location.reload();
+
                 }
             });
         });

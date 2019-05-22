@@ -4,47 +4,20 @@
 
 <body>
 <div class="container">
-    <!--Navbar-->
-    <nav class="navbar navbar-dark red lighten-1 mb-4">
+    <form method="post" novalidate enctype="multipart/form-data"  style="text-align: left;font-weight:bold;">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success" style="position:sticky;bottom: 0; margin-left: 45%;">Valider</button>
+        <button id="resetimg" type="button" class="btn btn-outline-blue-grey btn-sm"><i class="fas fa-undo"></i></button>
+    </form>
 
-        <!-- Navbar brand -->
-        <a class="navbar-brand" href="#">Navbar</a>
-
-        <!-- Collapse button -->
-        <button class="navbar-toggler second-button" type="button" data-toggle="collapse" data-target="#navbarSupportedContent23"
-                aria-controls="navbarSupportedContent23" aria-expanded="false" aria-label="Toggle navigation" id="openmenu2">
-            <div class="animated-icon2"><span></span><span></span><span></span><span></span></div>
-        </button>
-
-        <!-- Collapsible content -->
-        <div class="collapse navbar-collapse" id="navbarSupportedContent23">
-
-            <!-- Links -->
-            <ul class="navbar-nav mr-auto">
-                <!--<li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>-->
-            </ul>
-            <!-- Links -->
-
-        </div>
-        <!-- Collapsible content -->
-
-    </nav>
-
+    <button type="button" id="createuserbtn" class="btn btn-info"><i class="fas fa-user-plus" style="font-size: 30px"></i></button>
 </div>
-<form method="post" novalidate enctype="multipart/form-data"  style="text-align: left;font-weight:bold;">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-success" style="position:sticky;bottom: 0; margin-left: 45%;">Valider</button>
-    <button id="resetimg" type="button" class="btn btn-outline-blue-grey btn-sm"><i class="fas fa-undo"></i></button>
-</form>
 </body>
 
 <script>
     setTimeout(function() {
         $("#openmenu").trigger("click");
-        $("#openmenu2").trigger("click");
     },1000);
 
     $('#resetimg').click(function () {
@@ -88,6 +61,9 @@
         });*/
     });
     $( document ).ready(function() {
+        $('#createuserbtn').click(function () {
+           window.location.href = "{% url 'register' %}"
+        });
         /*
         $("#hidenot li").height(200);
         $("#id_cover1").parent('p').appendTo("#hidenot");
@@ -107,7 +83,7 @@
         $("input").addClass("w-responsive");
         //$('button').eq('2').insertAfter('#hidenot');
         $('button').eq('2').addClass('btn btn-sm btn-blue-grey');
-        $('form').appendTo($('#hidenot').parent('div'));
+        $('form').eq(0).appendTo($('#hidenot').parent('div'));
         $('label').eq(0).text("Accueil").append("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
         $('label').eq(1).text("U.M entree");
         $('label').eq(2).text("Article").append("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
@@ -121,6 +97,7 @@
         $('label').eq(10).text("B.L Entree");
         $('label').eq(11).text("Colis").append("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
         $('label').eq(12).text("L.V entree");
+
     });
 </script>
 {% endblock %}

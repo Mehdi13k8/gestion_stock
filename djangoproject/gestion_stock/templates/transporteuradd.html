@@ -88,10 +88,13 @@
                     csrfmiddlewaretoken: '{{ csrf_token }}'
                 },
                 success: function(msg, data, settings){
-                    alert("gg " + msg);
+                    console.log("gg " + msg);
+                    location.reload();
+                    window.location.href = '{% url'
                 },
                 failure: function() {
-                    alert("fail");
+                    console.log("fail");
+                    location.reload();
                 }
             });
 

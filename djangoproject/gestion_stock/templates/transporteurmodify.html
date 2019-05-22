@@ -86,10 +86,12 @@
                     csrfmiddlewaretoken: '{{ csrf_token }}'
                 },
                 success: function(msg, data, settings){
-                    alert("gg so " + msg);
+                    console.log("gg so " + msg);
+                    location.reload();
                 },
                 failure: function() {
-                    alert("fail");
+                    console.log("fail");
+                    location.reload();
                 }
             });
 

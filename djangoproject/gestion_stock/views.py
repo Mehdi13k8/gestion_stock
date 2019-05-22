@@ -12,6 +12,7 @@ from django import forms
 #from .forms import UploadFileForm
 from .forms import PostForm
 from django.urls import reverse, reverse_lazy # new
+from django.contrib.auth.forms import UserCreationForm
 
 #https://realpython.com/django-and-ajax-form-submissions/ faut aller apprendre la connection | plus besoin, connection acquise
 #https://code.djangoproject.com/wiki/AjaxDojoLogin
@@ -1821,6 +1822,7 @@ class umemodify(ListView):
     def get(self, request):
         context = {
             'settings' : menuimages.objects.all(),
+            'id' :request.GET.get('id'),
             'activate' : 'on'
         }
         return render(request, self.template_name, context)
@@ -1855,6 +1857,7 @@ class setting(UpdateView):
 
     model = menuimages.objects.filter(pk=1)
     form_class = PostForm
+    secondform_class = UserCreationForm
     template_name = 'setting.html'
     success_url = reverse_lazy('setting')
     #return HttpResponse("No access there")
@@ -1862,6 +1865,7 @@ class setting(UpdateView):
     def get_context_data(self, **kwargs):
         context = super(setting, self).get_context_data(**kwargs)
         context['settings'] = menuimages.objects.all()
+        context['userform'] = self.secondform_class(self.request.GET)
         return context
 
     def reset(request):
@@ -1892,4 +1896,53 @@ class setting(UpdateView):
         return reverse('setting', kwargs={'pk': 1})
         #return reverse('index')
 
+    '''def register(request):
+        if request.method == 'POST':
+            form = UserCreationForm(Request.POST)
+            if form.is_valid():
+                form.save()
+                return redirect('/account')
+            else:
+                form = UserCreationForm()
+
+                args = {'regiform': form}
+                return render{request, 'registration/register.html', args}'''
+
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
+class register(CreateView):
+    template_name = "registration/register.html"
+
+    def get(self, request):
+        model = User
+        form_class = UserCreationForm
+        context = {
+            'activate' : 'on',
+            'settings' : menuimages.objects.all(),
+            'ume' : UniteManutentionEntree.objects.all(),
+            'userform' : form_class(self.request.GET),
+            'users' : User.objects.all(),
+        }
+        return render(request, self.template_name, context)
+
+def recregister(request):
+    if request.POST:
+        form_class = UserCreationForm(request.POST)
+        if form_class.is_valid():
+            form_class.save()
+            return redirect('/register')
+        form_class = UserCreationForm()
+        context = {
+            'userform' : form_class,
+        }
+        return render(request, "registration/register.html", context)
+    return HttpResponse("403: No access granted")
+
+def deleteuser(request):
+    if request.POST:
+        showlist = [request.POST.get('id'),]
+        u = User.objects.get(pk=showlist[0])
+        u.delete()
+        print(str(showlist[0]))
+        return HttpResponse("success")
+    return HttpResponse("403: No access granted")

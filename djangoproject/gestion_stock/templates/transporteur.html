@@ -105,52 +105,53 @@
       </div>
     </div>
   </div>
+</div>
+<script type="text/javascript">
 
-  <script type="text/javascript">
+  $(document).ready(function () {
+    $('#dtBasicExample').DataTable();
+    $('.dataTables_length').addClass('bs-select');
+  });
 
-    $(document).ready(function () {
-      $('#dtBasicExample').DataTable();
-      $('.dataTables_length').addClass('bs-select');
-    });
+  $("#create-row").click(function() {
+    location.href = "{% url 'transporteuradd' %}";
+  });
 
-    $("#create-row").click(function() {
-      location.href = "{% url 'transporteuradd' %}";
-    });
+  $(document).on("click", "button.dyna" , function(e) { // event pour modifier les entree transporteur
+    var idClicked = e.target.id;
+    var name = "";
+    var trueid = 0;
+    alert(idClicked);
+    "{% for items in trans %}"
+    if ('{{ items.idTransporteur }}' == idClicked) {
+      name = '{{ items.nom }}';
+      trueid = '{{ items.id }}';
+    }
+    "{% endfor %}"
+    window.location.href = "{% url 'transporteurmodify' %}?id=" + idClicked + "&" + "name=" + name + "&" + "trueid=" + trueid;
+  });
 
-    $(document).on("click", "button.dyna" , function(e) { // event pour modifier les entree transporteur
-      var idClicked = e.target.id;
-      var name = "";
-      var trueid = 0;
-      alert(idClicked);
-      "{% for items in trans %}"
-      if ('{{ items.idTransporteur }}' == idClicked) {
-        name = '{{ items.nom }}';
-        trueid = '{{ items.id }}';
+  //code pour delete
+  $(document).on("click", "button.dynad" , function(e) { // event pour delete la ligne sélectionner
+    var idClicked = e.target.id;
+    alert(idClicked);
+    $.ajax({
+      type:"POST",    //type de requête utilisé par ajax
+      url:"/delete_trans/", //lien de la view qui gère la requête post pour supprimer une entree
+      data: {
+        'name': $('#nom').val(), // nom du transporteur récuperer dans le input #nom
+        'id': idClicked, // id du transporteur acquis grace a une incrementation en js
+        csrfmiddlewaretoken: '{{ csrf_token }}'
+      },
+      success: function(msg, data, settings){
+        console.log("gg " + msg);
+        location.reload();
+      },
+      failure: function() {
+        console.log("fail");
+        location.reload();
       }
-      "{% endfor %}"
-      window.location.href = "{% url 'transporteurmodify' %}?id=" + idClicked + "&" + "name=" + name + "&" + "trueid=" + trueid;
     });
-
-    //code pour delete
-    $(document).on("click", "button.dynad" , function(e) { // event pour delete la ligne sélectionner
-      var idClicked = e.target.id;
-      alert(idClicked);
-      $.ajax({
-        type:"POST",    //type de requête utilisé par ajax
-        url:"/delete_trans/", //lien de la view qui gère la requête post pour supprimer une entree
-        data: {
-          'name': $('#nom').val(), // nom du transporteur récuperer dans le input #nom
-          'id': idClicked, // id du transporteur acquis grace a une incrementation en js
-          csrfmiddlewaretoken: '{{ csrf_token }}'
-        },
-        success: function(msg, data, settings){
-          alert("gg " + msg);
-        },
-        failure: function() {
-          alert("fail");
-        }
-      });
-    });
-
-  </script>
-  {% endblock %}
+  });
+</script>
+{% endblock %}
