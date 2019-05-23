@@ -66,10 +66,7 @@
         else
             $("#umid").val(upperid+1);
 
-
         $('#addtransp').click(function() {
-            console.log("form submitted!")  // sanity check
-
             "{% for items in trans %}"
             var name = $("#nom").val();
             if (name == "{{ items.nom }}") {
@@ -89,8 +86,7 @@
                 },
                 success: function(msg, data, settings){
                     console.log("gg " + msg);
-                    location.reload();
-                    window.location.href = '{% url'
+                    window.location.href = "{% url 'transporteurmodify' %}?id=" + $('#umid').val();
                 },
                 failure: function() {
                     console.log("fail");

@@ -84,3 +84,7 @@ admin.site.register(RoleContact_pour_Client)
 admin.site.register(ZoneDepot_pour_TypeZoneDepot)
 
 admin.site.register(menuimages)
+
+admin.site.register(Colis)
+admin.site.register(Litige)
+admin.site.register(LitigeDecision)

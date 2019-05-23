@@ -1821,6 +1821,9 @@ class umemodify(ListView):
 
     def get(self, request):
         context = {
+            'article' : Article.objects.all(),
+            'litige' : Litige.objects.all(),
+            'decilitige' : LitigeDecision.objects.all(),
             'settings' : menuimages.objects.all(),
             'id' :request.GET.get('id'),
             'activate' : 'on'

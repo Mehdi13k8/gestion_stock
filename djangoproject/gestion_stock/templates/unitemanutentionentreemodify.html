@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<style xmlns="http://www.w3.org/1999/html">
+<style>
     .ui-dialog-titlebar-close {
         visibility: hidden;
     }
@@ -10,6 +10,7 @@
     fieldset { padding:0; border:0; margin-top:25px; }
     .ui-dialog .ui-state-error { padding: .3em; }
     .validateTips { border: 1px solid transparent; padding: 0.3em;}
+    .ui-dialog {overflow: visible;}
 </style>
 
 <div class="container"><h1 class="text-center"> modif U.M Entree</h1></div>
@@ -145,14 +146,16 @@
                     <button type="button" class="btn btn-sm btn-cyan ">vérifier n° lot/DLUO</button>
                 </div>
             </div>
-
+            <div class="text-right">
+                <button type="button" class="btn btn-blue-grey" id="saveume">Save&nbsp;<i class="fas fa-check"></i></button>
+            </div>
         </div>
     </div>
 </div>
 
 <div class="container">
     <div class="border shadow-lg p-2 mb-3 bg-white rounded">
-        <h5 class="text-center"> <u> Lignes de l'U.M entree</u></h5>
+        <h5 class="text-center"> <u> Lignes U.M entree</u> (colis)</h5>
         <div class="container">
             <div class="row">
                 <div class="container">
@@ -236,6 +239,8 @@
         });
 
         var nbrligne = 0;
+        var litige = [];
+        var decilitige = [];
         $("#dialog-confirm").dialog({
             resizable: false,
             height: "auto",
@@ -251,44 +256,70 @@
                     $('#numberligne').val("");
                     $(this).dialog("close");
                     for (var nbr = nbrligne; nbr > 0; nbr--) {
-                        $('#tabblbody').append("<tr><td><button class='duplique' id=\"duplicate" + nbr + "\"><i class=\"fas fa-copy\"></i></button></td>" +
-                            "<td><button class='ajout' id=\"add" + nbr + "\"><i class=\"fas fa-plus\"></i></button></td>" +
-                            "<td><input class='form-control'></td>" +
+                        $('#tabblbody').append("<tr><td><button class='duplique btn btn-sm  btn-outline-grey rounded-pill w-25' id=\"duplicate" + nbr + "\"><i class=\"fas fa-copy\"></i></button></td>" +
+                            "<td><button class='ajout btn btn-sm rounded-pill btn-outline-grey w-25' id=\"add" + nbr + "\"><i class=\"fas fa-plus\"></i></button></td>" +
+                            "<td><input class='form-control' disabled></td>" +
                             "<td><select class=\"form-control fournise\" id=\"blfournisseur" + nbr + "\"></select></td>" +
                             "<td><select class=\"form-control desif\" id=\"iddesif" + nbr + "\"></select></td>" +
                             "<td><input class='form-control'></td>" +
                             "<td><input type=\"date\" class=\"date rounded\" class=\"form-control\"></td>" +
                             "<td><input type=\"text\" class=\"form-control\"></td>" +
-                            "<td><button type=\"button\" class=\"btn btn-lg btn-grey btn-sm addpopover\" data-toggle=\"popover\" title=\"\" data-html=\"true\"" +
-                            "data-content=\"so my button <button class=\"eeaz\">button</button><br> a<a href='mailto:someone@example.com?Subject=Hello' target='_top'>Send Mail to:</a>\">Litige</button></td>" +
+                            "<td><button type=\"button\" class=\"btn btn-grey btn-sm addmodal\" data-toggle=\"popover\" id=\"" + nbr + "\">Litiges</button></td>" +
                             "<td><input class='form-control'></td>" +
-                            "<td><input class='form-control'></td>" +
-                            "<td><input class='form-control'></td>" +
-                            "<td><input class='form-control'></td>" +
-                            "<td><input class='form-control'></td>" +
-                            "<td><input class='form-control'></td>" +
-                            "<td><input class='form-control'></td>" +
+                            "<td><button type=\"button\" class=\"btn btn-grey btn-sm\"><i class=\"fas fa-arrow-right\" style='color: deepskyblue;'></i></button></td>" +
+                            "<td><button type=\"button\" class=\"btn btn-grey btn-sm\"><i class=\"fas fa-redo-alt\" style='color: deepskyblue;'></i></button></td>" +
+                            "<td><input class='form-control' disabled></td>" +
+                            "<td><input class='form-control' disabled></td>" +
+                            "<td class='text-center'><i class=\"fas fa-toggle-off mt-2\" style='font-size: 25px;cursor:pointer;'></i></td>" +
+                            "<td><input class='form-control' disabled></td>" +
                             "<td><button class='btn btn-sm rounded-pill'><i class=\"fas fa-unlink\" style='color: red;'></i></button></td>" +
                             "<td><input class='form-control'></td>" +
                             "<td><button class=\"deleteur btn btn-sm rounded-pill\"> <i class=\"fas fa-trash\" style='color: red;'></i> </button> </td>" +
-                            "<td><input class='form-control'></td>" +
-                            "<td><button class=\"print btn btn-sm rounded-pill\"> <i class=\"fas fa-print\" style='color: lightblue;font-size: 15px;'></i></button></td>");
+                            "<td class='text-center'><i class=\"fas fa-layer-group mt-2\" style='font-size: 25px;cursor:pointer;'></i></td>" +
+                            "<td><button class=\"print btn btn-sm rounded-pill\"> <i class=\"fas fa-print\" style='color: lightblue;font-size: 15px;'></i></button></td>+");
+                        //$('body').append("<div id=\"modal" + nbr + "\" title=\"Basic dialog\">" +
+                        //"<p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p></div>");
+                        /*$("#modal"+nbr).dialog({
+                            autoOpen : false, modal : true, show : "blind", hide : "blind", buttons: {
+                                "Annuler": function () {
+                                    $('#numberligne').val("");
+                                    $(this).dialog("close");
+                                },
+                            }
+                        });*/
                         '{% for items in art %}'
                         $("select.fournise:last").append(new Option("{{ items.codeFournisseur }}", "{{ items.codeFournisseur }}"));
                         $("select.desif:last").append(new Option("{{ items.designationClient }}", "{{ items.designationClient }}"));
                         $("select.fournise:last").val("");
                         $("select.desif:last").val("");
                         '{% endfor %}'
+                        $('<div id="newDialogText'+nbr+'" class="'+ nbr +'">Litige<br><select class="myselect" id="litigebox'+nbr+'">' +
+                            '</select><br>décision sur litige<select class="myselect2" id="decilitigebox'+nbr+'"></select></div>').dialog({
+                            autoOpen: false, modal: true, show: "blind", hide: "blind", buttons: {
+                                "Annuler": function () {
+                                    $('#numberligne').val("");
+                                    $(this).dialog("close");
+                                },
+                            }
+                        });
+                        '{% for items in litige %}'
+                            $('#litigebox'+nbr).append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                        '{% endfor %}'
+                        '{% for items in decilitige %}'
+                            $('#decilitigebox'+nbr).append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                        '{% endfor %}'
                     }
-
-                    $('.addpopover').click(function() {
-                        $(this).popover('show');
+                    $('.addmodal').click(function() {
+                        $('#newDialogText' + $(this).attr('id')).dialog("open");
+                        console.log("gg" + $(this).attr('id'));
                     });
 
                     //code fournisseur
                     for (var a = nbrligne; a != 0; a--) {
                         $("#blfournisseur" + a).combobox();
                     }
+                    //for (var a = nbrligne; a != 0; a--) {
+                    //}
                     $("#toggle").on("click", function () {
                         for (var a = nbrligne; a != 0; a--) {
                             $("#blfournisseur" + a).toggle();
@@ -302,7 +333,22 @@
                             $("#iddesif" + a).toggle();
                         }
                     });
-
+                    for (var a = nbrligne; a != 0; a--) {
+                        $("#litigebox" + a).combobox();
+                    }
+                    $("#toggle").on("click", function () {
+                        for (var a = nbrligne; a != 0; a--) {
+                            $("#litigebox" + a).toggle();
+                        }
+                    });
+                    for (var a = nbrligne; a != 0; a--) {
+                        $("#decilitigebox" + a).combobox();
+                    }
+                    $("#toggle").on("click", function () {
+                        for (var a = nbrligne; a != 0; a--) {
+                            $("#decilitigebox" + a).toggle();
+                        }
+                    });
                     $(".fournise").combobox({
                         select: function (event, ui) {
                             '{% for items in art %}'
@@ -339,6 +385,8 @@
                         $(this).closest('td').parent().find('td').eq(1).next().find('select').append(new Option("{{ items.designationClient }}", "{{ items.designationClient }}"));
                         '{% endfor %}'
                     });
+                    $('#addligne').prop("disabled", true);
+                    $(".ui-dialog-titlebar").hide();
                 }
             },
         });
