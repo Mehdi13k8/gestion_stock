@@ -1825,6 +1825,7 @@ class umemodify(ListView):
             'litige' : Litige.objects.all(),
             'decilitige' : LitigeDecision.objects.all(),
             'settings' : menuimages.objects.all(),
+            'colis' : Colis.objects.all(),
             'id' :request.GET.get('id'),
             'activate' : 'on'
         }

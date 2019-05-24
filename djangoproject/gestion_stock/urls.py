@@ -107,7 +107,7 @@ urlpatterns = [
     path('umentree', views.ume.as_view(), name='unitemanutentionentree'),
     path('umentree/add', views.umeadd.as_view(), name='unitemanutentionentreeadd'),
     path('umentree/modify/', views.umemodify.as_view(), name='unitemanutentionentreemodify'),
-    path('modify_ume/', views.umemodify.modify, name='unitemanutentionentreemodifysave'),
+    path('modify_ume/', views.umemodify.modify),
     path('create_ume/', views.umeadd.create),
     path('delete_ume/', views.ume.delete),
     #path('bon/add/<int:month>/', views.),
