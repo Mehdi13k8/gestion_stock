@@ -108,6 +108,7 @@ urlpatterns = [
     path('umentree/add', views.umeadd.as_view(), name='unitemanutentionentreeadd'),
     path('umentree/modify/', views.umemodify.as_view(), name='unitemanutentionentreemodify'),
     path('modify_ume/', views.umemodify.modify),
+    path('ligneume/create/', views.umemodify.createligne),
     path('create_ume/', views.umeadd.create),
     path('delete_ume/', views.ume.delete),
     #path('bon/add/<int:month>/', views.),

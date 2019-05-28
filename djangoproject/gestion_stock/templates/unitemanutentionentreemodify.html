@@ -188,15 +188,32 @@
                                 </tr>
                                 </thead>
                                 <tbody id="tabblbody">
-                                {% for items in entreeligne %}
-                                <!--<tr>
+                                {% for items in colis %}
+                                {% if items.fk_UniteManutentionEntree.idUniteManutentionEntree == id %}
+                                <tr>
                                     <td> <button id='{{ items.idBonLivraisonEntree }}' class="dyna"> -> </button></td>
                                     <td> {{ items.fk_TypeZoneDepot.nom }} </td>
-                                        <td> {{ items.dateReception }} </td>
+                                    <td> {{ items.fk_TypeZoneDepot.nom }} </td>
+                                    <td> {{ items.fk_TypeZoneDepot.nom }} </td>
+                                    <td> {{ items.fk_TypeZoneDepot.nom }} </td>
+                                    <td> {{ items.fk_TypeZoneDepot.nom }} </td>
+                                    <td> {{ items.fk_TypeZoneDepot.nom }} </td>
+                                    <td> {{ items.fk_TypeZoneDepot.nom }} </td>
+                                    <td> {{ items.fk_TypeZoneDepot.nom }} </td>
+                                    <td> {{ items.fk_TypeZoneDepot.nom }} </td>
+                                    <td> {{ items.fk_TypeZoneDepot.nom }} </td>
+                                    <td> {{ items.fk_TypeZoneDepot.nom }} </td>
+                                    <td> {{ items.fk_TypeZoneDepot.nom }} </td>
+                                    <td> {{ items.fk_TypeZoneDepot.nom }} </td>
+                                    <td> {{ items.fk_TypeZoneDepot.nom }} </td>
+                                    <td> {{ items.fk_TypeZoneDepot.nom }} </td>
+                                    <td> {{ items.fk_TypeZoneDepot.nom }} </td>
+                                    <td> {{ items.fk_TypeZoneDepot.nom }} </td>
+                                    <td> {{ items.dateReception }} </td>
                                     <td> {{ items.numeroBonLivraison }} </td>
                                     <td> <button id='{{ items.idBonLivraisonEntree  }}' class="dynad"> X </button> </td>
                                 </tr>
-                                -->
+                                {% endif %}
                                 {% endfor %}
                                 </tbody>
                             </table>
@@ -219,12 +236,17 @@
 
 <script>
     $(document).ready(function() {
+        '{% for items in colis %}'
+            '{% if items.fk_UniteManutentionEntree == id %}'
+                console.log("there");
+            '{% endif %}'
+            console.log("{{ items.fk_UniteManutentionEntree.idUniteManutentionEntree }}");
+        '{% endfor %}'
         $('#compum').click(function () {
             if ($(this).hasClass('btn btn-sm btn-success')) {
                 $(this).attr('class', 'btn btn-light btn-sm butctrl');
                 $(this).find('i').attr('class', 'fas fa-thumbs-down');
-            }
-            else {
+            } else {
                 $(this).attr('class', 'btn btn-sm btn-success');
                 $(this).find('i').attr('class', 'fas fa-thumbs-up');
             }
@@ -234,7 +256,7 @@
         });
 
         $("#seldep").combobox();
-        $("#toggle").on("click", function() {
+        $("#toggle").on("click", function () {
             $("#seldep").toggle();
         });
 
@@ -247,16 +269,18 @@
             width: 400,
             modal: true,
             buttons: {
-                "Annuler": function() {
+                "Annuler": function () {
                     $('#numberligne').val("");
                     $(this).dialog("close");
                 },
-                ok: function() {
+                ok: function () {
                     nbrligne = $('#numberligne').val();
                     $('#numberligne').val("");
                     $(this).dialog("close");
                     var colid = "0";
-                    for (var nbr = nbrligne; nbr > 0; nbr--) {
+                    for (var nbr = 0; nbr != nbrligne; nbr++) {
+                        litige[nbr] = "0";
+                        decilitige[nbr] = "0";
                         $('#tabblbody').append("<tr><td><button class='duplique btn btn-sm  btn-outline-grey rounded-pill w-25' id=\"duplicate" + nbr + "\"><i class=\"fas fa-copy\"></i></button></td>" +
                             "<td><button class='ajout btn btn-sm rounded-pill btn-outline-grey w-25' id=\"add" + nbr + "\"><i class=\"fas fa-plus\"></i></button></td>" +
                             "<td><input class='form-control' disabled id=\"ncolis" + nbr + "\"></td>" +
@@ -296,46 +320,36 @@
                         $("#blfournisseur" + nbr).val("");
                         $("#iddesif" + nbr).val("");
                         '{% endfor %}'
-                        litige[nbr] += "";
-                        decilitige[nbr] += "";
 
-                        $('<div id="newDialogText'+nbr+'" class="'+ nbr +'">Litige<br><select class="myselect" id="litigebox'+nbr+'">' +
-                            '</select><br>décision sur litige<select class="myselect2" id="decilitigebox'+nbr+'"></select></div>').dialog({
+                        $('<div id="newDialogText' + nbr + '" class="' + nbr + '">Litige<br><select class="myselect" id="litigebox' + nbr + '">' +
+                            '</select><br>décision sur litige<select class="myselect2" id="decilitigebox' + nbr + '"></select></div>').dialog({
                             autoOpen: false, modal: true, show: "blind", hide: "blind", buttons: {
                                 "Annuler": function () {
                                     $('#numberligne').val("");
-                                    console.log($(this).attr('id').replace(/\D/g, '')); //je recupère l'id de la "ligne" pour savoir laquelle est-ce pour vider mes array a cet index
+                                    //je recupère l'id de la "ligne" pour savoir laquelle est-ce pour vider mes array a cet index
                                     litige[$(this).attr('id').replace(/\D/g, '')] = "";
-                                    decilitige[$(this).attr('id').replace(/\D/g, '')] = "";
+                                    decilitige[$(this).attr('id').replace(/\D/g, '')] = ""; //je vide les inputs du dialog pour les litiges
+                                    $(this).find('input').eq(0).val("");
+                                    $(this).find('input').eq(1).val("");
                                     $(this).dialog("close");
                                 },
-                                ok: function() {
+                                ok: function () {
                                     $(this).dialog("close");
+                                    /*litige[$(this).attr('id').replace(/\D/g, '')] = $('litigebox'+nbr).val();
+                                    decilitige[$(this).attr('id').replace(/\D/g, '')] = $('decilitigebox'+nbr).val();
+                                    console.log("li = " + litige[$(this).attr('id').replace(/\D/g, '')]);
+                                    console.log("decli = " + decilitige[$(this).attr('id').replace(/\D/g, '')]);*/
                                 },
                             }
                         });
                         '{% for items in litige %}'
-                        $('#litigebox'+nbr).append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                        $('#litigebox' + nbr).append(new Option("{{ items.nom }}", "{{ items.nom }}"));
                         '{% endfor %}'
                         '{% for items in decilitige %}'
-                        $('#decilitigebox'+nbr).append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                        $('#decilitigebox' + nbr).append(new Option("{{ items.nom }}", "{{ items.nom }}"));
                         '{% endfor %}'
-                        $('#litigebox'+nbr).val("");
-                        $('#decilitigebox'+nbr).val("");
-
-                        $("#litigebox" + nbr).combobox({
-                            select: function (event, ui) {
-                                //console.log("test");
-                                litige[nbr] = $(this).val();
-                                //console.log("gg val " + $(this).val());
-                            }
-                        });
-                        $("#decilitigebox"+nbr).combobox({
-                            select: function (event, ui) {
-                                decilitige[nbr] = $(this).val();
-                                //console.log("gg val " + $(this).val());
-                            }
-                        });
+                        $('#litigebox' + nbr).val("");
+                        $('#decilitigebox' + nbr).val("");
 
                         "{% for items in colis %}"
                         if (parseInt(colid, 10) < parseInt('{{ items.idColis }}', 10)) {
@@ -345,31 +359,46 @@
                         colid++;
                         $("#ncolis" + nbr).val(colid);
                     }
-                    $('.addmodal').click(function() {
+
+                    $(".myselect").combobox({
+                        select: function (event, ui) {
+                            //litige[nbr] = $(this).val();
+                            litige[$(this).attr('id').replace(/\D/g, '')] = $(this).val();
+                            console.log($(this).attr('id').replace(/\D/g, ''));
+                        }
+                    });
+                    $(".myselect2").combobox({
+                        select: function (event, ui) {
+                            decilitige[$(this).attr('id').replace(/\D/g, '')] = $(this).val();
+                            console.log($(this).attr('id').replace(/\D/g, ''));
+                        }
+                    });
+
+                    $('.addmodal').click(function () {
                         $('#newDialogText' + $(this).attr('id')).dialog("open");
-                        console.log("gg" + $(this).attr('id'));
+                        //console.log("gg" + $(this).attr('id'));
                     });
 
                     //code fournisseur
-                    for (var a = nbrligne; a != 0; a--) {
+                    for (var a = 0; a != nbrligne; a++) {
                         $("#blfournisseur" + a).combobox();
                     }
                     //for (var a = nbrligne; a != 0; a--) {
                     //}
                     $("#toggle").on("click", function () {
-                        for (var a = nbrligne; a != 0; a--) {
+                        for (var a = 0; a != nbrligne; a++) {
                             $("#blfournisseur" + a).toggle();
                         }
                     });
-                    for (var a = nbrligne; a != 0; a--) {
+                    for (var a = 0; a != nbrligne; a++) {
                         $("#iddesif" + a).combobox();
                     }
                     $("#toggle").on("click", function () {
-                        for (var a = nbrligne; a != 0; a--) {
+                        for (var a = 0; a != nbrligne; a++) {
                             $("#iddesif" + a).toggle();
                         }
                     });
-                    for (var a = nbrligne; a != 0; a--) {
+                    for (var a = 0; a != nbrligne; a++) {
                         $("#litigebox" + a).combobox();
                     }
                     $("#toggle").on("click", function () {
@@ -377,7 +406,7 @@
                             $("#litigebox" + a).toggle();
                         }
                     });
-                    for (var a = nbrligne; a != 0; a--) {
+                    for (var a = 0; a != nbrligne; a++) {
                         $("#decilitigebox" + a).combobox();
                     }
                     $("#toggle").on("click", function () {
@@ -424,37 +453,171 @@
 
                     $('#addligne').prop("disabled", true);
                     $(".ui-dialog-titlebar").hide();
+
+                    $('#saveume').click(function() { //envoie des données
+                        var idx = 0;
+                        var ncolis = "";
+                        var codefournisseur = "";
+                        var designation = "";
+                        var nlot = "";
+                        var datep = "";
+                        var qtecolis = "";
+                        var numerote = "";
+                        var confirme = "";
+                        var retourncolis = "";
+                        var colle = "";
+                        var ligne = {};
+                        var ligneidx = 0;
+                        $('#tabblbody tr').each(function (a, b) {  //recupère les  entrée dans la table
+                            var stock = "";
+                            $(this).find('td').each(function(a, b) {
+                                stock = $(this).find('input').val();
+                                if (a === 2) {
+                                    ncolis = $(this).find('input').val();
+                                }
+                                if (a === 3) {
+                                    codefournisseur = $(this).find('input').val();
+                                    //designation = $(this).find('input').val();
+                                    //console.log("desi == " + designation);
+                                }
+                                if (a === 4) {
+                                    designation = $(this).find('input').val();
+                                }
+                                if (a === 5) {
+                                    nlot = stock;
+                                }
+                                if (a === 6) {
+                                    datep = stock;
+                                }
+                                if (a === 7) {
+                                    qtecolis = stock;
+                                }
+                                if (a === 8) {
+                                    //id = $(this).find('button').attr('id');
+                                    //console.log(id);
+                                }
+                                if (a === 9) {
+                                    numerote = stock;
+                                }
+                                if (a === 14) {
+                                    if ($(this).find('i').hasClass("fas mt-2 fa-toggle-on")) {
+                                        confirme = 1;
+                                    }
+                                    else {
+                                        confirme = 0;
+                                    }
+                                }
+                                if (a === 17) {
+                                    retourncolis = stock;
+                                }
+                                if (a === 19) {
+                                    if ($(this).find('i').css('color') == "rgb(0, 0, 0)") {
+                                        colle = 0;
+                                    } else {
+                                        colle = 1;
+                                    }
+                                }
+                            });
+                            ligne[idx] = {"ncolis": ncolis.trim(), "codefournisseur": codefournisseur.trim(), "designation": designation.trim(),
+                                "nlot": nlot, "datep": datep, "qtecolis": qtecolis, "litige": litige[idx], "decilitige" : decilitige[idx],
+                                "numerote": numerote, "confirme": confirme, "retourncolis": retourncolis,
+                                "colle": colle};
+                            idx++;
+                        });
+                        var myidx = 0;
+                        $.ajax({
+                            type:"POST",    //type de requête utilisé par ajax
+                            url:"/modify_ume/", //lien de la view qui gère la requête post
+                            data: {
+                                'id': $('#umid').val(),
+                                'client': $('#client').val(),
+                                'fourtype': $('#fournisseur').val(),
+                                'lettre': $('#lveinput').val(),
+                                'zone': $('#zone').val(),
+                                'numerobl': $('#inputnbl').val(),
+                                'daterecep': $('#inputMDEx').val(),
+                                'quantitepale': $('#inputqpl').val(),
+                                'destinataireretour': $('#litiges').val(),
+                                'zoneatt': $('#zatt').val(),
+                                csrfmiddlewaretoken: '{{ csrf_token }}',
+                            },
+                            success: function(msg, data, settings){
+                                console.log("success: " + msg);
+                                if (Object.keys(ligne).length > 0) {
+                                    for (key in ligne) {
+                                        totalligne = 0;
+                                        '{% for items in entreeligne %}'
+                                        totalligne++;
+                                        '{% endfor %}'
+                                        envoilignes();
+                                        myidx++;
+                                    }
+                                    myidx = 0;
+                                }
+                            },
+                            failure: function() {
+                                alert("fail");
+                            }
+                        });
+
+                        function envoilignes() {
+
+                            $.ajax({
+                                type:"POST",
+                                url:"/ligneume/create/",
+                                data: {
+                                    "id": $('#umid').val(),
+                                    "ncolis": ligne[myidx].ncolis, //id du colis
+                                    "codef": ligne[myidx].codefournisseur,
+                                    "designation": ligne[myidx].designation.trim(),
+                                    "nlot": ligne[myidx].nlot,
+                                    "datep": ligne[myidx].datep,
+                                    "qtecolis": ligne[myidx].qtecolis,
+                                    "numerote": ligne[myidx].numerote,
+                                    "confirme": ligne[myidx].confirme,
+                                    "retourncolis": ligne[myidx].retourncolis,
+                                    "colle": ligne[myidx].colle,
+                                    "litige": ligne[myidx].litige,
+                                    "decilitige": ligne[myidx].decilitige,
+                                    csrfmiddlewaretoken: '{{ csrf_token }}',
+                                },
+                                success: function(msg, data, settings){
+                                    console.log(msg);
+                                },
+                                failure: function() {
+                                    alert("fail");
+                                }
+                            });
+                        }
+                    });
                 }
             },
         });
-        $('body').on('click', '.fa-toggle-off', function() {
+        $('body').on('click', '.fa-toggle-off', function () {
             $(this).removeClass('fa-toggle-off');
             $(this).addClass('fa-toggle-on');
         });
-        $('body').on('click', '.fa-toggle-on', function() {
+        $('body').on('click', '.fa-toggle-on', function () {
             $(this).removeClass('fa-toggle-on');
             $(this).addClass('fa-toggle-off');
         });
         $("#dialog-confirm").dialog("close");
-        $('body').on('click', '.butctrl', function() {
+        $('body').on('click', '.butctrl', function () {
             if ($(this).hasClass("btn-light")) {
                 $(this).removeClass("btn-light");
                 $(this).addClass("btn-success");
                 $(this).find($("i")).removeClass('fa-thumbs-down').addClass('fa-thumbs-up');
-            }
-            else
-            {
+            } else {
                 $(this).removeClass("btn-success");
                 $(this).addClass("btn-light");
                 $(this).find($("i")).removeClass('fa-thumbs-up').addClass('fa-thumbs-down');
             }
         });
-        $('body').on('click', '.fa-layer-group', function() {
+        $('body').on('click', '.fa-layer-group', function () {
             if ($(this).css('color') == "rgb(0, 0, 0)") {
                 console.log("color change colle");
                 $(this).css('color', 'green');
-            }
-            else {
+            } else {
                 $(this).css('color', 'black');
             }
 
@@ -462,10 +625,9 @@
         $(document).on("input", "input", function (event) {
             if (this.checkValidity()) {
                 $(this).data('last-valid', this.value);
-            }
-            else {
+            } else {
                 var myvalue = $(this).text();
-                if($.isNumeric($('#numberligne').val())) {
+                if ($.isNumeric($('#numberligne').val())) {
                     console.log("numeric");
                 } else {
                     console.log("not numeric");
@@ -498,157 +660,6 @@
             $(this).parent().parent().remove();
         });
 
-        var idx = 0;
-        $('#saveume').click(function() { //envoie des données
-            var ncolis = "";
-            var codefournisseur = "";
-            var designation = "";
-            var nlot = "";
-            var datep = "";
-            var qtecolis = "";
-            var litige = "";
-            var decisionlitige = "";
-            var numerote = "";
-            var confirme = "";
-            var retourncolis = "";
-            var colle = "";
-            var ligne = {};
-            var ligneidx = 0;
-            $('#tabblbody tr').each(function (a, b) {  //recupère les  entrée dans la table
-                if (a === 0) {
-                    // Je ne prends pas en compte le "thead".
-                }
-                else {
-                    ligneidx++;
-                    var stock = "";
-                    $(this).find('td').each(function(a, b) {
-                        if (a === 0) {
-                        } else {
-                            stock = $(this).find('input').val();
-                            if (a === 2) {
-                                ncolis = $(this).text();
-                            }
-                            if (a === 3) {
-                                codefournisseur = $(this).text();
-                                //designation = $(this).find('input').val();
-                                //console.log("desi == " + designation);
-                            }
-                            if (a === 4) {
-                                designation = $(this).text();
-                            }
-                            if (a === 5) {
-                                nlot = stock;
-                            }
-                            if (a === 6) {
-                                datep = stock;
-                            }
-                            if (a === 7) {
-                                qtecolis = stock;
-                            }
-                            if (a === 8) {
-                                //id = $(this).find('button').attr('id');
-                                //console.log(id);
-                            }
-                            if (a === 9) {
-                                numerote = stock;
-                            }
-                            if (a === 10) {
-                                confirme = stock;
-                            }
-                            if (a === 13) {
-                                retourncolis = stock;
-                            }
-                            if (a === 15) {
-                                colle = stock;
-                            }
-                        }
-                    });
-                    ligne[idx] = {"ncolis": ncolis.trim(), "codefournisseur": codefournisseur.trim(), "designation": designation.trim(),
-                        "nlot": nlot, "datep": datep, "qtecolis": qtecolis, "a": "a",
-                        "numerote": numerote, "confirme": confirme, "retourncolis": retourncolis,
-                        "colle": colle};
-                    idx++;
-                }
-            });
-            idx = 0;
-            var myidx = 0;
-            $.ajax({
-                type:"POST",    //type de requête utilisé par ajax
-                url:"/modify_ume/", //lien de la view qui gère la requête post
-                data: {
-                    'id': $('#umid').val(),
-                    'client': $('#client').val(),
-                    'fourtype': $('#fournisseur').val(),
-                    'lettre': $('#lveinput').val(),
-                    'zone': $('#zone').val(),
-                    'numerobl': $('#inputnbl').val(),
-                    'daterecep': $('#inputMDEx').val(),
-                    'quantitepale': $('#inputqpl').val(),
-                    'destinataireretour': $('#litiges').val(),
-                    'zoneatt': $('#zatt').val(),
-                    csrfmiddlewaretoken: '{{ csrf_token }}',
-                },
-                success: function(msg, data, settings){
-                    console.log("success: " + msg);
-                    if (Object.keys(ligne).length > 0) {
-                        for (key in ligne) {
-                            totalligne = 0;
-                            '{% for items in entreeligne %}'
-                            totalligne++;
-                            '{% endfor %}'
-                            envoilignes();
-                            myidx++;
-                        }
-                        myidx = 0;
-                    }
-                },
-                failure: function() {
-                    alert("fail");
-                }
-            });
-
-            function envoilignes() {
-                totalligne = 1;
-                '{% for items in entreeligne %}'
-                if ('{{ items.idLigneBonLivraisonEntree }}' >= totalligne) {
-                    totalligne = parseInt('{{ items.idLigneBonLivraisonEntree }}', 10);
-                }
-                '{% endfor %}'
-                $.ajax({
-                    type:"POST",
-                    url:"/ligneble/create/",
-                    data: {
-                        'id': $('#umid').val(),
-                        "lbid": ligne[myidx].id,
-                        "codefour": ligne[myidx].codefour,
-                        "desicli": ligne[myidx].desicli,
-                        "quantiteprod": ligne[myidx].quantiteprod,
-                        "quantitecolis": ligne[myidx].quantitecolis,
-                        "controle": ligne[myidx].controle,
-                        "termine": ligne[myidx].termine,
-                        "commattendu": ligne[myidx].commattendu,
-                        "commrecus": ligne[myidx].commrecus,
-                        "produitsrecu": ligne[myidx].produitsrecu,
-                        "colisrecu": ligne[myidx].colisrecu,
-                        "produitsalivrer": ligne[myidx].produitsalivrer,
-                        "colisalivrer": ligne[myidx].colisalivrer,
-                        "colislitigieux": ligne[myidx].colislitigieux,
-                        "produitslitgieux": ligne[myidx].produitslitgieux,
-                        "autrediffs": ligne[myidx].autrediffs,
-                        "diffproduit": ligne[myidx].diffproduit,
-                        "diffnonexp": ligne[myidx].diffnonexp,
-                        'totalligne': totalligne+1,
-                        csrfmiddlewaretoken: '{{ csrf_token }}',
-                    },
-                    success: function(msg, data, settings){
-                        console.log(msg);
-                    },
-                    failure: function() {
-                        alert("fail");
-                    }
-                });
-            }
-        });
 
     });
 </script>

@@ -1814,10 +1814,45 @@ class umeadd(ListView):
 class umemodify(ListView):
     template_name = "unitemanutentionentreemodify.html"
 
-    def modify(self, request):
-        context = {
-        }
-        return render(request, self.template_name, context)
+    def modify(request):
+        if request.method == 'POST':
+            showlist = [request.POST.get('id'), request.POST.get('litige'),
+                        request.POST.get('decilitige')]
+            umentree = UniteManutentionEntree.objects.all()
+            ume = UniteManutentionEntree()
+
+            return HttpResponse("road to create ume.")
+        return HttpResponse("Error.")
+
+    def createligne(request):
+        if request.method == 'POST':
+            showlist = [request.POST.get('id'), request.POST.get('ncolis'),
+                        request.POST.get('codef'), request.POST.get('designation'),
+                        request.POST.get('nlot'), request.POST.get('datep'),
+                        request.POST.get('qtecolis'), request.POST.get('numerote'),
+                        request.POST.get('confirme'), request.POST.get('retourncolis'),
+                        request.POST.get('colle'), request.POST.get('litige'),
+                        request.POST.get('decilitige')]
+            try:
+                mycolis = Colis.objects.get(idColis=showlist[1])
+            except Colis.DoesNotExist:
+                mycolis = Colis()
+            mycolis.fk_UniteManutentionEntree = UniteManutentionEntree.objects.get(idUniteManutentionEntree=showlist[0])
+            mycolis.idColis = showlist[1]
+            mycolis.fk_Article = Article.objects.get(designationClient=showlist[3])
+            mycolis.fk_ZoneDepot = UniteManutentionEntree.objects.get(idUniteManutentionEntree=showlist[0]).fk_ZoneDepot
+            mycolis.numeroLot = showlist[4]
+            mycolis.datePeremption = showlist[5]
+            mycolis.quantiteProduit = showlist[6]
+            mycolis.numerotation = showlist[7]
+            mycolis.emplacementConfirme = showlist[8]
+            mycolis.colle = showlist[10]
+            mycolis.fk_litige = Litige.objects.get(nom=showlist[11])
+            mycolis.fk_LitigeDecision = LitigeDecision.objects.get(nom=showlist[12])
+            mycolis.fk_UniteManutentionSortie = None
+            mycolis.save()
+            return HttpResponse("road to create ume.")
+        return HttpResponse("Error.")
 
     def get(self, request):
         context = {

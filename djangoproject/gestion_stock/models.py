@@ -1216,6 +1216,7 @@ class Colis(models.Model):
     #fk_Article = models.ForeignKey('Article', on_delete=models.CASCADE, default=0, blank=True, null=True)
     #Article_pour_Colisfk_Article= models.ForeignKey('Article', on_delete=models.CASCADE, default=1)
     fk_litige  = models.ForeignKey('Litige', on_delete=models.CASCADE, default=0, blank=True, null=True)
+    fk_LitigeDecision = models.ForeignKey('LitigeDecision', on_delete=models.CASCADE, default=0, blank=True, null=True)
     numeroLot = models.CharField(max_length=42, default='Null')
     c_nom = models.CharField(max_length=42, default='Null')
     c_nomCompte = models.CharField(max_length=42, default='Null')
@@ -1225,11 +1226,11 @@ class Colis(models.Model):
     m_horodatage = models.CharField(max_length=42, default='Null')
     #fk_EtiquetteColis= models.ForeignKey('', on_delete=models.CASCADE, default=1)
     #fk_ColisStandard = models.ForeignKey('', on_delete=models.CASCADE, default=1)
-    #fk_LitigeDecision = models.ForeignKey('', on_delete=models.CASCADE, default=1)
-    #fk_ZoneDepot = models.ForeignKey('', on_delete=models.CASCADE, default=1)
+    fk_ZoneDepot = models.ForeignKey('ZoneDepot_pour_TypeZoneDepot', on_delete=models.CASCADE, default=0, blank=True, null=True)
     emplacementConfirme = models.CharField(max_length=42, default='Null')
     datePeremption = models.CharField(max_length=42, default='Null')
     quantiteProduit = models.CharField(max_length=42, default='Null')
+    colle = models.CharField(max_length=42, default='Null')
     numerotation = models.CharField(max_length=42, default='Null')
     def __str__(self):
         return self.idColis
