@@ -191,30 +191,62 @@
                                 {% for items in colis %}
                                 {% if items.fk_UniteManutentionEntree.idUniteManutentionEntree == id %}
                                 <tr>
-                                    <td> <button id='{{ items.idBonLivraisonEntree }}' class="dyna"> -> </button></td>
-                                    <td> {{ items.fk_TypeZoneDepot.nom }} </td>
-                                    <td> {{ items.fk_TypeZoneDepot.nom }} </td>
-                                    <td> {{ items.fk_TypeZoneDepot.nom }} </td>
-                                    <td> {{ items.fk_TypeZoneDepot.nom }} </td>
-                                    <td> {{ items.fk_TypeZoneDepot.nom }} </td>
-                                    <td> {{ items.fk_TypeZoneDepot.nom }} </td>
-                                    <td> {{ items.fk_TypeZoneDepot.nom }} </td>
-                                    <td> {{ items.fk_TypeZoneDepot.nom }} </td>
-                                    <td> {{ items.fk_TypeZoneDepot.nom }} </td>
-                                    <td> {{ items.fk_TypeZoneDepot.nom }} </td>
-                                    <td> {{ items.fk_TypeZoneDepot.nom }} </td>
-                                    <td> {{ items.fk_TypeZoneDepot.nom }} </td>
-                                    <td> {{ items.fk_TypeZoneDepot.nom }} </td>
-                                    <td> {{ items.fk_TypeZoneDepot.nom }} </td>
-                                    <td> {{ items.fk_TypeZoneDepot.nom }} </td>
-                                    <td> {{ items.fk_TypeZoneDepot.nom }} </td>
-                                    <td> {{ items.fk_TypeZoneDepot.nom }} </td>
-                                    <td> {{ items.dateReception }} </td>
-                                    <td> {{ items.numeroBonLivraison }} </td>
-                                    <td> <button id='{{ items.idBonLivraisonEntree  }}' class="dynad"> X </button> </td>
+                                    <td><button class='duplique btn btn-sm  btn-outline-grey rounded-pill w-25' id="duplicate{{ items.idColis }}"><i class="fas fa-copy"></i></button></td>
+                                    <td><button class='ajout btn btn-sm rounded-pill btn-outline-grey w-25' id="add{{ items.idColis }}"><i class="fas fa-plus"></i></button></td>
+                                    <td><input class='form-control' disabled id='ncolis{{items.idColis}}' value="{{ items.idColis }}"></td>
+                                    <td><select class="form-control fournise" id="blfournisseur{{items.idColis}}"></select></td>
+                                    <td><select class="form-control desif\" id="iddesif{{items.idColis}}"></select></td>
+                                    <td><input class='form-control' value='{{ items.numeroLot }}'></td>
+                                    <td><input type="date" class="date rounded" class="form-control" value='{{ items.datePeremption }}'></td>
+                                    <td><input type="text" class="form-control" value='{{ items.quantiteProduit }}'></td>
+                                    <td><button type="button" class="btn btn-grey btn-sm addmodal" data-toggle="popover" id="{{ items.idColis }}">Litiges</button></td>
+                                    <td><input class='form-control' value='{{ items.numerotation }}'></td>
+                                    <td><button type="button" class="btn btn-grey btn-sm"><i class="fas fa-arrow-right" style='color: deepskyblue;'></i></button></td>
+                                    <td><button type="button" class="btn btn-grey btn-sm"><i class="fas fa-redo-alt" style='color: deepskyblue;'></i></button></td>
+                                    <td><input class='form-control' disabled value='{{ items.fk_UniteManutentionSortie.idUniteManutentionSortie }}'></td>
+                                    <td><input class='form-control' disabled value='{{ items.fk_UniteManutentionSortie.numero }}'></td>
+                                    {% if items.emplacementConfirme == "1" %}
+                                    <td class='text-center'><i class="fas fa-toggle-on mt-2" style='font-size: 25px;cursor:pointer;'></i></td>
+                                    {% endif %}
+                                    {% if items.emplacementConfirme == "0" %}
+                                    <td class='text-center'><i class="fas fa-toggle-off mt-2" style='font-size: 25px;cursor:pointer;'></i></td>
+                                    {% endif %}
+                                    <td><input class='form-control' disabled value='{{ items.fk_UniteManutentionSortie.dateExpedition }}'></td>
+                                    <td><button class='btn btn-sm rounded-pill'><i class="fas fa-unlink" style='color: red;'></i></button></td>
+                                    <td><input class='form-control' value='0'></td>
+                                    <td><button class="deleteur btn btn-sm rounded-pill"> <i class="fas fa-trash" style='color: red;'></i> </button> </td>
+                                    {% if items.emplacementConfirme == "1" %}
+                                    <td class='text-center'><i class="fas fa-layer-group mt-2" style='font-size: 25px;cursor:pointer;color: green;'></i></td>
+                                    {% endif %}
+                                    {% if items.emplacementConfirme == "0" %}
+                                    <td class='text-center'><i class="fas fa-layer-group mt-2" style='font-size: 25px;cursor:pointer;color: black;'></i></td>
+                                    {% endif %}
+                                    <td><button class="print btn btn-sm rounded-pill"> <i class="fas fa-print" style='color: lightblue;font-size: 15px;'></i></button></td>
                                 </tr>
                                 {% endif %}
                                 {% endfor %}
+                                <script>
+                                    $(document).ready(function() {
+                                        '{% for items in colis %}'
+                                        '{% for itemsart in article %}'
+                                        if ('{{ items.fk_Article.codeFournisseur}}' == '{{ itemsart.codeFournisseur}}') {
+                                            $("#blfournisseur"+"{{items.idColis}}").append(new Option("{{itemsart.codeFournisseur}}", "{{itemsart.codeFournisseur}}", true, true));
+                                            $("#iddesif" + "{{items.idColis}}").append(new Option("{{ itemsart.designationClient }}", "{{itemsart.designationClient}}", true, true));
+                                        }
+                                        else {
+                                            $("#blfournisseur" + "{{items.idColis}}").append(new Option("{{ itemsart.codeFournisseur }}", "{{itemsart.codeFournisseur}}"));
+                                            $("#iddesif" + "{{items.idColis}}").append(new Option("{{ itemsart.designationClient }}", "{{itemsart.designationClient}}"));
+                                        }
+                                        '{% endfor %}'
+                                        $("#blfournisseur"+"{{items.idColis}}").combobox();
+                                        $("#iddesif"+"{{items.idColis}}").combobox();
+                                        $("#toggle").on("click", function () {
+                                            $("#blfournisseur"+"{{items.idColis}}").toggle();
+                                            $("#iddesif"+"{{items.idColis}}").toggle();
+                                        });
+                                        '{% endfor %}'
+                                    });
+                                </script>
                                 </tbody>
                             </table>
                         </div>
@@ -236,11 +268,66 @@
 
 <script>
     $(document).ready(function() {
+        var litige = [];
+        var decilitige = [];
         '{% for items in colis %}'
-            '{% if items.fk_UniteManutentionEntree == id %}'
-                console.log("there");
-            '{% endif %}'
-            console.log("{{ items.fk_UniteManutentionEntree.idUniteManutentionEntree }}");
+        '{% if items.fk_UniteManutentionEntree.idUniteManutentionEntree == id %}'
+        var firstoldline = 1;
+        $('#tabblbody tr').each(function (a, b) {  //recupère les  entrée dans la table
+            console.log("there");
+            //$('[data-toggle="popover"]').popover();
+            $('<div id="newDialogText' + firstoldline + '" class="' + firstoldline + '">Litige<br><select class="myselect" id="litigebox' + firstoldline + '">' +
+                '</select><br>décision sur litige<select class="myselect2" id="decilitigebox' + firstoldline + '"></select></div>').dialog({
+                autoOpen: false, modal: true, show: "blind", hide: "blind", buttons: {
+                    "Annuler": function () {
+                        $('#numberligne').val("");
+                        //je recupère l'id de la "ligne" pour savoir laquelle est-ce pour vider mes array a cet index
+                        litige[$(this).attr('id').replace(/\D/g, '')] = "";
+                        decilitige[$(this).attr('id').replace(/\D/g, '')] = ""; //je vide les inputs du dialog pour les litiges
+                        $(this).find('input').eq(0).val("");
+                        $(this).find('input').eq(1).val("");
+                        $(this).dialog("close");
+                    },
+                    ok: function () {
+                        $(this).dialog("close");
+                        /*litige[$(this).attr('id').replace(/\D/g, '')] = $('litigebox'+nbr).val();
+                        decilitige[$(this).attr('id').replace(/\D/g, '')] = $('decilitigebox'+nbr).val();
+                        console.log("li = " + litige[$(this).attr('id').replace(/\D/g, '')]);
+                        console.log("decli = " + decilitige[$(this).attr('id').replace(/\D/g, '')]);*/
+                    },
+                }
+            });
+
+            '{% for itemsli in litige %}'
+            $("#litigebox" + firstoldline).append(new Option("{{ itemsli.nom }}", "{{ itemsli.nom }}"));
+            '{% endfor %}'
+            '{% for itemsdli in decilitige %}'
+            $("#decilitigebox" + firstoldline).append(new Option("{{ itemsdli.nom }}", "{{ itemsdli.nom }}"));
+            '{% endfor %}'
+            $("#litigebox" + firstoldline).val("");
+            $("#decilitigebox" + firstoldline).val("");
+            firstoldline++;
+        });
+        $('.addmodal').click(function () {
+            if ($(this).attr('id') <= firstoldline)
+                $('#newDialogText' + $(this).attr('id')).dialog("open");
+        });
+
+        $(".myselect").combobox({
+            select: function (event, ui) {
+                litige[$(this).attr('id').replace(/\D/g, '')] = $(this).val();
+                console.log($(this).attr('id').replace(/\D/g, ''));
+            }
+        });
+        $(".myselect2").combobox({
+            select: function (event, ui) {
+                decilitige[$(this).attr('id').replace(/\D/g, '')] = $(this).val();
+                console.log($(this).attr('id').replace(/\D/g, ''));
+            }
+        });
+        '{% endif %}'
+
+        console.log("{{ items.fk_UniteManutentionEntree.idUniteManutentionEntree }}");
         '{% endfor %}'
         $('#compum').click(function () {
             if ($(this).hasClass('btn btn-sm btn-success')) {
@@ -260,9 +347,6 @@
             $("#seldep").toggle();
         });
 
-        var nbrligne = 0;
-        var litige = [];
-        var decilitige = [];
         $("#dialog-confirm").dialog({
             resizable: false,
             height: "auto",
@@ -274,20 +358,26 @@
                     $(this).dialog("close");
                 },
                 ok: function () {
-                    nbrligne = $('#numberligne').val();
+                    var oldligne = 0;
+                    $('#tabblbody tr').each(function (a, b) {  //recupère les  entrée dans la table
+                        litige[oldligne] = "0";
+                        decilitige[oldligne] = "0";
+                        oldligne++;
+                    });
+                    var nbrligne = $('#numberligne').val();
+                    var total = parseInt(nbrligne) + parseInt(oldligne);
                     $('#numberligne').val("");
                     $(this).dialog("close");
                     var colid = "0";
-                    for (var nbr = 0; nbr != nbrligne; nbr++) {
+                    for (var nbr = oldligne+1; nbr != total+1; nbr++) {
+                        console.log(nbr);
                         litige[nbr] = "0";
                         decilitige[nbr] = "0";
                         $('#tabblbody').append("<tr><td><button class='duplique btn btn-sm  btn-outline-grey rounded-pill w-25' id=\"duplicate" + nbr + "\"><i class=\"fas fa-copy\"></i></button></td>" +
                             "<td><button class='ajout btn btn-sm rounded-pill btn-outline-grey w-25' id=\"add" + nbr + "\"><i class=\"fas fa-plus\"></i></button></td>" +
                             "<td><input class='form-control' disabled id=\"ncolis" + nbr + "\"></td>" +
-
                             "<td><select class=\"form-control fournise\" id=\"blfournisseur" + nbr + "\"></select></td>" +
                             "<td><select class=\"form-control desif\" id=\"iddesif" + nbr + "\"></select></td>" +
-
                             "<td><input class='form-control'></td>" +
                             "<td><input type=\"date\" class=\"date rounded\" class=\"form-control\"></td>" +
                             "<td><input type=\"text\" class=\"form-control\"></td>" +
@@ -303,7 +393,7 @@
                             "<td><input class='form-control'></td>" +
                             "<td><button class=\"deleteur btn btn-sm rounded-pill\"> <i class=\"fas fa-trash\" style='color: red;'></i> </button> </td>" +
                             "<td class='text-center'><i class=\"fas fa-layer-group mt-2\" style='font-size: 25px;cursor:pointer;color: black;'></i></td>" +
-                            "<td><button class=\"print btn btn-sm rounded-pill\"> <i class=\"fas fa-print\" style='color: lightblue;font-size: 15px;'></i></button></td>+");
+                            "<td><button class=\"print btn btn-sm rounded-pill\"> <i class=\"fas fa-print\" style='color: lightblue;font-size: 15px;'></i></button></td></tr>");
                         //$('body').append("<div id=\"modal" + nbr + "\" title=\"Basic dialog\">" +
                         //"<p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p></div>");
                         /*$("#modal"+nbr).dialog({
@@ -375,7 +465,8 @@
                     });
 
                     $('.addmodal').click(function () {
-                        $('#newDialogText' + $(this).attr('id')).dialog("open");
+                        if ($(this).attr('id') > oldligne)
+                            $('#newDialogText' + $(this).attr('id')).dialog("open");
                         //console.log("gg" + $(this).attr('id'));
                     });
 

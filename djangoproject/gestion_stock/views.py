@@ -1847,8 +1847,24 @@ class umemodify(ListView):
             mycolis.numerotation = showlist[7]
             mycolis.emplacementConfirme = showlist[8]
             mycolis.colle = showlist[10]
-            mycolis.fk_litige = Litige.objects.get(nom=showlist[11])
-            mycolis.fk_LitigeDecision = LitigeDecision.objects.get(nom=showlist[12])
+
+            alitige = Litige.objects.all()
+            dlitige = LitigeDecision.objects.all()
+
+            for items in alitige:
+                if items.nom == showlist[11]:
+                    mycolis.fk_litige = Litige.objects.get(nom=showlist[11])
+                else:
+                    mycolis.fk_litige = None
+
+            for items in dlitige:
+                if items.nom == showlist[12]:
+                    mycolis.fk_LitigeDecision = Litige.objects.get(nom=showlist[12])
+                else:
+                    mycolis.fk_LitigeDecision = None
+
+            if showlist[12] != None:
+                mycolis.fk_LitigeDecision = LitigeDecision.objects.get(nom=showlist[12])
             mycolis.fk_UniteManutentionSortie = None
             mycolis.save()
             return HttpResponse("road to create ume.")

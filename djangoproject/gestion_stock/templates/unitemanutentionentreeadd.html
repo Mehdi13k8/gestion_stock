@@ -268,7 +268,7 @@
                             "<td><input class='form-control'></td>" +
                             "<td><button class=\"deleteur btn btn-sm rounded-pill\"> <i class=\"fas fa-trash\"></i> </button> </td>" +
                             "<td><input class='form-control'></td>" +
-                            "<td><input class='form-control'></td>");
+                            "<td><input class='form-control'></td></tr>");
                         '{% for items in art %}'
                         $("select.fournise:last").append(new Option("{{ items.codeFournisseur }}", "{{ items.codeFournisseur }}"));
                         $("select.desif:last").append(new Option("{{ items.designationClient }}", "{{ items.designationClient }}"));
