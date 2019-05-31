@@ -24,14 +24,14 @@
         </div>
         <!-- Collapsible content -->
         <div class="row">
-            <div class="col-auto">
+            <div class="col-6">
                 <form method="post" action="/recregister/" novalidate enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ userform }}
                     <button type="submit" class="btn btn-sm btn-grey" >Valider</button>
                 </form>
             </div>
-            <div class="col-auto mt-5">
+            <div class="col-6 mt-5">
                 <div class="border shadow-lg bg-white rounded col mr-2 tohide">
                     <table id="dtBasicExample" class="table table-hover" cellspacing="0" width="100%">
                         <thead>
@@ -61,7 +61,30 @@
     setTimeout(function() {
         $("#openmenu2").trigger("click");},100);
     $(document ).ready(function() {
-        $('#dtBasicExample').DataTable();
+        $('#dtBasicExample').DataTable({
+            language: {
+                processing: "Traitement en cours...",
+                search: "Rechercher&nbsp;:",
+                lengthMenu: "Afficher _MENU_ &eacute;l&eacute;ments",
+                info: "Affichage de l'&eacute;lement _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
+                infoEmpty: "Affichage de l'&eacute;lement 0 &agrave; 0 sur 0 &eacute;l&eacute;ments",
+                infoFiltered: "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
+                infoPostFix: "",
+                loadingRecords: "Chargement en cours...",
+                zeroRecords: "Aucun &eacute;l&eacute;ment &agrave; afficher",
+                emptyTable: "Aucune donnée disponible dans le tableau",
+                paginate: {
+                    first: "Premier",
+                    previous: "Pr&eacute;c&eacute;dent",
+                    next: "Suivant",
+                    last: "Dernier"
+                },
+                aria: {
+                    sortAscending: ": activer pour trier la colonne par ordre croissant",
+                    sortDescending: ": activer pour trier la colonne par ordre décroissant"
+                }
+            }
+        });
         $('.dataTables_length').addClass('bs-select');
         var clic = 0;
         $('#openmenu2').click(function () {
@@ -96,6 +119,8 @@
                 }
             });
         });
+
+        $('span').append("<br>");
     });
 </script>
 {% endblock %}

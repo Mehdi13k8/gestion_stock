@@ -227,6 +227,11 @@
                                 {% endfor %}
                                 <script>
                                     $(document).ready(function() {
+                                        var colorCodes = {
+                                            back  : "#fff",
+                                            front : "#888",
+                                            side  : "#369"
+                                        };
                                         '{% for items in colis %}'
                                         '{% for itemsart in article %}'
                                         if ('{{ items.fk_Article.codeFournisseur}}' == '{{ itemsart.codeFournisseur}}') {
@@ -273,8 +278,11 @@
         '{% for items in colis %}'
         '{% if items.fk_UniteManutentionEntree.idUniteManutentionEntree == id %}'
         var firstoldline = 1;
+        litige[firstoldline - 1] = colis.fk_litige;
+        //ici
         $('#tabblbody tr').each(function (a, b) {  //recupère les  entrée dans la table
-            console.log("there");
+            $(this).find('td').each(function (a, b) {
+            });
             //$('[data-toggle="popover"]').popover();
             $('<div id="newDialogText' + firstoldline + '" class="' + firstoldline + '">Litige<br><select class="myselect" id="litigebox' + firstoldline + '">' +
                 '</select><br>décision sur litige<select class="myselect2" id="decilitigebox' + firstoldline + '"></select></div>').dialog({
@@ -297,15 +305,7 @@
                     },
                 }
             });
-
-            '{% for itemsli in litige %}'
-            $("#litigebox" + firstoldline).append(new Option("{{ itemsli.nom }}", "{{ itemsli.nom }}"));
-            '{% endfor %}'
-            '{% for itemsdli in decilitige %}'
-            $("#decilitigebox" + firstoldline).append(new Option("{{ itemsdli.nom }}", "{{ itemsdli.nom }}"));
-            '{% endfor %}'
-            $("#litigebox" + firstoldline).val("");
-            $("#decilitigebox" + firstoldline).val("");
+            $(".ui-dialog-titlebar").hide();
             firstoldline++;
         });
         $('.addmodal').click(function () {
@@ -329,6 +329,7 @@
 
         console.log("{{ items.fk_UniteManutentionEntree.idUniteManutentionEntree }}");
         '{% endfor %}'
+
         $('#compum').click(function () {
             if ($(this).hasClass('btn btn-sm btn-success')) {
                 $(this).attr('class', 'btn btn-light btn-sm butctrl');
@@ -360,8 +361,8 @@
                 ok: function () {
                     var oldligne = 0;
                     $('#tabblbody tr').each(function (a, b) {  //recupère les  entrée dans la table
-                        litige[oldligne] = "0";
-                        decilitige[oldligne] = "0";
+                        //litige[oldligne] = "0";
+                        //decilitige[oldligne] = "0";
                         oldligne++;
                     });
                     var nbrligne = $('#numberligne').val();
@@ -369,7 +370,7 @@
                     $('#numberligne').val("");
                     $(this).dialog("close");
                     var colid = "0";
-                    for (var nbr = oldligne+1; nbr != total+1; nbr++) {
+                    for (var nbr = oldligne + 1; nbr != total + 1; nbr++) {
                         console.log(nbr);
                         litige[nbr] = "0";
                         decilitige[nbr] = "0";
@@ -433,7 +434,9 @@
                             }
                         });
                         '{% for items in litige %}'
-                        $('#litigebox' + nbr).append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                        if (nbr >= firstoldline) {
+                            $('#litigebox' + nbr).append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                        }
                         '{% endfor %}'
                         '{% for items in decilitige %}'
                         $('#decilitigebox' + nbr).append(new Option("{{ items.nom }}", "{{ items.nom }}"));
@@ -467,7 +470,7 @@
                     $('.addmodal').click(function () {
                         if ($(this).attr('id') > oldligne)
                             $('#newDialogText' + $(this).attr('id')).dialog("open");
-                        //console.log("gg" + $(this).attr('id'));
+                            //console.log("gg" + $(this).attr('id'));
                     });
 
                     //code fournisseur
@@ -544,7 +547,6 @@
 
                     $('#addligne').prop("disabled", true);
                     $(".ui-dialog-titlebar").hide();
-
                     $('#saveume').click(function() { //envoie des données
                         var idx = 0;
                         var ncolis = "";
@@ -561,7 +563,7 @@
                         var ligneidx = 0;
                         $('#tabblbody tr').each(function (a, b) {  //recupère les  entrée dans la table
                             var stock = "";
-                            $(this).find('td').each(function(a, b) {
+                            $(this).find('td').each(function (a, b) {
                                 stock = $(this).find('input').val();
                                 if (a === 2) {
                                     ncolis = $(this).find('input').val();
@@ -593,8 +595,7 @@
                                 if (a === 14) {
                                     if ($(this).find('i').hasClass("fas mt-2 fa-toggle-on")) {
                                         confirme = 1;
-                                    }
-                                    else {
+                                    } else {
                                         confirme = 0;
                                     }
                                 }
@@ -609,12 +610,23 @@
                                     }
                                 }
                             });
-                            ligne[idx] = {"ncolis": ncolis.trim(), "codefournisseur": codefournisseur.trim(), "designation": designation.trim(),
-                                "nlot": nlot, "datep": datep, "qtecolis": qtecolis, "litige": litige[idx], "decilitige" : decilitige[idx],
-                                "numerote": numerote, "confirme": confirme, "retourncolis": retourncolis,
-                                "colle": colle};
+                            ligne[idx] = {
+                                "ncolis": ncolis.trim(),
+                                "codefournisseur": codefournisseur.trim(),
+                                "designation": designation.trim(),
+                                "nlot": nlot,
+                                "datep": datep,
+                                "qtecolis": qtecolis,
+                                "litige": litige[idx],
+                                "decilitige": decilitige[idx],
+                                "numerote": numerote,
+                                "confirme": confirme,
+                                "retourncolis": retourncolis,
+                                "colle": colle
+                            };
                             idx++;
                         });
+
                         var myidx = 0;
                         $.ajax({
                             type:"POST",    //type de requête utilisé par ajax
@@ -684,6 +696,55 @@
                 }
             },
         });
+
+        $('.addmodal').on("click", function () {
+            var idxlne=0;
+            $('#tabblbody tr').each(function (a, b) {  //recupère les  entrée dans la table
+                '{% for itemsli in litige %}'
+                $("#litigebox" + idxlne).append(new Option("{{ itemsli.nom }}", "{{ itemsli.nom }}"));
+                '{% endfor %}'
+                console.log("my var = " + idxlne);
+                '{% for itemsdli in decilitige %}'
+                $("#decilitigebox" + idxlne).append(new Option("{{ itemsdli.nom }}", "{{ itemsdli.nom }}"));
+                '{% endfor %}'
+                $("#litigebox" + idxlne).val("");
+                $("#decilitigebox" + idxlne).val("");
+                $(this).find('td').each(function (a, b) {
+                    var doit = 0; // false
+                    if (a === 2) {
+                        ncolis = $(this).find('input').val();
+                        '{% for itemscol in colis %}'
+                        if ('{{ itemscol.fk_UniteManutentionEntree.idUniteManutentionEntree }}' == '{{ id }}' && $(this).find('input').val() == '{{id}}') {
+                            $(this).find('input').val("{{itemscol.fk_Litige.nom }}")
+                            console.log("litgbox = " + $(this).find('select').val());
+                            $("#litigebox" + idxlne).val("{{itemscol.fk_Litige.nom }}");
+                            $("#decilitigebox" + idxlne).val("");
+                            doit = 1;//true
+                        }
+                        '{% endfor %}'
+                    }
+                });
+                console.log("obj == " + $('body').find('div').val());
+                $('div.left>div').each(function(){ /* do stuff */ });
+                idxlne++;
+            });
+
+        });
+
+        var ligne = {}
+        var idxlne = 1;
+        var idx = 0;
+        var ncolis = "";
+        var ligneidx = 0;
+        $('#tabblbody tr').each(function (a, b) {  //recupère les  entrée dans la table
+            var stock = "";
+            ligne[idx] = {
+                "ncolis": ncolis.trim(),
+            };
+            idx++;
+        });
+
+
         $('body').on('click', '.fa-toggle-off', function () {
             $(this).removeClass('fa-toggle-off');
             $(this).addClass('fa-toggle-on');
@@ -752,6 +813,7 @@
         });
 
 
+        //console.log("litige" + litige[1]);
     });
 </script>
 

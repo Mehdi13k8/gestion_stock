@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     #'import',
     #'debug_toolbar',
     #'simplejson',
+    "django_static_fontawesome",
 ]
 
 MIDDLEWARE = [
@@ -55,7 +56,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
 ]
+
+LANGUAGE_CODE = 'fr'
+
 
 ROOT_URLCONF = 'djangoproject.urls'
 
