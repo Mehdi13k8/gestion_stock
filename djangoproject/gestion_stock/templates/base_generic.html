@@ -462,7 +462,7 @@
     });
     $('#settings').click(function () {
       '{% for items in settings %}'
-      location.href = "{% url 'setting' items.pk %}";
+        location.href = "{% url 'setting' items.pk %}";
       '{% endfor %}'
     });
   });

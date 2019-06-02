@@ -21,6 +21,19 @@ class index(ListView):              #Page d'acceuil vide pour l'instant
     template_name = "index.html" #template html visé situé dans /templates
 
     def get(self, request):
+
+        img = menuimages.objects.filter(id=1)  #je crée la ligne des "images" pour le menu si on recrée une bdd
+        try:
+            img = menuimages.objects.get(pk=1)
+        except menuimages.DoesNotExist:
+            img = None
+        if img == None:
+            img = menuimages()
+            img.id = 1
+            img.title = "Menus"
+            img.save()
+            print("created an image entry for menu")
+
         context = {
             'activate' : 'on', #cette donnée me permettra de savoir dans quel view je suis pour mettre en surbrillance la page choisie
             'settings' : menuimages.objects.all(),
