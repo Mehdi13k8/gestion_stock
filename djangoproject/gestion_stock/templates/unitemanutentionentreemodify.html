@@ -214,7 +214,7 @@
                                     <td><input class='form-control' disabled value='{{ items.fk_UniteManutentionSortie.dateExpedition }}'></td>
                                     <td><button class='btn btn-sm rounded-pill'><i class="fas fa-unlink" style='color: red;'></i></button></td>
                                     <td><input class='form-control' value='0'></td>
-                                    <td><button class="deleteur btn btn-sm rounded-pill"> <i class="fas fa-trash" style='color: red;'></i> </button> </td>
+                                    <td><button class="deleteur btn btn-sm rounded-pill" id="{{ items.idColis }}"> <i class="fas fa-trash" style='color: red;'></i> </button> </td>
                                     {% if items.emplacementConfirme == "1" %}
                                     <td class='text-center'><i class="fas fa-layer-group mt-2" style='font-size: 25px;cursor:pointer;color: green;'></i></td>
                                     {% endif %}
@@ -227,11 +227,6 @@
                                 {% endfor %}
                                 <script>
                                     $(document).ready(function() {
-                                        var colorCodes = {
-                                            back  : "#fff",
-                                            front : "#888",
-                                            side  : "#369"
-                                        };
                                         '{% for items in colis %}'
                                         '{% for itemsart in article %}'
                                         if ('{{ items.fk_Article.codeFournisseur}}' == '{{ itemsart.codeFournisseur}}') {
@@ -273,18 +268,36 @@
 
 <script>
     $(document).ready(function() {
+        var firstoldline = 1;
         var litige = [];
         var decilitige = [];
         '{% for items in colis %}'
         '{% if items.fk_UniteManutentionEntree.idUniteManutentionEntree == id %}'
-        var firstoldline = 1;
         litige[firstoldline - 1] = colis.fk_litige;
+        decilitige[firstoldline - 1] = colis.fk_DecisionLitige;
         //ici
+        $('div.ui-dialog > div').each(function() {
+
+            var idxui = 0;
+            var firstoldlines = 1;
+            '{% for items in colis %}'
+                '{% if items.fk_UniteManutentionEntree.idUniteManutentionEntree == id %}'
+                    if ($(this).find('div').is('#newDialogText'+firstoldlines)) {
+                        $(this).find('input').val("{{ items.fk_litige.nom }}");
+                        $(this).find('input').eq(1).val("{{ items.fk_DecisionLitige.nom }}");
+                    console.log("{{ items.fk_litige.nom }}");
+                    }
+                    //ici
+                    '{% endif %}'
+                firstoldlines++;
+            '{% endfor %}'
+        });
+
         $('#tabblbody tr').each(function (a, b) {  //recupère les  entrée dans la table
             $(this).find('td').each(function (a, b) {
             });
             //$('[data-toggle="popover"]').popover();
-            $('<div id="newDialogText' + firstoldline + '" class="' + firstoldline + '">Litige<br><select class="myselect" id="litigebox' + firstoldline + '">' +
+            $('<div id="newDialogText' + firstoldline + '">Litige<br><select class="myselect" id="litigebox' + firstoldline + '">' +
                 '</select><br>décision sur litige<select class="myselect2" id="decilitigebox' + firstoldline + '"></select></div>').dialog({
                 autoOpen: false, modal: true, show: "blind", hide: "blind", buttons: {
                     "Annuler": function () {
@@ -315,19 +328,19 @@
 
         $(".myselect").combobox({
             select: function (event, ui) {
-                litige[$(this).attr('id').replace(/\D/g, '')] = $(this).val();
+                litige[$(this).attr('id').replace(/\D/g, '')-1] = $(this).val();
                 console.log($(this).attr('id').replace(/\D/g, ''));
             }
         });
         $(".myselect2").combobox({
             select: function (event, ui) {
-                decilitige[$(this).attr('id').replace(/\D/g, '')] = $(this).val();
+                decilitige[$(this).attr('id').replace(/\D/g, '')-1] = $(this).val();
                 console.log($(this).attr('id').replace(/\D/g, ''));
             }
         });
         '{% endif %}'
 
-        console.log("{{ items.fk_UniteManutentionEntree.idUniteManutentionEntree }}");
+        //console.log("{{ items.fk_UniteManutentionEntree.idUniteManutentionEntree }}");
         '{% endfor %}'
 
         $('#compum').click(function () {
@@ -371,7 +384,7 @@
                     $(this).dialog("close");
                     var colid = "0";
                     for (var nbr = oldligne + 1; nbr != total + 1; nbr++) {
-                        console.log(nbr);
+                        //console.log(nbr);
                         litige[nbr] = "0";
                         decilitige[nbr] = "0";
                         $('#tabblbody').append("<tr><td><button class='duplique btn btn-sm  btn-outline-grey rounded-pill w-25' id=\"duplicate" + nbr + "\"><i class=\"fas fa-copy\"></i></button></td>" +
@@ -412,16 +425,16 @@
                         $("#iddesif" + nbr).val("");
                         '{% endfor %}'
 
-                        $('<div id="newDialogText' + nbr + '" class="' + nbr + '">Litige<br><select class="myselect" id="litigebox' + nbr + '">' +
+                        $('<div id="newDialogText' + nbr + '">Litige<br><select class="myselect" id="litigebox' + nbr + '">' +
                             '</select><br>décision sur litige<select class="myselect2" id="decilitigebox' + nbr + '"></select></div>').dialog({
                             autoOpen: false, modal: true, show: "blind", hide: "blind", buttons: {
                                 "Annuler": function () {
                                     $('#numberligne').val("");
                                     //je recupère l'id de la "ligne" pour savoir laquelle est-ce pour vider mes array a cet index
-                                    litige[$(this).attr('id').replace(/\D/g, '')] = "";
-                                    decilitige[$(this).attr('id').replace(/\D/g, '')] = ""; //je vide les inputs du dialog pour les litiges
+                                    litige[$(this).attr('id').replace(/\D/g, '')-1] = "";
+                                    decilitige[$(this).attr('id').replace(/\D/g, '')-1] = ""; //je vide les inputs du dialog pour les litiges
                                     $(this).find('input').eq(0).val("");
-                                    $(this).find('input').eq(1).val("");
+                                    $(this).find('input').eq(0).val("");
                                     $(this).dialog("close");
                                 },
                                 ok: function () {
@@ -457,20 +470,20 @@
                         select: function (event, ui) {
                             //litige[nbr] = $(this).val();
                             litige[$(this).attr('id').replace(/\D/g, '')] = $(this).val();
-                            console.log($(this).attr('id').replace(/\D/g, ''));
+                            //console.log($(this).attr('id').replace(/\D/g, ''));
                         }
                     });
                     $(".myselect2").combobox({
                         select: function (event, ui) {
                             decilitige[$(this).attr('id').replace(/\D/g, '')] = $(this).val();
-                            console.log($(this).attr('id').replace(/\D/g, ''));
+                            //console.log($(this).attr('id').replace(/\D/g, ''));
                         }
                     });
 
                     $('.addmodal').click(function () {
                         if ($(this).attr('id') > oldligne)
                             $('#newDialogText' + $(this).attr('id')).dialog("open");
-                            //console.log("gg" + $(this).attr('id'));
+                        //console.log("gg" + $(this).attr('id'));
                     });
 
                     //code fournisseur
@@ -512,7 +525,7 @@
                         select: function (event, ui) {
                             '{% for items in article %}'
                             if ('{{ items.codeFournisseur }}' == this.value) {
-                                console.log("therae");
+                                //console.log("therae");
                                 //$(this).closest('td').next().find('select').val('{{ items.designationClient }}');
                                 //$(this).closest('td').next().find('select').find('option').remove();
                                 $(this).closest('td').next().find('select').find('option').remove();
@@ -525,7 +538,7 @@
                         select: function (event, ui) {
                             '{% for items in article %}'
                             if ('{{ items.designationClient  }}' == this.value) {
-                                console.log("therae");
+                                //console.log("therae");
                                 //$(this).closest('td').next().find('select').val('{{ items.designationClient }}');
                                 //$(this).closest('td').next().find('select').find('option').remove();
                                 $(this).closest('td').prev().find('select').find('option').remove();
@@ -544,195 +557,191 @@
                         $(this).closest('td').parent().find('td').eq(1).next().find('select').append(new Option("{{ items.designationClient }}", "{{ items.designationClient }}"));
                         '{% endfor %}'
                     });
-
                     $('#addligne').prop("disabled", true);
-                    $(".ui-dialog-titlebar").hide();
-                    $('#saveume').click(function() { //envoie des données
-                        var idx = 0;
-                        var ncolis = "";
-                        var codefournisseur = "";
-                        var designation = "";
-                        var nlot = "";
-                        var datep = "";
-                        var qtecolis = "";
-                        var numerote = "";
-                        var confirme = "";
-                        var retourncolis = "";
-                        var colle = "";
-                        var ligne = {};
-                        var ligneidx = 0;
-                        $('#tabblbody tr').each(function (a, b) {  //recupère les  entrée dans la table
-                            var stock = "";
-                            $(this).find('td').each(function (a, b) {
-                                stock = $(this).find('input').val();
-                                if (a === 2) {
-                                    ncolis = $(this).find('input').val();
-                                }
-                                if (a === 3) {
-                                    codefournisseur = $(this).find('input').val();
-                                    //designation = $(this).find('input').val();
-                                    //console.log("desi == " + designation);
-                                }
-                                if (a === 4) {
-                                    designation = $(this).find('input').val();
-                                }
-                                if (a === 5) {
-                                    nlot = stock;
-                                }
-                                if (a === 6) {
-                                    datep = stock;
-                                }
-                                if (a === 7) {
-                                    qtecolis = stock;
-                                }
-                                if (a === 8) {
-                                    //id = $(this).find('button').attr('id');
-                                    //console.log(id);
-                                }
-                                if (a === 9) {
-                                    numerote = stock;
-                                }
-                                if (a === 14) {
-                                    if ($(this).find('i').hasClass("fas mt-2 fa-toggle-on")) {
-                                        confirme = 1;
-                                    } else {
-                                        confirme = 0;
-                                    }
-                                }
-                                if (a === 17) {
-                                    retourncolis = stock;
-                                }
-                                if (a === 19) {
-                                    if ($(this).find('i').css('color') == "rgb(0, 0, 0)") {
-                                        colle = 0;
-                                    } else {
-                                        colle = 1;
-                                    }
-                                }
-                            });
-                            ligne[idx] = {
-                                "ncolis": ncolis.trim(),
-                                "codefournisseur": codefournisseur.trim(),
-                                "designation": designation.trim(),
-                                "nlot": nlot,
-                                "datep": datep,
-                                "qtecolis": qtecolis,
-                                "litige": litige[idx],
-                                "decilitige": decilitige[idx],
-                                "numerote": numerote,
-                                "confirme": confirme,
-                                "retourncolis": retourncolis,
-                                "colle": colle
-                            };
-                            idx++;
-                        });
-
-                        var myidx = 0;
-                        $.ajax({
-                            type:"POST",    //type de requête utilisé par ajax
-                            url:"/modify_ume/", //lien de la view qui gère la requête post
-                            data: {
-                                'id': $('#umid').val(),
-                                'client': $('#client').val(),
-                                'fourtype': $('#fournisseur').val(),
-                                'lettre': $('#lveinput').val(),
-                                'zone': $('#zone').val(),
-                                'numerobl': $('#inputnbl').val(),
-                                'daterecep': $('#inputMDEx').val(),
-                                'quantitepale': $('#inputqpl').val(),
-                                'destinataireretour': $('#litiges').val(),
-                                'zoneatt': $('#zatt').val(),
-                                csrfmiddlewaretoken: '{{ csrf_token }}',
-                            },
-                            success: function(msg, data, settings){
-                                console.log("success: " + msg);
-                                if (Object.keys(ligne).length > 0) {
-                                    for (key in ligne) {
-                                        totalligne = 0;
-                                        '{% for items in entreeligne %}'
-                                        totalligne++;
-                                        '{% endfor %}'
-                                        envoilignes();
-                                        myidx++;
-                                    }
-                                    myidx = 0;
-                                }
-                            },
-                            failure: function() {
-                                alert("fail");
-                            }
-                        });
-
-                        function envoilignes() {
-
-                            $.ajax({
-                                type:"POST",
-                                url:"/ligneume/create/",
-                                data: {
-                                    "id": $('#umid').val(),
-                                    "ncolis": ligne[myidx].ncolis, //id du colis
-                                    "codef": ligne[myidx].codefournisseur,
-                                    "designation": ligne[myidx].designation.trim(),
-                                    "nlot": ligne[myidx].nlot,
-                                    "datep": ligne[myidx].datep,
-                                    "qtecolis": ligne[myidx].qtecolis,
-                                    "numerote": ligne[myidx].numerote,
-                                    "confirme": ligne[myidx].confirme,
-                                    "retourncolis": ligne[myidx].retourncolis,
-                                    "colle": ligne[myidx].colle,
-                                    "litige": ligne[myidx].litige,
-                                    "decilitige": ligne[myidx].decilitige,
-                                    csrfmiddlewaretoken: '{{ csrf_token }}',
-                                },
-                                success: function(msg, data, settings){
-                                    console.log(msg);
-                                },
-                                failure: function() {
-                                    alert("fail");
-                                }
-                            });
-                        }
-                    });
                 }
             },
         });
 
-        $('.addmodal').on("click", function () {
-            var idxlne=0;
+        $(".ui-dialog-titlebar").hide();
+        $('#saveume').click(function() { //envoie des données
+            var idx = 0;
+            var ncolis = "";
+            var codefournisseur = "";
+            var designation = "";
+            var nlot = "";
+            var datep = "";
+            var qtecolis = "";
+            var numerote = "";
+            var confirme = "";
+            var retourncolis = "";
+            var colle = "";
+            var ligne = {};
+            var ligneidx = 0;
             $('#tabblbody tr').each(function (a, b) {  //recupère les  entrée dans la table
-                '{% for itemsli in litige %}'
-                $("#litigebox" + idxlne).append(new Option("{{ itemsli.nom }}", "{{ itemsli.nom }}"));
-                '{% endfor %}'
-                console.log("my var = " + idxlne);
-                '{% for itemsdli in decilitige %}'
-                $("#decilitigebox" + idxlne).append(new Option("{{ itemsdli.nom }}", "{{ itemsdli.nom }}"));
-                '{% endfor %}'
-                $("#litigebox" + idxlne).val("");
-                $("#decilitigebox" + idxlne).val("");
+                var stock = "";
                 $(this).find('td').each(function (a, b) {
-                    var doit = 0; // false
+                    stock = $(this).find('input').val();
                     if (a === 2) {
                         ncolis = $(this).find('input').val();
-                        '{% for itemscol in colis %}'
-                        if ('{{ itemscol.fk_UniteManutentionEntree.idUniteManutentionEntree }}' == '{{ id }}' && $(this).find('input').val() == '{{id}}') {
-                            $(this).find('input').val("{{itemscol.fk_Litige.nom }}")
-                            console.log("litgbox = " + $(this).find('select').val());
-                            $("#litigebox" + idxlne).val("{{itemscol.fk_Litige.nom }}");
-                            $("#decilitigebox" + idxlne).val("");
-                            doit = 1;//true
+                    }
+                    if (a === 3) {
+                        codefournisseur = $(this).find('input').val();
+                        //designation = $(this).find('input').val();
+                        //console.log("desi == " + designation);
+                    }
+                    if (a === 4) {
+                        designation = $(this).find('input').val();
+                    }
+                    if (a === 5) {
+                        nlot = stock;
+                    }
+                    if (a === 6) {
+                        datep = stock;
+                    }
+                    if (a === 7) {
+                        qtecolis = stock;
+                    }
+                    if (a === 8) {
+                        //id = $(this).find('button').attr('id');
+                        //console.log(id);
+                    }
+                    if (a === 9) {
+                        numerote = stock;
+                    }
+                    if (a === 14) {
+                        if ($(this).find('i').hasClass("fas mt-2 fa-toggle-on")) {
+                            confirme = 1;
+                        } else {
+                            confirme = 0;
                         }
-                        '{% endfor %}'
+                    }
+                    if (a === 17) {
+                        retourncolis = stock;
+                    }
+                    if (a === 19) {
+                        if ($(this).find('i').css('color') == "rgb(0, 0, 0)") {
+                            colle = 0;
+                        } else {
+                            colle = 1;
+                        }
                     }
                 });
-                console.log("obj == " + $('body').find('div').val());
-                $('div.left>div').each(function(){ /* do stuff */ });
-                idxlne++;
+                ligne[idx] = {
+                    "ncolis": ncolis.trim(),
+                    "codefournisseur": codefournisseur.trim(),
+                    "designation": designation.trim(),
+                    "nlot": nlot,
+                    "datep": datep,
+                    "qtecolis": qtecolis,
+                    "litige": litige[idx],
+                    "decilitige": decilitige[idx],
+                    "numerote": numerote,
+                    "confirme": confirme,
+                    "retourncolis": retourncolis,
+                    "colle": colle
+                };
+                idx++;
             });
+
+            var myidx = 0;
+            $.ajax({
+                type:"POST",    //type de requête utilisé par ajax
+                url:"/modify_ume/", //lien de la view qui gère la requête post
+                data: {
+                    'id': $('#umid').val(),
+                    'client': $('#client').val(),
+                    'fourtype': $('#fournisseur').val(),
+                    'lettre': $('#lveinput').val(),
+                    'zone': $('#zone').val(),
+                    'numerobl': $('#inputnbl').val(),
+                    'daterecep': $('#inputMDEx').val(),
+                    'quantitepale': $('#inputqpl').val(),
+                    'destinataireretour': $('#litiges').val(),
+                    'zoneatt': $('#zatt').val(),
+                    csrfmiddlewaretoken: '{{ csrf_token }}',
+                },
+                success: function(msg, data, settings){
+                    console.log("success: " + msg);
+                    if (Object.keys(ligne).length > 0) {
+                        myidx = Object.keys(ligne).length-1;
+                        for (key in ligne) {
+                            envoilignes();
+                            myidx--;
+                        }
+                        myidx = 0;
+                    }
+                },
+                failure: function() {
+                    alert("fail");
+                }
+            });
+
+            function envoilignes() {
+                console.log(ligne[myidx].ncolis);
+                $.ajax({
+                    type:"POST",
+                    url:"/ligneume/create/",
+                    data: {
+                        "id": $('#umid').val(),
+                        "ncolis": ligne[myidx].ncolis, //id du colis
+                        "codef": ligne[myidx].codefournisseur,
+                        "designation": ligne[myidx].designation.trim(),
+                        "nlot": ligne[myidx].nlot,
+                        "datep": ligne[myidx].datep,
+                        "qtecolis": ligne[myidx].qtecolis,
+                        "numerote": ligne[myidx].numerote,
+                        "confirme": ligne[myidx].confirme,
+                        "retourncolis": ligne[myidx].retourncolis,
+                        "colle": ligne[myidx].colle,
+                        "litige": ligne[myidx].litige,
+                        "decilitige": ligne[myidx].decilitige,
+                        csrfmiddlewaretoken: '{{ csrf_token }}',
+                    },
+                    success: function(msg, data, settings){
+                        console.log(msg);
+                    },
+                    failure: function() {
+                        alert("fail");
+                    }
+                });
+            }
+        });
+
+        var idxlne = 1;
+        $('#tabblbody tr').each(function (a, b) {  //recupère les  entrée dans la table
+            '{% for itemsli in litige %}'
+            $("#litigebox" + idxlne).append(new Option("{{ itemsli.nom }}", "{{ itemsli.nom }}"));
+            '{% endfor %}'
+            console.log("my var = " + idxlne);
+            '{% for itemsdli in decilitige %}'
+            $("#decilitigebox" + idxlne).append(new Option("{{ itemsdli.nom }}", "{{ itemsdli.nom }}"));
+            '{% endfor %}'
+            $("#litigebox" + idxlne).val("");
+            $("#decilitigebox" + idxlne).val("");
+            /*$(this).find('td').each(function (a, b) {
+                var doit = 0; // false
+                if (a === 2) {
+                    ncolis = $(this).find('input').val();
+                    '{% for itemscol in colis %}'
+                    if ('{{ itemscol.fk_UniteManutentionEntree.idUniteManutentionEntree }}' == '{{ id }}' && $(this).find('input').val() == '{{id}}') {
+                        $(this).find('input').val("{{itemscol.fk_Litige.nom }}")
+                        console.log("litgbox = " + $(this).find('select').val());
+                        $("#litigebox" + idxlne).val("{{itemscol.fk_Litige.nom }}");
+                        $("#decilitigebox" + idxlne).val("");
+                        doit = 1;//true
+                    }
+                    '{% endfor %}'
+                }
+            });*/
+            idxlne++;
+        });
+        $('.addmodal').on("click", function () {
 
         });
 
+
         var ligne = {}
-        var idxlne = 1;
+        idxlne = 1;
         var idx = 0;
         var ncolis = "";
         var ligneidx = 0;
@@ -809,11 +818,47 @@
         $("#umid").val('{{ id }}');
 
         $('#tabblbody').on('click', '.deleteur', function() {
-            $(this).parent().parent().remove();
+            $.ajax({
+                type:"POST",    //type de requête utilisé par ajax
+                url:"/ume/delete_col/", //lien de la view qui gère la requête post
+                data: {
+                    'id': $(this).attr("id"),
+                },
+                success: function(msg, data, settings){
+                    console.log("success: " + msg);
+                    $(this).parent().parent().remove();
+                    location.reload();
+                },
+                failure: function() {
+                    alert("fail");
+                }
+            });
         });
 
+        //sorting (trie) du tableau par rapport a ncolis
+        if ($('#tabbl').length > 0) {
+            var table, rows, switching, i, x, y, shouldSwitch;
+            table = document.getElementById("tabbl");
+            switching = true;
+            while (switching) {
+                switching = false;
+                rows = table.rows;
+                for (i = 1; i < (rows.length - 1); i++) {
+                    shouldSwitch = false;
+                    x = rows[i].getElementsByTagName("TD")[2];
+                    y = rows[i + 1].getElementsByTagName("TD")[2];
+                    if (x.innerHTML > y.innerHTML) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+                if (shouldSwitch) {
+                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                    switching = true;
+                }
+            }
+        }
 
-        //console.log("litige" + litige[1]);
     });
 </script>
 

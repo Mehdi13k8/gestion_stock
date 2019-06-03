@@ -1,7 +1,7 @@
 # Create your views here.
 
 from django.http import HttpResponse
-from django.shortcuts import render, render_to_response, redirect
+from django.shortcuts import render, render_to_response, redirect, get_object_or_404
 from django.views.generic import ListView, CreateView, UpdateView
 from .models import *
 #from .forms import UploadFileForm
@@ -1259,6 +1259,7 @@ class clientmodify(ListView):
             repetition = 0
             idx = 0
             idcontact = 1
+            print("there -------------------------" + showlist[0])
             if not modify:
                 print("empty")
                 mycontact = Contact_pour_Client()
@@ -1827,6 +1828,14 @@ class umeadd(ListView):
 class umemodify(ListView):
     template_name = "unitemanutentionentreemodify.html"
 
+    def delete_colis(request):
+        if request.method == 'POST':
+            showlist = [request.POST.get('id'),]
+            colis = Colis.objects.get(idColis=showlist[0])
+            colis.delete()
+            return HttpResponse("colis removed.")
+        return HttpResponse("Error.")
+
     def modify(request):
         if request.method == 'POST':
             showlist = [request.POST.get('id'), request.POST.get('litige'),
@@ -1875,9 +1884,6 @@ class umemodify(ListView):
                     mycolis.fk_LitigeDecision = Litige.objects.get(nom=showlist[12])
                 else:
                     mycolis.fk_LitigeDecision = None
-
-            if showlist[12] != None:
-                mycolis.fk_LitigeDecision = LitigeDecision.objects.get(nom=showlist[12])
             mycolis.fk_UniteManutentionSortie = None
             mycolis.save()
             return HttpResponse("road to create ume.")

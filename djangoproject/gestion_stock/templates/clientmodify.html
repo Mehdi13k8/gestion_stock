@@ -568,7 +568,7 @@
                 idx++;
                 "{% endfor %}"
                 for (var rl = 0; rl != rolenamez.length; rl++) {
-                    $('#'+ nm).append("<option>" + rolenamez[rl] + "</option>")
+                    $("#contacttable > tbody > tr").last().find('td').find('select').append("<option>" + rolenamez[rl] + "</option>")
                 }
                 rolenamez = [];
                 numbreaddclient++;

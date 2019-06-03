@@ -8,12 +8,12 @@
 </div>
 
 <script>
-  $('#accueil').find('div').eq(0).css({'background-color': 'DodgerBlue',});
-  $('#accueil').before(this).find('hr').css({'background-color': 'DodgerBlue',});
   setTimeout(function() {
     $("#openmenu").trigger("click");
     console.log("menu oppening");
   },1000);
+
+  $('#accueil').fadeTo("slow", 0.5);
 
 </script>
 
