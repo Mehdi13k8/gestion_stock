@@ -7,9 +7,8 @@
   <meta name="csrf_token" content="{{ csrf_token }}">
 
   {% load staticfiles %}
-  {% block style %}
-  <link rel="stylesheet" href="{% static "fontawesome/css/fontawesome-all.min.css" %}">
-  {% endblock %}
+  {% load wagtailfontawesome %}
+  {% fontawesome_css %}
 
   {% load static %}
   <link rel="stylesheet" href="{{ STATIC_URL }} /static/css/style.css">
@@ -32,6 +31,8 @@
   <link href="{{ STATIC_URL }} /static/css/jquery-ui.css" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="{{ STATIC_URL }} /static/css/all.css">
   <link rel="stylesheet" href="{{ STATIC_URL }} /static/css/font-awesome.min.css">
+
+  https://gitlab.com/alexgleason/wagtailfontawesome
   -->
 </header>
 <style>
@@ -75,7 +76,7 @@
         <span  class="navbar-brand">Menu</span>
         <!-- Collapse button -->
         <div class="col text-right">
-          <i id="settings" class="fas fa-cog" style="cursor: pointer;"></i>
+          <i id="settings" class="fa fa-cog" style="cursor: pointer;"></i>
         </div>
 
         <button class="navbar-toggler first-button" type="button" data-toggle="collapse" data-target="#navbarSupportedContent20"

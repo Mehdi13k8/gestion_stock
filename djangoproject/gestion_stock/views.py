@@ -1846,7 +1846,7 @@ class umemodify(ListView):
             return HttpResponse("road to create ume.")
         return HttpResponse("Error.")
 
-    def createligne(request):
+    def createligne(request): #utiliser pour la modication pour gagner du temps car on utilise "get" si l'object existe ou alors on le crée
         if request.method == 'POST':
             showlist = [request.POST.get('id'), request.POST.get('ncolis'),
                         request.POST.get('codef'), request.POST.get('designation'),
@@ -1859,32 +1859,51 @@ class umemodify(ListView):
                 mycolis = Colis.objects.get(idColis=showlist[1])
             except Colis.DoesNotExist:
                 mycolis = Colis()
+                mycolis.fk_UniteManutentionSortie = None
             mycolis.fk_UniteManutentionEntree = UniteManutentionEntree.objects.get(idUniteManutentionEntree=showlist[0])
             mycolis.idColis = showlist[1]
-            mycolis.fk_Article = Article.objects.get(designationClient=showlist[3])
             mycolis.fk_ZoneDepot = UniteManutentionEntree.objects.get(idUniteManutentionEntree=showlist[0]).fk_ZoneDepot
             mycolis.numeroLot = showlist[4]
             mycolis.datePeremption = showlist[5]
             mycolis.quantiteProduit = showlist[6]
             mycolis.numerotation = showlist[7]
             mycolis.emplacementConfirme = showlist[8]
+            #mycolis. = showlist[9]
             mycolis.colle = showlist[10]
 
             alitige = Litige.objects.all()
             dlitige = LitigeDecision.objects.all()
+            carticle = Article.objects.all()
 
+            mycolis.fk_Article = None
+            for items in carticle:
+                if items.designationClient == showlist[3]:
+                    mycolis.fk_Article = Article.objects.get(designationClient=showlist[3])
+
+            mycolis.fk_litige = None
             for items in alitige:
                 if items.nom == showlist[11]:
+                    print ("GG FGOZE9PUAZ9EU F9PUAZ9")
                     mycolis.fk_litige = Litige.objects.get(nom=showlist[11])
-                else:
-                    mycolis.fk_litige = None
 
+            mycolis.fk_LitigeDecision = None
             for items in dlitige:
                 if items.nom == showlist[12]:
-                    mycolis.fk_LitigeDecision = Litige.objects.get(nom=showlist[12])
-                else:
-                    mycolis.fk_LitigeDecision = None
-            mycolis.fk_UniteManutentionSortie = None
+                    mycolis.fk_LitigeDecision = LitigeDecision.objects.get(nom=showlist[12])
+            '''print ("id == " + showlist[0])
+            print ("ncol == " + str(showlist[1]))
+            print ("codef == " + str(showlist[2]))
+            print ("desig == " + str(showlist[3]))
+            print ("ncol == " + str(showlist[4]))
+            print ("datep == " + str(showlist[5]))
+            print ("qtec == " + str(showlist[6]))
+            print ("nume == " + str(showlist[7]))
+            print ("conf == " + str(showlist[8]))
+            print ("retnc == " + str(showlist[9]))
+            print ("colle == " + str(showlist[10]))
+            '''
+            print ("litige == " + str(showlist[11]))
+            print ("decilitige == " + str(showlist[12]))
             mycolis.save()
             return HttpResponse("road to create ume.")
         return HttpResponse("Error.")

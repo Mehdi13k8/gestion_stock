@@ -509,8 +509,8 @@
             console.log("entree");
             if ('{{ items.fk_Client.nom }}' == $('#nom').val()) {
                 $('#dtBasicExample2')
-                    .append('<tr><td class=\'text-center\'><button class=\'resetb dyna\' id=\"{{ items.idBonLivraisonEntree }}\"><i class=\"fas fa-arrow-right\"></i></button></td>' +
-                        '<td class=\'text-center\'>{{ items.numeroBonLivraison }}</td><td><button class=\'resetb btn btn-light btn-sm dynad\' id=\"{{ items.idBonLivraisonEntree }}\"><i class=\"fas fa-trash-alt\"></i></button></td></tr>');
+                    .append('<tr><td class=\'text-center\'><button class=\'resetb dyna\' id=\"{{ items.idBonLivraisonEntree }}\"><i class=\"fa fa-arrow-right\"></i></button></td>' +
+                        '<td class=\'text-center\'>{{ items.numeroBonLivraison }}</td><td><button class=\'resetb btn btn-light btn-sm dynad\' id=\"{{ items.idBonLivraisonEntree }}\"><i class=\"fa fa-trash-alt\"></i></button></td></tr>');
             }
         '{% endfor %}'
 

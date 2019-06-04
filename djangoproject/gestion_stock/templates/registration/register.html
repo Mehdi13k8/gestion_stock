@@ -37,14 +37,14 @@
                         <thead>
                         <tr>
                             <th class="th-sm">Name</th>
-                            <th class="th-sm"><i class="fas fa-trash-alt"></i></th>
+                            <th class="th-sm"><i class="fa fa-trash-alt"></i></th>
                         </tr>
                         </thead>
                         <tbody>
                         {% for items in users %}
                         <tr>
                             <td>{{ items.username }}</td>
-                            <td><button id="{{ items.id }}" type="button" class="btn btn-sm btn-grey dynad"><i class="fas fa-trash-alt"></i></button></td>
+                            <td><button id="{{ items.id }}" type="button" class="btn btn-sm btn-grey dynad"><i class="fa fa-trash-alt"></i></button></td>
                         </tr>
                         {% endfor %}
                         </tbody>

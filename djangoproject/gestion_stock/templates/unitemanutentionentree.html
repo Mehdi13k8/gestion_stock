@@ -40,7 +40,7 @@
                         <tbody>
                         {% for items in ume %}
                         <tr>
-                            <td> <button type="button" id='{{ items.idUniteManutentionEntree }}' class="dyna btn btn-sm btn-outline-grey rounded"> <i class="fas fa-arrow-right"></i> </button></td>
+                            <td> <button type="button" id='{{ items.idUniteManutentionEntree }}' class="dyna btn btn-sm btn-outline-grey rounded"> <i class="fa fa-arrow-right"></i> </button></td>
                             <td> {{ items.fk_ZoneDepot.nom }} </td>
                             <td> {{ items.fk_TypeZoneDepot.nom }} </td>
                             <td> {{ items.fk_BonLivraisonEntree.numeroBonLivraison }} </td>
@@ -48,7 +48,7 @@
                             <td> {{ items.dateReception }} </td>
                             <td> {{ items.idUniteManutentionEntree }} </td>
                             <td> {{ items.stock }} </td>
-                            <td> <button id='{{ items.idUniteManutentionEntree }}' class="dynad btn btn-sm btn-outline-grey rounded-pill"> <i class="fas fa-minus"></i>   </button> </td>
+                            <td> <button id='{{ items.idUniteManutentionEntree }}' class="dynad btn btn-sm btn-outline-grey rounded-pill"> <i class="fa fa-minus"></i>   </button> </td>
                         </tr>
                         {% endfor %}
                         </tbody>

@@ -31,7 +31,7 @@
                 <div class="col-auto">
                     <label for="compum">UM incomplets: </label>
                     <button id="compum" class='btn btn-sm btn-success'>
-                        <i class="fas fa-thumbs-up"></i>
+                        <i class="fa fa-thumbs-up"></i>
                     </button>
                 </div>
 
@@ -45,7 +45,7 @@
                 <div class="col-4">
                     <div class="form-group form-inline">
                         <label for="blum"><button class="btn btn-sm btn-light">
-                            <i class="fas fa-chevron-right" style="font-size: 15px;"></i>
+                            <i class="fa fa-chevron-right" style="font-size: 15px;"></i>
                         </button>bon de livraison: </label>
                         <input type="text" class="form-control w-25" id="blum" disabled>
                     </div>
@@ -69,7 +69,7 @@
 
                 <div class="col-auto">
                     <br>
-                    <button class="btn btn-outline-blue-grey"><i class="fas fa-print" style="color: darkblue; font-size: 20px;"></i></button>
+                    <button class="btn btn-outline-blue-grey"><i class="fa fa-print" style="color: darkblue; font-size: 20px;"></i></button>
                 </div>
 
                 <div class="col-auto">
@@ -147,7 +147,7 @@
                 </div>
             </div>
             <div class="text-right">
-                <button type="button" class="btn btn-blue-grey" id="saveume">Save&nbsp;<i class="fas fa-check"></i></button>
+                <button type="button" class="btn btn-blue-grey" id="saveume">Save&nbsp;<i class="fa fa-check"></i></button>
             </div>
         </div>
     </div>
@@ -164,8 +164,8 @@
                             <table id="tabbl" class="table table-condensed table-sm table-striped table-bordered" cellspacing="0" width="100%">
                                 <thead>
                                 <tr>
-                                    <th scope="col" class="text-center"><i class="fas fa-copy"></i></th>
-                                    <th scope="col" class="text-center"><i class="fas fa-plus"></i></th>
+                                    <th scope="col" class="text-center"><i class="fa fa-copy"></i></th>
+                                    <th scope="col" class="text-center"><i class="fa fa-plus"></i></th>
                                     <th scope="col" class="text-center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n°colis&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
                                     <th scope="col" class="text-center">code fournisseur</th>
                                     <th scope="col" class="text-center">&nbsp;désignation&nbsp;</th>
@@ -174,15 +174,15 @@
                                     <th scope="col" class="text-center">qte<br>par colis</th>
                                     <th scope="col" class="text-center">litige</th>
                                     <th scope="col" class="text-center">numéroter</th>
-                                    <th scope="col" class="text-center"><i class="fas fa-arrow-right"></i></th>
-                                    <th scope="col" class="text-center"><i class="fas fa-redo"></i> </th>
+                                    <th scope="col" class="text-center"><i class="fa fa-arrow-right"></i></th>
+                                    <th scope="col" class="text-center"><i class="fa fa-refresh"></i> </th>
                                     <th scope="col" class="text-center">U.M sortie</th>
                                     <th scope="col" class="text-center">numéro </th>
                                     <th scope="col" class="text-center">confirmer</th>
                                     <th scope="col" class="text-center">date expédition</th>
-                                    <th scope="col" class="text-center"><i class="fas fa-unlink"></i></th>
+                                    <th scope="col" class="text-center"><i class="fa fa-unlink"></i></th>
                                     <th scope="col" class="text-center">Retour ancien<br>n° colis</th>
-                                    <th scope="col" class="text-center"><i class="fas fa-trash"></i></th>
+                                    <th scope="col" class="text-center"><i class="fa fa-trash"></i></th>
                                     <th scope="col" class="text-center">collée</th>
                                     <th scope="col" class="text-center">imprimer</th>
                                 </tr>
@@ -191,37 +191,42 @@
                                 {% for items in colis %}
                                 {% if items.fk_UniteManutentionEntree.idUniteManutentionEntree == id %}
                                 <tr>
-                                    <td><button class='duplique btn btn-sm  btn-outline-grey rounded-pill w-25' id="duplicate{{ items.idColis }}"><i class="fas fa-copy"></i></button></td>
-                                    <td><button class='ajout btn btn-sm rounded-pill btn-outline-grey w-25' id="add{{ items.idColis }}"><i class="fas fa-plus"></i></button></td>
+                                    <td><button class='duplique btn btn-sm  btn-outline-grey rounded-pill w-25' id="duplicate{{ items.idColis }}"><i class="fa fa-copy ml-n2" style='font-size: 15px;cursor:pointer;'></i></button></td>
+                                    <td><button class='ajout btn btn-sm rounded-pill btn-outline-grey w-25' id="add{{ items.idColis }}"><i class="fa fa-plus ml-n1" style='font-size: 15px;cursor:pointer;'></i></button></td>
                                     <td><input class='form-control' disabled id='ncolis{{items.idColis}}' value="{{ items.idColis }}"></td>
                                     <td><select class="form-control fournise" id="blfournisseur{{items.idColis}}"></select></td>
                                     <td><select class="form-control desif\" id="iddesif{{items.idColis}}"></select></td>
                                     <td><input class='form-control' value='{{ items.numeroLot }}'></td>
                                     <td><input type="date" class="date rounded" class="form-control" value='{{ items.datePeremption }}'></td>
                                     <td><input type="text" class="form-control" value='{{ items.quantiteProduit }}'></td>
-                                    <td><button type="button" class="btn btn-grey btn-sm addmodal" data-toggle="popover" id="{{ items.idColis }}">Litiges</button></td>
+
+                                    <td><!--<button type="button" class="btn btn-grey btn-sm addmodal" data-toggle="popover" id="{{ items.idColis }}">Litiges</button><div id="newDialogText{{ items.idColis }}">Litige<br>-->
+                                        litige <select class="myselect form-control-sm w-75" id="litigebox{{ items.idColis }}">
+                                        </select><br>déci. litige
+                                        <select class="myselect2 form-control-sm" id="decilitigebox{{ items.idColis }}" ></select></td>
+
                                     <td><input class='form-control' value='{{ items.numerotation }}'></td>
-                                    <td><button type="button" class="btn btn-grey btn-sm"><i class="fas fa-arrow-right" style='color: deepskyblue;'></i></button></td>
-                                    <td><button type="button" class="btn btn-grey btn-sm"><i class="fas fa-redo-alt" style='color: deepskyblue;'></i></button></td>
+                                    <td><button type="button" class="btn btn-grey btn-sm"><i class="fa fa-arrow-right" style='color: deepskyblue;font-size: 15px'></i></button></td>
+                                    <td><button type="button" class="btn btn-grey btn-sm"><i class="fa fa-refresh" style="color: deepskyblue;font-size: 15px"></i></button></td>
                                     <td><input class='form-control' disabled value='{{ items.fk_UniteManutentionSortie.idUniteManutentionSortie }}'></td>
                                     <td><input class='form-control' disabled value='{{ items.fk_UniteManutentionSortie.numero }}'></td>
                                     {% if items.emplacementConfirme == "1" %}
-                                    <td class='text-center'><i class="fas fa-toggle-on mt-2" style='font-size: 25px;cursor:pointer;'></i></td>
+                                    <td class='text-center'><i class="fa fa-toggle-on mt-2" style='font-size: 25px;cursor:pointer;'></i></td>
                                     {% endif %}
                                     {% if items.emplacementConfirme == "0" %}
-                                    <td class='text-center'><i class="fas fa-toggle-off mt-2" style='font-size: 25px;cursor:pointer;'></i></td>
+                                    <td class='text-center'><i class="fa fa-toggle-off mt-2" style='font-size: 25px;cursor:pointer;'></i></td>
                                     {% endif %}
                                     <td><input class='form-control' disabled value='{{ items.fk_UniteManutentionSortie.dateExpedition }}'></td>
-                                    <td><button class='btn btn-sm rounded-pill'><i class="fas fa-unlink" style='color: red;'></i></button></td>
+                                    <td><button class='btn btn-sm rounded-pill'><i class="fa fa-unlink" style='font-size: 20px;cursor:pointer;color: red;'></i></button></td>
                                     <td><input class='form-control' value='0'></td>
-                                    <td><button class="deleteur btn btn-sm rounded-pill" id="{{ items.idColis }}"> <i class="fas fa-trash" style='color: red;'></i> </button> </td>
-                                    {% if items.emplacementConfirme == "1" %}
-                                    <td class='text-center'><i class="fas fa-layer-group mt-2" style='font-size: 25px;cursor:pointer;color: green;'></i></td>
+                                    <td><button class="deleteur btn btn-sm rounded-pill" id="{{ items.idColis }}"> <i class="fa fa-trash" style='font-size: 24px;cursor:pointer;color: orangered;'></i> </button> </td>
+                                    {% if items.colle == "1" %}
+                                    <td class='text-center'><i class="fa fa-leaf mt-2" style='font-size: 25px;cursor:pointer;color: green;'></i></td>
                                     {% endif %}
-                                    {% if items.emplacementConfirme == "0" %}
-                                    <td class='text-center'><i class="fas fa-layer-group mt-2" style='font-size: 25px;cursor:pointer;color: black;'></i></td>
+                                    {% if items.colle == "0" %}
+                                    <td class='text-center'><i class="fa fa-leaf mt-2" style='font-size: 25px;cursor:pointer;color: black;'></i></td>
                                     {% endif %}
-                                    <td><button class="print btn btn-sm rounded-pill"> <i class="fas fa-print" style='color: lightblue;font-size: 15px;'></i></button></td>
+                                    <td><button class="print btn btn-sm rounded-pill"><i class="fa fa-print" style='color: lightblue;font-size: 25px;'></i></button></td>
                                 </tr>
                                 {% endif %}
                                 {% endfor %}
@@ -252,7 +257,7 @@
                         </div>
                     </div>
                 </div>
-                <button class="btn btn-sm btn-dark" id="addligne"><i class="fas fa-plus"></i></button>
+                <button class="btn btn-sm btn-dark" id="addligne"><i class="fa fa-plus"></i></button>
             </div>
         </div>
     </div>
@@ -271,6 +276,38 @@
         var firstoldline = 1;
         var litige = [];
         var decilitige = [];
+
+        var lastcolisid = "0";
+        "{% for items in colis %}"
+        if (parseInt(lastcolisid, 10) < parseInt('{{ items.idColis }}', 10)) {
+            lastcolisid = parseInt('{{ items.idColis }}', 10);
+        }
+        "{% endfor %}"
+        //sorting (trie) du tableau par rapport a ncolis
+        if ($('#tabbl').length > 0) {
+            var table, rows, switching, i, x, y, shouldSwitch;
+            table = document.getElementById("tabbl");
+            switching = true;
+            while (switching) {
+                switching = false;
+                rows = table.rows;
+                for (i = 1; i < (rows.length - 1); i++) {
+                    shouldSwitch = false;
+                    x = rows[i].getElementsByTagName("TD")[2];
+                    y = rows[i + 1].getElementsByTagName("TD")[2];
+                    if (x.innerHTML > y.innerHTML) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+                if (shouldSwitch) {
+                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                    switching = true;
+                }
+            }
+        }
+
+
         '{% for items in colis %}'
         '{% if items.fk_UniteManutentionEntree.idUniteManutentionEntree == id %}'
         litige[firstoldline - 1] = colis.fk_litige;
@@ -281,15 +318,19 @@
             var idxui = 0;
             var firstoldlines = 1;
             '{% for items in colis %}'
-                '{% if items.fk_UniteManutentionEntree.idUniteManutentionEntree == id %}'
-                    if ($(this).find('div').is('#newDialogText'+firstoldlines)) {
-                        $(this).find('input').val("{{ items.fk_litige.nom }}");
-                        $(this).find('input').eq(1).val("{{ items.fk_DecisionLitige.nom }}");
-                    console.log("{{ items.fk_litige.nom }}");
-                    }
-                    //ici
-                    '{% endif %}'
-                firstoldlines++;
+            '{% if items.fk_UniteManutentionEntree.idUniteManutentionEntree == id %}'
+            if ($(this).find('div').is('#newDialogText'+firstoldlines)) {
+                $(this).find('input').val("{{ items.fk_litige.nom }}");
+                $(this).find('input').eq(1).val("{{ items.fk_DecisionLitige.nom }}");
+                console.log("{{ items.fk_litige.nom }}");
+            }
+            if (firstoldlines == 1) {
+                $("#litigebox" + idxlne).append(new Option("0", "0", true, true));
+                $("#decilitigebox" + idxlne).append(new Option("0", "0", true, true));
+            }
+            //ici
+            '{% endif %}'
+            firstoldlines++;
             '{% endfor %}'
         });
 
@@ -297,7 +338,7 @@
             $(this).find('td').each(function (a, b) {
             });
             //$('[data-toggle="popover"]').popover();
-            $('<div id="newDialogText' + firstoldline + '">Litige<br><select class="myselect" id="litigebox' + firstoldline + '">' +
+            /*$('<div id="newDialogText' + firstoldline + '">Litige<br><select class="myselect" id="litigebox' + firstoldline + '">' +
                 '</select><br>décision sur litige<select class="myselect2" id="decilitigebox' + firstoldline + '"></select></div>').dialog({
                 autoOpen: false, modal: true, show: "blind", hide: "blind", buttons: {
                     "Annuler": function () {
@@ -315,9 +356,9 @@
                         decilitige[$(this).attr('id').replace(/\D/g, '')] = $('decilitigebox'+nbr).val();
                         console.log("li = " + litige[$(this).attr('id').replace(/\D/g, '')]);
                         console.log("decli = " + decilitige[$(this).attr('id').replace(/\D/g, '')]);*/
-                    },
-                }
-            });
+            /*   },
+           }
+       });*/
             $(".ui-dialog-titlebar").hide();
             firstoldline++;
         });
@@ -326,18 +367,18 @@
                 $('#newDialogText' + $(this).attr('id')).dialog("open");
         });
 
-        $(".myselect").combobox({
+        /*$(".myselect").combobox({
             select: function (event, ui) {
                 litige[$(this).attr('id').replace(/\D/g, '')-1] = $(this).val();
                 console.log($(this).attr('id').replace(/\D/g, ''));
             }
-        });
-        $(".myselect2").combobox({
+        });*/
+        /*$(".myselect2").combobox({
             select: function (event, ui) {
                 decilitige[$(this).attr('id').replace(/\D/g, '')-1] = $(this).val();
                 console.log($(this).attr('id').replace(/\D/g, ''));
             }
-        });
+        });*/
         '{% endif %}'
 
         //console.log("{{ items.fk_UniteManutentionEntree.idUniteManutentionEntree }}");
@@ -346,21 +387,23 @@
         $('#compum').click(function () {
             if ($(this).hasClass('btn btn-sm btn-success')) {
                 $(this).attr('class', 'btn btn-light btn-sm butctrl');
-                $(this).find('i').attr('class', 'fas fa-thumbs-down');
+                $(this).find('i').attr('class', 'fa fa-thumbs-down');
             } else {
                 $(this).attr('class', 'btn btn-sm btn-success');
-                $(this).find('i').attr('class', 'fas fa-thumbs-up');
+                $(this).find('i').attr('class', 'fa fa-thumbs-up');
             }
         });
         $('#back-row').click(function () {
             window.location.href = "{% url 'unitemanutentionentree' %}";
         });
 
-        $("#seldep").combobox();
+        /*$("#seldep").combobox();
         $("#toggle").on("click", function () {
             $("#seldep").toggle();
-        });
+        });*/
+//        var lastcolisid = $('#tabblbody tr:last').find('td').find('input').val();
 
+//        console.log(lastcolisid);
         $("#dialog-confirm").dialog({
             resizable: false,
             height: "auto",
@@ -379,35 +422,40 @@
                         oldligne++;
                     });
                     var nbrligne = $('#numberligne').val();
-                    var total = parseInt(nbrligne) + parseInt(oldligne);
+
                     $('#numberligne').val("");
                     $(this).dialog("close");
                     var colid = "0";
-                    for (var nbr = oldligne + 1; nbr != total + 1; nbr++) {
+                    var total = parseInt(nbrligne) + parseInt(lastcolisid);// + parseInt(1);
+                    //"<button type=\"button\" class=\"btn btn-grey btn-sm addmodal\" data-toggle=\"popover\" id=\"" + nbr + "\">Litiges</button><div id=\"newDialogText" + nbr + "\">Litige<br><select class=\"myselect\" id=\"litigebox" + nbr + "\">" +
+                    console.log("nbr =" + lastcolisid);
+                    for (var nbr = lastcolisid+1; nbr != total+1; nbr++) {
                         //console.log(nbr);
+                        //lastcolisid
                         litige[nbr] = "0";
                         decilitige[nbr] = "0";
-                        $('#tabblbody').append("<tr><td><button class='duplique btn btn-sm  btn-outline-grey rounded-pill w-25' id=\"duplicate" + nbr + "\"><i class=\"fas fa-copy\"></i></button></td>" +
-                            "<td><button class='ajout btn btn-sm rounded-pill btn-outline-grey w-25' id=\"add" + nbr + "\"><i class=\"fas fa-plus\"></i></button></td>" +
+                        $('#tabblbody').append("<tr><td><button class='duplique btn btn-sm  btn-outline-grey rounded-pill w-25' id=\"duplicate" + nbr + "\"><i class=\"fa fa-copy\"></i></button></td>" +
+                            "<td><button class='ajout btn btn-sm rounded-pill btn-outline-grey w-25' id=\"addx" + nbr + "\"><i class=\"fa fa-plus\"></i></button></td>" +
                             "<td><input class='form-control' disabled id=\"ncolis" + nbr + "\"></td>" +
                             "<td><select class=\"form-control fournise\" id=\"blfournisseur" + nbr + "\"></select></td>" +
                             "<td><select class=\"form-control desif\" id=\"iddesif" + nbr + "\"></select></td>" +
                             "<td><input class='form-control'></td>" +
                             "<td><input type=\"date\" class=\"date rounded\" class=\"form-control\"></td>" +
                             "<td><input type=\"text\" class=\"form-control\"></td>" +
-                            "<td><button type=\"button\" class=\"btn btn-grey btn-sm addmodal\" data-toggle=\"popover\" id=\"" + nbr + "\">Litiges</button></td>" +
+                            "<td>litige <select class=\"myselect form-control-sm w-75\" id=\"litigebox" + nbr + "\">" +
+                            "</select><br>déci. litige <select class=\"myselect2 form-control-sm\" id=\"decilitigebox" + nbr + "\"></select></td>" +
                             "<td><input class='form-control'></td>" +
-                            "<td><button type=\"button\" class=\"btn btn-grey btn-sm\"><i class=\"fas fa-arrow-right\" style='color: deepskyblue;'></i></button></td>" +
-                            "<td><button type=\"button\" class=\"btn btn-grey btn-sm\"><i class=\"fas fa-redo-alt\" style='color: deepskyblue;'></i></button></td>" +
+                            "<td><button type=\"button\" class=\"btn btn-grey btn-sm\"><i class=\"fa fa-arrow-right\" style='color: deepskyblue;'></i></button></td>" +
+                            "<td><button type=\"button\" class=\"btn btn-grey btn-sm\"><i class=\"fa fa-fa-refresh\" style='color: deepskyblue;'></i></button></td>" +
                             "<td><input class='form-control' disabled></td>" +
                             "<td><input class='form-control' disabled></td>" +
-                            "<td class='text-center'><i class=\"fas fa-toggle-off mt-2\" style='font-size: 25px;cursor:pointer;'></i></td>" +
+                            "<td class='text-center'><i class=\"fa fa-toggle-off mt-2\" style='font-size: 25px;cursor:pointer;'></i></td>" +
                             "<td><input class='form-control' disabled></td>" +
-                            "<td><button class='btn btn-sm rounded-pill'><i class=\"fas fa-unlink\" style='color: red;'></i></button></td>" +
+                            "<td><button class='btn btn-sm rounded-pill'><i class=\"fa fa-unlink\" style='color: red;'></i></button></td>" +
                             "<td><input class='form-control'></td>" +
-                            "<td><button class=\"deleteur btn btn-sm rounded-pill\"> <i class=\"fas fa-trash\" style='color: red;'></i> </button> </td>" +
-                            "<td class='text-center'><i class=\"fas fa-layer-group mt-2\" style='font-size: 25px;cursor:pointer;color: black;'></i></td>" +
-                            "<td><button class=\"print btn btn-sm rounded-pill\"> <i class=\"fas fa-print\" style='color: lightblue;font-size: 15px;'></i></button></td></tr>");
+                            "<td><button class=\"deleteur btn btn-sm rounded-pill\"> <i class=\"fa fa-trash\" style='color: red;'></i> </button> </td>" +
+                            "<td class='text-center'><i class=\"fa fa-leaf mt-2\" style='font-size: 25px;cursor:pointer;color: black;'></i></td>" +
+                            "<td><button class=\"print btn btn-sm rounded-pill\"> <i class=\"fa fa-print\" style='color: lightblue;font-size: 25px;'></i></button></td></tr>");
                         //$('body').append("<div id=\"modal" + nbr + "\" title=\"Basic dialog\">" +
                         //"<p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p></div>");
                         /*$("#modal"+nbr).dialog({
@@ -425,7 +473,7 @@
                         $("#iddesif" + nbr).val("");
                         '{% endfor %}'
 
-                        $('<div id="newDialogText' + nbr + '">Litige<br><select class="myselect" id="litigebox' + nbr + '">' +
+                        /*$('<div id="newDialogText' + nbr + '">Litige<br><select class="myselect" id="litigebox' + nbr + '">' +
                             '</select><br>décision sur litige<select class="myselect2" id="decilitigebox' + nbr + '"></select></div>').dialog({
                             autoOpen: false, modal: true, show: "blind", hide: "blind", buttons: {
                                 "Annuler": function () {
@@ -443,19 +491,26 @@
                                     decilitige[$(this).attr('id').replace(/\D/g, '')] = $('decilitigebox'+nbr).val();
                                     console.log("li = " + litige[$(this).attr('id').replace(/\D/g, '')]);
                                     console.log("decli = " + decilitige[$(this).attr('id').replace(/\D/g, '')]);*/
-                                },
-                            }
-                        });
-                        '{% for items in litige %}'
+                        /*},
+                    }
+                });*/
+                        var a = 0;
+                        var b = 0;
                         if (nbr >= firstoldline) {
+                            '{% for items in litige %}'
                             $('#litigebox' + nbr).append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                            '{% endfor %}'
+                            '{% for items in decilitige %}'
+                            $('#decilitigebox' + nbr).append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                            '{% endfor %}'
+                            $('#litigebox' + nbr).val("");
+                            $('#decilitigebox' + nbr).val("");
+                            if (a == 0) {
+                                $("#litigebox" + nbr).append(new Option("0", "0", true, true));
+                                $("#decilitigebox" + nbr).append(new Option("0", "0", true, true));
+                                a++;
+                            }
                         }
-                        '{% endfor %}'
-                        '{% for items in decilitige %}'
-                        $('#decilitigebox' + nbr).append(new Option("{{ items.nom }}", "{{ items.nom }}"));
-                        '{% endfor %}'
-                        $('#litigebox' + nbr).val("");
-                        $('#decilitigebox' + nbr).val("");
 
                         "{% for items in colis %}"
                         if (parseInt(colid, 10) < parseInt('{{ items.idColis }}', 10)) {
@@ -466,24 +521,24 @@
                         $("#ncolis" + nbr).val(colid);
                     }
 
-                    $(".myselect").combobox({
+                    /*$(".myselect").combobox({
                         select: function (event, ui) {
                             //litige[nbr] = $(this).val();
                             litige[$(this).attr('id').replace(/\D/g, '')] = $(this).val();
                             //console.log($(this).attr('id').replace(/\D/g, ''));
                         }
-                    });
-                    $(".myselect2").combobox({
+                    });*/
+                    /*$(".myselect2").combobox({
                         select: function (event, ui) {
                             decilitige[$(this).attr('id').replace(/\D/g, '')] = $(this).val();
                             //console.log($(this).attr('id').replace(/\D/g, ''));
                         }
-                    });
+                    });*/
 
                     $('.addmodal').click(function () {
-                        if ($(this).attr('id') > oldligne)
+                        /*if ($(this).attr('id') > oldligne)
                             $('#newDialogText' + $(this).attr('id')).dialog("open");
-                        //console.log("gg" + $(this).attr('id'));
+                        //console.log("gg" + $(this).attr('id'));*/
                     });
 
                     //code fournisseur
@@ -505,22 +560,22 @@
                             $("#iddesif" + a).toggle();
                         }
                     });
-                    for (var a = 0; a != nbrligne; a++) {
+                    /*for (var a = 0; a != nbrligne; a++) {
                         $("#litigebox" + a).combobox();
-                    }
-                    $("#toggle").on("click", function () {
+                    }*/
+                    /*$("#toggle").on("click", function () {
                         for (var a = nbrligne; a != 0; a--) {
                             $("#litigebox" + a).toggle();
                         }
-                    });
-                    for (var a = 0; a != nbrligne; a++) {
+                    });*/
+                    /*for (var a = 0; a != nbrligne; a++) {
                         $("#decilitigebox" + a).combobox();
-                    }
-                    $("#toggle").on("click", function () {
+                    }*/
+                    /*$("#toggle").on("click", function () {
                         for (var a = nbrligne; a != 0; a--) {
                             $("#decilitigebox" + a).toggle();
                         }
-                    });
+                    });*/
                     $(".fournise").combobox({
                         select: function (event, ui) {
                             '{% for items in article %}'
@@ -561,7 +616,6 @@
                 }
             },
         });
-
         $(".ui-dialog-titlebar").hide();
         $('#saveume').click(function() { //envoie des données
             var idx = 0;
@@ -579,67 +633,38 @@
             var ligneidx = 0;
             $('#tabblbody tr').each(function (a, b) {  //recupère les  entrée dans la table
                 var stock = "";
-                $(this).find('td').each(function (a, b) {
-                    stock = $(this).find('input').val();
-                    if (a === 2) {
-                        ncolis = $(this).find('input').val();
-                    }
-                    if (a === 3) {
-                        codefournisseur = $(this).find('input').val();
-                        //designation = $(this).find('input').val();
-                        //console.log("desi == " + designation);
-                    }
-                    if (a === 4) {
-                        designation = $(this).find('input').val();
-                    }
-                    if (a === 5) {
-                        nlot = stock;
-                    }
-                    if (a === 6) {
-                        datep = stock;
-                    }
-                    if (a === 7) {
-                        qtecolis = stock;
-                    }
-                    if (a === 8) {
-                        //id = $(this).find('button').attr('id');
-                        //console.log(id);
-                    }
-                    if (a === 9) {
-                        numerote = stock;
-                    }
-                    if (a === 14) {
-                        if ($(this).find('i').hasClass("fas mt-2 fa-toggle-on")) {
-                            confirme = 1;
-                        } else {
-                            confirme = 0;
-                        }
-                    }
-                    if (a === 17) {
-                        retourncolis = stock;
-                    }
-                    if (a === 19) {
-                        if ($(this).find('i').css('color') == "rgb(0, 0, 0)") {
-                            colle = 0;
-                        } else {
-                            colle = 1;
-                        }
-                    }
-                });
+                var confirmit;
+                var colleit;
+
+                //if ($('#tabblbody tr').eq(idx).find('td').eq(14).find('i').hasClass("fa mt-2 fa-toggle-on")) {
+                if ($('#tabblbody tr').eq(idx).find('td').eq(14).find('.fa-toggle-on').length > 0) {
+                    confirmit = 1;
+                } else {
+                    confirmit = 0;
+                }
+
+                if ($('#tabblbody tr').eq(idx).find('td').eq(19).find('i').css('color') == "rgb(0, 0, 0)") {
+                    colleit = 0;
+                } else {
+                    colleit = 1;
+                }
+                console.log("confi == " + confirmit);
+                console.log("colli == " + colleit);
                 ligne[idx] = {
-                    "ncolis": ncolis.trim(),
-                    "codefournisseur": codefournisseur.trim(),
-                    "designation": designation.trim(),
-                    "nlot": nlot,
-                    "datep": datep,
-                    "qtecolis": qtecolis,
-                    "litige": litige[idx],
-                    "decilitige": decilitige[idx],
-                    "numerote": numerote,
-                    "confirme": confirme,
-                    "retourncolis": retourncolis,
-                    "colle": colle
+                    "ncolis": $('#tabblbody tr').eq(idx).find('td').eq(2).find('input').val().trim(),
+                    "codefournisseur": $('#tabblbody tr').eq(idx).find('td').eq(3).find('input').val().trim(),
+                    "designation": $('#tabblbody tr').eq(idx).find('td').eq(4).find('input').val().trim(),
+                    "nlot": $('#tabblbody tr').eq(idx).find('td').eq(5).find('input').val().trim(),
+                    "datep": $('#tabblbody tr').eq(idx).find('td').eq(6).find('input').val().trim(),
+                    "qtecolis": $('#tabblbody tr').eq(idx).find('td').eq(7).find('input').val().trim(),
+                    "litige": $('#tabblbody tr').eq(idx).find('td').eq(8).find('select').eq(0).val().trim(),//litige[idx],
+                    "decilitige": $('#tabblbody tr').eq(idx).find('td').eq(8).find('select').eq(1).val().trim(),
+                    "numerote": $('#tabblbody tr').eq(idx).find('td').eq(9).find('input').val().trim(),
+                    "confirme": confirmit,
+                    "retourncolis": $('#tabblbody tr').eq(idx).find('td').eq(17).find('input').val().trim(),
+                    "colle": colleit
                 };
+                console.log($('#tabblbody tr').eq(idx).find('td').eq(2).find('input').val());
                 idx++;
             });
 
@@ -669,6 +694,7 @@
                             myidx--;
                         }
                         myidx = 0;
+                        //location.reload();
                     }
                 },
                 failure: function() {
@@ -707,17 +733,22 @@
             }
         });
 
-        var idxlne = 1;
+        //        var lastcolisid = $('#tabblbody tr:last').find('td').find('input').val();
         $('#tabblbody tr').each(function (a, b) {  //recupère les  entrée dans la table
+            var idxlne = $(this).find('td').eq(2).find('input').val();
             '{% for itemsli in litige %}'
             $("#litigebox" + idxlne).append(new Option("{{ itemsli.nom }}", "{{ itemsli.nom }}"));
             '{% endfor %}'
+
             console.log("my var = " + idxlne);
             '{% for itemsdli in decilitige %}'
             $("#decilitigebox" + idxlne).append(new Option("{{ itemsdli.nom }}", "{{ itemsdli.nom }}"));
             '{% endfor %}'
-            $("#litigebox" + idxlne).val("");
-            $("#decilitigebox" + idxlne).val("");
+
+            $("#litigebox" + idxlne).append(new Option("0", "0", true, true));
+            $("#decilitigebox" + idxlne).append(new Option("0", "0", true, true));
+            $("#litigebox" + idxlne).val("0");
+            $("#decilitigebox" + idxlne).val("0");
             /*$(this).find('td').each(function (a, b) {
                 var doit = 0; // false
                 if (a === 2) {
@@ -733,8 +764,8 @@
                     '{% endfor %}'
                 }
             });*/
-            idxlne++;
         });
+
         $('.addmodal').on("click", function () {
 
         });
@@ -774,9 +805,9 @@
                 $(this).find($("i")).removeClass('fa-thumbs-up').addClass('fa-thumbs-down');
             }
         });
-        $('body').on('click', '.fa-layer-group', function () {
+        $('body').on('click', '.fa-leaf', function () {
             if ($(this).css('color') == "rgb(0, 0, 0)") {
-                console.log("color change colle");
+                console.log($(this).css('color'));
                 $(this).css('color', 'green');
             } else {
                 $(this).css('color', 'black');
@@ -834,31 +865,6 @@
                 }
             });
         });
-
-        //sorting (trie) du tableau par rapport a ncolis
-        if ($('#tabbl').length > 0) {
-            var table, rows, switching, i, x, y, shouldSwitch;
-            table = document.getElementById("tabbl");
-            switching = true;
-            while (switching) {
-                switching = false;
-                rows = table.rows;
-                for (i = 1; i < (rows.length - 1); i++) {
-                    shouldSwitch = false;
-                    x = rows[i].getElementsByTagName("TD")[2];
-                    y = rows[i + 1].getElementsByTagName("TD")[2];
-                    if (x.innerHTML > y.innerHTML) {
-                        shouldSwitch = true;
-                        break;
-                    }
-                }
-                if (shouldSwitch) {
-                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-                    switching = true;
-                }
-            }
-        }
-
     });
 </script>
 
