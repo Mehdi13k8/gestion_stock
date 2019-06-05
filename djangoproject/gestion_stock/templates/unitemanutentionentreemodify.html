@@ -97,7 +97,7 @@
                     <br>
                     <div class="row">
                         <div class="col">
-                            <label for="divbtns">filtrer litiges:&nbsp;</label>
+                            <label for="divbtns">filtrer article :&nbsp;</label>
                         </div>
                     </div>
                     <div class="btn-group-vertical" role="group" aria-label="Basic example" id="divbtns">
@@ -106,11 +106,14 @@
                     </div>
                 </div>
 
-                <div class="col-7 border shadow-lg rounded table-responsive mr-1">
-                    <div class="col">
-
+                <div class="col border shadow-lg rounded mr-1">
+                    <div class="row">
+                        <div class="col" id="tabfiltre1"></div>
+                        <div class="col" id="tabfiltre2"></div>
+                        <div class="col" id="tabfiltre3"></div>
                     </div>
                 </div>
+
 
                 <div class="col-2 border shadow-lg rounded table-responsive ml-1">
                     <div class="border shadow-sm mt-1 text-center mb-1">
@@ -175,7 +178,7 @@
                                     <th scope="col" class="text-center">litige</th>
                                     <th scope="col" class="text-center">numéroter</th>
                                     <th scope="col" class="text-center"><i class="fa fa-arrow-right"></i></th>
-                                    <th scope="col" class="text-center"><i class="fa fa-refresh"></i> </th>
+                                    <th scope="col" class="text-center"><i class="fa fa-redo"></i> </th>
                                     <th scope="col" class="text-center">U.M sortie</th>
                                     <th scope="col" class="text-center">numéro </th>
                                     <th scope="col" class="text-center">confirmer</th>
@@ -207,7 +210,7 @@
 
                                     <td><input class='form-control' value='{{ items.numerotation }}'></td>
                                     <td><button type="button" class="btn btn-grey btn-sm"><i class="fa fa-arrow-right" style='color: deepskyblue;font-size: 15px'></i></button></td>
-                                    <td><button type="button" class="btn btn-grey btn-sm"><i class="fa fa-refresh" style="color: deepskyblue;font-size: 15px"></i></button></td>
+                                    <td><button type="button" class="btn btn-grey btn-sm"><i class="fa fa-redo" style="color: deepskyblue;font-size: 15px"></i></button></td>
                                     <td><input class='form-control' disabled value='{{ items.fk_UniteManutentionSortie.idUniteManutentionSortie }}'></td>
                                     <td><input class='form-control' disabled value='{{ items.fk_UniteManutentionSortie.numero }}'></td>
                                     {% if items.emplacementConfirme == "1" %}
@@ -307,7 +310,6 @@
             }
         }
 
-
         '{% for items in colis %}'
         '{% if items.fk_UniteManutentionEntree.idUniteManutentionEntree == id %}'
         litige[firstoldline - 1] = colis.fk_litige;
@@ -318,15 +320,15 @@
             var idxui = 0;
             var firstoldlines = 1;
             '{% for items in colis %}'
+            console.log("{{ items.fk_litige.nom }}");
             '{% if items.fk_UniteManutentionEntree.idUniteManutentionEntree == id %}'
             if ($(this).find('div').is('#newDialogText'+firstoldlines)) {
                 $(this).find('input').val("{{ items.fk_litige.nom }}");
                 $(this).find('input').eq(1).val("{{ items.fk_DecisionLitige.nom }}");
-                console.log("{{ items.fk_litige.nom }}");
             }
             if (firstoldlines == 1) {
-                $("#litigebox" + idxlne).append(new Option("0", "0", true, true));
-                $("#decilitigebox" + idxlne).append(new Option("0", "0", true, true));
+                //$("#litigebox" + idxlne).append(new Option("0", "0", true, true));
+                //$("#decilitigebox" + idxlne).append(new Option("0", "0", true, true));
             }
             //ici
             '{% endif %}'
@@ -335,8 +337,6 @@
         });
 
         $('#tabblbody tr').each(function (a, b) {  //recupère les  entrée dans la table
-            $(this).find('td').each(function (a, b) {
-            });
             //$('[data-toggle="popover"]').popover();
             /*$('<div id="newDialogText' + firstoldline + '">Litige<br><select class="myselect" id="litigebox' + firstoldline + '">' +
                 '</select><br>décision sur litige<select class="myselect2" id="decilitigebox' + firstoldline + '"></select></div>').dialog({
@@ -380,9 +380,57 @@
             }
         });*/
         '{% endif %}'
-
         //console.log("{{ items.fk_UniteManutentionEntree.idUniteManutentionEntree }}");
         '{% endfor %}'
+
+        var position = 1;
+        var newidx = 0;
+        var articlearr = [];
+        $('#tabblbody tr').each(function (a, b) {  //recupère les  entrée dans la table
+            if ($.inArray($(this).find('td').eq(4).find('input').val(), articlearr) == -1) {
+                articlearr[newidx] = $(this).find('td').eq(4).find('input').val();
+                console.log("not found // " + $.inArray('', articlearr));
+            }
+            newidx++;
+        });
+        console.log(articlearr);
+
+        //cache mes rows via le fitre
+        for (var arrtest = 0; arrtest != articlearr.length; arrtest++) {
+            $('#tabfiltre' + position).append('<input type="checkbox" name="'+articlearr[arrtest]+'"><label for="'+articlearr[arrtest]+'">'+articlearr[arrtest]+'</label> ').change(function() {
+                if ($(this).prop("checked", true ))
+                {
+                    var namearticle =  $(this).find('label').text();
+                    $('#tabblbody tr').each(function (a, b) {  //recupère les  entrée dans la table
+                        //$(this).find('td').eq(3).find('input').hide();
+                        /*if (($.inArray(this).find('td').eq(4).find('input').val(), articlearr) == -1) {
+                            $(this).hide();
+                        }*/
+                        if ($(this).find('td').eq(4).find('input').val() != namearticle) {
+                            $(this).hide();
+                        }
+                        //console.log($(this).find('label').text());
+                    });
+                }
+                else {
+                    var namearticle =  $(this).find('label').text();
+                    $('#tabblbody tr').each(function (a, b) {  //recupère les  entrée dans la table
+                        //$(this).find('td').eq(3).find('input').hide();
+                        /*if (($.inArray(this).find('td').eq(4).find('input').val(), articlearr) == -1) {
+                            $(this).hide();
+                        }*/
+                        if ($(this).find('td').eq(4).find('input').val() == namearticle) {
+                            $(this).show();
+                        }
+                        //console.log($(this).find('label').text());
+                    });
+
+                }
+            });
+            if (position == 3)
+                position = 0;
+            position++;
+        }
 
         $('#compum').click(function () {
             if ($(this).hasClass('btn btn-sm btn-success')) {
@@ -446,7 +494,7 @@
                             "</select><br>déci. litige <select class=\"myselect2 form-control-sm\" id=\"decilitigebox" + nbr + "\"></select></td>" +
                             "<td><input class='form-control'></td>" +
                             "<td><button type=\"button\" class=\"btn btn-grey btn-sm\"><i class=\"fa fa-arrow-right\" style='color: deepskyblue;'></i></button></td>" +
-                            "<td><button type=\"button\" class=\"btn btn-grey btn-sm\"><i class=\"fa fa-fa-refresh\" style='color: deepskyblue;'></i></button></td>" +
+                            "<td><button type=\"button\" class=\"btn btn-grey btn-sm\"><i class=\"fa fa-fa-redo\" style='color: deepskyblue;'></i></button></td>" +
                             "<td><input class='form-control' disabled></td>" +
                             "<td><input class='form-control' disabled></td>" +
                             "<td class='text-center'><i class=\"fa fa-toggle-off mt-2\" style='font-size: 25px;cursor:pointer;'></i></td>" +
@@ -694,7 +742,6 @@
                             myidx--;
                         }
                         myidx = 0;
-                        //location.reload();
                     }
                 },
                 failure: function() {
@@ -737,18 +784,32 @@
         $('#tabblbody tr').each(function (a, b) {  //recupère les  entrée dans la table
             var idxlne = $(this).find('td').eq(2).find('input').val();
             '{% for itemsli in litige %}'
-            $("#litigebox" + idxlne).append(new Option("{{ itemsli.nom }}", "{{ itemsli.nom }}"));
+            $("#litigebox" + idxlne).append(new Option("{{ itemsli.nom|safe }}", "{{ itemsli.nom|safe }}"));
             '{% endfor %}'
 
-            console.log("my var = " + idxlne);
             '{% for itemsdli in decilitige %}'
-            $("#decilitigebox" + idxlne).append(new Option("{{ itemsdli.nom }}", "{{ itemsdli.nom }}"));
+            $("#decilitigebox" + idxlne).append(new Option("{{ itemsdli.nom|safe }}", "{{ itemsdli.nom|safe }}"));
             '{% endfor %}'
 
             $("#litigebox" + idxlne).append(new Option("0", "0", true, true));
             $("#decilitigebox" + idxlne).append(new Option("0", "0", true, true));
-            $("#litigebox" + idxlne).val("0");
-            $("#decilitigebox" + idxlne).val("0");
+
+            '{% for items in colis %}'
+            '{% if items.fk_UniteManutentionEntree.idUniteManutentionEntree == id %}'
+            if ('{{items.idColis }}' == idxlne) {
+                '{% for itemsli in litige %}'
+                '{% if itemsli.nom == items.fk_litige.nom %}'
+                //$(this).find('td').eq(8).find('select').eq(0).val("{{ items.fk_litige.nom }}");
+
+                $("#litigebox" + idxlne).val("{{ items.fk_litige.nom }}");
+                $("#decilitigebox" + idxlne).val("{{ items.fk_LitigeDecision.nom }}");
+                console.log("{{ items.fk_litige.nom }}");
+                '{% endif %}'
+                '{% endfor %}'
+            }
+            '{% endif %}'
+            '{% endfor %}'
+
             /*$(this).find('td').each(function (a, b) {
                 var doit = 0; // false
                 if (a === 2) {

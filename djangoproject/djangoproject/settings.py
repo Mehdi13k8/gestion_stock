@@ -44,8 +44,10 @@ INSTALLED_APPS = [
     #'debug_toolbar',
     #'simplejson',
     #"django_static_fontawesome",
-    "wagtailfontawesome",
+    #"wagtailfontawesome",
+    'fontawesome_5',
 ]
+
 
 MIDDLEWARE = [
     #'debug_toolbar.middleware.DebugToolbarMiddleware',

@@ -5,23 +5,23 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="csrf_token" content="{{ csrf_token }}">
+  <meta http-equiv="Cache-control" content="no-cache">
 
   {% load staticfiles %}
-  {% load wagtailfontawesome %}
-  {% fontawesome_css %}
+  {% load fontawesome_5 %}
 
   {% load static %}
+  {% fontawesome_5_static %}
   <link rel="stylesheet" href="{{ STATIC_URL }} /static/css/style.css">
   <link href="{{ STATIC_URL }} /static/jquery-ui-1.12.1/jquery-ui.css" rel="stylesheet">
-
   <link rel="stylesheet" href="{{ STATIC_URL }} /static/css/bootstrap.min.css">
   <link href=" {{ STATIC_URL }} /static/css/addons/datatables.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ STATIC_URL }} /static/css/mdb.min.css">
 
   <script src="{{ STATIC_URL }} /static/js/jquery-1.12.4.js"></script>
   <script type="text/javascript" src="{{ STATIC_URL }} /static/js/popper.min.js"></script>
   <script type="text/javascript" src="{{ STATIC_URL }} /static/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <link rel="stylesheet" href="{{ STATIC_URL }} /static/css/mdb.min.css">
   <script type="text/javascript" src="{{ STATIC_URL }} /static/js/addons/datatables.min.js"></script>
   <!--
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -32,7 +32,7 @@
   <link rel="stylesheet" href="{{ STATIC_URL }} /static/css/all.css">
   <link rel="stylesheet" href="{{ STATIC_URL }} /static/css/font-awesome.min.css">
 
-  https://gitlab.com/alexgleason/wagtailfontawesome
+  https://pypi.org/project/django-fontawesome-5/
   -->
 </header>
 <style>
@@ -461,10 +461,15 @@
         }
       }
     });
-    $('#settings').click(function () {
+    $('#settings').click(function() {
       '{% for items in settings %}'
-        location.href = "{% url 'setting' items.pk %}";
+      location.href = "{% url 'setting' items.pk %}";
       '{% endfor %}'
+    });
+
+
+    $(document).ajaxStop(function() {
+      window.location.reload();
     });
   });
 
@@ -582,6 +587,7 @@
       this.element.show();
     },
   });
+
 </script>
 <br>
 <br>
