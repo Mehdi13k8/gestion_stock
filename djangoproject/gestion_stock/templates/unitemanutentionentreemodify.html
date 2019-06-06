@@ -198,7 +198,7 @@
                                     <td><button class='ajout btn btn-sm rounded-pill btn-outline-grey w-25' id="add{{ items.idColis }}"><i class="fa fa-plus ml-n1" style='font-size: 15px;cursor:pointer;'></i></button></td>
                                     <td><input class='form-control' disabled id='ncolis{{items.idColis}}' value="{{ items.idColis }}"></td>
                                     <td><select class="form-control fournise" id="blfournisseur{{items.idColis}}"></select></td>
-                                    <td><select class="form-control desif\" id="iddesif{{items.idColis}}"></select></td>
+                                    <td><select class="form-control desif" id="iddesif{{items.idColis}}"></select></td>
                                     <td><input class='form-control' value='{{ items.numeroLot }}'></td>
                                     <td><input type="date" class="date rounded" class="form-control" value='{{ items.datePeremption }}'></td>
                                     <td><input type="text" class="form-control" value='{{ items.quantiteProduit }}'></td>
@@ -253,6 +253,34 @@
                                             $("#iddesif"+"{{items.idColis}}").toggle();
                                         });
                                         '{% endfor %}'
+                                        $(".desif").combobox({
+                                            select: function (event, ui) {
+                                                '{% for items in article %}'
+                                                console.log("desii");
+                                                if ('{{ items.designationClient }}' == $(this).val()) {
+                                                    //console.log("therae");
+                                                    //$(this).closest('td').next().find('select').val('{{ items.designationClient }}');
+                                                    //$(this).closest('td').next().find('select').find('option').remove();
+                                                    $(this).closest('td').prev().find('select').find('option').remove();
+                                                    $(this).closest('td').prev().find('select').append(new Option("{{ items.codeFournisseur }}", "{{ items.codeFournisseur }}"));
+                                                }
+                                                '{% endfor %}'
+                                            }
+                                        });
+                                        $(".fournise").combobox({
+                                            select: function (event, ui) {
+                                                '{% for items in article %}'
+                                                console.log("fourni");
+                                                if ('{{ items.codeFournisseur }}' == this.value) {
+                                                    //console.log("therae");
+                                                    //$(this).closest('td').next().find('select').val('{{ items.designationClient }}');
+                                                    //$(this).closest('td').next().find('select').find('option').remove();
+                                                    $(this).closest('td').next().find('select').find('option').remove();
+                                                    $(this).closest('td').next().find('select').append(new Option("{{ items.designationClient }}", "{{ items.designationClient }}"));
+                                                }
+                                                '{% endfor %}'
+                                            }
+                                        });
                                     });
                                 </script>
                                 </tbody>
@@ -315,7 +343,7 @@
         litige[firstoldline - 1] = colis.fk_litige;
         decilitige[firstoldline - 1] = colis.fk_DecisionLitige;
         //ici
-        $('div.ui-dialog > div').each(function() {
+        /*$('div.ui-dialog > div').each(function() {
 
             var idxui = 0;
             var firstoldlines = 1;
@@ -334,7 +362,7 @@
             '{% endif %}'
             firstoldlines++;
             '{% endfor %}'
-        });
+        });*/
 
         $('#tabblbody tr').each(function (a, b) {  //recupère les  entrée dans la table
             //$('[data-toggle="popover"]').popover();
@@ -389,18 +417,37 @@
         $('#tabblbody tr').each(function (a, b) {  //recupère les  entrée dans la table
             if ($.inArray($(this).find('td').eq(4).find('input').val(), articlearr) == -1) {
                 articlearr[newidx] = $(this).find('td').eq(4).find('input').val();
-                console.log("not found // " + $.inArray('', articlearr));
+                console.log("not found // " + $(this).find('td').eq(4).find('input').val());
+                newidx++;
             }
-            newidx++;
+            console.log("found // " + $(this).find('td').eq(4).find('input').val());
         });
         console.log(articlearr);
 
         //cache mes rows via le fitre
+        var idxcheck = 0;
         for (var arrtest = 0; arrtest != articlearr.length; arrtest++) {
             $('#tabfiltre' + position).append('<input type="checkbox" name="'+articlearr[arrtest]+'"><label for="'+articlearr[arrtest]+'">'+articlearr[arrtest]+'</label> ').change(function() {
-                if ($(this).prop("checked", true ))
-                {
+                console.log(articlearr[arrtest]);
+                if (idxcheck == 1) {
+                    console.log("uncheck");
                     var namearticle =  $(this).find('label').text();
+                    $('#tabblbody tr').each(function (a, b) {  //recupère les  entrée dans la table
+                        //$(this).find('td').eq(3).find('input').hide();
+                        /*if (($.inArray(this).find('td').eq(4).find('input').val(), articlearr) == -1) {
+                            $(this).hide();
+                        }*/
+                        //if ($(this).find('td').eq(4).find('input').val() == namearticle) {
+                        $(this).show();
+                        //}
+                        //console.log($(this).find('label').text());
+                    });
+
+                }
+                // je cache ou affiche les colis selon les filtres article ici
+                if (idxcheck == 0) {
+                    var namearticle =  $(this).find('label').text();
+                    console.log("check");
                     $('#tabblbody tr').each(function (a, b) {  //recupère les  entrée dans la table
                         //$(this).find('td').eq(3).find('input').hide();
                         /*if (($.inArray(this).find('td').eq(4).find('input').val(), articlearr) == -1) {
@@ -412,20 +459,11 @@
                         //console.log($(this).find('label').text());
                     });
                 }
-                else {
-                    var namearticle =  $(this).find('label').text();
-                    $('#tabblbody tr').each(function (a, b) {  //recupère les  entrée dans la table
-                        //$(this).find('td').eq(3).find('input').hide();
-                        /*if (($.inArray(this).find('td').eq(4).find('input').val(), articlearr) == -1) {
-                            $(this).hide();
-                        }*/
-                        if ($(this).find('td').eq(4).find('input').val() == namearticle) {
-                            $(this).show();
-                        }
-                        //console.log($(this).find('label').text());
-                    });
-
-                }
+                if (idxcheck == 1)
+                    idxcheck = 0;
+                else
+                    if (idxcheck == 0)
+                        idxcheck = 1;
             });
             if (position == 3)
                 position = 0;
@@ -470,18 +508,16 @@
                         oldligne++;
                     });
                     var nbrligne = $('#numberligne').val();
-
-                    $('#numberligne').val("");
                     $(this).dialog("close");
                     var colid = "0";
                     var total = parseInt(nbrligne) + parseInt(lastcolisid);// + parseInt(1);
                     //"<button type=\"button\" class=\"btn btn-grey btn-sm addmodal\" data-toggle=\"popover\" id=\"" + nbr + "\">Litiges</button><div id=\"newDialogText" + nbr + "\">Litige<br><select class=\"myselect\" id=\"litigebox" + nbr + "\">" +
-                    console.log("nbr =" + lastcolisid);
-                    for (var nbr = lastcolisid+1; nbr != total+1; nbr++) {
-                        //console.log(nbr);
-                        //lastcolisid
-                        litige[nbr] = "0";
-                        decilitige[nbr] = "0";
+                    var idxnbr = 0;
+                    $('#numberligne').val("");
+                    for (var nbr = parseInt(lastcolisid)+1; nbr < total+1; nbr++) {
+                        console.log(nbr);
+                        //litige[idxnbr] = "0";
+                        //decilitige[idxnbr] = "0";
                         $('#tabblbody').append("<tr><td><button class='duplique btn btn-sm  btn-outline-grey rounded-pill w-25' id=\"duplicate" + nbr + "\"><i class=\"fa fa-copy\"></i></button></td>" +
                             "<td><button class='ajout btn btn-sm rounded-pill btn-outline-grey w-25' id=\"addx" + nbr + "\"><i class=\"fa fa-plus\"></i></button></td>" +
                             "<td><input class='form-control' disabled id=\"ncolis" + nbr + "\"></td>" +
@@ -494,7 +530,7 @@
                             "</select><br>déci. litige <select class=\"myselect2 form-control-sm\" id=\"decilitigebox" + nbr + "\"></select></td>" +
                             "<td><input class='form-control'></td>" +
                             "<td><button type=\"button\" class=\"btn btn-grey btn-sm\"><i class=\"fa fa-arrow-right\" style='color: deepskyblue;'></i></button></td>" +
-                            "<td><button type=\"button\" class=\"btn btn-grey btn-sm\"><i class=\"fa fa-fa-redo\" style='color: deepskyblue;'></i></button></td>" +
+                            "<td><button type=\"button\" class=\"btn btn-grey btn-sm\"><i class=\"fa fa-redo\" style='color: deepskyblue;'></i></button></td>" +
                             "<td><input class='form-control' disabled></td>" +
                             "<td><input class='form-control' disabled></td>" +
                             "<td class='text-center'><i class=\"fa fa-toggle-off mt-2\" style='font-size: 25px;cursor:pointer;'></i></td>" +
@@ -544,21 +580,16 @@
                 });*/
                         var a = 0;
                         var b = 0;
-                        if (nbr >= firstoldline) {
-                            '{% for items in litige %}'
-                            $('#litigebox' + nbr).append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                            '{% for itemsli in litige %}'
+                            $("#litigebox" + nbr).append(new Option("{{ itemsli.nom|safe }}", "{{ itemsli.nom|safe }}"));
                             '{% endfor %}'
-                            '{% for items in decilitige %}'
-                            $('#decilitigebox' + nbr).append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+
+                            '{% for itemsdli in decilitige %}'
+                            $("#decilitigebox" + nbr).append(new Option("{{ itemsdli.nom|safe }}", "{{ itemsdli.nom|safe }}"));
                             '{% endfor %}'
-                            $('#litigebox' + nbr).val("");
-                            $('#decilitigebox' + nbr).val("");
-                            if (a == 0) {
-                                $("#litigebox" + nbr).append(new Option("0", "0", true, true));
-                                $("#decilitigebox" + nbr).append(new Option("0", "0", true, true));
-                                a++;
-                            }
-                        }
+
+                            $("#litigebox" + nbr).append(new Option("0", "0", true, true));
+                            $("#decilitigebox" + nbr).append(new Option("0", "0", true, true));
 
                         "{% for items in colis %}"
                         if (parseInt(colid, 10) < parseInt('{{ items.idColis }}', 10)) {
@@ -664,6 +695,7 @@
                 }
             },
         });
+
         $(".ui-dialog-titlebar").hide();
         $('#saveume').click(function() { //envoie des données
             var idx = 0;
