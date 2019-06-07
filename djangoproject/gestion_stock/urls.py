@@ -26,8 +26,12 @@ urlpatterns = [
     path('bon_entree/modify', views.BonCommandeEntreemodify.as_view(), name='bonCommandeEntreemodify'),
     path('delete_bon_entree/', views.BonCommandeEntree_index.delete),
 
-    path('bon', views.bonCommandeSortie.as_view(), name='bonCommandeSortie'),
-    path('bon/add', views.bonCommandeSortieadd, name ='bonCommandeSortieadd'),
+    path('bon_sortie', views.bonCommandeSortie.as_view(), name='bonCommandeSortie'), #page des bon de commande sortie
+    path('bon_sortie/add', views.bonCommandeSortieadd.as_view(), name='bonCommandeSortieadd'),
+    path('bon_sortie/adding/', views.bonCommandeSortieadd.add),
+    path('bon_entree/modify', views.bonCommandeSortiemodify.as_view(), name='bonCommandeSortiemodify'),
+    path('delete_bon_entree/', views.bonCommandeSortie.delete),
+
 
     path('bonLivraisonsortie', views.bonLivraisonSortie.as_view(), name='bonLivraisonSortie'),
     path('bonLivraisonsortie/add', views.bonLivraisonSortieadd.as_view(), name='bonLivraisonSortieadd'),

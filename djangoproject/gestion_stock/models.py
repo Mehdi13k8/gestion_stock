@@ -1354,10 +1354,10 @@ class BonCommandeSortie(models.Model):
     identifiantSource = models.CharField(max_length=42, default='Null')
     numeroCommande = models.CharField(max_length=42, default='Null')
     dateCommande = models.CharField(max_length=42, default='Null')
-    fk_Client = models.ForeignKey('Client', on_delete=models.CASCADE, default=1)
-    fk_Destinataire = models.ForeignKey('Destinataire', on_delete=models.CASCADE, default=1)
-    fk_Transporteur = models.ForeignKey('Transporteur', on_delete=models.CASCADE, default=1)
-    fk_TypeBonCommandeSortie = models.ForeignKey('TypeBonCommandeSortie_pour_BonCommandeSortie', on_delete=models.CASCADE, default=1)
+    fk_Client = models.ForeignKey('Client', on_delete=models.CASCADE, default=0, blank=True, null=True)
+    fk_Destinataire = models.ForeignKey('Destinataire', on_delete=models.CASCADE, default=0, blank=True, null=True)
+    fk_Transporteur = models.ForeignKey('Transporteur', on_delete=models.CASCADE, default=0, blank=True, null=True)
+    fk_TypeBonCommandeSortie = models.ForeignKey('TypeBonCommandeSortie_pour_BonCommandeSortie', on_delete=models.CASCADE, default=0, blank=True, null=True)
     def __str__(self):
         return self.numeroCommande
 

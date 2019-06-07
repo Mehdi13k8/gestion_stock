@@ -1,0 +1,2321 @@
+﻿idLigneBonCommandeSortie,fk_BonCommandeSortie,Article,designation,quantiteProduitCommande,priorite,termine,source
+366390,BC-2844,BC3706,Barre céréalière Raisin amande,108,1,0,groupe_ethique_et_sante
+366391,BC-2844,PJ00083,Barre crisp caramel,112,1,0,groupe_ethique_et_sante
+366392,BC-2844,PJ00236,Barre crisp chocolat 35g,200,1,0,groupe_ethique_et_sante
+366393,BC-2844,PJ00237,Barre crisp coco 35g,50,1,0,groupe_ethique_et_sante
+366394,BC-2844,PJ00241,Barre crisp fruits rouges 35g,120,1,0,groupe_ethique_et_sante
+366395,BC-2844,PJ00178,Biscuit cacao pépite chocolat,360,1,0,groupe_ethique_et_sante
+366396,BC-2844,10357,Biscuits au chocolat,1440,1,0,groupe_ethique_et_sante
+366397,BC-2844,13129,Biscuits fruits rouges,720,1,0,groupe_ethique_et_sante
+366398,BC-2844,08730,Biscuits orange,432,1,0,groupe_ethique_et_sante
+366399,BC-2844,PJ00153,BOUTEILLE BOISSON FRAMBOISE,36,1,0,groupe_ethique_et_sante
+366400,BC-2844,PJ00157,BOUTEILLE BOISSON PÊCHE-PASSION,36,1,0,groupe_ethique_et_sante
+366401,BC-2844,PJ00129,Chips Barbecue,80,1,0,groupe_ethique_et_sante
+366402,BC-2844,PJ00130,Chips oignon,160,1,0,groupe_ethique_et_sante
+366403,BC-2844,CNCIRCU1,Confort Circulatoire (60),30,1,0,groupe_ethique_et_sante
+366404,BC-2844,12773,Desserts entremet vanille,150,1,0,groupe_ethique_et_sante
+366405,BC-2844,ENxxx,Entremet délice aux fraises,150,1,0,groupe_ethique_et_sante
+366406,BC-2844,BG418,Entremets banane,100,1,0,groupe_ethique_et_sante
+366407,BC-2844,BG207,Entremets praline,100,1,0,groupe_ethique_et_sante
+366408,BC-2844,BG427,Flan Patissier cafe,300,1,0,groupe_ethique_et_sante
+366409,BC-2844,BG428,Flan Patissier caramel,200,1,0,groupe_ethique_et_sante
+366410,BC-2844,BG426,Flan Patissier chocolat,200,1,0,groupe_ethique_et_sante
+366411,BC-2844,BG434,Flan Patissier citron,100,1,0,groupe_ethique_et_sante
+366412,BC-2844,BG424,Flan Patissier pistache,200,1,0,groupe_ethique_et_sante
+366413,BC-2844,BG425,Flan Patissier vanille,200,1,0,groupe_ethique_et_sante
+366414,BC-2844,CNMGF2,M.G.F.2,30,1,0,groupe_ethique_et_sante
+366415,BC-2844,CNOMEGA,OMEGA 3,30,1,0,groupe_ethique_et_sante
+366416,BC-2844,PJ00131,PAIN CEREALES (2 tranches),1008,1,0,groupe_ethique_et_sante
+366417,BC-2844,FS171RN310302,Pain de mie,24,1,0,groupe_ethique_et_sante
+366418,BC-2844,PC01692,Stick draineur thé fruits rouges  7g,600,1,0,groupe_ethique_et_sante
+366419,BC-2844,PC01693,Stick draineur thé pêche 7g,300,1,0,groupe_ethique_et_sante
+366420,BC-2844,BG602,Supreme de volaille,100,1,0,groupe_ethique_et_sante
+374280,BC-2845,CNSTRESS2,Anti stress 2,30,1,0,groupe_ethique_et_sante
+374281,BC-2845,11786,Barre (Cacao)chocolat ronde,378,1,0,groupe_ethique_et_sante
+374282,BC-2845,BC3707,Barre céréalière Fruits rouges,108,1,0,groupe_ethique_et_sante
+374283,BC-2845,BC3706,Barre céréalière Raisin amande,108,1,0,groupe_ethique_et_sante
+374284,BC-2845,PJ00083,Barre crisp caramel,168,1,0,groupe_ethique_et_sante
+374285,BC-2845,PJ00236,Barre crisp chocolat 35g,150,1,0,groupe_ethique_et_sante
+374286,BC-2845,PJ00237,Barre crisp coco 35g,150,1,0,groupe_ethique_et_sante
+374287,BC-2845,11787,Barre noix de coco (ronde),126,1,0,groupe_ethique_et_sante
+374288,BC-2845,BC3719,Barre Praline,150,1,0,groupe_ethique_et_sante
+374289,BC-2845,BC3704,barre Vanille Amande (low sugar),300,1,0,groupe_ethique_et_sante
+374290,BC-2845,13129,Biscuits fruits rouges,432,1,0,groupe_ethique_et_sante
+374291,BC-2845,08730,Biscuits orange,432,1,0,groupe_ethique_et_sante
+374292,BC-2845,12481,Boisson chocolat intense,150,1,0,groupe_ethique_et_sante
+374293,BC-2845,PJ00283,Bouchées chocolat noir,100,1,0,groupe_ethique_et_sante
+374294,BC-2845,PJ00288,Bouteille boisson café,36,1,0,groupe_ethique_et_sante
+374295,BC-2845,PJ00153,BOUTEILLE BOISSON FRAMBOISE,120,1,0,groupe_ethique_et_sante
+374296,BC-2845,PJ00157,BOUTEILLE BOISSON PÊCHE-PASSION,96,1,0,groupe_ethique_et_sante
+374297,BC-2845,PJ00287,Bouteille boisson vanille,24,1,0,groupe_ethique_et_sante
+374298,BC-2845,FS15MO341,Bulles BARBECUE,168,1,0,groupe_ethique_et_sante
+374299,BC-2845,13588,Cappuccino,150,1,0,groupe_ethique_et_sante
+374300,BC-2845,BG349,Cereales chocolat,100,1,0,groupe_ethique_et_sante
+374301,BC-2845,BG355,Cereales pomme cannelle,100,1,0,groupe_ethique_et_sante
+374302,BC-2845,PJ00130,Chips oignon,160,1,0,groupe_ethique_et_sante
+374303,BC-2845,PJ00292,Chorizo,100,1,0,groupe_ethique_et_sante
+374304,BC-2845,BG309,Crepes orange,100,1,0,groupe_ethique_et_sante
+374305,BC-2845,PB01020,Dessert choco caramel pépite sans gluten,150,1,0,groupe_ethique_et_sante
+374306,BC-2845,12771,Desserts chocolat,150,1,0,groupe_ethique_et_sante
+374307,BC-2845,12773,Desserts entremet vanille,150,1,0,groupe_ethique_et_sante
+374308,BC-2845,BG435,Entremets poire belle hel,100,1,0,groupe_ethique_et_sante
+374309,BC-2845,BG504,Entremets pomme caramel,100,1,0,groupe_ethique_et_sante
+374310,BC-2845,BG428,Flan Patissier caramel,100,1,0,groupe_ethique_et_sante
+374311,BC-2845,BG434,Flan Patissier citron,100,1,0,groupe_ethique_et_sante
+374312,BC-2845,FS17,Pain de mie (2 tranches),750,1,0,groupe_ethique_et_sante
+374313,BC-2845,PJ00147,Pate Fusilli,140,1,0,groupe_ethique_et_sante
+374314,BC-2845,SRNPC1,Sacs grand format,250,1,0,groupe_ethique_et_sante
+374315,BC-2845,PJ00224,Saucisson,150,1,0,groupe_ethique_et_sante
+374316,BC-2845,FS18SF800,Soupe aux cêpes,100,1,0,groupe_ethique_et_sante
+374317,BC-2845,FS12MF993,spaghetti bolognaise,100,1,0,groupe_ethique_et_sante
+374318,BC-2845,PJ00160,TORTITOS BACON,80,1,0,groupe_ethique_et_sante
+366440,BC-2846,BC3707,Barre céréalière Fruits rouges,108,1,0,groupe_ethique_et_sante
+366441,BC-2846,BC3706,Barre céréalière Raisin amande,108,1,0,groupe_ethique_et_sante
+366442,BC-2846,PJ00083,Barre crisp caramel,280,1,0,groupe_ethique_et_sante
+366443,BC-2846,PJ00236,Barre crisp chocolat 35g,550,1,0,groupe_ethique_et_sante
+366445,BC-2846,PJ00237,Barre crisp coco 35g,250,1,0,groupe_ethique_et_sante
+366444,BC-2846,PJ00241,Barre crisp fruits rouges 35g,160,1,0,groupe_ethique_et_sante
+366446,BC-2846,BC3719,Barre Praline,150,1,0,groupe_ethique_et_sante
+366447,BC-2846,BC3704,barre Vanille Amande (low sugar),150,1,0,groupe_ethique_et_sante
+366421,BC-2846,10357,Biscuits au chocolat,1008,1,0,groupe_ethique_et_sante
+366422,BC-2846,13129,Biscuits fruits rouges,648,1,0,groupe_ethique_et_sante
+366423,BC-2846,08730,Biscuits orange,648,1,0,groupe_ethique_et_sante
+366448,BC-2846,12481,Boisson chocolat intense,150,1,0,groupe_ethique_et_sante
+366460,BC-2846,PJ00288,Bouteille boisson café,96,1,0,groupe_ethique_et_sante
+366459,BC-2846,PJ00153,BOUTEILLE BOISSON FRAMBOISE,96,1,0,groupe_ethique_et_sante
+366461,BC-2846,PJ00287,Bouteille boisson vanille,96,1,0,groupe_ethique_et_sante
+366427,BC-2846,FS15O342,Bulles oignons,168,1,0,groupe_ethique_et_sante
+366428,BC-2846,PJ00129,Chips Barbecue,80,1,0,groupe_ethique_et_sante
+366426,BC-2846,PJ00130,Chips oignon,80,1,0,groupe_ethique_et_sante
+366439,BC-2846,PJ00292,Chorizo,150,1,0,groupe_ethique_et_sante
+366456,BC-2846,CNTRANS,Confort Transit (90),10,1,0,groupe_ethique_et_sante
+366454,BC-2846,BG435,Entremets poire belle hel,100,1,0,groupe_ethique_et_sante
+366455,BC-2846,BG504,Entremets pomme caramel,100,1,0,groupe_ethique_et_sante
+366453,BC-2846,BG207,Entremets praline,100,1,0,groupe_ethique_et_sante
+366449,BC-2846,BG427,Flan Patissier cafe,100,1,0,groupe_ethique_et_sante
+366451,BC-2846,BG426,Flan Patissier chocolat,200,1,0,groupe_ethique_et_sante
+366450,BC-2846,BG434,Flan Patissier citron,100,1,0,groupe_ethique_et_sante
+366452,BC-2846,BG425,Flan Patissier vanille,200,1,0,groupe_ethique_et_sante
+366458,BC-2846,PJ002239-01,Graines Mélanges,130,1,0,groupe_ethique_et_sante
+366457,BC-2846,CNMGF2,M.G.F.2,30,1,0,groupe_ethique_et_sante
+366431,BC-2846,CNOMEGA,OMEGA 3,30,1,0,groupe_ethique_et_sante
+366432,BC-2846,FS18OF903,omelette fromage,100,1,0,groupe_ethique_et_sante
+366424,BC-2846,PJ00131,PAIN CEREALES (2 tranches),2304,1,0,groupe_ethique_et_sante
+366425,BC-2846,FS17,Pain de mie (2 tranches),900,1,0,groupe_ethique_et_sante
+366436,BC-2846,PJ00147,Pate Fusilli,140,1,0,groupe_ethique_et_sante
+366438,BC-2846,PJ00224,Saucisson,300,1,0,groupe_ethique_et_sante
+366437,BC-2846,FS12MF993,spaghetti bolognaise,100,1,0,groupe_ethique_et_sante
+366434,BC-2846,PC01691,Stick draineur thé citron 7g,900,1,0,groupe_ethique_et_sante
+366433,BC-2846,PC01692,Stick draineur thé fruits rouges  7g,300,1,0,groupe_ethique_et_sante
+366435,BC-2846,PC01693,Stick draineur thé pêche 7g,900,1,0,groupe_ethique_et_sante
+366429,BC-2846,PJ00160,TORTITOS BACON,80,1,0,groupe_ethique_et_sante
+366430,BC-2846,PJ00159,TORTITOS POULET MAÏS,80,1,0,groupe_ethique_et_sante
+372947,BC-2847,BC3707,Barre céréalière Fruits rouges,216,1,0,groupe_ethique_et_sante
+372948,BC-2847,BC3706,Barre céréalière Raisin amande,108,1,0,groupe_ethique_et_sante
+372949,BC-2847,PJ00083,Barre crisp caramel,224,1,0,groupe_ethique_et_sante
+372950,BC-2847,PJ00236,Barre crisp chocolat 35g,200,1,0,groupe_ethique_et_sante
+372951,BC-2847,PJ00237,Barre crisp coco 35g,150,1,0,groupe_ethique_et_sante
+372952,BC-2847,PJ00241,Barre crisp fruits rouges 35g,40,1,0,groupe_ethique_et_sante
+372953,BC-2847,BC3719,Barre Praline,150,1,0,groupe_ethique_et_sante
+372954,BC-2847,BC3704,barre Vanille Amande (low sugar),300,1,0,groupe_ethique_et_sante
+372955,BC-2847,PJ00178,Biscuit cacao pépite chocolat,504,1,0,groupe_ethique_et_sante
+372956,BC-2847,10357,Biscuits au chocolat,1800,1,0,groupe_ethique_et_sante
+372957,BC-2847,13129,Biscuits fruits rouges,504,1,0,groupe_ethique_et_sante
+372958,BC-2847,08730,Biscuits orange,504,1,0,groupe_ethique_et_sante
+372959,BC-2847,13579,Boisson chocolat au lait,150,1,0,groupe_ethique_et_sante
+372960,BC-2847,PB01019,Boisson Pomme sans gluten,150,1,0,groupe_ethique_et_sante
+372961,BC-2847,PJ00284,Bouchées chocolat blanc,200,1,0,groupe_ethique_et_sante
+372962,BC-2847,PJ00283,Bouchées chocolat noir,200,1,0,groupe_ethique_et_sante
+372963,BC-2847,PJ00153,BOUTEILLE BOISSON FRAMBOISE,48,1,0,groupe_ethique_et_sante
+372964,BC-2847,PJ00157,BOUTEILLE BOISSON PÊCHE-PASSION,48,1,0,groupe_ethique_et_sante
+372965,BC-2847,FS15MWMO0340,Bulles chili,168,1,0,groupe_ethique_et_sante
+372966,BC-2847,FS15O342,Bulles oignons,168,1,0,groupe_ethique_et_sante
+372967,BC-2847,PJ00129,Chips Barbecue,80,1,0,groupe_ethique_et_sante
+372968,BC-2847,PJ00292,Chorizo,250,1,0,groupe_ethique_et_sante
+372969,BC-2847,PB01020,Dessert choco caramel pépite sans gluten,150,1,0,groupe_ethique_et_sante
+372970,BC-2847,12771,Desserts chocolat,300,1,0,groupe_ethique_et_sante
+372998,BC-2847,ENxxx,Entremet délice aux fraises,150,1,0,groupe_ethique_et_sante
+372971,BC-2847,BG418,Entremets banane,100,1,0,groupe_ethique_et_sante
+372972,BC-2847,BG435,Entremets poire belle hel,100,1,0,groupe_ethique_et_sante
+372973,BC-2847,BG504,Entremets pomme caramel,100,1,0,groupe_ethique_et_sante
+372974,BC-2847,BG426,Flan Patissier chocolat,100,1,0,groupe_ethique_et_sante
+372975,BC-2847,CNMGF2,M.G.F.2,90,1,0,groupe_ethique_et_sante
+372976,BC-2847,08212,Omelette fines herbes,150,1,0,groupe_ethique_et_sante
+372977,BC-2847,FS18OF903,omelette fromage,100,1,0,groupe_ethique_et_sante
+372978,BC-2847,BG325,Omelette mediterraneenne,100,1,0,groupe_ethique_et_sante
+372979,BC-2847,PJ00131,PAIN CEREALES (2 tranches),1440,1,0,groupe_ethique_et_sante
+372980,BC-2847,FS171RN310302,Pain de mie,16,1,0,groupe_ethique_et_sante
+372981,BC-2847,FS17,Pain de mie (2 tranches),900,1,0,groupe_ethique_et_sante
+372982,BC-2847,FS12MF139,parmentier,100,1,0,groupe_ethique_et_sante
+372983,BC-2847,PJ00147,Pate Fusilli,280,1,0,groupe_ethique_et_sante
+372984,BC-2847,11664,Puree de pomme de terre,150,1,0,groupe_ethique_et_sante
+372985,BC-2847,PJ00149,Riz,300,1,0,groupe_ethique_et_sante
+372986,BC-2847,SRNPC1,Sacs grand format,250,1,0,groupe_ethique_et_sante
+372987,BC-2847,PJ00224,Saucisson,400,1,0,groupe_ethique_et_sante
+372988,BC-2847,FS18SF800,Soupe aux cêpes,100,1,0,groupe_ethique_et_sante
+372989,BC-2847,08223,Soupe de legumes,150,1,0,groupe_ethique_et_sante
+372990,BC-2847,A0285-01,Soupe marocaine,150,1,0,groupe_ethique_et_sante
+372991,BC-2847,FS12MF993,spaghetti bolognaise,100,1,0,groupe_ethique_et_sante
+372992,BC-2847,PC01691,Stick draineur thé citron 7g,600,1,0,groupe_ethique_et_sante
+372993,BC-2847,PC01692,Stick draineur thé fruits rouges  7g,600,1,0,groupe_ethique_et_sante
+372994,BC-2847,PC01693,Stick draineur thé pêche 7g,600,1,0,groupe_ethique_et_sante
+372995,BC-2847,BG602,Supreme de volaille,100,1,0,groupe_ethique_et_sante
+372996,BC-2847,08205,Veloute asperge,150,1,0,groupe_ethique_et_sante
+372997,BC-2847,BG618,Veloute poireau,100,1,0,groupe_ethique_et_sante
+367841,BC-2848,BC3707,Barre céréalière Fruits rouges,216,1,0,groupe_ethique_et_sante
+367842,BC-2848,BC3706,Barre céréalière Raisin amande,324,1,0,groupe_ethique_et_sante
+367843,BC-2848,PJ00083,Barre crisp caramel,560,1,0,groupe_ethique_et_sante
+367844,BC-2848,PJ00236,Barre crisp chocolat 35g,500,1,0,groupe_ethique_et_sante
+367845,BC-2848,PJ00237,Barre crisp coco 35g,500,1,0,groupe_ethique_et_sante
+367846,BC-2848,PJ00241,Barre crisp fruits rouges 35g,400,1,0,groupe_ethique_et_sante
+367847,BC-2848,BC3704,barre Vanille Amande (low sugar),150,1,0,groupe_ethique_et_sante
+367848,BC-2848,10357,Biscuits au chocolat,1800,1,0,groupe_ethique_et_sante
+367849,BC-2848,13129,Biscuits fruits rouges,1080,1,0,groupe_ethique_et_sante
+367850,BC-2848,08730,Biscuits orange,1080,1,0,groupe_ethique_et_sante
+367851,BC-2848,PJ00153,BOUTEILLE BOISSON FRAMBOISE,60,1,0,groupe_ethique_et_sante
+367852,BC-2848,13588,Cappuccino,150,1,0,groupe_ethique_et_sante
+367853,BC-2848,PJ00129,Chips Barbecue,160,1,0,groupe_ethique_et_sante
+367854,BC-2848,PJ00130,Chips oignon,160,1,0,groupe_ethique_et_sante
+367855,BC-2848,PB00684-01,Crêpes banane chocolat,150,1,0,groupe_ethique_et_sante
+367856,BC-2848,12771,Desserts chocolat,150,1,0,groupe_ethique_et_sante
+367857,BC-2848,BG400,Entremets noix de coco,100,1,0,groupe_ethique_et_sante
+367858,BC-2848,BG504,Entremets pomme caramel,100,1,0,groupe_ethique_et_sante
+367859,BC-2848,BG428,Flan Patissier caramel,100,1,0,groupe_ethique_et_sante
+367860,BC-2848,BG434,Flan Patissier citron,100,1,0,groupe_ethique_et_sante
+367861,BC-2848,BG424,Flan Patissier pistache,100,1,0,groupe_ethique_et_sante
+367862,BC-2848,BG425,Flan Patissier vanille,100,1,0,groupe_ethique_et_sante
+367863,BC-2848,CNMGF2,M.G.F.2,60,1,0,groupe_ethique_et_sante
+367864,BC-2848,CNMULTIVIT,Multi-vitamines et Minéraux,30,1,0,groupe_ethique_et_sante
+367865,BC-2848,PJ00131,PAIN CEREALES (2 tranches),2016,1,0,groupe_ethique_et_sante
+367866,BC-2848,FS17,Pain de mie (2 tranches),450,1,0,groupe_ethique_et_sante
+367867,BC-2848,sp-plaqCN,Plaquette CN A5 3 volets,50,1,0,groupe_ethique_et_sante
+367868,BC-2848,PRNPC3,Pulvérisateurs,50,1,0,groupe_ethique_et_sante
+367869,BC-2848,PJ00224,Saucisson,100,1,0,groupe_ethique_et_sante
+367870,BC-2848,FS12MF993,spaghetti bolognaise,100,1,0,groupe_ethique_et_sante
+367871,BC-2848,PC01691,Stick draineur thé citron 7g,900,1,0,groupe_ethique_et_sante
+367872,BC-2848,PC01692,Stick draineur thé fruits rouges  7g,900,1,0,groupe_ethique_et_sante
+367873,BC-2848,PC01693,Stick draineur thé pêche 7g,900,1,0,groupe_ethique_et_sante
+367874,BC-2848,PJ00159,TORTITOS POULET MAÏS,160,1,0,groupe_ethique_et_sante
+371703,BC-2849,BC3706,Barre céréalière Raisin amande,108,1,0,groupe_ethique_et_sante
+371704,BC-2849,PJ00083,Barre crisp caramel,112,1,0,groupe_ethique_et_sante
+371705,BC-2849,PJ00236,Barre crisp chocolat 35g,1000,1,0,groupe_ethique_et_sante
+371706,BC-2849,PJ00237,Barre crisp coco 35g,1000,1,0,groupe_ethique_et_sante
+371707,BC-2849,BC3704,barre Vanille Amande (low sugar),150,1,0,groupe_ethique_et_sante
+371708,BC-2849,PJ00178,Biscuit cacao pépite chocolat,1440,1,0,groupe_ethique_et_sante
+371709,BC-2849,10357,Biscuits au chocolat,2880,1,0,groupe_ethique_et_sante
+371710,BC-2849,13129,Biscuits fruits rouges,1080,1,0,groupe_ethique_et_sante
+371711,BC-2849,08730,Biscuits orange,720,1,0,groupe_ethique_et_sante
+371712,BC-2849,13579,Boisson chocolat au lait,300,1,0,groupe_ethique_et_sante
+371713,BC-2849,12481,Boisson chocolat intense,300,1,0,groupe_ethique_et_sante
+371714,BC-2849,08218,Boisson orange,150,1,0,groupe_ethique_et_sante
+371715,BC-2849,PJ00288,Bouteille boisson café,48,1,0,groupe_ethique_et_sante
+371716,BC-2849,13588,Cappuccino,450,1,0,groupe_ethique_et_sante
+371717,BC-2849,BG357,Cereales vanille,100,1,0,groupe_ethique_et_sante
+371718,BC-2849,PJ00129,Chips Barbecue,160,1,0,groupe_ethique_et_sante
+371719,BC-2849,PJ00130,Chips oignon,80,1,0,groupe_ethique_et_sante
+371720,BC-2849,CNTRANS,Confort Transit (90),10,1,0,groupe_ethique_et_sante
+371721,BC-2849,BG309,Crepes orange,100,1,0,groupe_ethique_et_sante
+371722,BC-2849,12771,Desserts chocolat,150,1,0,groupe_ethique_et_sante
+371723,BC-2849,BG207,Entremets praline,100,1,0,groupe_ethique_et_sante
+371724,BC-2849,BG427,Flan Patissier cafe,200,1,0,groupe_ethique_et_sante
+371725,BC-2849,BG428,Flan Patissier caramel,100,1,0,groupe_ethique_et_sante
+371726,BC-2849,BG426,Flan Patissier chocolat,300,1,0,groupe_ethique_et_sante
+371727,BC-2849,BG434,Flan Patissier citron,100,1,0,groupe_ethique_et_sante
+371728,BC-2849,BG424,Flan Patissier pistache,100,1,0,groupe_ethique_et_sante
+371729,BC-2849,BG425,Flan Patissier vanille,200,1,0,groupe_ethique_et_sante
+371730,BC-2849,PJ002239-01,Graines Mélanges,260,1,0,groupe_ethique_et_sante
+371731,BC-2849,CNMGF2,M.G.F.2,120,1,0,groupe_ethique_et_sante
+371732,BC-2849,PJ00131,PAIN CEREALES (2 tranches),1440,1,0,groupe_ethique_et_sante
+371733,BC-2849,FS17,Pain de mie (2 tranches),750,1,0,groupe_ethique_et_sante
+371734,BC-2849,sp-plaqCN,Plaquette CN A5 3 volets,150,1,0,groupe_ethique_et_sante
+371735,BC-2849,PRNPC3,Pulvérisateurs,50,1,0,groupe_ethique_et_sante
+371736,BC-2849,PC01691,Stick draineur thé citron 7g,900,1,0,groupe_ethique_et_sante
+371737,BC-2849,PC01692,Stick draineur thé fruits rouges  7g,600,1,0,groupe_ethique_et_sante
+371738,BC-2849,PC01693,Stick draineur thé pêche 7g,1200,1,0,groupe_ethique_et_sante
+367817,BC-2850,BC3707,Barre céréalière Fruits rouges,108,1,0,groupe_ethique_et_sante
+367818,BC-2850,BC3706,Barre céréalière Raisin amande,108,1,0,groupe_ethique_et_sante
+367819,BC-2850,PJ00083,Barre crisp caramel,112,1,0,groupe_ethique_et_sante
+367820,BC-2850,PJ00236,Barre crisp chocolat 35g,200,1,0,groupe_ethique_et_sante
+367821,BC-2850,PJ00237,Barre crisp coco 35g,150,1,0,groupe_ethique_et_sante
+367822,BC-2850,PJ00241,Barre crisp fruits rouges 35g,120,1,0,groupe_ethique_et_sante
+367823,BC-2850,PJ00178,Biscuit cacao pépite chocolat,360,1,0,groupe_ethique_et_sante
+367824,BC-2850,13129,Biscuits fruits rouges,504,1,0,groupe_ethique_et_sante
+367825,BC-2850,08730,Biscuits orange,576,1,0,groupe_ethique_et_sante
+367826,BC-2850,PJ00153,BOUTEILLE BOISSON FRAMBOISE,96,1,0,groupe_ethique_et_sante
+367827,BC-2850,PJ00157,BOUTEILLE BOISSON PÊCHE-PASSION,48,1,0,groupe_ethique_et_sante
+367828,BC-2850,PJ00129,Chips Barbecue,80,1,0,groupe_ethique_et_sante
+367829,BC-2850,PJ00292,Chorizo,100,1,0,groupe_ethique_et_sante
+367830,BC-2850,PB01240,Crêpes pomme caramel,150,1,0,groupe_ethique_et_sante
+367831,BC-2850,BG426,Flan Patissier chocolat,100,1,0,groupe_ethique_et_sante
+367832,BC-2850,BG434,Flan Patissier citron,100,1,0,groupe_ethique_et_sante
+367833,BC-2850,BG425,Flan Patissier vanille,100,1,0,groupe_ethique_et_sante
+367834,BC-2850,CNMGF2,M.G.F.2,30,1,0,groupe_ethique_et_sante
+367835,BC-2850,PJ00131,PAIN CEREALES (2 tranches),432,1,0,groupe_ethique_et_sante
+367836,BC-2850,PJ00147,Pate Fusilli,140,1,0,groupe_ethique_et_sante
+367837,BC-2850,PC01691,Stick draineur thé citron 7g,300,1,0,groupe_ethique_et_sante
+367838,BC-2850,PC01693,Stick draineur thé pêche 7g,300,1,0,groupe_ethique_et_sante
+367839,BC-2850,PJ00160,TORTITOS BACON,80,1,0,groupe_ethique_et_sante
+367840,BC-2850,PJ00159,TORTITOS POULET MAÏS,80,1,0,groupe_ethique_et_sante
+369923,BC-2851,CNSTRESS2,Anti stress 2,30,1,0,groupe_ethique_et_sante
+369924,BC-2851,11786,Barre (Cacao)chocolat ronde,252,1,0,groupe_ethique_et_sante
+369925,BC-2851,BC3707,Barre céréalière Fruits rouges,216,1,0,groupe_ethique_et_sante
+369926,BC-2851,BC3706,Barre céréalière Raisin amande,216,1,0,groupe_ethique_et_sante
+369927,BC-2851,PJ00083,Barre crisp caramel,336,1,0,groupe_ethique_et_sante
+369928,BC-2851,PJ00236,Barre crisp chocolat 35g,500,1,0,groupe_ethique_et_sante
+369929,BC-2851,PJ00237,Barre crisp coco 35g,100,1,0,groupe_ethique_et_sante
+369930,BC-2851,PJ00241,Barre crisp fruits rouges 35g,200,1,0,groupe_ethique_et_sante
+369931,BC-2851,BC3704,barre Vanille Amande (low sugar),150,1,0,groupe_ethique_et_sante
+369932,BC-2851,PJ00178,Biscuit cacao pépite chocolat,1152,1,0,groupe_ethique_et_sante
+369933,BC-2851,10357,Biscuits au chocolat,1800,1,0,groupe_ethique_et_sante
+369934,BC-2851,13129,Biscuits fruits rouges,360,1,0,groupe_ethique_et_sante
+369935,BC-2851,08730,Biscuits orange,720,1,0,groupe_ethique_et_sante
+369936,BC-2851,PJ00288,Bouteille boisson café,72,1,0,groupe_ethique_et_sante
+369937,BC-2851,PJ00153,BOUTEILLE BOISSON FRAMBOISE,96,1,0,groupe_ethique_et_sante
+369938,BC-2851,PJ00287,Bouteille boisson vanille,72,1,0,groupe_ethique_et_sante
+369939,BC-2851,FS15MO341,Bulles BARBECUE,336,1,0,groupe_ethique_et_sante
+369940,BC-2851,13588,Cappuccino,300,1,0,groupe_ethique_et_sante
+369941,BC-2851,BG355,Cereales pomme cannelle,100,1,0,groupe_ethique_et_sante
+369942,BC-2851,PJ00129,Chips Barbecue,80,1,0,groupe_ethique_et_sante
+369943,BC-2851,PJ00130,Chips oignon,160,1,0,groupe_ethique_et_sante
+369944,BC-2851,PJ00292,Chorizo,50,1,0,groupe_ethique_et_sante
+369945,BC-2851,12771,Desserts chocolat,300,1,0,groupe_ethique_et_sante
+369946,BC-2851,BG400,Entremets noix de coco,200,1,0,groupe_ethique_et_sante
+369947,BC-2851,BG207,Entremets praline,100,1,0,groupe_ethique_et_sante
+369948,BC-2851,BG427,Flan Patissier cafe,200,1,0,groupe_ethique_et_sante
+369949,BC-2851,BG428,Flan Patissier caramel,200,1,0,groupe_ethique_et_sante
+369950,BC-2851,BG434,Flan Patissier citron,200,1,0,groupe_ethique_et_sante
+369951,BC-2851,BG424,Flan Patissier pistache,100,1,0,groupe_ethique_et_sante
+369952,BC-2851,BG425,Flan Patissier vanille,100,1,0,groupe_ethique_et_sante
+369953,BC-2851,PJ002239-01,Graines Mélanges,130,1,0,groupe_ethique_et_sante
+369954,BC-2851,CNMGF2,M.G.F.2,30,1,0,groupe_ethique_et_sante
+369955,BC-2851,PJ00131,PAIN CEREALES (2 tranches),2160,1,0,groupe_ethique_et_sante
+369956,BC-2851,FS17,Pain de mie (2 tranches),750,1,0,groupe_ethique_et_sante
+369957,BC-2851,PB01237,Pancake,130,1,0,groupe_ethique_et_sante
+369958,BC-2851,sp-plaqCN,Plaquette CN A5 3 volets,50,1,0,groupe_ethique_et_sante
+369959,BC-2851,PRNPC3,Pulvérisateurs,100,1,0,groupe_ethique_et_sante
+369960,BC-2851,PJ00224,Saucisson,100,1,0,groupe_ethique_et_sante
+369961,BC-2851,SRNPC4,SHAKER,75,1,0,groupe_ethique_et_sante
+369962,BC-2851,PC01691,Stick draineur thé citron 7g,600,1,0,groupe_ethique_et_sante
+369963,BC-2851,PC01692,Stick draineur thé fruits rouges  7g,600,1,0,groupe_ethique_et_sante
+369964,BC-2851,PC01693,Stick draineur thé pêche 7g,600,1,0,groupe_ethique_et_sante
+369965,BC-2851,PJ00160,TORTITOS BACON,240,1,0,groupe_ethique_et_sante
+369966,BC-2851,PJ00159,TORTITOS POULET MAÏS,160,1,0,groupe_ethique_et_sante
+370119,BC-2852,BC3706,Barre céréalière Raisin amande,108,1,0,groupe_ethique_et_sante
+370120,BC-2852,PJ00083,Barre crisp caramel,112,1,0,groupe_ethique_et_sante
+370121,BC-2852,PJ00236,Barre crisp chocolat 35g,250,1,0,groupe_ethique_et_sante
+370122,BC-2852,PJ00237,Barre crisp coco 35g,50,1,0,groupe_ethique_et_sante
+370123,BC-2852,PJ00241,Barre crisp fruits rouges 35g,240,1,0,groupe_ethique_et_sante
+370124,BC-2852,11787,Barre noix de coco (ronde),126,1,0,groupe_ethique_et_sante
+370125,BC-2852,PJ00178,Biscuit cacao pépite chocolat,360,1,0,groupe_ethique_et_sante
+370126,BC-2852,10357,Biscuits au chocolat,2520,1,0,groupe_ethique_et_sante
+370127,BC-2852,13129,Biscuits fruits rouges,576,1,0,groupe_ethique_et_sante
+370128,BC-2852,08730,Biscuits orange,576,1,0,groupe_ethique_et_sante
+370129,BC-2852,13579,Boisson chocolat au lait,150,1,0,groupe_ethique_et_sante
+370130,BC-2852,12481,Boisson chocolat intense,150,1,0,groupe_ethique_et_sante
+370131,BC-2852,PJ00153,BOUTEILLE BOISSON FRAMBOISE,48,1,0,groupe_ethique_et_sante
+370132,BC-2852,PJ00157,BOUTEILLE BOISSON PÊCHE-PASSION,36,1,0,groupe_ethique_et_sante
+370133,BC-2852,FS15O342,Bulles oignons,168,1,0,groupe_ethique_et_sante
+370134,BC-2852,13588,Cappuccino,150,1,0,groupe_ethique_et_sante
+370135,BC-2852,BG357,Cereales vanille,100,1,0,groupe_ethique_et_sante
+370136,BC-2852,PJ00129,Chips Barbecue,80,1,0,groupe_ethique_et_sante
+370137,BC-2852,PJ00130,Chips oignon,80,1,0,groupe_ethique_et_sante
+370138,BC-2852,BG309,Crepes orange,100,1,0,groupe_ethique_et_sante
+370139,BC-2852,BG428,Flan Patissier caramel,100,1,0,groupe_ethique_et_sante
+370140,BC-2852,BG426,Flan Patissier chocolat,100,1,0,groupe_ethique_et_sante
+370141,BC-2852,BG434,Flan Patissier citron,100,1,0,groupe_ethique_et_sante
+370142,BC-2852,BG425,Flan Patissier vanille,200,1,0,groupe_ethique_et_sante
+370143,BC-2852,PJ00131,PAIN CEREALES (2 tranches),720,1,0,groupe_ethique_et_sante
+370144,BC-2852,FS17,Pain de mie (2 tranches),300,1,0,groupe_ethique_et_sante
+370145,BC-2852,FS12MF139,parmentier,100,1,0,groupe_ethique_et_sante
+370146,BC-2852,PJ00147,Pate Fusilli,140,1,0,groupe_ethique_et_sante
+370147,BC-2852,FS12MF993,spaghetti bolognaise,100,1,0,groupe_ethique_et_sante
+370148,BC-2852,PC01691,Stick draineur thé citron 7g,300,1,0,groupe_ethique_et_sante
+370149,BC-2852,PC01693,Stick draineur thé pêche 7g,600,1,0,groupe_ethique_et_sante
+370150,BC-2852,PJ00160,TORTITOS BACON,80,1,0,groupe_ethique_et_sante
+370151,BC-2852,PJ00159,TORTITOS POULET MAÏS,80,1,0,groupe_ethique_et_sante
+376074,BC-2853,11786,Barre (Cacao)chocolat ronde,252,1,0,groupe_ethique_et_sante
+376034,BC-2853,BC3707,Barre céréalière Fruits rouges,108,1,0,groupe_ethique_et_sante
+376035,BC-2853,BC3706,Barre céréalière Raisin amande,324,1,0,groupe_ethique_et_sante
+376036,BC-2853,PJ00083,Barre crisp caramel,448,1,0,groupe_ethique_et_sante
+376037,BC-2853,PJ00236,Barre crisp chocolat 35g,1500,1,0,groupe_ethique_et_sante
+376038,BC-2853,PJ00237,Barre crisp coco 35g,150,1,0,groupe_ethique_et_sante
+376039,BC-2853,PJ00241,Barre crisp fruits rouges 35g,120,1,0,groupe_ethique_et_sante
+376040,BC-2853,PJ00178,Biscuit cacao pépite chocolat,720,1,0,groupe_ethique_et_sante
+376041,BC-2853,10357,Biscuits au chocolat,1800,1,0,groupe_ethique_et_sante
+376042,BC-2853,13129,Biscuits fruits rouges,360,1,0,groupe_ethique_et_sante
+376043,BC-2853,08730,Biscuits orange,432,1,0,groupe_ethique_et_sante
+376044,BC-2853,12481,Boisson chocolat intense,150,1,0,groupe_ethique_et_sante
+376045,BC-2853,PJ00284,Bouchées chocolat blanc,200,1,0,groupe_ethique_et_sante
+376046,BC-2853,PJ00288,Bouteille boisson café,120,1,0,groupe_ethique_et_sante
+376047,BC-2853,PJ00157,BOUTEILLE BOISSON PÊCHE-PASSION,60,1,0,groupe_ethique_et_sante
+376048,BC-2853,PJ00287,Bouteille boisson vanille,120,1,0,groupe_ethique_et_sante
+376049,BC-2853,13588,Cappuccino,150,1,0,groupe_ethique_et_sante
+376050,BC-2853,BG349,Cereales chocolat,100,1,0,groupe_ethique_et_sante
+376051,BC-2853,PJ00129,Chips Barbecue,80,1,0,groupe_ethique_et_sante
+376052,BC-2853,PJ00130,Chips oignon,80,1,0,groupe_ethique_et_sante
+376053,BC-2853,PJ00292,Chorizo,50,1,0,groupe_ethique_et_sante
+376054,BC-2853,CNCIRCU1,Confort Circulatoire (60),90,1,0,groupe_ethique_et_sante
+376055,BC-2853,12771,Desserts chocolat,300,1,0,groupe_ethique_et_sante
+376056,BC-2853,BG400,Entremets noix de coco,100,1,0,groupe_ethique_et_sante
+376057,BC-2853,BG504,Entremets pomme caramel,100,1,0,groupe_ethique_et_sante
+376058,BC-2853,BG207,Entremets praline,100,1,0,groupe_ethique_et_sante
+376059,BC-2853,BG427,Flan Patissier cafe,200,1,0,groupe_ethique_et_sante
+376060,BC-2853,BG428,Flan Patissier caramel,200,1,0,groupe_ethique_et_sante
+376061,BC-2853,BG426,Flan Patissier chocolat,200,1,0,groupe_ethique_et_sante
+376062,BC-2853,BG434,Flan Patissier citron,200,1,0,groupe_ethique_et_sante
+376063,BC-2853,BG425,Flan Patissier vanille,200,1,0,groupe_ethique_et_sante
+376064,BC-2853,CNMGF2,M.G.F.2,120,1,0,groupe_ethique_et_sante
+376065,BC-2853,09974,Mousse au chocolat,150,1,0,groupe_ethique_et_sante
+376066,BC-2853,CNOMEGA,OMEGA 3,30,1,0,groupe_ethique_et_sante
+376067,BC-2853,PJ00131,PAIN CEREALES (2 tranches),3600,1,0,groupe_ethique_et_sante
+376068,BC-2853,FS17,Pain de mie (2 tranches),1200,1,0,groupe_ethique_et_sante
+376069,BC-2853,PRNPC3,Pulvérisateurs,50,1,0,groupe_ethique_et_sante
+376070,BC-2853,PJ00224,Saucisson,100,1,0,groupe_ethique_et_sante
+376071,BC-2853,A0285-01,Soupe marocaine,150,1,0,groupe_ethique_et_sante
+376072,BC-2853,PJ00160,TORTITOS BACON,80,1,0,groupe_ethique_et_sante
+376073,BC-2853,PJ00159,TORTITOS POULET MAÏS,80,1,0,groupe_ethique_et_sante
+370553,BC-2854,11786,Barre (Cacao)chocolat ronde,126,1,0,groupe_ethique_et_sante
+370554,BC-2854,BC3706,Barre céréalière Raisin amande,108,1,0,groupe_ethique_et_sante
+370555,BC-2854,PJ00083,Barre crisp caramel,112,1,0,groupe_ethique_et_sante
+370556,BC-2854,PJ00236,Barre crisp chocolat 35g,100,1,0,groupe_ethique_et_sante
+370557,BC-2854,PJ00237,Barre crisp coco 35g,100,1,0,groupe_ethique_et_sante
+370558,BC-2854,PJ00241,Barre crisp fruits rouges 35g,120,1,0,groupe_ethique_et_sante
+370559,BC-2854,BC3719,Barre Praline,150,1,0,groupe_ethique_et_sante
+370560,BC-2854,BC3704,barre Vanille Amande (low sugar),150,1,0,groupe_ethique_et_sante
+370561,BC-2854,PJ00178,Biscuit cacao pépite chocolat,360,1,0,groupe_ethique_et_sante
+370562,BC-2854,10357,Biscuits au chocolat,360,1,0,groupe_ethique_et_sante
+370563,BC-2854,13129,Biscuits fruits rouges,360,1,0,groupe_ethique_et_sante
+370564,BC-2854,08730,Biscuits orange,360,1,0,groupe_ethique_et_sante
+370565,BC-2854,PJ00153,BOUTEILLE BOISSON FRAMBOISE,120,1,0,groupe_ethique_et_sante
+370566,BC-2854,PJ00157,BOUTEILLE BOISSON PÊCHE-PASSION,60,1,0,groupe_ethique_et_sante
+370567,BC-2854,PJ00287,Bouteille boisson vanille,96,1,0,groupe_ethique_et_sante
+370568,BC-2854,FS15MO341,Bulles BARBECUE,168,1,0,groupe_ethique_et_sante
+370569,BC-2854,PJ00129,Chips Barbecue,80,1,0,groupe_ethique_et_sante
+370570,BC-2854,PJ00130,Chips oignon,160,1,0,groupe_ethique_et_sante
+370571,BC-2854,PJ00292,Chorizo,100,1,0,groupe_ethique_et_sante
+370572,BC-2854,BG400,Entremets noix de coco,100,1,0,groupe_ethique_et_sante
+370573,BC-2854,BG428,Flan Patissier caramel,100,1,0,groupe_ethique_et_sante
+370574,BC-2854,BG426,Flan Patissier chocolat,100,1,0,groupe_ethique_et_sante
+370575,BC-2854,BG434,Flan Patissier citron,100,1,0,groupe_ethique_et_sante
+370576,BC-2854,BG424,Flan Patissier pistache,100,1,0,groupe_ethique_et_sante
+370577,BC-2854,BG425,Flan Patissier vanille,100,1,0,groupe_ethique_et_sante
+370578,BC-2854,PJ002239-01,Graines Mélanges,130,1,0,groupe_ethique_et_sante
+370579,BC-2854,CNMGF2,M.G.F.2,30,1,0,groupe_ethique_et_sante
+370580,BC-2854,PJ00131,PAIN CEREALES (2 tranches),576,1,0,groupe_ethique_et_sante
+370581,BC-2854,FS17,Pain de mie (2 tranches),450,1,0,groupe_ethique_et_sante
+370582,BC-2854,SRNPC1,Sacs grand format,250,1,0,groupe_ethique_et_sante
+370583,BC-2854,PJ00224,Saucisson,150,1,0,groupe_ethique_et_sante
+370584,BC-2854,SRNPC4,SHAKER,75,1,0,groupe_ethique_et_sante
+370585,BC-2854,PC01691,Stick draineur thé citron 7g,300,1,0,groupe_ethique_et_sante
+370586,BC-2854,PC01692,Stick draineur thé fruits rouges  7g,300,1,0,groupe_ethique_et_sante
+370587,BC-2854,PC01693,Stick draineur thé pêche 7g,300,1,0,groupe_ethique_et_sante
+370588,BC-2854,PJ00160,TORTITOS BACON,80,1,0,groupe_ethique_et_sante
+370589,BC-2854,PJ00159,TORTITOS POULET MAÏS,80,1,0,groupe_ethique_et_sante
+367018,BC-2855,PB01021,Boisson café latte sans gluten,150,1,0,groupe_ethique_et_sante
+367017,BC-2855,PJ00131,PAIN CEREALES (2 tranches),288,1,0,groupe_ethique_et_sante
+371094,BC-2856,11786,Barre (Cacao)chocolat ronde,126,1,0,groupe_ethique_et_sante
+371095,BC-2856,BC3707,Barre céréalière Fruits rouges,108,1,0,groupe_ethique_et_sante
+371096,BC-2856,BC3706,Barre céréalière Raisin amande,108,1,0,groupe_ethique_et_sante
+371097,BC-2856,PJ00083,Barre crisp caramel,280,1,0,groupe_ethique_et_sante
+371098,BC-2856,PJ00236,Barre crisp chocolat 35g,750,1,0,groupe_ethique_et_sante
+371099,BC-2856,PJ00237,Barre crisp coco 35g,350,1,0,groupe_ethique_et_sante
+371100,BC-2856,PJ00241,Barre crisp fruits rouges 35g,200,1,0,groupe_ethique_et_sante
+371101,BC-2856,BC3719,Barre Praline,150,1,0,groupe_ethique_et_sante
+371102,BC-2856,BC3704,barre Vanille Amande (low sugar),300,1,0,groupe_ethique_et_sante
+371103,BC-2856,PJ00178,Biscuit cacao pépite chocolat,720,1,0,groupe_ethique_et_sante
+371104,BC-2856,10357,Biscuits au chocolat,2160,1,0,groupe_ethique_et_sante
+371105,BC-2856,13129,Biscuits fruits rouges,432,1,0,groupe_ethique_et_sante
+371106,BC-2856,08730,Biscuits orange,432,1,0,groupe_ethique_et_sante
+371107,BC-2856,12481,Boisson chocolat intense,150,1,0,groupe_ethique_et_sante
+371108,BC-2856,PJ00288,Bouteille boisson café,24,1,0,groupe_ethique_et_sante
+371109,BC-2856,PJ00153,BOUTEILLE BOISSON FRAMBOISE,240,1,0,groupe_ethique_et_sante
+371110,BC-2856,PJ00157,BOUTEILLE BOISSON PÊCHE-PASSION,240,1,0,groupe_ethique_et_sante
+371111,BC-2856,PJ00287,Bouteille boisson vanille,24,1,0,groupe_ethique_et_sante
+371112,BC-2856,PJ00129,Chips Barbecue,80,1,0,groupe_ethique_et_sante
+371113,BC-2856,PJ00130,Chips oignon,160,1,0,groupe_ethique_et_sante
+371114,BC-2856,PJ00292,Chorizo,100,1,0,groupe_ethique_et_sante
+371115,BC-2856,BG309,Crepes orange,100,1,0,groupe_ethique_et_sante
+371116,BC-2856,12771,Desserts chocolat,150,1,0,groupe_ethique_et_sante
+371117,BC-2856,BG400,Entremets noix de coco,100,1,0,groupe_ethique_et_sante
+371118,BC-2856,BG504,Entremets pomme caramel,100,1,0,groupe_ethique_et_sante
+371119,BC-2856,BG207,Entremets praline,100,1,0,groupe_ethique_et_sante
+371120,BC-2856,BG427,Flan Patissier cafe,100,1,0,groupe_ethique_et_sante
+371121,BC-2856,BG428,Flan Patissier caramel,100,1,0,groupe_ethique_et_sante
+371122,BC-2856,BG426,Flan Patissier chocolat,200,1,0,groupe_ethique_et_sante
+371123,BC-2856,BG434,Flan Patissier citron,100,1,0,groupe_ethique_et_sante
+371124,BC-2856,BG424,Flan Patissier pistache,100,1,0,groupe_ethique_et_sante
+371125,BC-2856,BG425,Flan Patissier vanille,200,1,0,groupe_ethique_et_sante
+371126,BC-2856,CNMGF2,M.G.F.2,30,1,0,groupe_ethique_et_sante
+371127,BC-2856,PJ00131,PAIN CEREALES (2 tranches),1008,1,0,groupe_ethique_et_sante
+371128,BC-2856,FS17,Pain de mie (2 tranches),1350,1,0,groupe_ethique_et_sante
+371129,BC-2856,sp-plaqCN,Plaquette CN A5 3 volets,50,1,0,groupe_ethique_et_sante
+371130,BC-2856,FS18SF800,Soupe aux cêpes,100,1,0,groupe_ethique_et_sante
+371131,BC-2856,PC01692,Stick draineur thé fruits rouges  7g,300,1,0,groupe_ethique_et_sante
+371132,BC-2856,PC01693,Stick draineur thé pêche 7g,300,1,0,groupe_ethique_et_sante
+371133,BC-2856,PJ00160,TORTITOS BACON,80,1,0,groupe_ethique_et_sante
+376075,BC-2857,11786,Barre (Cacao)chocolat ronde,126,1,0,groupe_ethique_et_sante
+376076,BC-2857,PJ00083,Barre crisp caramel,56,1,0,groupe_ethique_et_sante
+376077,BC-2857,PJ00236,Barre crisp chocolat 35g,50,1,0,groupe_ethique_et_sante
+376078,BC-2857,PJ00237,Barre crisp coco 35g,50,1,0,groupe_ethique_et_sante
+376079,BC-2857,PJ00241,Barre crisp fruits rouges 35g,80,1,0,groupe_ethique_et_sante
+376080,BC-2857,PJ00178,Biscuit cacao pépite chocolat,360,1,0,groupe_ethique_et_sante
+376081,BC-2857,10357,Biscuits au chocolat,1440,1,0,groupe_ethique_et_sante
+376082,BC-2857,13129,Biscuits fruits rouges,288,1,0,groupe_ethique_et_sante
+376083,BC-2857,08730,Biscuits orange,360,1,0,groupe_ethique_et_sante
+376084,BC-2857,PJ00157,BOUTEILLE BOISSON PÊCHE-PASSION,72,1,0,groupe_ethique_et_sante
+376085,BC-2857,BG349,Cereales chocolat,100,1,0,groupe_ethique_et_sante
+376086,BC-2857,BG357,Cereales vanille,100,1,0,groupe_ethique_et_sante
+376087,BC-2857,BG424,Flan Patissier pistache,100,1,0,groupe_ethique_et_sante
+376088,BC-2857,CNMGF2,M.G.F.2,30,1,0,groupe_ethique_et_sante
+376089,BC-2857,PJ00131,PAIN CEREALES (2 tranches),864,1,0,groupe_ethique_et_sante
+376090,BC-2857,FS17,Pain de mie (2 tranches),300,1,0,groupe_ethique_et_sante
+376097,BC-2857,PB01237,Pancake,130,1,0,groupe_ethique_et_sante
+376091,BC-2857,PJ00224,Saucisson,50,1,0,groupe_ethique_et_sante
+376092,BC-2857,SRNPC4,SHAKER,75,1,0,groupe_ethique_et_sante
+376093,BC-2857,PC01691,Stick draineur thé citron 7g,300,1,0,groupe_ethique_et_sante
+376094,BC-2857,PC01692,Stick draineur thé fruits rouges  7g,300,1,0,groupe_ethique_et_sante
+376095,BC-2857,PC01693,Stick draineur thé pêche 7g,300,1,0,groupe_ethique_et_sante
+376096,BC-2857,PJ00160,TORTITOS BACON,80,1,0,groupe_ethique_et_sante
+374247,BC-2858,BC3707,Barre céréalière Fruits rouges,108,1,0,groupe_ethique_et_sante
+374248,BC-2858,BC3706,Barre céréalière Raisin amande,108,1,0,groupe_ethique_et_sante
+374249,BC-2858,PJ00083,Barre crisp caramel,224,1,0,groupe_ethique_et_sante
+374250,BC-2858,PJ00236,Barre crisp chocolat 35g,250,1,0,groupe_ethique_et_sante
+374251,BC-2858,BC3719,Barre Praline,150,1,0,groupe_ethique_et_sante
+374252,BC-2858,PJ00178,Biscuit cacao pépite chocolat,360,1,0,groupe_ethique_et_sante
+374253,BC-2858,10357,Biscuits au chocolat,1008,1,0,groupe_ethique_et_sante
+374254,BC-2858,13129,Biscuits fruits rouges,360,1,0,groupe_ethique_et_sante
+374255,BC-2858,08730,Biscuits orange,288,1,0,groupe_ethique_et_sante
+374256,BC-2858,PJ00153,BOUTEILLE BOISSON FRAMBOISE,48,1,0,groupe_ethique_et_sante
+374257,BC-2858,13588,Cappuccino,150,1,0,groupe_ethique_et_sante
+374258,BC-2858,PJ00129,Chips Barbecue,80,1,0,groupe_ethique_et_sante
+374259,BC-2858,PB01240,Crêpes pomme caramel,150,1,0,groupe_ethique_et_sante
+374260,BC-2858,12771,Desserts chocolat,150,1,0,groupe_ethique_et_sante
+374261,BC-2858,BG400,Entremets noix de coco,200,1,0,groupe_ethique_et_sante
+374262,BC-2858,BG435,Entremets poire belle hel,200,1,0,groupe_ethique_et_sante
+374263,BC-2858,BG504,Entremets pomme caramel,200,1,0,groupe_ethique_et_sante
+374264,BC-2858,BG207,Entremets praline,100,1,0,groupe_ethique_et_sante
+374265,BC-2858,BG427,Flan Patissier cafe,100,1,0,groupe_ethique_et_sante
+374266,BC-2858,BG428,Flan Patissier caramel,100,1,0,groupe_ethique_et_sante
+374267,BC-2858,BG426,Flan Patissier chocolat,300,1,0,groupe_ethique_et_sante
+374268,BC-2858,BG434,Flan Patissier citron,100,1,0,groupe_ethique_et_sante
+374269,BC-2858,BG424,Flan Patissier pistache,100,1,0,groupe_ethique_et_sante
+374270,BC-2858,BG425,Flan Patissier vanille,100,1,0,groupe_ethique_et_sante
+374271,BC-2858,CNMGF2,M.G.F.2,60,1,0,groupe_ethique_et_sante
+374272,BC-2858,CNOMEGA,OMEGA 3,30,1,0,groupe_ethique_et_sante
+374273,BC-2858,PJ00131,PAIN CEREALES (2 tranches),1440,1,0,groupe_ethique_et_sante
+374274,BC-2858,FS17,Pain de mie (2 tranches),600,1,0,groupe_ethique_et_sante
+374275,BC-2858,PJ00224,Saucisson,100,1,0,groupe_ethique_et_sante
+374276,BC-2858,PC01691,Stick draineur thé citron 7g,300,1,0,groupe_ethique_et_sante
+374277,BC-2858,PC01692,Stick draineur thé fruits rouges  7g,300,1,0,groupe_ethique_et_sante
+374278,BC-2858,PC01693,Stick draineur thé pêche 7g,300,1,0,groupe_ethique_et_sante
+374279,BC-2858,PJ00160,TORTITOS BACON,80,1,0,groupe_ethique_et_sante
+367715,BC-2859,CNSTRESS2,Anti stress 2,30,1,0,groupe_ethique_et_sante
+367716,BC-2859,11786,Barre (Cacao)chocolat ronde,126,1,0,groupe_ethique_et_sante
+367717,BC-2859,BC3707,Barre céréalière Fruits rouges,216,1,0,groupe_ethique_et_sante
+367718,BC-2859,BC3706,Barre céréalière Raisin amande,216,1,0,groupe_ethique_et_sante
+367719,BC-2859,PJ00083,Barre crisp caramel,392,1,0,groupe_ethique_et_sante
+367720,BC-2859,PJ00236,Barre crisp chocolat 35g,350,1,0,groupe_ethique_et_sante
+367721,BC-2859,PJ00237,Barre crisp coco 35g,400,1,0,groupe_ethique_et_sante
+367722,BC-2859,PJ00241,Barre crisp fruits rouges 35g,320,1,0,groupe_ethique_et_sante
+367723,BC-2859,11787,Barre noix de coco (ronde),252,1,0,groupe_ethique_et_sante
+367724,BC-2859,BC3719,Barre Praline,150,1,0,groupe_ethique_et_sante
+367725,BC-2859,BC3704,barre Vanille Amande (low sugar),300,1,0,groupe_ethique_et_sante
+367726,BC-2859,PJ00178,Biscuit cacao pépite chocolat,720,1,0,groupe_ethique_et_sante
+367727,BC-2859,10357,Biscuits au chocolat,720,1,0,groupe_ethique_et_sante
+367728,BC-2859,13129,Biscuits fruits rouges,720,1,0,groupe_ethique_et_sante
+367729,BC-2859,08730,Biscuits orange,720,1,0,groupe_ethique_et_sante
+367730,BC-2859,PB01021,Boisson café latte sans gluten,600,1,0,groupe_ethique_et_sante
+367762,BC-2859,12481,Boisson chocolat intense,150,1,0,groupe_ethique_et_sante
+367731,BC-2859,PJ00283,Bouchées chocolat noir,200,1,0,groupe_ethique_et_sante
+367732,BC-2859,PJ00153,BOUTEILLE BOISSON FRAMBOISE,192,1,0,groupe_ethique_et_sante
+367733,BC-2859,PJ00157,BOUTEILLE BOISSON PÊCHE-PASSION,192,1,0,groupe_ethique_et_sante
+367734,BC-2859,13588,Cappuccino,150,1,0,groupe_ethique_et_sante
+367735,BC-2859,PJ00129,Chips Barbecue,240,1,0,groupe_ethique_et_sante
+367736,BC-2859,PJ00130,Chips oignon,240,1,0,groupe_ethique_et_sante
+367737,BC-2859,PJ00292,Chorizo,300,1,0,groupe_ethique_et_sante
+367738,BC-2859,CNCIRCU1,Confort Circulatoire (60),30,1,0,groupe_ethique_et_sante
+367739,BC-2859,BG400,Entremets noix de coco,100,1,0,groupe_ethique_et_sante
+367740,BC-2859,BG427,Flan Patissier cafe,100,1,0,groupe_ethique_et_sante
+367741,BC-2859,BG428,Flan Patissier caramel,100,1,0,groupe_ethique_et_sante
+367742,BC-2859,BG425,Flan Patissier vanille,100,1,0,groupe_ethique_et_sante
+367743,BC-2859,PJ002239-01,Graines Mélanges,130,1,0,groupe_ethique_et_sante
+367744,BC-2859,CNMGF2,M.G.F.2,60,1,0,groupe_ethique_et_sante
+367745,BC-2859,09974,Mousse au chocolat,150,1,0,groupe_ethique_et_sante
+367746,BC-2859,CNOMEGA,OMEGA 3,30,1,0,groupe_ethique_et_sante
+367747,BC-2859,PJ00131,PAIN CEREALES (2 tranches),2736,1,0,groupe_ethique_et_sante
+367748,BC-2859,FS17,Pain de mie (2 tranches),1800,1,0,groupe_ethique_et_sante
+367749,BC-2859,PJ00147,Pate Fusilli,140,1,0,groupe_ethique_et_sante
+367750,BC-2859,11664,Puree de pomme de terre,150,1,0,groupe_ethique_et_sante
+367751,BC-2859,PJ00149,Riz,150,1,0,groupe_ethique_et_sante
+367752,BC-2859,13589,Riz au lait,150,1,0,groupe_ethique_et_sante
+367753,BC-2859,SRNPC1,Sacs grand format,250,1,0,groupe_ethique_et_sante
+367754,BC-2859,PJ00224,Saucisson,300,1,0,groupe_ethique_et_sante
+367755,BC-2859,SRNPC4,SHAKER,75,1,0,groupe_ethique_et_sante
+367756,BC-2859,FS12MF993,spaghetti bolognaise,100,1,0,groupe_ethique_et_sante
+367757,BC-2859,PC01691,Stick draineur thé citron 7g,900,1,0,groupe_ethique_et_sante
+367758,BC-2859,PC01692,Stick draineur thé fruits rouges  7g,600,1,0,groupe_ethique_et_sante
+367759,BC-2859,PC01693,Stick draineur thé pêche 7g,600,1,0,groupe_ethique_et_sante
+367760,BC-2859,PJ00160,TORTITOS BACON,240,1,0,groupe_ethique_et_sante
+367761,BC-2859,PJ00159,TORTITOS POULET MAÏS,240,1,0,groupe_ethique_et_sante
+375645,BC-2860,11786,Barre (Cacao)chocolat ronde,252,1,0,groupe_ethique_et_sante
+375646,BC-2860,BC3707,Barre céréalière Fruits rouges,216,1,0,groupe_ethique_et_sante
+375647,BC-2860,BC3706,Barre céréalière Raisin amande,216,1,0,groupe_ethique_et_sante
+375648,BC-2860,PJ00083,Barre crisp caramel,280,1,0,groupe_ethique_et_sante
+375649,BC-2860,PJ00236,Barre crisp chocolat 35g,350,1,0,groupe_ethique_et_sante
+375650,BC-2860,PJ00237,Barre crisp coco 35g,300,1,0,groupe_ethique_et_sante
+375651,BC-2860,PJ00241,Barre crisp fruits rouges 35g,200,1,0,groupe_ethique_et_sante
+375652,BC-2860,11787,Barre noix de coco (ronde),126,1,0,groupe_ethique_et_sante
+375653,BC-2860,BC3719,Barre Praline,150,1,0,groupe_ethique_et_sante
+375654,BC-2860,BC3704,barre Vanille Amande (low sugar),300,1,0,groupe_ethique_et_sante
+375655,BC-2860,PJ00178,Biscuit cacao pépite chocolat,864,1,0,groupe_ethique_et_sante
+375656,BC-2860,10357,Biscuits au chocolat,1224,1,0,groupe_ethique_et_sante
+375657,BC-2860,13129,Biscuits fruits rouges,648,1,0,groupe_ethique_et_sante
+375658,BC-2860,08730,Biscuits orange,720,1,0,groupe_ethique_et_sante
+375659,BC-2860,13579,Boisson chocolat au lait,150,1,0,groupe_ethique_et_sante
+375660,BC-2860,12481,Boisson chocolat intense,300,1,0,groupe_ethique_et_sante
+375661,BC-2860,08218,Boisson orange,300,1,0,groupe_ethique_et_sante
+375662,BC-2860,08220,Boisson peche mangue,150,1,0,groupe_ethique_et_sante
+375663,BC-2860,PJ00283,Bouchées chocolat noir,100,1,0,groupe_ethique_et_sante
+375664,BC-2860,PJ00153,BOUTEILLE BOISSON FRAMBOISE,132,1,0,groupe_ethique_et_sante
+375665,BC-2860,PJ00157,BOUTEILLE BOISSON PÊCHE-PASSION,120,1,0,groupe_ethique_et_sante
+375666,BC-2860,PB00666-01,Cake minute chocolat,130,1,0,groupe_ethique_et_sante
+375667,BC-2860,BG349,Cereales chocolat,100,1,0,groupe_ethique_et_sante
+375668,BC-2860,BG357,Cereales vanille,100,1,0,groupe_ethique_et_sante
+375669,BC-2860,PJ00130,Chips oignon,80,1,0,groupe_ethique_et_sante
+375670,BC-2860,PJ00292,Chorizo,50,1,0,groupe_ethique_et_sante
+375671,BC-2860,CNCIRCU1,Confort Circulatoire (60),30,1,0,groupe_ethique_et_sante
+375672,BC-2860,CNTRANS,Confort Transit (90),10,1,0,groupe_ethique_et_sante
+375673,BC-2860,PB01020,Dessert choco caramel pépite sans gluten,150,1,0,groupe_ethique_et_sante
+375674,BC-2860,12771,Desserts chocolat,300,1,0,groupe_ethique_et_sante
+375675,BC-2860,BG418,Entremets banane,100,1,0,groupe_ethique_et_sante
+375676,BC-2860,BG400,Entremets noix de coco,100,1,0,groupe_ethique_et_sante
+375677,BC-2860,BG435,Entremets poire belle hel,100,1,0,groupe_ethique_et_sante
+375678,BC-2860,BG504,Entremets pomme caramel,100,1,0,groupe_ethique_et_sante
+375679,BC-2860,BG207,Entremets praline,100,1,0,groupe_ethique_et_sante
+375680,BC-2860,BG427,Flan Patissier cafe,200,1,0,groupe_ethique_et_sante
+375681,BC-2860,BG428,Flan Patissier caramel,200,1,0,groupe_ethique_et_sante
+375682,BC-2860,BG426,Flan Patissier chocolat,300,1,0,groupe_ethique_et_sante
+375683,BC-2860,BG425,Flan Patissier vanille,300,1,0,groupe_ethique_et_sante
+375684,BC-2860,CNMGF2,M.G.F.2,60,1,0,groupe_ethique_et_sante
+375685,BC-2860,09974,Mousse au chocolat,150,1,0,groupe_ethique_et_sante
+375686,BC-2860,CNOMEGA,OMEGA 3,30,1,0,groupe_ethique_et_sante
+375687,BC-2860,PJ00131,PAIN CEREALES (2 tranches),3168,1,0,groupe_ethique_et_sante
+375688,BC-2860,FS171RN310302,Pain de mie,8,1,0,groupe_ethique_et_sante
+375689,BC-2860,FS17,Pain de mie (2 tranches),1800,1,0,groupe_ethique_et_sante
+375690,BC-2860,PB01237,Pancake,130,1,0,groupe_ethique_et_sante
+375691,BC-2860,sp-plaqCN,Plaquette CN A5 3 volets,50,1,0,groupe_ethique_et_sante
+375692,BC-2860,PRNPC3,Pulvérisateurs,50,1,0,groupe_ethique_et_sante
+375693,BC-2860,SRNPC1,Sacs grand format,250,1,0,groupe_ethique_et_sante
+375694,BC-2860,SRNPC2,Sacs petit format,300,1,0,groupe_ethique_et_sante
+375695,BC-2860,PJ00224,Saucisson,50,1,0,groupe_ethique_et_sante
+375696,BC-2860,SRNPC4,SHAKER,75,1,0,groupe_ethique_et_sante
+375697,BC-2860,PC01691,Stick draineur thé citron 7g,1200,1,0,groupe_ethique_et_sante
+375698,BC-2860,PC01692,Stick draineur thé fruits rouges  7g,900,1,0,groupe_ethique_et_sante
+375699,BC-2860,PC01693,Stick draineur thé pêche 7g,1200,1,0,groupe_ethique_et_sante
+375700,BC-2860,PJ00160,TORTITOS BACON,80,1,0,groupe_ethique_et_sante
+369045,BC-2861,BC3707,Barre céréalière Fruits rouges,216,1,0,groupe_ethique_et_sante
+369046,BC-2861,BC3706,Barre céréalière Raisin amande,216,1,0,groupe_ethique_et_sante
+369047,BC-2861,PJ00083,Barre crisp caramel,168,1,0,groupe_ethique_et_sante
+369048,BC-2861,PJ00236,Barre crisp chocolat 35g,300,1,0,groupe_ethique_et_sante
+369049,BC-2861,PJ00237,Barre crisp coco 35g,250,1,0,groupe_ethique_et_sante
+369050,BC-2861,PJ00241,Barre crisp fruits rouges 35g,160,1,0,groupe_ethique_et_sante
+369051,BC-2861,BC3719,Barre Praline,150,1,0,groupe_ethique_et_sante
+369052,BC-2861,PJ00178,Biscuit cacao pépite chocolat,648,1,0,groupe_ethique_et_sante
+369053,BC-2861,10357,Biscuits au chocolat,648,1,0,groupe_ethique_et_sante
+369054,BC-2861,13129,Biscuits fruits rouges,288,1,0,groupe_ethique_et_sante
+369055,BC-2861,08730,Biscuits orange,360,1,0,groupe_ethique_et_sante
+369056,BC-2861,12481,Boisson chocolat intense,150,1,0,groupe_ethique_et_sante
+369057,BC-2861,PJ00288,Bouteille boisson café,84,1,0,groupe_ethique_et_sante
+369058,BC-2861,PJ00153,BOUTEILLE BOISSON FRAMBOISE,132,1,0,groupe_ethique_et_sante
+369059,BC-2861,PJ00157,BOUTEILLE BOISSON PÊCHE-PASSION,108,1,0,groupe_ethique_et_sante
+369060,BC-2861,PJ00287,Bouteille boisson vanille,60,1,0,groupe_ethique_et_sante
+369061,BC-2861,PB00666-01,Cake minute chocolat,130,1,0,groupe_ethique_et_sante
+369062,BC-2861,13588,Cappuccino,150,1,0,groupe_ethique_et_sante
+369063,BC-2861,BG349,Cereales chocolat,100,1,0,groupe_ethique_et_sante
+369064,BC-2861,PJ00130,Chips oignon,160,1,0,groupe_ethique_et_sante
+369065,BC-2861,PJ00292,Chorizo,200,1,0,groupe_ethique_et_sante
+369066,BC-2861,CNCIRCU1,Confort Circulatoire (60),30,1,0,groupe_ethique_et_sante
+369067,BC-2861,PLxxx,crème aux oeufs,150,1,0,groupe_ethique_et_sante
+369068,BC-2861,12773,Desserts entremet vanille,150,1,0,groupe_ethique_et_sante
+369069,BC-2861,BG504,Entremets pomme caramel,100,1,0,groupe_ethique_et_sante
+369070,BC-2861,BG207,Entremets praline,100,1,0,groupe_ethique_et_sante
+369071,BC-2861,BG427,Flan Patissier cafe,100,1,0,groupe_ethique_et_sante
+369072,BC-2861,BG428,Flan Patissier caramel,100,1,0,groupe_ethique_et_sante
+369073,BC-2861,BG426,Flan Patissier chocolat,200,1,0,groupe_ethique_et_sante
+369074,BC-2861,BG434,Flan Patissier citron,100,1,0,groupe_ethique_et_sante
+369075,BC-2861,BG425,Flan Patissier vanille,200,1,0,groupe_ethique_et_sante
+369076,BC-2861,CNMGF2,M.G.F.2,90,1,0,groupe_ethique_et_sante
+369077,BC-2861,CNOMEGA,OMEGA 3,30,1,0,groupe_ethique_et_sante
+369078,BC-2861,PJ00131,PAIN CEREALES (2 tranches),1296,1,0,groupe_ethique_et_sante
+369079,BC-2861,FS17,Pain de mie (2 tranches),750,1,0,groupe_ethique_et_sante
+369080,BC-2861,PB01237,Pancake,130,1,0,groupe_ethique_et_sante
+369081,BC-2861,PJ00147,Pate Fusilli,140,1,0,groupe_ethique_et_sante
+369082,BC-2861,PJ00224,Saucisson,200,1,0,groupe_ethique_et_sante
+369083,BC-2861,08223,Soupe de legumes,150,1,0,groupe_ethique_et_sante
+369084,BC-2861,A0285-01,Soupe marocaine,150,1,0,groupe_ethique_et_sante
+369085,BC-2861,PC01691,Stick draineur thé citron 7g,600,1,0,groupe_ethique_et_sante
+369086,BC-2861,PC01692,Stick draineur thé fruits rouges  7g,300,1,0,groupe_ethique_et_sante
+369087,BC-2861,PC01693,Stick draineur thé pêche 7g,600,1,0,groupe_ethique_et_sante
+369088,BC-2861,PJ00160,TORTITOS BACON,160,1,0,groupe_ethique_et_sante
+369089,BC-2861,PJ00159,TORTITOS POULET MAÏS,80,1,0,groupe_ethique_et_sante
+369090,BC-2861,08205,Veloute asperge,150,1,0,groupe_ethique_et_sante
+369091,BC-2861,08208,Veloute poulet curry,150,1,0,groupe_ethique_et_sante
+375877,BC-2862,11786,Barre (Cacao)chocolat ronde,378,1,0,groupe_ethique_et_sante
+375878,BC-2862,PJ00083,Barre crisp caramel,112,1,0,groupe_ethique_et_sante
+375879,BC-2862,PJ00236,Barre crisp chocolat 35g,400,1,0,groupe_ethique_et_sante
+375880,BC-2862,PJ00237,Barre crisp coco 35g,250,1,0,groupe_ethique_et_sante
+375881,BC-2862,PJ00241,Barre crisp fruits rouges 35g,40,1,0,groupe_ethique_et_sante
+375882,BC-2862,11787,Barre noix de coco (ronde),378,1,0,groupe_ethique_et_sante
+375883,BC-2862,PB01021,Boisson café latte sans gluten,150,1,0,groupe_ethique_et_sante
+375884,BC-2862,08220,Boisson peche mangue,150,1,0,groupe_ethique_et_sante
+375885,BC-2862,PJ00284,Bouchées chocolat blanc,100,1,0,groupe_ethique_et_sante
+375886,BC-2862,PJ00288,Bouteille boisson café,12,1,0,groupe_ethique_et_sante
+375887,BC-2862,PJ00153,BOUTEILLE BOISSON FRAMBOISE,72,1,0,groupe_ethique_et_sante
+375888,BC-2862,PJ00157,BOUTEILLE BOISSON PÊCHE-PASSION,72,1,0,groupe_ethique_et_sante
+375889,BC-2862,PJ00287,Bouteille boisson vanille,24,1,0,groupe_ethique_et_sante
+375890,BC-2862,PB00666-01,Cake minute chocolat,130,1,0,groupe_ethique_et_sante
+375891,BC-2862,13588,Cappuccino,300,1,0,groupe_ethique_et_sante
+375892,BC-2862,BG355,Cereales pomme cannelle,100,1,0,groupe_ethique_et_sante
+375893,BC-2862,PJ00292,Chorizo,150,1,0,groupe_ethique_et_sante
+375894,BC-2862,PLxxx,crème aux oeufs,150,1,0,groupe_ethique_et_sante
+375895,BC-2862,PB01020,Dessert choco caramel pépite sans gluten,150,1,0,groupe_ethique_et_sante
+375896,BC-2862,12771,Desserts chocolat,300,1,0,groupe_ethique_et_sante
+375897,BC-2862,08225,Desserts fruits rouges,150,1,0,groupe_ethique_et_sante
+375898,BC-2862,BG400,Entremets noix de coco,300,1,0,groupe_ethique_et_sante
+375899,BC-2862,BG435,Entremets poire belle hel,300,1,0,groupe_ethique_et_sante
+375900,BC-2862,BG504,Entremets pomme caramel,200,1,0,groupe_ethique_et_sante
+375901,BC-2862,BG427,Flan Patissier cafe,400,1,0,groupe_ethique_et_sante
+375902,BC-2862,BG428,Flan Patissier caramel,400,1,0,groupe_ethique_et_sante
+375903,BC-2862,BG434,Flan Patissier citron,400,1,0,groupe_ethique_et_sante
+375904,BC-2862,BG424,Flan Patissier pistache,400,1,0,groupe_ethique_et_sante
+375905,BC-2862,BG425,Flan Patissier vanille,400,1,0,groupe_ethique_et_sante
+375906,BC-2862,09976,Fromage blanc abricot,300,1,0,groupe_ethique_et_sante
+375907,BC-2862,CNMGF2,M.G.F.2,30,1,0,groupe_ethique_et_sante
+375908,BC-2862,09974,Mousse au chocolat,150,1,0,groupe_ethique_et_sante
+375909,BC-2862,PJ00131,PAIN CEREALES (2 tranches),1008,1,0,groupe_ethique_et_sante
+375910,BC-2862,FS17,Pain de mie (2 tranches),1200,1,0,groupe_ethique_et_sante
+375911,BC-2862,PB01237,Pancake,130,1,0,groupe_ethique_et_sante
+375912,BC-2862,PJ00147,Pate Fusilli,140,1,0,groupe_ethique_et_sante
+375913,BC-2862,11664,Puree de pomme de terre,150,1,0,groupe_ethique_et_sante
+375914,BC-2862,13589,Riz au lait,150,1,0,groupe_ethique_et_sante
+375915,BC-2862,SRNPC4,SHAKER,75,1,0,groupe_ethique_et_sante
+375916,BC-2862,08223,Soupe de legumes,150,1,0,groupe_ethique_et_sante
+375917,BC-2862,PC01691,Stick draineur thé citron 7g,1200,1,0,groupe_ethique_et_sante
+375918,BC-2862,PC01692,Stick draineur thé fruits rouges  7g,1200,1,0,groupe_ethique_et_sante
+375919,BC-2862,PC01693,Stick draineur thé pêche 7g,1200,1,0,groupe_ethique_et_sante
+375920,BC-2862,BG618,Veloute poireau,100,1,0,groupe_ethique_et_sante
+375921,BC-2862,08208,Veloute poulet curry,150,1,0,groupe_ethique_et_sante
+373243,BC-2863,BC3706,Barre céréalière Raisin amande,108,1,0,groupe_ethique_et_sante
+373244,BC-2863,13129,Biscuits fruits rouges,288,1,0,groupe_ethique_et_sante
+373245,BC-2863,08730,Biscuits orange,360,1,0,groupe_ethique_et_sante
+373246,BC-2863,12481,Boisson chocolat intense,300,1,0,groupe_ethique_et_sante
+373247,BC-2863,08218,Boisson orange,150,1,0,groupe_ethique_et_sante
+373248,BC-2863,PJ00288,Bouteille boisson café,60,1,0,groupe_ethique_et_sante
+373249,BC-2863,PJ00153,BOUTEILLE BOISSON FRAMBOISE,84,1,0,groupe_ethique_et_sante
+373250,BC-2863,PJ00287,Bouteille boisson vanille,144,1,0,groupe_ethique_et_sante
+373251,BC-2863,BG349,Cereales chocolat,200,1,0,groupe_ethique_et_sante
+373252,BC-2863,BG355,Cereales pomme cannelle,100,1,0,groupe_ethique_et_sante
+373253,BC-2863,BG357,Cereales vanille,100,1,0,groupe_ethique_et_sante
+373254,BC-2863,PJ00130,Chips oignon,80,1,0,groupe_ethique_et_sante
+373255,BC-2863,PB00684-01,Crêpes banane chocolat,150,1,0,groupe_ethique_et_sante
+373256,BC-2863,BG309,Crepes orange,100,1,0,groupe_ethique_et_sante
+373257,BC-2863,PB01240,Crêpes pomme caramel,150,1,0,groupe_ethique_et_sante
+373258,BC-2863,12771,Desserts chocolat,150,1,0,groupe_ethique_et_sante
+373259,BC-2863,12773,Desserts entremet vanille,150,1,0,groupe_ethique_et_sante
+373260,BC-2863,BG418,Entremets banane,100,1,0,groupe_ethique_et_sante
+373261,BC-2863,BG400,Entremets noix de coco,200,1,0,groupe_ethique_et_sante
+373262,BC-2863,BG435,Entremets poire belle hel,300,1,0,groupe_ethique_et_sante
+373263,BC-2863,BG504,Entremets pomme caramel,100,1,0,groupe_ethique_et_sante
+373264,BC-2863,BG207,Entremets praline,100,1,0,groupe_ethique_et_sante
+373265,BC-2863,BG427,Flan Patissier cafe,200,1,0,groupe_ethique_et_sante
+373266,BC-2863,BG428,Flan Patissier caramel,300,1,0,groupe_ethique_et_sante
+373267,BC-2863,BG426,Flan Patissier chocolat,400,1,0,groupe_ethique_et_sante
+373268,BC-2863,BG434,Flan Patissier citron,100,1,0,groupe_ethique_et_sante
+373269,BC-2863,BG424,Flan Patissier pistache,400,1,0,groupe_ethique_et_sante
+373270,BC-2863,BG425,Flan Patissier vanille,100,1,0,groupe_ethique_et_sante
+373271,BC-2863,09974,Mousse au chocolat,150,1,0,groupe_ethique_et_sante
+373272,BC-2863,PJ00131,PAIN CEREALES (2 tranches),864,1,0,groupe_ethique_et_sante
+373273,BC-2863,FS171RN310302,Pain de mie,24,1,0,groupe_ethique_et_sante
+373274,BC-2863,PC01691,Stick draineur thé citron 7g,900,1,0,groupe_ethique_et_sante
+373275,BC-2863,PC01692,Stick draineur thé fruits rouges  7g,600,1,0,groupe_ethique_et_sante
+373276,BC-2863,PC01693,Stick draineur thé pêche 7g,300,1,0,groupe_ethique_et_sante
+373277,BC-2863,PJ00160,TORTITOS BACON,80,1,0,groupe_ethique_et_sante
+374113,BC-2864,BC3707,Barre céréalière Fruits rouges,432,1,0,groupe_ethique_et_sante
+374114,BC-2864,BC3706,Barre céréalière Raisin amande,324,1,0,groupe_ethique_et_sante
+374115,BC-2864,PJ00083,Barre crisp caramel,560,1,0,groupe_ethique_et_sante
+374116,BC-2864,PJ00236,Barre crisp chocolat 35g,1000,1,0,groupe_ethique_et_sante
+374117,BC-2864,PJ00237,Barre crisp coco 35g,300,1,0,groupe_ethique_et_sante
+374118,BC-2864,PJ00241,Barre crisp fruits rouges 35g,240,1,0,groupe_ethique_et_sante
+374119,BC-2864,BC3719,Barre Praline,450,1,0,groupe_ethique_et_sante
+374120,BC-2864,BC3704,barre Vanille Amande (low sugar),300,1,0,groupe_ethique_et_sante
+374121,BC-2864,PJ00178,Biscuit cacao pépite chocolat,1152,1,0,groupe_ethique_et_sante
+374122,BC-2864,10357,Biscuits au chocolat,2160,1,0,groupe_ethique_et_sante
+374123,BC-2864,13129,Biscuits fruits rouges,720,1,0,groupe_ethique_et_sante
+374124,BC-2864,08730,Biscuits orange,1080,1,0,groupe_ethique_et_sante
+374125,BC-2864,08218,Boisson orange,150,1,0,groupe_ethique_et_sante
+374126,BC-2864,08220,Boisson peche mangue,300,1,0,groupe_ethique_et_sante
+374127,BC-2864,PJ00153,BOUTEILLE BOISSON FRAMBOISE,180,1,0,groupe_ethique_et_sante
+374128,BC-2864,PJ00157,BOUTEILLE BOISSON PÊCHE-PASSION,240,1,0,groupe_ethique_et_sante
+374129,BC-2864,FS15MO341,Bulles BARBECUE,168,1,0,groupe_ethique_et_sante
+374130,BC-2864,PJ00130,Chips oignon,80,1,0,groupe_ethique_et_sante
+374131,BC-2864,PJ00292,Chorizo,100,1,0,groupe_ethique_et_sante
+374132,BC-2864,BG427,Flan Patissier cafe,100,1,0,groupe_ethique_et_sante
+374133,BC-2864,BG428,Flan Patissier caramel,100,1,0,groupe_ethique_et_sante
+374134,BC-2864,BG426,Flan Patissier chocolat,100,1,0,groupe_ethique_et_sante
+374135,BC-2864,BG434,Flan Patissier citron,100,1,0,groupe_ethique_et_sante
+374136,BC-2864,BG424,Flan Patissier pistache,100,1,0,groupe_ethique_et_sante
+374137,BC-2864,BG425,Flan Patissier vanille,100,1,0,groupe_ethique_et_sante
+374138,BC-2864,PJ002239-01,Graines Mélanges,130,1,0,groupe_ethique_et_sante
+374139,BC-2864,CNMGF2,M.G.F.2,60,1,0,groupe_ethique_et_sante
+374140,BC-2864,CNOMEGA,OMEGA 3,30,1,0,groupe_ethique_et_sante
+374141,BC-2864,PJ00131,PAIN CEREALES (2 tranches),2304,1,0,groupe_ethique_et_sante
+374142,BC-2864,FS171RN310302,Pain de mie,40,1,0,groupe_ethique_et_sante
+374143,BC-2864,sp-plaqCN,Plaquette CN A5 3 volets,100,1,0,groupe_ethique_et_sante
+374144,BC-2864,SRNPC1,Sacs grand format,250,1,0,groupe_ethique_et_sante
+374145,BC-2864,PJ00224,Saucisson,100,1,0,groupe_ethique_et_sante
+374146,BC-2864,PC01691,Stick draineur thé citron 7g,600,1,0,groupe_ethique_et_sante
+374147,BC-2864,PC01692,Stick draineur thé fruits rouges  7g,600,1,0,groupe_ethique_et_sante
+374148,BC-2864,PC01693,Stick draineur thé pêche 7g,600,1,0,groupe_ethique_et_sante
+374149,BC-2864,PJ00160,TORTITOS BACON,80,1,0,groupe_ethique_et_sante
+374150,BC-2864,PJ00159,TORTITOS POULET MAÏS,80,1,0,groupe_ethique_et_sante
+374953,BC-2865,CNSTRESS2,Anti stress 2,30,1,0,groupe_ethique_et_sante
+374954,BC-2865,BC3707,Barre céréalière Fruits rouges,108,1,0,groupe_ethique_et_sante
+374955,BC-2865,BC3706,Barre céréalière Raisin amande,216,1,0,groupe_ethique_et_sante
+374956,BC-2865,PJ00083,Barre crisp caramel,224,1,0,groupe_ethique_et_sante
+374957,BC-2865,PJ00236,Barre crisp chocolat 35g,200,1,0,groupe_ethique_et_sante
+374958,BC-2865,PJ00237,Barre crisp coco 35g,200,1,0,groupe_ethique_et_sante
+374959,BC-2865,PJ00241,Barre crisp fruits rouges 35g,160,1,0,groupe_ethique_et_sante
+374960,BC-2865,BC3719,Barre Praline,150,1,0,groupe_ethique_et_sante
+374961,BC-2865,BC3704,barre Vanille Amande (low sugar),150,1,0,groupe_ethique_et_sante
+374962,BC-2865,PJ00178,Biscuit cacao pépite chocolat,288,1,0,groupe_ethique_et_sante
+374963,BC-2865,PJ00284,Bouchées chocolat blanc,100,1,0,groupe_ethique_et_sante
+374964,BC-2865,PJ00283,Bouchées chocolat noir,100,1,0,groupe_ethique_et_sante
+374965,BC-2865,PJ00130,Chips oignon,80,1,0,groupe_ethique_et_sante
+374966,BC-2865,PJ00292,Chorizo,100,1,0,groupe_ethique_et_sante
+374967,BC-2865,CNCIRCU1,Confort Circulatoire (60),60,1,0,groupe_ethique_et_sante
+374968,BC-2865,12771,Desserts chocolat,150,1,0,groupe_ethique_et_sante
+374969,BC-2865,BG400,Entremets noix de coco,100,1,0,groupe_ethique_et_sante
+374970,BC-2865,BG435,Entremets poire belle hel,100,1,0,groupe_ethique_et_sante
+374971,BC-2865,BG504,Entremets pomme caramel,100,1,0,groupe_ethique_et_sante
+374972,BC-2865,BG207,Entremets praline,100,1,0,groupe_ethique_et_sante
+374973,BC-2865,BG428,Flan Patissier caramel,200,1,0,groupe_ethique_et_sante
+374974,BC-2865,BG426,Flan Patissier chocolat,200,1,0,groupe_ethique_et_sante
+374975,BC-2865,BG434,Flan Patissier citron,200,1,0,groupe_ethique_et_sante
+374976,BC-2865,BG424,Flan Patissier pistache,200,1,0,groupe_ethique_et_sante
+374977,BC-2865,BG425,Flan Patissier vanille,300,1,0,groupe_ethique_et_sante
+374978,BC-2865,PJ002239-01,Graines Mélanges,130,1,0,groupe_ethique_et_sante
+374979,BC-2865,CNMGF2,M.G.F.2,30,1,0,groupe_ethique_et_sante
+374980,BC-2865,CNMULTIVIT,Multi-vitamines et Minéraux,60,1,0,groupe_ethique_et_sante
+374981,BC-2865,CNOMEGA,OMEGA 3,30,1,0,groupe_ethique_et_sante
+374982,BC-2865,FS18OF903,omelette fromage,100,1,0,groupe_ethique_et_sante
+374983,BC-2865,PJ00131,PAIN CEREALES (2 tranches),1008,1,0,groupe_ethique_et_sante
+374984,BC-2865,FS17,Pain de mie (2 tranches),450,1,0,groupe_ethique_et_sante
+374985,BC-2865,SRNPC1,Sacs grand format,250,1,0,groupe_ethique_et_sante
+374986,BC-2865,SRNPC2,Sacs petit format,300,1,0,groupe_ethique_et_sante
+374987,BC-2865,PJ00224,Saucisson,150,1,0,groupe_ethique_et_sante
+374991,BC-2865,PC01691,Stick draineur thé citron 7g,300,1,0,groupe_ethique_et_sante
+374988,BC-2865,PC01692,Stick draineur thé fruits rouges  7g,300,1,0,groupe_ethique_et_sante
+374989,BC-2865,PC01693,Stick draineur thé pêche 7g,600,1,0,groupe_ethique_et_sante
+374990,BC-2865,PJ00160,TORTITOS BACON,80,1,0,groupe_ethique_et_sante
+368084,BC-2866,BC3707,Barre céréalière Fruits rouges,108,1,0,groupe_ethique_et_sante
+368046,BC-2866,PJ00083,Barre crisp caramel,504,1,0,groupe_ethique_et_sante
+368041,BC-2866,PJ00236,Barre crisp chocolat 35g,900,1,0,groupe_ethique_et_sante
+368060,BC-2866,PJ00237,Barre crisp coco 35g,200,1,0,groupe_ethique_et_sante
+368047,BC-2866,PJ00241,Barre crisp fruits rouges 35g,440,1,0,groupe_ethique_et_sante
+368068,BC-2866,11787,Barre noix de coco (ronde),126,1,0,groupe_ethique_et_sante
+368064,BC-2866,BC3719,Barre Praline,150,1,0,groupe_ethique_et_sante
+368043,BC-2866,BC3704,barre Vanille Amande (low sugar),900,1,0,groupe_ethique_et_sante
+368037,BC-2866,PJ00178,Biscuit cacao pépite chocolat,1368,1,0,groupe_ethique_et_sante
+368035,BC-2866,10357,Biscuits au chocolat,2304,1,0,groupe_ethique_et_sante
+368038,BC-2866,13129,Biscuits fruits rouges,1080,1,0,groupe_ethique_et_sante
+368040,BC-2866,08730,Biscuits orange,792,1,0,groupe_ethique_et_sante
+368051,BC-2866,13579,Boisson chocolat au lait,300,1,0,groupe_ethique_et_sante
+368053,BC-2866,12481,Boisson chocolat intense,450,1,0,groupe_ethique_et_sante
+368048,BC-2866,PJ00153,BOUTEILLE BOISSON FRAMBOISE,384,1,0,groupe_ethique_et_sante
+368062,BC-2866,PJ00157,BOUTEILLE BOISSON PÊCHE-PASSION,192,1,0,groupe_ethique_et_sante
+368078,BC-2866,PJ00287,Bouteille boisson vanille,180,1,0,groupe_ethique_et_sante
+368069,BC-2866,FS15MO341,Bulles BARBECUE,168,1,0,groupe_ethique_et_sante
+368065,BC-2866,FS15O342,Bulles oignons,168,1,0,groupe_ethique_et_sante
+368058,BC-2866,13588,Cappuccino,450,1,0,groupe_ethique_et_sante
+368077,BC-2866,BG349,Cereales chocolat,100,1,0,groupe_ethique_et_sante
+368057,BC-2866,PJ00129,Chips Barbecue,240,1,0,groupe_ethique_et_sante
+368049,BC-2866,PJ00130,Chips oignon,320,1,0,groupe_ethique_et_sante
+368088,BC-2866,PJ00292,Chorizo,750,1,0,groupe_ethique_et_sante
+368074,BC-2866,PLxxx,crème aux oeufs,150,1,0,groupe_ethique_et_sante
+368071,BC-2866,BG309,Crepes orange,100,1,0,groupe_ethique_et_sante
+368052,BC-2866,12771,Desserts chocolat,300,1,0,groupe_ethique_et_sante
+368081,BC-2866,BG418,Entremets banane,100,1,0,groupe_ethique_et_sante
+368076,BC-2866,BG400,Entremets noix de coco,100,1,0,groupe_ethique_et_sante
+368075,BC-2866,BG435,Entremets poire belle hel,100,1,0,groupe_ethique_et_sante
+368073,BC-2866,BG504,Entremets pomme caramel,100,1,0,groupe_ethique_et_sante
+368072,BC-2866,BG207,Entremets praline,100,1,0,groupe_ethique_et_sante
+368066,BC-2866,BG427,Flan Patissier cafe,200,1,0,groupe_ethique_et_sante
+368054,BC-2866,BG428,Flan Patissier caramel,300,1,0,groupe_ethique_et_sante
+368061,BC-2866,BG426,Flan Patissier chocolat,300,1,0,groupe_ethique_et_sante
+368063,BC-2866,BG434,Flan Patissier citron,200,1,0,groupe_ethique_et_sante
+368067,BC-2866,BG424,Flan Patissier pistache,200,1,0,groupe_ethique_et_sante
+368055,BC-2866,BG425,Flan Patissier vanille,300,1,0,groupe_ethique_et_sante
+368056,BC-2866,PJ002239-01,Graines Mélanges,260,1,0,groupe_ethique_et_sante
+368082,BC-2866,CNMGF2,M.G.F.2,90,1,0,groupe_ethique_et_sante
+368070,BC-2866,09974,Mousse au chocolat,150,1,0,groupe_ethique_et_sante
+368034,BC-2866,PJ00131,PAIN CEREALES (2 tranches),2304,1,0,groupe_ethique_et_sante
+368045,BC-2866,FS17,Pain de mie (2 tranches),600,1,0,groupe_ethique_et_sante
+368085,BC-2866,PB01237,Pancake,130,1,0,groupe_ethique_et_sante
+368086,BC-2866,FS12MF139,parmentier,100,1,0,groupe_ethique_et_sante
+368080,BC-2866,11664,Puree de pomme de terre,150,1,0,groupe_ethique_et_sante
+368044,BC-2866,PJ00224,Saucisson,1050,1,0,groupe_ethique_et_sante
+368087,BC-2866,SRNPC4,SHAKER,150,1,0,groupe_ethique_et_sante
+368083,BC-2866,FS18SF800,Soupe aux cêpes,100,1,0,groupe_ethique_et_sante
+368039,BC-2866,PC01691,Stick draineur thé citron 7g,900,1,0,groupe_ethique_et_sante
+368042,BC-2866,PC01692,Stick draineur thé fruits rouges  7g,1200,1,0,groupe_ethique_et_sante
+368036,BC-2866,PC01693,Stick draineur thé pêche 7g,2100,1,0,groupe_ethique_et_sante
+368059,BC-2866,PJ00160,TORTITOS BACON,240,1,0,groupe_ethique_et_sante
+368050,BC-2866,PJ00159,TORTITOS POULET MAÏS,320,1,0,groupe_ethique_et_sante
+368079,BC-2866,08208,Veloute poulet curry,150,1,0,groupe_ethique_et_sante
+370845,BC-2867,CNSTRESS2,Anti stress 2,30,1,0,groupe_ethique_et_sante
+370846,BC-2867,11786,Barre (Cacao)chocolat ronde,252,1,0,groupe_ethique_et_sante
+370847,BC-2867,BC3707,Barre céréalière Fruits rouges,648,1,0,groupe_ethique_et_sante
+370848,BC-2867,BC3706,Barre céréalière Raisin amande,648,1,0,groupe_ethique_et_sante
+370849,BC-2867,PJ00083,Barre crisp caramel,840,1,0,groupe_ethique_et_sante
+370850,BC-2867,PJ00236,Barre crisp chocolat 35g,1000,1,0,groupe_ethique_et_sante
+370851,BC-2867,PJ00237,Barre crisp coco 35g,750,1,0,groupe_ethique_et_sante
+370852,BC-2867,PJ00241,Barre crisp fruits rouges 35g,120,1,0,groupe_ethique_et_sante
+370853,BC-2867,BC3719,Barre Praline,300,1,0,groupe_ethique_et_sante
+370854,BC-2867,BC3704,barre Vanille Amande (low sugar),300,1,0,groupe_ethique_et_sante
+370855,BC-2867,PJ00178,Biscuit cacao pépite chocolat,792,1,0,groupe_ethique_et_sante
+370856,BC-2867,10357,Biscuits au chocolat,5400,1,0,groupe_ethique_et_sante
+370857,BC-2867,13129,Biscuits fruits rouges,1296,1,0,groupe_ethique_et_sante
+370858,BC-2867,08730,Biscuits orange,2520,1,0,groupe_ethique_et_sante
+370859,BC-2867,13579,Boisson chocolat au lait,300,1,0,groupe_ethique_et_sante
+370860,BC-2867,12481,Boisson chocolat intense,300,1,0,groupe_ethique_et_sante
+370861,BC-2867,PJ00283,Bouchées chocolat noir,200,1,0,groupe_ethique_et_sante
+370862,BC-2867,PJ00153,BOUTEILLE BOISSON FRAMBOISE,72,1,0,groupe_ethique_et_sante
+370863,BC-2867,PJ00157,BOUTEILLE BOISSON PÊCHE-PASSION,72,1,0,groupe_ethique_et_sante
+370864,BC-2867,FS15O342,Bulles oignons,336,1,0,groupe_ethique_et_sante
+370865,BC-2867,PJ00129,Chips Barbecue,480,1,0,groupe_ethique_et_sante
+370866,BC-2867,PJ00130,Chips oignon,640,1,0,groupe_ethique_et_sante
+370867,BC-2867,PJ00292,Chorizo,150,1,0,groupe_ethique_et_sante
+370868,BC-2867,CNCIRCU1,Confort Circulatoire (60),30,1,0,groupe_ethique_et_sante
+370869,BC-2867,PB01020,Dessert choco caramel pépite sans gluten,150,1,0,groupe_ethique_et_sante
+370870,BC-2867,PB01020,Dessert choco caramel pépite sans gluten,150,1,0,groupe_ethique_et_sante
+370871,BC-2867,12771,Desserts chocolat,300,1,0,groupe_ethique_et_sante
+370872,BC-2867,BG400,Entremets noix de coco,200,1,0,groupe_ethique_et_sante
+370873,BC-2867,BG435,Entremets poire belle hel,200,1,0,groupe_ethique_et_sante
+370874,BC-2867,BG504,Entremets pomme caramel,200,1,0,groupe_ethique_et_sante
+370875,BC-2867,BG207,Entremets praline,200,1,0,groupe_ethique_et_sante
+370876,BC-2867,BG427,Flan Patissier cafe,200,1,0,groupe_ethique_et_sante
+370877,BC-2867,BG428,Flan Patissier caramel,300,1,0,groupe_ethique_et_sante
+370878,BC-2867,BG434,Flan Patissier citron,200,1,0,groupe_ethique_et_sante
+370879,BC-2867,BG424,Flan Patissier pistache,300,1,0,groupe_ethique_et_sante
+370880,BC-2867,BG425,Flan Patissier vanille,300,1,0,groupe_ethique_et_sante
+370881,BC-2867,09976,Fromage blanc abricot,300,1,0,groupe_ethique_et_sante
+370882,BC-2867,CNMGF2,M.G.F.2,90,1,0,groupe_ethique_et_sante
+370883,BC-2867,09974,Mousse au chocolat,300,1,0,groupe_ethique_et_sante
+370884,BC-2867,CNOMEGA,OMEGA 3,30,1,0,groupe_ethique_et_sante
+370885,BC-2867,PJ00131,PAIN CEREALES (2 tranches),3600,1,0,groupe_ethique_et_sante
+370886,BC-2867,FS17,Pain de mie (2 tranches),1800,1,0,groupe_ethique_et_sante
+370887,BC-2867,PJ00147,Pate Fusilli,280,1,0,groupe_ethique_et_sante
+370888,BC-2867,sp-plaqCN,Plaquette CN A5 3 volets,50,1,0,groupe_ethique_et_sante
+370889,BC-2867,PRNPC3,Pulvérisateurs,100,1,0,groupe_ethique_et_sante
+370890,BC-2867,PJ00224,Saucisson,500,1,0,groupe_ethique_et_sante
+370891,BC-2867,SRNPC4,SHAKER,75,1,0,groupe_ethique_et_sante
+370892,BC-2867,FS12MF993,spaghetti bolognaise,100,1,0,groupe_ethique_et_sante
+370893,BC-2867,PC01691,Stick draineur thé citron 7g,3600,1,0,groupe_ethique_et_sante
+370894,BC-2867,PC01692,Stick draineur thé fruits rouges  7g,2400,1,0,groupe_ethique_et_sante
+370895,BC-2867,PC01693,Stick draineur thé pêche 7g,4500,1,0,groupe_ethique_et_sante
+370896,BC-2867,PJ00160,TORTITOS BACON,240,1,0,groupe_ethique_et_sante
+370897,BC-2867,PJ00159,TORTITOS POULET MAÏS,240,1,0,groupe_ethique_et_sante
+372197,BC-2868,CNSTRESS2,Anti stress 2,30,1,0,groupe_ethique_et_sante
+372198,BC-2868,BC3707,Barre céréalière Fruits rouges,216,1,0,groupe_ethique_et_sante
+372199,BC-2868,BC3706,Barre céréalière Raisin amande,108,1,0,groupe_ethique_et_sante
+372200,BC-2868,PJ00083,Barre crisp caramel,280,1,0,groupe_ethique_et_sante
+372201,BC-2868,PJ00236,Barre crisp chocolat 35g,300,1,0,groupe_ethique_et_sante
+372202,BC-2868,PJ00237,Barre crisp coco 35g,150,1,0,groupe_ethique_et_sante
+372203,BC-2868,PJ00241,Barre crisp fruits rouges 35g,160,1,0,groupe_ethique_et_sante
+372204,BC-2868,11787,Barre noix de coco (ronde),126,1,0,groupe_ethique_et_sante
+372205,BC-2868,PJ00178,Biscuit cacao pépite chocolat,288,1,0,groupe_ethique_et_sante
+372206,BC-2868,10357,Biscuits au chocolat,1296,1,0,groupe_ethique_et_sante
+372207,BC-2868,13129,Biscuits fruits rouges,216,1,0,groupe_ethique_et_sante
+372208,BC-2868,08730,Biscuits orange,504,1,0,groupe_ethique_et_sante
+372209,BC-2868,13579,Boisson chocolat au lait,300,1,0,groupe_ethique_et_sante
+372210,BC-2868,PJ00153,BOUTEILLE BOISSON FRAMBOISE,36,1,0,groupe_ethique_et_sante
+372211,BC-2868,PJ00157,BOUTEILLE BOISSON PÊCHE-PASSION,36,1,0,groupe_ethique_et_sante
+372212,BC-2868,FS15O342,Bulles oignons,168,1,0,groupe_ethique_et_sante
+372213,BC-2868,PJ00129,Chips Barbecue,160,1,0,groupe_ethique_et_sante
+372214,BC-2868,PJ00130,Chips oignon,160,1,0,groupe_ethique_et_sante
+372215,BC-2868,PJ00292,Chorizo,150,1,0,groupe_ethique_et_sante
+372216,BC-2868,CNCIRCU1,Confort Circulatoire (60),30,1,0,groupe_ethique_et_sante
+372217,BC-2868,12771,Desserts chocolat,150,1,0,groupe_ethique_et_sante
+372218,BC-2868,BG400,Entremets noix de coco,100,1,0,groupe_ethique_et_sante
+372219,BC-2868,BG435,Entremets poire belle hel,100,1,0,groupe_ethique_et_sante
+372220,BC-2868,BG504,Entremets pomme caramel,100,1,0,groupe_ethique_et_sante
+372221,BC-2868,BG207,Entremets praline,100,1,0,groupe_ethique_et_sante
+372222,BC-2868,BG427,Flan Patissier cafe,100,1,0,groupe_ethique_et_sante
+372223,BC-2868,BG428,Flan Patissier caramel,100,1,0,groupe_ethique_et_sante
+372224,BC-2868,BG426,Flan Patissier chocolat,100,1,0,groupe_ethique_et_sante
+372225,BC-2868,BG434,Flan Patissier citron,100,1,0,groupe_ethique_et_sante
+372226,BC-2868,BG424,Flan Patissier pistache,100,1,0,groupe_ethique_et_sante
+372227,BC-2868,BG425,Flan Patissier vanille,100,1,0,groupe_ethique_et_sante
+372228,BC-2868,CNMGF2,M.G.F.2,60,1,0,groupe_ethique_et_sante
+372229,BC-2868,PJ00131,PAIN CEREALES (2 tranches),864,1,0,groupe_ethique_et_sante
+372230,BC-2868,FS17,Pain de mie (2 tranches),750,1,0,groupe_ethique_et_sante
+372231,BC-2868,PJ00147,Pate Fusilli,140,1,0,groupe_ethique_et_sante
+372232,BC-2868,PRNPC3,Pulvérisateurs,50,1,0,groupe_ethique_et_sante
+372233,BC-2868,PJ00149,Riz,150,1,0,groupe_ethique_et_sante
+372234,BC-2868,PJ00224,Saucisson,250,1,0,groupe_ethique_et_sante
+372235,BC-2868,SRNPC4,SHAKER,75,1,0,groupe_ethique_et_sante
+372236,BC-2868,08223,Soupe de legumes,150,1,0,groupe_ethique_et_sante
+372237,BC-2868,PC01692,Stick draineur thé fruits rouges  7g,300,1,0,groupe_ethique_et_sante
+372238,BC-2868,PC01693,Stick draineur thé pêche 7g,300,1,0,groupe_ethique_et_sante
+372239,BC-2868,PJ00160,TORTITOS BACON,160,1,0,groupe_ethique_et_sante
+368383,BC-2869,BC3707,Barre céréalière Fruits rouges,108,1,0,groupe_ethique_et_sante
+368379,BC-2869,BC3706,Barre céréalière Raisin amande,216,1,0,groupe_ethique_et_sante
+368376,BC-2869,PJ00083,Barre crisp caramel,224,1,0,groupe_ethique_et_sante
+368373,BC-2869,PJ00236,Barre crisp chocolat 35g,250,1,0,groupe_ethique_et_sante
+368375,BC-2869,PJ00237,Barre crisp coco 35g,250,1,0,groupe_ethique_et_sante
+368381,BC-2869,PJ00241,Barre crisp fruits rouges 35g,40,1,0,groupe_ethique_et_sante
+368370,BC-2869,PJ00178,Biscuit cacao pépite chocolat,288,1,0,groupe_ethique_et_sante
+368366,BC-2869,10357,Biscuits au chocolat,576,1,0,groupe_ethique_et_sante
+368374,BC-2869,13129,Biscuits fruits rouges,144,1,0,groupe_ethique_et_sante
+368372,BC-2869,08730,Biscuits orange,144,1,0,groupe_ethique_et_sante
+368387,BC-2869,PJ00153,BOUTEILLE BOISSON FRAMBOISE,84,1,0,groupe_ethique_et_sante
+368388,BC-2869,PJ00157,BOUTEILLE BOISSON PÊCHE-PASSION,84,1,0,groupe_ethique_et_sante
+368378,BC-2869,PJ00129,Chips Barbecue,160,1,0,groupe_ethique_et_sante
+368380,BC-2869,PJ00130,Chips oignon,80,1,0,groupe_ethique_et_sante
+368395,BC-2869,PJ00292,Chorizo,150,1,0,groupe_ethique_et_sante
+368384,BC-2869,08225,Desserts fruits rouges,150,1,0,groupe_ethique_et_sante
+368393,BC-2869,BG504,Entremets pomme caramel,100,1,0,groupe_ethique_et_sante
+368382,BC-2869,BG427,Flan Patissier cafe,200,1,0,groupe_ethique_et_sante
+368385,BC-2869,BG428,Flan Patissier caramel,100,1,0,groupe_ethique_et_sante
+368386,BC-2869,BG434,Flan Patissier citron,100,1,0,groupe_ethique_et_sante
+368389,BC-2869,BG424,Flan Patissier pistache,100,1,0,groupe_ethique_et_sante
+368392,BC-2869,BG425,Flan Patissier vanille,100,1,0,groupe_ethique_et_sante
+368394,BC-2869,CNMGF2,M.G.F.2,30,1,0,groupe_ethique_et_sante
+368365,BC-2869,PJ00131,PAIN CEREALES (2 tranches),576,1,0,groupe_ethique_et_sante
+368367,BC-2869,FS17,Pain de mie (2 tranches),450,1,0,groupe_ethique_et_sante
+368377,BC-2869,PJ00224,Saucisson,200,1,0,groupe_ethique_et_sante
+368391,BC-2869,FS12MF993,spaghetti bolognaise,100,1,0,groupe_ethique_et_sante
+368369,BC-2869,PC01691,Stick draineur thé citron 7g,600,1,0,groupe_ethique_et_sante
+368368,BC-2869,PC01692,Stick draineur thé fruits rouges  7g,300,1,0,groupe_ethique_et_sante
+368371,BC-2869,PC01693,Stick draineur thé pêche 7g,300,1,0,groupe_ethique_et_sante
+368390,BC-2869,PJ00160,TORTITOS BACON,80,1,0,groupe_ethique_et_sante
+370442,BC-2870,BC3707,Barre céréalière Fruits rouges,324,1,0,groupe_ethique_et_sante
+370443,BC-2870,BC3706,Barre céréalière Raisin amande,324,1,0,groupe_ethique_et_sante
+370444,BC-2870,PJ00083,Barre crisp caramel,560,1,0,groupe_ethique_et_sante
+370445,BC-2870,PJ00236,Barre crisp chocolat 35g,700,1,0,groupe_ethique_et_sante
+370446,BC-2870,PJ00237,Barre crisp coco 35g,700,1,0,groupe_ethique_et_sante
+370447,BC-2870,PJ00241,Barre crisp fruits rouges 35g,400,1,0,groupe_ethique_et_sante
+370448,BC-2870,BC3719,Barre Praline,450,1,0,groupe_ethique_et_sante
+370449,BC-2870,BC3704,barre Vanille Amande (low sugar),450,1,0,groupe_ethique_et_sante
+370450,BC-2870,PJ00178,Biscuit cacao pépite chocolat,1152,1,0,groupe_ethique_et_sante
+370451,BC-2870,10357,Biscuits au chocolat,3600,1,0,groupe_ethique_et_sante
+370452,BC-2870,13129,Biscuits fruits rouges,1152,1,0,groupe_ethique_et_sante
+370453,BC-2870,08730,Biscuits orange,1440,1,0,groupe_ethique_et_sante
+370454,BC-2870,13579,Boisson chocolat au lait,150,1,0,groupe_ethique_et_sante
+370455,BC-2870,PJ00283,Bouchées chocolat noir,300,1,0,groupe_ethique_et_sante
+370456,BC-2870,PJ00153,BOUTEILLE BOISSON FRAMBOISE,96,1,0,groupe_ethique_et_sante
+370457,BC-2870,PJ00129,Chips Barbecue,240,1,0,groupe_ethique_et_sante
+370458,BC-2870,CNCIRCU1,Confort Circulatoire (60),30,1,0,groupe_ethique_et_sante
+370459,BC-2870,BG418,Entremets banane,100,1,0,groupe_ethique_et_sante
+370460,BC-2870,BG400,Entremets noix de coco,100,1,0,groupe_ethique_et_sante
+370461,BC-2870,BG426,Flan Patissier chocolat,100,1,0,groupe_ethique_et_sante
+370462,BC-2870,BG424,Flan Patissier pistache,100,1,0,groupe_ethique_et_sante
+370463,BC-2870,PJ002239-01,Graines Mélanges,130,1,0,groupe_ethique_et_sante
+370464,BC-2870,CNMGF2,M.G.F.2,150,1,0,groupe_ethique_et_sante
+370465,BC-2870,08212,Omelette fines herbes,150,1,0,groupe_ethique_et_sante
+370466,BC-2870,PJ00131,PAIN CEREALES (2 tranches),2880,1,0,groupe_ethique_et_sante
+370467,BC-2870,FS17,Pain de mie (2 tranches),750,1,0,groupe_ethique_et_sante
+370468,BC-2870,PJ00224,Saucisson,300,1,0,groupe_ethique_et_sante
+370477,BC-2870,SRNPC4,SHAKER,75,1,0,groupe_ethique_et_sante
+370469,BC-2870,A0285-01,Soupe marocaine,150,1,0,groupe_ethique_et_sante
+370470,BC-2870,FS12MF993,spaghetti bolognaise,100,1,0,groupe_ethique_et_sante
+370471,BC-2870,PC01691,Stick draineur thé citron 7g,600,1,0,groupe_ethique_et_sante
+370472,BC-2870,PC01692,Stick draineur thé fruits rouges  7g,300,1,0,groupe_ethique_et_sante
+370473,BC-2870,PC01693,Stick draineur thé pêche 7g,300,1,0,groupe_ethique_et_sante
+370474,BC-2870,PJ00160,TORTITOS BACON,160,1,0,groupe_ethique_et_sante
+370475,BC-2870,PJ00159,TORTITOS POULET MAÏS,80,1,0,groupe_ethique_et_sante
+370476,BC-2870,BG618,Veloute poireau,100,1,0,groupe_ethique_et_sante
+371437,BC-2871,11786,Barre (Cacao)chocolat ronde,126,1,0,groupe_ethique_et_sante
+371438,BC-2871,BC3707,Barre céréalière Fruits rouges,216,1,0,groupe_ethique_et_sante
+371439,BC-2871,BC3706,Barre céréalière Raisin amande,216,1,0,groupe_ethique_et_sante
+371440,BC-2871,PJ00083,Barre crisp caramel,448,1,0,groupe_ethique_et_sante
+371441,BC-2871,PJ00236,Barre crisp chocolat 35g,400,1,0,groupe_ethique_et_sante
+371442,BC-2871,PJ00237,Barre crisp coco 35g,250,1,0,groupe_ethique_et_sante
+371443,BC-2871,PJ00241,Barre crisp fruits rouges 35g,200,1,0,groupe_ethique_et_sante
+371444,BC-2871,BC3719,Barre Praline,150,1,0,groupe_ethique_et_sante
+371445,BC-2871,BC3704,barre Vanille Amande (low sugar),150,1,0,groupe_ethique_et_sante
+371446,BC-2871,PJ00178,Biscuit cacao pépite chocolat,1008,1,0,groupe_ethique_et_sante
+371447,BC-2871,10357,Biscuits au chocolat,2160,1,0,groupe_ethique_et_sante
+371448,BC-2871,13129,Biscuits fruits rouges,360,1,0,groupe_ethique_et_sante
+371449,BC-2871,08730,Biscuits orange,576,1,0,groupe_ethique_et_sante
+371450,BC-2871,PJ00284,Bouchées chocolat blanc,300,1,0,groupe_ethique_et_sante
+371451,BC-2871,PJ00283,Bouchées chocolat noir,300,1,0,groupe_ethique_et_sante
+371452,BC-2871,PJ00288,Bouteille boisson café,72,1,0,groupe_ethique_et_sante
+371453,BC-2871,PJ00153,BOUTEILLE BOISSON FRAMBOISE,84,1,0,groupe_ethique_et_sante
+371454,BC-2871,PJ00157,BOUTEILLE BOISSON PÊCHE-PASSION,84,1,0,groupe_ethique_et_sante
+371455,BC-2871,PJ00129,Chips Barbecue,80,1,0,groupe_ethique_et_sante
+371456,BC-2871,PJ00130,Chips oignon,160,1,0,groupe_ethique_et_sante
+371457,BC-2871,PJ00292,Chorizo,100,1,0,groupe_ethique_et_sante
+371458,BC-2871,PB00684-01,Crêpes banane chocolat,150,1,0,groupe_ethique_et_sante
+371459,BC-2871,BG309,Crepes orange,100,1,0,groupe_ethique_et_sante
+371460,BC-2871,BG400,Entremets noix de coco,100,1,0,groupe_ethique_et_sante
+371461,BC-2871,BG427,Flan Patissier cafe,100,1,0,groupe_ethique_et_sante
+371462,BC-2871,BG426,Flan Patissier chocolat,200,1,0,groupe_ethique_et_sante
+371463,BC-2871,BG424,Flan Patissier pistache,100,1,0,groupe_ethique_et_sante
+371464,BC-2871,BG425,Flan Patissier vanille,200,1,0,groupe_ethique_et_sante
+371465,BC-2871,PJ00131,PAIN CEREALES (2 tranches),576,1,0,groupe_ethique_et_sante
+371466,BC-2871,FS17,Pain de mie (2 tranches),300,1,0,groupe_ethique_et_sante
+371467,BC-2871,SRNPC1,Sacs grand format,250,1,0,groupe_ethique_et_sante
+371468,BC-2871,PJ00224,Saucisson,150,1,0,groupe_ethique_et_sante
+371469,BC-2871,PC01691,Stick draineur thé citron 7g,300,1,0,groupe_ethique_et_sante
+371470,BC-2871,PC01692,Stick draineur thé fruits rouges  7g,300,1,0,groupe_ethique_et_sante
+371471,BC-2871,PC01693,Stick draineur thé pêche 7g,300,1,0,groupe_ethique_et_sante
+371472,BC-2871,PJ00160,TORTITOS BACON,160,1,0,groupe_ethique_et_sante
+371473,BC-2871,PJ00159,TORTITOS POULET MAÏS,80,1,0,groupe_ethique_et_sante
+368865,BC-2872,PJ00236,Barre crisp chocolat 35g,100,1,0,groupe_ethique_et_sante
+368860,BC-2872,PJ00178,Biscuit cacao pépite chocolat,360,1,0,groupe_ethique_et_sante
+368870,BC-2872,13129,Biscuits fruits rouges,288,1,0,groupe_ethique_et_sante
+368869,BC-2872,08730,Biscuits orange,288,1,0,groupe_ethique_et_sante
+368877,BC-2872,PJ00153,BOUTEILLE BOISSON FRAMBOISE,24,1,0,groupe_ethique_et_sante
+368878,BC-2872,PJ00157,BOUTEILLE BOISSON PÊCHE-PASSION,36,1,0,groupe_ethique_et_sante
+368879,BC-2872,13588,Cappuccino,150,1,0,groupe_ethique_et_sante
+368874,BC-2872,PJ00129,Chips Barbecue,80,1,0,groupe_ethique_et_sante
+368880,BC-2872,PJ00130,Chips oignon,80,1,0,groupe_ethique_et_sante
+368875,BC-2872,BG435,Entremets poire belle hel,200,1,0,groupe_ethique_et_sante
+368873,BC-2872,BG504,Entremets pomme caramel,200,1,0,groupe_ethique_et_sante
+368871,BC-2872,BG427,Flan Patissier cafe,300,1,0,groupe_ethique_et_sante
+368872,BC-2872,BG428,Flan Patissier caramel,300,1,0,groupe_ethique_et_sante
+368867,BC-2872,BG426,Flan Patissier chocolat,300,1,0,groupe_ethique_et_sante
+368876,BC-2872,BG434,Flan Patissier citron,100,1,0,groupe_ethique_et_sante
+368868,BC-2872,BG425,Flan Patissier vanille,300,1,0,groupe_ethique_et_sante
+368866,BC-2872,PJ002239-01,Graines Mélanges,260,1,0,groupe_ethique_et_sante
+368881,BC-2872,CNMGF2,M.G.F.2,60,1,0,groupe_ethique_et_sante
+368859,BC-2872,PJ00131,PAIN CEREALES (2 tranches),1008,1,0,groupe_ethique_et_sante
+368861,BC-2872,FS17,Pain de mie (2 tranches),450,1,0,groupe_ethique_et_sante
+368857,BC-2872,SRNPC1,Sacs grand format,250,1,0,groupe_ethique_et_sante
+368858,BC-2872,SRNPC2,Sacs petit format,300,1,0,groupe_ethique_et_sante
+368862,BC-2872,PC01691,Stick draineur thé citron 7g,300,1,0,groupe_ethique_et_sante
+368864,BC-2872,PC01692,Stick draineur thé fruits rouges  7g,300,1,0,groupe_ethique_et_sante
+368863,BC-2872,PC01693,Stick draineur thé pêche 7g,600,1,0,groupe_ethique_et_sante
+373278,BC-2873,BC3706,Barre céréalière Raisin amande,108,1,0,groupe_ethique_et_sante
+373279,BC-2873,PJ00236,Barre crisp chocolat 35g,400,1,0,groupe_ethique_et_sante
+373280,BC-2873,PJ00241,Barre crisp fruits rouges 35g,40,1,0,groupe_ethique_et_sante
+373281,BC-2873,BC3719,Barre Praline,150,1,0,groupe_ethique_et_sante
+373282,BC-2873,BC3704,barre Vanille Amande (low sugar),150,1,0,groupe_ethique_et_sante
+373283,BC-2873,PJ00178,Biscuit cacao pépite chocolat,576,1,0,groupe_ethique_et_sante
+373284,BC-2873,10357,Biscuits au chocolat,648,1,0,groupe_ethique_et_sante
+373285,BC-2873,13129,Biscuits fruits rouges,288,1,0,groupe_ethique_et_sante
+373286,BC-2873,08730,Biscuits orange,432,1,0,groupe_ethique_et_sante
+373287,BC-2873,PJ00153,BOUTEILLE BOISSON FRAMBOISE,60,1,0,groupe_ethique_et_sante
+373288,BC-2873,PJ00157,BOUTEILLE BOISSON PÊCHE-PASSION,60,1,0,groupe_ethique_et_sante
+373289,BC-2873,PJ00129,Chips Barbecue,80,1,0,groupe_ethique_et_sante
+373290,BC-2873,PJ00292,Chorizo,100,1,0,groupe_ethique_et_sante
+373291,BC-2873,PLxxx,crème aux oeufs,150,1,0,groupe_ethique_et_sante
+373292,BC-2873,12771,Desserts chocolat,300,1,0,groupe_ethique_et_sante
+373293,BC-2873,12773,Desserts entremet vanille,300,1,0,groupe_ethique_et_sante
+373294,BC-2873,BG435,Entremets poire belle hel,100,1,0,groupe_ethique_et_sante
+373295,BC-2873,BG504,Entremets pomme caramel,100,1,0,groupe_ethique_et_sante
+373296,BC-2873,BG427,Flan Patissier cafe,100,1,0,groupe_ethique_et_sante
+373297,BC-2873,BG428,Flan Patissier caramel,100,1,0,groupe_ethique_et_sante
+373298,BC-2873,BG426,Flan Patissier chocolat,100,1,0,groupe_ethique_et_sante
+373299,BC-2873,BG434,Flan Patissier citron,100,1,0,groupe_ethique_et_sante
+373300,BC-2873,BG424,Flan Patissier pistache,200,1,0,groupe_ethique_et_sante
+373301,BC-2873,BG425,Flan Patissier vanille,100,1,0,groupe_ethique_et_sante
+373302,BC-2873,CNMGF2,M.G.F.2,60,1,0,groupe_ethique_et_sante
+373303,BC-2873,PJ00131,PAIN CEREALES (2 tranches),1008,1,0,groupe_ethique_et_sante
+373304,BC-2873,FS17,Pain de mie (2 tranches),450,1,0,groupe_ethique_et_sante
+373305,BC-2873,PJ00147,Pate Fusilli,420,1,0,groupe_ethique_et_sante
+373306,BC-2873,PJ00149,Riz,300,1,0,groupe_ethique_et_sante
+373307,BC-2873,PJ00224,Saucisson,100,1,0,groupe_ethique_et_sante
+373313,BC-2873,SRNPC4,SHAKER,75,1,0,groupe_ethique_et_sante
+373308,BC-2873,08223,Soupe de legumes,150,1,0,groupe_ethique_et_sante
+373309,BC-2873,PC01691,Stick draineur thé citron 7g,300,1,0,groupe_ethique_et_sante
+373310,BC-2873,PC01692,Stick draineur thé fruits rouges  7g,300,1,0,groupe_ethique_et_sante
+373311,BC-2873,PC01693,Stick draineur thé pêche 7g,600,1,0,groupe_ethique_et_sante
+373312,BC-2873,PJ00160,TORTITOS BACON,80,1,0,groupe_ethique_et_sante
+369639,BC-2874,CNSTRESS2,Anti stress 2,30,1,0,groupe_ethique_et_sante
+369640,BC-2874,BC3707,Barre céréalière Fruits rouges,216,1,0,groupe_ethique_et_sante
+369641,BC-2874,BC3706,Barre céréalière Raisin amande,216,1,0,groupe_ethique_et_sante
+369642,BC-2874,PJ00083,Barre crisp caramel,672,1,0,groupe_ethique_et_sante
+369643,BC-2874,PJ00236,Barre crisp chocolat 35g,700,1,0,groupe_ethique_et_sante
+369644,BC-2874,PJ00237,Barre crisp coco 35g,600,1,0,groupe_ethique_et_sante
+369645,BC-2874,BC3704,barre Vanille Amande (low sugar),450,1,0,groupe_ethique_et_sante
+369646,BC-2874,PJ00178,Biscuit cacao pépite chocolat,1800,1,0,groupe_ethique_et_sante
+369647,BC-2874,10357,Biscuits au chocolat,2880,1,0,groupe_ethique_et_sante
+369648,BC-2874,13129,Biscuits fruits rouges,1800,1,0,groupe_ethique_et_sante
+369649,BC-2874,08730,Biscuits orange,1800,1,0,groupe_ethique_et_sante
+369650,BC-2874,12481,Boisson chocolat intense,150,1,0,groupe_ethique_et_sante
+369651,BC-2874,08218,Boisson orange,300,1,0,groupe_ethique_et_sante
+369652,BC-2874,13588,Cappuccino,150,1,0,groupe_ethique_et_sante
+369653,BC-2874,PJ00129,Chips Barbecue,160,1,0,groupe_ethique_et_sante
+369654,BC-2874,PJ00130,Chips oignon,240,1,0,groupe_ethique_et_sante
+369655,BC-2874,PJ00292,Chorizo,100,1,0,groupe_ethique_et_sante
+369656,BC-2874,CNTRANS,Confort Transit (90),20,1,0,groupe_ethique_et_sante
+369657,BC-2874,12773,Desserts entremet vanille,150,1,0,groupe_ethique_et_sante
+369658,BC-2874,BG418,Entremets banane,100,1,0,groupe_ethique_et_sante
+369659,BC-2874,BG400,Entremets noix de coco,200,1,0,groupe_ethique_et_sante
+369660,BC-2874,BG435,Entremets poire belle hel,200,1,0,groupe_ethique_et_sante
+369661,BC-2874,BG504,Entremets pomme caramel,100,1,0,groupe_ethique_et_sante
+369662,BC-2874,BG207,Entremets praline,100,1,0,groupe_ethique_et_sante
+369663,BC-2874,BG427,Flan Patissier cafe,200,1,0,groupe_ethique_et_sante
+369664,BC-2874,BG434,Flan Patissier citron,300,1,0,groupe_ethique_et_sante
+369665,BC-2874,BG425,Flan Patissier vanille,200,1,0,groupe_ethique_et_sante
+369666,BC-2874,09976,Fromage blanc abricot,300,1,0,groupe_ethique_et_sante
+369667,BC-2874,CNMULTIVIT,Multi-vitamines et Minéraux,60,1,0,groupe_ethique_et_sante
+369668,BC-2874,CNOMEGA,OMEGA 3,30,1,0,groupe_ethique_et_sante
+369669,BC-2874,PJ00131,PAIN CEREALES (2 tranches),2304,1,0,groupe_ethique_et_sante
+369670,BC-2874,PB01237,Pancake,130,1,0,groupe_ethique_et_sante
+369671,BC-2874,PRNPC3,Pulvérisateurs,100,1,0,groupe_ethique_et_sante
+369672,BC-2874,11664,Puree de pomme de terre,150,1,0,groupe_ethique_et_sante
+369673,BC-2874,PJ00149,Riz,150,1,0,groupe_ethique_et_sante
+369674,BC-2874,SRNPC1,Sacs grand format,500,1,0,groupe_ethique_et_sante
+369675,BC-2874,PJ00224,Saucisson,100,1,0,groupe_ethique_et_sante
+369676,BC-2874,SRNPC4,SHAKER,75,1,0,groupe_ethique_et_sante
+369677,BC-2874,FS12MF993,spaghetti bolognaise,100,1,0,groupe_ethique_et_sante
+369678,BC-2874,PC01691,Stick draineur thé citron 7g,900,1,0,groupe_ethique_et_sante
+369679,BC-2874,PC01692,Stick draineur thé fruits rouges  7g,600,1,0,groupe_ethique_et_sante
+369680,BC-2874,PC01693,Stick draineur thé pêche 7g,600,1,0,groupe_ethique_et_sante
+369326,BC-2875,11786,Barre (Cacao)chocolat ronde,252,1,0,groupe_ethique_et_sante
+369329,BC-2875,BC3707,Barre céréalière Fruits rouges,324,1,0,groupe_ethique_et_sante
+369328,BC-2875,BC3706,Barre céréalière Raisin amande,324,1,0,groupe_ethique_et_sante
+369323,BC-2875,PJ00083,Barre crisp caramel,392,1,0,groupe_ethique_et_sante
+369322,BC-2875,PJ00236,Barre crisp chocolat 35g,950,1,0,groupe_ethique_et_sante
+369324,BC-2875,PJ00237,Barre crisp coco 35g,250,1,0,groupe_ethique_et_sante
+369325,BC-2875,PJ00241,Barre crisp fruits rouges 35g,240,1,0,groupe_ethique_et_sante
+369327,BC-2875,BC3704,barre Vanille Amande (low sugar),300,1,0,groupe_ethique_et_sante
+369321,BC-2875,PJ00178,Biscuit cacao pépite chocolat,1512,1,0,groupe_ethique_et_sante
+369318,BC-2875,10357,Biscuits au chocolat,1080,1,0,groupe_ethique_et_sante
+369320,BC-2875,13129,Biscuits fruits rouges,720,1,0,groupe_ethique_et_sante
+369319,BC-2875,08730,Biscuits orange,792,1,0,groupe_ethique_et_sante
+369341,BC-2875,13579,Boisson chocolat au lait,150,1,0,groupe_ethique_et_sante
+369343,BC-2875,08218,Boisson orange,300,1,0,groupe_ethique_et_sante
+369344,BC-2875,08220,Boisson peche mangue,150,1,0,groupe_ethique_et_sante
+369360,BC-2875,PJ00283,Bouchées chocolat noir,100,1,0,groupe_ethique_et_sante
+369349,BC-2875,PJ00153,BOUTEILLE BOISSON FRAMBOISE,84,1,0,groupe_ethique_et_sante
+369350,BC-2875,PJ00157,BOUTEILLE BOISSON PÊCHE-PASSION,84,1,0,groupe_ethique_et_sante
+369342,BC-2875,13588,Cappuccino,150,1,0,groupe_ethique_et_sante
+369351,BC-2875,BG349,Cereales chocolat,100,1,0,groupe_ethique_et_sante
+369348,BC-2875,PJ00129,Chips Barbecue,160,1,0,groupe_ethique_et_sante
+369347,BC-2875,PJ00130,Chips oignon,160,1,0,groupe_ethique_et_sante
+369353,BC-2875,PJ00292,Chorizo,100,1,0,groupe_ethique_et_sante
+369357,BC-2875,CNTRANS,Confort Transit (90),10,1,0,groupe_ethique_et_sante
+369337,BC-2875,12771,Desserts chocolat,300,1,0,groupe_ethique_et_sante
+369334,BC-2875,BG418,Entremets banane,100,1,0,groupe_ethique_et_sante
+369335,BC-2875,BG400,Entremets noix de coco,100,1,0,groupe_ethique_et_sante
+369333,BC-2875,BG435,Entremets poire belle hel,100,1,0,groupe_ethique_et_sante
+369336,BC-2875,BG207,Entremets praline,100,1,0,groupe_ethique_et_sante
+369332,BC-2875,BG428,Flan Patissier caramel,100,1,0,groupe_ethique_et_sante
+369331,BC-2875,BG434,Flan Patissier citron,100,1,0,groupe_ethique_et_sante
+369330,BC-2875,BG425,Flan Patissier vanille,100,1,0,groupe_ethique_et_sante
+369356,BC-2875,CNMGF2,M.G.F.2,60,1,0,groupe_ethique_et_sante
+369358,BC-2875,CNMULTIVIT,Multi-vitamines et Minéraux,30,1,0,groupe_ethique_et_sante
+369355,BC-2875,CNOMEGA,OMEGA 3,30,1,0,groupe_ethique_et_sante
+369338,BC-2875,PJ00131,PAIN CEREALES (2 tranches),1728,1,0,groupe_ethique_et_sante
+369340,BC-2875,FS171RN310302,Pain de mie,48,1,0,groupe_ethique_et_sante
+369339,BC-2875,FS17,Pain de mie (2 tranches),450,1,0,groupe_ethique_et_sante
+369354,BC-2875,PRNPC3,Pulvérisateurs,50,1,0,groupe_ethique_et_sante
+369352,BC-2875,PJ00224,Saucisson,150,1,0,groupe_ethique_et_sante
+369359,BC-2875,FS18SF800,Soupe aux cêpes,100,1,0,groupe_ethique_et_sante
+369316,BC-2875,PC01691,Stick draineur thé citron 7g,600,1,0,groupe_ethique_et_sante
+369317,BC-2875,PC01692,Stick draineur thé fruits rouges  7g,1200,1,0,groupe_ethique_et_sante
+369315,BC-2875,PC01693,Stick draineur thé pêche 7g,1500,1,0,groupe_ethique_et_sante
+369345,BC-2875,PJ00160,TORTITOS BACON,160,1,0,groupe_ethique_et_sante
+369346,BC-2875,PJ00159,TORTITOS POULET MAÏS,80,1,0,groupe_ethique_et_sante
+372105,BC-2876,11786,Barre (Cacao)chocolat ronde,126,1,0,groupe_ethique_et_sante
+372106,BC-2876,BC3707,Barre céréalière Fruits rouges,216,1,0,groupe_ethique_et_sante
+372107,BC-2876,BC3706,Barre céréalière Raisin amande,108,1,0,groupe_ethique_et_sante
+372108,BC-2876,PJ00083,Barre crisp caramel,112,1,0,groupe_ethique_et_sante
+372109,BC-2876,PJ00236,Barre crisp chocolat 35g,200,1,0,groupe_ethique_et_sante
+372110,BC-2876,PJ00241,Barre crisp fruits rouges 35g,120,1,0,groupe_ethique_et_sante
+372111,BC-2876,11787,Barre noix de coco (ronde),126,1,0,groupe_ethique_et_sante
+372112,BC-2876,BC3704,barre Vanille Amande (low sugar),150,1,0,groupe_ethique_et_sante
+372113,BC-2876,PJ00178,Biscuit cacao pépite chocolat,216,1,0,groupe_ethique_et_sante
+372114,BC-2876,13129,Biscuits fruits rouges,216,1,0,groupe_ethique_et_sante
+372115,BC-2876,08730,Biscuits orange,216,1,0,groupe_ethique_et_sante
+372116,BC-2876,PJ00157,BOUTEILLE BOISSON PÊCHE-PASSION,36,1,0,groupe_ethique_et_sante
+372117,BC-2876,PJ00292,Chorizo,50,1,0,groupe_ethique_et_sante
+372118,BC-2876,CNTRANS,Confort Transit (90),10,1,0,groupe_ethique_et_sante
+372119,BC-2876,PB01240,Crêpes pomme caramel,150,1,0,groupe_ethique_et_sante
+372120,BC-2876,PJ00131,PAIN CEREALES (2 tranches),576,1,0,groupe_ethique_et_sante
+372121,BC-2876,FS17,Pain de mie (2 tranches),300,1,0,groupe_ethique_et_sante
+372122,BC-2876,11664,Puree de pomme de terre,450,1,0,groupe_ethique_et_sante
+372123,BC-2876,11664,Puree de pomme de terre,150,1,0,groupe_ethique_et_sante
+372124,BC-2876,PJ00224,Saucisson,100,1,0,groupe_ethique_et_sante
+372125,BC-2876,SRNPC4,SHAKER,75,1,0,groupe_ethique_et_sante
+372126,BC-2876,08223,Soupe de legumes,150,1,0,groupe_ethique_et_sante
+372127,BC-2876,PC01691,Stick draineur thé citron 7g,300,1,0,groupe_ethique_et_sante
+370966,BC-2877,BC3707,Barre céréalière Fruits rouges,108,1,0,groupe_ethique_et_sante
+370967,BC-2877,PJ00236,Barre crisp chocolat 35g,100,1,0,groupe_ethique_et_sante
+370968,BC-2877,08730,Biscuits orange,72,1,0,groupe_ethique_et_sante
+370969,BC-2877,PJ00130,Chips oignon,80,1,0,groupe_ethique_et_sante
+370970,BC-2877,PJ00292,Chorizo,50,1,0,groupe_ethique_et_sante
+370971,BC-2877,08225,Desserts fruits rouges,150,1,0,groupe_ethique_et_sante
+370972,BC-2877,BG435,Entremets poire belle hel,100,1,0,groupe_ethique_et_sante
+370973,BC-2877,BG428,Flan Patissier caramel,100,1,0,groupe_ethique_et_sante
+370974,BC-2877,CNMGF2,M.G.F.2,30,1,0,groupe_ethique_et_sante
+370975,BC-2877,PJ00131,PAIN CEREALES (2 tranches),288,1,0,groupe_ethique_et_sante
+370976,BC-2877,FS17,Pain de mie (2 tranches),150,1,0,groupe_ethique_et_sante
+370977,BC-2877,PB01237,Pancake,130,1,0,groupe_ethique_et_sante
+370978,BC-2877,PC01691,Stick draineur thé citron 7g,600,1,0,groupe_ethique_et_sante
+370075,BC-2878,11786,Barre (Cacao)chocolat ronde,252,1,0,groupe_ethique_et_sante
+370076,BC-2878,BC3707,Barre céréalière Fruits rouges,108,1,0,groupe_ethique_et_sante
+370077,BC-2878,BC3706,Barre céréalière Raisin amande,108,1,0,groupe_ethique_et_sante
+370078,BC-2878,PJ00083,Barre crisp caramel,336,1,0,groupe_ethique_et_sante
+370079,BC-2878,PJ00236,Barre crisp chocolat 35g,200,1,0,groupe_ethique_et_sante
+370080,BC-2878,PJ00237,Barre crisp coco 35g,100,1,0,groupe_ethique_et_sante
+370081,BC-2878,PJ00241,Barre crisp fruits rouges 35g,240,1,0,groupe_ethique_et_sante
+370082,BC-2878,11787,Barre noix de coco (ronde),126,1,0,groupe_ethique_et_sante
+370083,BC-2878,BC3719,Barre Praline,150,1,0,groupe_ethique_et_sante
+370084,BC-2878,BC3704,barre Vanille Amande (low sugar),150,1,0,groupe_ethique_et_sante
+370085,BC-2878,PJ00178,Biscuit cacao pépite chocolat,216,1,0,groupe_ethique_et_sante
+370086,BC-2878,10357,Biscuits au chocolat,1080,1,0,groupe_ethique_et_sante
+370087,BC-2878,13129,Biscuits fruits rouges,576,1,0,groupe_ethique_et_sante
+370088,BC-2878,08730,Biscuits orange,288,1,0,groupe_ethique_et_sante
+370089,BC-2878,13579,Boisson chocolat au lait,150,1,0,groupe_ethique_et_sante
+370090,BC-2878,PJ00288,Bouteille boisson café,240,1,0,groupe_ethique_et_sante
+370091,BC-2878,PJ00153,BOUTEILLE BOISSON FRAMBOISE,300,1,0,groupe_ethique_et_sante
+370092,BC-2878,PJ00157,BOUTEILLE BOISSON PÊCHE-PASSION,180,1,0,groupe_ethique_et_sante
+370093,BC-2878,PJ00130,Chips oignon,160,1,0,groupe_ethique_et_sante
+370094,BC-2878,CNARTI1,Confort Articulaire (60),30,1,0,groupe_ethique_et_sante
+370095,BC-2878,PB00684-01,Crêpes banane chocolat,150,1,0,groupe_ethique_et_sante
+370096,BC-2878,12771,Desserts chocolat,150,1,0,groupe_ethique_et_sante
+370097,BC-2878,BG400,Entremets noix de coco,100,1,0,groupe_ethique_et_sante
+370098,BC-2878,BG435,Entremets poire belle hel,100,1,0,groupe_ethique_et_sante
+370099,BC-2878,BG207,Entremets praline,100,1,0,groupe_ethique_et_sante
+370100,BC-2878,BG427,Flan Patissier cafe,100,1,0,groupe_ethique_et_sante
+370101,BC-2878,BG428,Flan Patissier caramel,100,1,0,groupe_ethique_et_sante
+370102,BC-2878,BG426,Flan Patissier chocolat,100,1,0,groupe_ethique_et_sante
+370103,BC-2878,BG434,Flan Patissier citron,100,1,0,groupe_ethique_et_sante
+370104,BC-2878,BG424,Flan Patissier pistache,100,1,0,groupe_ethique_et_sante
+370105,BC-2878,CNMGF2,M.G.F.2,60,1,0,groupe_ethique_et_sante
+370106,BC-2878,09974,Mousse au chocolat,150,1,0,groupe_ethique_et_sante
+370107,BC-2878,PJ00131,PAIN CEREALES (2 tranches),1440,1,0,groupe_ethique_et_sante
+370108,BC-2878,FS17,Pain de mie (2 tranches),1350,1,0,groupe_ethique_et_sante
+370109,BC-2878,PB01237,Pancake,130,1,0,groupe_ethique_et_sante
+370110,BC-2878,PJ00147,Pate Fusilli,140,1,0,groupe_ethique_et_sante
+370111,BC-2878,sp-plaqCN,Plaquette CN A5 3 volets,50,1,0,groupe_ethique_et_sante
+370112,BC-2878,13589,Riz au lait,150,1,0,groupe_ethique_et_sante
+370113,BC-2878,08223,Soupe de legumes,150,1,0,groupe_ethique_et_sante
+370114,BC-2878,PC01691,Stick draineur thé citron 7g,900,1,0,groupe_ethique_et_sante
+370115,BC-2878,PC01692,Stick draineur thé fruits rouges  7g,900,1,0,groupe_ethique_et_sante
+370116,BC-2878,PC01693,Stick draineur thé pêche 7g,900,1,0,groupe_ethique_et_sante
+370117,BC-2878,PJ00160,TORTITOS BACON,160,1,0,groupe_ethique_et_sante
+370118,BC-2878,08208,Veloute poulet curry,150,1,0,groupe_ethique_et_sante
+369549,BC-2879,BC3706,Barre céréalière Raisin amande,216,1,0,groupe_ethique_et_sante
+369550,BC-2879,PJ00083,Barre crisp caramel,392,1,0,groupe_ethique_et_sante
+369551,BC-2879,PJ00236,Barre crisp chocolat 35g,200,1,0,groupe_ethique_et_sante
+369552,BC-2879,PJ00237,Barre crisp coco 35g,100,1,0,groupe_ethique_et_sante
+369553,BC-2879,PJ00241,Barre crisp fruits rouges 35g,120,1,0,groupe_ethique_et_sante
+369554,BC-2879,BC3719,Barre Praline,150,1,0,groupe_ethique_et_sante
+369555,BC-2879,BC3704,barre Vanille Amande (low sugar),150,1,0,groupe_ethique_et_sante
+369556,BC-2879,PJ00178,Biscuit cacao pépite chocolat,1080,1,0,groupe_ethique_et_sante
+369557,BC-2879,10357,Biscuits au chocolat,2880,1,0,groupe_ethique_et_sante
+369558,BC-2879,13129,Biscuits fruits rouges,576,1,0,groupe_ethique_et_sante
+369559,BC-2879,08730,Biscuits orange,576,1,0,groupe_ethique_et_sante
+369562,BC-2879,08730,Biscuits orange,72,1,0,groupe_ethique_et_sante
+369560,BC-2879,13579,Boisson chocolat au lait,450,1,0,groupe_ethique_et_sante
+369561,BC-2879,12481,Boisson chocolat intense,300,1,0,groupe_ethique_et_sante
+369563,BC-2879,PB00666-01,Cake minute chocolat,390,1,0,groupe_ethique_et_sante
+369564,BC-2879,13588,Cappuccino,450,1,0,groupe_ethique_et_sante
+369565,BC-2879,BG349,Cereales chocolat,400,1,0,groupe_ethique_et_sante
+369566,BC-2879,PLxxx,crème aux oeufs,150,1,0,groupe_ethique_et_sante
+369567,BC-2879,PB00684-01,Crêpes banane chocolat,150,1,0,groupe_ethique_et_sante
+369568,BC-2879,PB01240,Crêpes pomme caramel,150,1,0,groupe_ethique_et_sante
+369569,BC-2879,12771,Desserts chocolat,750,1,0,groupe_ethique_et_sante
+369570,BC-2879,12773,Desserts entremet vanille,150,1,0,groupe_ethique_et_sante
+369571,BC-2879,BG418,Entremets banane,100,1,0,groupe_ethique_et_sante
+369572,BC-2879,BG400,Entremets noix de coco,400,1,0,groupe_ethique_et_sante
+369573,BC-2879,BG435,Entremets poire belle hel,400,1,0,groupe_ethique_et_sante
+369574,BC-2879,BG504,Entremets pomme caramel,100,1,0,groupe_ethique_et_sante
+369575,BC-2879,BG207,Entremets praline,100,1,0,groupe_ethique_et_sante
+369576,BC-2879,BG427,Flan Patissier cafe,200,1,0,groupe_ethique_et_sante
+369577,BC-2879,BG428,Flan Patissier caramel,300,1,0,groupe_ethique_et_sante
+369578,BC-2879,BG426,Flan Patissier chocolat,300,1,0,groupe_ethique_et_sante
+369579,BC-2879,BG434,Flan Patissier citron,200,1,0,groupe_ethique_et_sante
+369580,BC-2879,BG424,Flan Patissier pistache,200,1,0,groupe_ethique_et_sante
+369581,BC-2879,BG425,Flan Patissier vanille,200,1,0,groupe_ethique_et_sante
+369582,BC-2879,09974,Mousse au chocolat,150,1,0,groupe_ethique_et_sante
+369583,BC-2879,PJ00131,PAIN CEREALES (2 tranches),432,1,0,groupe_ethique_et_sante
+369584,BC-2879,FS17,Pain de mie (2 tranches),300,1,0,groupe_ethique_et_sante
+369585,BC-2879,PB01237,Pancake,130,1,0,groupe_ethique_et_sante
+369586,BC-2879,sp-plaqCN,Plaquette CN A5 3 volets,50,1,0,groupe_ethique_et_sante
+369587,BC-2879,PRNPC3,Pulvérisateurs,50,1,0,groupe_ethique_et_sante
+369588,BC-2879,13589,Riz au lait,150,1,0,groupe_ethique_et_sante
+369589,BC-2879,SRNPC1,Sacs grand format,250,1,0,groupe_ethique_et_sante
+369590,BC-2879,SRNPC2,Sacs petit format,300,1,0,groupe_ethique_et_sante
+369591,BC-2879,SRNPC4,SHAKER,75,1,0,groupe_ethique_et_sante
+369592,BC-2879,FS18SF800,Soupe aux cêpes,100,1,0,groupe_ethique_et_sante
+369593,BC-2879,PC01691,Stick draineur thé citron 7g,2400,1,0,groupe_ethique_et_sante
+369594,BC-2879,PC01692,Stick draineur thé fruits rouges  7g,1800,1,0,groupe_ethique_et_sante
+369595,BC-2879,PC01693,Stick draineur thé pêche 7g,1800,1,0,groupe_ethique_et_sante
+369596,BC-2879,PJ00160,TORTITOS BACON,80,1,0,groupe_ethique_et_sante
+369988,BC-2880,BC3707,Barre céréalière Fruits rouges,216,1,0,groupe_ethique_et_sante
+369980,BC-2880,BC3706,Barre céréalière Raisin amande,216,1,0,groupe_ethique_et_sante
+369978,BC-2880,PJ00083,Barre crisp caramel,112,1,0,groupe_ethique_et_sante
+369974,BC-2880,PJ00236,Barre crisp chocolat 35g,250,1,0,groupe_ethique_et_sante
+369979,BC-2880,PJ00237,Barre crisp coco 35g,100,1,0,groupe_ethique_et_sante
+369987,BC-2880,PJ00241,Barre crisp fruits rouges 35g,80,1,0,groupe_ethique_et_sante
+369984,BC-2880,BC3719,Barre Praline,150,1,0,groupe_ethique_et_sante
+369977,BC-2880,BC3704,barre Vanille Amande (low sugar),300,1,0,groupe_ethique_et_sante
+369972,BC-2880,PJ00178,Biscuit cacao pépite chocolat,792,1,0,groupe_ethique_et_sante
+369968,BC-2880,10357,Biscuits au chocolat,2520,1,0,groupe_ethique_et_sante
+369973,BC-2880,13129,Biscuits fruits rouges,360,1,0,groupe_ethique_et_sante
+369970,BC-2880,08730,Biscuits orange,936,1,0,groupe_ethique_et_sante
+369991,BC-2880,13579,Boisson chocolat au lait,300,1,0,groupe_ethique_et_sante
+369997,BC-2880,PJ00288,Bouteille boisson café,120,1,0,groupe_ethique_et_sante
+369993,BC-2880,PJ00153,BOUTEILLE BOISSON FRAMBOISE,72,1,0,groupe_ethique_et_sante
+369981,BC-2880,PJ00157,BOUTEILLE BOISSON PÊCHE-PASSION,96,1,0,groupe_ethique_et_sante
+369986,BC-2880,13588,Cappuccino,150,1,0,groupe_ethique_et_sante
+369989,BC-2880,PJ00129,Chips Barbecue,160,1,0,groupe_ethique_et_sante
+369985,BC-2880,PJ00130,Chips oignon,160,1,0,groupe_ethique_et_sante
+370001,BC-2880,PJ00292,Chorizo,50,1,0,groupe_ethique_et_sante
+369982,BC-2880,12771,Desserts chocolat,150,1,0,groupe_ethique_et_sante
+369999,BC-2880,BG428,Flan Patissier caramel,100,1,0,groupe_ethique_et_sante
+369994,BC-2880,BG425,Flan Patissier vanille,100,1,0,groupe_ethique_et_sante
+369992,BC-2880,CNMGF2,M.G.F.2,60,1,0,groupe_ethique_et_sante
+369967,BC-2880,PJ00131,PAIN CEREALES (2 tranches),4032,1,0,groupe_ethique_et_sante
+369969,BC-2880,FS17,Pain de mie (2 tranches),1200,1,0,groupe_ethique_et_sante
+369995,BC-2880,PB01237,Pancake,130,1,0,groupe_ethique_et_sante
+369996,BC-2880,PJ00147,Pate Fusilli,140,1,0,groupe_ethique_et_sante
+369998,BC-2880,PRNPC3,Pulvérisateurs,50,1,0,groupe_ethique_et_sante
+370000,BC-2880,PJ00224,Saucisson,50,1,0,groupe_ethique_et_sante
+369976,BC-2880,PC01691,Stick draineur thé citron 7g,300,1,0,groupe_ethique_et_sante
+369975,BC-2880,PC01692,Stick draineur thé fruits rouges  7g,300,1,0,groupe_ethique_et_sante
+369971,BC-2880,PC01693,Stick draineur thé pêche 7g,1200,1,0,groupe_ethique_et_sante
+369983,BC-2880,PJ00160,TORTITOS BACON,160,1,0,groupe_ethique_et_sante
+369990,BC-2880,PJ00159,TORTITOS POULET MAÏS,160,1,0,groupe_ethique_et_sante
+374151,BC-2881,CNSTRESS2,Anti stress 2,30,1,0,groupe_ethique_et_sante
+374152,BC-2881,BC3707,Barre céréalière Fruits rouges,108,1,0,groupe_ethique_et_sante
+374153,BC-2881,BC3706,Barre céréalière Raisin amande,216,1,0,groupe_ethique_et_sante
+374154,BC-2881,PJ00083,Barre crisp caramel,168,1,0,groupe_ethique_et_sante
+374155,BC-2881,PJ00236,Barre crisp chocolat 35g,350,1,0,groupe_ethique_et_sante
+374156,BC-2881,PJ00237,Barre crisp coco 35g,150,1,0,groupe_ethique_et_sante
+374157,BC-2881,PJ00241,Barre crisp fruits rouges 35g,80,1,0,groupe_ethique_et_sante
+374158,BC-2881,BC3719,Barre Praline,150,1,0,groupe_ethique_et_sante
+374159,BC-2881,PJ00178,Biscuit cacao pépite chocolat,360,1,0,groupe_ethique_et_sante
+374160,BC-2881,13129,Biscuits fruits rouges,216,1,0,groupe_ethique_et_sante
+374161,BC-2881,08730,Biscuits orange,144,1,0,groupe_ethique_et_sante
+374162,BC-2881,PB00666-01,Cake minute chocolat,130,1,0,groupe_ethique_et_sante
+374163,BC-2881,PB00686-01,Cake minute fruits,130,1,0,groupe_ethique_et_sante
+374164,BC-2881,13588,Cappuccino,150,1,0,groupe_ethique_et_sante
+374165,BC-2881,PJ00129,Chips Barbecue,80,1,0,groupe_ethique_et_sante
+374166,BC-2881,PJ00130,Chips oignon,80,1,0,groupe_ethique_et_sante
+374167,BC-2881,PJ00292,Chorizo,150,1,0,groupe_ethique_et_sante
+374168,BC-2881,PB01240,Crêpes pomme caramel,150,1,0,groupe_ethique_et_sante
+374169,BC-2881,PB01020,Dessert choco caramel pépite sans gluten,150,1,0,groupe_ethique_et_sante
+374170,BC-2881,12773,Desserts entremet vanille,150,1,0,groupe_ethique_et_sante
+374171,BC-2881,BG207,Entremets praline,100,1,0,groupe_ethique_et_sante
+374172,BC-2881,BG428,Flan Patissier caramel,100,1,0,groupe_ethique_et_sante
+374173,BC-2881,BG434,Flan Patissier citron,100,1,0,groupe_ethique_et_sante
+374174,BC-2881,PJ00131,PAIN CEREALES (2 tranches),1152,1,0,groupe_ethique_et_sante
+374175,BC-2881,FS17,Pain de mie (2 tranches),450,1,0,groupe_ethique_et_sante
+374176,BC-2881,PJ00149,Riz,150,1,0,groupe_ethique_et_sante
+374177,BC-2881,PJ00224,Saucisson,200,1,0,groupe_ethique_et_sante
+374178,BC-2881,PC01691,Stick draineur thé citron 7g,600,1,0,groupe_ethique_et_sante
+374179,BC-2881,PC01692,Stick draineur thé fruits rouges  7g,600,1,0,groupe_ethique_et_sante
+374180,BC-2881,PC01693,Stick draineur thé pêche 7g,600,1,0,groupe_ethique_et_sante
+370648,BC-2882,BC3707,Barre céréalière Fruits rouges,216,1,0,groupe_ethique_et_sante
+370649,BC-2882,BC3706,Barre céréalière Raisin amande,216,1,0,groupe_ethique_et_sante
+370650,BC-2882,PJ00083,Barre crisp caramel,560,1,0,groupe_ethique_et_sante
+370651,BC-2882,PJ00236,Barre crisp chocolat 35g,600,1,0,groupe_ethique_et_sante
+370652,BC-2882,PJ00237,Barre crisp coco 35g,300,1,0,groupe_ethique_et_sante
+370653,BC-2882,PJ00241,Barre crisp fruits rouges 35g,160,1,0,groupe_ethique_et_sante
+370654,BC-2882,BC3704,barre Vanille Amande (low sugar),150,1,0,groupe_ethique_et_sante
+370655,BC-2882,PJ00178,Biscuit cacao pépite chocolat,360,1,0,groupe_ethique_et_sante
+370656,BC-2882,10357,Biscuits au chocolat,1080,1,0,groupe_ethique_et_sante
+370657,BC-2882,13129,Biscuits fruits rouges,720,1,0,groupe_ethique_et_sante
+370658,BC-2882,08730,Biscuits orange,360,1,0,groupe_ethique_et_sante
+370659,BC-2882,12481,Boisson chocolat intense,300,1,0,groupe_ethique_et_sante
+370683,BC-2882,PJ00153,BOUTEILLE BOISSON FRAMBOISE,36,1,0,groupe_ethique_et_sante
+370684,BC-2882,PJ00157,BOUTEILLE BOISSON PÊCHE-PASSION,60,1,0,groupe_ethique_et_sante
+370660,BC-2882,PJ00129,Chips Barbecue,160,1,0,groupe_ethique_et_sante
+370661,BC-2882,PJ00130,Chips oignon,80,1,0,groupe_ethique_et_sante
+370688,BC-2882,PJ00292,Chorizo,100,1,0,groupe_ethique_et_sante
+370675,BC-2882,12771,Desserts chocolat,150,1,0,groupe_ethique_et_sante
+370677,BC-2882,BG400,Entremets noix de coco,100,1,0,groupe_ethique_et_sante
+370681,BC-2882,BG435,Entremets poire belle hel,100,1,0,groupe_ethique_et_sante
+370662,BC-2882,BG427,Flan Patissier cafe,200,1,0,groupe_ethique_et_sante
+370663,BC-2882,BG428,Flan Patissier caramel,100,1,0,groupe_ethique_et_sante
+370664,BC-2882,BG426,Flan Patissier chocolat,100,1,0,groupe_ethique_et_sante
+370665,BC-2882,BG434,Flan Patissier citron,200,1,0,groupe_ethique_et_sante
+370679,BC-2882,BG424,Flan Patissier pistache,200,1,0,groupe_ethique_et_sante
+370666,BC-2882,BG425,Flan Patissier vanille,100,1,0,groupe_ethique_et_sante
+370686,BC-2882,CNMGF2,M.G.F.2,30,1,0,groupe_ethique_et_sante
+370667,BC-2882,PJ00131,PAIN CEREALES (2 tranches),1440,1,0,groupe_ethique_et_sante
+370687,BC-2882,FS171RN310302,Pain de mie,48,1,0,groupe_ethique_et_sante
+370668,BC-2882,FS17,Pain de mie (2 tranches),150,1,0,groupe_ethique_et_sante
+370678,BC-2882,FS12MF139,parmentier,100,1,0,groupe_ethique_et_sante
+370689,BC-2882,SRNPC1,Sacs grand format,250,1,0,groupe_ethique_et_sante
+370669,BC-2882,PJ00224,Saucisson,250,1,0,groupe_ethique_et_sante
+370690,BC-2882,SRNPC4,SHAKER,75,1,0,groupe_ethique_et_sante
+370691,BC-2882,FS18SF800,Soupe aux cêpes,100,1,0,groupe_ethique_et_sante
+370685,BC-2882,08223,Soupe de legumes,150,1,0,groupe_ethique_et_sante
+370680,BC-2882,A0285-01,Soupe marocaine,150,1,0,groupe_ethique_et_sante
+370670,BC-2882,FS12MF993,spaghetti bolognaise,200,1,0,groupe_ethique_et_sante
+370671,BC-2882,PC01691,Stick draineur thé citron 7g,900,1,0,groupe_ethique_et_sante
+370672,BC-2882,PC01692,Stick draineur thé fruits rouges  7g,600,1,0,groupe_ethique_et_sante
+370673,BC-2882,PC01693,Stick draineur thé pêche 7g,600,1,0,groupe_ethique_et_sante
+370674,BC-2882,PJ00160,TORTITOS BACON,80,1,0,groupe_ethique_et_sante
+370676,BC-2882,PJ00159,TORTITOS POULET MAÏS,80,1,0,groupe_ethique_et_sante
+370682,BC-2882,08208,Veloute poulet curry,150,1,0,groupe_ethique_et_sante
+372874,BC-2883,BC3706,Barre céréalière Raisin amande,216,1,0,groupe_ethique_et_sante
+372875,BC-2883,PJ00083,Barre crisp caramel,112,1,0,groupe_ethique_et_sante
+372876,BC-2883,PJ00237,Barre crisp coco 35g,50,1,0,groupe_ethique_et_sante
+372877,BC-2883,PJ00241,Barre crisp fruits rouges 35g,160,1,0,groupe_ethique_et_sante
+372878,BC-2883,PJ00178,Biscuit cacao pépite chocolat,360,1,0,groupe_ethique_et_sante
+372879,BC-2883,10357,Biscuits au chocolat,720,1,0,groupe_ethique_et_sante
+372880,BC-2883,13129,Biscuits fruits rouges,216,1,0,groupe_ethique_et_sante
+372881,BC-2883,08730,Biscuits orange,72,1,0,groupe_ethique_et_sante
+372882,BC-2883,PJ00153,BOUTEILLE BOISSON FRAMBOISE,36,1,0,groupe_ethique_et_sante
+372883,BC-2883,PJ00157,BOUTEILLE BOISSON PÊCHE-PASSION,36,1,0,groupe_ethique_et_sante
+372884,BC-2883,PJ00130,Chips oignon,80,1,0,groupe_ethique_et_sante
+372885,BC-2883,PJ00292,Chorizo,100,1,0,groupe_ethique_et_sante
+372886,BC-2883,12771,Desserts chocolat,150,1,0,groupe_ethique_et_sante
+372887,BC-2883,BG435,Entremets poire belle hel,100,1,0,groupe_ethique_et_sante
+372888,BC-2883,BG428,Flan Patissier caramel,100,1,0,groupe_ethique_et_sante
+372889,BC-2883,BG426,Flan Patissier chocolat,100,1,0,groupe_ethique_et_sante
+372890,BC-2883,BG425,Flan Patissier vanille,100,1,0,groupe_ethique_et_sante
+372891,BC-2883,PJ00131,PAIN CEREALES (2 tranches),1008,1,0,groupe_ethique_et_sante
+372892,BC-2883,FS17,Pain de mie (2 tranches),600,1,0,groupe_ethique_et_sante
+372893,BC-2883,PJ00224,Saucisson,200,1,0,groupe_ethique_et_sante
+372894,BC-2883,SRNPC4,SHAKER,75,1,0,groupe_ethique_et_sante
+374921,BC-2884,BC3707,Barre céréalière Fruits rouges,864,1,0,groupe_ethique_et_sante
+374922,BC-2884,BC3706,Barre céréalière Raisin amande,1080,1,0,groupe_ethique_et_sante
+374923,BC-2884,PJ00083,Barre crisp caramel,448,1,0,groupe_ethique_et_sante
+374924,BC-2884,PJ00236,Barre crisp chocolat 35g,800,1,0,groupe_ethique_et_sante
+374925,BC-2884,PJ00237,Barre crisp coco 35g,400,1,0,groupe_ethique_et_sante
+374926,BC-2884,BC3719,Barre Praline,1200,1,0,groupe_ethique_et_sante
+374927,BC-2884,BC3704,barre Vanille Amande (low sugar),900,1,0,groupe_ethique_et_sante
+374928,BC-2884,PJ00178,Biscuit cacao pépite chocolat,720,1,0,groupe_ethique_et_sante
+374929,BC-2884,10357,Biscuits au chocolat,1152,1,0,groupe_ethique_et_sante
+374930,BC-2884,13129,Biscuits fruits rouges,864,1,0,groupe_ethique_et_sante
+374931,BC-2884,08730,Biscuits orange,1152,1,0,groupe_ethique_et_sante
+374932,BC-2884,08220,Boisson peche mangue,300,1,0,groupe_ethique_et_sante
+374933,BC-2884,PB00666-01,Cake minute chocolat,260,1,0,groupe_ethique_et_sante
+374934,BC-2884,13588,Cappuccino,300,1,0,groupe_ethique_et_sante
+374935,BC-2884,BG349,Cereales chocolat,200,1,0,groupe_ethique_et_sante
+374936,BC-2884,BG355,Cereales pomme cannelle,200,1,0,groupe_ethique_et_sante
+374937,BC-2884,PJ00129,Chips Barbecue,80,1,0,groupe_ethique_et_sante
+374938,BC-2884,PJ00130,Chips oignon,160,1,0,groupe_ethique_et_sante
+374939,BC-2884,12771,Desserts chocolat,300,1,0,groupe_ethique_et_sante
+374940,BC-2884,08225,Desserts fruits rouges,300,1,0,groupe_ethique_et_sante
+374941,BC-2884,BG504,Entremets pomme caramel,200,1,0,groupe_ethique_et_sante
+374942,BC-2884,BG426,Flan Patissier chocolat,200,1,0,groupe_ethique_et_sante
+374943,BC-2884,BG425,Flan Patissier vanille,200,1,0,groupe_ethique_et_sante
+374944,BC-2884,09976,Fromage blanc abricot,300,1,0,groupe_ethique_et_sante
+374945,BC-2884,PJ00131,PAIN CEREALES (2 tranches),2880,1,0,groupe_ethique_et_sante
+374946,BC-2884,FS171RN310302,Pain de mie,128,1,0,groupe_ethique_et_sante
+374947,BC-2884,13589,Riz au lait,300,1,0,groupe_ethique_et_sante
+374948,BC-2884,SRNPC1,Sacs grand format,500,1,0,groupe_ethique_et_sante
+374949,BC-2884,PJ00224,Saucisson,250,1,0,groupe_ethique_et_sante
+374950,BC-2884,A0285-01,Soupe marocaine,150,1,0,groupe_ethique_et_sante
+374951,BC-2884,PC01691,Stick draineur thé citron 7g,600,1,0,groupe_ethique_et_sante
+374952,BC-2884,PC01693,Stick draineur thé pêche 7g,600,1,0,groupe_ethique_et_sante
+372010,BC-2885,11786,Barre (Cacao)chocolat ronde,504,1,0,groupe_ethique_et_sante
+372011,BC-2885,BC3707,Barre céréalière Fruits rouges,324,1,0,groupe_ethique_et_sante
+372012,BC-2885,BC3706,Barre céréalière Raisin amande,324,1,0,groupe_ethique_et_sante
+372013,BC-2885,PJ00236,Barre crisp chocolat 35g,500,1,0,groupe_ethique_et_sante
+372014,BC-2885,BC3704,barre Vanille Amande (low sugar),300,1,0,groupe_ethique_et_sante
+372015,BC-2885,10357,Biscuits au chocolat,1440,1,0,groupe_ethique_et_sante
+372016,BC-2885,13129,Biscuits fruits rouges,1080,1,0,groupe_ethique_et_sante
+372017,BC-2885,08730,Biscuits orange,1440,1,0,groupe_ethique_et_sante
+372018,BC-2885,13579,Boisson chocolat au lait,300,1,0,groupe_ethique_et_sante
+372019,BC-2885,12481,Boisson chocolat intense,150,1,0,groupe_ethique_et_sante
+372020,BC-2885,PJ00153,BOUTEILLE BOISSON FRAMBOISE,360,1,0,groupe_ethique_et_sante
+372021,BC-2885,PJ00157,BOUTEILLE BOISSON PÊCHE-PASSION,360,1,0,groupe_ethique_et_sante
+372054,BC-2885,FS15MO341,Bulles BARBECUE,168,1,0,groupe_ethique_et_sante
+372055,BC-2885,FS15O342,Bulles oignons,168,1,0,groupe_ethique_et_sante
+372022,BC-2885,FS11MF994,Chili,100,1,0,groupe_ethique_et_sante
+372023,BC-2885,PJ00129,Chips Barbecue,160,1,0,groupe_ethique_et_sante
+372024,BC-2885,PJ00130,Chips oignon,400,1,0,groupe_ethique_et_sante
+372025,BC-2885,PJ00292,Chorizo,100,1,0,groupe_ethique_et_sante
+372026,BC-2885,CNCIRCU1,Confort Circulatoire (60),30,1,0,groupe_ethique_et_sante
+372027,BC-2885,12773,Desserts entremet vanille,150,1,0,groupe_ethique_et_sante
+372028,BC-2885,ENxxx,Entremet délice aux fraises,150,1,0,groupe_ethique_et_sante
+372029,BC-2885,BG418,Entremets banane,100,1,0,groupe_ethique_et_sante
+372030,BC-2885,BG400,Entremets noix de coco,300,1,0,groupe_ethique_et_sante
+372031,BC-2885,BG504,Entremets pomme caramel,100,1,0,groupe_ethique_et_sante
+372032,BC-2885,BG207,Entremets praline,200,1,0,groupe_ethique_et_sante
+372033,BC-2885,BG427,Flan Patissier cafe,100,1,0,groupe_ethique_et_sante
+372034,BC-2885,BG428,Flan Patissier caramel,200,1,0,groupe_ethique_et_sante
+372035,BC-2885,BG426,Flan Patissier chocolat,100,1,0,groupe_ethique_et_sante
+372036,BC-2885,BG424,Flan Patissier pistache,100,1,0,groupe_ethique_et_sante
+372038,BC-2885,BG425,Flan Patissier vanille,1000,1,0,groupe_ethique_et_sante
+372037,BC-2885,BG425,Flan Patissier vanille,200,1,0,groupe_ethique_et_sante
+372039,BC-2885,09976,Fromage blanc abricot,150,1,0,groupe_ethique_et_sante
+372040,BC-2885,CNMGF2,M.G.F.2,120,1,0,groupe_ethique_et_sante
+372041,BC-2885,09974,Mousse au chocolat,150,1,0,groupe_ethique_et_sante
+372042,BC-2885,CNOMEGA,OMEGA 3,60,1,0,groupe_ethique_et_sante
+372043,BC-2885,PJ00131,PAIN CEREALES (2 tranches),2160,1,0,groupe_ethique_et_sante
+372044,BC-2885,FS17,Pain de mie (2 tranches),750,1,0,groupe_ethique_et_sante
+372045,BC-2885,PJ00147,Pate Fusilli,140,1,0,groupe_ethique_et_sante
+372046,BC-2885,SRNPC1,Sacs grand format,500,1,0,groupe_ethique_et_sante
+372047,BC-2885,PJ00224,Saucisson,500,1,0,groupe_ethique_et_sante
+372048,BC-2885,FS12MF993,spaghetti bolognaise,200,1,0,groupe_ethique_et_sante
+372049,BC-2885,PC01691,Stick draineur thé citron 7g,900,1,0,groupe_ethique_et_sante
+372050,BC-2885,PC01692,Stick draineur thé fruits rouges  7g,1200,1,0,groupe_ethique_et_sante
+372051,BC-2885,PC01693,Stick draineur thé pêche 7g,600,1,0,groupe_ethique_et_sante
+372052,BC-2885,PJ00160,TORTITOS BACON,400,1,0,groupe_ethique_et_sante
+372053,BC-2885,PJ00159,TORTITOS POULET MAÏS,240,1,0,groupe_ethique_et_sante
+370942,BC-2886,BC3706,Barre céréalière Raisin amande,108,1,0,groupe_ethique_et_sante
+370943,BC-2886,PJ00236,Barre crisp chocolat 35g,50,1,0,groupe_ethique_et_sante
+370944,BC-2886,PJ00241,Barre crisp fruits rouges 35g,40,1,0,groupe_ethique_et_sante
+370945,BC-2886,BC3704,barre Vanille Amande (low sugar),150,1,0,groupe_ethique_et_sante
+370946,BC-2886,PJ00178,Biscuit cacao pépite chocolat,360,1,0,groupe_ethique_et_sante
+370947,BC-2886,10357,Biscuits au chocolat,360,1,0,groupe_ethique_et_sante
+370948,BC-2886,13129,Biscuits fruits rouges,360,1,0,groupe_ethique_et_sante
+370949,BC-2886,08730,Biscuits orange,360,1,0,groupe_ethique_et_sante
+370950,BC-2886,sp-plaqCN,Plaquette CN A5 3 volets,50,1,0,groupe_ethique_et_sante
+370951,BC-2886,PC01691,Stick draineur thé citron 7g,300,1,0,groupe_ethique_et_sante
+370952,BC-2886,PJ00159,TORTITOS POULET MAÏS,80,1,0,groupe_ethique_et_sante
+370993,BC-2887,11786,Barre (Cacao)chocolat ronde,126,1,0,groupe_ethique_et_sante
+370994,BC-2887,PJ00178,Biscuit cacao pépite chocolat,72,1,0,groupe_ethique_et_sante
+370995,BC-2887,13129,Biscuits fruits rouges,72,1,0,groupe_ethique_et_sante
+370996,BC-2887,08730,Biscuits orange,72,1,0,groupe_ethique_et_sante
+370997,BC-2887,PJ00130,Chips oignon,80,1,0,groupe_ethique_et_sante
+370998,BC-2887,BG434,Flan Patissier citron,100,1,0,groupe_ethique_et_sante
+370999,BC-2887,BG424,Flan Patissier pistache,100,1,0,groupe_ethique_et_sante
+371000,BC-2887,CNMULTIVIT,Multi-vitamines et Minéraux,30,1,0,groupe_ethique_et_sante
+371001,BC-2887,PJ00131,PAIN CEREALES (2 tranches),144,1,0,groupe_ethique_et_sante
+371002,BC-2887,PB01237,Pancake,130,1,0,groupe_ethique_et_sante
+371004,BC-2887,08223,Soupe de legumes,150,1,0,groupe_ethique_et_sante
+371003,BC-2887,PC01693,Stick draineur thé pêche 7g,300,1,0,groupe_ethique_et_sante
+371638,BC-2888,CNSTRESS2,Anti stress 2,30,1,0,groupe_ethique_et_sante
+371639,BC-2888,BC3706,Barre céréalière Raisin amande,108,1,0,groupe_ethique_et_sante
+371640,BC-2888,PJ00083,Barre crisp caramel,336,1,0,groupe_ethique_et_sante
+371641,BC-2888,PJ00236,Barre crisp chocolat 35g,600,1,0,groupe_ethique_et_sante
+371642,BC-2888,PJ00237,Barre crisp coco 35g,400,1,0,groupe_ethique_et_sante
+371643,BC-2888,PJ00241,Barre crisp fruits rouges 35g,240,1,0,groupe_ethique_et_sante
+371644,BC-2888,BC3719,Barre Praline,150,1,0,groupe_ethique_et_sante
+371645,BC-2888,PJ00178,Biscuit cacao pépite chocolat,1440,1,0,groupe_ethique_et_sante
+371646,BC-2888,10357,Biscuits au chocolat,2520,1,0,groupe_ethique_et_sante
+371647,BC-2888,13129,Biscuits fruits rouges,864,1,0,groupe_ethique_et_sante
+371648,BC-2888,08730,Biscuits orange,864,1,0,groupe_ethique_et_sante
+371649,BC-2888,13579,Boisson chocolat au lait,150,1,0,groupe_ethique_et_sante
+371650,BC-2888,PJ00284,Bouchées chocolat blanc,200,1,0,groupe_ethique_et_sante
+371651,BC-2888,PJ00153,BOUTEILLE BOISSON FRAMBOISE,60,1,0,groupe_ethique_et_sante
+371652,BC-2888,PJ00157,BOUTEILLE BOISSON PÊCHE-PASSION,60,1,0,groupe_ethique_et_sante
+371653,BC-2888,PJ00130,Chips oignon,80,1,0,groupe_ethique_et_sante
+371654,BC-2888,CNTRANS,Confort Transit (90),10,1,0,groupe_ethique_et_sante
+371655,BC-2888,BG207,Entremets praline,100,1,0,groupe_ethique_et_sante
+371656,BC-2888,BG427,Flan Patissier cafe,100,1,0,groupe_ethique_et_sante
+371657,BC-2888,BG426,Flan Patissier chocolat,100,1,0,groupe_ethique_et_sante
+371658,BC-2888,BG425,Flan Patissier vanille,100,1,0,groupe_ethique_et_sante
+371659,BC-2888,PJ00131,PAIN CEREALES (2 tranches),1152,1,0,groupe_ethique_et_sante
+371660,BC-2888,FS17,Pain de mie (2 tranches),1200,1,0,groupe_ethique_et_sante
+371661,BC-2888,sp-plaqCN,Plaquette CN A5 3 volets,50,1,0,groupe_ethique_et_sante
+371662,BC-2888,PJ00224,Saucisson,100,1,0,groupe_ethique_et_sante
+371663,BC-2888,PC01691,Stick draineur thé citron 7g,300,1,0,groupe_ethique_et_sante
+371664,BC-2888,PC01692,Stick draineur thé fruits rouges  7g,300,1,0,groupe_ethique_et_sante
+371665,BC-2888,PC01693,Stick draineur thé pêche 7g,300,1,0,groupe_ethique_et_sante
+371666,BC-2888,PJ00160,TORTITOS BACON,80,1,0,groupe_ethique_et_sante
+375330,BC-2889,BC3707,Barre céréalière Fruits rouges,108,1,0,groupe_ethique_et_sante
+375331,BC-2889,BC3706,Barre céréalière Raisin amande,216,1,0,groupe_ethique_et_sante
+375332,BC-2889,PJ00236,Barre crisp chocolat 35g,350,1,0,groupe_ethique_et_sante
+375333,BC-2889,PJ00241,Barre crisp fruits rouges 35g,400,1,0,groupe_ethique_et_sante
+375334,BC-2889,BC3704,barre Vanille Amande (low sugar),450,1,0,groupe_ethique_et_sante
+375335,BC-2889,PJ00178,Biscuit cacao pépite chocolat,576,1,0,groupe_ethique_et_sante
+375336,BC-2889,10357,Biscuits au chocolat,1656,1,0,groupe_ethique_et_sante
+375337,BC-2889,08730,Biscuits orange,576,1,0,groupe_ethique_et_sante
+375338,BC-2889,PJ00153,BOUTEILLE BOISSON FRAMBOISE,48,1,0,groupe_ethique_et_sante
+375339,BC-2889,PJ00157,BOUTEILLE BOISSON PÊCHE-PASSION,12,1,0,groupe_ethique_et_sante
+375340,BC-2889,PJ00287,Bouteille boisson vanille,48,1,0,groupe_ethique_et_sante
+375341,BC-2889,PJ00130,Chips oignon,240,1,0,groupe_ethique_et_sante
+375342,BC-2889,PJ00292,Chorizo,100,1,0,groupe_ethique_et_sante
+375343,BC-2889,CNARTI1,Confort Articulaire (60),30,1,0,groupe_ethique_et_sante
+375344,BC-2889,CNCIRCU1,Confort Circulatoire (60),30,1,0,groupe_ethique_et_sante
+375345,BC-2889,CNTRANS,Confort Transit (90),20,1,0,groupe_ethique_et_sante
+375346,BC-2889,ENxxx,Entremet délice aux fraises,150,1,0,groupe_ethique_et_sante
+375347,BC-2889,BG400,Entremets noix de coco,100,1,0,groupe_ethique_et_sante
+375348,BC-2889,BG435,Entremets poire belle hel,100,1,0,groupe_ethique_et_sante
+375349,BC-2889,BG504,Entremets pomme caramel,100,1,0,groupe_ethique_et_sante
+375350,BC-2889,BG427,Flan Patissier cafe,100,1,0,groupe_ethique_et_sante
+375351,BC-2889,BG428,Flan Patissier caramel,500,1,0,groupe_ethique_et_sante
+375352,BC-2889,BG426,Flan Patissier chocolat,300,1,0,groupe_ethique_et_sante
+375353,BC-2889,BG434,Flan Patissier citron,100,1,0,groupe_ethique_et_sante
+375354,BC-2889,BG424,Flan Patissier pistache,100,1,0,groupe_ethique_et_sante
+375355,BC-2889,BG425,Flan Patissier vanille,400,1,0,groupe_ethique_et_sante
+375356,BC-2889,CNMGF2,M.G.F.2,90,1,0,groupe_ethique_et_sante
+375357,BC-2889,CNOMEGA,OMEGA 3,30,1,0,groupe_ethique_et_sante
+375358,BC-2889,PJ00131,PAIN CEREALES (2 tranches),288,1,0,groupe_ethique_et_sante
+375359,BC-2889,FS17,Pain de mie (2 tranches),300,1,0,groupe_ethique_et_sante
+375360,BC-2889,PRNPC3,Pulvérisateurs,50,1,0,groupe_ethique_et_sante
+375361,BC-2889,PJ00224,Saucisson,450,1,0,groupe_ethique_et_sante
+375362,BC-2889,SRNPC4,SHAKER,75,1,0,groupe_ethique_et_sante
+375363,BC-2889,08223,Soupe de legumes,150,1,0,groupe_ethique_et_sante
+375364,BC-2889,PC01691,Stick draineur thé citron 7g,900,1,0,groupe_ethique_et_sante
+375365,BC-2889,PC01692,Stick draineur thé fruits rouges  7g,600,1,0,groupe_ethique_et_sante
+375366,BC-2889,PC01693,Stick draineur thé pêche 7g,1200,1,0,groupe_ethique_et_sante
+375367,BC-2889,PJ00159,TORTITOS POULET MAÏS,80,1,0,groupe_ethique_et_sante
+371748,BC-2890,BC3707,Barre céréalière Fruits rouges,216,1,0,groupe_ethique_et_sante
+371747,BC-2890,BC3706,Barre céréalière Raisin amande,216,1,0,groupe_ethique_et_sante
+371742,BC-2890,PJ00178,Biscuit cacao pépite chocolat,288,1,0,groupe_ethique_et_sante
+371744,BC-2890,13129,Biscuits fruits rouges,72,1,0,groupe_ethique_et_sante
+371743,BC-2890,08730,Biscuits orange,360,1,0,groupe_ethique_et_sante
+371762,BC-2890,13579,Boisson chocolat au lait,150,1,0,groupe_ethique_et_sante
+371765,BC-2890,PJ00153,BOUTEILLE BOISSON FRAMBOISE,24,1,0,groupe_ethique_et_sante
+371767,BC-2890,PJ00157,BOUTEILLE BOISSON PÊCHE-PASSION,36,1,0,groupe_ethique_et_sante
+371761,BC-2890,13588,Cappuccino,150,1,0,groupe_ethique_et_sante
+371755,BC-2890,PJ00130,Chips oignon,80,1,0,groupe_ethique_et_sante
+371768,BC-2890,PJ00292,Chorizo,50,1,0,groupe_ethique_et_sante
+371753,BC-2890,12771,Desserts chocolat,150,1,0,groupe_ethique_et_sante
+371759,BC-2890,BG400,Entremets noix de coco,100,1,0,groupe_ethique_et_sante
+371760,BC-2890,BG435,Entremets poire belle hel,100,1,0,groupe_ethique_et_sante
+371764,BC-2890,BG504,Entremets pomme caramel,100,1,0,groupe_ethique_et_sante
+371752,BC-2890,BG427,Flan Patissier cafe,200,1,0,groupe_ethique_et_sante
+371751,BC-2890,BG428,Flan Patissier caramel,200,1,0,groupe_ethique_et_sante
+371750,BC-2890,BG426,Flan Patissier chocolat,200,1,0,groupe_ethique_et_sante
+371754,BC-2890,BG434,Flan Patissier citron,100,1,0,groupe_ethique_et_sante
+371749,BC-2890,BG425,Flan Patissier vanille,200,1,0,groupe_ethique_et_sante
+371763,BC-2890,CNMGF2,M.G.F.2,60,1,0,groupe_ethique_et_sante
+371769,BC-2890,CNOMEGA,OMEGA 3,30,1,0,groupe_ethique_et_sante
+371739,BC-2890,PJ00131,PAIN CEREALES (2 tranches),720,1,0,groupe_ethique_et_sante
+371746,BC-2890,FS17,Pain de mie (2 tranches),300,1,0,groupe_ethique_et_sante
+371756,BC-2890,PJ00224,Saucisson,100,1,0,groupe_ethique_et_sante
+371766,BC-2890,FS18SF800,Soupe aux cêpes,100,1,0,groupe_ethique_et_sante
+371757,BC-2890,08223,Soupe de legumes,150,1,0,groupe_ethique_et_sante
+371745,BC-2890,PC01691,Stick draineur thé citron 7g,300,1,0,groupe_ethique_et_sante
+371741,BC-2890,PC01692,Stick draineur thé fruits rouges  7g,600,1,0,groupe_ethique_et_sante
+371740,BC-2890,PC01693,Stick draineur thé pêche 7g,600,1,0,groupe_ethique_et_sante
+371758,BC-2890,PJ00160,TORTITOS BACON,80,1,0,groupe_ethique_et_sante
+371770,BC-2890,08205,Veloute asperge,150,1,0,groupe_ethique_et_sante
+373877,BC-2891,BC3707,Barre céréalière Fruits rouges,216,1,0,groupe_ethique_et_sante
+373878,BC-2891,BC3706,Barre céréalière Raisin amande,216,1,0,groupe_ethique_et_sante
+373879,BC-2891,PJ00083,Barre crisp caramel,840,1,0,groupe_ethique_et_sante
+373880,BC-2891,PJ00236,Barre crisp chocolat 35g,750,1,0,groupe_ethique_et_sante
+373881,BC-2891,PJ00237,Barre crisp coco 35g,1000,1,0,groupe_ethique_et_sante
+373882,BC-2891,PJ00241,Barre crisp fruits rouges 35g,80,1,0,groupe_ethique_et_sante
+373883,BC-2891,BC3704,barre Vanille Amande (low sugar),150,1,0,groupe_ethique_et_sante
+373884,BC-2891,PJ00178,Biscuit cacao pépite chocolat,1440,1,0,groupe_ethique_et_sante
+373885,BC-2891,13129,Biscuits fruits rouges,1440,1,0,groupe_ethique_et_sante
+373886,BC-2891,08730,Biscuits orange,1440,1,0,groupe_ethique_et_sante
+373887,BC-2891,PJ00284,Bouchées chocolat blanc,100,1,0,groupe_ethique_et_sante
+373888,BC-2891,PJ00153,BOUTEILLE BOISSON FRAMBOISE,240,1,0,groupe_ethique_et_sante
+373889,BC-2891,PJ00157,BOUTEILLE BOISSON PÊCHE-PASSION,240,1,0,groupe_ethique_et_sante
+373890,BC-2891,PJ00130,Chips oignon,80,1,0,groupe_ethique_et_sante
+373891,BC-2891,PJ00292,Chorizo,250,1,0,groupe_ethique_et_sante
+373892,BC-2891,PLxxx,crème aux oeufs,150,1,0,groupe_ethique_et_sante
+373893,BC-2891,PB01020,Dessert choco caramel pépite sans gluten,150,1,0,groupe_ethique_et_sante
+373894,BC-2891,12771,Desserts chocolat,450,1,0,groupe_ethique_et_sante
+373895,BC-2891,BG418,Entremets banane,100,1,0,groupe_ethique_et_sante
+373896,BC-2891,BG400,Entremets noix de coco,100,1,0,groupe_ethique_et_sante
+373897,BC-2891,BG435,Entremets poire belle hel,200,1,0,groupe_ethique_et_sante
+373898,BC-2891,BG504,Entremets pomme caramel,100,1,0,groupe_ethique_et_sante
+373899,BC-2891,BG426,Flan Patissier chocolat,300,1,0,groupe_ethique_et_sante
+373900,BC-2891,BG434,Flan Patissier citron,200,1,0,groupe_ethique_et_sante
+373901,BC-2891,BG424,Flan Patissier pistache,100,1,0,groupe_ethique_et_sante
+373902,BC-2891,BG425,Flan Patissier vanille,400,1,0,groupe_ethique_et_sante
+373903,BC-2891,PJ00131,PAIN CEREALES (2 tranches),1728,1,0,groupe_ethique_et_sante
+373904,BC-2891,FS171RN310302,Pain de mie,64,1,0,groupe_ethique_et_sante
+373905,BC-2891,FS17,Pain de mie (2 tranches),600,1,0,groupe_ethique_et_sante
+373906,BC-2891,PB01237,Pancake,130,1,0,groupe_ethique_et_sante
+373907,BC-2891,PJ00147,Pate Fusilli,140,1,0,groupe_ethique_et_sante
+373908,BC-2891,11664,Puree de pomme de terre,300,1,0,groupe_ethique_et_sante
+373909,BC-2891,PJ00224,Saucisson,250,1,0,groupe_ethique_et_sante
+373910,BC-2891,PC01691,Stick draineur thé citron 7g,300,1,0,groupe_ethique_et_sante
+373911,BC-2891,PC01692,Stick draineur thé fruits rouges  7g,300,1,0,groupe_ethique_et_sante
+373912,BC-2891,PC01693,Stick draineur thé pêche 7g,300,1,0,groupe_ethique_et_sante
+373076,BC-2892,BC3704,barre Vanille Amande (low sugar),150,1,0,groupe_ethique_et_sante
+373077,BC-2892,PJ00178,Biscuit cacao pépite chocolat,72,1,0,groupe_ethique_et_sante
+373078,BC-2892,13129,Biscuits fruits rouges,72,1,0,groupe_ethique_et_sante
+373079,BC-2892,08730,Biscuits orange,72,1,0,groupe_ethique_et_sante
+373080,BC-2892,PJ00153,BOUTEILLE BOISSON FRAMBOISE,12,1,0,groupe_ethique_et_sante
+373081,BC-2892,FS17,Pain de mie (2 tranches),150,1,0,groupe_ethique_et_sante
+373082,BC-2892,SRNPC2,Sacs petit format,300,1,0,groupe_ethique_et_sante
+375958,BC-2893,BC3707,Barre céréalière Fruits rouges,108,1,0,groupe_ethique_et_sante
+375959,BC-2893,PJ00083,Barre crisp caramel,224,1,0,groupe_ethique_et_sante
+375960,BC-2893,PJ00236,Barre crisp chocolat 35g,200,1,0,groupe_ethique_et_sante
+375961,BC-2893,PJ00237,Barre crisp coco 35g,150,1,0,groupe_ethique_et_sante
+375962,BC-2893,BC3719,Barre Praline,150,1,0,groupe_ethique_et_sante
+375963,BC-2893,BC3704,barre Vanille Amande (low sugar),150,1,0,groupe_ethique_et_sante
+375964,BC-2893,PJ00178,Biscuit cacao pépite chocolat,648,1,0,groupe_ethique_et_sante
+375965,BC-2893,10357,Biscuits au chocolat,504,1,0,groupe_ethique_et_sante
+375966,BC-2893,13129,Biscuits fruits rouges,144,1,0,groupe_ethique_et_sante
+375967,BC-2893,08730,Biscuits orange,504,1,0,groupe_ethique_et_sante
+375968,BC-2893,12481,Boisson chocolat intense,150,1,0,groupe_ethique_et_sante
+375969,BC-2893,PJ00153,BOUTEILLE BOISSON FRAMBOISE,60,1,0,groupe_ethique_et_sante
+375970,BC-2893,PJ00157,BOUTEILLE BOISSON PÊCHE-PASSION,60,1,0,groupe_ethique_et_sante
+375971,BC-2893,PB00666-01,Cake minute chocolat,130,1,0,groupe_ethique_et_sante
+375972,BC-2893,PJ00129,Chips Barbecue,80,1,0,groupe_ethique_et_sante
+375973,BC-2893,BG309,Crepes orange,100,1,0,groupe_ethique_et_sante
+375974,BC-2893,PB01020,Dessert choco caramel pépite sans gluten,150,1,0,groupe_ethique_et_sante
+375975,BC-2893,12771,Desserts chocolat,150,1,0,groupe_ethique_et_sante
+375976,BC-2893,12773,Desserts entremet vanille,150,1,0,groupe_ethique_et_sante
+375977,BC-2893,BG504,Entremets pomme caramel,100,1,0,groupe_ethique_et_sante
+375978,BC-2893,BG426,Flan Patissier chocolat,100,1,0,groupe_ethique_et_sante
+375979,BC-2893,BG434,Flan Patissier citron,100,1,0,groupe_ethique_et_sante
+375980,BC-2893,BG425,Flan Patissier vanille,100,1,0,groupe_ethique_et_sante
+375981,BC-2893,CNMGF2,M.G.F.2,30,1,0,groupe_ethique_et_sante
+375982,BC-2893,PJ00131,PAIN CEREALES (2 tranches),576,1,0,groupe_ethique_et_sante
+375983,BC-2893,FS17,Pain de mie (2 tranches),600,1,0,groupe_ethique_et_sante
+375984,BC-2893,PJ00147,Pate Fusilli,140,1,0,groupe_ethique_et_sante
+375985,BC-2893,PRNPC3,Pulvérisateurs,50,1,0,groupe_ethique_et_sante
+375986,BC-2893,13589,Riz au lait,150,1,0,groupe_ethique_et_sante
+375987,BC-2893,PJ00224,Saucisson,50,1,0,groupe_ethique_et_sante
+375988,BC-2893,SRNPC4,SHAKER,75,1,0,groupe_ethique_et_sante
+375989,BC-2893,PC01691,Stick draineur thé citron 7g,600,1,0,groupe_ethique_et_sante
+375990,BC-2893,PC01692,Stick draineur thé fruits rouges  7g,300,1,0,groupe_ethique_et_sante
+375991,BC-2893,PC01693,Stick draineur thé pêche 7g,300,1,0,groupe_ethique_et_sante
+375992,BC-2893,PJ00160,TORTITOS BACON,80,1,0,groupe_ethique_et_sante
+375993,BC-2893,PJ00159,TORTITOS POULET MAÏS,80,1,0,groupe_ethique_et_sante
+374743,BC-2894,11786,Barre (Cacao)chocolat ronde,252,1,0,groupe_ethique_et_sante
+374744,BC-2894,BC3707,Barre céréalière Fruits rouges,324,1,0,groupe_ethique_et_sante
+374745,BC-2894,BC3706,Barre céréalière Raisin amande,108,1,0,groupe_ethique_et_sante
+374746,BC-2894,PJ00083,Barre crisp caramel,168,1,0,groupe_ethique_et_sante
+374747,BC-2894,PJ00236,Barre crisp chocolat 35g,850,1,0,groupe_ethique_et_sante
+374748,BC-2894,PJ00237,Barre crisp coco 35g,150,1,0,groupe_ethique_et_sante
+374749,BC-2894,PJ00241,Barre crisp fruits rouges 35g,40,1,0,groupe_ethique_et_sante
+374750,BC-2894,11787,Barre noix de coco (ronde),126,1,0,groupe_ethique_et_sante
+374751,BC-2894,BC3719,Barre Praline,300,1,0,groupe_ethique_et_sante
+374752,BC-2894,BC3704,barre Vanille Amande (low sugar),150,1,0,groupe_ethique_et_sante
+374753,BC-2894,PJ00178,Biscuit cacao pépite chocolat,1512,1,0,groupe_ethique_et_sante
+374754,BC-2894,10357,Biscuits au chocolat,1872,1,0,groupe_ethique_et_sante
+374755,BC-2894,13129,Biscuits fruits rouges,576,1,0,groupe_ethique_et_sante
+374756,BC-2894,08730,Biscuits orange,1368,1,0,groupe_ethique_et_sante
+374757,BC-2894,12481,Boisson chocolat intense,300,1,0,groupe_ethique_et_sante
+374758,BC-2894,PJ00153,BOUTEILLE BOISSON FRAMBOISE,144,1,0,groupe_ethique_et_sante
+374759,BC-2894,PJ00157,BOUTEILLE BOISSON PÊCHE-PASSION,192,1,0,groupe_ethique_et_sante
+374760,BC-2894,13588,Cappuccino,150,1,0,groupe_ethique_et_sante
+374761,BC-2894,PJ00129,Chips Barbecue,80,1,0,groupe_ethique_et_sante
+374762,BC-2894,PJ00130,Chips oignon,160,1,0,groupe_ethique_et_sante
+374763,BC-2894,PJ00292,Chorizo,50,1,0,groupe_ethique_et_sante
+374764,BC-2894,CNCIRCU1,Confort Circulatoire (60),30,1,0,groupe_ethique_et_sante
+374765,BC-2894,CNTRANS,Confort Transit (90),10,1,0,groupe_ethique_et_sante
+374766,BC-2894,PLxxx,crème aux oeufs,150,1,0,groupe_ethique_et_sante
+374767,BC-2894,PB01020,Dessert choco caramel pépite sans gluten,150,1,0,groupe_ethique_et_sante
+374768,BC-2894,12771,Desserts chocolat,300,1,0,groupe_ethique_et_sante
+374769,BC-2894,12773,Desserts entremet vanille,150,1,0,groupe_ethique_et_sante
+374770,BC-2894,BG418,Entremets banane,100,1,0,groupe_ethique_et_sante
+374771,BC-2894,BG400,Entremets noix de coco,200,1,0,groupe_ethique_et_sante
+374772,BC-2894,BG435,Entremets poire belle hel,200,1,0,groupe_ethique_et_sante
+374773,BC-2894,BG504,Entremets pomme caramel,200,1,0,groupe_ethique_et_sante
+374774,BC-2894,BG207,Entremets praline,200,1,0,groupe_ethique_et_sante
+374775,BC-2894,BG427,Flan Patissier cafe,200,1,0,groupe_ethique_et_sante
+374776,BC-2894,BG428,Flan Patissier caramel,300,1,0,groupe_ethique_et_sante
+374777,BC-2894,BG426,Flan Patissier chocolat,800,1,0,groupe_ethique_et_sante
+374778,BC-2894,BG434,Flan Patissier citron,300,1,0,groupe_ethique_et_sante
+374779,BC-2894,BG424,Flan Patissier pistache,200,1,0,groupe_ethique_et_sante
+374780,BC-2894,BG425,Flan Patissier vanille,600,1,0,groupe_ethique_et_sante
+374781,BC-2894,09976,Fromage blanc abricot,150,1,0,groupe_ethique_et_sante
+374782,BC-2894,CNMGF2,M.G.F.2,210,1,0,groupe_ethique_et_sante
+374783,BC-2894,09974,Mousse au chocolat,300,1,0,groupe_ethique_et_sante
+374784,BC-2894,CNOMEGA,OMEGA 3,60,1,0,groupe_ethique_et_sante
+374785,BC-2894,PJ00131,PAIN CEREALES (2 tranches),2448,1,0,groupe_ethique_et_sante
+374786,BC-2894,FS17,Pain de mie (2 tranches),1500,1,0,groupe_ethique_et_sante
+374787,BC-2894,PJ00224,Saucisson,50,1,0,groupe_ethique_et_sante
+374792,BC-2894,SRNPC4,SHAKER,75,1,0,groupe_ethique_et_sante
+374788,BC-2894,PC01691,Stick draineur thé citron 7g,1200,1,0,groupe_ethique_et_sante
+374789,BC-2894,PC01692,Stick draineur thé fruits rouges  7g,600,1,0,groupe_ethique_et_sante
+374790,BC-2894,PC01693,Stick draineur thé pêche 7g,1200,1,0,groupe_ethique_et_sante
+374791,BC-2894,PJ00159,TORTITOS POULET MAÏS,80,1,0,groupe_ethique_et_sante
+374508,BC-2895,11786,Barre (Cacao)chocolat ronde,126,1,0,groupe_ethique_et_sante
+374509,BC-2895,BC3707,Barre céréalière Fruits rouges,324,1,0,groupe_ethique_et_sante
+374510,BC-2895,BC3706,Barre céréalière Raisin amande,216,1,0,groupe_ethique_et_sante
+374511,BC-2895,PJ00083,Barre crisp caramel,896,1,0,groupe_ethique_et_sante
+374512,BC-2895,PJ00236,Barre crisp chocolat 35g,900,1,0,groupe_ethique_et_sante
+374513,BC-2895,PJ00237,Barre crisp coco 35g,400,1,0,groupe_ethique_et_sante
+374514,BC-2895,11787,Barre noix de coco (ronde),126,1,0,groupe_ethique_et_sante
+374515,BC-2895,BC3719,Barre Praline,300,1,0,groupe_ethique_et_sante
+374516,BC-2895,BC3704,barre Vanille Amande (low sugar),300,1,0,groupe_ethique_et_sante
+374517,BC-2895,PJ00178,Biscuit cacao pépite chocolat,720,1,0,groupe_ethique_et_sante
+374518,BC-2895,10357,Biscuits au chocolat,3024,1,0,groupe_ethique_et_sante
+374519,BC-2895,13129,Biscuits fruits rouges,720,1,0,groupe_ethique_et_sante
+374520,BC-2895,08730,Biscuits orange,720,1,0,groupe_ethique_et_sante
+374521,BC-2895,PJ00284,Bouchées chocolat blanc,100,1,0,groupe_ethique_et_sante
+374522,BC-2895,PJ00283,Bouchées chocolat noir,100,1,0,groupe_ethique_et_sante
+374523,BC-2895,PJ00153,BOUTEILLE BOISSON FRAMBOISE,96,1,0,groupe_ethique_et_sante
+374524,BC-2895,PJ00157,BOUTEILLE BOISSON PÊCHE-PASSION,36,1,0,groupe_ethique_et_sante
+374525,BC-2895,PJ00287,Bouteille boisson vanille,36,1,0,groupe_ethique_et_sante
+374526,BC-2895,BG355,Cereales pomme cannelle,100,1,0,groupe_ethique_et_sante
+374527,BC-2895,PJ00129,Chips Barbecue,160,1,0,groupe_ethique_et_sante
+374528,BC-2895,PJ00130,Chips oignon,240,1,0,groupe_ethique_et_sante
+374529,BC-2895,CNCIRCU1,Confort Circulatoire (60),30,1,0,groupe_ethique_et_sante
+374530,BC-2895,BG309,Crepes orange,100,1,0,groupe_ethique_et_sante
+374531,BC-2895,12771,Desserts chocolat,300,1,0,groupe_ethique_et_sante
+374532,BC-2895,ENxxx,Entremet délice aux fraises,150,1,0,groupe_ethique_et_sante
+374533,BC-2895,BG400,Entremets noix de coco,200,1,0,groupe_ethique_et_sante
+374534,BC-2895,BG435,Entremets poire belle hel,100,1,0,groupe_ethique_et_sante
+374535,BC-2895,BG207,Entremets praline,100,1,0,groupe_ethique_et_sante
+374536,BC-2895,BG427,Flan Patissier cafe,100,1,0,groupe_ethique_et_sante
+374537,BC-2895,BG428,Flan Patissier caramel,100,1,0,groupe_ethique_et_sante
+374538,BC-2895,BG426,Flan Patissier chocolat,100,1,0,groupe_ethique_et_sante
+374539,BC-2895,BG434,Flan Patissier citron,100,1,0,groupe_ethique_et_sante
+374540,BC-2895,BG424,Flan Patissier pistache,100,1,0,groupe_ethique_et_sante
+374541,BC-2895,BG425,Flan Patissier vanille,200,1,0,groupe_ethique_et_sante
+374542,BC-2895,09976,Fromage blanc abricot,150,1,0,groupe_ethique_et_sante
+374543,BC-2895,CNMGF2,M.G.F.2,120,1,0,groupe_ethique_et_sante
+374544,BC-2895,CNOMEGA,OMEGA 3,30,1,0,groupe_ethique_et_sante
+374545,BC-2895,PJ00131,PAIN CEREALES (2 tranches),2160,1,0,groupe_ethique_et_sante
+374546,BC-2895,FS17,Pain de mie (2 tranches),1800,1,0,groupe_ethique_et_sante
+374547,BC-2895,PJ00147,Pate Fusilli,140,1,0,groupe_ethique_et_sante
+374558,BC-2895,sp-plaqCN,Plaquette CN A5 3 volets,50,1,0,groupe_ethique_et_sante
+374548,BC-2895,PRNPC3,Pulvérisateurs,50,1,0,groupe_ethique_et_sante
+374549,BC-2895,13589,Riz au lait,150,1,0,groupe_ethique_et_sante
+374550,BC-2895,PJ00224,Saucisson,350,1,0,groupe_ethique_et_sante
+374551,BC-2895,SRNPC4,SHAKER,75,1,0,groupe_ethique_et_sante
+374552,BC-2895,A0285-01,Soupe marocaine,150,1,0,groupe_ethique_et_sante
+374553,BC-2895,FS12MF993,spaghetti bolognaise,100,1,0,groupe_ethique_et_sante
+374554,BC-2895,PC01691,Stick draineur thé citron 7g,1800,1,0,groupe_ethique_et_sante
+374555,BC-2895,PC01692,Stick draineur thé fruits rouges  7g,900,1,0,groupe_ethique_et_sante
+374556,BC-2895,PC01693,Stick draineur thé pêche 7g,1200,1,0,groupe_ethique_et_sante
+374557,BC-2895,PJ00160,TORTITOS BACON,160,1,0,groupe_ethique_et_sante
+372811,BC-2896,CNSTRESS2,Anti stress 2,30,1,0,groupe_ethique_et_sante
+372812,BC-2896,BC3707,Barre céréalière Fruits rouges,216,1,0,groupe_ethique_et_sante
+372813,BC-2896,BC3706,Barre céréalière Raisin amande,216,1,0,groupe_ethique_et_sante
+372814,BC-2896,PJ00083,Barre crisp caramel,560,1,0,groupe_ethique_et_sante
+372815,BC-2896,PJ00236,Barre crisp chocolat 35g,500,1,0,groupe_ethique_et_sante
+372816,BC-2896,PJ00237,Barre crisp coco 35g,250,1,0,groupe_ethique_et_sante
+372817,BC-2896,PJ00241,Barre crisp fruits rouges 35g,240,1,0,groupe_ethique_et_sante
+372818,BC-2896,BC3719,Barre Praline,150,1,0,groupe_ethique_et_sante
+372819,BC-2896,BC3704,barre Vanille Amande (low sugar),150,1,0,groupe_ethique_et_sante
+372820,BC-2896,PJ00178,Biscuit cacao pépite chocolat,720,1,0,groupe_ethique_et_sante
+372821,BC-2896,10357,Biscuits au chocolat,1440,1,0,groupe_ethique_et_sante
+372822,BC-2896,13129,Biscuits fruits rouges,1080,1,0,groupe_ethique_et_sante
+372823,BC-2896,08730,Biscuits orange,576,1,0,groupe_ethique_et_sante
+372824,BC-2896,12481,Boisson chocolat intense,600,1,0,groupe_ethique_et_sante
+372825,BC-2896,08218,Boisson orange,150,1,0,groupe_ethique_et_sante
+372826,BC-2896,PJ00153,BOUTEILLE BOISSON FRAMBOISE,60,1,0,groupe_ethique_et_sante
+372827,BC-2896,PJ00157,BOUTEILLE BOISSON PÊCHE-PASSION,60,1,0,groupe_ethique_et_sante
+372828,BC-2896,FS15MO341,Bulles BARBECUE,168,1,0,groupe_ethique_et_sante
+372829,BC-2896,13588,Cappuccino,450,1,0,groupe_ethique_et_sante
+372830,BC-2896,BG349,Cereales chocolat,100,1,0,groupe_ethique_et_sante
+372831,BC-2896,BG355,Cereales pomme cannelle,100,1,0,groupe_ethique_et_sante
+372832,BC-2896,BG357,Cereales vanille,100,1,0,groupe_ethique_et_sante
+372833,BC-2896,FS11MF994,Chili,100,1,0,groupe_ethique_et_sante
+372834,BC-2896,PJ00129,Chips Barbecue,160,1,0,groupe_ethique_et_sante
+372835,BC-2896,PJ00130,Chips oignon,240,1,0,groupe_ethique_et_sante
+372836,BC-2896,PJ00292,Chorizo,300,1,0,groupe_ethique_et_sante
+372837,BC-2896,CNARTI1,Confort Articulaire (60),30,1,0,groupe_ethique_et_sante
+372838,BC-2896,CNCIRCU1,Confort Circulatoire (60),60,1,0,groupe_ethique_et_sante
+372839,BC-2896,PLxxx,crème aux oeufs,300,1,0,groupe_ethique_et_sante
+372840,BC-2896,PB00684-01,Crêpes banane chocolat,150,1,0,groupe_ethique_et_sante
+372841,BC-2896,BG309,Crepes orange,200,1,0,groupe_ethique_et_sante
+372842,BC-2896,PB01240,Crêpes pomme caramel,150,1,0,groupe_ethique_et_sante
+372843,BC-2896,PB01020,Dessert choco caramel pépite sans gluten,450,1,0,groupe_ethique_et_sante
+372844,BC-2896,12771,Desserts chocolat,450,1,0,groupe_ethique_et_sante
+372845,BC-2896,BG435,Entremets poire belle hel,200,1,0,groupe_ethique_et_sante
+372846,BC-2896,BG504,Entremets pomme caramel,200,1,0,groupe_ethique_et_sante
+372847,BC-2896,BG427,Flan Patissier cafe,100,1,0,groupe_ethique_et_sante
+372848,BC-2896,BG426,Flan Patissier chocolat,100,1,0,groupe_ethique_et_sante
+372849,BC-2896,BG434,Flan Patissier citron,100,1,0,groupe_ethique_et_sante
+372850,BC-2896,BG424,Flan Patissier pistache,100,1,0,groupe_ethique_et_sante
+372851,BC-2896,BG425,Flan Patissier vanille,100,1,0,groupe_ethique_et_sante
+372852,BC-2896,BG425,Flan Patissier vanille,100,1,0,groupe_ethique_et_sante
+372853,BC-2896,CNMGF2,M.G.F.2,150,1,0,groupe_ethique_et_sante
+372854,BC-2896,CNOMEGA,OMEGA 3,30,1,0,groupe_ethique_et_sante
+372855,BC-2896,08212,Omelette fines herbes,150,1,0,groupe_ethique_et_sante
+372856,BC-2896,FS18OF903,omelette fromage,100,1,0,groupe_ethique_et_sante
+372857,BC-2896,BG325,Omelette mediterraneenne,100,1,0,groupe_ethique_et_sante
+372858,BC-2896,PJ00131,PAIN CEREALES (2 tranches),1440,1,0,groupe_ethique_et_sante
+372859,BC-2896,FS17,Pain de mie (2 tranches),750,1,0,groupe_ethique_et_sante
+372860,BC-2896,PB01237,Pancake,130,1,0,groupe_ethique_et_sante
+372861,BC-2896,FS12MF139,parmentier,100,1,0,groupe_ethique_et_sante
+372862,BC-2896,PJ00147,Pate Fusilli,140,1,0,groupe_ethique_et_sante
+372863,BC-2896,11664,Puree de pomme de terre,150,1,0,groupe_ethique_et_sante
+372864,BC-2896,PJ00149,Riz,150,1,0,groupe_ethique_et_sante
+372865,BC-2896,13589,Riz au lait,150,1,0,groupe_ethique_et_sante
+372866,BC-2896,SRNPC1,Sacs grand format,250,1,0,groupe_ethique_et_sante
+372867,BC-2896,PJ00224,Saucisson,400,1,0,groupe_ethique_et_sante
+372868,BC-2896,08223,Soupe de legumes,150,1,0,groupe_ethique_et_sante
+372869,BC-2896,FS12MF993,spaghetti bolognaise,100,1,0,groupe_ethique_et_sante
+372870,BC-2896,PC01691,Stick draineur thé citron 7g,600,1,0,groupe_ethique_et_sante
+372871,BC-2896,PC01692,Stick draineur thé fruits rouges  7g,600,1,0,groupe_ethique_et_sante
+372872,BC-2896,PC01693,Stick draineur thé pêche 7g,600,1,0,groupe_ethique_et_sante
+372873,BC-2896,PJ00159,TORTITOS POULET MAÏS,320,1,0,groupe_ethique_et_sante
+372335,BC-2897,11786,Barre (Cacao)chocolat ronde,126,1,0,groupe_ethique_et_sante
+372336,BC-2897,BC3706,Barre céréalière Raisin amande,108,1,0,groupe_ethique_et_sante
+372337,BC-2897,PJ00083,Barre crisp caramel,56,1,0,groupe_ethique_et_sante
+372338,BC-2897,PJ00236,Barre crisp chocolat 35g,250,1,0,groupe_ethique_et_sante
+372339,BC-2897,PJ00241,Barre crisp fruits rouges 35g,40,1,0,groupe_ethique_et_sante
+372340,BC-2897,BC3704,barre Vanille Amande (low sugar),150,1,0,groupe_ethique_et_sante
+372341,BC-2897,PJ00178,Biscuit cacao pépite chocolat,216,1,0,groupe_ethique_et_sante
+372342,BC-2897,10357,Biscuits au chocolat,216,1,0,groupe_ethique_et_sante
+372343,BC-2897,13129,Biscuits fruits rouges,216,1,0,groupe_ethique_et_sante
+372344,BC-2897,08730,Biscuits orange,216,1,0,groupe_ethique_et_sante
+372345,BC-2897,PJ00153,BOUTEILLE BOISSON FRAMBOISE,72,1,0,groupe_ethique_et_sante
+372346,BC-2897,PJ00157,BOUTEILLE BOISSON PÊCHE-PASSION,84,1,0,groupe_ethique_et_sante
+372347,BC-2897,PJ00130,Chips oignon,80,1,0,groupe_ethique_et_sante
+372348,BC-2897,PJ00292,Chorizo,50,1,0,groupe_ethique_et_sante
+372349,BC-2897,BG400,Entremets noix de coco,100,1,0,groupe_ethique_et_sante
+372350,BC-2897,BG424,Flan Patissier pistache,100,1,0,groupe_ethique_et_sante
+372351,BC-2897,PJ002239-01,Graines Mélanges,130,1,0,groupe_ethique_et_sante
+372352,BC-2897,CNMGF2,M.G.F.2,30,1,0,groupe_ethique_et_sante
+372353,BC-2897,BG325,Omelette mediterraneenne,100,1,0,groupe_ethique_et_sante
+372354,BC-2897,PJ00131,PAIN CEREALES (2 tranches),288,1,0,groupe_ethique_et_sante
+372355,BC-2897,FS171RN310302,Pain de mie,16,1,0,groupe_ethique_et_sante
+372356,BC-2897,PJ00224,Saucisson,100,1,0,groupe_ethique_et_sante
+372357,BC-2897,PC01693,Stick draineur thé pêche 7g,300,1,0,groupe_ethique_et_sante
+372999,BC-2898,PJ00083,Barre crisp caramel,112,1,0,groupe_ethique_et_sante
+373000,BC-2898,PJ00236,Barre crisp chocolat 35g,750,1,0,groupe_ethique_et_sante
+373001,BC-2898,PJ00237,Barre crisp coco 35g,100,1,0,groupe_ethique_et_sante
+373002,BC-2898,PJ00241,Barre crisp fruits rouges 35g,40,1,0,groupe_ethique_et_sante
+373003,BC-2898,PJ00178,Biscuit cacao pépite chocolat,720,1,0,groupe_ethique_et_sante
+373004,BC-2898,10357,Biscuits au chocolat,1800,1,0,groupe_ethique_et_sante
+373005,BC-2898,13129,Biscuits fruits rouges,216,1,0,groupe_ethique_et_sante
+373006,BC-2898,08730,Biscuits orange,936,1,0,groupe_ethique_et_sante
+373007,BC-2898,PJ00153,BOUTEILLE BOISSON FRAMBOISE,48,1,0,groupe_ethique_et_sante
+373008,BC-2898,PJ00157,BOUTEILLE BOISSON PÊCHE-PASSION,48,1,0,groupe_ethique_et_sante
+373009,BC-2898,PJ00287,Bouteille boisson vanille,36,1,0,groupe_ethique_et_sante
+373010,BC-2898,FS15MO341,Bulles BARBECUE,168,1,0,groupe_ethique_et_sante
+373011,BC-2898,PJ00129,Chips Barbecue,80,1,0,groupe_ethique_et_sante
+373012,BC-2898,PJ00130,Chips oignon,80,1,0,groupe_ethique_et_sante
+373013,BC-2898,PJ00292,Chorizo,150,1,0,groupe_ethique_et_sante
+373014,BC-2898,BG207,Entremets praline,100,1,0,groupe_ethique_et_sante
+373015,BC-2898,BG424,Flan Patissier pistache,100,1,0,groupe_ethique_et_sante
+373016,BC-2898,BG425,Flan Patissier vanille,200,1,0,groupe_ethique_et_sante
+373017,BC-2898,CNMGF2,M.G.F.2,60,1,0,groupe_ethique_et_sante
+373018,BC-2898,PJ00131,PAIN CEREALES (2 tranches),1728,1,0,groupe_ethique_et_sante
+373019,BC-2898,FS17,Pain de mie (2 tranches),750,1,0,groupe_ethique_et_sante
+373020,BC-2898,FS12MF139,parmentier,100,1,0,groupe_ethique_et_sante
+373021,BC-2898,PRNPC3,Pulvérisateurs,50,1,0,groupe_ethique_et_sante
+373022,BC-2898,SRNPC1,Sacs grand format,250,1,0,groupe_ethique_et_sante
+373023,BC-2898,SRNPC2,Sacs petit format,300,1,0,groupe_ethique_et_sante
+373024,BC-2898,PJ00224,Saucisson,100,1,0,groupe_ethique_et_sante
+373025,BC-2898,SRNPC4,SHAKER,75,1,0,groupe_ethique_et_sante
+373026,BC-2898,PC01693,Stick draineur thé pêche 7g,900,1,0,groupe_ethique_et_sante
+373027,BC-2898,PJ00160,TORTITOS BACON,80,1,0,groupe_ethique_et_sante
+373028,BC-2898,PJ00159,TORTITOS POULET MAÏS,80,1,0,groupe_ethique_et_sante
+373314,BC-2899,BC3707,Barre céréalière Fruits rouges,108,1,0,groupe_ethique_et_sante
+373315,BC-2899,BC3706,Barre céréalière Raisin amande,108,1,0,groupe_ethique_et_sante
+373316,BC-2899,PJ00083,Barre crisp caramel,280,1,0,groupe_ethique_et_sante
+373322,BC-2899,PJ00236,Barre crisp chocolat 35g,400,1,0,groupe_ethique_et_sante
+373325,BC-2899,PJ00237,Barre crisp coco 35g,250,1,0,groupe_ethique_et_sante
+373317,BC-2899,10357,Biscuits au chocolat,1080,1,0,groupe_ethique_et_sante
+373318,BC-2899,13129,Biscuits fruits rouges,1440,1,0,groupe_ethique_et_sante
+373319,BC-2899,08730,Biscuits orange,360,1,0,groupe_ethique_et_sante
+373329,BC-2899,PJ00153,BOUTEILLE BOISSON FRAMBOISE,48,1,0,groupe_ethique_et_sante
+373331,BC-2899,CNCIRCU1,Confort Circulatoire (60),30,1,0,groupe_ethique_et_sante
+373328,BC-2899,BG427,Flan Patissier cafe,100,1,0,groupe_ethique_et_sante
+373326,BC-2899,BG428,Flan Patissier caramel,100,1,0,groupe_ethique_et_sante
+373330,BC-2899,CNOMEGA,OMEGA 3,30,1,0,groupe_ethique_et_sante
+373320,BC-2899,PJ00131,PAIN CEREALES (2 tranches),1152,1,0,groupe_ethique_et_sante
+373321,BC-2899,FS17,Pain de mie (2 tranches),600,1,0,groupe_ethique_et_sante
+373324,BC-2899,PC01691,Stick draineur thé citron 7g,300,1,0,groupe_ethique_et_sante
+373323,BC-2899,PC01693,Stick draineur thé pêche 7g,300,1,0,groupe_ethique_et_sante
+373327,BC-2899,PJ00160,TORTITOS BACON,80,1,0,groupe_ethique_et_sante
+373390,BC-2900,CNSTRESS2,Anti stress 2,30,1,0,groupe_ethique_et_sante
+373391,BC-2900,BC3707,Barre céréalière Fruits rouges,108,1,0,groupe_ethique_et_sante
+373392,BC-2900,BC3706,Barre céréalière Raisin amande,216,1,0,groupe_ethique_et_sante
+373393,BC-2900,PJ00083,Barre crisp caramel,224,1,0,groupe_ethique_et_sante
+373394,BC-2900,PJ00236,Barre crisp chocolat 35g,250,1,0,groupe_ethique_et_sante
+373395,BC-2900,PJ00237,Barre crisp coco 35g,350,1,0,groupe_ethique_et_sante
+373396,BC-2900,PJ00241,Barre crisp fruits rouges 35g,200,1,0,groupe_ethique_et_sante
+373397,BC-2900,10357,Biscuits au chocolat,720,1,0,groupe_ethique_et_sante
+373398,BC-2900,13129,Biscuits fruits rouges,360,1,0,groupe_ethique_et_sante
+373399,BC-2900,08730,Biscuits orange,360,1,0,groupe_ethique_et_sante
+373400,BC-2900,FS15MO341,Bulles BARBECUE,168,1,0,groupe_ethique_et_sante
+373401,BC-2900,PB00666-01,Cake minute chocolat,130,1,0,groupe_ethique_et_sante
+373402,BC-2900,CNCIRCU1,Confort Circulatoire (60),30,1,0,groupe_ethique_et_sante
+373403,BC-2900,12771,Desserts chocolat,150,1,0,groupe_ethique_et_sante
+373404,BC-2900,BG400,Entremets noix de coco,100,1,0,groupe_ethique_et_sante
+373405,BC-2900,BG207,Entremets praline,100,1,0,groupe_ethique_et_sante
+373406,BC-2900,BG427,Flan Patissier cafe,100,1,0,groupe_ethique_et_sante
+373407,BC-2900,BG428,Flan Patissier caramel,100,1,0,groupe_ethique_et_sante
+373408,BC-2900,BG426,Flan Patissier chocolat,100,1,0,groupe_ethique_et_sante
+373409,BC-2900,BG434,Flan Patissier citron,100,1,0,groupe_ethique_et_sante
+373410,BC-2900,BG424,Flan Patissier pistache,100,1,0,groupe_ethique_et_sante
+373411,BC-2900,BG425,Flan Patissier vanille,100,1,0,groupe_ethique_et_sante
+373412,BC-2900,09976,Fromage blanc abricot,150,1,0,groupe_ethique_et_sante
+373413,BC-2900,PJ00131,PAIN CEREALES (2 tranches),576,1,0,groupe_ethique_et_sante
+373414,BC-2900,FS17,Pain de mie (2 tranches),450,1,0,groupe_ethique_et_sante
+373415,BC-2900,PC01691,Stick draineur thé citron 7g,600,1,0,groupe_ethique_et_sante
+373416,BC-2900,PC01692,Stick draineur thé fruits rouges  7g,300,1,0,groupe_ethique_et_sante
+373417,BC-2900,PC01693,Stick draineur thé pêche 7g,300,1,0,groupe_ethique_et_sante
+373418,BC-2900,08205,Veloute asperge,150,1,0,groupe_ethique_et_sante
+373691,BC-2901,11786,Barre (Cacao)chocolat ronde,126,1,0,groupe_ethique_et_sante
+373692,BC-2901,BC3707,Barre céréalière Fruits rouges,216,1,0,groupe_ethique_et_sante
+373693,BC-2901,BC3706,Barre céréalière Raisin amande,216,1,0,groupe_ethique_et_sante
+373694,BC-2901,PJ00083,Barre crisp caramel,392,1,0,groupe_ethique_et_sante
+373695,BC-2901,PJ00236,Barre crisp chocolat 35g,100,1,0,groupe_ethique_et_sante
+373696,BC-2901,PJ00237,Barre crisp coco 35g,200,1,0,groupe_ethique_et_sante
+373697,BC-2901,PJ00241,Barre crisp fruits rouges 35g,320,1,0,groupe_ethique_et_sante
+373698,BC-2901,BC3719,Barre Praline,150,1,0,groupe_ethique_et_sante
+373699,BC-2901,PJ00178,Biscuit cacao pépite chocolat,72,1,0,groupe_ethique_et_sante
+373700,BC-2901,10357,Biscuits au chocolat,720,1,0,groupe_ethique_et_sante
+373701,BC-2901,13129,Biscuits fruits rouges,216,1,0,groupe_ethique_et_sante
+373702,BC-2901,08730,Biscuits orange,144,1,0,groupe_ethique_et_sante
+373703,BC-2901,12481,Boisson chocolat intense,150,1,0,groupe_ethique_et_sante
+373704,BC-2901,PJ00153,BOUTEILLE BOISSON FRAMBOISE,36,1,0,groupe_ethique_et_sante
+373705,BC-2901,PJ00157,BOUTEILLE BOISSON PÊCHE-PASSION,96,1,0,groupe_ethique_et_sante
+373706,BC-2901,PJ00287,Bouteille boisson vanille,48,1,0,groupe_ethique_et_sante
+373707,BC-2901,PJ00292,Chorizo,50,1,0,groupe_ethique_et_sante
+373708,BC-2901,CNCIRCU1,Confort Circulatoire (60),30,1,0,groupe_ethique_et_sante
+373709,BC-2901,CNTRANS,Confort Transit (90),10,1,0,groupe_ethique_et_sante
+373710,BC-2901,12771,Desserts chocolat,300,1,0,groupe_ethique_et_sante
+373711,BC-2901,ENxxx,Entremet délice aux fraises,150,1,0,groupe_ethique_et_sante
+373712,BC-2901,BG504,Entremets pomme caramel,100,1,0,groupe_ethique_et_sante
+373713,BC-2901,BG207,Entremets praline,100,1,0,groupe_ethique_et_sante
+373714,BC-2901,BG426,Flan Patissier chocolat,100,1,0,groupe_ethique_et_sante
+373715,BC-2901,BG424,Flan Patissier pistache,100,1,0,groupe_ethique_et_sante
+373716,BC-2901,PJ00131,PAIN CEREALES (2 tranches),288,1,0,groupe_ethique_et_sante
+373717,BC-2901,FS17,Pain de mie (2 tranches),450,1,0,groupe_ethique_et_sante
+373718,BC-2901,sp-plaqCN,Plaquette CN A5 3 volets,50,1,0,groupe_ethique_et_sante
+373719,BC-2901,PRNPC3,Pulvérisateurs,50,1,0,groupe_ethique_et_sante
+373720,BC-2901,PJ00149,Riz,150,1,0,groupe_ethique_et_sante
+373721,BC-2901,SRNPC1,Sacs grand format,250,1,0,groupe_ethique_et_sante
+373722,BC-2901,PJ00224,Saucisson,50,1,0,groupe_ethique_et_sante
+373723,BC-2901,SRNPC4,SHAKER,75,1,0,groupe_ethique_et_sante
+373724,BC-2901,FS12MF993,spaghetti bolognaise,100,1,0,groupe_ethique_et_sante
+373725,BC-2901,PC01691,Stick draineur thé citron 7g,300,1,0,groupe_ethique_et_sante
+373726,BC-2901,PC01692,Stick draineur thé fruits rouges  7g,600,1,0,groupe_ethique_et_sante
+373727,BC-2901,PC01693,Stick draineur thé pêche 7g,600,1,0,groupe_ethique_et_sante
+373728,BC-2901,PJ00160,TORTITOS BACON,80,1,0,groupe_ethique_et_sante
+373729,BC-2902,BC3707,Barre céréalière Fruits rouges,108,1,0,groupe_ethique_et_sante
+373730,BC-2902,PJ00236,Barre crisp chocolat 35g,100,1,0,groupe_ethique_et_sante
+373731,BC-2902,10357,Biscuits au chocolat,720,1,0,groupe_ethique_et_sante
+373732,BC-2902,13129,Biscuits fruits rouges,72,1,0,groupe_ethique_et_sante
+373733,BC-2902,08730,Biscuits orange,216,1,0,groupe_ethique_et_sante
+373736,BC-2902,PJ00153,BOUTEILLE BOISSON FRAMBOISE,72,1,0,groupe_ethique_et_sante
+373737,BC-2902,PJ00157,BOUTEILLE BOISSON PÊCHE-PASSION,72,1,0,groupe_ethique_et_sante
+373734,BC-2902,PJ00131,PAIN CEREALES (2 tranches),288,1,0,groupe_ethique_et_sante
+373735,BC-2902,FS17,Pain de mie (2 tranches),600,1,0,groupe_ethique_et_sante
+373739,BC-2902,PJ00224,Saucisson,50,1,0,groupe_ethique_et_sante
+373738,BC-2902,PC01693,Stick draineur thé pêche 7g,300,1,0,groupe_ethique_et_sante
+373740,BC-2902,PJ00159,TORTITOS POULET MAÏS,80,1,0,groupe_ethique_et_sante
+374632,BC-2903,BC3707,Barre céréalière Fruits rouges,216,1,0,groupe_ethique_et_sante
+374631,BC-2903,BC3706,Barre céréalière Raisin amande,108,1,0,groupe_ethique_et_sante
+374629,BC-2903,PJ00236,Barre crisp chocolat 35g,250,1,0,groupe_ethique_et_sante
+374630,BC-2903,PJ00241,Barre crisp fruits rouges 35g,200,1,0,groupe_ethique_et_sante
+374633,BC-2903,BC3719,Barre Praline,150,1,0,groupe_ethique_et_sante
+374634,BC-2903,BC3704,barre Vanille Amande (low sugar),150,1,0,groupe_ethique_et_sante
+374624,BC-2903,PJ00178,Biscuit cacao pépite chocolat,1080,1,0,groupe_ethique_et_sante
+374623,BC-2903,10357,Biscuits au chocolat,2880,1,0,groupe_ethique_et_sante
+374625,BC-2903,13129,Biscuits fruits rouges,1080,1,0,groupe_ethique_et_sante
+374626,BC-2903,08730,Biscuits orange,1080,1,0,groupe_ethique_et_sante
+374637,BC-2903,13579,Boisson chocolat au lait,150,1,0,groupe_ethique_et_sante
+374638,BC-2903,PJ00157,BOUTEILLE BOISSON PÊCHE-PASSION,48,1,0,groupe_ethique_et_sante
+374644,BC-2903,PJ00292,Chorizo,150,1,0,groupe_ethique_et_sante
+374635,BC-2903,BG309,Crepes orange,100,1,0,groupe_ethique_et_sante
+374636,BC-2903,PB01240,Crêpes pomme caramel,150,1,0,groupe_ethique_et_sante
+374645,BC-2903,CNMGF2,M.G.F.2,60,1,0,groupe_ethique_et_sante
+374627,BC-2903,PJ00131,PAIN CEREALES (2 tranches),720,1,0,groupe_ethique_et_sante
+374628,BC-2903,FS17,Pain de mie (2 tranches),450,1,0,groupe_ethique_et_sante
+374646,BC-2903,sp-plaqCN,Plaquette CN A5 3 volets,50,1,0,groupe_ethique_et_sante
+374643,BC-2903,PJ00224,Saucisson,150,1,0,groupe_ethique_et_sante
+374640,BC-2903,PC01691,Stick draineur thé citron 7g,900,1,0,groupe_ethique_et_sante
+374641,BC-2903,PC01692,Stick draineur thé fruits rouges  7g,600,1,0,groupe_ethique_et_sante
+374642,BC-2903,PC01693,Stick draineur thé pêche 7g,600,1,0,groupe_ethique_et_sante
+374639,BC-2903,PJ00159,TORTITOS POULET MAÏS,80,1,0,groupe_ethique_et_sante
+375060,BC-2904,11786,Barre (Cacao)chocolat ronde,378,1,0,groupe_ethique_et_sante
+375061,BC-2904,BC3707,Barre céréalière Fruits rouges,216,1,0,groupe_ethique_et_sante
+375062,BC-2904,BC3706,Barre céréalière Raisin amande,216,1,0,groupe_ethique_et_sante
+375063,BC-2904,PJ00083,Barre crisp caramel,448,1,0,groupe_ethique_et_sante
+375064,BC-2904,PJ00236,Barre crisp chocolat 35g,600,1,0,groupe_ethique_et_sante
+375065,BC-2904,PJ00237,Barre crisp coco 35g,250,1,0,groupe_ethique_et_sante
+375066,BC-2904,PJ00241,Barre crisp fruits rouges 35g,280,1,0,groupe_ethique_et_sante
+375067,BC-2904,BC3719,Barre Praline,150,1,0,groupe_ethique_et_sante
+375068,BC-2904,10357,Biscuits au chocolat,2160,1,0,groupe_ethique_et_sante
+375069,BC-2904,13129,Biscuits fruits rouges,720,1,0,groupe_ethique_et_sante
+375070,BC-2904,08730,Biscuits orange,720,1,0,groupe_ethique_et_sante
+375071,BC-2904,PJ00284,Bouchées chocolat blanc,100,1,0,groupe_ethique_et_sante
+375072,BC-2904,PJ00283,Bouchées chocolat noir,100,1,0,groupe_ethique_et_sante
+375073,BC-2904,PJ00129,Chips Barbecue,80,1,0,groupe_ethique_et_sante
+375074,BC-2904,PJ00130,Chips oignon,240,1,0,groupe_ethique_et_sante
+375075,BC-2904,PJ00292,Chorizo,150,1,0,groupe_ethique_et_sante
+375076,BC-2904,12771,Desserts chocolat,150,1,0,groupe_ethique_et_sante
+375077,BC-2904,ENxxx,Entremet délice aux fraises,150,1,0,groupe_ethique_et_sante
+375078,BC-2904,BG418,Entremets banane,100,1,0,groupe_ethique_et_sante
+375079,BC-2904,BG400,Entremets noix de coco,100,1,0,groupe_ethique_et_sante
+375080,BC-2904,BG435,Entremets poire belle hel,100,1,0,groupe_ethique_et_sante
+375081,BC-2904,BG426,Flan Patissier chocolat,200,1,0,groupe_ethique_et_sante
+375082,BC-2904,BG425,Flan Patissier vanille,200,1,0,groupe_ethique_et_sante
+375083,BC-2904,CNMGF2,M.G.F.2,30,1,0,groupe_ethique_et_sante
+375084,BC-2904,PJ00131,PAIN CEREALES (2 tranches),720,1,0,groupe_ethique_et_sante
+375085,BC-2904,FS17,Pain de mie (2 tranches),900,1,0,groupe_ethique_et_sante
+375086,BC-2904,PJ00147,Pate Fusilli,140,1,0,groupe_ethique_et_sante
+375087,BC-2904,PJ00149,Riz,150,1,0,groupe_ethique_et_sante
+375088,BC-2904,SRNPC1,Sacs grand format,250,1,0,groupe_ethique_et_sante
+375089,BC-2904,PJ00224,Saucisson,200,1,0,groupe_ethique_et_sante
+375090,BC-2904,FS12MF993,spaghetti bolognaise,100,1,0,groupe_ethique_et_sante
+375091,BC-2904,PC01691,Stick draineur thé citron 7g,300,1,0,groupe_ethique_et_sante
+375092,BC-2904,PJ00160,TORTITOS BACON,160,1,0,groupe_ethique_et_sante
+375093,BC-2904,PJ00159,TORTITOS POULET MAÏS,80,1,0,groupe_ethique_et_sante
+375134,BC-2905,BC3707,Barre céréalière Fruits rouges,108,1,0,groupe_ethique_et_sante
+375135,BC-2905,BC3706,Barre céréalière Raisin amande,432,1,0,groupe_ethique_et_sante
+375136,BC-2905,PJ00083,Barre crisp caramel,224,1,0,groupe_ethique_et_sante
+375137,BC-2905,PJ00236,Barre crisp chocolat 35g,300,1,0,groupe_ethique_et_sante
+375138,BC-2905,PJ00237,Barre crisp coco 35g,200,1,0,groupe_ethique_et_sante
+375139,BC-2905,PJ00241,Barre crisp fruits rouges 35g,80,1,0,groupe_ethique_et_sante
+375140,BC-2905,PJ00178,Biscuit cacao pépite chocolat,360,1,0,groupe_ethique_et_sante
+375141,BC-2905,10357,Biscuits au chocolat,1440,1,0,groupe_ethique_et_sante
+375142,BC-2905,13129,Biscuits fruits rouges,720,1,0,groupe_ethique_et_sante
+375143,BC-2905,08730,Biscuits orange,864,1,0,groupe_ethique_et_sante
+375144,BC-2905,PJ00153,BOUTEILLE BOISSON FRAMBOISE,204,1,0,groupe_ethique_et_sante
+375145,BC-2905,PJ00157,BOUTEILLE BOISSON PÊCHE-PASSION,144,1,0,groupe_ethique_et_sante
+375146,BC-2905,13588,Cappuccino,150,1,0,groupe_ethique_et_sante
+375147,BC-2905,PJ00129,Chips Barbecue,240,1,0,groupe_ethique_et_sante
+375148,BC-2905,PJ00130,Chips oignon,560,1,0,groupe_ethique_et_sante
+375149,BC-2905,PJ00292,Chorizo,150,1,0,groupe_ethique_et_sante
+375150,BC-2905,PB00684-01,Crêpes banane chocolat,150,1,0,groupe_ethique_et_sante
+375151,BC-2905,PB01240,Crêpes pomme caramel,150,1,0,groupe_ethique_et_sante
+375152,BC-2905,PB01020,Dessert choco caramel pépite sans gluten,150,1,0,groupe_ethique_et_sante
+375153,BC-2905,12771,Desserts chocolat,150,1,0,groupe_ethique_et_sante
+375154,BC-2905,BG400,Entremets noix de coco,100,1,0,groupe_ethique_et_sante
+375155,BC-2905,BG435,Entremets poire belle hel,100,1,0,groupe_ethique_et_sante
+375156,BC-2905,BG207,Entremets praline,100,1,0,groupe_ethique_et_sante
+375157,BC-2905,BG427,Flan Patissier cafe,100,1,0,groupe_ethique_et_sante
+375158,BC-2905,BG428,Flan Patissier caramel,100,1,0,groupe_ethique_et_sante
+375159,BC-2905,BG426,Flan Patissier chocolat,100,1,0,groupe_ethique_et_sante
+375160,BC-2905,BG434,Flan Patissier citron,100,1,0,groupe_ethique_et_sante
+375161,BC-2905,BG424,Flan Patissier pistache,100,1,0,groupe_ethique_et_sante
+375162,BC-2905,BG425,Flan Patissier vanille,300,1,0,groupe_ethique_et_sante
+375163,BC-2905,09976,Fromage blanc abricot,150,1,0,groupe_ethique_et_sante
+375164,BC-2905,08212,Omelette fines herbes,150,1,0,groupe_ethique_et_sante
+375165,BC-2905,PJ00131,PAIN CEREALES (2 tranches),576,1,0,groupe_ethique_et_sante
+375166,BC-2905,FS17,Pain de mie (2 tranches),750,1,0,groupe_ethique_et_sante
+375167,BC-2905,PJ00147,Pate Fusilli,140,1,0,groupe_ethique_et_sante
+375168,BC-2905,PJ00149,Riz,150,1,0,groupe_ethique_et_sante
+375169,BC-2905,PJ00224,Saucisson,400,1,0,groupe_ethique_et_sante
+375170,BC-2905,PC01691,Stick draineur thé citron 7g,900,1,0,groupe_ethique_et_sante
+375171,BC-2905,PC01692,Stick draineur thé fruits rouges  7g,900,1,0,groupe_ethique_et_sante
+375172,BC-2905,PC01693,Stick draineur thé pêche 7g,1200,1,0,groupe_ethique_et_sante
+375173,BC-2905,PJ00160,TORTITOS BACON,400,1,0,groupe_ethique_et_sante
+375368,BC-2906,11786,Barre (Cacao)chocolat ronde,378,1,0,groupe_ethique_et_sante
+375369,BC-2906,BC3707,Barre céréalière Fruits rouges,108,1,0,groupe_ethique_et_sante
+375370,BC-2906,BC3706,Barre céréalière Raisin amande,324,1,0,groupe_ethique_et_sante
+375371,BC-2906,PJ00083,Barre crisp caramel,224,1,0,groupe_ethique_et_sante
+375372,BC-2906,PJ00236,Barre crisp chocolat 35g,500,1,0,groupe_ethique_et_sante
+375373,BC-2906,PJ00237,Barre crisp coco 35g,250,1,0,groupe_ethique_et_sante
+375374,BC-2906,PJ00241,Barre crisp fruits rouges 35g,80,1,0,groupe_ethique_et_sante
+375375,BC-2906,11787,Barre noix de coco (ronde),378,1,0,groupe_ethique_et_sante
+375376,BC-2906,BC3719,Barre Praline,300,1,0,groupe_ethique_et_sante
+375377,BC-2906,BC3704,barre Vanille Amande (low sugar),450,1,0,groupe_ethique_et_sante
+375378,BC-2906,PJ00178,Biscuit cacao pépite chocolat,864,1,0,groupe_ethique_et_sante
+375379,BC-2906,13129,Biscuits fruits rouges,720,1,0,groupe_ethique_et_sante
+375380,BC-2906,08730,Biscuits orange,864,1,0,groupe_ethique_et_sante
+375381,BC-2906,08218,Boisson orange,150,1,0,groupe_ethique_et_sante
+375382,BC-2906,08220,Boisson peche mangue,150,1,0,groupe_ethique_et_sante
+375383,BC-2906,PB01019,Boisson Pomme sans gluten,150,1,0,groupe_ethique_et_sante
+375384,BC-2906,PJ00288,Bouteille boisson café,24,1,0,groupe_ethique_et_sante
+375385,BC-2906,PJ00153,BOUTEILLE BOISSON FRAMBOISE,300,1,0,groupe_ethique_et_sante
+375386,BC-2906,PJ00157,BOUTEILLE BOISSON PÊCHE-PASSION,240,1,0,groupe_ethique_et_sante
+375387,BC-2906,PB00666-01,Cake minute chocolat,130,1,0,groupe_ethique_et_sante
+375388,BC-2906,13588,Cappuccino,150,1,0,groupe_ethique_et_sante
+375389,BC-2906,BG349,Cereales chocolat,100,1,0,groupe_ethique_et_sante
+375390,BC-2906,PJ00129,Chips Barbecue,160,1,0,groupe_ethique_et_sante
+375391,BC-2906,PJ00130,Chips oignon,240,1,0,groupe_ethique_et_sante
+375392,BC-2906,PJ00292,Chorizo,150,1,0,groupe_ethique_et_sante
+375393,BC-2906,PB00684-01,Crêpes banane chocolat,150,1,0,groupe_ethique_et_sante
+375394,BC-2906,BG309,Crepes orange,100,1,0,groupe_ethique_et_sante
+375395,BC-2906,PB01240,Crêpes pomme caramel,150,1,0,groupe_ethique_et_sante
+375396,BC-2906,PB01020,Dessert choco caramel pépite sans gluten,150,1,0,groupe_ethique_et_sante
+375397,BC-2906,12771,Desserts chocolat,600,1,0,groupe_ethique_et_sante
+375398,BC-2906,BG418,Entremets banane,100,1,0,groupe_ethique_et_sante
+375399,BC-2906,BG400,Entremets noix de coco,300,1,0,groupe_ethique_et_sante
+375400,BC-2906,BG435,Entremets poire belle hel,100,1,0,groupe_ethique_et_sante
+375401,BC-2906,BG504,Entremets pomme caramel,300,1,0,groupe_ethique_et_sante
+375402,BC-2906,BG207,Entremets praline,100,1,0,groupe_ethique_et_sante
+375403,BC-2906,BG427,Flan Patissier cafe,400,1,0,groupe_ethique_et_sante
+375404,BC-2906,BG428,Flan Patissier caramel,100,1,0,groupe_ethique_et_sante
+375405,BC-2906,BG426,Flan Patissier chocolat,800,1,0,groupe_ethique_et_sante
+375406,BC-2906,BG434,Flan Patissier citron,200,1,0,groupe_ethique_et_sante
+375407,BC-2906,BG424,Flan Patissier pistache,100,1,0,groupe_ethique_et_sante
+375408,BC-2906,BG425,Flan Patissier vanille,500,1,0,groupe_ethique_et_sante
+375409,BC-2906,09976,Fromage blanc abricot,150,1,0,groupe_ethique_et_sante
+375410,BC-2906,PJ002239-01,Graines Mélanges,130,1,0,groupe_ethique_et_sante
+375411,BC-2906,CNMGF2,M.G.F.2,120,1,0,groupe_ethique_et_sante
+375412,BC-2906,09974,Mousse au chocolat,150,1,0,groupe_ethique_et_sante
+375413,BC-2906,CNOMEGA,OMEGA 3,30,1,0,groupe_ethique_et_sante
+375414,BC-2906,PJ00131,PAIN CEREALES (2 tranches),3600,1,0,groupe_ethique_et_sante
+375415,BC-2906,FS171RN310302,Pain de mie,8,1,0,groupe_ethique_et_sante
+375416,BC-2906,FS17,Pain de mie (2 tranches),2250,1,0,groupe_ethique_et_sante
+375417,BC-2906,PJ00147,Pate Fusilli,140,1,0,groupe_ethique_et_sante
+375437,BC-2906,sp-plaqCN,Plaquette CN A5 3 volets,100,1,0,groupe_ethique_et_sante
+375418,BC-2906,PRNPC3,Pulvérisateurs,50,1,0,groupe_ethique_et_sante
+375419,BC-2906,11664,Puree de pomme de terre,150,1,0,groupe_ethique_et_sante
+375420,BC-2906,PJ00149,Riz,150,1,0,groupe_ethique_et_sante
+375421,BC-2906,13589,Riz au lait,150,1,0,groupe_ethique_et_sante
+375422,BC-2906,SRNPC1,Sacs grand format,250,1,0,groupe_ethique_et_sante
+375423,BC-2906,SRNPC2,Sacs petit format,300,1,0,groupe_ethique_et_sante
+375424,BC-2906,PJ00224,Saucisson,500,1,0,groupe_ethique_et_sante
+375425,BC-2906,SRNPC4,SHAKER,75,1,0,groupe_ethique_et_sante
+375426,BC-2906,FS18SF800,Soupe aux cêpes,100,1,0,groupe_ethique_et_sante
+375427,BC-2906,08223,Soupe de legumes,150,1,0,groupe_ethique_et_sante
+375428,BC-2906,PA00493,Soupe légumes du potager sans gluten,150,1,0,groupe_ethique_et_sante
+375429,BC-2906,PC01691,Stick draineur thé citron 7g,900,1,0,groupe_ethique_et_sante
+375430,BC-2906,PC01692,Stick draineur thé fruits rouges  7g,900,1,0,groupe_ethique_et_sante
+375431,BC-2906,PC01693,Stick draineur thé pêche 7g,900,1,0,groupe_ethique_et_sante
+375432,BC-2906,BG602,Supreme de volaille,100,1,0,groupe_ethique_et_sante
+375433,BC-2906,PJ00160,TORTITOS BACON,240,1,0,groupe_ethique_et_sante
+375434,BC-2906,PJ00159,TORTITOS POULET MAÏS,160,1,0,groupe_ethique_et_sante
+375435,BC-2906,08205,Veloute asperge,150,1,0,groupe_ethique_et_sante
+375436,BC-2906,08208,Veloute poulet curry,150,1,0,groupe_ethique_et_sante
+375438,BC-2907,BC3707,Barre céréalière Fruits rouges,216,1,0,groupe_ethique_et_sante
+375439,BC-2907,BC3706,Barre céréalière Raisin amande,216,1,0,groupe_ethique_et_sante
+375440,BC-2907,PJ00241,Barre crisp fruits rouges 35g,600,1,0,groupe_ethique_et_sante
+375441,BC-2907,13129,Biscuits fruits rouges,144,1,0,groupe_ethique_et_sante
+375442,BC-2907,08730,Biscuits orange,288,1,0,groupe_ethique_et_sante
+375443,BC-2907,12481,Boisson chocolat intense,450,1,0,groupe_ethique_et_sante
+375444,BC-2907,08220,Boisson peche mangue,300,1,0,groupe_ethique_et_sante
+375445,BC-2907,PB01019,Boisson Pomme sans gluten,150,1,0,groupe_ethique_et_sante
+375446,BC-2907,PJ00288,Bouteille boisson café,120,1,0,groupe_ethique_et_sante
+375447,BC-2907,PJ00153,BOUTEILLE BOISSON FRAMBOISE,840,1,0,groupe_ethique_et_sante
+375448,BC-2907,PJ00157,BOUTEILLE BOISSON PÊCHE-PASSION,840,1,0,groupe_ethique_et_sante
+375449,BC-2907,PJ00287,Bouteille boisson vanille,240,1,0,groupe_ethique_et_sante
+375450,BC-2907,13588,Cappuccino,600,1,0,groupe_ethique_et_sante
+375451,BC-2907,BG357,Cereales vanille,100,1,0,groupe_ethique_et_sante
+375452,BC-2907,PJ00292,Chorizo,100,1,0,groupe_ethique_et_sante
+375453,BC-2907,CNTRANS,Confort Transit (90),20,1,0,groupe_ethique_et_sante
+375454,BC-2907,12771,Desserts chocolat,300,1,0,groupe_ethique_et_sante
+375455,BC-2907,ENxxx,Entremet délice aux fraises,150,1,0,groupe_ethique_et_sante
+375456,BC-2907,BG400,Entremets noix de coco,500,1,0,groupe_ethique_et_sante
+375457,BC-2907,BG435,Entremets poire belle hel,400,1,0,groupe_ethique_et_sante
+375458,BC-2907,BG504,Entremets pomme caramel,300,1,0,groupe_ethique_et_sante
+375459,BC-2907,BG207,Entremets praline,600,1,0,groupe_ethique_et_sante
+375460,BC-2907,BG427,Flan Patissier cafe,600,1,0,groupe_ethique_et_sante
+375461,BC-2907,BG428,Flan Patissier caramel,500,1,0,groupe_ethique_et_sante
+375462,BC-2907,BG426,Flan Patissier chocolat,700,1,0,groupe_ethique_et_sante
+375463,BC-2907,BG434,Flan Patissier citron,500,1,0,groupe_ethique_et_sante
+375464,BC-2907,BG425,Flan Patissier vanille,600,1,0,groupe_ethique_et_sante
+375465,BC-2907,09976,Fromage blanc abricot,300,1,0,groupe_ethique_et_sante
+375466,BC-2907,PJ002239-01,Graines Mélanges,520,1,0,groupe_ethique_et_sante
+375467,BC-2907,CNMGF2,M.G.F.2,30,1,0,groupe_ethique_et_sante
+375468,BC-2907,sp-metremes,mètre mesure,20,1,0,groupe_ethique_et_sante
+375469,BC-2907,PJ00131,PAIN CEREALES (2 tranches),3600,1,0,groupe_ethique_et_sante
+375470,BC-2907,FS17,Pain de mie (2 tranches),750,1,0,groupe_ethique_et_sante
+375471,BC-2907,13589,Riz au lait,450,1,0,groupe_ethique_et_sante
+375472,BC-2907,SRNPC1,Sacs grand format,250,1,0,groupe_ethique_et_sante
+375473,BC-2907,FS18SF800,Soupe aux cêpes,200,1,0,groupe_ethique_et_sante
+375474,BC-2907,PC01691,Stick draineur thé citron 7g,600,1,0,groupe_ethique_et_sante
+375475,BC-2907,PC01693,Stick draineur thé pêche 7g,900,1,0,groupe_ethique_et_sante
+375476,BC-2907,PJ00160,TORTITOS BACON,240,1,0,groupe_ethique_et_sante
+376032,BC-2908,BC3707,Barre céréalière Fruits rouges,108,1,0,groupe_ethique_et_sante
+376031,BC-2908,BC3706,Barre céréalière Raisin amande,216,1,0,groupe_ethique_et_sante
+376023,BC-2908,PJ00083,Barre crisp caramel,336,1,0,groupe_ethique_et_sante
+376009,BC-2908,PJ00236,Barre crisp chocolat 35g,400,1,0,groupe_ethique_et_sante
+376024,BC-2908,PJ00237,Barre crisp coco 35g,250,1,0,groupe_ethique_et_sante
+376026,BC-2908,BC3719,Barre Praline,150,1,0,groupe_ethique_et_sante
+375999,BC-2908,PJ00178,Biscuit cacao pépite chocolat,1080,1,0,groupe_ethique_et_sante
+375995,BC-2908,10357,Biscuits au chocolat,1800,1,0,groupe_ethique_et_sante
+376000,BC-2908,13129,Biscuits fruits rouges,1080,1,0,groupe_ethique_et_sante
+376001,BC-2908,08730,Biscuits orange,1080,1,0,groupe_ethique_et_sante
+376025,BC-2908,12481,Boisson chocolat intense,150,1,0,groupe_ethique_et_sante
+376004,BC-2908,PJ00288,Bouteille boisson café,240,1,0,groupe_ethique_et_sante
+376005,BC-2908,PJ00153,BOUTEILLE BOISSON FRAMBOISE,240,1,0,groupe_ethique_et_sante
+376006,BC-2908,PJ00157,BOUTEILLE BOISSON PÊCHE-PASSION,240,1,0,groupe_ethique_et_sante
+376007,BC-2908,PJ00287,Bouteille boisson vanille,240,1,0,groupe_ethique_et_sante
+376029,BC-2908,FS15O342,Bulles oignons,168,1,0,groupe_ethique_et_sante
+376021,BC-2908,13588,Cappuccino,150,1,0,groupe_ethique_et_sante
+376022,BC-2908,BG349,Cereales chocolat,100,1,0,groupe_ethique_et_sante
+376033,BC-2908,PJ00129,Chips Barbecue,160,1,0,groupe_ethique_et_sante
+376010,BC-2908,PJ00130,Chips oignon,240,1,0,groupe_ethique_et_sante
+376012,BC-2908,PJ00292,Chorizo,250,1,0,groupe_ethique_et_sante
+376008,BC-2908,12771,Desserts chocolat,300,1,0,groupe_ethique_et_sante
+376013,BC-2908,BG400,Entremets noix de coco,100,1,0,groupe_ethique_et_sante
+376018,BC-2908,BG435,Entremets poire belle hel,200,1,0,groupe_ethique_et_sante
+376019,BC-2908,BG207,Entremets praline,200,1,0,groupe_ethique_et_sante
+376014,BC-2908,BG427,Flan Patissier cafe,200,1,0,groupe_ethique_et_sante
+376015,BC-2908,BG428,Flan Patissier caramel,200,1,0,groupe_ethique_et_sante
+376016,BC-2908,BG426,Flan Patissier chocolat,200,1,0,groupe_ethique_et_sante
+376017,BC-2908,BG424,Flan Patissier pistache,100,1,0,groupe_ethique_et_sante
+376003,BC-2908,BG425,Flan Patissier vanille,400,1,0,groupe_ethique_et_sante
+376020,BC-2908,CNMGF2,M.G.F.2,90,1,0,groupe_ethique_et_sante
+376027,BC-2908,CNOMEGA,OMEGA 3,30,1,0,groupe_ethique_et_sante
+375994,BC-2908,PJ00131,PAIN CEREALES (2 tranches),3600,1,0,groupe_ethique_et_sante
+376002,BC-2908,FS17,Pain de mie (2 tranches),750,1,0,groupe_ethique_et_sante
+376030,BC-2908,sp-plaqCN,Plaquette CN A5 3 volets,50,1,0,groupe_ethique_et_sante
+376028,BC-2908,PJ00149,Riz,150,1,0,groupe_ethique_et_sante
+376011,BC-2908,PJ00224,Saucisson,300,1,0,groupe_ethique_et_sante
+375996,BC-2908,PC01691,Stick draineur thé citron 7g,900,1,0,groupe_ethique_et_sante
+375997,BC-2908,PC01692,Stick draineur thé fruits rouges  7g,900,1,0,groupe_ethique_et_sante
+375998,BC-2908,PC01693,Stick draineur thé pêche 7g,900,1,0,groupe_ethique_et_sante

@@ -131,33 +131,72 @@ class BonCommandeEntreemodify(ListView):
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-
-#c'est le bon de sortie pour les commande
 class bonCommandeSortie(ListView):
-    data = dict()
     template_name = "bonCommandeSortie.html"
 
+    def delete(request):
+        if request.method == 'POST':
+            #objects.get avec un filtre retourne le seul objet a avoir le même idboncommandeentree
+            one_task = BonCommandeEntree.objects.get(idBonCommandeEntree=request.POST['id'])
+            one_task.delete()
+            return HttpResponse("deleted !")
+
     def get(self, request):
-        #self.data['lesclients'] = Client_pour_import_BonCommandeSortie.objects.prefetch_related('clients').all()
         context = {
-            #'sortie' :BonCommandeSortie_pour_import_BonCommandeSortie.objects.all().select_related('fk_Client', 'fk_Destinataire', 'fk_Transporteur', 'fk_TypeBonCommandeSortie'),
-            #'umsortie':UniteManutentionSortie_pour_BonCommandeSortie.objects.all().select_related('fk_BonCommandeSortie', 'fk_TypeUniteManutentionSortie', 'fk_Etiquette'),
+            'bone' : BonCommandeEntree.objects.all(),
+            'activate' : 'on',
+            'settings' : menuimages.objects.all(),
+        }
+        return render(request, self.template_name, context)
+
+class bonCommandeSortieadd(ListView):
+    template_name = "bonCommandeSortieadd.html"
+
+    def add(request):
+        if request.method == 'POST':
+            showlist = [request.POST.get('id'),
+                        request.POST.get('ncommande'), request.POST.get('datecom')]
+
+            bce = BonCommandeEntree.objects.all()
+            foundit = 0
+            for items in bce:
+                if items.idBonCommandeEntree == showlist[0]:
+                    foundit = 1
+                    return HttpResponse("found")
+            if foundit == 0: #je crée un bcs
+                boncome = BonCommandeEntree()
+                boncome.idBonCommandeEntree = showlist[0]
+                boncome.numeroCommande = showlist[1]
+                boncome.dateCommande = showlist[2]
+                boncome.save()
+            return HttpResponse("added ! " + showlist[0] + showlist[1] + showlist[2])
+        return HttpResponse("No access there !")
+
+    def get(self, request):
+        context = {
+            'bons' : BonCommandeSortie.objects.all(),
+            'cli' : Client.objects.all(),
+            'des' : Destinataire.objects.all(),
+            'trans' : Transporteur.objects.all(),
             'settings' : menuimages.objects.all(),
             'activate' : 'on'
         }
         return render(request, self.template_name, context)
 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+class bonCommandeSortiemodify(ListView):
+    template_name = "bonCommandeSortiemodify.html"
 
-#page d'ajout des bon commandes sortie
-def bonCommandeSortieadd(request):
-    context = {
-        #'sortie' :BonCommandeSortie_pour_import_BonCommandeSortie.objects.all().select_related('fk_Client', 'fk_Destinataire', 'fk_Transporteur', 'fk_TypeBonCommandeSortie'),
-        #'umsortie':UniteManutentionSortie_pour_BonCommandeSortie.objects.all().select_related('fk_BonCommandeSortie', 'fk_TypeUniteManutentionSortie', 'fk_Etiquette'),
-        #'sortiebl':BonLivraisonSortie_pour_BonCommandeSortie.objects.all().select_related('fk_BonCommandeSortie'),
-    }
-    return render(request, 'bonCommandeSortieadd.html', context)
+    def get(self, request):
+        context = {
+            'bone' : BonCommandeEntree.objects.all(),
+            'id' :request.GET.get('id'),
+            'settings' : menuimages.objects.all(),
+            'activate' : 'on'
+        }
+        return render(request, self.template_name, context)
+
+#c'est le bon de sortie pour les commande
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 

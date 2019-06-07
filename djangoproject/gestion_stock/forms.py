@@ -21,7 +21,6 @@ class UploadFileForm(forms.Form):
 from .models import menuimages
 
 class PostForm(ModelForm):
-
     class Meta:
         model = menuimages
         fields = ['cover1', 'cover2', 'cover3', 'cover4', 'cover5', 'cover5', 'cover6', 'cover7', 'cover8',
