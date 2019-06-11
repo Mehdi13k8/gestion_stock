@@ -210,7 +210,7 @@
 
                                     <td><input class='form-control' value='{{ items.numerotation }}'></td>
                                     <td><button type="button" class="btn btn-grey btn-sm"><i class="fa fa-arrow-right" style='color: deepskyblue;font-size: 15px'></i></button></td>
-                                    <td><button type="button" class="btn btn-grey btn-sm"><i class="fa fa-redo" style="color: deepskyblue;font-size: 15px"></i></button></td>
+                                    <td><a href="{% url 'unitemanutentionsortie' %}"><button type="button" class="btn btn-grey btn-sm"><i class="fa fa-redo" style="color: deepskyblue;font-size: 15px"></i></button></a></td>
                                     <td><input class='form-control' disabled value='{{ items.fk_UniteManutentionSortie.idUniteManutentionSortie }}'></td>
                                     <td><input class='form-control' disabled value='{{ items.fk_UniteManutentionSortie.numero }}'></td>
                                     {% if items.emplacementConfirme == "1" %}
@@ -311,7 +311,7 @@
         var lastcolisid = "0";
         "{% for items in colis %}"
         if (parseInt(lastcolisid, 10) < parseInt('{{ items.idColis }}', 10)) {
-            lastcolisid = parseInt('{{ items.idColis }}', 10);
+                lastcolisid = parseInt('{{ items.idColis }}', 10);
         }
         "{% endfor %}"
         //sorting (trie) du tableau par rapport a ncolis

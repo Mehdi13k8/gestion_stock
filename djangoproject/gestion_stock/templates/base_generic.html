@@ -184,7 +184,7 @@
                   </div>
                 </li>
 
-                <li class="nav-item" style="height: 129.25px;" id="bonlivraisonentree">
+                <li class="nav-item" style="height: 163.25px;" id="bonlivraisonentree">
                   <hr>
                   <div class="row">
                     <div class="mx-auto">
@@ -196,6 +196,24 @@
                         </div>
                         <div class="col">
                           <p>Bon de livraison Entree </p>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                </li>
+
+                <li class="nav-item" style="height: 129.25px;" id="umsg">
+                  <hr>
+                  <div class="row">
+                    <div class="mx-auto">
+                      <a class="nav-link text-center" href="{% url 'unitemanutentionsortie' %}">
+                        <div class="col">
+                          <div class="mx-auto">
+                            <img src="{{ STATIC_URL }} /static/img/p-red-truck.png" class="img-fluid rounded text-left" alt="promotion-produit" height="75" width="75">
+                          </div>
+                        </div>
+                        <div class="col">
+                          <p>U.M Sortie </p>
                         </div>
                       </a>
                     </div>
@@ -432,6 +450,9 @@
       '{% endif%}'
       '{% if items.cover13 %}'
       $('#lve img').attr('src', '{{ items.cover13.url }}');
+      '{% endif%}'
+      '{% if items.cover14 %}'
+      $('#umsg img').attr('src', '{{ items.cover14.url }}');
       '{% endif%}'
       $('img').height('75');
     }

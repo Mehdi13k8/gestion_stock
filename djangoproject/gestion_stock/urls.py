@@ -116,5 +116,15 @@ urlpatterns = [
     path('ume/delete_col/', views.umemodify.delete_colis),
     path('create_ume/', views.umeadd.create),
     path('delete_ume/', views.ume.delete),
+
+    path('umsortie', views.ums.as_view(), name='unitemanutentionsortie'),
+    path('umsortie/add', views.umsadd.as_view(), name='unitemanutentionsortieadd'),
+    path('umsortie/modify/', views.umsmodify.as_view(), name='unitemanutentionsortiemodify'),
+    path('modify_ums/', views.umsmodify.modify),
+    path('ligneums/create/', views.umsmodify.createligne),
+    path('ums/delete_col/', views.umsmodify.delete_colis),
+    path('create_ums/', views.umsadd.create),
+    path('delete_ums/', views.ums.delete),
+
     #path('bon/add/<int:month>/', views.),
 ]

@@ -41,7 +41,7 @@ class index(ListView):              #Page d'acceuil vide pour l'instant
         return render(request, self.template_name, context) #je retourne le template via self car il se trouve dans la classe la request que django sache ce que je fais et context pour les variables
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-#J'étais partie sur cette façon de me connecter, mais je suis retournée a la manière standard offerte par django via un "form standard"
+    #J'étais partie sur cette façon de me connecter, mais je suis retournée a la manière standard offerte par django via un "form standard"
 '''class index_login(ListView): 
     template_name = "login.html"
 
@@ -654,6 +654,40 @@ class article(ListView):
         return HttpResponse("No Authorized Access !")
 
     def get(self, request):
+        article = Article.objects.all()
+        col = Colis.objects.all()
+        ums = UniteManutentionSortie.objects.all()
+        ume = UniteManutentionEntree.objects.all()
+
+        for myarticle in article:
+            myarticle.quantiteProduitStockComplet = 0
+            myarticle.quantiteColisStockComplet = 0
+            myarticle.quantiteProduitStockIncomplet = 0
+            myarticle.quantiteColisStockIncomplet =  0
+
+        for items in col:
+            for myarticle in article:
+                if items.fk_Article.designationClient == myarticle.designationClient: #je suis dans une "ligne" de colis ici, dedans je vais chercher dans les colis non expedié (umsortie) pour avoir le stock
+                    for myums in ums:
+                        if str(items.fk_UniteManutentionSortie) == myums.idUniteManutentionSortie:
+                            #print(str(items.fk_UniteManutentionSortie) + " gg " + items.idColis)
+                            #myarticle.quantiteProduitStockComplet -= int(items.fk_Article.quantiteProduitStockComplet)
+                            #myarticle.quantiteColisStockComplet -=  int(items.fk_Article.quantiteColisStockComplet)
+                            #print("gg " + str(myarticle.quantiteColisStockComplet) + " gg")
+                            myarticle.save()
+                    for myume in ume:
+                        if str(items.fk_UniteManutentionEntree) == myume.idUniteManutentionEntree:
+                            if items.quantiteProduit == myarticle.quantiteColisStandard:
+                                myarticle.quantiteProduitStockComplet += int(items.quantiteProduit)
+                                myarticle.quantiteColisStockComplet +=  1
+                                print("gg2 " + str(myarticle.designationClient) + " gg")
+                                myarticle.save()
+                            else:
+                                myarticle.quantiteProduitStockIncomplet += int(items.quantiteProduit)
+                                myarticle.quantiteColisStockIncomplet +=  1
+                                print("gg3 " + str(myarticle.designationClient) + " gg")
+                                myarticle.save()
+                    #print(items.fk_Article.designationClient + "  " + items.idColis)
         context = {
             'art' : Article.objects.all(),
             'settings' : menuimages.objects.all(),
@@ -2078,3 +2112,152 @@ def deleteuser(request):
         print(str(showlist[0]))
         return HttpResponse("success")
     return HttpResponse("403: No access granted")
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
+class ums(ListView):
+    template_name = "unitemanutentionsortie.html"
+
+    def delete(request):
+        if request.method == 'POST':
+            ume = UniteManutentionSortie.objects.all()
+            for items in ume:
+                if items.idUniteManutentionSortie == request.POST.get('id'):
+                    data = UniteManutentionSortie.objects.get(idUniteManutentionEntree=request.POST['id'])
+                    data.delete()
+                    return HttpResponse("road to delete.")
+            return HttpResponse("Error on delete.")
+
+    def get(self, request):
+        context = {
+            'activate' : 'on',
+            'ums' : UniteManutentionSortie.objects.all(),
+            'settings' : menuimages.objects.all(),
+        }
+        return render(request, self.template_name, context)
+
+class umsadd(ListView):
+    template_name = "unitemanutentionsortieadd.html"
+
+    def create(request):
+        if request.method == 'POST':
+            showlist = [request.POST.get('id'),]
+            umsortie = UniteManutentionSortie.objects.all()
+            ums = UniteManutentionSortie()
+            ums.idUniteManutentionSortie = showlist[0]
+            ums.fk_BonLivraisonSortie = None
+            ums.fk_ZoneDepot = None
+            ums.c_nom = ""
+            ums.c_nomCompte = ""
+            ums.c_horodatage = ""
+            ums.m_nom = ""
+            ums.m_nomCompte = ""
+            ums.m_horodatage = ""
+            ums.numero = ""
+            ums.dateReception = ""
+            ums.stock = ""
+            ums.save()
+            return HttpResponse("road to create ume.")
+        return HttpResponse("Error on delete.")
+
+    def get(self, request):
+        context = {
+            'activate' : 'on',
+            'settings' : menuimages.objects.all(),
+            'ums' : UniteManutentionSortie.objects.all(),
+        }
+        return render(request, self.template_name, context)
+
+class umsmodify(ListView):
+    template_name = "unitemanutentionsortiemodify.html"
+
+    def delete_colis(request):
+        if request.method == 'POST':
+            showlist = [request.POST.get('id'),]
+            colis = Colis.objects.get(idColis=showlist[0])
+            colis.delete()
+            return HttpResponse("colis removed.")
+        return HttpResponse("Error.")
+
+    def modify(request):
+        if request.method == 'POST':
+            showlist = [request.POST.get('id'), request.POST.get('litige'),
+                        request.POST.get('decilitige')]
+            umsortie = UniteManutentionSortie.objects.all()
+            ums = UniteManutentionSortie()
+            return HttpResponse("road to create ume.")
+        return HttpResponse("Error.")
+
+    def createligne(request): #utiliser pour la modication pour gagner du temps car on utilise "get" si l'object existe ou alors on le crée
+        if request.method == 'POST':
+            showlist = [request.POST.get('id'), request.POST.get('ncolis'),
+                        request.POST.get('codef'), request.POST.get('designation'),
+                        request.POST.get('nlot'), request.POST.get('datep'),
+                        request.POST.get('qtecolis'), request.POST.get('numerote'),
+                        request.POST.get('confirme'), request.POST.get('retourncolis'),
+                        request.POST.get('colle'), request.POST.get('litige'),
+                        request.POST.get('decilitige')]
+            try:
+                mycolis = Colis.objects.get(idColis=showlist[1])
+            except Colis.DoesNotExist:
+                mycolis = Colis()
+            mycolis.fk_UniteManutentionSortie = showlist[1]
+            #mycolis.fk_UniteManutentionEntree = UniteManutentionEntree.objects.get(idUniteManutentionEntree=showlist[0])
+            mycolis.idColis = showlist[1]
+            #mycolis.fk_ZoneDepot = UniteManutentionEntree.objects.get(idUniteManutentionEntree=showlist[0]).fk_ZoneDepot
+            mycolis.numeroLot = showlist[4]
+            mycolis.datePeremption = showlist[5]
+            mycolis.quantiteProduit = showlist[6]
+            mycolis.numerotation = showlist[7]
+            mycolis.emplacementConfirme = showlist[8]
+            #mycolis. = showlist[9]
+            mycolis.colle = showlist[10]
+
+            alitige = Litige.objects.all()
+            dlitige = LitigeDecision.objects.all()
+            carticle = Article.objects.all()
+
+            mycolis.fk_Article = None
+            for items in carticle:
+                if items.designationClient == showlist[3]:
+                    mycolis.fk_Article = Article.objects.get(designationClient=showlist[3])
+
+            mycolis.fk_litige = None
+            for items in alitige:
+                if items.nom == showlist[11]:
+                    print ("GG FGOZE9PUAZ9EU F9PUAZ9")
+                    mycolis.fk_litige = Litige.objects.get(nom=showlist[11])
+
+            mycolis.fk_LitigeDecision = None
+            for items in dlitige:
+                if items.nom == showlist[12]:
+                    mycolis.fk_LitigeDecision = LitigeDecision.objects.get(nom=showlist[12])
+            '''print ("id == " + showlist[0])
+            print ("ncol == " + str(showlist[1]))
+            print ("codef == " + str(showlist[2]))
+            print ("desig == " + str(showlist[3]))
+            print ("ncol == " + str(showlist[4]))
+            print ("datep == " + str(showlist[5]))
+            print ("qtec == " + str(showlist[6]))
+            print ("nume == " + str(showlist[7]))
+            print ("conf == " + str(showlist[8]))
+            print ("retnc == " + str(showlist[9]))
+            print ("colle == " + str(showlist[10]))
+            '''
+            print ("litige == " + str(showlist[11]))
+            print ("decilitige == " + str(showlist[12]))
+            #mycolis.save()
+            return HttpResponse("road to create ume.")
+        return HttpResponse("Error.")
+
+    def get(self, request):
+        context = {
+            'article' : Article.objects.all(),
+            'litige' : Litige.objects.all(),
+            'decilitige' : LitigeDecision.objects.all(),
+            'settings' : menuimages.objects.all(),
+            'colis' : Colis.objects.all(),
+            'id' :request.GET.get('id'),
+            'activate' : 'on'
+        }
+        return render(request, self.template_name, context)

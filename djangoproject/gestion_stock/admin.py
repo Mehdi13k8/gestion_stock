@@ -36,8 +36,11 @@ admin.site.register(TypeDestinataire_pour_Destinataire)
 #admin.site.register(BonCommandeSortie_pour_Destinataire)
 #admin.site.register(Transporteur_pour_import_BonCommandeSortie)
 #admin.site.register(TypeBonCommandeSortie_pour_BonCommandeSortie)
+
 admin.site.register(TypeZoneDepot)
 admin.site.register(UniteManutentionEntree)
+admin.site.register(UniteManutentionSortie)
+
 #admin.site.register(Colis_pour_UniteManutentionEntree)
 #admin.site.register(EtiquetteColis_pour_UniteManutentionEntree_historique)
 #admin.site.register(Colis_ZoneDepot_pour_UniteManutentionEntree)
