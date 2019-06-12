@@ -32,6 +32,8 @@ urlpatterns = [
     path('bon_entree/modify', views.bonCommandeSortiemodify.as_view(), name='bonCommandeSortiemodify'),
     path('delete_bon_entree/', views.bonCommandeSortie.delete),
 
+    path('uploadbc/', views.uploadbc),
+
 
     path('bonLivraisonsortie', views.bonLivraisonSortie.as_view(), name='bonLivraisonSortie'),
     path('bonLivraisonsortie/add', views.bonLivraisonSortieadd.as_view(), name='bonLivraisonSortieadd'),

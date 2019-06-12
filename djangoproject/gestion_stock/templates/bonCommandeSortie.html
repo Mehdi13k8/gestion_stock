@@ -12,6 +12,35 @@
         <div class="col">
             <button type="button" id="back-row" class="btn btn-default btn-rounded btn-outline-dark">Tout</button>
         </div>
+        <!--<div class="col">
+            <form method="post" novalidate enctype="multipart/form-data"  style="text-align: left;font-weight:bold;">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-success" style="position:sticky;bottom: 0; margin-left: 45%;">Import B.C</button>
+            {{ form.as_p }}
+        </form>
+        </div>-->
+        <div class="col-auto">
+            <form action="/uploadbc/" method="POST" enctype="multipart/form-data" class="form-horizontal">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="csv_file" class="col-md-3 col-sm-3 col-xs-12 control-label">File: </label>
+                <div class="col-auto">
+                    <input type="file" name="csv_file" id="csv_file" required="True" class="form-control-file">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-3 col-sm-3 col-xs-12 col-md-offset-3" style="margin-bottom:10px;">
+                    <button class="btn btn-primary btn-sm"> <span class="fa fa-upload" style="margin-right:5px;">
+                    </span>Upload </button>
+                </div>
+            </div>
+            </form>
+            <!--<form method="post" action="/uploadbc/" novalidate enctype="multipart/form-data"  style="text-align: left;font-weight:bold;">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-success" style="position:sticky;bottom: 0; margin-left: 45%;">Import Lignes B.C</button>
+            {{ form.as_p }}
+        </form>-->
+        </div>
         <div class="col">
             <button type="button" id="create-row" class="btn btn-success btn-rounded btn-outline-dark">Ajouter</button>
         </div>

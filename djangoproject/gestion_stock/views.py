@@ -1,6 +1,6 @@
 # Create your views here.
 
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, render_to_response, redirect, get_object_or_404
 from django.views.generic import ListView, CreateView, UpdateView
 from .models import *
@@ -13,7 +13,8 @@ from django import forms
 from .forms import PostForm
 from django.urls import reverse, reverse_lazy # new
 from django.contrib.auth.forms import UserCreationForm
-
+from django.contrib import messages
+import csv, io
 #https://realpython.com/django-and-ajax-form-submissions/ faut aller apprendre la connection | plus besoin, connection acquise
 #https://code.djangoproject.com/wiki/AjaxDojoLogin
 
@@ -130,6 +131,12 @@ class BonCommandeEntreemodify(ListView):
         return render(request, self.template_name, context)
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+from .forms import UploadFileForm
+
+def handle_uploaded_file(f):
+    with open('some/file/name.txt', 'wb+') as destination:
+        for chunk in f.chunks():
+            destination.write(chunk)
 
 class bonCommandeSortie(ListView):
     template_name = "bonCommandeSortie.html"
@@ -146,8 +153,95 @@ class bonCommandeSortie(ListView):
             'bone' : BonCommandeEntree.objects.all(),
             'activate' : 'on',
             'settings' : menuimages.objects.all(),
+            'form'     : UploadFileForm(),
+            #'order'    : 'Order of CSV should be idBonCommandeSortie, Client, Destinataire, codeDestinataire, Transporteur, numeroCommande, dateCommande, source',
         }
         return render(request, self.template_name, context)
+
+# fonction qui gère l'envoi d'un fichier csv qu'il soit bon de commande sortie ou ligne bon de commande sortie
+def uploadbc(request):
+    data = {
+        'bone' : BonCommandeEntree.objects.all(),
+        'activate' : 'on',
+        'settings' : menuimages.objects.all(),
+        'form'     : UploadFileForm(),
+    }
+    if "GET" == request.method: #si j'ai un get c pas bon car ma "fonction" action dans la forme bon commande sortie m'envoie un POST, donc c'est une "intrusion" non voulu, donc redirection vers boncommandesortie
+        return render(request, "bonCommandeSortie.html", data)
+    # if not GET, then proceed car c'est bien une requête post que j'ai moi même instancié par un "submite"
+    try:
+        csv_file = request.FILES["csv_file"] #je récupère le fichier "csv_file" je l'ai nommé comme ça dans le nom de l'input présent dans le form de boncommandesortie
+        if (not csv_file.name.endswith('.tab')): # Filemaker sort des formats .tab et non des .csv, les 2 peuvent être réstitué via les ',' mais ce n'est pas le même format, il faut explicitement bloquer les autres types
+            messages.error(request,'File is not a Tab type') #j'envoie une erreur au panel admin si ce n'est pas un '.tab'
+            print ("File push is not a tab "+csv_file.name.endswith('.tab')+" !!!") #message dans la console pour mon debug
+            return HttpResponseRedirect(reverse("bonCommandeSortie")) #donc mauvais fichier = renvoie vers le template de boncommandesortie et non prise en compte du fichier
+        #if file is too large, return soit si le fichier dépasse la taille limite d'un seul "read" je crois 64kb je bloque sinon il faut faire plusieurs "read" de chunks, autant limité la taille d'un fichier ça permet aussi d'éviter de trop remplir la bdd en peu de temps
+        if csv_file.multiple_chunks():
+            messages.error(request,"Uploaded file is too big (%.2f MB)." % (csv_file.size/(1000*1000),))
+            print ("Uploaded file is too big")
+            return HttpResponseRedirect(reverse("bonCommandeSortie"))
+        file_data = csv_file.read().decode('utf-8', errors='ignore') #ici je veux récuperer les "datas" présentes dans le csv, de préférence en utf-8 car majoritairement les tech utilisent utf-8, j'ignore les erreurs pour gagner du temps
+        lines = file_data.split("\n")  #je crée plusieurs rows dans mon "array" chaque \n (saut de ligne) équivaut a une "ligne" (rows) donc pour chaque lignes je recrée une "lignes" dans un array
+        data_dict = {} #je crée un dictionnaire pour l'utiliser pour un stockage par "clé" qui va s'avéré plus pratique que par index "numérique"
+        idx = 0 #pour lire la 1er ligne & voir si la clé est une "ligne" ou un "bon"
+        type_csv = 2 #valeurs de check qui me sert a savoir quel type de fichier je recois un fichier pour les bons ou les lignes de bons, elle reste a 2 si le fichier est pas bon
+        for line in lines:
+            line = line.strip() # j'enlève les lignes vides de la prise en compte si elles sont "vides"
+            if line:#seulement si une "ligne" éxiste je la prends en compte pour éviter les erreurs type "out of index" ou "index error"
+                fields = line.split(',') #comme presque tout csv sont découper par des ',' je dis a python de me faire une array a chaque ',' (équivalent des colones) ça permet d'éviter l'algo manuel
+                if idx == 0:
+                    idx+=1 #j'utilise cette var a 0 car elle me permet de "check" la 1er ligne pour vérifier si toutes les colones ont les bons "noms de rubrique" selon type_csv 1 || type csv 2
+                    messages.success(request,fields[0]) #message de réussite a la page admin pour lui envoyé le type si bon ou ligne (message de débug pour developpeur)
+                    if fields[0] == "﻿idBonCommandeSortie":  #Je compare si c'est un Bon de commande ou si c'est une ligne et avec type csv je mets les clé adéquates
+                        messages.success(request,"This is a bon de commande sortie")
+                        type_csv = 1 #si c'est un "bondecommande" je le mets a 1
+                    if fields[0] == "﻿idLigneBonCommandeSortie":
+                        messages.success(request,"This is a Ligne de bon de commande sortie")
+                        type_csv = 0 # a 0 cela signifie que c'est une ligne pour bon de commande
+                    #mtn je compare si toutes les "têtes" de colones sont bonnes sinon on retourne a la page boncommandesortie & on envoie une erreur  a la page admin
+                    if type_csv == 2:
+                        messages.error(request,"Unable to upload file Bad Keys at text. give either a good bon commande or ligne bon commande")
+                        return HttpResponseRedirect(reverse("bonCommandeSortie"))
+                    if len(fields) != 8:
+                        messages.error(request,"Unable to upload file Bad Keys at text you need 8 columns.")
+                        return HttpResponseRedirect(reverse("bonCommandeSortie"))
+
+                    if type_csv == 1:
+                        if not fields[1] == "﻿idLigneBonCommandeSortie":
+                            messages.error(request,"Unable to upload file Bad Keys .")
+                            return HttpResponseRedirect(reverse("bonCommandeSortie"))
+                    if type_csv == 0:
+                        if not fields[1] == "﻿idLigneBonCommandeSortie":
+                            messages.error(request,"Unable to upload file Bad Keys .")
+                            return HttpResponseRedirect(reverse("bonCommandeSortie"))
+
+                #puis je dois checker chaque entrée qui utilise un id ou un fk, pour voir si il existe si le "fk" est une erreur puis enrigistré
+                if type_csv == 1:
+                    data_dict["idBonCommandeSortie"] = fields[0]
+                    data_dict["Client"] = fields[1]
+                    data_dict["Destinataire"] = fields[2]
+                    data_dict["codeDestinataire"] = fields[3]
+                    data_dict["Transporteur"] = fields[4]
+                    data_dict["numeroCommande"] = fields[5]
+                    data_dict["dateCommande"] = fields[6]
+                    data_dict["source"] = fields[7]
+                else:
+                    data_dict["idLigneBonCommandeSortie"] = fields[0]
+                    data_dict["fk_BonCommandeSortie"] = fields[1]
+                    data_dict["Article"] = fields[2]
+                    data_dict["designation"] = fields[3]
+                    data_dict["quantiteProduitCommande"] = fields[4]
+                    data_dict["priorite"] = fields[5]
+                    data_dict["termine"] = fields[6]
+                    data_dict["source"] = fields[7]
+                print (data_dict)
+            #Ici detecté le parsgage si parsage du CSV mauvais passé a l'exception
+    except Exception as e:
+        '''logging.getLogger("error_logger").error("Unable to upload file. "+repr(e))'''
+        messages.error(request,"Unable to upload file. "+repr(e))
+    messages.success(request,"Files uplodade with no problem")
+    return HttpResponseRedirect(reverse("bonCommandeSortie"))
+
 
 class bonCommandeSortieadd(ListView):
     template_name = "bonCommandeSortieadd.html"
