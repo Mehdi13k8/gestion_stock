@@ -4,7 +4,7 @@
 
 <body>
 
-<div class="container"><h1 class="text-center"> U.M. Entrées </h1></div>
+<div class="container"><h1 class="text-center"> U.M. Sortie </h1></div>
 <br>
 
 <div class="container">
@@ -77,7 +77,7 @@
     $(document).ready(function () {
         $('#dtBasicExample').DataTable();
         $('.dataTables_length').addClass('bs-select');
-        $('#umsortie').fadeTo("slow", 0.5);
+        $('#umsg').fadeTo("slow", 0.5);
     });
 
     $("#create-row").click(function() {
@@ -103,7 +103,7 @@
         alert(idClicked);
         $.ajax({
             type:"POST",    //type de requête utilisé par ajax
-            url:"/delete_ume/", //lien de la view qui gère la requête post pour supprimer une sortie
+            url:"/delete_ums/", //lien de la view qui gère la requête post pour supprimer une sortie
             data: {
                 'name': $('#nom').val(), // nom du transporteur récuperer dans le input #nom
                 'id': idClicked, // id du transporteur acquis grace a une incrementation en js

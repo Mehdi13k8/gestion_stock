@@ -144,13 +144,13 @@ class bonCommandeSortie(ListView):
     def delete(request):
         if request.method == 'POST':
             #objects.get avec un filtre retourne le seul objet a avoir le même idboncommandeentree
-            one_task = BonCommandeEntree.objects.get(idBonCommandeEntree=request.POST['id'])
+            one_task = BonCommandeSortie.objects.get(idBonCommandeSortie=request.POST['id'])
             one_task.delete()
             return HttpResponse("deleted !")
 
     def get(self, request):
         context = {
-            'bone' : BonCommandeEntree.objects.all(),
+            'bcs' : BonCommandeSortie.objects.all(),
             'activate' : 'on',
             'settings' : menuimages.objects.all(),
             'form'     : UploadFileForm(),
@@ -203,39 +203,110 @@ def uploadbc(request):
                         messages.error(request,"Unable to upload file Bad Keys at text. give either a good bon commande or ligne bon commande")
                         return HttpResponseRedirect(reverse("bonCommandeSortie"))
                     if len(fields) != 8:
-                        messages.error(request,"Unable to upload file Bad Keys at text you need 8 columns.")
+                        messages.error(request,"Unable to upload file Bad Keys at text you need 8 columns.")#les 2 fichiers doivent avoir 8 colones sinon erreur
                         return HttpResponseRedirect(reverse("bonCommandeSortie"))
 
+                    #Vérification des "clé" une par une
                     if type_csv == 1:
-                        if not fields[1] == "﻿idLigneBonCommandeSortie":
-                            messages.error(request,"Unable to upload file Bad Keys .")
+                        if not fields[1] == "Client":
+                            messages.error(request,"Unable to upload file Bad Keys for lbcs.")
+                            return HttpResponseRedirect(reverse("bonCommandeSortie"))
+                        if not fields[2] == "Destinataire":
+                            messages.error(request,"Unable to upload file Bad Keys for lbcs.")
+                            return HttpResponseRedirect(reverse("bonCommandeSortie"))
+                        if not fields[3] == "codeDestinataire":
+                            messages.error(request,"Unable to upload file Bad Keys for lbcs.")
+                            return HttpResponseRedirect(reverse("bonCommandeSortie"))
+                        if not fields[4] == "Transporteur":
+                            messages.error(request,"Unable to upload file Bad Keys for lbcs.")
+                            return HttpResponseRedirect(reverse("bonCommandeSortie"))
+                        if not fields[5] == "numeroCommande":
+                            messages.error(request,"Unable to upload file Bad Keys for lbcs.")
+                            return HttpResponseRedirect(reverse("bonCommandeSortie"))
+                        if not fields[6] == "dateCommande":
+                            messages.error(request,"Unable to upload file Bad Keys for lbcs.")
+                            return HttpResponseRedirect(reverse("bonCommandeSortie"))
+                        if not fields[7] == "source":
+                            messages.error(request,"Unable to upload file Bad Keys for lbcs.")
                             return HttpResponseRedirect(reverse("bonCommandeSortie"))
                     if type_csv == 0:
-                        if not fields[1] == "﻿idLigneBonCommandeSortie":
+                        if not fields[1] == "fk_BonCommandeSortie":
+                            messages.error(request,"Unable to upload file Bad Keys for bcs.")
+                            return HttpResponseRedirect(reverse("bonCommandeSortie"))
+                        if not fields[2] == "Article":
                             messages.error(request,"Unable to upload file Bad Keys .")
                             return HttpResponseRedirect(reverse("bonCommandeSortie"))
+                        if not fields[3] == "designation":
+                            messages.error(request,"Unable to upload file Bad Keys for bcs.")
+                            return HttpResponseRedirect(reverse("bonCommandeSortie"))
+                        if not fields[4] == "quantiteProduitCommande":
+                            messages.error(request,"Unable to upload file Bad Keys for bcs.")
+                            return HttpResponseRedirect(reverse("bonCommandeSortie"))
+                        if not fields[5] == "priorite":
+                            messages.error(request,"Unable to upload file Bad Keys for bcs.")
+                            return HttpResponseRedirect(reverse("bonCommandeSortie"))
+                        if not fields[6] == "termine":
+                            messages.error(request,"Unable to upload file Bad Keys for bcs.")
+                            return HttpResponseRedirect(reverse("bonCommandeSortie"))
+                        if not fields[7] == "source":
+                            messages.error(request,"Unable to upload file Bad Keys for bcs.")
+                            return HttpResponseRedirect(reverse("bonCommandeSortie"))
 
-                #puis je dois checker chaque entrée qui utilise un id ou un fk, pour voir si il existe si le "fk" est une erreur puis enrigistré
-                if type_csv == 1:
-                    data_dict["idBonCommandeSortie"] = fields[0]
-                    data_dict["Client"] = fields[1]
-                    data_dict["Destinataire"] = fields[2]
-                    data_dict["codeDestinataire"] = fields[3]
-                    data_dict["Transporteur"] = fields[4]
-                    data_dict["numeroCommande"] = fields[5]
-                    data_dict["dateCommande"] = fields[6]
-                    data_dict["source"] = fields[7]
+                #puis je dois checker chaque entrée qui utilise un id ou un fk, pour voir si il existe si le "fk" sinon une erreur puis enrigistré
                 else:
-                    data_dict["idLigneBonCommandeSortie"] = fields[0]
-                    data_dict["fk_BonCommandeSortie"] = fields[1]
-                    data_dict["Article"] = fields[2]
-                    data_dict["designation"] = fields[3]
-                    data_dict["quantiteProduitCommande"] = fields[4]
-                    data_dict["priorite"] = fields[5]
-                    data_dict["termine"] = fields[6]
-                    data_dict["source"] = fields[7]
+                    if type_csv == 1:
+                        try:
+                            BonCommandeSortie.objects.update_or_create(
+                                idBonCommandeSortie=fields[0],
+                                fk_Client=Client.objects.get(nom=fields[1]),
+                                fk_Destinataire=Destinataire.objects.get(codeUM=fields[3]),
+                                fk_Transporteur=Transporteur.objects.get(nom=fields[4]),
+                                numeroCommande=fields[5],
+                                dateCommande=fields[6],
+                                source=fields[7],
+                           )
+                            messages.success(request,"Succès -> Donnees du Csv ont ete ajoutees aux  tarifs")
+                        except Exception as e:
+                            messages.warning(request," Votre fichier n'est pas conforme à la structure demandee. " + str(e) + str(Transporteur.objects.all()) + "client == " + str(fields[4]))
+                            return redirect('bonCommandeSortie')
+                        '''#if not fields[1] == "fk_BonCommandeSortie":
+                        data_dict["idBonCommandeSortie"] = fields[0]
+                        data_dict["Client"] = fields[1]
+                        data_dict["Destinataire"] = fields[2]
+                        data_dict["codeDestinataire"] = fields[3]
+                        data_dict["Transporteur"] = fields[4]
+                        data_dict["numeroCommande"] = fields[5]
+                        data_dict["dateCommande"] = fields[6]
+                        data_dict["source"] = fields[7]'''
+                    else: # les try except me permettent de savoir ou et pour quel raison mes update or create retournent une erreur
+                        try:
+                            LigneBonCommandeSortie_pour_import_BonCommandeSortie.objects.update_or_create(
+                                idLigneBonCommandeSortie=fields[0],
+                                fk_BonCommandeSortie=Client.objects.get(idBonCommandeSortie=fields[1]),
+                                fk_Article=Destinataire.objects.get(nom=fields[3]),
+                                designation=Transporteur.objects.get(nom=fields[4]),
+                                quantiteProduitCommande=fields[5],
+                                priorite=fields[6],
+                                source=fields[7],
+                            )
+                            messages.success(request,"Succès -> Donnees du Csv ont ete ajoutees aux  tarifs")
+                        except Exception as e:
+                            messages.warning(request," Votre fichier n'est pas conforme à la structure demandee. " + str(e) + str(Transporteur.objects.all()) + "client == " + str(fields[4]))
+                            return redirect('bonCommandeSortie')
+                        '''
+                        #if not fields[1] == "﻿idLigneBonCommandeSortie":
+                            #messages.error(request,"Unable to upload file Bad Keys0 .")
+                            #return HttpResponseRedirect(reverse("bonCommandeSortie"))
+                        data_dict["idLigneBonCommandeSortie"] = fields[0]
+                        data_dict["fk_BonCommandeSortie"] = fields[1]
+                        data_dict["Article"] = fields[2]
+                        data_dict["designation"] = fields[3]
+                        data_dict["quantiteProduitCommande"] = fields[4]
+                        data_dict["priorite"] = fields[5]
+                        data_dict["termine"] = fields[6]
+                        data_dict["source"] = fields[7]'''
                 print (data_dict)
-            #Ici detecté le parsgage si parsage du CSV mauvais passé a l'exception
+                #Ici detecté le parsgage si parsage du CSV mauvais passé a l'exception
     except Exception as e:
         '''logging.getLogger("error_logger").error("Unable to upload file. "+repr(e))'''
         messages.error(request,"Unable to upload file. "+repr(e))
