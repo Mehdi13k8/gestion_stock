@@ -156,15 +156,16 @@
                             </tr>
                             </thead>
                             <tbody>
-                            {% for items in entree %}
-                            <!--<tr>
+                            {% for items in umentree %}
+                            {% if items.fk_BonLivraisonEntree.idBonLivraisonEntree == id %}
+                            <tr>
                                 <td> <button id='{{ items.idBonLivraisonEntree }}' class="dyna"> -> </button></td>
-                                <td> {{ items.fk_TypeZoneDepot.nom }} </td>
-                                <td> {{ items.dateReception }} </td>
-                                <td> {{ items.numeroBonLivraison }} </td>
+                                <td> {{ items.numero }} </td>
+                                <td> {{ items.fk_ZoneDepot }} </td>
+                                <td> {{ items. }} </td>
                                 <td> <button id='{{ items.idBonLivraisonEntree  }}' class="dynad"> X </button> </td>
                             </tr>
-                            -->
+                            {% endif %}
                             {% endfor %}
                             </tbody>
                         </table>
@@ -173,10 +174,7 @@
                 <br>
                 <div class="row ml-lg-1">
                     <div class="col-4">
-                        <button><i class="fa fa-plus"></i></button>
-                    </div>
-                    <div class="col">
-                        <button>numéroter</button>
+                        <button class="btn btn-sm btn-outline-blue-grey" id="addume"><i class="fa fa-plus"></i></button>
                     </div>
                 </div>
             </div>

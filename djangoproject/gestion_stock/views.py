@@ -159,6 +159,7 @@ class bonCommandeSortie(ListView):
         return render(request, self.template_name, context)
 
 # fonction qui gère l'envoi d'un fichier csv qu'il soit bon de commande sortie ou ligne bon de commande sortie
+from datetime import datetime
 def uploadbc(request):
     data = {
         'bone' : BonCommandeEntree.objects.all(),
@@ -256,6 +257,7 @@ def uploadbc(request):
                 else:
                     if type_csv == 1:
                         try:
+                            fields[6] = datetime.strptime(fields[6], "%d/%m/%Y").strftime("%Y-%m-%d") #le format des dates dans les csv ne sont pas standard donc je la modifie
                             BonCommandeSortie.objects.update_or_create(
                                 idBonCommandeSortie=fields[0],
                                 fk_Client=Client.objects.get(nom=fields[1]),
@@ -353,7 +355,10 @@ class bonCommandeSortiemodify(ListView):
 
     def get(self, request):
         context = {
-            'bone' : BonCommandeEntree.objects.all(),
+            'bcs' : BonCommandeSortie.objects.all(),
+            'trans' : Transporteur.objects.all(),
+            'dest' : Destinataire.objects.all(),
+            'cli' : Client.objects.all(),
             'id' :request.GET.get('id'),
             'settings' : menuimages.objects.all(),
             'activate' : 'on'
@@ -542,7 +547,6 @@ class bonLivraisonentreemodify(ListView):
                 if id < int(bl.idBonLivraisonEntree):
                     id = int(bl.idBonLivraisonEntree)
             print("id = " + str(id) + '\n')
-
             for i in range(int(after)+1, id+1, 1):
                 try:
                     go = BonLivraisonEntree.objects.get(idBonLivraisonEntree=str(i))
@@ -616,6 +620,7 @@ class bonLivraisonentreemodify(ListView):
     def get(self, request):
         context = {
             'entree' : BonLivraisonEntree.objects.all(),
+            'umentree' : UniteManutentionEntree.objects.all(),
             'art' : Article.objects.all(),
             'cli' : Client.objects.all(),
             'des' : Destinataire.objects.all(),

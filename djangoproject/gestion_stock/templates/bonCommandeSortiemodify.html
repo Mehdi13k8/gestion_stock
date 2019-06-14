@@ -1,0 +1,333 @@
+{% extends user.is_authenticated|yesno:"base_generic.html,empty.html" %}
+{% block content %}
+<body>
+
+<div class="container"><h1 class="text-center"> Bon de commande sortie {{ id }}</h1></div>
+<br>
+
+<div class="container">
+    <div class="form-group row text-center">
+        <div class="col">
+            <button type="button" id="back-row" class="btn btn-default btn-rounded btn-outline-dark">Tout</button>
+        </div>
+        <!--<div class="col">
+            <form method="post" novalidate enctype="multipart/form-data"  style="text-align: left;font-weight:bold;">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-success" style="position:sticky;bottom: 0; margin-left: 45%;">Import B.C</button>
+            {{ form.as_p }}
+        </form>
+        </div>-->
+        <!--<div class="col-auto mx-auto">
+            <form action="/uploadbc/" method="POST" enctype="multipart/form-data" class="form-horizontal">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="csv_file" class="col-md-3 col-sm-3 col-xs-12 control-label">File: </label>
+                    <div class="col-auto">
+                        <input type="file" name="csv_file" id="csv_file" required="True" class="form-control-file">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3 col-sm-3 col-xs-12 col-md-offset-3" style="margin-bottom:10px;">
+                        <button class="btn btn-primary btn-sm"> <span class="fa fa-upload" style="margin-right:5px;">
+                    </span>Upload </button>
+                    </div>
+                </div>
+            </form>-->
+        <!--<form method="post" action="/uploadbc/" novalidate enctype="multipart/form-data"  style="text-align: left;font-weight:bold;">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-success" style="position:sticky;bottom: 0; margin-left: 45%;">Import Lignes B.C</button>
+        {{ form.as_p }}
+    </form>-->
+    </div>
+</div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="border shadow-lg pl-2 mb-3 bg-white rounded">
+                <br>
+                <h3 class="text-center"> identifiant BC-S</h3>
+                <br>
+                <div class="row">
+                    <div class="col ml-4">
+                        <label for="idbcs">identifiant :</label>
+                        <input type="text" id="idbcs" class="form-control-plaintext w-75 text-center" disabled>
+                        <label for="datec">date de commande :</label>
+                        <input type="date" id="datec" class="form-control datepicker" data-date-format="mm/yyyy/dd">
+                        <!--<input type="date" id="datec" class="form-control w-75 text-center">-->
+                        <br>
+                        <label for="client"> client :</label>
+                        <br>
+                        <select class="custom-select w-75" id="client">
+                            <script type="text/javascript">
+                                $(document).ready(function() {
+                                    var i = 0;
+                                    "{% for items in cli %}"
+                                    //to change
+                                    var name = "{{ items.nom|safe }}";
+                                    var oldname;
+                                    if (i == 0)
+                                        $("#client").append(new Option("{{ items.nom|safe }}", "{{ items.nom|safe }}"));
+                                    else if (name != oldname)
+                                        $("#client").append(new Option("{{ items.nom|safe }}", "{{ items.nom|safe }}"));
+                                    oldname = name;
+                                    i = 1;
+                                    "{% endfor %}"
+                                });
+                            </script>
+                        </select>
+                        <br><br>
+                        <label for="destinataire"> destinataire :</label>
+                        <br>
+                        <select class="custom-select w-75" id="destinataire">
+                            <script type="text/javascript">
+                                $(document).ready(function() {
+                                    var i = 0;
+                                    "{% for items in dest %}"
+                                    //to change
+                                    var name = "{{ items.nom|safe }}";
+                                    var oldname;
+                                    if (i == 0)
+                                        $("#destinataire").append(new Option("{{ items.nom|safe }}", "{{ items.nom|safe }}"));
+                                    else if (name != oldname)
+                                        $("#destinataire").append(new Option("{{ items.nom|safe }}", "{{ items.nom|safe }}"));
+                                    oldname = name;
+                                    i = 1;
+                                    "{% endfor %}"
+                                });
+                            </script>
+                        </select>
+
+                    </div>
+                    <div class="col">
+                        <label for="codm">code UM :</label>
+                        <input type="text" id="codm" class="form-control-plaintext w-75 text-center" disabled>
+                        <label for="ncom">n° commande :</label>
+                        <input type="text" id="ncom" class="form-control w-75 text-center">
+                        <br>
+                        <label for="transsel">transporteur :</label>
+                        <select class="custom-select w-75" id="transsel">
+                            <script type="text/javascript">
+                                $(document).ready(function() {
+                                    var i = 0;
+                                    "{% for items in trans %}"
+                                    //to change
+                                    var name = "{{ items.nom|safe }}";
+                                    var oldname;
+                                    if (i == 0)
+                                        $("#transsel").append(new Option("{{ items.nom|safe }}", "{{ items.nom|safe }}"));
+                                    else if (name != oldname)
+                                        $("#transsel").append(new Option("{{ items.nom|safe }}", "{{ items.nom|safe }}"));
+                                    oldname = name;
+                                    i = 1;
+                                    "{% endfor %}"
+                                });
+                            </script>
+                        </select>
+                        <br>
+                        <br>
+                        <label for="btnfile">fichier :</label>
+                        <br>
+                        <button id="btnfile" class="btn btn-sm btn-outline-blue-grey"><i class="fas fa-file-archive"></i></button>
+                    </div>
+                </div>
+                <br>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="border shadow-lg p-3 pb-4 mb-5 bg-white rounded">
+                <div class="table-responsive">
+                    <h4 class="text-center"><b>UM sortie</b></h4>
+                    <table id="umtab" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+                        <thead>
+                        <tr>
+                            <th scope="col" class="th-sm"> modify </th>
+                            <th scope="col" class="th-sm"> dossier </th>
+                            <th scope="col" class="th-sm"> code UM </th>
+                            <th scope="col" class="th-sm"> date </th>
+                            <th scope="col" class="th-sm"> numéro commande </th>
+                            <th scope="col" class="th-sm"> identifiant </th>
+                            <th scope="col" class="th-sm"> terminé </th>
+                            <th scope="col" class="th-sm"> delete </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for items in ums %}
+                        <tr>
+                            <td> <button type="button" id='{{ items.idBonCommandeSortie }}' class="dyna btn btn-sm btn-outline-grey rounded"> <i class="fa fa-arrow-right"></i> </button></td>
+                            <td> {{ items.fk_Destinataire.fk_TypeDestinataire.nom }} </td>
+                            <td> {{ items.fk_Destinataire.codeUM }} </td>
+                            <td> {{ items.dateCommande }} </td>
+                            <td> {{ items.numeroCommande }} </td>
+                            <td> {{ items.idBonCommandeSortie }} </td>
+                            <td> {{ items.termine }} </td>
+                            <td> <button id='{{ items.idBonCommandeSortie  }}' class="dynad btn btn-sm btn-outline-grey rounded-pill"> <i class="fa fa-minus"></i>   </button> </td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <th>modify </th>
+                            <th>dossier </th>
+                            <th>code UM </th>
+                            <th>date</th>
+                            <th>numéro commande</th>
+                            <th>identifiant </th>
+                            <th>terminé </th>
+                            <th>delete </th>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <div class="border shadow-lg p-3 mb-5 bg-white rounded">
+                <div class="table-responsive">
+                    <h4 class="text-center"><b>Lignes bon de commande sortie</b></h4>
+                    <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+                        <thead>
+                        <tr>
+                            <th scope="col" class="th-sm"> modify </th>
+                            <th scope="col" class="th-sm"> dossier </th>
+                            <th scope="col" class="th-sm"> code UM </th>
+                            <th scope="col" class="th-sm"> date </th>
+                            <th scope="col" class="th-sm"> numéro commande </th>
+                            <th scope="col" class="th-sm"> identifiant </th>
+                            <th scope="col" class="th-sm"> terminé </th>
+                            <th scope="col" class="th-sm"> delete </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for items in lbcs %}
+                        <tr>
+                            <td> <button type="button" id='{{ items.idBonCommandeSortie }}' class="dyna btn btn-sm btn-outline-grey rounded"> <i class="fa fa-arrow-right"></i> </button></td>
+                            <td> {{ items.fk_Destinataire.fk_TypeDestinataire.nom }} </td>
+                            <td> {{ items.fk_Destinataire.codeUM }} </td>
+                            <td> {{ items.dateCommande }} </td>
+                            <td> {{ items.numeroCommande }} </td>
+                            <td> {{ items.idBonCommandeSortie }} </td>
+                            <td> {{ items.termine }} </td>
+                            <td> <button id='{{ items.idBonCommandeSortie  }}' class="dynad btn btn-sm btn-outline-grey rounded-pill"> <i class="fa fa-minus"></i>   </button> </td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <th>modify </th>
+                            <th>dossier </th>
+                            <th>code UM </th>
+                            <th>date</th>
+                            <th>numéro commande</th>
+                            <th>identifiant </th>
+                            <th>terminé </th>
+                            <th>delete </th>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="border shadow-lg p-3 mb-5 bg-white rounded">
+                <div class="table-responsive">
+                    <h4 class="text-center"><b>Bons de livraison sortie</b></h4>
+                    <table id="blstab" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+                        <thead>
+                        <tr>
+                            <th scope="col" class="th-sm"> modify </th>
+                            <th scope="col" class="th-sm"> dossier </th>
+                            <th scope="col" class="th-sm"> code UM </th>
+                            <th scope="col" class="th-sm"> date </th>
+                            <th scope="col" class="th-sm"> numéro commande </th>
+                            <th scope="col" class="th-sm"> identifiant </th>
+                            <th scope="col" class="th-sm"> terminé </th>
+                            <th scope="col" class="th-sm"> delete </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for items in lbcs %}
+                        <tr>
+                            <td> <button type="button" id='{{ items.idBonCommandeSortie }}' class="dyna btn btn-sm btn-outline-grey rounded"> <i class="fa fa-arrow-right"></i> </button></td>
+                            <td> {{ items.fk_Destinataire.fk_TypeDestinataire.nom }} </td>
+                            <td> {{ items.fk_Destinataire.codeUM }} </td>
+                            <td> {{ items.dateCommande }} </td>
+                            <td> {{ items.numeroCommande }} </td>
+                            <td> {{ items.idBonCommandeSortie }} </td>
+                            <td> {{ items.termine }} </td>
+                            <td> <button id='{{ items.idBonCommandeSortie  }}' class="dynad btn btn-sm btn-outline-grey rounded-pill"> <i class="fa fa-minus"></i>   </button> </td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <th>modify </th>
+                            <th>dossier </th>
+                            <th>code UM </th>
+                            <th>date</th>
+                            <th>numéro commande</th>
+                            <th>identifiant </th>
+                            <th>terminé </th>
+                            <th>delete </th>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#dtBasicExample').DataTable();
+        $('#umtab').DataTable();
+        $('#blstab').DataTable();
+        $('.dataTables_length').addClass('bs-select');
+        $('#boncommandesortie').fadeTo("slow", 0.5);
+
+        $('#back-row').click(function () {
+            location.href = "{% url 'bonCommandeSortie' %}";
+        });
+
+        $('#client').val("");
+        $('#transsel').val("");
+        $('#destinataire').val("");
+
+        '{% for items in bcs %}'
+        if ('{{ items.idBonCommandeSortie}}' == '{{ id }}') {
+            $('#idbcs').val('{{ items.idBonCommandeSortie }}');
+            $('#codm').val('{{ items.fk_Destinataire.codeUM }}');
+            $('#ncom').val('{{ items.numeroCommande }}');
+            $('#datec').val('{{ items.dateCommande }}');
+            $('#client').val('{{ items.fk_Client.nom }}');
+            $('#transsel').val('{{ items.fk_Transporteur.nom }}');
+            $('#destinataire').val('{{ items.fk_Destinataire.nom }}');
+        }
+        '{% endfor %}'
+
+        $("#client").combobox();
+        $("#destinataire").combobox();
+        $("#transsel").combobox();
+        $("#toggle").on("click", function () {
+            $("#client").toggle();
+            $("#destinataire").toggle();
+            $("#transsel").toggle();
+        });
+
+    });
+
+    $("#create-row").click(function() {
+        location.href = "{% url 'bonCommandeSortieadd' %}";
+    });
+</script>
+{% endblock %}

@@ -29,8 +29,8 @@ urlpatterns = [
     path('bon_sortie', views.bonCommandeSortie.as_view(), name='bonCommandeSortie'), #page des bon de commande sortie
     path('bon_sortie/add', views.bonCommandeSortieadd.as_view(), name='bonCommandeSortieadd'),
     path('bon_sortie/adding/', views.bonCommandeSortieadd.add),
-    path('bon_entree/modify', views.bonCommandeSortiemodify.as_view(), name='bonCommandeSortiemodify'),
-    path('delete_bon_entree/', views.bonCommandeSortie.delete),
+    path('bon_sortie/modify', views.bonCommandeSortiemodify.as_view(), name='bonCommandeSortiemodify'),
+    path('delete_bon_sortie/', views.bonCommandeSortie.delete),
 
     path('uploadbc/', views.uploadbc),
 
