@@ -2283,6 +2283,49 @@ def deleteuser(request):
         return HttpResponse("success")
     return HttpResponse("403: No access granted")
 
+class create_typef(ListView):
+    template_name = "create_type_fournisseur.html"
+
+    def get(self, request):
+        context = {
+            'activate' : 'on',
+            'settings' : menuimages.objects.all(),
+            'typef' : TypeFournisseur_pour_Fournisseur.objects.all(),
+        }
+        return render(request, self.template_name, context)
+
+class create_typef_add(ListView):
+    template_name = "create_type_fournisseuradd.html"
+
+    def get(self, request):
+        context = {
+            'activate' : 'on',
+            'settings' : menuimages.objects.all(),
+            'typef' : TypeFournisseur_pour_Fournisseur.objects.all(),
+        }
+        return render(request, self.template_name, context)
+
+    def saveit(request):
+        if request.method == 'POST':
+            showlist = [request.POST.get('id'),
+                        request.POST.get('name')]
+            typef = TypeFournisseur_pour_Fournisseur()
+            typef.idTypeFournisseur = showlist[0]
+            typef.nom = showlist[1]
+            typef.save()
+        return HttpResponse("Error ZONE RESTRICTED.")
+
+class modif_typef(ListView):
+    template_name = "modif_type_fournisseur.html"
+
+    def get(self, request):
+        context = {
+            'activate' : 'on',
+            'settings' : menuimages.objects.all(),
+            'typef' : TypeFournisseur_pour_Fournisseur.objects.all(),
+        }
+        return render(request, self.template_name, context)
+
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
 class ums(ListView):

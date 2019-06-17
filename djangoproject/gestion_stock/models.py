@@ -798,7 +798,7 @@ class OrdreTransport_pour_Client(models.Model):
 class Contact_pour_Client(models.Model):
     idContact = models.CharField(max_length=150, default=0)
     fk_Client = models.ForeignKey('Client', on_delete=models.CASCADE, default=1)
-    fk_RoleContact = models.ForeignKey('RoleContact_pour_Client', on_delete=models.CASCADE, default=1)
+    fk_RoleContact = models.ForeignKey('RoleContact_pour_Client', on_delete=models.CASCADE, default=0, blank=True, null=True)
     c_nom = models.CharField(max_length=150, default=0)
     c_nomCompte = models.CharField(max_length=150, default=0)
     c_horodatage = models.CharField(max_length=150, default=0)
@@ -881,7 +881,7 @@ class TypeZoneDepot(models.Model):
         return self.nom
 
 class ZoneDepot_pour_TypeZoneDepot(models.Model):
-    fk_TypeZoneDepot = models.ForeignKey('TypeZoneDepot', on_delete=models.CASCADE, default=1)
+    fk_TypeZoneDepot = models.ForeignKey('TypeZoneDepot', on_delete=models.CASCADE, default=0, blank=True, null=True)
     idZoneDepot = models.CharField(max_length=150, default=0)
     c_nom = models.CharField(max_length=150, default=0)
     c_nomCompte = models.CharField(max_length=150, default=0)
@@ -907,7 +907,7 @@ class TypeFournisseur_pour_Fournisseur(models.Model):
 
 class Fournisseur(models.Model):
     idFournisseur = models.CharField(max_length=150, default=0)
-    fk_TypeFournisseur = models.ForeignKey('TypeFournisseur_pour_Fournisseur', on_delete=models.CASCADE, default=1)
+    fk_TypeFournisseur = models.ForeignKey('TypeFournisseur_pour_Fournisseur', on_delete=models.CASCADE, default=0, blank=True, null=True)
     c_nom = models.CharField(max_length=150, default=0)
     c_nomCompte = models.CharField(max_length=150, default=0)
     c_horodatage = models.CharField(max_length=150, default=0)

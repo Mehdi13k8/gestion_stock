@@ -11,7 +11,23 @@
         <button id="resetimg" type="button" class="btn btn-outline-blue-grey btn-sm"><i class="fa fa-undo"></i></button>
     </form>
 
-    <button type="button" id="createuserbtn" class="btn btn-info"><i class="fa fa-user-plus" style="font-size: 30px"></i></button>
+    <div class="row">
+        <div class="col">
+            <button type="button" title="Crée ou géré les utilisateurs" id="createuserbtn" class="btn btn-info"><i class="fa fa-user-plus" style="font-size: 30px"></i></button>
+        </div>
+        <div class="col">
+            <button type="button" id="createtypefournisseur" title="Crée les types de fournisseurs." class="btn btn-info"><i class="fa fa-user-tie" style="font-size: 30px"></i></button>
+        </div>
+        <div class="col">
+            <button type="button" id="createzone" class="btn btn-info" title="Crée les types de crée des zonnes de dépots"><i class="fa fa-warehouse" style="font-size: 30px"></i></button>
+        </div>
+        <div class="col">
+            <button type="button" id="createtypedes" class="btn btn-info" title="Crée les types de destinataires"><i class="fa fa-parachute-box" style="font-size: 30px"></i></button>
+        </div>
+        <div class="col">
+            <button type="button" id="createtypeart" class="btn btn-info" title="Crée les types d'articles"><i class="fa fa-boxes" style="font-size: 30px"></i></button>
+        </div>
+    </div>
 </div>
 </body>
 
@@ -60,10 +76,18 @@
             }
         });*/
     });
-    $( document ).ready(function() {
+    $(document).ready(function() {
         $('#createuserbtn').click(function () {
-           window.location.href = "{% url 'register' %}"
+            window.location.href = "{% url 'register' %}"
         });
+        $('#createtypefournisseur').click(function () {
+            window.location.href = "{% url 'create_typefour' %}"
+        });
+        $('#createtypefournisseur').tooltip();
+        $('#createuserbtn').tooltip();
+        $('#createzone').tooltip();
+        $('#createtypedes').tooltip();
+        $('#createtypeart').tooltip();
         /*
         $("#hidenot li").height(200);
         $("#id_cover1").parent('p').appendTo("#hidenot");
