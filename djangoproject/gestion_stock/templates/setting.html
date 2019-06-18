@@ -19,7 +19,7 @@
             <button type="button" id="createtypefournisseur" title="Crée les types de fournisseurs." class="btn btn-info"><i class="fa fa-user-tie" style="font-size: 30px"></i></button>
         </div>
         <div class="col">
-            <button type="button" id="createzone" class="btn btn-info" title="Crée les types de crée des zonnes de dépots"><i class="fa fa-warehouse" style="font-size: 30px"></i></button>
+            <button type="button" id="createzone" class="btn btn-info" title="crée des zonnes de dépots"><i class="fa fa-warehouse" style="font-size: 30px"></i></button>
         </div>
         <div class="col">
             <button type="button" id="createtypedes" class="btn btn-info" title="Crée les types de destinataires"><i class="fa fa-parachute-box" style="font-size: 30px"></i></button>
@@ -82,6 +82,9 @@
         });
         $('#createtypefournisseur').click(function () {
             window.location.href = "{% url 'create_typefour' %}"
+        });
+        $('#createzone').click(function () {
+            window.location.href = "{% url 'zonedepot' %}"
         });
         $('#createtypefournisseur').tooltip();
         $('#createuserbtn').tooltip();

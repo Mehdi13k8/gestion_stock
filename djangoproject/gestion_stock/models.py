@@ -881,7 +881,8 @@ class TypeZoneDepot(models.Model):
         return self.nom
 
 class ZoneDepot_pour_TypeZoneDepot(models.Model):
-    fk_TypeZoneDepot = models.ForeignKey('TypeZoneDepot', on_delete=models.CASCADE, default=0, blank=True, null=True)
+    #fk_TypeZoneDepot = models.ForeignKey('TypeZoneDepot', on_delete=models.CASCADE, default=0, blank=True, null=True)
+    fk_TypeZoneDepot = models.ForeignKey('Client', on_delete=models.CASCADE, default=None, blank=True, null=True)
     idZoneDepot = models.CharField(max_length=150, default=0)
     c_nom = models.CharField(max_length=150, default=0)
     c_nomCompte = models.CharField(max_length=150, default=0)

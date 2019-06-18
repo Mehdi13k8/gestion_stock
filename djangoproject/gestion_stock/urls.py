@@ -15,9 +15,17 @@ urlpatterns = [
     path('create_typefour/', views.create_typef.as_view(), name='create_typefour'),
     path('create_typefour/add', views.create_typef_add.as_view(), name='create_new_typefour'),
     path('create_typefour_add/save/', views.create_typef_add.saveit),
+    path('delete_typefour/delete/', views.create_typef.delete),
 
     path('modif_typefour/', views.modif_typef.as_view(), name='modif_typefour'),
     path('modif_typefour/save/', views.modif_typef.as_view(), name='modif_typefour_save'),
+
+    path('zone_depot/', views.zonesdepot.as_view(), name='zonedepot'),
+    path('zone_depot/create_zone/', views.zonesdepot.createnewzone),
+    #path('zone_depot/add', views.zonesdepotadd.as_view(), name='zonedepotadd'),
+    #path('create_zonedepot/save/', views..saveit),
+    #path('modif_zonedepot/', views.modif_zonedepot.as_view(), name='modif_'),
+    #path('modif_zonedepot/save/', views.modif_zonedepot.as_view(), name='modif__save'),
 
     path('index', views.index.as_view()),
     #path('setting', views.setting.as_view(), name='setting'),

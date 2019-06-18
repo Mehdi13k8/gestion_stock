@@ -1,0 +1,242 @@
+{% extends user.is_authenticated|yesno:"base_generic.html,empty.html" %}
+
+{% block content %}
+
+<div class="container"><h1 class="text-center"> Liste des zones de dépôts</h1></div>
+<br>
+
+<div class="container">
+    <div class="form-group row text-center">
+        <div class="col">
+            <button type="button" id="back-row" class="btn btn-success btn-rounded btn-outline-dark">Tout</button>
+        </div>
+    {% for items in cli %}
+        {% if id == items.idClient %}
+            <div class="col">
+                <button type="button" id="create-row" class="btn btn-success btn-rounded btn-outline-dark">Ajouter</button>
+            </div>
+        {% endif %}
+    {% endfor %}
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="border shadow-lg p-3 mb-5 bg-white rounded">
+                {% if id %}
+                    {% for items in cli %}
+                        {% if id == '0' %}
+                            <div class="w-75 mx-auto"> <!-- si aucun type zone est select (clients) , Dans cette page je fais tout dans le même template
+                            comme ça vous avez toutes les manières de dev avec django que ce soit avec des templates spécifique a une action
+                            ou un template capable de faire plusieurs actions en un seul template "intelligent"-->
+                                <br>
+                                <div class="input-default-wrapper w-75 mx-auto"> <!-- si aucun type zone est select (clients) -->
+                                    <label for="idznedepot">ID : </label>
+                                    <input type="text" class="form-control w-25 mt-n2 ml-4" placeholder="ID" aria-label="identifiant" aria-describedby="basic-addon1"  disabled id="idznedepot">
+                                </div>
+                                <br>
+                                <div class="input-default-wrapper w-75 mx-auto"> <!-- si aucun type zone est select (clients) -->
+                                    <label for="selectcliinput">client : &nbsp;</label>
+                                    <select class="custom-select mt-n2" id="selectcliinput">
+                                        <option value="---">------------------------------------------------------------------------------------------------------</option>
+                                        {% for items in cli %}
+                                        <option value="{{ items.idClient }}">{{ items.nom }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="input-default-wrapper w-75 mx-auto"> <!-- si aucun type zone est select (clients) -->
+                                    <label for="namezdepot">nom : &nbsp;</label>
+                                    <input type="text" class="form-control w-50 mt-n2" placeholder="XX-XX" aria-label="nom" id="namezdepot">
+                                </div>
+                                <br>
+                                <div class="input-group-append w-75 mx-auto">
+                                    <button class="btn-outline-unique mx-auto" type="button" id="savenewzone">Sauvegarder</button>
+                                </div>
+                            </div>
+                        {% endif %}
+                        {% if creation == 'ok' %}
+                        <div class="w-75 mx-auto">
+                            <br>
+                            <div class="input-default-wrapper w-75 mx-auto">
+                                <label for="idznedepot">ID : </label>
+                                <input type="text" class="form-control w-25 mt-n2 ml-4" placeholder="ID" aria-label="identifiant" aria-describedby="basic-addon1"  disabled id="idznedepot">
+                            </div>
+                            <br>
+                            <div class="input-default-wrapper w-75 mx-auto"> <!-- si aucun type zone est select (clients) -->
+                                <label for="selectcliinput">client : &nbsp;</label>
+                                <select class="custom-select mt-n2" id="selectcliinput">
+                                    <option value="---">------------------------------------------------------------------------------------------------------</option>
+                                    {% for items in cli %}
+                                    <option value="{{ items.idClient }}">{{ items.nom }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="input-default-wrapper w-75 mx-auto"> <!-- si aucun type zone est select (clients) -->
+                                <label for="namezdepot">nom : &nbsp;</label>
+                                <input type="text" class="form-control w-50 mt-n2" placeholder="XX-XX" aria-label="nom" id="namezdepot">
+                            </div>
+                            <br>
+                            <div class="input-group-append w-75 mx-auto">
+                                <button class="btn-outline-unique mx-auto" type="button" id="savenewzone">Sauvegarder</button>
+                            </div>
+                        </div>
+
+                        {% else %}
+                        {% if id == items.idClient %}
+                            <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" class="th-sm"> modify </th>
+                                        <th scope="col" class="th-sm"> nom </th>
+                                        <th scope="col" class="th-sm"> delete </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for items in zoned %}
+                                    <tr>
+                                        <td> <button id='{{ items.idZoneDepot }}' class="dyna"> -> </button></td>
+                                        <td> {{ items.nom }} </td>
+                                        <td> <button id='{{ items.idZoneDepot }}' class="dynad"> X </button> </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th> modify
+                                        </th>
+                                        <th>nom
+                                        </th>
+                                        <th>delete
+                                        </th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        {% endif %}
+                {% endif %}
+                {% endfor %}
+                {% else %}
+                <h6 class="text-center">Veuillez choisir le type de zone(client) que vous voulez</h6>
+                <div class="input-group w-75 mx-auto">
+                    <select class="custom-select" id="selectcliinput">
+                        <option value="---">------------------------------------------------------------------------------------------------------</option>
+                        {% for items in cli %}
+                            <option value="{{ items.idClient }}">{{ items.nom }}</option>
+                        {% endfor %}
+                    </select>
+                    <div class="input-group-prepend">
+                        <button class="btn-outline-unique" type="button" id="selectcli">Selectionner</button>
+                    </div>
+                </div>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#dtBasicExample').DataTable();
+        $('.dataTables_length').addClass('bs-select');
+        //$('#transporteurs').fadeTo("slow", 0.5);
+
+        var upperid = "0";
+        "{% for items in zoned %}"
+            if (parseInt(upperid, 10) < parseInt('{{ items.idZoneDepot }}', 10)) {
+                upperid = parseInt('{{ items.idZoneDepot }}', 10);
+            }
+        "{% endfor %}"
+        console.log($("#umid").val() + " gg");
+        if (upperid == 0)
+            $("#idznedepot").val(1);
+        else
+            $("#idznedepot").val(upperid + 1);
+
+        '{% if creation == "ok" %}'
+            '{% for items in cli %}'
+                '{% if items.idClient == id %}'
+                    $('#selectcliinput').val('{{ items.idClient }}');
+                '{% endif %}'
+            '{% endfor %}'
+        '{% endif %}'
+    });
+    $('#savenewzone').click(function () {
+        console.log("1 - " + $('#idznedepot').val() + " 2 - " + $('#selectcliinput').val() + " 3 - " + $('#namezdepot').val());
+        $.ajax({
+            type:"POST",    //type de requête utilisé par ajax
+            url:"/zone_depot/create_zone/", //lien de la view qui gère la requête post pour supprimer une entree
+            data: {
+                'id': $('#idznedepot').val(),
+                'name': $('#namezdepot').val(),
+                'client': $('#selectcliinput').val(),
+                csrfmiddlewaretoken: '{{ csrf_token }}'
+            },
+            success: function(msg, data, settings){
+                console.log("gg " + msg);
+                location.reload();
+            },
+            failure: function() {
+                console.log("fail");
+                location.reload();
+            }
+        });
+    });
+
+    $("#selectcli").click(function() {
+        if ($('#selectcliinput').val() == "---") {
+            window.location.href = "{% url 'zonedepot' %}?id=" + 0;
+        }
+        else
+            window.location.href = "{% url 'zonedepot' %}?id=" + $('#selectcliinput').val();
+    });
+
+    $("#create-row").click(function() {
+        '{% for items in cli %}'
+            '{% if id == items.idClient %}'
+                window.location.href = "{% url 'zonedepot' %}?id={{ items.idClient }}"+ "&" + "creation=ok" ;
+            '{% endif %}'
+        '{% endfor %}'
+    });
+    $("#back-row").click(function() {
+        window.location.href = "{% url 'zonedepot' %}";
+    });
+
+    $(document).on("click", "button.dyna" , function(e) {
+        var idClicked = e.target.id;
+        var name = "";
+        var trueid = 0;
+        alert(idClicked);
+        "{% for items in typef %}"
+        if ('{{ items.idTypeFournisseur }}' == idClicked) {
+            name = '{{ items.nom }}';
+            trueid = '{{ items.id }}';
+        }
+        "{% endfor %}"
+        //window.location.href = "{% url 'transporteurmodify' %}?id=" + idClicked + "&" + "name=" + name + "&" + "trueid=" + trueid;
+    });
+
+    //code pour delete
+    $(document).on("click", "button.dynad" , function(e) { // event pour delete la ligne sélectionner
+        var idClicked = e.target.id;
+        alert(idClicked);
+        $.ajax({
+            type:"POST",    //type de requête utilisé par ajax
+            url:"/delete_zone/", //lien de la view qui gère la requête post pour supprimer une entree
+            data: {
+                'name': $('#nom').val(), // nom récuperer dans le input #nom
+                'id': idClicked, //
+                csrfmiddlewaretoken: '{{ csrf_token }}'
+            },
+            success: function(msg, data, settings){
+                console.log("gg " + msg);
+                location.reload();
+            },
+            failure: function() {
+                console.log("fail");
+                location.reload();
+            }
+        });
+    });
+</script>
+{% endblock %}

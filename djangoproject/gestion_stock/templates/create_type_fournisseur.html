@@ -57,7 +57,7 @@
     });
 
     $("#create-row").click(function() {
-        location.href = "{% url 'create_typefour' %}";
+        location.href = "{% url 'create_new_typefour' %}";
     });
 
     $(document).on("click", "button.dyna" , function(e) { // event pour modifier les entree
@@ -80,7 +80,7 @@
         alert(idClicked);
         $.ajax({
             type:"POST",    //type de requête utilisé par ajax
-            url:"/delete_typefour/", //lien de la view qui gère la requête post pour supprimer une entree
+            url:"/delete_typefour/delete/", //lien de la view qui gère la requête post pour supprimer une entree
             data: {
                 'name': $('#nom').val(), // nom du récuperer dans le input #nom
                 'id': idClicked, // id acquis grace a une incrementation en js

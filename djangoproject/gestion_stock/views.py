@@ -2286,6 +2286,14 @@ def deleteuser(request):
 class create_typef(ListView):
     template_name = "create_type_fournisseur.html"
 
+    def delete(request):
+        if request.method == 'POST':
+            showlist = [request.POST.get('id')]
+            data = TypeFournisseur_pour_Fournisseur.objects.get(idTypeFournisseur=showlist[0])
+            data.delete()
+            return HttpResponse("delete successfull.")
+        return HttpResponse("Error ZONE RESTRICTED.")
+
     def get(self, request):
         context = {
             'activate' : 'on',
@@ -2321,11 +2329,54 @@ class modif_typef(ListView):
     def get(self, request):
         context = {
             'activate' : 'on',
+            'id' :request.GET.get('id'),
             'settings' : menuimages.objects.all(),
             'typef' : TypeFournisseur_pour_Fournisseur.objects.all(),
         }
         return render(request, self.template_name, context)
 
+class zonesdepot(ListView):
+    template_name = "Zone_depot.html"
+
+    def delete(request):
+        if request.method == 'POST':
+            showlist = [request.POST.get('id')]
+            data = ZoneDepot_pour_TypeZoneDepot.objects.get(idZoneDepot=showlist[0])
+            data.delete()
+            return HttpResponse("delete successfull.")
+        return HttpResponse("Error ZONE RESTRICTED.")
+
+    def createnewzone(request):
+        if request.method == 'POST':
+            showlist = [request.POST.get('id'), request.POST.get('client'), request.POST.get('name'),]
+            data = ZoneDepot_pour_TypeZoneDepot()
+            if (showlist[1] != '---'):
+                cli = Client.objects.get(idClient=showlist[1])
+            else:
+                cli = None
+            data.nom = showlist[2]
+            data.idZoneDepot = showlist[0]
+            if (cli != None):
+                data.fk_Client = cli
+            else:
+                data.fk_Client = None
+            #print("id == " + showlist[0] + "cli == " + cli.nom + "name == " + showlist[2])
+            data.save()
+            return HttpResponse("delete successfull.")
+        return HttpResponse("Error ZONE RESTRICTED.")
+
+    def get(self, request):
+        context = {
+            'activate' : 'on',
+            'settings' : menuimages.objects.all(),
+            'zoned' : ZoneDepot_pour_TypeZoneDepot.objects.all(),
+            'cli' : Client.objects.all(),
+            'id' :request.GET.get('id'),
+            'creation' :request.GET.get('creation'),
+        }
+        return render(request, self.template_name, context)
+
+            #fin des réglages dans settings
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
 class ums(ListView):
