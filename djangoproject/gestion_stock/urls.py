@@ -22,6 +22,16 @@ urlpatterns = [
 
     path('zone_depot/', views.zonesdepot.as_view(), name='zonedepot'),
     path('zone_depot/create_zone/', views.zonesdepot.createnewzone),
+    path('zone_depot/delete_zone/', views.zonesdepot.delete),
+
+    path('type_destinataire/', views.typedest.as_view(), name='typedest'),
+    path('type_destinataire/create_typedestinataire/', views.typedest.create),
+    path('type_destinataire/delete_typedestinataire/', views.typedest.delete),
+
+    path('type_article/', views.typeart.as_view(), name='typeart'),
+    path('type_article/create_typearticle/', views.typeart.create),
+    path('type_article/delete_typearticle/', views.typeart.delete),
+
     #path('zone_depot/add', views.zonesdepotadd.as_view(), name='zonedepotadd'),
     #path('create_zonedepot/save/', views..saveit),
     #path('modif_zonedepot/', views.modif_zonedepot.as_view(), name='modif_'),

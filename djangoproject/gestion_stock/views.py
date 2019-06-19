@@ -2372,6 +2372,81 @@ class zonesdepot(ListView):
             'zoned' : ZoneDepot_pour_TypeZoneDepot.objects.all(),
             'cli' : Client.objects.all(),
             'id' :request.GET.get('id'),
+            'vuegen' :request.GET.get('vuegen'),
+            'creation' :request.GET.get('creation'),
+        }
+        return render(request, self.template_name, context)
+
+class typedest(ListView):
+    template_name = "typedestinataire.html"
+
+    def delete(request):
+        if request.method == 'POST':
+            showlist = [request.POST.get('id')]
+            data = TypeDestinataire_pour_Destinataire.objects.get(idTypeDestinataire=showlist[0])
+            data.delete()
+            return HttpResponse("delete successfull.")
+        return HttpResponse("Error ZONE RESTRICTED.")
+
+    def create(request):
+        if request.method == 'POST':
+            showlist = [request.POST.get('id'), request.POST.get('name'),]
+            try:
+                data = TypeDestinataire_pour_Destinataire.objects.get(idTypeDestinataire =showlist[0])
+                print("found")
+            except TypeDestinataire_pour_Destinataire.DoesNotExist:
+                print("create")
+                data = TypeDestinataire_pour_Destinataire()
+                data.idTypeDestinataire = showlist[0]
+            data.nom = showlist[1]
+            data.save()
+            return HttpResponse("delete successfull.")
+        return HttpResponse("Error ZONE RESTRICTED.")
+
+    def get(self, request):
+        context = {
+            'activate' : 'on',
+            'settings' : menuimages.objects.all(),
+            'typed' : TypeDestinataire_pour_Destinataire.objects.all(),
+            'id' :request.GET.get('id'),
+            'vuegen' :request.GET.get('vuegen'),
+            'creation' :request.GET.get('creation'),
+        }
+        return render(request, self.template_name, context)
+
+class typeart(ListView):
+    template_name = "typedestinataire.html"
+
+    def delete(request):
+        if request.method == 'POST':
+            showlist = [request.POST.get('id')]
+            data = TypeDestinataire_pour_Destinataire.objects.get(idTypeDestinataire=showlist[0])
+            data.delete()
+            return HttpResponse("delete successfull.")
+        return HttpResponse("Error ZONE RESTRICTED.")
+
+    def create(request):
+        if request.method == 'POST':
+            showlist = [request.POST.get('id'), request.POST.get('name'),]
+            try:
+                data = TypeDestinataire_pour_Destinataire.objects.get(idTypeDestinataire =showlist[0])
+                print("found")
+            except TypeDestinataire_pour_Destinataire.DoesNotExist:
+                print("create")
+                data = TypeDestinataire_pour_Destinataire()
+                data.idTypeDestinataire = showlist[0]
+            data.nom = showlist[1]
+            data.save()
+            return HttpResponse("delete successfull.")
+        return HttpResponse("Error ZONE RESTRICTED.")
+
+    def get(self, request):
+        context = {
+            'activate' : 'on',
+            'settings' : menuimages.objects.all(),
+            'typed' : TypeDestinataire_pour_Destinataire.objects.all(),
+            'id' :request.GET.get('id'),
+            'vuegen' :request.GET.get('vuegen'),
             'creation' :request.GET.get('creation'),
         }
         return render(request, self.template_name, context)
