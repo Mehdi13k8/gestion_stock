@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<div class="container"><h1 class="text-center"> Liste des types de destinataires</h1></div>
+<div class="container"><h1 class="text-center"> Liste des types d'Article</h1></div>
 <br>
 
 <div class="container">
@@ -29,38 +29,38 @@
         <div class="col">
             <div class="border shadow-lg p-3 mb-5 bg-white rounded">
                 {% if vuegen == "ok" %}
-                    {% for items in typed %}
-                        {% if items.idTypeDestinataire == id %}
-                        <div class="w-75 mx-auto">
-                            <br>
-                            <div class="input-default-wrapper w-75 mx-auto">
-                                <label for="idtyped">ID : </label>
-                                <input type="text" class="form-control w-25 mt-n2 ml-4" placeholder="ID" aria-label="identifiant" aria-describedby="basic-addon1"  disabled id="idtyped" value="{{ items.idTypeDestinataire }}">
-                            </div>
-                            <br>
-                            <div class="input-default-wrapper w-75 mx-auto">
-                                <label for="nametyped">nom : &nbsp;</label>
-                                <input type="text" class="form-control w-50 mt-n2" placeholder="XX-XX" aria-label="nom" id="nametyped" value="{{ items.nom|safe }}">
-                            </div>
-                            <br>
-                            <div class="input-group-append w-75 mx-auto">
-                                <button class="btn-outline-unique mx-auto" type="button" id="savenewzone">Sauvegarder</button>
-                            </div>
-                        </div>
-                        {% endif %}
+                {% for items in typea %}
+                {% if items.idTypeArticle == id %}
+                <div class="w-75 mx-auto">
+                    <br>
+                    <div class="input-default-wrapper w-75 mx-auto">
+                        <label for="idtypea">ID : </label>
+                        <input type="text" class="form-control w-25 mt-n2 ml-4" placeholder="ID" aria-label="identifiant" aria-describedby="basic-addon1"  disabled id="idtypea" value="{{ items.idTypeArticle }}">
+                    </div>
+                    <br>
+                    <div class="input-default-wrapper w-75 mx-auto">
+                        <label for="nametypea">nom : &nbsp;</label>
+                        <input type="text" class="form-control w-50 mt-n2" placeholder="XX-XX" aria-label="nom" id="nametypea" value="{{ items.nom|safe }}">
+                    </div>
+                    <br>
+                    <div class="input-group-append w-75 mx-auto">
+                        <button class="btn-outline-unique mx-auto" type="button" id="savenewzone">Sauvegarder</button>
+                    </div>
+                </div>
+                {% endif %}
                 {% endfor %}
                 {% else %}
                 {% if creation == "ok" %}
                 <div class="w-75 mx-auto">
                     <br>
                     <div class="input-default-wrapper w-75 mx-auto">
-                        <label for="idtyped">ID : </label>
-                        <input type="text" class="form-control w-25 mt-n2 ml-4" placeholder="ID" aria-label="identifiant" aria-describedby="basic-addon1"  disabled id="idtyped" value="{{ items.idTypeDestinataire }}">
+                        <label for="idtypea">ID : </label>
+                        <input type="text" class="form-control w-25 mt-n2 ml-4" placeholder="ID" aria-label="identifiant" aria-describedby="basic-addon1"  disabled id="idtypea" value="{{ items.idTypeArticle }}">
                     </div>
                     <br>
                     <div class="input-default-wrapper w-75 mx-auto">
-                        <label for="nametyped">nom : &nbsp;</label>
-                        <input type="text" class="form-control w-50 mt-n2" placeholder="XX-XX" aria-label="nom" id="nametyped" value="{{ items.nom|safe }}">
+                        <label for="nametypea">nom : &nbsp;</label>
+                        <input type="text" class="form-control w-50 mt-n2" placeholder="XX-XX" aria-label="nom" id="nametypea" value="{{ items.nom|safe }}">
                     </div>
                     <br>
                     <div class="input-group-append w-75 mx-auto">
@@ -78,11 +78,11 @@
                     </tr>
                     </thead>
                     <tbody>
-                    {% for itemsz in typed %}
+                    {% for itemsz in typea %}
                     <tr>
-                        <td> <button id='{{ itemsz.idTypeDestinataire }}' class="dyna"> -> </button></td>
+                        <td> <button id='{{ itemsz.idTypeArticle }}' class="dyna"> -> </button></td>
                         <td> {{ itemsz.nom }} </td>
-                        <td> <button id='{{ itemsz.idTypeDestinataire }}' class="dynad"> X </button> </td>
+                        <td> <button id='{{ itemsz.idTypeArticle }}' class="dynad"> X </button> </td>
                     </tr>
                     {% endfor %}
                     </tbody>
@@ -110,27 +110,26 @@
 
     '{% if vuegen == "ok" %}'
     '{% else %}'
-
     var upperid = "0";
-    "{% for items in typed %}"
-    if (parseInt(upperid, 10) < parseInt('{{ items.idTypeDestinataire }}', 10)) {
-        upperid = parseInt('{{ items.idTypeDestinataire }}', 10);
+    "{% for items in typea %}"
+    if (parseInt(upperid, 10) < parseInt('{{ items.idTypeArticle }}', 10)) {
+        upperid = parseInt('{{ items.idTypeArticle }}', 10);
     }
     "{% endfor %}"
 
     if (upperid == 0)
-        $("#idtyped").val(1);
+        $("#idtypea").val(1);
     else
-        $("#idtyped").val(upperid + 1);
+        $("#idtypea").val(upperid + 1);
     '{% endif %}'
 
     $('#savenewzone').click(function () {
         $.ajax({
             type:"POST",
-            url:"/type_destinataire/create_typedestinataire/",
+            url:"/type_article/create_typearticle/",
             data: {
-                'id': $('#idtyped').val(),
-                'name': $('#nametyped').val(),
+                'id': $('#idtypea').val(),
+                'name': $('#nametypea').val(),
                 csrfmiddlewaretoken: '{{ csrf_token }}'
             },
             success: function(msg, data, settings) {
@@ -144,26 +143,26 @@
         });
     });
     $("#create-row").click(function() {
-        window.location.href = "{% url 'typedest' %}?creation=ok";
+        window.location.href = "{% url 'typeart' %}?creation=ok";
     });
     $('#genview').click(function () {
-        window.location.href = "{% url 'typedest' %}?vuegen=" + "ok" ;
+        window.location.href = "{% url 'typeart' %}?vuegen=" + "ok" ;
     });
     $("#back-row").click(function() {
-        window.location.href = "{% url 'typedest' %}";
+        window.location.href = "{% url 'typeart' %}";
     });
     $(document).on("click", "button.dyna" , function(e) {
         var idClicked = e.target.id;
         var name = "";
         var trueid = 0;
         alert(idClicked);
-        "{% for items in typed %}"
-        if ('{{ items.idTypeDestinataire }}' == idClicked) {
+        "{% for items in typea %}"
+        if ('{{ items.idTypeArticle }}' == idClicked) {
             name = '{{ items.nom }}';
             trueid = '{{ items.id }}';
         }
         "{% endfor %}"
-        window.location.href = "{% url 'typedest' %}?id=" + idClicked + "&" + "vuegen=ok" ;
+        window.location.href = "{% url 'typeart' %}?id=" + idClicked + "&" + "vuegen=ok" ;
     });
 
     $(document).on("click", "button.dynad" , function(e) {
@@ -171,7 +170,7 @@
         alert(idClicked);
         $.ajax({
             type:"POST",
-            url:"/type_destinataire/delete_typedestinataire/",
+            url:"/type_article/delete_typearticle/",
             data: {
                 'name': $('#nom').val(),
                 'id': idClicked,
