@@ -22,7 +22,6 @@ class index(ListView):              #Page d'acceuil vide pour l'instant
     template_name = "index.html" #template html visé situé dans /templates
 
     def get(self, request):
-
         img = menuimages.objects.filter(id=1)  #je crée la ligne des "images" pour le menu si on recrée une bdd
         try:
             img = menuimages.objects.get(pk=1)
@@ -34,7 +33,6 @@ class index(ListView):              #Page d'acceuil vide pour l'instant
             img.title = "Menus"
             img.save()
             print("created an image entry for menu")
-
         context = {
             'activate' : 'on', #cette donnée me permettra de savoir dans quel view je suis pour mettre en surbrillance la page choisie
             'settings' : menuimages.objects.all(),
@@ -266,10 +264,29 @@ def uploadbc(request):
                                 numeroCommande=fields[5],
                                 dateCommande=fields[6],
                                 source=fields[7],
-                           )
+                            )
+                            #Ici je crée une "UM" sortie pour chaque bon de commande sortie recus & valide
+                            #ums = UniteManutentionSortie.objects.get_or_create(fk_BonCommandeSortie=fields[0])
+                            try:
+                                try:
+                                    var = BonCommandeSortie.objects.get(idBonCommandeSortie=fields[0])
+                                except BonCommandeSortie.DoesNotExist:
+                                    var = None
+                                go = UniteManutentionSortie.objects.get(fk_BonCommandeSortie=var)
+                            except UniteManutentionSortie.DoesNotExist:
+                                go = UniteManutentionSortie()
+                                try:
+                                    go.idUniteManutentionSortie = str(UniteManutentionSortie.objects.latest('idUniteManutentionSortie'))
+                                    go.idUniteManutentionSortie = str(int(go.idUniteManutentionSortie) + int(1))
+                                except UniteManutentionSortie.DoesNotExist:
+                                    go.idUniteManutentionSortie = str(1)
+                                go.fk_BonCommandeSortie = var #les try et except me permettent d'éviter une "erreur" dans
+                                go.fk_BonLivraisonSortie = None
+                            go.save()
+                            #ums.idUniteManutentionSortie = UniteManutentionSortie.objects.latest('idUniteManutentionSortie')
                             messages.success(request,"Succès -> Donnees du Csv ont ete ajoutees aux  tarifs")
                         except Exception as e:
-                            messages.warning(request," Votre fichier n'est pas conforme à la structure demandee. " + str(e) + str(Transporteur.objects.all()) + "client == " + str(fields[4]))
+                            messages.warning(request," Votre fichier n'est pas conforme à la structure demandee. " + str(e))
                             return redirect('bonCommandeSortie')
                         '''#if not fields[1] == "fk_BonCommandeSortie":
                         data_dict["idBonCommandeSortie"] = fields[0]
@@ -282,18 +299,19 @@ def uploadbc(request):
                         data_dict["source"] = fields[7]'''
                     else: # les try except me permettent de savoir ou et pour quel raison mes update or create retournent une erreur
                         try:
-                            LigneBonCommandeSortie_pour_import_BonCommandeSortie.objects.update_or_create(
+                            LigneBonCommandeSortie_pour_BonCommandeSortie.objects.update_or_create(
                                 idLigneBonCommandeSortie=fields[0],
-                                fk_BonCommandeSortie=Client.objects.get(idBonCommandeSortie=fields[1]),
-                                fk_Article=Destinataire.objects.get(nom=fields[3]),
-                                designation=Transporteur.objects.get(nom=fields[4]),
-                                quantiteProduitCommande=fields[5],
-                                priorite=fields[6],
+                                fk_BonCommandeSortie=BonCommandeSortie.objects.get(idBonCommandeSortie=fields[1]),
+                                fk_Article=Article.objects.get(codeClient=fields[2]),
+                                #designation=.objects.get(nom=fields[3]),
+                                quantiteProduitCommande=fields[4],
+                                priorite=fields[5],
+                                termine=fields[6],
                                 source=fields[7],
                             )
                             messages.success(request,"Succès -> Donnees du Csv ont ete ajoutees aux  tarifs")
                         except Exception as e:
-                            messages.warning(request," Votre fichier n'est pas conforme à la structure demandee. " + str(e) + str(Transporteur.objects.all()) + "client == " + str(fields[4]))
+                            messages.warning(request," Votre fichier n'est pas conforme à la structure demandee. " + str(e))
                             return redirect('bonCommandeSortie')
                         '''
                         #if not fields[1] == "﻿idLigneBonCommandeSortie":
@@ -313,8 +331,16 @@ def uploadbc(request):
         '''logging.getLogger("error_logger").error("Unable to upload file. "+repr(e))'''
         messages.error(request,"Unable to upload file. "+repr(e))
     messages.success(request,"Files uplodade with no problem")
-    return HttpResponseRedirect(reverse("bonCommandeSortie"))
 
+    #A chaque actualisation je fais un check de répartition des colis non expédié ||| Je Fais la répartition après avoir upload mon csv avec succès
+    colis = Colis.objects.all().order_by("datePeremption", "fk_UniteManutentionEntree", "fk_Article", "-quantiteProduit") #Je recup la liste de colis, ordonnée par date peremption, umentree, article, et quantiteproduit decroissant
+    for items in colis:
+        print(items.quantiteProduit)
+        if items.fk_UniteManutentionSortie != None:
+            lbc = LigneBonCommandeSortie_pour_BonCommandeSortie.objects.all().order_by("datePeremption", "fk_UniteManutentionEntree", "fk_Article", "-quantiteProduit") #Je recup la liste de colis, ordonnée par date peremption, umentree, article, et quantiteproduit decroissant
+            for mylbc in lbc:
+
+    return HttpResponseRedirect(reverse("bonCommandeSortie"))
 
 class bonCommandeSortieadd(ListView):
     template_name = "bonCommandeSortieadd.html"
@@ -323,7 +349,6 @@ class bonCommandeSortieadd(ListView):
         if request.method == 'POST':
             showlist = [request.POST.get('id'),
                         request.POST.get('ncommande'), request.POST.get('datecom')]
-
             bce = BonCommandeEntree.objects.all()
             foundit = 0
             for items in bce:
@@ -356,6 +381,7 @@ class bonCommandeSortiemodify(ListView):
     def get(self, request):
         context = {
             'bcs' : BonCommandeSortie.objects.all(),
+            'lbcs' : LigneBonCommandeSortie_pour_BonCommandeSortie.objects.all(),
             'trans' : Transporteur.objects.all(),
             'dest' : Destinataire.objects.all(),
             'cli' : Client.objects.all(),
@@ -848,11 +874,16 @@ class article(ListView):
                     for myume in ume:
                         if str(items.fk_UniteManutentionEntree) == myume.idUniteManutentionEntree:
                             if items.quantiteProduit == myarticle.quantiteColisStandard:
+                                if items.quantiteProduit == None:
+                                    items.quantiteProduit = 0
                                 myarticle.quantiteProduitStockComplet += int(items.quantiteProduit)
                                 myarticle.quantiteColisStockComplet +=  1
                                 print("gg2 " + str(myarticle.designationClient) + " gg")
                                 myarticle.save()
                             else:
+                                if items.quantiteProduit == None:
+                                    items.quantiteProduit = 0
+                                print("gg4 " + str(items.quantiteProduit) + " gg")
                                 myarticle.quantiteProduitStockIncomplet += int(items.quantiteProduit)
                                 myarticle.quantiteColisStockIncomplet +=  1
                                 print("gg3 " + str(myarticle.designationClient) + " gg")
@@ -2415,12 +2446,12 @@ class typedest(ListView):
         return render(request, self.template_name, context)
 
 class typeart(ListView):
-    template_name = "typedestinataire.html"
+    template_name = "typearticle.html"
 
     def delete(request):
         if request.method == 'POST':
             showlist = [request.POST.get('id')]
-            data = TypeDestinataire_pour_Destinataire.objects.get(idTypeDestinataire=showlist[0])
+            data = typeArticle_pour_Article.objects.get(idTypeArticle=showlist[0])
             data.delete()
             return HttpResponse("delete successfull.")
         return HttpResponse("Error ZONE RESTRICTED.")
@@ -2429,12 +2460,12 @@ class typeart(ListView):
         if request.method == 'POST':
             showlist = [request.POST.get('id'), request.POST.get('name'),]
             try:
-                data = TypeDestinataire_pour_Destinataire.objects.get(idTypeDestinataire =showlist[0])
+                data = typeArticle_pour_Article.objects.get(idTypeArticle=showlist[0])
                 print("found")
-            except TypeDestinataire_pour_Destinataire.DoesNotExist:
+            except typeArticle_pour_Article.DoesNotExist:
                 print("create")
-                data = TypeDestinataire_pour_Destinataire()
-                data.idTypeDestinataire = showlist[0]
+                data = typeArticle_pour_Article()
+                data.idTypeArticle = showlist[0]
             data.nom = showlist[1]
             data.save()
             return HttpResponse("delete successfull.")
@@ -2444,7 +2475,7 @@ class typeart(ListView):
         context = {
             'activate' : 'on',
             'settings' : menuimages.objects.all(),
-            'typed' : TypeDestinataire_pour_Destinataire.objects.all(),
+            'typea' : typeArticle_pour_Article.objects.all(),
             'id' :request.GET.get('id'),
             'vuegen' :request.GET.get('vuegen'),
             'creation' :request.GET.get('creation'),

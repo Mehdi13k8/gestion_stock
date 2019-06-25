@@ -188,7 +188,7 @@
 </div>
 </div>
 
-<div class="container">
+<div class="container text-center">
     <div class="row">
         <div class="col-6">
             <div class="border shadow-lg p-3 mb-5 bg-white rounded">
@@ -197,40 +197,76 @@
                     <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
                         <thead>
                         <tr>
-                            <th scope="col" class="th-sm"> modify </th>
-                            <th scope="col" class="th-sm"> dossier </th>
-                            <th scope="col" class="th-sm"> code UM </th>
-                            <th scope="col" class="th-sm"> date </th>
-                            <th scope="col" class="th-sm"> numéro commande </th>
-                            <th scope="col" class="th-sm"> identifiant </th>
-                            <th scope="col" class="th-sm"> terminé </th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th colspan="2">qte attribuée<br>par le système</th>
+                        </tr>
+                        <tr>
+                            <!--<th scope="col" class="th-sm"> modify </th>-->
+                            <th scope="col" class="th-sm"> code client </th>
+                            <th scope="col" class="th-sm"> désignation </th>
+                            <th scope="col" class="th-sm"> qte commandée </th>
+                            <th scope="col" class="th-sm"> qte colis </th>
+                            <th scope="col" class="th-sm"> qte attribuée </th>
+                            <th scope="col" class="th-sm"> <-diff-> </th>
+                            <th scope="col" class="th-sm"> prod. </th>
+                            <th scope="col" class="th-sm"> colis </th>
+                            <th scope="col" class="th-sm"> <-diff-> </th>
+                            <th scope="col" class="th-sm"> prod. </th>
+                            <th scope="col" class="th-sm"> colis </th>
+                            <th scope="col" class="th-sm"> priorité </th>
+                            <th scope="col" class="th-sm"> terminée </th>
                             <th scope="col" class="th-sm"> delete </th>
+                            <th scope="col" class="th-sm"> ID.Ligne bcs </th>
                         </tr>
                         </thead>
                         <tbody>
                         {% for items in lbcs %}
-                        <tr>
-                            <td> <button type="button" id='{{ items.idBonCommandeSortie }}' class="dyna btn btn-sm btn-outline-grey rounded"> <i class="fa fa-arrow-right"></i> </button></td>
-                            <td> {{ items.fk_Destinataire.fk_TypeDestinataire.nom }} </td>
-                            <td> {{ items.fk_Destinataire.codeUM }} </td>
-                            <td> {{ items.dateCommande }} </td>
-                            <td> {{ items.numeroCommande }} </td>
-                            <td> {{ items.idBonCommandeSortie }} </td>
-                            <td> {{ items.termine }} </td>
-                            <td> <button id='{{ items.idBonCommandeSortie  }}' class="dynad btn btn-sm btn-outline-grey rounded-pill"> <i class="fa fa-minus"></i>   </button> </td>
+                        <tr class="">
+                            <!--<td> <button type="button" id='{{ items.idBonCommandeSortie }}' class="dyna btn btn-sm btn-outline-grey rounded"> <i class="fa fa-arrow-right"></i> </button></td>-->
+                            <td> {{ items.fk_Article.codeClient }} </td>
+                            <td> {{ items.fk_Article.designationClient }} </td>
+                            <td> {{ items.quantiteProduitCommande }} </td>
+                            <td> {{ items.quantiteColisCommande }} </td>
+                            <td> {{ items.quantiteProduitALivrer }} </td>
+                            <td> {{ items.quantiteCommandePotentiel }} </td>
+                            <td> {{ items.quantiteProduitPotentielle }} </td>
+                            <td> {{ items.quantiteColisPotentielle }} </td>
+                            <td> {{ items.differenceCommandeLivre }} </td>
+                            <td> {{ items.quantiteProduitLivre }} </td>
+                            <td> {{ items.quantiteColisLivre }} </td>
+                            <td> {{ items.priorite }} </td>
+                            {% if items.termine == '0' %}
+                                <td> <button id='{{ items.idLigneBonCommandeSortie }}' class="termin btn btn-sm btn-outline-grey rounded-pill"> <i class="fa fa-pen"></i></button> </td>
+                            {% else %}
+                                <td> <button id='{{ items.idLigneBonCommandeSortie }}' class="termin btn btn-sm btn-outline-red rounded-pill"> <i class="fa fa-pen"></i></button> </td>
+                            {% endif %}
+                            <td> <button id='{{ items.idLigneBonCommandeSortie }}' class="dynad btn btn-sm btn-outline-red rounded-pill"> <i class="fa fa-minus"></i></button> </td>
+                            <td> {{ items.idLigneBonCommandeSortie }} </td>
                         </tr>
                         {% endfor %}
                         </tbody>
                         <tfoot>
                         <tr>
-                            <th>modify </th>
-                            <th>dossier </th>
-                            <th>code UM </th>
-                            <th>date</th>
-                            <th>numéro commande</th>
-                            <th>identifiant </th>
-                            <th>terminé </th>
-                            <th>delete </th>
+                            <th> code client </th>
+                            <th> désignation </th>
+                            <th> qte commandée </th>
+                            <th> qte colis </th>
+                            <th> qte attribuée </th>
+                            <th> <-diff-> </th>
+                            <th> prod. </th>
+                            <th> colis </th>
+                            <th> <-diff-> </th>
+                            <th> prod. </th>
+                            <th> colis </th>
+                            <th> priorité </th>
+                            <th> terminée </th>
+                            <th> delete </th>
+                            <th> ID.Ligne bcs </th>
                         </tr>
                         </tfoot>
                     </table>
@@ -255,7 +291,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        {% for items in lbcs %}
+                        {% for items in lblvs %}
                         <tr>
                             <td> <button type="button" id='{{ items.idBonCommandeSortie }}' class="dyna btn btn-sm btn-outline-grey rounded"> <i class="fa fa-arrow-right"></i> </button></td>
                             <td> {{ items.fk_Destinataire.fk_TypeDestinataire.nom }} </td>
@@ -314,6 +350,12 @@
             $('#destinataire').val('{{ items.fk_Destinataire.nom }}');
         }
         '{% endfor %}'
+
+        if ($('#dtBasicExample body tr').find('td').find('.fa-toggle-on').length > 0) {
+            console.log();
+        } else {
+            console.log();
+        }
 
         $("#client").combobox();
         $("#destinataire").combobox();

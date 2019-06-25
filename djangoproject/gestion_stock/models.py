@@ -15,7 +15,7 @@ from django import forms
     adresse = models.CharField(max_length=100)'''
 
 #Models for Import_Bon_CommandeSortie
-class import_BonCommandeSortie(models.Model):
+'''class import_BonCommandeSortie(models.Model):
     idBonCommandeSortie = models.TextField(default=0)
     Client = models.TextField(default=0)
     Destinataire2 = models.TextField(default=0)
@@ -38,9 +38,8 @@ class import_LigneBonCommandeSortie_pour_import_BonCommandeSortie(models.Model):
     source = models.TextField(default=0)
     idArticle_CDK = models.TextField(default=0)
     quantiteColisStandard_CDK = models.TextField(default=0)
-
     def __str__(self):
-        return self.idLigneBonCommandeSortie
+        return self.idLigneBonCommandeSortie'''#je n'en ai plus besoin car via la view je rempli directement la tab LigneBonCommandeSortie_pour_BonCommandeSortie
 
 '''class UniteManutentionSortie_pour_BonCommandeSortie(models.Model):
     idUniteManutentionSortie = models.TextField()
@@ -1234,7 +1233,10 @@ class Colis(models.Model):
     colle = models.CharField(max_length=150, default=0)
     numerotation = models.CharField(max_length=150, default=0)
     def __str__(self):
-        return self.idColis
+        if self.fk_UniteManutentionSortie != None:
+            return str("colis " + self.idColis + " expedié UMs : " + self.fk_UniteManutentionSortie.idUniteManutentionSortie)
+        else:
+            return str("colis " + self.idColis)
 
 class Litige(models.Model):
     idLitige = models.CharField(max_length=150, default=0)

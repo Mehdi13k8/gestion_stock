@@ -1,0 +1,5 @@
+﻿idLigneBonCommandeSortie,fk_BonCommandeSortie,Article,designation,quantiteProduitCommande,priorite,termine,source
+366390,BC-2844,BC3706,Barre céréalière Raisin amande,108,1,0,groupe_ethique_et_sante
+366391,BC-2844,PJ00083,Barre crisp caramel,112,1,0,groupe_ethique_et_sante
+366392,BC-2844,PJ00236,Barre crisp chocolat 35g,200,1,0,groupe_ethique_et_sante
+366393,BC-2844,PJ00237,Barre crisp coco 35g,50,1,0,groupe_ethique_et_sante
