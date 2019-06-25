@@ -48,11 +48,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/djangoproject/gestion_stock/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="739">
-              <caret line="341" column="16" selection-start-line="341" selection-start-column="16" selection-end-line="341" selection-end-column="16" />
+            <state relative-caret-position="552">
+              <caret line="339" column="88" selection-start-line="339" selection-start-column="88" selection-end-line="339" selection-end-column="88" />
               <folding>
                 <element signature="e#27#85#0" expanded="true" />
               </folding>
@@ -60,11 +60,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/djangoproject/gestion_stock/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="720">
-              <caret line="108" column="22" lean-forward="true" selection-start-line="108" selection-start-column="22" selection-end-line="108" selection-end-column="22" />
+            <state relative-caret-position="281">
+              <caret line="84" column="11" selection-start-line="84" selection-start-column="6" selection-end-line="84" selection-end-column="11" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -173,8 +173,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>lbcs</find>
-      <find>lignebon</find>
       <find>sortie</find>
       <find>boncommandesort</find>
       <find>text</find>
@@ -190,7 +188,6 @@
       <find>tail</find>
       <find>uploadbc</find>
       <find>type_csv</find>
-      <find>BonCommandeSortie</find>
       <find>get</find>
       <find>tr</find>
       <find>ex</find>
@@ -200,9 +197,12 @@
       <find>idUniteManutentionSortie</find>
       <find>lignes</find>
       <find>get(</find>
-      <find>date</find>
       <find>lignebonc</find>
       <find>upload</find>
+      <find>date</find>
+      <find>boncommandesor</find>
+      <find>BonCommandeSor</find>
+      <find>BonCommandeSortie</find>
     </findStrings>
     <replaceStrings>
       <replace>fas</replace>
@@ -427,16 +427,15 @@
       <workItem from="1561033323461" duration="4448000" />
       <workItem from="1561100977989" duration="4845000" />
       <workItem from="1561359306920" duration="11687000" />
-      <workItem from="1561460612490" duration="10229000" />
+      <workItem from="1561460612490" duration="11911000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="805619000" />
+    <option name="totallyTimeSpent" value="807301000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49834254" visible="true" weight="0.10660981" />
       <window_info id="Structure" order="1" sideWeight="0.5016575" side_tool="true" weight="0.20166793" />
@@ -1004,22 +1003,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/djangoproject/gestion_stock/models.py">
+    <entry file="file://$PROJECT_DIR$/djangoproject/gestion_stock/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="720">
-          <caret line="108" column="22" lean-forward="true" selection-start-line="108" selection-start-column="22" selection-end-line="108" selection-end-column="22" />
+        <state relative-caret-position="552">
+          <caret line="339" column="88" selection-start-line="339" selection-start-column="88" selection-end-line="339" selection-end-column="88" />
           <folding>
-            <element signature="e#0#15#0" expanded="true" />
+            <element signature="e#27#85#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/djangoproject/gestion_stock/views.py">
+    <entry file="file://$PROJECT_DIR$/djangoproject/gestion_stock/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="739">
-          <caret line="341" column="16" selection-start-line="341" selection-start-column="16" selection-end-line="341" selection-end-column="16" />
+        <state relative-caret-position="281">
+          <caret line="84" column="11" selection-start-line="84" selection-start-column="6" selection-end-line="84" selection-end-column="11" />
           <folding>
-            <element signature="e#27#85#0" expanded="true" />
+            <element signature="e#0#15#0" expanded="true" />
           </folding>
         </state>
       </provider>

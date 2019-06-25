@@ -336,10 +336,15 @@ def uploadbc(request):
     colis = Colis.objects.all().order_by("datePeremption", "fk_UniteManutentionEntree", "fk_Article", "-quantiteProduit") #Je recup la liste de colis, ordonnée par date peremption, umentree, article, et quantiteproduit decroissant
     for items in colis:
         print(items.quantiteProduit)
-        if items.fk_UniteManutentionSortie != None:
+        if items.fk_UniteManutentionSortie == None:
             lbc = LigneBonCommandeSortie_pour_BonCommandeSortie.objects.all().order_by("datePeremption", "fk_UniteManutentionEntree", "fk_Article", "-quantiteProduit") #Je recup la liste de colis, ordonnée par date peremption, umentree, article, et quantiteproduit decroissant
+            print ("THERE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
             for mylbc in lbc:
-
+                if mylbc.quantiteProduitPotentielle - mylbc.quantiteProduitALivrer < 0:
+                    if mylbc.fk_Article == items.fk_Article:
+                        print ("GG FOUND !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+                    else:
+                        print ("NOT FOUND !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
     return HttpResponseRedirect(reverse("bonCommandeSortie"))
 
 class bonCommandeSortieadd(ListView):
