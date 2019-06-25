@@ -332,6 +332,7 @@ def uploadbc(request):
         messages.error(request,"Unable to upload file. "+repr(e))
     messages.success(request,"Files uplodade with no problem")
 
+<<<<<<< HEAD
     #A chaque actualisation je fais un check de répartition des colis non expédié ||| Je Fais la répartition après avoir upload mon csv avec succès
     colis = Colis.objects.all().order_by("datePeremption", "fk_UniteManutentionEntree", "fk_Article", "-quantiteProduit") #Je recup la liste de colis, ordonnée par date peremption, umentree, article, et quantiteproduit decroissant
     for items in colis:
@@ -347,6 +348,8 @@ def uploadbc(request):
                         print ("NOT FOUND !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
     return HttpResponseRedirect(reverse("bonCommandeSortie"))
 
+=======
+>>>>>>> master
 class bonCommandeSortieadd(ListView):
     template_name = "bonCommandeSortieadd.html"
 

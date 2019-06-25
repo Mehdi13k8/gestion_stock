@@ -226,6 +226,7 @@
                         </thead>
                         <tbody>
                         {% for items in lbcs %}
+<<<<<<< HEAD
                         <tr class="">
                             <!--<td> <button type="button" id='{{ items.idBonCommandeSortie }}' class="dyna btn btn-sm btn-outline-grey rounded"> <i class="fa fa-arrow-right"></i> </button></td>-->
                             <td> {{ items.fk_Article.codeClient }} </td>
@@ -247,6 +248,17 @@
                             {% endif %}
                             <td> <button id='{{ items.idLigneBonCommandeSortie }}' class="dynad btn btn-sm btn-outline-red rounded-pill"> <i class="fa fa-minus"></i></button> </td>
                             <td> {{ items.idLigneBonCommandeSortie }} </td>
+=======
+                        <tr>
+                            <!--<td> <button type="button" id='{{ items.idBonCommandeSortie }}' class="dyna btn btn-sm btn-outline-grey rounded"> <i class="fa fa-arrow-right"></i> </button></td>-->
+                            <td> {{ items.fk_Destinataire.fk_TypeDestinataire.nom }} </td>
+                            <td> {{ items.fk_Destinataire.codeUM }} </td>
+                            <td> {{ items.dateCommande }} </td>
+                            <td> {{ items.numeroCommande }} </td>
+                            <td> {{ items.idBonCommandeSortie }} </td>
+                            <td> {{ items.termine }} </td>
+                            <td> <button id='{{ items.idBonCommandeSortie  }}' class="dynad btn btn-sm btn-outline-grey rounded-pill"> <i class="fa fa-minus"></i>   </button> </td>
+>>>>>>> master
                         </tr>
                         {% endfor %}
                         </tbody>
