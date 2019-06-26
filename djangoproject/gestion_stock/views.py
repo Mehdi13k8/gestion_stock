@@ -332,24 +332,26 @@ def uploadbc(request):
         messages.error(request,"Unable to upload file. "+repr(e))
     messages.success(request,"Files uplodade with no problem")
 
-<<<<<<< HEAD
     #A chaque actualisation je fais un check de répartition des colis non expédié ||| Je Fais la répartition après avoir upload mon csv avec succès
     colis = Colis.objects.all().order_by("datePeremption", "fk_UniteManutentionEntree", "fk_Article", "-quantiteProduit") #Je recup la liste de colis, ordonnée par date peremption, umentree, article, et quantiteproduit decroissant
     for items in colis:
         print(items.quantiteProduit)
         if items.fk_UniteManutentionSortie == None:
-            lbc = LigneBonCommandeSortie_pour_BonCommandeSortie.objects.all().order_by("datePeremption", "fk_UniteManutentionEntree", "fk_Article", "-quantiteProduit") #Je recup la liste de colis, ordonnée par date peremption, umentree, article, et quantiteproduit decroissant
+            lbc = LigneBonCommandeSortie_pour_BonCommandeSortie.objects.all().order_by("-priorite") #Je recup la liste de colis, ordonnée par la case priorite decroissante
             print ("THERE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
             for mylbc in lbc:
-                if mylbc.quantiteProduitPotentielle - mylbc.quantiteProduitALivrer < 0:
+                if int(mylbc.quantiteProduitALivrer) - int(mylbc.quantiteProduitCommande) < 0:
                     if mylbc.fk_Article == items.fk_Article:
-                        print ("GG FOUND !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-                    else:
+                        print ("GG FOUND !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!") #article correspondant a la ligne bon commande trouver dans les articles
+                        if int(mylbc.quantiteProduitCommande) <= int(items.quantiteProduit): #verif que ça valeur sera tjr inférieur a un colis de cet article
+                            print ("GG2 FOUND  !!!!!!!!!!!!!!!!!!")
+                            #Maintenant je dois sortir de le colis dans une Ums adéquate donc celle du bonde commande mylbc actuelle
+                            items.fk_UniteManutentionSortie = UniteManutentionSortie.objects.get(fk_BonCommandeSortie=mylbc.fk_BonCommandeSortie)
+                else:
                         print ("NOT FOUND !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+            items.save()
     return HttpResponseRedirect(reverse("bonCommandeSortie"))
 
-=======
->>>>>>> master
 class bonCommandeSortieadd(ListView):
     template_name = "bonCommandeSortieadd.html"
 
@@ -928,6 +930,9 @@ class articleadd(ListView):
             article.delaiPeremption = showlist[6]
             article.dureeStockage = showlist[7]
 
+            article.fk_Fournisseur = None
+            article.fk_TypeArticle = None
+
             typearticle = typeArticle_pour_Article.objects.all()
             for items in typearticle:
                 if items.nom == showlist[8]:
@@ -978,6 +983,9 @@ class articlemodify(ListView):
             article.designationClient = showlist[5]
             article.delaiPeremption = showlist[6]
             article.dureeStockage = showlist[7]
+
+            article.fk_Fournisseur = None
+            article.fk_TypeArticle = None
 
             typearticle = typeArticle_pour_Article.objects.all()
             for items in typearticle:
@@ -2490,7 +2498,82 @@ class typeart(ListView):
         }
         return render(request, self.template_name, context)
 
-            #fin des réglages dans settings
+#gestion des zones pour clients
+class typezone(ListView):
+    template_name = "typezonedepot.html"
+
+    def delete(request):
+        if request.method == 'POST':
+            showlist = [request.POST.get('id')]
+            data = TypeZoneDepot.objects.get(idTypeZoneDepot=showlist[0])
+            data.delete()
+            return HttpResponse("delete successfull.")
+        return HttpResponse("Error ZONE RESTRICTED.")
+
+    def create(request):
+        if request.method == 'POST':
+            showlist = [request.POST.get('id'), request.POST.get('name'),]
+            try:
+                data = TypeZoneDepot.objects.get(idTypeZoneDepot=showlist[0])
+                print("found")
+            except TypeZoneDepot.DoesNotExist:
+                print("create")
+                data = TypeZoneDepot()
+                data.idTypeZoneDepot = showlist[0]
+            data.nom = showlist[1]
+            data.save()
+            return HttpResponse("delete successfull.")
+        return HttpResponse("Error ZONE RESTRICTED.")
+
+    def get(self, request):
+        context = {
+            'activate' : 'on',
+            'settings' : menuimages.objects.all(),
+            'typez' : TypeZoneDepot.objects.all(),
+            'id' :request.GET.get('id'),
+            'vuegen' :request.GET.get('vuegen'),
+            'creation' :request.GET.get('creation'),
+        }
+        return render(request, self.template_name, context)
+
+#gestion des roles contactes
+class typecont(ListView):
+    template_name = "typecontact.html"
+
+    def delete(request):
+        if request.method == 'POST':
+            showlist = [request.POST.get('id')]
+            data = RoleContact_pour_Client.objects.get(idRoleContact=showlist[0])
+            data.delete()
+            return HttpResponse("delete successfull.")
+        return HttpResponse("Error ZONE RESTRICTED.")
+
+    def create(request):
+        if request.method == 'POST':
+            showlist = [request.POST.get('id'), request.POST.get('name'),]
+            try:
+                data = RoleContact_pour_Client.objects.get(idRoleContact=showlist[0])
+                print("found")
+            except RoleContact_pour_Client.DoesNotExist:
+                print("create")
+                data = RoleContact_pour_Client()
+                data.idRoleContact = showlist[0]
+            data.nom = showlist[1]
+            data.save()
+            return HttpResponse("delete successfull.")
+        return HttpResponse("Error ZONE RESTRICTED.")
+
+    def get(self, request):
+        context = {
+            'activate' : 'on',
+            'settings' : menuimages.objects.all(),
+            'rlc' : RoleContact_pour_Client.objects.all(),
+            'id' :request.GET.get('id'),
+            'vuegen' :request.GET.get('vuegen'),
+            'creation' :request.GET.get('creation'),
+        }
+        return render(request, self.template_name, context)
+        #fin des réglages dans settings
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
 class ums(ListView):

@@ -12,20 +12,36 @@
     </form>
 
     <div class="row">
-        <div class="col">
+        <div class="col mx-auto">
             <button type="button" title="Crée ou géré les utilisateurs" id="createuserbtn" class="btn btn-info"><i class="fa fa-user-plus" style="font-size: 30px"></i></button>
         </div>
-        <div class="col">
+        <div class="col mx-auto">
             <button type="button" id="createtypefournisseur" title="Crée les types de fournisseurs." class="btn btn-info"><i class="fa fa-user-tie" style="font-size: 30px"></i></button>
         </div>
-        <div class="col">
+        <div class="col mx-auto">
             <button type="button" id="createzone" class="btn btn-info" title="crée des zonnes de dépots"><i class="fa fa-warehouse" style="font-size: 30px"></i></button>
         </div>
-        <div class="col">
+        <div class="col mx-auto">
             <button type="button" id="createtypedes" class="btn btn-info" title="Crée les types de destinataires"><i class="fa fa-parachute-box" style="font-size: 30px"></i></button>
         </div>
-        <div class="col">
+        <div class="col mx-auto">
             <button type="button" id="createtypeart" class="btn btn-info" title="Crée les types d'articles"><i class="fa fa-boxes" style="font-size: 30px"></i></button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col mx-auto">
+            <button type="button" title="Crée ou géré les types de Zones" id="createzonetype" class="btn btn-info"><i class="fa fa-file-prescription" style="font-size: 40px"></i></button>
+        </div>
+        <div class="col mx-auto">
+            <button type="button" id="createtypecontact" title="Crée les types de contactes." class="btn btn-info"><i class="fa fa-address-book" style="font-size: 30px"></i></button>
+        </div>
+        <div class="col mx-auto">
+            <button type="button" id="createpays" title="Crée les pays pour destinataires." class="btn btn-info" disabled><i class="fa fa-flag" style="font-size: 37px"></i></button>
+        </div>
+
+        <div class="col mx-auto">
+        </div>
+        <div class="col mx-auto">
         </div>
     </div>
 </div>
@@ -92,11 +108,24 @@
         $('#createtypeart').click(function () {
             window.location.href = "{% url 'typeart' %}"
         });
+
+        $('#createzonetype').click(function () {
+            window.location.href = "{% url 'typezone' %}"
+        });
+
+        $('#createtypecontact').click(function () {
+            window.location.href = "{% url 'typecont' %}"
+        });
+
+
         $('#createtypefournisseur').tooltip();
         $('#createuserbtn').tooltip();
         $('#createzone').tooltip();
         $('#createtypedes').tooltip();
         $('#createtypeart').tooltip();
+        $('#createzonetype').tooltip();
+        $('#createtypecontact').tooltip();
+        $('#createpays').tooltip();
         /*
         $("#hidenot li").height(200);
         $("#id_cover1").parent('p').appendTo("#hidenot");

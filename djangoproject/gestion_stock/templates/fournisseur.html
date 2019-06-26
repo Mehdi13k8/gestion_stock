@@ -54,7 +54,7 @@
           {% for items in four %}
           <tr>
             <td> <button id='{{ items.idFournisseur }}' class="dyna"> -> </button></td>
-            <td> {{ items.nom }} </td>
+            <td> {{ items.nom|safe }} </td>
             <td> <button id='{{ items.idFournisseur }}' class="dynad"> X </button> </td>
           </tr>
           {% endfor %}
@@ -93,7 +93,7 @@
       alert(idClicked);
       "{% for items in four %}"
       if ('{{ items.idFournisseur }}' == idClicked) {
-        name = '{{ items.nom }}';
+        name = '{{ items.nom|safe }}';
         trueid = '{{ items.id }}';
       }
       "{% endfor %}"

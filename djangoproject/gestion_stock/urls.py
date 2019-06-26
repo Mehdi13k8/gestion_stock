@@ -32,6 +32,14 @@ urlpatterns = [
     path('type_article/create_typearticle/', views.typeart.create),
     path('type_article/delete_typearticle/', views.typeart.delete),
 
+    path('type_zone/', views.typezone.as_view(), name='typezone'),
+    path('type_zone/create_typezone/', views.typezone.create),
+    path('type_zone/delete_typezone/', views.typezone.delete),
+
+    path('type_con/', views.typecont.as_view(), name='typecont'),
+    path('type_con/create_typecont/', views.typecont.create),
+    path('type_con/delete_typecont/', views.typecont.delete),
+
     #path('zone_depot/add', views.zonesdepotadd.as_view(), name='zonedepotadd'),
     #path('create_zonedepot/save/', views..saveit),
     #path('modif_zonedepot/', views.modif_zonedepot.as_view(), name='modif_'),
