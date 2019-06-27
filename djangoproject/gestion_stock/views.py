@@ -2088,7 +2088,10 @@ class umeadd(ListView):
 
     def create(request):
         if request.method == 'POST':
-            showlist = [request.POST.get('id'),]
+            showlist = [request.POST.get('id'), request.POST.get('uminc'),
+                        request.POST.get('numum'), request.POST.get('dater'),
+                        request.POST.get('colisaff'), request.POST.get('prodaff'),]
+
             umentree = UniteManutentionEntree.objects.all()
             ume = UniteManutentionEntree()
             ume.idUniteManutentionEntree = showlist[0]
@@ -2128,11 +2131,22 @@ class umemodify(ListView):
 
     def modify(request):
         if request.method == 'POST':
-            showlist = [request.POST.get('id'), request.POST.get('litige'),
-                        request.POST.get('decilitige')]
-            umentree = UniteManutentionEntree.objects.all()
-            ume = UniteManutentionEntree()
+            showlist = [request.POST.get('id'), request.POST.get('uminc'),
+                        request.POST.get('numum'), request.POST.get('dater'),
+                        request.POST.get('colisaff'), request.POST.get('prodaff'),
+                        request.POST.get('zonedep'),]
 
+            try:
+                ume = UniteManutentionEntree.objects.get(idUniteManutentionEntree=showlist[0])
+                ume.stock = showlist[1]
+                ume.numero = showlist[2]
+                ume.dateReception = showlist[3]
+                ume.afficherQuantiteColis = showlist[4]
+                ume.afficherQuantiteProduits = showlist[5]
+            except UniteManutentionEntree.DoesNotExist:
+                print ("error")
+                return HttpResponse("Error ume Not found.")
+            ume.save()
             return HttpResponse("road to create ume.")
         return HttpResponse("Error.")
 
@@ -2593,6 +2607,12 @@ class ums(ListView):
         context = {
             'activate' : 'on',
             'ums' : UniteManutentionSortie.objects.all(),
+            'col' : Colis.objects.all(),
+
+            'article' : Article.objects.all(),
+            'litige' : Litige.objects.all(),
+            'decilitige' : LitigeDecision.objects.all(),
+
             'settings' : menuimages.objects.all(),
         }
         return render(request, self.template_name, context)

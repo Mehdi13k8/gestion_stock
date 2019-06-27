@@ -471,10 +471,12 @@
         }
 
         $('#compum').click(function () {
-            if ($(this).hasClass('btn btn-sm btn-success')) {
-                $(this).attr('class', 'btn btn-light btn-sm butctrl');
+            if ($(this).find('i').hasClass('fa fa-thumbs-up')) {
+                //fa fa-thumbs-up
+                $(this).attr('class', 'btn btn-sm btn-danger');
                 $(this).find('i').attr('class', 'fa fa-thumbs-down');
-            } else {
+            }
+            else {
                 $(this).attr('class', 'btn btn-sm btn-success');
                 $(this).find('i').attr('class', 'fa fa-thumbs-up');
             }
@@ -483,13 +485,12 @@
             window.location.href = "{% url 'unitemanutentionentree' %}";
         });
 
-        /*$("#seldep").combobox();
+        $("#seldep").combobox();
         $("#toggle").on("click", function () {
             $("#seldep").toggle();
-        });*/
-//        var lastcolisid = $('#tabblbody tr:last').find('td').find('input').val();
-
-//        console.log(lastcolisid);
+        });
+        //var lastcolisid = $('#tabblbody tr:last').find('td').find('input').val();
+        //console.log(lastcolisid);
         $("#dialog-confirm").dialog({
             resizable: false,
             height: "auto",
@@ -581,25 +582,24 @@
                         var a = 0;
                         var b = 0;
                             '{% for itemsli in litige %}'
-                            $("#litigebox" + nbr).append(new Option("{{ itemsli.nom|safe }}", "{{ itemsli.nom|safe }}"));
+                                $("#litigebox" + nbr).append(new Option("{{ itemsli.nom|safe }}", "{{ itemsli.nom|safe }}"));
                             '{% endfor %}'
 
                             '{% for itemsdli in decilitige %}'
-                            $("#decilitigebox" + nbr).append(new Option("{{ itemsdli.nom|safe }}", "{{ itemsdli.nom|safe }}"));
+                                $("#decilitigebox" + nbr).append(new Option("{{ itemsdli.nom|safe }}", "{{ itemsdli.nom|safe }}"));
                             '{% endfor %}'
 
                             $("#litigebox" + nbr).append(new Option("0", "0", true, true));
                             $("#decilitigebox" + nbr).append(new Option("0", "0", true, true));
 
                         "{% for items in colis %}"
-                        if (parseInt(colid, 10) < parseInt('{{ items.idColis }}', 10)) {
-                            colid = parseInt('{{ items.idColis }}', 10);
-                        }
+                            if (parseInt(colid, 10) < parseInt('{{ items.idColis }}', 10)) {
+                                colid = parseInt('{{ items.idColis }}', 10);
+                            }
                         "{% endfor %}"
                         colid++;
                         $("#ncolis" + nbr).val(colid);
                     }
-
                     /*$(".myselect").combobox({
                         select: function (event, ui) {
                             //litige[nbr] = $(this).val();
@@ -613,7 +613,6 @@
                             //console.log($(this).attr('id').replace(/\D/g, ''));
                         }
                     });*/
-
                     $('.addmodal').click(function () {
                         /*if ($(this).attr('id') > oldligne)
                             $('#newDialogText' + $(this).attr('id')).dialog("open");
@@ -754,15 +753,12 @@
                 url:"/modify_ume/", //lien de la view qui gère la requête post
                 data: {
                     'id': $('#umid').val(),
-                    'client': $('#client').val(),
-                    'fourtype': $('#fournisseur').val(),
-                    'lettre': $('#lveinput').val(),
-                    'zone': $('#zone').val(),
-                    'numerobl': $('#inputnbl').val(),
-                    'daterecep': $('#inputMDEx').val(),
-                    'quantitepale': $('#inputqpl').val(),
-                    'destinataireretour': $('#litiges').val(),
-                    'zoneatt': $('#zatt').val(),
+                    'uminc' : umincomplet,
+                    'numum' : $('#numum').val(),
+                    'dater' : $('#date').val(),
+                    'colisaff' : $('#clis').val(),
+                    'prodaff' : $('#prod').val(),
+                    'zonedep' : $('#seldep').val(),
                     csrfmiddlewaretoken: '{{ csrf_token }}',
                 },
                 success: function(msg, data, settings){

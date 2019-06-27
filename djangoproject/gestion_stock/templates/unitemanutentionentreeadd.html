@@ -219,8 +219,9 @@
 <script>
     $(document).ready(function() {
         $('#compum').click(function () {
-            if ($(this).hasClass('btn btn-sm btn-success')) {
-                $(this).attr('class', 'btn btn-light btn-sm butctrl');
+            if ($(this).find('i').hasClass('fa fa-thumbs-up')) {
+                //fa fa-thumbs-up
+                $(this).attr('class', 'btn btn-sm btn-danger');
                 $(this).find('i').attr('class', 'fa fa-thumbs-down');
             }
             else {
@@ -399,12 +400,25 @@
             $(this).parent().parent().remove();
         });
 
+        var umincomplet;
+        if ($('#compum').find('i').hasClass('fa fa-thumbs-up')) {
+            umincomplet = 1;
+        }
+        else {
+            umincomplet = 0;
+        }
         $('#saveume').click(function () {
             $.ajax({
                 type:"POST",    //type de requête utilisé par ajax
                 url:"/create_ume/", //lien de la view qui gère la requête post
                 data: {
                     'id': $('#umid').val(),
+                    'uminc' : umincomplet,
+                    'numum' : $('#numum').val(),
+                    'dater' : $('#date').val(),
+                    'colisaff' : $('#clis').val(),
+                    'prodaff' : $('#prod').val(),
+                    'zonedep' : $('#seldep').val(),
                     csrfmiddlewaretoken: '{{ csrf_token }}',
                 },
                 success: function(msg, data, settings){
