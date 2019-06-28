@@ -2095,6 +2095,12 @@ class umeadd(ListView):
             umentree = UniteManutentionEntree.objects.all()
             ume = UniteManutentionEntree()
             ume.idUniteManutentionEntree = showlist[0]
+
+            ume.stock = showlist[1]
+            ume.numero = showlist[2]
+            ume.afficherQuantiteColis = showlist[4]
+            ume.afficherQuantiteProduits = showlist[5]
+            ume.dateReception = showlist[3]
             ume.fk_BonLivraisonEntree = None
             ume.fk_ZoneDepot = None
             ume.c_nom = ""
@@ -2103,9 +2109,6 @@ class umeadd(ListView):
             ume.m_nom = ""
             ume.m_nomCompte = ""
             ume.m_horodatage = ""
-            ume.numero = ""
-            ume.dateReception = ""
-            ume.stock = ""
             ume.save()
             return HttpResponse("road to create ume.")
         return HttpResponse("Error on delete.")
@@ -2134,17 +2137,29 @@ class umemodify(ListView):
             showlist = [request.POST.get('id'), request.POST.get('uminc'),
                         request.POST.get('numum'), request.POST.get('dater'),
                         request.POST.get('colisaff'), request.POST.get('prodaff'),
-                        request.POST.get('zonedep'),]
+                        request.POST.get('zonedep'), request.POST.get('ble')]
 
             try:
                 ume = UniteManutentionEntree.objects.get(idUniteManutentionEntree=showlist[0])
                 ume.stock = showlist[1]
                 ume.numero = showlist[2]
-                ume.dateReception = showlist[3]
                 ume.afficherQuantiteColis = showlist[4]
                 ume.afficherQuantiteProduits = showlist[5]
+                ume.dateReception = showlist[3]
+                try:
+                    ble = BonLivraisonEntree.objects.get(idBonLivraisonEntree=showlist[7])
+                    ble.dateReception = showlist[3] #si on change la date de reception elle doit aussi changer celle du ble
+                    try:
+                        zonedp = ZoneDepot_pour_TypeZoneDepot.objects.get(nom=showlist[6]) #on change la zone de dépots du BL entree donc "ou" va être la palette
+                        ble.fk_ZoneDepot_pour_TypeZoneDepot = zonedp
+                        print("gg")
+                    except Exception as e:
+                        print("error1 -- " + str(e))
+                    ble.save()
+                except:
+                    print("error2")
             except UniteManutentionEntree.DoesNotExist:
-                print ("error")
+                print ("error3")
                 return HttpResponse("Error ume Not found.")
             ume.save()
             return HttpResponse("road to create ume.")
@@ -2166,7 +2181,7 @@ class umemodify(ListView):
                 mycolis.fk_UniteManutentionSortie = None
             mycolis.fk_UniteManutentionEntree = UniteManutentionEntree.objects.get(idUniteManutentionEntree=showlist[0])
             mycolis.idColis = showlist[1]
-            mycolis.fk_ZoneDepot = UniteManutentionEntree.objects.get(idUniteManutentionEntree=showlist[0]).fk_ZoneDepot
+            mycolis.fk_ZoneDepot = UniteManutentionEntree.objects.get(idUniteManutentionEntree=showlist[0]).fk_BonLivraisonEntree.fk_ZoneDepot_pour_TypeZoneDepot
             mycolis.numeroLot = showlist[4]
             mycolis.datePeremption = showlist[5]
             mycolis.quantiteProduit = showlist[6]
@@ -2219,6 +2234,8 @@ class umemodify(ListView):
             'decilitige' : LitigeDecision.objects.all(),
             'settings' : menuimages.objects.all(),
             'colis' : Colis.objects.all(),
+            'ume' : UniteManutentionEntree.objects.all(),
+            'zdt' : ZoneDepot_pour_TypeZoneDepot.objects.all(),
             'id' :request.GET.get('id'),
             'activate' : 'on'
         }

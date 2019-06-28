@@ -881,7 +881,7 @@ class TypeZoneDepot(models.Model):
 
 class ZoneDepot_pour_TypeZoneDepot(models.Model):
     #fk_TypeZoneDepot = models.ForeignKey('TypeZoneDepot', on_delete=models.CASCADE, default=0, blank=True, null=True)
-    fk_TypeZoneDepot = models.ForeignKey('Client', on_delete=models.CASCADE, default=None, blank=True, null=True)
+    fk_TypeZoneDepot = models.ForeignKey('TypeZoneDepot', on_delete=models.CASCADE, default=None, blank=True, null=True)
     idZoneDepot = models.CharField(max_length=150, default=0)
     c_nom = models.CharField(max_length=150, default=0)
     c_nomCompte = models.CharField(max_length=150, default=0)
@@ -937,7 +937,7 @@ class TypeBonCommandeSortie_pour_BonCommandeSortie(models.Model):
 class UniteManutentionEntree(models.Model):
     idUniteManutentionEntree = models.CharField(max_length=150, default=0)
     fk_BonLivraisonEntree = models.ForeignKey('BonLivraisonEntree', on_delete=models.CASCADE, default=0, blank=True, null=True)
-    fk_ZoneDepot = models.ForeignKey('ZoneDepot_pour_TypeZoneDepot', on_delete=models.CASCADE, default=0, blank=True, null=True)
+    #fk_ZoneDepot = models.ForeignKey('ZoneDepot_pour_TypeZoneDepot', on_delete=models.CASCADE, default=0, blank=True, null=True)
     #fk_Etiquette = models.ForeignKey('EtiquetteUniteManutentionEntree_pour_UniteManutentionEntree', on_delete=models.CASCADE, default=1)
     c_nom = models.CharField(max_length=150, default=0)
     c_nomCompte = models.CharField(max_length=150, default=0)

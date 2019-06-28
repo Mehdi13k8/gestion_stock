@@ -408,6 +408,9 @@
             umincomplet = 0;
         }
         $('#saveume').click(function () {
+            var date = $('#date').val().trim();
+            alert(date);
+            date = date.split("-").reverse().join("-");
             $.ajax({
                 type:"POST",    //type de requête utilisé par ajax
                 url:"/create_ume/", //lien de la view qui gère la requête post
@@ -415,7 +418,7 @@
                     'id': $('#umid').val(),
                     'uminc' : umincomplet,
                     'numum' : $('#numum').val(),
-                    'dater' : $('#date').val(),
+                    'dater' : date,
                     'colisaff' : $('#clis').val(),
                     'prodaff' : $('#prod').val(),
                     'zonedep' : $('#seldep').val(),

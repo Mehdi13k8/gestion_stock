@@ -45,7 +45,11 @@
                             <td> {{ items.fk_BonLivraisonEntree.fk_ZoneDepot_pour_TypeZoneDepot.fk_TypeZoneDepot.nom }} </td>
                             <td> {{ items.fk_BonLivraisonEntree.numeroBonLivraison }} </td>
                             <td> {{ items.c_horodatage }} </td>
-                            <td> {{ items.fk_BonLivraisonEntree.dateReception }} </td>
+                            {% if items.fk_BonLivraisonEntree %}
+                                <td> {{ items.fk_BonLivraisonEntree.dateReception }} </td>
+                            {% else %}
+                                <td> {{ items.dateReception }} </td>
+                            {% endif %}
                             <td> {{ items.idUniteManutentionEntree }} </td>
                             <td> {{ items.stock }} </td>
                             <td> <button id='{{ items.idUniteManutentionEntree }}' class="dynad btn btn-sm btn-outline-grey rounded-pill"> <i class="fa fa-minus"></i>   </button> </td>
