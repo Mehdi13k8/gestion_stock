@@ -40,6 +40,10 @@ urlpatterns = [
     path('type_con/create_typecont/', views.typecont.create),
     path('type_con/delete_typecont/', views.typecont.delete),
 
+    path('pays/', views.pays.as_view(), name='pays'),
+    path('pays/create_pays/', views.pays.create),
+    path('pays/delete_pays/', views.pays.delete),
+
     #path('zone_depot/add', views.zonesdepotadd.as_view(), name='zonedepotadd'),
     #path('create_zonedepot/save/', views..saveit),
     #path('modif_zonedepot/', views.modif_zonedepot.as_view(), name='modif_'),

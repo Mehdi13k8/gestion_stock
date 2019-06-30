@@ -36,7 +36,7 @@
             <button type="button" id="createtypecontact" title="Crée les types de contactes." class="btn btn-info"><i class="fa fa-address-book" style="font-size: 30px"></i></button>
         </div>
         <div class="col mx-auto">
-            <button type="button" id="createpays" title="Crée les pays pour destinataires." class="btn btn-info" disabled><i class="fa fa-flag" style="font-size: 37px"></i></button>
+            <button type="button" id="createpays" title="Crée les pays pour destinataires." class="btn btn-info"><i class="fa fa-flag" style="font-size: 37px"></i></button>
         </div>
 
         <div class="col mx-auto">
@@ -108,15 +108,15 @@
         $('#createtypeart').click(function () {
             window.location.href = "{% url 'typeart' %}"
         });
-
         $('#createzonetype').click(function () {
             window.location.href = "{% url 'typezone' %}"
         });
-
         $('#createtypecontact').click(function () {
             window.location.href = "{% url 'typecont' %}"
         });
-
+        $('#createpays').click(function () {
+            window.location.href = "{% url 'pays' %}"
+        });
 
         $('#createtypefournisseur').tooltip();
         $('#createuserbtn').tooltip();

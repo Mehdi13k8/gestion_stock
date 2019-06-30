@@ -2604,6 +2604,45 @@ class typecont(ListView):
             'creation' :request.GET.get('creation'),
         }
         return render(request, self.template_name, context)
+
+        #gestion des roles contactes
+class pays(ListView):
+    template_name = "pays.html"
+
+    def delete(request):
+        if request.method == 'POST':
+            showlist = [request.POST.get('id')]
+            data = Pays_pour_Destinataire.objects.get(idRoleContact=showlist[0])
+            data.delete()
+            return HttpResponse("delete successfull.")
+        return HttpResponse("Error ZONE RESTRICTED.")
+
+    def create(request):
+        if request.method == 'POST':
+            showlist = [request.POST.get('id'), request.POST.get('name'),]
+            try:
+                data = RoleContact_pour_Client.objects.get(idRoleContact=showlist[0])
+                print("found")
+            except RoleContact_pour_Client.DoesNotExist:
+                print("create")
+                data = RoleContact_pour_Client()
+                data.idRoleContact = showlist[0]
+            data.nom = showlist[1]
+            data.save()
+            return HttpResponse("delete successfull.")
+        return HttpResponse("Error ZONE RESTRICTED.")
+
+    def get(self, request):
+        context = {
+            'activate' : 'on',
+            'settings' : menuimages.objects.all(),
+            'rlc' : RoleContact_pour_Client.objects.all(),
+            'id' :request.GET.get('id'),
+            'vuegen' :request.GET.get('vuegen'),
+            'creation' :request.GET.get('creation'),
+        }
+        return render(request, self.template_name, context)
+
         #fin des réglages dans settings
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
