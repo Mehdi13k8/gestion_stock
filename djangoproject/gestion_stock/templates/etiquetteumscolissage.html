@@ -1,0 +1,59 @@
+{% extends user.is_authenticated|yesno:"base_generic.html,empty.html" %}
+
+{% block content %}
+<script type="text/javascript">
+    window.onload = function() {
+        $('.jumbotron').hide();
+        $('footer').hide();
+    }
+</script>
+
+<br>
+<div class="container">
+    {% for items in ums %}
+    {% if items.idUniteManutentionSortie == id %}
+    <div class="row">
+    <div class="col">
+    <h1> <b> Liste de colisage {{ items.fk_BonCommandeSortie.fk_Destinataire.codeUM }} - UM : {{ items.numero }}</b></h1>
+    </div>
+    <div class="col text-right">test</div>
+        <br>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">identifiant colis</th>
+            <th scope="col">code article</th>
+            <th scope="col">désignation</th>
+            <th scope="col">n° lot</th>
+            <th scope="col">date de péremption</th>
+            <th scope="col">quantité</th>
+        </tr>
+        </thead>
+        <tbody>
+    {% for cols in colis %}
+    {% if cols.fk_UniteManutentionSortie.idUniteManutentionSortie == id %}
+        <tr>
+            <td>{{ cols.idColis }}</td>
+            <td>{{ cols.fk_Article.codeClient }}</td>
+            <td>{{ cols.fk_Article.designationClient }}</td>
+            <td>{{ cols.numeroLot }}</td>
+            <td>{{ cols.datePeremption }}</td>
+            <td>{{ cols.quantiteProduit }}</td>
+        </tr>
+    {% endif %}
+    {% empty %}
+    <h5 class="text-danger"> There is no Colis </h5>
+    {% endfor %}
+        </tbody>
+    </table>
+
+    {% endif %}
+    {% empty %}
+    <h5 class="text-danger"> There is no U.Ms </h5>
+    {% endfor %}
+    <hr>
+    <div class="text-center"> ---/--- FIN ---/---</div>
+    </div>
+</div>
+
+{% endblock %}

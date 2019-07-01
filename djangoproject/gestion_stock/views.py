@@ -2605,14 +2605,14 @@ class typecont(ListView):
         }
         return render(request, self.template_name, context)
 
-        #gestion des roles contactes
+#gestion des pays pour destinataire
 class pays(ListView):
     template_name = "pays.html"
 
     def delete(request):
         if request.method == 'POST':
             showlist = [request.POST.get('id')]
-            data = Pays_pour_Destinataire.objects.get(idRoleContact=showlist[0])
+            data = Pays_pour_Destinataire.objects.get(idPays=showlist[0])
             data.delete()
             return HttpResponse("delete successfull.")
         return HttpResponse("Error ZONE RESTRICTED.")
@@ -2621,22 +2621,22 @@ class pays(ListView):
         if request.method == 'POST':
             showlist = [request.POST.get('id'), request.POST.get('name'),]
             try:
-                data = RoleContact_pour_Client.objects.get(idRoleContact=showlist[0])
+                data = Pays_pour_Destinataire.objects.get(idPays=showlist[0])
                 print("found")
-            except RoleContact_pour_Client.DoesNotExist:
+            except Pays_pour_Destinataire.DoesNotExist:
                 print("create")
-                data = RoleContact_pour_Client()
-                data.idRoleContact = showlist[0]
+                data = Pays_pour_Destinataire()
+                data.idPays = showlist[0]
             data.nom = showlist[1]
             data.save()
-            return HttpResponse("delete successfull.")
+            return HttpResponse("create successfull.")
         return HttpResponse("Error ZONE RESTRICTED.")
 
     def get(self, request):
         context = {
             'activate' : 'on',
             'settings' : menuimages.objects.all(),
-            'rlc' : RoleContact_pour_Client.objects.all(),
+            'pays' : Pays_pour_Destinataire.objects.all(),
             'id' :request.GET.get('id'),
             'vuegen' :request.GET.get('vuegen'),
             'creation' :request.GET.get('creation'),
@@ -2796,5 +2796,36 @@ class umsmodify(ListView):
             'colis' : Colis.objects.all(),
             'id' :request.GET.get('id'),
             'activate' : 'on'
+        }
+        return render(request, self.template_name, context)
+
+#etiquette Um (impression pdf)~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
+class etiquetteums(ListView):
+    template_name = "etiquetteums.html"
+
+    def get(self, request):
+        context = {
+            'activate' : 'on',
+            'settings' : menuimages.objects.all(),
+            'ums' : UniteManutentionSortie.objects.all(),
+            'id' :request.GET.get('id'),
+            'vuegen' :request.GET.get('vuegen'),
+            'creation' :request.GET.get('creation'),
+        }
+        return render(request, self.template_name, context)
+
+class etiquetteumscolissage(ListView):
+    template_name = "etiquetteumscolissage.html"
+
+    def get(self, request):
+        context = {
+            'activate' : 'on',
+            'settings' : menuimages.objects.all(),
+            'ums' : UniteManutentionSortie.objects.all(),
+            'colis' : Colis.objects.all(),
+            'id' :request.GET.get('id'),
+            'vuegen' :request.GET.get('vuegen'),
+            'creation' :request.GET.get('creation'),
         }
         return render(request, self.template_name, context)

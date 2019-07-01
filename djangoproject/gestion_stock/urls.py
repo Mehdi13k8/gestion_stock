@@ -167,4 +167,6 @@ urlpatterns = [
     path('delete_ums/', views.ums.delete),
 
     #path('bon/add/<int:month>/', views.),
+    path('etiquetteUMs/', views.etiquetteums.as_view(), name='etiquetteUMs'),
+    path('etiquetteUMs/colissage/', views.etiquetteumscolissage.as_view(), name='etiquetteUMscolissage'),
 ]

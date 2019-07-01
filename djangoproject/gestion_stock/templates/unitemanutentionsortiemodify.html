@@ -24,133 +24,92 @@
     </div>
 </div>
 
-<div class="container">
+<div class="container text-center">
     <div class="row">
-        <div class="border shadow-lg p-3 mb-5 bg-white rounded col-md-auto table-responsive">
-            <div class="row">
-                <div class="col-auto">
-                    <label for="compum">UM incomplets: </label>
-                    <button id="compum" class='btn btn-sm btn-success'>
-                        <i class="fa fa-thumbs-up"></i>
-                    </button>
-                </div>
-
-                <div class="col-2">
-                    <div class="form-group form-inline">
-                        <label for="numum">n° UM : </label>
-                        <input type="text" class="form-control w-50 input-group-sm" id="numum" placeholder="N°UM">
-                    </div>
-                </div>
-
-                <div class="col-4">
-                    <div class="form-group form-inline">
-                        <label for="blum"><button class="btn btn-sm btn-light">
-                            <i class="fa fa-chevron-right" style="font-size: 15px;"></i>
-                        </button>bon de livraison: </label>
-                        <input type="text" class="form-control w-25" id="blum" disabled>
-                    </div>
-                </div>
-
-                <div class="col">
-                    <br>
-                    <div class="form-group form-inline mt-n3 ml-n5">
-                        <label for="seldep">zone dépôt :&nbsp;</label>
-                        <select type="text" class="form-control w-25" id="seldep"></select>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="row">
-                <div class="col text-center">
-                    <label class="" for="date">date de réception:</label>
-                    <input type="date" id="date" class="form-control">
-                </div>
-
-                <div class="col-auto">
-                    <br>
-                    <button class="btn btn-outline-blue-grey"><i class="fa fa-print" style="color: darkblue; font-size: 20px;"></i></button>
-                </div>
-
-                <div class="col-auto">
-                    <br>
-                    <label for="divbtns">filtrer litiges :&nbsp;</label>
-                    <div class="btn-group" role="group" aria-label="Basic example" id="divbtns">
-                        <button type="button" class="btn btn-sm btn-cyan">tout</button>
-                        <button type="button" class="btn btn-sm btn-cyan">livrable</button>
-                        <button type="button" class="btn btn-sm btn-cyan">litige</button>
-                    </div>
-                </div>
-
-                <div class="col-auto">
-                    <br>
-                    <div class="form-group form-inline">
-                        <label for="umid">id:&nbsp;</label>
-                        <br><input type="text" id="umid" name="id_ume" class="w-25 rounded-pill" disabled>
-                    </div>
-                </div>
-
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-auto">
-                    <br>
-                    <div class="row">
-                        <div class="col">
-                            <label for="divbtns">filtrer article :&nbsp;</label>
+        <div class="col">
+            <div class="border shadow-lg p-3 mb-5 bg-white rounded col-md-auto table-responsive">
+                <h5><u> Identifiants </u></h5>
+                <br>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group text-left ml-5">
+                            <label for="idums"> identifiant:&nbsp; </label>
+                            <input type="text" class="form-control" id="idums" placeholder="0" style="width: 90px;" disabled>
+                        </div>
+                        <div class="form-group text-left ml-5">
+                            <label for="desti"> destinataire:&nbsp; </label>
+                            <input type="text" class="form-control" id="desti" placeholder="0" style="width: 90px;" disabled>
+                        </div>
+                        <div class="form-group text-left ml-5">
+                            <label for="bcsid"> Bon commande :&nbsp; </label>
+                            <input type="text" class="form-control" id="bcsid" placeholder="0" style="width: 90px;" disabled>
+                        </div>
+                        <div class="form-group text-left ml-5">
+                            <label for="blsid"> Bon livraison :&nbsp; </label>
+                            <input type="text" class="form-control" id="blsid" placeholder="0" style="width: 90px;" disabled>
                         </div>
                     </div>
-                    <div class="btn-group-vertical" role="group" aria-label="Basic example" id="divbtns">
-                        <button type="button" class="btn btn-sm btn-cyan">tout</button>
-                        <button type="button" class="btn btn-sm btn-cyan">rien</button>
+                    <div class="col">
+                        <div class="form-group text-left ml-5">
+                            <label for="codeum"> Code UM : &nbsp; </label>
+                            <input type="text" class="form-control" id="codeum" placeholder="0" style="width: 90px;" disabled>
+                        </div>
+                        <div class="form-group text-left ml-5">
+                            <label for="umsnum"> numéro : &nbsp; </label>
+                            <input type="text" class="form-control" id="umsnum" placeholder="0" style="width: 90px;" disabled>
+                        </div>
                     </div>
                 </div>
 
-                <div class="col border shadow-lg rounded mr-1">
-                    <div class="row">
-                        <div class="col" id="tabfiltre1"></div>
-                        <div class="col" id="tabfiltre2"></div>
-                        <div class="col" id="tabfiltre3"></div>
+                <h6><u> poids [kg] </u></h6>
+                <div class="row text-left">
+                    <div class="col">
+                        <label for="pbrute"> brute : &nbsp; </label>
+                        <input type="text" class="form-control" id="pbrute" placeholder="0">
                     </div>
-                </div>
-
-
-                <div class="col-2 border shadow-lg rounded table-responsive ml-1">
-                    <div class="border shadow-sm mt-1 text-center mb-1">
-                        <p> Quantités dans les colis affichés</p>
+                    <div class="col">
+                        <label for="ptare"> tare : &nbsp; </label>
+                        <input type="text" class="form-control" id="ptare" placeholder="0">
                     </div>
-
-                    <div class="form-group form-inline">
-                        <label class="" for="clis"> Colis: &nbsp;</label>
-                        <input type="text" class="form-control" id="clis" placeholder="0" style="width: 90px;">
+                    <div class="col">
+                        <label for="pnet"> net : &nbsp; </label>
+                        <input type="text" class="form-control" id="pnet" placeholder="0" disabled>
                     </div>
-
-                    <div class="form-group form-inline">
-                        <label for="prod"> Produits:&nbsp; </label>
-                        <input type="text" class="form-control" id="prod" placeholder="0" style="width: 90px;">
+                    <div class="col">
+                        <label for="pdiff"> diff : &nbsp; </label>
+                        <input type="text" class="form-control" id="pdiff" placeholder="0">
                     </div>
-
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col">
-                    <br>
-                    <label for="divbtns">filtrer emplacement confirmé :&nbsp;</label>
-                    <div class="btn-group" role="group" aria-label="Basic example" id="divbtns">
-                        <button type="button" class="btn btn-sm btn-cyan">tout</button>
-                        <button type="button" class="btn btn-sm btn-cyan">stock</button>
-                        <button type="button" class="btn btn-sm btn-cyan">assigné</button>
-                        <button type="button" class="btn btn-sm btn-cyan">confirmé</button>
-                    </div>
-                </div>
-                <div class="col">
-                    <br>
-                    <button type="button" class="btn btn-sm btn-cyan ">vérifier n° lot/DLUO</button>
                 </div>
             </div>
-            <div class="text-right">
-                <button type="button" class="btn btn-blue-grey" id="saveume">Save&nbsp;<i class="fa fa-check"></i></button>
+        </div>
+        <div class="col">
+            <div class="col">
+                <div class="border shadow-lg p-3 mb-5 bg-white rounded col-md-auto table-responsive">
+                    <h6><u> poids [kg] </u></h6>
+                    <br>
+                    <div class="row text-left">
+                        <div class="col">
+                            <label for="dateo"> Ouverture : &nbsp; </label>
+                            <input type="date" class="form-control" id="dateo">
+                        </div>
+                        <br>
+                    </div>
+                    <div class="row text-left">
+                        <div class="col">
+                            <label for="datef"> Fermeture : &nbsp; </label>
+                            <input type="date" class="form-control" id="datef">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row text-left">
+                        <div class="col">
+                            <label for="datee"> Expédition : &nbsp; </label>
+                            <input type="date" class="form-control" id="datee">
+                        </div>
+                    </div>
+                </div>
+                <a target="_blank" rel="noopener noreferrer" href="{% url 'etiquetteUMs' %}?id={{id}}"><button class="btn btn-outline-light-blue" type="button" id="umetiquette"><i class="fa fa-print" style="font-size: 20px"></i><br>UM</button></a>
+                <a target="_blank" rel="noopener noreferrer" href="{% url 'etiquetteUMscolissage' %}?id={{id}}"><button class="btn btn-light-blue" type="button" id="umetiquettelc"><i class="fa fa-print" style="font-size: 20px"></i><br>LC</button></a>
             </div>
         </div>
     </div>
@@ -168,7 +127,6 @@
                                 <thead>
                                 <tr>
                                     <th scope="col" class="text-center"><i class="fa fa-copy"></i></th>
-                                    <th scope="col" class="text-center"><i class="fa fa-plus"></i></th>
                                     <th scope="col" class="text-center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n°colis&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
                                     <th scope="col" class="text-center">code fournisseur</th>
                                     <th scope="col" class="text-center">&nbsp;désignation&nbsp;</th>
@@ -186,8 +144,7 @@
                                     <th scope="col" class="text-center"><i class="fa fa-unlink"></i></th>
                                     <th scope="col" class="text-center">Retour ancien<br>n° colis</th>
                                     <th scope="col" class="text-center"><i class="fa fa-trash"></i></th>
-                                    <th scope="col" class="text-center">collée</th>
-                                    <th scope="col" class="text-center">imprimer</th>
+
                                 </tr>
                                 </thead>
                                 <tbody id="tabblbody">
@@ -195,7 +152,6 @@
                                 {% if items.fk_UniteManutentionSortie.idUniteManutentionSortie == id %}
                                 <tr>
                                     <td><button class='duplique btn btn-sm  btn-outline-grey rounded-pill w-25' id="duplicate{{ items.idColis }}"><i class="fa fa-copy ml-n2" style='font-size: 15px;cursor:pointer;'></i></button></td>
-                                    <td><button class='ajout btn btn-sm rounded-pill btn-outline-grey w-25' id="add{{ items.idColis }}"><i class="fa fa-plus ml-n1" style='font-size: 15px;cursor:pointer;'></i></button></td>
                                     <td><input class='form-control' disabled id='ncolis{{items.idColis}}' value="{{ items.idColis }}"></td>
                                     <td><select class="form-control fournise" id="blfournisseur{{items.idColis}}"></select></td>
                                     <td><select class="form-control desif" id="iddesif{{items.idColis}}"></select></td>
@@ -223,13 +179,6 @@
                                     <td><button class='btn btn-sm rounded-pill'><i class="fa fa-unlink" style='font-size: 20px;cursor:pointer;color: red;'></i></button></td>
                                     <td><input class='form-control' value='0'></td>
                                     <td><button class="deleteur btn btn-sm rounded-pill" id="{{ items.idColis }}"> <i class="fa fa-trash" style='font-size: 24px;cursor:pointer;color: orangered;'></i> </button> </td>
-                                    {% if items.colle == "1" %}
-                                    <td class='text-center'><i class="fa fa-leaf mt-2" style='font-size: 25px;cursor:pointer;color: green;'></i></td>
-                                    {% endif %}
-                                    {% if items.colle == "0" %}
-                                    <td class='text-center'><i class="fa fa-leaf mt-2" style='font-size: 25px;cursor:pointer;color: black;'></i></td>
-                                    {% endif %}
-                                    <td><button class="print btn btn-sm rounded-pill"><i class="fa fa-print" style='color: lightblue;font-size: 25px;'></i></button></td>
                                 </tr>
                                 {% endif %}
                                 {% endfor %}
@@ -288,572 +237,21 @@
                         </div>
                     </div>
                 </div>
-                <button class="btn btn-sm btn-dark" id="addligne"><i class="fa fa-plus"></i></button>
             </div>
         </div>
     </div>
-</div>
-
-<div id="dialog-confirm" title="Ajouter des lignes">
-    Combien de lignes faut-il ajouter ?</p>
-    <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>
-        <input id="numberligne" type="text" pattern="[0-9]+">
 </div>
 <br>
 <br>
 
 <script>
     $(document).ready(function() {
-        var firstoldline = 1;
-        var litige = [];
-        var decilitige = [];
-
-        var lastcolisid = "0";
-        "{% for items in colis %}"
-        if (parseInt(lastcolisid, 10) < parseInt('{{ items.idColis }}', 10)) {
-            lastcolisid = parseInt('{{ items.idColis }}', 10);
-        }
-        "{% endfor %}"
-        //sorting (trie) du tableau par rapport a ncolis
-        if ($('#tabbl').length > 0) {
-            var table, rows, switching, i, x, y, shouldSwitch;
-            table = document.getElementById("tabbl");
-            switching = true;
-            while (switching) {
-                switching = false;
-                rows = table.rows;
-                for (i = 1; i < (rows.length - 1); i++) {
-                    shouldSwitch = false;
-                    x = rows[i].getElementsByTagName("TD")[2];
-                    y = rows[i + 1].getElementsByTagName("TD")[2];
-                    if (x.innerHTML > y.innerHTML) {
-                        shouldSwitch = true;
-                        break;
-                    }
-                }
-                if (shouldSwitch) {
-                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-                    switching = true;
-                }
-            }
-        }
-
-        '{% for items in colis %}'
-        '{% if items.fk_UniteManutentionSortie.idUniteManutentionSortie == id %}'
-        litige[firstoldline - 1] = colis.fk_litige;
-        decilitige[firstoldline - 1] = colis.fk_DecisionLitige;
-        $('.addmodal').click(function () {
-            if ($(this).attr('id') <= firstoldline)
-                $('#newDialogText' + $(this).attr('id')).dialog("open");
-        });
-        '{% endif %}'
-        '{% endfor %}'
-        var position = 1;
-        var newidx = 0;
-        var articlearr = [];
-        $('#tabblbody tr').each(function (a, b) {  //recupère les  entrée dans la table
-            if ($.inArray($(this).find('td').eq(4).find('input').val(), articlearr) == -1) {
-                articlearr[newidx] = $(this).find('td').eq(4).find('input').val();
-                console.log("not found // " + $(this).find('td').eq(4).find('input').val());
-                newidx++;
-            }
-            console.log("found // " + $(this).find('td').eq(4).find('input').val());
-        });
-        console.log(articlearr);
-
-        //cache mes rows via le fitre
-        var idxcheck = 0;
-        for (var arrtest = 0; arrtest != articlearr.length; arrtest++) {
-            $('#tabfiltre' + position).append('<input type="checkbox" name="'+articlearr[arrtest]+'"><label for="'+articlearr[arrtest]+'">'+articlearr[arrtest]+'</label> ').change(function() {
-                console.log(articlearr[arrtest]);
-                if (idxcheck == 1) {
-                    console.log("uncheck");
-                    var namearticle =  $(this).find('label').text();
-                    $('#tabblbody tr').each(function (a, b) {  //recupère les  entrée dans la table
-                        $(this).show();
-                    });
-                }
-                // je cache ou affiche les colis selon les filtres article ici
-                if (idxcheck == 0) {
-                    var namearticle =  $(this).find('label').text();
-                    console.log("check");
-                    $('#tabblbody tr').each(function (a, b) {  //recupère les  entrée dans la table
-                        if ($(this).find('td').eq(4).find('input').val() != namearticle) {
-                            $(this).hide();
-                        }
-                    });
-                }
-                if (idxcheck == 1)
-                    idxcheck = 0;
-                else
-                if (idxcheck == 0)
-                    idxcheck = 1;
-            });
-            if (position == 3)
-                position = 0;
-            position++;
-        }
-        $('#compum').click(function () {
-            if ($(this).hasClass('btn btn-sm btn-success')) {
-                $(this).attr('class', 'btn btn-light btn-sm butctrl');
-                $(this).find('i').attr('class', 'fa fa-thumbs-down');
-            } else {
-                $(this).attr('class', 'btn btn-sm btn-success');
-                $(this).find('i').attr('class', 'fa fa-thumbs-up');
-            }
-        });
         $('#back-row').click(function () {
             window.location.href = "{% url 'unitemanutentionsortie' %}";
         });
-        $("#dialog-confirm").dialog({
-            resizable: false,
-            height: "auto",
-            width: 400,
-            modal: true,
-            buttons: {
-                "Annuler": function () {
-                    $('#numberligne').val("");
-                    $(this).dialog("close");
-                },
-                ok: function () {
-                    var oldligne = 0;
-                    $('#tabblbody tr').each(function (a, b) {
-                        oldligne++;
-                    });
-                    var nbrligne = $('#numberligne').val();
-                    $(this).dialog("close");
-                    var colid = "0";
-                    var total = parseInt(nbrligne) + parseInt(lastcolisid);// + parseInt(1);
-                    var idxnbr = 0;
-                    $('#numberligne').val("");
-                    for (var nbr = parseInt(lastcolisid)+1; nbr < total+1; nbr++) {
-                        console.log(nbr);
-                        //litige[idxnbr] = "0";
-                        //decilitige[idxnbr] = "0";
-                        $('#tabblbody').append("<tr><td><button class='duplique btn btn-sm  btn-outline-grey rounded-pill w-25' id=\"duplicate" + nbr + "\"><i class=\"fa fa-copy\"></i></button></td>" +
-                            "<td><button class='ajout btn btn-sm rounded-pill btn-outline-grey w-25' id=\"addx" + nbr + "\"><i class=\"fa fa-plus\"></i></button></td>" +
-                            "<td><input class='form-control' disabled id=\"ncolis" + nbr + "\"></td>" +
-                            "<td><select class=\"form-control fournise\" id=\"blfournisseur" + nbr + "\"></select></td>" +
-                            "<td><select class=\"form-control desif\" id=\"iddesif" + nbr + "\"></select></td>" +
-                            "<td><input class='form-control'></td>" +
-                            "<td><input type=\"date\" class=\"date rounded\" class=\"form-control\"></td>" +
-                            "<td><input type=\"text\" class=\"form-control\"></td>" +
-                            "<td>litige <select class=\"myselect form-control-sm w-75\" id=\"litigebox" + nbr + "\">" +
-                            "</select><br>déci. litige <select class=\"myselect2 form-control-sm\" id=\"decilitigebox" + nbr + "\"></select></td>" +
-                            "<td><input class='form-control'></td>" +
-                            "<td><button type=\"button\" class=\"btn btn-grey btn-sm\"><i class=\"fa fa-arrow-right\" style='color: deepskyblue;'></i></button></td>" +
-                            "<td><button type=\"button\" class=\"btn btn-grey btn-sm\"><i class=\"fa fa-redo\" style='color: deepskyblue;'></i></button></td>" +
-                            "<td><input class='form-control' disabled></td>" +
-                            "<td><input class='form-control' disabled></td>" +
-                            "<td class='text-center'><i class=\"fa fa-toggle-off mt-2\" style='font-size: 25px;cursor:pointer;'></i></td>" +
-                            "<td><input class='form-control' disabled></td>" +
-                            "<td><button class='btn btn-sm rounded-pill'><i class=\"fa fa-unlink\" style='color: red;'></i></button></td>" +
-                            "<td><input class='form-control'></td>" +
-                            "<td><button class=\"deleteur btn btn-sm rounded-pill\"> <i class=\"fa fa-trash\" style='color: red;'></i> </button> </td>" +
-                            "<td class='text-center'><i class=\"fa fa-leaf mt-2\" style='font-size: 25px;cursor:pointer;color: black;'></i></td>" +
-                            "<td><button class=\"print btn btn-sm rounded-pill\"> <i class=\"fa fa-print\" style='color: lightblue;font-size: 25px;'></i></button></td></tr>");
-                        //$('body').append("<div id=\"modal" + nbr + "\" title=\"Basic dialog\">" +
-                        //"<p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p></div>");
-                        /*$("#modal"+nbr).dialog({
-                            autoOpen : false, modal : true, show : "blind", hide : "blind", buttons: {
-                                "Annuler": function () {
-                                    $('#numberligne').val("");
-                                    $(this).dialog("close");
-                                },
-                            }
-                        });*/
-                        '{% for items in article %}'
-                        $("#blfournisseur" + nbr).append(new Option("{{ items.codeFournisseur }}", "{{ items.codeFournisseur }}"));
-                        $("#iddesif" + nbr).append(new Option("{{ items.designationClient }}", "{{ items.designationClient }}"));
-                        $("#blfournisseur" + nbr).val("");
-                        $("#iddesif" + nbr).val("");
-                        '{% endfor %}'
 
-                        /*$('<div id="newDialogText' + nbr + '">Litige<br><select class="myselect" id="litigebox' + nbr + '">' +
-                            '</select><br>décision sur litige<select class="myselect2" id="decilitigebox' + nbr + '"></select></div>').dialog({
-                            autoOpen: false, modal: true, show: "blind", hide: "blind", buttons: {
-                                "Annuler": function () {
-                                    $('#numberligne').val("");
-                                    //je recupère l'id de la "ligne" pour savoir laquelle est-ce pour vider mes array a cet index
-                                    litige[$(this).attr('id').replace(/\D/g, '')-1] = "";
-                                    decilitige[$(this).attr('id').replace(/\D/g, '')-1] = ""; //je vide les inputs du dialog pour les litiges
-                                    $(this).find('input').eq(0).val("");
-                                    $(this).find('input').eq(0).val("");
-                                    $(this).dialog("close");
-                                },
-                                ok: function () {
-                                    $(this).dialog("close");
-                                    /*litige[$(this).attr('id').replace(/\D/g, '')] = $('litigebox'+nbr).val();
-                                    decilitige[$(this).attr('id').replace(/\D/g, '')] = $('decilitigebox'+nbr).val();
-                                    console.log("li = " + litige[$(this).attr('id').replace(/\D/g, '')]);
-                                    console.log("decli = " + decilitige[$(this).attr('id').replace(/\D/g, '')]);*/
-                        /*},
-                    }
-                });*/
-                        var a = 0;
-                        var b = 0;
-                        '{% for itemsli in litige %}'
-                        $("#litigebox" + nbr).append(new Option("{{ itemsli.nom|safe }}", "{{ itemsli.nom|safe }}"));
-                        '{% endfor %}'
-
-                        '{% for itemsdli in decilitige %}'
-                        $("#decilitigebox" + nbr).append(new Option("{{ itemsdli.nom|safe }}", "{{ itemsdli.nom|safe }}"));
-                        '{% endfor %}'
-
-                        $("#litigebox" + nbr).append(new Option("0", "0", true, true));
-                        $("#decilitigebox" + nbr).append(new Option("0", "0", true, true));
-
-                        "{% for items in colis %}"
-                        if (parseInt(colid, 10) < parseInt('{{ items.idColis }}', 10)) {
-                            colid = parseInt('{{ items.idColis }}', 10);
-                        }
-                        "{% endfor %}"
-                        colid++;
-                        $("#ncolis" + nbr).val(colid);
-                    }
-
-                    /*$(".myselect").combobox({
-                        select: function (event, ui) {
-                            //litige[nbr] = $(this).val();
-                            litige[$(this).attr('id').replace(/\D/g, '')] = $(this).val();
-                            //console.log($(this).attr('id').replace(/\D/g, ''));
-                        }
-                    });*/
-                    /*$(".myselect2").combobox({
-                        select: function (event, ui) {
-                            decilitige[$(this).attr('id').replace(/\D/g, '')] = $(this).val();
-                            //console.log($(this).attr('id').replace(/\D/g, ''));
-                        }
-                    });*/
-
-                    $('.addmodal').click(function () {
-                        /*if ($(this).attr('id') > oldligne)
-                            $('#newDialogText' + $(this).attr('id')).dialog("open");
-                        //console.log("gg" + $(this).attr('id'));*/
-                    });
-
-                    //code fournisseur
-                    for (var a = 0; a != nbrligne; a++) {
-                        $("#blfournisseur" + a).combobox();
-                    }
-                    //for (var a = nbrligne; a != 0; a--) {
-                    //}
-                    $("#toggle").on("click", function () {
-                        for (var a = 0; a != nbrligne; a++) {
-                            $("#blfournisseur" + a).toggle();
-                        }
-                    });
-                    for (var a = 0; a != nbrligne; a++) {
-                        $("#iddesif" + a).combobox();
-                    }
-                    $("#toggle").on("click", function () {
-                        for (var a = 0; a != nbrligne; a++) {
-                            $("#iddesif" + a).toggle();
-                        }
-                    });
-                    /*for (var a = 0; a != nbrligne; a++) {
-                        $("#litigebox" + a).combobox();
-                    }*/
-                    /*$("#toggle").on("click", function () {
-                        for (var a = nbrligne; a != 0; a--) {
-                            $("#litigebox" + a).toggle();
-                        }
-                    });*/
-                    /*for (var a = 0; a != nbrligne; a++) {
-                        $("#decilitigebox" + a).combobox();
-                    }*/
-                    /*$("#toggle").on("click", function () {
-                        for (var a = nbrligne; a != 0; a--) {
-                            $("#decilitigebox" + a).toggle();
-                        }
-                    });*/
-                    $(".fournise").combobox({
-                        select: function (event, ui) {
-                            '{% for items in article %}'
-                            if ('{{ items.codeFournisseur }}' == this.value) {
-                                //console.log("therae");
-                                //$(this).closest('td').next().find('select').val('{{ items.designationClient }}');
-                                //$(this).closest('td').next().find('select').find('option').remove();
-                                $(this).closest('td').next().find('select').find('option').remove();
-                                $(this).closest('td').next().find('select').append(new Option("{{ items.designationClient }}", "{{ items.designationClient }}"));
-                            }
-                            '{% endfor %}'
-                        }
-                    });
-                    $(".desif").combobox({
-                        select: function (event, ui) {
-                            '{% for items in article %}'
-                            if ('{{ items.designationClient  }}' == this.value) {
-                                //console.log("therae");
-                                //$(this).closest('td').next().find('select').val('{{ items.designationClient }}');
-                                //$(this).closest('td').next().find('select').find('option').remove();
-                                $(this).closest('td').prev().find('select').find('option').remove();
-                                $(this).closest('td').prev().find('select').append(new Option("{{ items.codeFournisseur }}", "{{ items.codeFournisseur }}"));
-                            }
-                            '{% endfor %}'
-                        }
-                    });
-                    $('.resetb').click(function () {
-                        //alert("gg " + $(this).attr('id'));
-                        //var id = $(this).attr('id');
-                        $(this).closest('td').parent().find('td').eq(0).next().find('select').find('option').remove();
-                        $(this).closest('td').parent().find('td').eq(1).next().find('select').find('option').remove();
-                        '{% for items in article %}'
-                        $(this).closest('td').parent().find('td').eq(0).next().find('select').append(new Option("{{ items.codeFournisseur }}", "{{ items.codeFournisseur }}"));
-                        $(this).closest('td').parent().find('td').eq(1).next().find('select').append(new Option("{{ items.designationClient }}", "{{ items.designationClient }}"));
-                        '{% endfor %}'
-                    });
-                    $('#addligne').prop("disabled", true);
-                }
-            },
-        });
-
-        $(".ui-dialog-titlebar").hide();
-        $('#saveume').click(function() { //envoie des données
-            var idx = 0;
-            var ncolis = "";
-            var codefournisseur = "";
-            var designation = "";
-            var nlot = "";
-            var datep = "";
-            var qtecolis = "";
-            var numerote = "";
-            var confirme = "";
-            var retourncolis = "";
-            var colle = "";
-            var ligne = {};
-            var ligneidx = 0;
-            $('#tabblbody tr').each(function (a, b) {  //recupère les  entrée dans la table
-                var stock = "";
-                var confirmit;
-                var colleit;
-
-                //if ($('#tabblbody tr').eq(idx).find('td').eq(14).find('i').hasClass("fa mt-2 fa-toggle-on")) {
-                if ($('#tabblbody tr').eq(idx).find('td').eq(14).find('.fa-toggle-on').length > 0) {
-                    confirmit = 1;
-                } else {
-                    confirmit = 0;
-                }
-
-                if ($('#tabblbody tr').eq(idx).find('td').eq(19).find('i').css('color') == "rgb(0, 0, 0)") {
-                    colleit = 0;
-                } else {
-                    colleit = 1;
-                }
-                console.log("confi == " + confirmit);
-                console.log("colli == " + colleit);
-                ligne[idx] = {
-                    "ncolis": $('#tabblbody tr').eq(idx).find('td').eq(2).find('input').val().trim(),
-                    "codefournisseur": $('#tabblbody tr').eq(idx).find('td').eq(3).find('input').val().trim(),
-                    "designation": $('#tabblbody tr').eq(idx).find('td').eq(4).find('input').val().trim(),
-                    "nlot": $('#tabblbody tr').eq(idx).find('td').eq(5).find('input').val().trim(),
-                    "datep": $('#tabblbody tr').eq(idx).find('td').eq(6).find('input').val().trim(),
-                    "qtecolis": $('#tabblbody tr').eq(idx).find('td').eq(7).find('input').val().trim(),
-                    "litige": $('#tabblbody tr').eq(idx).find('td').eq(8).find('select').eq(0).val().trim(),//litige[idx],
-                    "decilitige": $('#tabblbody tr').eq(idx).find('td').eq(8).find('select').eq(1).val().trim(),
-                    "numerote": $('#tabblbody tr').eq(idx).find('td').eq(9).find('input').val().trim(),
-                    "confirme": confirmit,
-                    "retourncolis": $('#tabblbody tr').eq(idx).find('td').eq(17).find('input').val().trim(),
-                    "colle": colleit
-                };
-                console.log($('#tabblbody tr').eq(idx).find('td').eq(2).find('input').val());
-                idx++;
-            });
-
-            var myidx = 0;
-            $.ajax({
-                type:"POST",    //type de requête utilisé par ajax
-                url:"/modify_ume/", //lien de la view qui gère la requête post
-                data: {
-                    'id': $('#umid').val(),
-                    'client': $('#client').val(),
-                    'fourtype': $('#fournisseur').val(),
-                    'lettre': $('#lveinput').val(),
-                    'zone': $('#zone').val(),
-                    'numerobl': $('#inputnbl').val(),
-                    'daterecep': $('#inputMDEx').val(),
-                    'quantitepale': $('#inputqpl').val(),
-                    'destinataireretour': $('#litiges').val(),
-                    'zoneatt': $('#zatt').val(),
-                    csrfmiddlewaretoken: '{{ csrf_token }}',
-                },
-                success: function(msg, data, settings){
-                    console.log("success: " + msg);
-                    if (Object.keys(ligne).length > 0) {
-                        myidx = Object.keys(ligne).length-1;
-                        for (key in ligne) {
-                            envoilignes();
-                            myidx--;
-                        }
-                        myidx = 0;
-                    }
-                },
-                failure: function() {
-                    alert("fail");
-                }
-            });
-
-            function envoilignes() {
-                console.log(ligne[myidx].ncolis);
-                $.ajax({
-                    type:"POST",
-                    url:"/ligneume/create/",
-                    data: {
-                        "id": $('#umid').val(),
-                        "ncolis": ligne[myidx].ncolis, //id du colis
-                        "codef": ligne[myidx].codefournisseur,
-                        "designation": ligne[myidx].designation.trim(),
-                        "nlot": ligne[myidx].nlot,
-                        "datep": ligne[myidx].datep,
-                        "qtecolis": ligne[myidx].qtecolis,
-                        "numerote": ligne[myidx].numerote,
-                        "confirme": ligne[myidx].confirme,
-                        "retourncolis": ligne[myidx].retourncolis,
-                        "colle": ligne[myidx].colle,
-                        "litige": ligne[myidx].litige,
-                        "decilitige": ligne[myidx].decilitige,
-                        csrfmiddlewaretoken: '{{ csrf_token }}',
-                    },
-                    success: function(msg, data, settings){
-                        console.log(msg);
-                    },
-                    failure: function() {
-                        alert("fail");
-                    }
-                });
-            }
-        });
-
-        //        var lastcolisid = $('#tabblbody tr:last').find('td').find('input').val();
-        $('#tabblbody tr').each(function (a, b) {  //recupère les  entrée dans la table
-            var idxlne = $(this).find('td').eq(2).find('input').val();
-            '{% for itemsli in litige %}'
-            $("#litigebox" + idxlne).append(new Option("{{ itemsli.nom|safe }}", "{{ itemsli.nom|safe }}"));
-            '{% endfor %}'
-
-            '{% for itemsdli in decilitige %}'
-            $("#decilitigebox" + idxlne).append(new Option("{{ itemsdli.nom|safe }}", "{{ itemsdli.nom|safe }}"));
-            '{% endfor %}'
-
-            $("#litigebox" + idxlne).append(new Option("0", "0", true, true));
-            $("#decilitigebox" + idxlne).append(new Option("0", "0", true, true));
-
-            '{% for items in colis %}'
-            '{% if items.fk_UniteManutentionSortie.idUniteManutentionSortie == id %}'
-            if ('{{items.idColis }}' == idxlne) {
-                '{% for itemsli in litige %}'
-                '{% if itemsli.nom == items.fk_litige.nom %}'
-                //$(this).find('td').eq(8).find('select').eq(0).val("{{ items.fk_litige.nom }}");
-
-                $("#litigebox" + idxlne).val("{{ items.fk_litige.nom }}");
-                $("#decilitigebox" + idxlne).val("{{ items.fk_LitigeDecision.nom }}");
-                console.log("{{ items.fk_litige.nom }}");
-                '{% endif %}'
-                '{% endfor %}'
-            }
-            '{% endif %}'
-            '{% endfor %}'
-
-        });
-
-        $('.addmodal').on("click", function () {
-
-        });
-
-        var ligne = {};
-        idxlne = 1;
-        var idx = 0;
-        var ncolis = "";
-        var ligneidx = 0;
-        $('#tabblbody tr').each(function (a, b) {  //recupère les  entrée dans la table
-            var stock = "";
-            ligne[idx] = {
-                "ncolis": ncolis.trim(),
-            };
-            idx++;
-        });
-
-
-        $('body').on('click', '.fa-toggle-off', function () {
-            $(this).removeClass('fa-toggle-off');
-            $(this).addClass('fa-toggle-on');
-        });
-        $('body').on('click', '.fa-toggle-on', function () {
-            $(this).removeClass('fa-toggle-on');
-            $(this).addClass('fa-toggle-off');
-        });
-        $("#dialog-confirm").dialog("close");
-        $('body').on('click', '.butctrl', function () {
-            if ($(this).hasClass("btn-light")) {
-                $(this).removeClass("btn-light");
-                $(this).addClass("btn-success");
-                $(this).find($("i")).removeClass('fa-thumbs-down').addClass('fa-thumbs-up');
-            } else {
-                $(this).removeClass("btn-success");
-                $(this).addClass("btn-light");
-                $(this).find($("i")).removeClass('fa-thumbs-up').addClass('fa-thumbs-down');
-            }
-        });
-        $('body').on('click', '.fa-leaf', function () {
-            if ($(this).css('color') == "rgb(0, 0, 0)") {
-                console.log($(this).css('color'));
-                $(this).css('color', 'green');
-            } else {
-                $(this).css('color', 'black');
-            }
-
-        });
-        $(document).on("input", "input", function (event) {
-            if (this.checkValidity()) {
-                $(this).data('last-valid', this.value);
-            } else {
-                var myvalue = $(this).text();
-                if ($.isNumeric($('#numberligne').val())) {
-                    console.log("numeric");
-                } else {
-                    console.log("not numeric");
-                    $('#numberligne').popover({
-                        trigger: 'manual',
-                        title: 'Warning!',
-                        content: 'Value can not be empty',
-                        placement: 'left',
-                    }).popover('show');
-                    setTimeout(closederror, 2000);
-                }
-                this.value = $(this).data('last-valid') || "";
-            }
-        });
-
-        function checkligne() {
-            $("#numberligne").popover({trigger: 'manual', content: "Input only numbers!", placement : 'right'});
-            $("#numberligne").popover('show');
-        };
-        function closederror() {
-            $("#numberligne").popover('dispose');
-        };
-        $('#addligne').click(function() {
-            $("#dialog-confirm").dialog("open");
-        });
-
-        $("#umid").val('{{ id }}');
-
-        $('#tabblbody').on('click', '.deleteur', function() {
-            $.ajax({
-                type:"POST",    //type de requête utilisé par ajax
-                url:"/ume/delete_col/", //lien de la view qui gère la requête post
-                data: {
-                    'id': $(this).attr("id"),
-                },
-                success: function(msg, data, settings){
-                    console.log("success: " + msg);
-                    $(this).parent().parent().remove();
-                    location.reload();
-                },
-                failure: function() {
-                    alert("fail");
-                }
-            });
-        });
+        //Impression de l'etiquette UM  via le button UM
+        //Impression des listes de colisages via le button LC
     });
 </script>
 
