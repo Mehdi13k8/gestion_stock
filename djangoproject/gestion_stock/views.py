@@ -329,7 +329,7 @@ def uploadbc(request):
                 #Ici detecté le parsgage si parsage du CSV mauvais passé a l'exception
     except Exception as e:
         '''logging.getLogger("error_logger").error("Unable to upload file. "+repr(e))'''
-        messages.error(request,"Unable to upload file. "+repr(e))
+        messages.error(request,"Unable to upload file. " + repr(e))
     messages.success(request,"Files uplodade with no problem")
 
     #A chaque actualisation je fais un check de répartition des colis non expédié ||| Je Fais la répartition après avoir upload mon csv avec succès

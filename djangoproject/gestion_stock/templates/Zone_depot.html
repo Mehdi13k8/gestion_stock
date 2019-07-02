@@ -211,15 +211,18 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+
+                                {% for items in cli %}
                                     {% for itemsz in zoned %}
-                                        {% if itemsz.fk_TypeZoneDepot.nom == items.nom  %}
-                                        <tr>
-                                            <td> <button id='{{ itemsz.idZoneDepot }}' class="dyna"> -> </button></td>
-                                            <td> {{ itemsz.nom }} </td>
-                                            <td> <button id='{{ itemsz.idZoneDepot }}' class="dynad"> X </button> </td>
-                                        </tr>
-                                        {% endif %}
+                                            {% if itemsz.fk_TypeZoneDepot.nom == items.fk_TypeZone.nom %}
+                                            <tr>
+                                                <td> <button id='{{ itemsz.idZoneDepot }}' class="dyna"> -> </button></td>
+                                                <td> {{ itemsz.nom }} </td>
+                                                <td> <button id='{{ itemsz.idZoneDepot }}' class="dynad"> X </button> </td>
+                                            </tr>
+                                            {% endif %}
                                     {% endfor %}
+                                {% endfor %}
                                 </tbody>
                                 <tfoot>
                                     <tr>
@@ -348,7 +351,12 @@
                 '{% if items.idZoneDepot == id %}'
                     $("#idznedepot").val('{{ items.idZoneDepot }}');
                     '{% if items.fk_TypeZoneDepot %}'
-                        $("#selectcliinput").val('{{ items.fk_TypeZoneDepot.idClient }}');
+                        '{% for clients in cli %}'
+                            '{% if clients.fk_TypeZone|safe == items.fk_TypeZoneDepot|safe %}'
+                                console.log("gg {{ clients.idClient|safe }}");
+                                $("#selectcliinput").val('{{ clients.idClient|safe }}');
+                            '{% endif %}'
+                        '{% endfor %}'
                     '{% else %}'
                         $("#selectcliinput").val('---');
                     '{% endif %}'

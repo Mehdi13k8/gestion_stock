@@ -75,7 +75,7 @@
                             <td> {{ items.numeroCommande }} </td>
                             <td> {{ items.idBonCommandeSortie }} </td>
                             <td> {{ items.termine }} </td>
-                            <td> <button id='{{ items.idBonCommandeSortie  }}' class="dynad btn btn-sm btn-outline-grey rounded-pill"> <i class="fa fa-minus"></i>   </button> </td>
+                            <td> <button id='{{ items.idBonCommandeSortie  }}' class="dynad btn btn-sm btn-outline-grey rounded-pill"> <i class="fa fa-minus"></i> </button> </td>
                         </tr>
                         {% endfor %}
                         </tbody>
@@ -100,7 +100,6 @@
 
 </body>
 <script type="text/javascript">
-
     $(document).ready(function () {
         $('#dtBasicExample').DataTable();
         $('.dataTables_length').addClass('bs-select');
