@@ -353,6 +353,7 @@
                     '{% if items.fk_TypeZoneDepot %}'
                         '{% for clients in cli %}'
                             '{% if clients.fk_TypeZone|safe == items.fk_TypeZoneDepot|safe %}'
+                                alert('');
                                 console.log("gg {{ clients.idClient|safe }}");
                                 $("#selectcliinput").val('{{ clients.idClient|safe }}');
                             '{% endif %}'

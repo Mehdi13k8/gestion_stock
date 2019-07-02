@@ -2138,7 +2138,6 @@ class umemodify(ListView):
                         request.POST.get('numum'), request.POST.get('dater'),
                         request.POST.get('colisaff'), request.POST.get('prodaff'),
                         request.POST.get('zonedep'), request.POST.get('ble')]
-
             try:
                 ume = UniteManutentionEntree.objects.get(idUniteManutentionEntree=showlist[0])
                 ume.stock = showlist[1]
@@ -2181,7 +2180,8 @@ class umemodify(ListView):
                 mycolis.fk_UniteManutentionSortie = None
             mycolis.fk_UniteManutentionEntree = UniteManutentionEntree.objects.get(idUniteManutentionEntree=showlist[0])
             mycolis.idColis = showlist[1]
-            mycolis.fk_ZoneDepot = UniteManutentionEntree.objects.get(idUniteManutentionEntree=showlist[0]).fk_BonLivraisonEntree.fk_ZoneDepot_pour_TypeZoneDepot
+            #mycolis.fk_ZoneDepot = UniteManutentionEntree.objects.get(idUniteManutentionEntree=showlist[0]).fk_BonLivraisonEntree.fk_ZoneDepot_pour_TypeZoneDepot
+            mycolis.fk_ZoneDepot = None
             mycolis.numeroLot = showlist[4]
             mycolis.datePeremption = showlist[5]
             mycolis.quantiteProduit = showlist[6]
@@ -2225,7 +2225,7 @@ class umemodify(ListView):
             print ("decilitige == " + str(showlist[12]))
             mycolis.save()
             return HttpResponse("road to create ume.")
-        return HttpResponse("Error.")
+        return HttpResponse("Error not a post.")
 
     def get(self, request):
         context = {
@@ -2651,10 +2651,10 @@ class ums(ListView):
 
     def delete(request):
         if request.method == 'POST':
-            ume = UniteManutentionSortie.objects.all()
-            for items in ume:
+            ums = UniteManutentionSortie.objects.all()
+            for items in ums:
                 if items.idUniteManutentionSortie == request.POST.get('id'):
-                    data = UniteManutentionSortie.objects.get(idUniteManutentionEntree=request.POST['id'])
+                    data = UniteManutentionSortie.objects.get(idUniteManutentionSortie=request.POST['id'])
                     data.delete()
                     return HttpResponse("road to delete.")
             return HttpResponse("Error on delete.")
@@ -2673,7 +2673,7 @@ class ums(ListView):
         }
         return render(request, self.template_name, context)
 
-class umsadd(ListView):
+class umsadd(ListView): #pas utilisé car les um sont crée via un script (uploadbc)
     template_name = "unitemanutentionsortieadd.html"
 
     def create(request):
@@ -2725,7 +2725,7 @@ class umsmodify(ListView):
             return HttpResponse("road to create ume.")
         return HttpResponse("Error.")
 
-    def createligne(request): #utiliser pour la modication pour gagner du temps car on utilise "get" si l'object existe ou alors on le crée
+    def createligne(request): #pas utilisé
         if request.method == 'POST':
             showlist = [request.POST.get('id'), request.POST.get('ncolis'),
                         request.POST.get('codef'), request.POST.get('designation'),
@@ -2769,18 +2769,6 @@ class umsmodify(ListView):
             for items in dlitige:
                 if items.nom == showlist[12]:
                     mycolis.fk_LitigeDecision = LitigeDecision.objects.get(nom=showlist[12])
-            '''print ("id == " + showlist[0])
-            print ("ncol == " + str(showlist[1]))
-            print ("codef == " + str(showlist[2]))
-            print ("desig == " + str(showlist[3]))
-            print ("ncol == " + str(showlist[4]))
-            print ("datep == " + str(showlist[5]))
-            print ("qtec == " + str(showlist[6]))
-            print ("nume == " + str(showlist[7]))
-            print ("conf == " + str(showlist[8]))
-            print ("retnc == " + str(showlist[9]))
-            print ("colle == " + str(showlist[10]))
-            '''
             print ("litige == " + str(showlist[11]))
             print ("decilitige == " + str(showlist[12]))
             #mycolis.save()
@@ -2794,6 +2782,7 @@ class umsmodify(ListView):
             'decilitige' : LitigeDecision.objects.all(),
             'settings' : menuimages.objects.all(),
             'colis' : Colis.objects.all(),
+            'ums' : UniteManutentionSortie.objects.all(),
             'id' :request.GET.get('id'),
             'activate' : 'on'
         }

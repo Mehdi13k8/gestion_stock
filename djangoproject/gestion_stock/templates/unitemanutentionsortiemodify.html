@@ -15,7 +15,7 @@
 
 <div class="container"><h1 class="text-center"> modif U.M Sortie</h1></div>
 <br>
-
+z
 <div class="container">
     <div class="form-group row text-center">
         <div class="col">
@@ -207,9 +207,6 @@
                                                 '{% for items in article %}'
                                                 console.log("desii");
                                                 if ('{{ items.designationClient }}' == $(this).val()) {
-                                                    //console.log("therae");
-                                                    //$(this).closest('td').next().find('select').val('{{ items.designationClient }}');
-                                                    //$(this).closest('td').next().find('select').find('option').remove();
                                                     $(this).closest('td').prev().find('select').find('option').remove();
                                                     $(this).closest('td').prev().find('select').append(new Option("{{ items.codeFournisseur }}", "{{ items.codeFournisseur }}"));
                                                 }
@@ -221,9 +218,6 @@
                                                 '{% for items in article %}'
                                                 console.log("fourni");
                                                 if ('{{ items.codeFournisseur }}' == this.value) {
-                                                    //console.log("therae");
-                                                    //$(this).closest('td').next().find('select').val('{{ items.designationClient }}');
-                                                    //$(this).closest('td').next().find('select').find('option').remove();
                                                     $(this).closest('td').next().find('select').find('option').remove();
                                                     $(this).closest('td').next().find('select').append(new Option("{{ items.designationClient }}", "{{ items.designationClient }}"));
                                                 }
@@ -250,6 +244,11 @@
             window.location.href = "{% url 'unitemanutentionsortie' %}";
         });
 
+        '{% for items in ums %}'
+         if ('{{ items.idUniteManutentionSortie }}' == ) {
+
+         }
+        '{% endfor %}'
         //Impression de l'etiquette UM  via le button UM
         //Impression des listes de colisages via le button LC
     });

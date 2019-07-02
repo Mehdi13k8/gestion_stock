@@ -1,6 +1,9 @@
 ﻿idLigneBonCommandeSortie,fk_BonCommandeSortie,Article,designation,quantiteProduitCommande,priorite,termine,source
-366390,BC-2844,BC3706,Barre céréalière Raisin amande,108,1,0,groupe_ethique_et_sante
-366391,BC-2844,PJ00083,Barre crisp caramel,112,1,0,groupe_ethique_et_sante
-366392,BC-2844,PJ00236,Barre crisp chocolat 35g,200,1,0,groupe_ethique_et_sante
-366393,BC-2844,PJ00237,Barre crisp coco 35g,50,1,0,groupe_ethique_et_sante
-366393,BC-2845,PJ00237,Barre crisp coco 35g,50,1,0,groupe_ethique_et_sante
+366390,BC-2844,BC3706,BARRE CEREALIERE RAISIN AMANDE,108,1,0,groupe_ethique_et_sante
+366390,BC-2844,PJ00083,BARRE CRISP CARAMEL,108,1,0,groupe_ethique_et_sante
+366390,BC-2844,PJ00236,ARRE CRISP CHOCOLAT 35G,216,1,0,groupe_ethique_et_sante
+366390,BC-2844,PJ00237,BARRE CRISP COCO 35G,150,1,0,groupe_ethique_et_sante
+366390,BC-2845,BC3706,BARRE CEREALIERE RAISIN AMANDE,100,1,0,groupe_ethique_et_sante
+366390,BC-2845,PJ00083,BARRE CRISP CARAMEL,216,1,0,groupe_ethique_et_sante
+366390,BC-2845,PJ00236,ARRE CRISP CHOCOLAT 35G,100,1,0,groupe_ethique_et_sante
+366390,BC-2845,PJ00237,BARRE CRISP COCO 35G,108,1,0,groupe_ethique_et_sante
