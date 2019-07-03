@@ -246,6 +246,21 @@
                                             $("#iddesif" + "{{items.idColis}}").append(new Option("{{ itemsart.designationClient }}", "{{itemsart.designationClient}}"));
                                         }
                                         '{% endfor %}'
+
+                                        $('#tabblbody tr').each(function (a, b) {  //recupère les "ncolis" par tr et ça me permet de savoir quels colis ont ou pas un article
+                                            '{% for items in colis %}'
+                                                if ('{{ items.idColis }}' == $(this).find('td').eq(2).find('input').val().trim()) {
+                                                    '{% if items.fk_Article %}'
+                                                    console.log($(this).find('td').eq(2).find('input').val().trim());
+                                                    '{% else %}' //si il n'y a pas d'article liée au colis je selectionne une valeur nulle "" dans les selects
+                                                    console.log($(this).find('td').eq(2).find('input').val().trim());
+                                                    $("#blfournisseur" + $(this).find('td').eq(2).find('input').val().trim()).val("");
+                                                    $("#iddesif" + $(this).find('td').eq(2).find('input').val().trim()).val("");
+                                                    '{% endif %}'
+                                                }
+                                                '{% endfor %}'
+                                        });
+
                                         $("#blfournisseur"+"{{items.idColis}}").combobox();
                                         $("#iddesif"+"{{items.idColis}}").combobox();
                                         $("#toggle").on("click", function () {
@@ -414,7 +429,7 @@
         var position = 1;
         var newidx = 0;
         var articlearr = [];
-        $('#tabblbody tr').each(function (a, b) {  //recupère les  entrée dans la table
+        $('#tabblbody tr').each(function (a, b) {  //recupère les  entrée dans la table pour mes filtres
             if ($.inArray($(this).find('td').eq(4).find('input').val().trim(), articlearr) == -1) {
                 articlearr[newidx] = $(this).find('td').eq(4).find('input').val().trim();
                 console.log("not found // " + $(this).find('td').eq(4).find('input').val().trim());

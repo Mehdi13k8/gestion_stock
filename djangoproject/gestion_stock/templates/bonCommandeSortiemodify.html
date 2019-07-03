@@ -154,16 +154,24 @@
                         </thead>
                         <tbody>
                         {% for items in ums %}
-                        <tr>
-                            <td> <button type="button" id='{{ items.idBonCommandeSortie }}' class="dyna btn btn-sm btn-outline-grey rounded"> <i class="fa fa-arrow-right"></i> </button></td>
-                            <td> {{ items.fk_Destinataire.fk_TypeDestinataire.nom }} </td>
-                            <td> {{ items.fk_Destinataire.codeUM }} </td>
-                            <td> {{ items.dateCommande }} </td>
-                            <td> {{ items.numeroCommande }} </td>
-                            <td> {{ items.idBonCommandeSortie }} </td>
-                            <td> {{ items.termine }} </td>
-                            <td> <button id='{{ items.idBonCommandeSortie  }}' class="dynad btn btn-sm btn-outline-grey rounded-pill"> <i class="fa fa-minus"></i>   </button> </td>
-                        </tr>
+                            {% if items.fk_BonCommandeSortie.idBonCommandeSortie == id %}
+                                <tr>
+                                    <td> <button type="button" id='{{ items.idBonCommandeSortie }}' class="dyna btn btn-sm btn-outline-grey rounded"> <i class="fa fa-arrow-right"></i> </button></td>
+
+                                    {% for clients in cli %}
+                                        {% if clients.fk_TypeDestinataire.nom == items.fk_BonCommandeSortie.fk_Destinataire.fk_TypeDestinataire.nom  %}
+                                            <td> {{ clients.nom }} </td>
+                                        {% endif %}
+                                    {% endfor %}
+
+                                    <td> {{ items.fk_BonCommandeSortie.fk_Destinataire.codeUM }} </td>
+                                    <td> {{ items.fk_BonCommandeSortie.dateCommande }} </td>
+                                    <td> {{ items.fk_BonCommandeSortie.numeroCommande }} </td>
+                                    <td> {{ items.fk_BonCommandeSortie.idBonCommandeSortie }} </td>
+                                    <td> {{ items.fk_BonCommandeSortie.termine }} </td>
+                                    <td> <button id='{{ items.idBonCommandeSortie  }}' class="dynad btn btn-sm btn-outline-grey rounded-pill"> <i class="fa fa-minus"></i>   </button> </td>
+                                </tr>
+                            {% endif %}
                         {% endfor %}
                         </tbody>
                         <tfoot>
@@ -226,37 +234,39 @@
                         </thead>
                         <tbody>
                         {% for items in lbcs %}
-                        <tr class="">
-                            <!--<td> <button type="button" id='{{ items.idBonCommandeSortie }}' class="dyna btn btn-sm btn-outline-grey rounded"> <i class="fa fa-arrow-right"></i> </button></td>-->
-                            <td> {{ items.fk_Article.codeClient }} </td>
-                            <td> {{ items.fk_Article.designationClient }} </td>
-                            <td> {{ items.quantiteProduitCommande }} </td>
-                            <td> {{ items.quantiteColisCommande }} </td>
-                            <td> {{ items.quantiteProduitALivrer }} </td>
-                            <td> {{ items.quantiteCommandePotentiel }} </td>
-                            <td> {{ items.quantiteProduitPotentielle }} </td>
-                            <td> {{ items.quantiteColisPotentielle }} </td>
-                            <td> {{ items.differenceCommandeLivre }} </td>
-                            <td> {{ items.quantiteProduitLivre }} </td>
-                            <td> {{ items.quantiteColisLivre }} </td>
-                            <td> {{ items.priorite }} </td>
-                            {% if items.termine == '0' %}
-                                <td> <button id='{{ items.idLigneBonCommandeSortie }}' class="termin btn btn-sm btn-outline-grey rounded-pill"> <i class="fa fa-pen"></i></button> </td>
-                            {% else %}
-                                <td> <button id='{{ items.idLigneBonCommandeSortie }}' class="termin btn btn-sm btn-outline-red rounded-pill"> <i class="fa fa-pen"></i></button> </td>
+                            {% if items.fk_BonCommandeSortie.idBonCommandeSortie|safe == id %}
+                                <tr class="">
+                                    <!--<td> <button type="button" id='{{ items.idBonCommandeSortie }}' class="dyna btn btn-sm btn-outline-grey rounded"> <i class="fa fa-arrow-right"></i> </button></td>-->
+                                    <td> {{ items.fk_Article.codeClient }} </td>
+                                    <td> {{ items.fk_Article.designationClient }} </td>
+                                    <td> {{ items.quantiteProduitCommande }} </td>
+                                    <td> {{ items.quantiteColisCommande }} </td>
+                                    <td> {{ items.quantiteProduitALivrer }} </td>
+                                    <td> {{ items.quantiteCommandePotentiel }} </td>
+                                    <td> {{ items.quantiteProduitPotentielle }} </td>
+                                    <td> {{ items.quantiteColisPotentielle }} </td>
+                                    <td> {{ items.differenceCommandeLivre }} </td>
+                                    <td> {{ items.quantiteProduitLivre }} </td>
+                                    <td> {{ items.quantiteColisLivre }} </td>
+                                    <td> {{ items.priorite }} </td>
+                                    {% if items.termine == '0' %}
+                                        <td> <button id='{{ items.idLigneBonCommandeSortie }}' class="termin btn btn-sm btn-outline-grey rounded-pill"> <i class="fa fa-pen"></i></button> </td>
+                                    {% else %}
+                                        <td> <button id='{{ items.idLigneBonCommandeSortie }}' class="termin btn btn-sm btn-outline-red rounded-pill"> <i class="fa fa-pen"></i></button> </td>
+                                    {% endif %}
+                                    <td> <button id='{{ items.idLigneBonCommandeSortie }}' class="dynad btn btn-sm btn-outline-red rounded-pill"> <i class="fa fa-minus"></i></button> </td>
+                                    <td> {{ items.idLigneBonCommandeSortie }} </td>
+                                <!--<tr>
+                                    <td> <button type="button" id='{{ items.idBonCommandeSortie }}' class="dyna btn btn-sm btn-outline-grey rounded"> <i class="fa fa-arrow-right"></i> </button></td>
+                                    <td> {{ items.fk_Destinataire.fk_TypeDestinataire.nom }} </td>
+                                    <td> {{ items.fk_Destinataire.codeUM }} </td>
+                                    <td> {{ items.dateCommande }} </td>
+                                    <td> {{ items.numeroCommande }} </td>
+                                    <td> {{ items.idBonCommandeSortie }} </td>
+                                    <td> {{ items.termine }} </td>
+                                    <td> <button id='{{ items.idBonCommandeSortie  }}' class="dynad btn btn-sm btn-outline-grey rounded-pill"> <i class="fa fa-minus"></i>   </button> </td>                            -->
+                                </tr>
                             {% endif %}
-                            <td> <button id='{{ items.idLigneBonCommandeSortie }}' class="dynad btn btn-sm btn-outline-red rounded-pill"> <i class="fa fa-minus"></i></button> </td>
-                            <td> {{ items.idLigneBonCommandeSortie }} </td>
-                        <!--<tr>
-                            <td> <button type="button" id='{{ items.idBonCommandeSortie }}' class="dyna btn btn-sm btn-outline-grey rounded"> <i class="fa fa-arrow-right"></i> </button></td>
-                            <td> {{ items.fk_Destinataire.fk_TypeDestinataire.nom }} </td>
-                            <td> {{ items.fk_Destinataire.codeUM }} </td>
-                            <td> {{ items.dateCommande }} </td>
-                            <td> {{ items.numeroCommande }} </td>
-                            <td> {{ items.idBonCommandeSortie }} </td>
-                            <td> {{ items.termine }} </td>
-                            <td> <button id='{{ items.idBonCommandeSortie  }}' class="dynad btn btn-sm btn-outline-grey rounded-pill"> <i class="fa fa-minus"></i>   </button> </td>                            -->
-                        </tr>
                         {% endfor %}
                         </tbody>
                         <tfoot>

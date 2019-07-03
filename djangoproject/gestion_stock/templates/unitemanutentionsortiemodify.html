@@ -245,8 +245,16 @@ z
         });
 
         '{% for items in ums %}'
-         if ('{{ items.idUniteManutentionSortie }}' == ) {
-
+         if ('{{ items.idUniteManutentionSortie }}' == '{{ id }}') {
+             $('#idums').val("{{ items.idUniteManutentionSortie }}");
+             $('#desti').val("{{ items.fk_BonCommandeSortie.fk_Destinataire.nom|safe }}");
+             $('#bcsid').val("{{ items.fk_BonCommandeSortie.idBonCommandeSortie|safe }}");
+             $('#blsid').val("{{ items.fk_BonLivraisonSortie.idBonBonLivraisonSortie|safe }}");
+             $('#codeum').val("{{ items.fk_BonCommandeSortie.fk_Destinataire.codeUM|safe }}");
+             $('#umsnum').val("{{ items.numero|safe }}");
+             $('#dateo').val("{{ items.dateOuverture }}");
+             $('#datef').val("{{ items.dateFermeture }}");
+             $('#datee').val("{{ items.dateExpedition }}");
          }
         '{% endfor %}'
         //Impression de l'etiquette UM  via le button UM

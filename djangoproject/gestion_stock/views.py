@@ -343,10 +343,19 @@ def uploadbc(request):
                 if int(mylbc.quantiteProduitALivrer) - int(mylbc.quantiteProduitCommande) < 0:
                     if mylbc.fk_Article == items.fk_Article:
                         print ("GG FOUND !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!") #article correspondant a la ligne bon commande trouver dans les articles
-                        if int(mylbc.quantiteProduitCommande) <= int(items.quantiteProduit): #verif que ça valeur sera tjr inférieur a un colis de cet article
-                            print ("GG2 FOUND  !!!!!!!!!!!!!!!!!!")
-                            #Maintenant je dois sortir de le colis dans une Ums adéquate donc celle du bonde commande mylbc actuelle
-                            items.fk_UniteManutentionSortie = UniteManutentionSortie.objects.get(fk_BonCommandeSortie=mylbc.fk_BonCommandeSortie)
+                        print (mylbc.quantiteProduitCommande + " !!!!!!! " + items.quantiteProduit)
+                        print ("Colis ! " + items.idColis) #article correspondant a la ligne bon commande trouver dans les articles
+                        if int(mylbc.quantiteProduitCommande) >= int(items.quantiteProduit): #verif que ça valeur du colis est tjr + petite que demander
+                            print ("GG2 FOUND  !!!!!!!!!!!!!!!!!!" + mylbc.quantiteProduitCommande + " and " + mylbc.quantiteProduitLivre)
+                            if int(mylbc.quantiteProduitCommande) >= int(mylbc.quantiteProduitLivre): #verif que la ligne a encore besoin d'un colis en comparant ce qui a été donné a ce qui doit être donné
+                                print (mylbc.quantiteProduitLivre +" + " + items.quantiteProduit + " <= " + mylbc.quantiteProduitCommande)
+                                #Maintenant je dois sortir de le colis dans une Ums adéquate donc celle du bon de commande mylbc actuelle mais je dois vérifié que si je rajoute 1 colis je dépasse pas
+                                if (int(mylbc.quantiteProduitLivre) + int(items.quantiteProduit)) < int(mylbc.quantiteProduitCommande):
+                                    items.fk_UniteManutentionSortie = UniteManutentionSortie.objects.get(fk_BonCommandeSortie=mylbc.fk_BonCommandeSortie)
+                                    mylbc.quantiteProduitCommande = str(int(mylbc.quantiteProduitCommande) - int(items.quantiteProduit))
+                                    mylbc.quantiteProduitLivre = str(int(mylbc.quantiteProduitLivre) + int(items.quantiteProduit))
+                                    mylbc.save()
+                                    print ("LBC CHANGED")
                 else:
                         print ("NOT FOUND !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
             items.save()
@@ -391,6 +400,7 @@ class bonCommandeSortiemodify(ListView):
     def get(self, request):
         context = {
             'bcs' : BonCommandeSortie.objects.all(),
+            'ums' : UniteManutentionSortie.objects.all(),
             'lbcs' : LigneBonCommandeSortie_pour_BonCommandeSortie.objects.all(),
             'trans' : Transporteur.objects.all(),
             'dest' : Destinataire.objects.all(),
