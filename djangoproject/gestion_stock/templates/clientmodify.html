@@ -177,9 +177,10 @@
                             </thead>
                             <tbody>
                             {% for items in bcs %}
-                                {% if items.fk_Client.id == id %}
+                                {% if items.fk_Client.id|safe == id %}
                                     <tr>
-                                        <td></td> <td></td><td><button class="deleteur">X</button></td>
+                                        <td class='text-center'><a href='{% url "bonCommandeSortiemodify" %}?id={{items.idBonCommandeSortie|safe }}'><button class='dynacli' id="{{ items.idBonCommandeSortie }}"><i class="fa fa-arrow-right"></i></button></a></td>
+                                        <td class="text-center">{{ items.idBonCommandeSortie }}</td><td><button class="deleteur">X</button></td>
                                     <!--console.log("entree");
                                     <td></td>
                                     <td></td>-->

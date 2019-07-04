@@ -156,7 +156,7 @@
                         {% for items in ums %}
                             {% if items.fk_BonCommandeSortie.idBonCommandeSortie == id %}
                                 <tr>
-                                    <td> <button type="button" id='{{ items.idBonCommandeSortie }}' class="dyna btn btn-sm btn-outline-grey rounded"> <i class="fa fa-arrow-right"></i> </button></td>
+                                    <td> <a href='{% url "unitemanutentionsortiemodify" %}?id={{items.idUniteManutentionSortie|safe }}'><button type="button" id='{{ items.idUniteManutentionSortie }}' class="dyna btn btn-sm btn-outline-grey rounded"> <i class="fa fa-arrow-right"></i> </button></a></td>
 
                                     {% for clients in cli %}
                                         {% if clients.fk_TypeDestinataire.nom == items.fk_BonCommandeSortie.fk_Destinataire.fk_TypeDestinataire.nom  %}

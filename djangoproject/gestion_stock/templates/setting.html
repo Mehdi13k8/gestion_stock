@@ -40,6 +40,7 @@
         </div>
 
         <div class="col mx-auto">
+            <button type="button" id="createlitiges" title="Crée ou modif. des Litiges, Lit.Decisions..." class="btn btn-info"><i class="fa fa-project-diagram" style="font-size: 30px; width: 30px"></i></button>
         </div>
         <div class="col mx-auto">
         </div>
@@ -117,6 +118,9 @@
         $('#createpays').click(function () {
             window.location.href = "{% url 'pays' %}"
         });
+        $('#createlitiges').click(function () {
+            window.location.href = "{% url 'litiges' %}"
+        });
 
         $('#createtypefournisseur').tooltip();
         $('#createuserbtn').tooltip();
@@ -126,6 +130,7 @@
         $('#createzonetype').tooltip();
         $('#createtypecontact').tooltip();
         $('#createpays').tooltip();
+        $('#createlitiges').tooltip();
         /*
         $("#hidenot li").height(200);
         $("#id_cover1").parent('p').appendTo("#hidenot");

@@ -44,6 +44,23 @@ urlpatterns = [
     path('pays/create_pays/', views.pays.create),
     path('pays/delete_pays/', views.pays.delete),
 
+
+
+    path('settings/litiges', views.litiges.as_view(), name='litiges'),
+
+    path('settings/litiges/addlitige', views.litigesadd.as_view(), name='litigesadd'),
+    path('settings/litiges/addlitige/save/', views.litigesadd.create),
+
+    path('settings/litiges/adddecilitige', views.decilitigesadd.as_view(), name='decilitigesadd'),
+    path('settings/litiges/adddecilitige/save/', views.decilitigesadd.create),
+
+    path('settings/litiges/modify', views.litigesmodify.as_view(), name='litigesmodify'),
+    path('settings/litiges/litige/modify/save/', views.litigesmodify.modify),
+
+    path('settings/decilitige/modify', views.decilitigesmodify.as_view(), name='decilitigesmodify'),
+    path('settings/litiges/decilitige/modify/save/', views.decilitigesmodify.modify),
+
+
     #path('zone_depot/add', views.zonesdepotadd.as_view(), name='zonedepotadd'),
     #path('create_zonedepot/save/', views..saveit),
     #path('modif_zonedepot/', views.modif_zonedepot.as_view(), name='modif_'),

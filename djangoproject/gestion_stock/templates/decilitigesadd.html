@@ -1,0 +1,84 @@
+{% extends user.is_authenticated|yesno:"base_generic.html,empty.html" %}
+
+{% block content %}
+
+<div class="container"><h1 class="text-center"> Ajout de Decisions -> Litiges</h1></div>
+<br>
+
+<div class="container">
+    <div class="form-group row text-center">
+        <div class="col">
+            <button type="button" id="back-row" class="btn btn-success btn-rounded btn-outline-dark">Tout</button>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="border shadow-lg p-3 mb-5 bg-white rounded">
+                <div class="w-75 mx-auto">
+                    <br>
+                    <div class="input-default-wrapper w-75 mx-auto">
+                        <label for="idtyped">ID : </label>
+                        <input type="text" class="form-control w-25 mt-n2 ml-4" placeholder="ID" aria-label="identifiant" aria-describedby="basic-addon1"  disabled id="idtyped" value="{{ items.idPays }}">
+                    </div>
+                    <br>
+                    <div class="input-default-wrapper w-75 mx-auto">
+                        <label for="nametyped">nom : &nbsp;</label>
+                        <input type="text" class="form-control w-50 mt-n2" placeholder="XX-XX" aria-label="nom" id="nametyped" value="{{ items.nom|safe }}">
+                    </div>
+                    <br>
+                    <div class="input-group-append w-75 mx-auto">
+                        <button class="btn-outline-unique mx-auto" type="button" id="savenewzone">Sauvegarder</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#dtBasicExample').DataTable();
+        $('.dataTables_length').addClass('bs-select');
+        //$('#transporteurs').fadeTo("slow", 0.5);
+    });
+
+    var upperid = "0";
+    "{% for items in decilitige %}"
+    if (parseInt(upperid, 10) < parseInt('{{ items.idLitige }}', 10)) {
+        upperid = parseInt('{{ items.idLitige }}', 10);
+    }
+    "{% endfor %}"
+
+    if (upperid == 0)
+        $("#idtyped").val(1);
+    else
+        $("#idtyped").val(upperid + 1);
+
+    $('#savenewzone').click(function () {
+        $.ajax({
+            type:"POST",
+            url:"/settings/litiges/adddecilitige/save/",
+            data: {
+                'id': $('#idtyped').val(),
+                'name': $('#nametyped').val(),
+                csrfmiddlewaretoken: '{{ csrf_token }}'
+            },
+            success: function(msg, data, settings) {
+                console.log("gg " + msg);
+                location.reload();
+            },
+            failure: function() {
+                console.log("fail");
+                location.reload();
+            }
+        });
+    });
+    $("#back-row").click(function() {
+        window.location.href = "{% url 'litiges' %}";
+    });
+</script>
+{% endblock %}

@@ -646,13 +646,16 @@ class bonLivraisonentreemodify(ListView):
             for items in litiges:
                 if showlist[8] == items.nom:
                     bonle.fk_Destinataire = items
+
             for items in inzne:
                 if showlist[9] == items.nom:
                     #bonle.fk_TypeZoneDepot = items
-                    print ("print "+ items.nom + " et "+ showlist[9])
+                    print ("print "+ items.nom + "  et0  "+ showlist[9])
                     for initems in zne:
+                        #print ("print !!!! "+ initems.nom + "  !!!!et  " + str(items.fk_TypeZoneDepot))
                         if initems.nom == items.fk_TypeZoneDepot.nom:
                             bonle.fk_TypeZoneDepot = initems
+
             inzone = ZoneDepot_pour_TypeZoneDepot.objects.all()
             for zone in inzone:
                 if request.POST.get('zoneatt') == zone.nom:
@@ -738,8 +741,9 @@ class bonLivraisonEntreeadd(ListView):
             for items in inzne:
                 if showlist[9] == items.nom:
                     #bonle.fk_TypeZoneDepot = items
-                    print ("print "+ items.nom + " et "+ showlist[9])
+                    print ("print "+ items.nom + " e!!!!!!!!!t1 "+ showlist[9])
                     for initems in zne:
+                        print ("print "+ initems.nom + " e!!!!!!!!!t "+ items.fk_TypeZoneDepot.nom)
                         if initems.nom == items.fk_TypeZoneDepot.nom:
                             bonle.fk_TypeZoneDepot = initems
             inzone = ZoneDepot_pour_TypeZoneDepot.objects.all()
@@ -2650,6 +2654,122 @@ class pays(ListView):
             'id' :request.GET.get('id'),
             'vuegen' :request.GET.get('vuegen'),
             'creation' :request.GET.get('creation'),
+        }
+        return render(request, self.template_name, context)
+
+#gestion des litiges
+class litiges(ListView):
+    template_name = "litiges.html"
+
+    def deletelitige(request):
+        if request.method == 'POST':
+            showlist = [request.POST.get('nom')]
+            data = Litige.objects.get(nom=showlist[0])
+            data.delete()
+            return HttpResponse("delete successfull.")
+        return HttpResponse("Error ZONE RESTRICTED.")
+
+    def deletedecilitige(request):
+        if request.method == 'POST':
+            showlist = [request.POST.get('nom')]
+            data = LitigeDecision.objects.get(nom=showlist[0])
+            data.delete()
+            return HttpResponse("delete successfull.")
+        return HttpResponse("Error ZONE RESTRICTED.")
+
+    def get(self, request):
+        context = {
+            'activate' : 'on',
+            'settings' : menuimages.objects.all(),
+            'litige' : Litige.objects.all(),
+            'decilitige' : LitigeDecision.objects.all(),
+            'id' :request.GET.get('id'),
+        }
+        return render(request, self.template_name, context)
+
+class litigesadd(ListView):
+    template_name = "litigesadd.html"
+
+    def create(request):
+        if request.method == 'POST':
+            showlist = [request.POST.get('name'),request.POST.get('id')]
+            data = Litige()
+            data.nom = showlist[0]
+            data.idLitige = showlist[1]
+            data.save()
+            return HttpResponse("added successfully.")
+        return HttpResponse("Error ZONE RESTRICTED.")
+
+    def get(self, request):
+        context = {
+            'activate' : 'on',
+            'settings' : menuimages.objects.all(),
+            'litige' : Litige.objects.all(),
+            'id' :request.GET.get('id'),
+        }
+        return render(request, self.template_name, context)
+
+class decilitigesadd(ListView):
+    template_name = "decilitigesadd.html"
+
+    def create(request):
+        if request.method == 'POST':
+            showlist = [request.POST.get('name'),request.POST.get('id')]
+            data = LitigeDecision()
+            data.nom = showlist[0]
+            data.idLitige = showlist[1]
+            data.save()
+            return HttpResponse("added successfully.")
+        return HttpResponse("Error ZONE RESTRICTED.")
+
+    def get(self, request):
+        context = {
+            'activate' : 'on',
+            'settings' : menuimages.objects.all(),
+            'decilitige' : LitigeDecision.objects.all(),
+            'id' :request.GET.get('id'),
+        }
+        return render(request, self.template_name, context)
+
+class litigesmodify(ListView):
+    template_name = "litigesmodify.html"
+
+    def modify(request):
+        if request.method == 'POST':
+            showlist = [request.POST.get('name'),request.POST.get('id')]
+            data = Litige.objects.get(idLitige=showlist[1])
+            data.nom = showlist[0]
+            data.save()
+            return HttpResponse("change successfull.")
+        return HttpResponse("Error ZONE RESTRICTED.")
+
+    def get(self, request):
+        context = {
+            'activate' : 'on',
+            'settings' : menuimages.objects.all(),
+            'litige' : Litige.objects.all(),
+            'id' :request.GET.get('id'),
+        }
+        return render(request, self.template_name, context)
+
+class decilitigesmodify(ListView):
+    template_name = "decilitigesmodify.html"
+
+    def modify(request):
+        if request.method == 'POST':
+            showlist = [request.POST.get('name'),request.POST.get('id')]
+            data = LitigeDecision.objects.get(idLitige=showlist[1])
+            data.nom = showlist[0]
+            data.save()
+            return HttpResponse("change successfull.")
+        return HttpResponse("Error ZONE RESTRICTED.")
+
+    def get(self, request):
+        context = {
+            'activate' : 'on',
+            'settings' : menuimages.objects.all(),
+            'decilitige' : LitigeDecision.objects.all(),
+            'id' :request.GET.get('id'),
         }
         return render(request, self.template_name, context)
 
