@@ -303,15 +303,10 @@ def uploadbc(request):
                                 idLigneBonCommandeSortie=fields[0],
                                 fk_BonCommandeSortie=BonCommandeSortie.objects.get(idBonCommandeSortie=fields[1]),
                                 fk_Article=Article.objects.get(codeClient=fields[2]),
-                                #designation=.objects.get(nom=fields[3]),
-                                quantiteProduitCommande=fields[4],
-                                priorite=fields[5],
-                                termine=fields[6],
-                                source=fields[7],
                             )
                             messages.success(request,"Succès -> Donnees du Csv ont ete ajoutees aux  tarifs")
                         except Exception as e:
-                            messages.warning(request," Votre fichier n'est pas conforme à la structure demandee. " + str(e))
+                            messages.warning(request," Votre fichier n'est pas conforme à la structure demandee mauvais update ou create de bcs. " + str(e))
                             return redirect('bonCommandeSortie')
                         '''
                         #if not fields[1] == "﻿idLigneBonCommandeSortie":
@@ -332,14 +327,14 @@ def uploadbc(request):
         messages.error(request,"Unable to upload file. " + repr(e))
     messages.success(request,"Files uplodade with no problem")
 
-    #A chaque actualisation je fais un check de répartition des colis non expédié ||| Je Fais la répartition après avoir upload mon csv avec succès
+    #je fais un check de répartition des colis non expédié ||| Je Fais la répartition après avoir upload mon csv avec succès
     colis = Colis.objects.all().order_by("datePeremption", "fk_UniteManutentionEntree", "fk_Article", "-quantiteProduit") #Je recup la liste de colis, ordonnée par date peremption, umentree, article, et quantiteproduit decroissant
-    for items in colis:
-        print(items.quantiteProduit)
-        if items.fk_UniteManutentionSortie == None:
-            lbc = LigneBonCommandeSortie_pour_BonCommandeSortie.objects.all().order_by("-priorite") #Je recup la liste de colis, ordonnée par la case priorite decroissante
-            print ("THERE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-            for mylbc in lbc:
+    lbc = LigneBonCommandeSortie_pour_BonCommandeSortie.objects.all().order_by("-priorite") #Je recup la liste de colis, ordonnée par la case priorite decroissante
+    for mylbc in lbc:
+        for items in colis:
+            print(items.quantiteProduit)
+            if items.fk_UniteManutentionSortie == None:
+                print ("THERE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
                 if int(mylbc.quantiteProduitALivrer) - int(mylbc.quantiteProduitCommande) < 0:
                     if mylbc.fk_Article == items.fk_Article:
                         print ("GG FOUND !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!") #article correspondant a la ligne bon commande trouver dans les articles
@@ -355,7 +350,10 @@ def uploadbc(request):
                                     mylbc.quantiteProduitCommande = str(int(mylbc.quantiteProduitCommande) - int(items.quantiteProduit))
                                     mylbc.quantiteProduitLivre = str(int(mylbc.quantiteProduitLivre) + int(items.quantiteProduit))
                                     mylbc.save()
+                                    #items.save()
                                     print ("LBC CHANGED")
+                                else:
+                                    print (str(int(mylbc.quantiteProduitLivre) + int(items.quantiteProduit)) + " Not changed quantite " + mylbc.quantiteProduitCommande)
                 else:
                         print ("NOT FOUND !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
             items.save()
@@ -888,30 +886,24 @@ class article(ListView):
         for items in col:
             for myarticle in article:
                 if items.fk_Article.designationClient == myarticle.designationClient: #je suis dans une "ligne" de colis ici, dedans je vais chercher dans les colis non expedié (umsortie) pour avoir le stock
-                    for myums in ums:
-                        if str(items.fk_UniteManutentionSortie) == myums.idUniteManutentionSortie:
-                            #print(str(items.fk_UniteManutentionSortie) + " gg " + items.idColis)
-                            #myarticle.quantiteProduitStockComplet -= int(items.fk_Article.quantiteProduitStockComplet)
-                            #myarticle.quantiteColisStockComplet -=  int(items.fk_Article.quantiteColisStockComplet)
-                            #print("gg " + str(myarticle.quantiteColisStockComplet) + " gg")
-                            myarticle.save()
                     for myume in ume:
                         if str(items.fk_UniteManutentionEntree) == myume.idUniteManutentionEntree:
-                            if items.quantiteProduit == myarticle.quantiteColisStandard:
-                                if items.quantiteProduit == None:
-                                    items.quantiteProduit = 0
-                                myarticle.quantiteProduitStockComplet += int(items.quantiteProduit)
-                                myarticle.quantiteColisStockComplet +=  1
-                                print("gg2 " + str(myarticle.designationClient) + " gg")
-                                myarticle.save()
-                            else:
-                                if items.quantiteProduit == None:
-                                    items.quantiteProduit = 0
-                                print("gg4 " + str(items.quantiteProduit) + " gg")
-                                myarticle.quantiteProduitStockIncomplet += int(items.quantiteProduit)
-                                myarticle.quantiteColisStockIncomplet +=  1
-                                print("gg3 " + str(myarticle.designationClient) + " gg")
-                                myarticle.save()
+                            if items.fk_UniteManutentionSortie == None:
+                                if items.quantiteProduit == myarticle.quantiteColisStandard:
+                                    if items.quantiteProduit == None:
+                                        items.quantiteProduit = 0
+                                    myarticle.quantiteProduitStockComplet += int(items.quantiteProduit)
+                                    myarticle.quantiteColisStockComplet +=  1
+                                    print("gg2 " + str(myarticle.designationClient) + " gg")
+                                    myarticle.save()
+                                else:
+                                    if items.quantiteProduit == None:
+                                        items.quantiteProduit = 0
+                                    print("gg4 " + str(items.quantiteProduit) + " gg")
+                                    myarticle.quantiteProduitStockIncomplet += int(items.quantiteProduit)
+                                    myarticle.quantiteColisStockIncomplet +=  1
+                                    print("gg3 " + str(myarticle.designationClient) + " gg")
+                                    myarticle.save()
                     #print(items.fk_Article.designationClient + "  " + items.idColis)
         context = {
             'art' : Article.objects.all(),
@@ -1346,6 +1338,20 @@ class destinatairemodify(ListView):
             destinataire.adresseLivraison_complement_2 = showlist[11]
             destinataire.adresseLivraison_codePostal = showlist[12]
             destinataire.adresseLivraison_localite = showlist[13]
+
+
+            destinataire.fk_Pays = None
+            destinataire.fk_TypeDestinataire = None
+
+            pays = Pays_pour_Destinataire.objects.all()
+            for items in pays:
+                if items.nom == request.POST.get('pays'):
+                    destinataire.fk_Pays = items
+            typedest = TypeDestinataire_pour_Destinataire.objects.all()
+            for items in typedest:
+                if items.nom == request.POST.get('typedest'):
+                    destinataire.fk_TypeDestinataire = items
+
             destinataire.save()
             return HttpResponse("you think its good ? Destinataire " + destinataire.nom + " updated !\n and there is "
                                 + showlist[0] + '\n' + showlist[1] + '\n' + showlist[2] + '\n'
@@ -1450,6 +1456,10 @@ class destinataireadd(ListView):
             destinataire.adresseLivraison_codePostal = showlist[12]
             destinataire.adresseLivraison_localite = showlist[13]
             destinataire.idDestinataire = showlist[26]
+
+            destinataire.fk_Pays = None
+            destinataire.fk_TypeDestinataire = None
+
             pays = Pays_pour_Destinataire.objects.all()
             for items in pays:
                 if items.nom == request.POST.get('pays'):
@@ -1458,7 +1468,6 @@ class destinataireadd(ListView):
             for items in typedest:
                 if items.nom == request.POST.get('typedest'):
                     destinataire.fk_TypeDestinataire = items
-                    destinataire.save()
                     return HttpResponse("It has been posted by lapost")
             destinataire.save()
             return HttpResponse("Error " + request.POST.get('typedest') + " "+ items.nom)

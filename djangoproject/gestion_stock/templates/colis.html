@@ -61,13 +61,13 @@
                             <th class="th-sm"> code UM </th>
                             <th class="th-sm"> date expédition </th>
                             <th class="th-sm"> confirmé </th>
-                            <th class="th-sm"> <i class="fa fa-trash"></i> </th>
+                            <!--<th class="th-sm"> <i class="fa fa-trash"></i> </th>-->
                         </tr>
                         </thead>
                         <tbody>
                         {% for items in col %}
-                        <tr>
-                            <td> <button id='{{ items.idColi }}' class="dyna"> -> </button></td>
+                        <tr class="text-center">
+                            <td> <a href='{% url "unitemanutentionentreemodify" %}?id={{ items.fk_UniteManutentionEntree.idUniteManutentionEntree }}'><button  type="button" id='{{ items.idColi }}' class="dyna rounded-pill btn- btn-outline-info"> <i class="fa fa-arrow-right"></i> </button></a></td>
                             <td> {{ items.idColis }} </td>
                             <td> {{ items.fk_Article.designationFournisseur|safe }} </td>
                             <td> {{ items.fk_UniteManutentionEntree.fk_BonLivraisonEntree.fk_Client.nom }} </td>
@@ -80,7 +80,7 @@
                             <td> {{ items.fk_Destinataire.codeUM }} </td>
                             <td> {{ items.fk_UniteManutentionSortie.dateExpedition }} </td>
                             <td> {{ items.emplacementConfirme }} </td>
-                            <td> <button id='{{ items.idArticle }}' class="dynad"> X </button> </td>
+                            <!--<td> <button id='{{ items.idArticle }}' class="dynad"> X </button> </td>-->
                         </tr>
                         {% endfor %}
                         </tbody>

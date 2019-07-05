@@ -181,9 +181,6 @@
                                     <tr>
                                         <td class='text-center'><a href='{% url "bonCommandeSortiemodify" %}?id={{items.idBonCommandeSortie|safe }}'><button class='dynacli' id="{{ items.idBonCommandeSortie }}"><i class="fa fa-arrow-right"></i></button></a></td>
                                         <td class="text-center">{{ items.idBonCommandeSortie }}</td><td><button class="deleteur">X</button></td>
-                                    <!--console.log("entree");
-                                    <td></td>
-                                    <td></td>-->
                                     </tr>
                                 {% endif %}
                             {% endfor %}
@@ -204,11 +201,6 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
                             </tbody>
                         </table>
                     </div>
@@ -224,10 +216,6 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                            </tr>
                             </tbody>
                         </table>
                     </div>
@@ -509,9 +497,6 @@
         "scrollX": true,
         "scrollY": 200,
       });*/
-        $('#dtBasicExample1').find('tr').eq(1).remove();
-        $('#dtBasicExample2').find('tr').eq(1).remove();
-        $('#dtBasicExample3').find('tr').eq(1).remove();
         '{% for items in entree %}'
             console.log("entree");
             if ('{{ items.fk_Client.nom }}' == $('#nom').val()) {

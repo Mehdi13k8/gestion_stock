@@ -231,12 +231,16 @@
                                     //to change
                                     var name = "{{ items.nom|safe }}";
                                     var oldname;
+                                    "{% for ble in entree %}"
+                                        "{% if ble.fk_Destinataire.fk_TypeDestinataire.nom == items.fk_TypeDestinataire.nom %}"
                                     if (i == 0)
                                         $("#litiges").append(new Option("{{ items.nom|safe }}", "{{ items.nom|safe }}"));
                                     else if (name != oldname)
                                         $("#litiges").append(new Option("{{ items.nom|safe }}", "{{ items.nom|safe }}"));
                                     oldname = name;
                                     i = 1;
+                                    "{% endif %}"
+                                    "{% endfor %}"
                                     "{% endfor %}"
                                 });
                             </script>
@@ -431,15 +435,19 @@
         if ('{{ items.idBonLivraisonEntree }}' == $('#umid').val()) {
             $('#client').val('{{ items.fk_Client.nom|safe }}');
             $('#lveinput').val('{{ items.fk_LettreVoitureEntree }}');
-            '{% for items in cli %}'
-            if ('{{ items.nom }}' == $('#client').val()) {
-                $('#zone').val('{{ items.fk_TypeZone.nom|safe }}');
+            '{% for itemscli in cli %}'
+            if ('{{ itemscli.nom }}' == $('#client').val()) {
+                $('#zone').val('{{ itemscli.fk_TypeZone.nom|safe }}');
                 $('#zatt').empty();
-                '{% for items in zoned %}'
-                $("#zatt").append(new Option("{{ items.nom|safe }}", "{{ items.nom|safe }}"));
+                '{% for itemsz in zoned %}'
+                    '{% if itemsz.fk_TypeZoneDepot.nom == itemscli.fk_TypeZone.nom %}'
+                        console.log("there{{ itemscli.fk_TypeZone.nom|safe }}");
+                        $("#zatt").append(new Option("{{ itemsz.nom|safe }}", "{{ itemsz.nom|safe }}"));
+                    '{% endif %}'
                 '{% endfor %}'
             }
             '{% endfor %}'
+            $("#zatt").val("");
 
             $("#fournisseur").val("{{ items.fk_Fournisseur.nom|safe }}");
             $("#inputMDEx").val("{{ items.dateReception|safe }}");
