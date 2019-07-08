@@ -111,7 +111,7 @@ urlpatterns = [
     path('ble/create/', views.bonLivraisonEntreeadd.create),
     path('ligneble/create/', views.bonLivraisonEntreeadd.createligne),
     path('ligneble/delete/', views.bonLivraisonEntreeadd.deleteligne),
-
+    path('bonLivraisonentree/modify/createume/', views.bonLivraisonentreemodify.createume),
 
     path('article', views.article.as_view(), name='article'),
     path('article/delete/', views.article.delete),

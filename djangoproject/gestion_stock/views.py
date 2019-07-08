@@ -303,6 +303,7 @@ def uploadbc(request):
                                 idLigneBonCommandeSortie=fields[0],
                                 fk_BonCommandeSortie=BonCommandeSortie.objects.get(idBonCommandeSortie=fields[1]),
                                 fk_Article=Article.objects.get(codeClient=fields[2]),
+                                quantiteProduitCommande=fields[4],#FLAG ERROR
                             )
                             messages.success(request,"Succès -> Donnees du Csv ont ete ajoutees aux  tarifs")
                         except Exception as e:
@@ -601,6 +602,30 @@ class bonLivraisonentreemodify(ListView):
             return HttpResponse("fail")
         return HttpResponse("No Authorized Access !")
 
+    def createume(request):
+        if request.method == 'POST':
+            showlist = [request.POST.get('id')]
+
+            id = 0
+            numum = 0
+            for myume in UniteManutentionEntree.objects.all():
+                if id < int(myume.idUniteManutentionEntree):
+                    id = int(myume.idUniteManutentionEntree)
+                if myume.fk_BonLivraisonEntree:
+                    if myume.fk_BonLivraisonEntree.idBonLivraisonEntree == showlist[0]:
+                        if numum  < int(myume.numero):
+                            numum = int(myume.numero)
+            numum = numum + 1
+            id = id + 1
+            ume = UniteManutentionEntree()
+            ume.idUniteManutentionEntree = str(id)
+            ume.numero = numum
+            ume.fk_BonLivraisonEntree = BonLivraisonEntree.objects.get(idBonLivraisonEntree=showlist[0])
+            ume.save()
+
+            return HttpResponse("Created !")
+        return HttpResponse("No Authorized Access !")
+
     def modify(request):
         if request.method == 'POST':
             ble = BonLivraisonEntree.objects.all()
@@ -668,6 +693,7 @@ class bonLivraisonentreemodify(ListView):
         context = {
             'entree' : BonLivraisonEntree.objects.all(),
             'umentree' : UniteManutentionEntree.objects.all(),
+            'col' : Colis.objects.all(),
             'art' : Article.objects.all(),
             'cli' : Client.objects.all(),
             'des' : Destinataire.objects.all(),
