@@ -85,11 +85,11 @@
                                 </div>
                             </div>
                             <div class="row">
-                                    <div class="col-3">
-                                        lettre de voiture :
-                                        <br><input type="text" id="lveinput" class="form-control w-responsive mx-auto text-center" disabled>
-                                        <button class="btn btn-default btn-sm w-25" id="accesslve" type="button"><i class="fa fa-arrow-up"></i></button>
-                                    </div>
+                                <div class="col-3">
+                                    lettre de voiture :
+                                    <br><input type="text" id="lveinput" class="form-control w-responsive mx-auto text-center" disabled>
+                                    <button class="btn btn-default btn-sm w-25" id="accesslve" type="button"><i class="fa fa-arrow-up"></i></button>
+                                </div>
                                 <div class="col-3">zone:<br><input type="text" id="zone" disabled class="form-control">
                                 </div>
                                 <div class="col-4 mr-4">
@@ -156,22 +156,24 @@
                             </tr>
                             </thead>
                             <tbody>
-                            {% for items in umentree %}
-                            {% if items.fk_BonLivraisonEntree.idBonLivraisonEntree == id %}
-                            <tr>
-                                <td> <a href='{% url "unitemanutentionentreemodify" %}?id={{ items.idUniteManutentionEntree}}'><button id='{{ items.idBonLivraisonEntree }}' class="dyna"> -> </button></a></td>
-                                <td> {{ items.numero }} </td>
-                                <td> {{ items.fk_BonLivraisonEntree.fk_ZoneDepot_pour_TypeZoneDepot }} </td>
-                                {% for items in umentree %}
+                            <script>
+                                var arname = "";
+                                '{% for myitems in umentree %}'
+                                var iteration = 0;
+                                '{% if myitems.fk_BonLivraisonEntree.idBonLivraisonEntree == id %}'
+                                $('#tabume').append("<tr><td><a href=\"{% url 'unitemanutentionentreemodify' %}?id={{ myitems.idUniteManutentionEntree}}\"><button id='{{ myitems.idBonLivraisonEntree }}' class=\"dyna\"> -> </button></a></td><td>{{ myitems.numero }}</td><td>{{ myitems.fk_ZoneDepot_pour_TypeZoneDepot }}</td><td></td><td> <button id='{{ myitems.idUniteManutentionEntree  }}' class=\"dynad\"> X </button> </td></tr>");
+                                '{% for colis in col %}'
+                                '{% if colis.fk_UniteManutentionEntree.fk_BonLivraisonEntree.idBonLivraisonEntree == id %}'
+                                '{% if colis.fk_UniteManutentionSortie == None %}'
+                                arname = '{{ colis.fk_Article }}';
+                                '{% endif %}'
+                                '{% endif %}'
+                                '{% endfor %}'
+                                '{% endif %}'
+                                $('#tabume').find('tr').last().find('td').eq(3).append(arname);
+                                '{% endfor %}'
 
-                                {% if items.fk_BonLivraisonEntree.idBonLivraisonEntree == id %}
-                                <td> a faire{{ items. }} </td>
-                                {% endif %}
-                                {% endfor %}
-                                <td> <button id='{{ items.idUniteManutentionEntree  }}' class="dynad"> X </button> </td>
-                            </tr>
-                            {% endif %}
-                            {% endfor %}
+                            </script>
                             </tbody>
                         </table>
                     </div>
@@ -237,7 +239,7 @@
                                     var name = "{{ items.nom|safe }}";
                                     var oldname;
                                     "{% for ble in entree %}"
-                                        "{% if ble.fk_Destinataire.fk_TypeDestinataire.nom == items.fk_TypeDestinataire.nom %}"
+                                    "{% if ble.fk_Destinataire.fk_TypeDestinataire.nom == items.fk_TypeDestinataire.nom %}"
                                     if (i == 0)
                                         $("#litiges").append(new Option("{{ items.nom|safe }}", "{{ items.nom|safe }}"));
                                     else if (name != oldname)
@@ -312,7 +314,7 @@
                                         <table id="tabbl" class="table table-condensed table-striped table-bordered" cellspacing="0" width="100%">
                                             <thead>
                                             <tr>
-                                                <th colspan="8"><button class="btn btn-sm btn-dark">Copy um entree</button>
+                                                <th colspan="8"><button class="btn btn-sm btn-dark" id="copyum">Copy um entree</button>
                                                     <button class="btn btn-sm btn-dark">copy BCE</button>
                                                     <button class="btn btn-sm btn-dark">calcul quantité</button>
                                                 </th>
@@ -402,7 +404,142 @@
                 }
             });
         });
+        $("#copyum").click(function () { //copier le contenu des ume dans le ble
+            console.log("copy ume");
+            var article = [{}];
+            var idx = 0;
+            var arr = [];
+            var foundarticle = 0;
+            if (window.confirm("\"Vous allez recréer le BL à partir des UM entrée. Les valeurs précédemment saisies seront remplacées par le contenu des UM entrée liées à ce BL?")) {
+                '{% for colis in col %}'
+                '{% for items in umentree %}'
+                '{% if colis.fk_UniteManutentionEntree|safe == items.idUniteManutentionEntree|safe %}'
+                '{% if items.fk_BonLivraisonEntree.idBonLivraisonEntree == id %}'
+                '{% for article in art %}'
+                '{% if article.idArticle == colis.fk_Article.idArticle %}'
+                foundarticle = 1;
+                for (var idx = 0; idx != arr.length; idx++) {
+                    if (arr[idx].name == '{{ colis.fk_Article|safe }}') {//je gère ici si l'article a déjà été trouver ou pas, si il existe je mets direct la quantité dedans
+                        foundarticle = 0;
+                        arr[idx].quantiteproduit += '{{ colis.quantiteProduit|safe }}';
+                        arr[idx].colis += 1;
+                    }
+                }
+                if (foundarticle == 1) {
+                    arr.push({name : '{{ colis.fk_Article|safe }}',
+                            quantiteproduit : '{{ colis.quantiteProduit|safe }}',
+                            colis : 1});
+                    foundarticle = 0;
+                }
+                '{% endif %}'
+                '{% endfor %}'
+                /*for (var idx = 0; idx != arr.length; idx++) {
+                $('#tabblbody').last('tr').find('td').eq(1).find('select').append(new Option(, )); //rempli le code fournisseur une fois le colis trouvé
+                $("#iddesif").append(new Option("{{ colis.id|safe }}", "{{ colis.id|safe }}"));
+                }*/
+                '{% endif %}'
+                '{% endif %}'
+                '{% endfor %}'
+                '{% endfor %}'
 
+
+                for (var idx = 0; idx != arr.length; idx++) {
+                    $('#tabblbody').append("<tr><td><button class='resetb' id=\"reset" + idx + "\"><i class=\"fa fa-redo\"></i></button></td>" +
+                        "<td><select class=\"form-control fournise\" id=\"blfournisseur" + idx + "\"></select></td>" +
+                        "<td><select class=\"form-control desif\" id=\"iddesif" + idx + "\"></select></td>" +
+                        "<td><input class='form-control'></td>" +
+                        "<td><input class='form-control'></td>" +
+                        "<td><button type=\"button\" class=\"btn btn-light btn-sm butctrl \"><i class=\"far fa-thumbs-down\" aria-hidden=\"true\"></i></button></td>" +
+                        "<td><input type=\"checkbox\" class=\"form-control\"></td>" +
+                        "<td><button class=\"deleteur exist\" id=\"{{ itemslb.idLigneBonLivraisonEntree }}\"> X </button> </td>" +
+                        "<td><input class='form-control'></td>" +
+                        "<td><input class='form-control'></td>" +
+                        "<td><input class='form-control'></td>" +
+                        "<td><input class='form-control'></td>" +
+                        "<td><input class='form-control'></td>" +
+                        "<td><input class='form-control'></td>" +
+                        "<td><input class='form-control'></td>" +
+                        "<td><input class='form-control'></td>" +
+                        "<td><input class='form-control'></td>" +
+                        "<td><input class='form-control'></td>" +
+                        "<td><input class='form-control'></td>");
+                    nbr++;
+                    '{% for itemsart in art %}'
+                    $("select.fournise:last").append(new Option("{{ itemsart.codeFournisseur|safe }}", "{{ itemsart.codeFournisseur|safe }}"));
+                    $("select.desif:last").append(new Option("{{ itemsart.designationClient|safe }}", "{{ itemsart.designationClient|safe }}"));
+                    if ('{{ itemsart }}' == arr[idx]) {
+                        $("select.fournise:last").val("{{ itemsart.codeFournisseur|safe }}");
+                        $("select.desif:last").val("{{ itemsart.designationClient|safe }}");
+                    }
+                    '{% endfor %}'
+                    $("select.desif:last").parent('td').nextAll('td').eq('0').find('input').val("{{ itemslb.quantiteProduit|safe }}");
+                    $("select.desif:last").parent('td').nextAll('td').eq('1').find('input').val("{{ itemslb.quantiteColis|safe }}");
+                    if ('{{ itemslb.controle }}' == 1) {
+                        $("select.desif:last").parent('td').nextAll('td').eq('2').find('button').attr('class', 'btn btn-sm butctrl btn-success');
+                        $("select.desif:last").parent('td').nextAll('td').eq('2').find('i').attr('class', 'far fa-thumbs-up');
+                    }
+                    if ('{{ itemslb.termine }}' == 1) {
+                        $("select.desif:last").parent('td').nextAll('td').eq('3').find('input').prop('checked', true);
+                    }
+                    $("select.desif:last").parent('td').nextAll('td').eq('5').find('input').val("{{ itemslb.quantiteCommande|safe }}");
+                    $("select.desif:last").parent('td').nextAll('td').eq('6').find('input').val("{{ itemslb.quantiteCommandeRecue|safe }}");
+                    $("select.desif:last").parent('td').nextAll('td').eq('7').find('input').val("{{ itemslb.quantiteProduitRecu|safe }}");
+                    $("select.desif:last").parent('td').nextAll('td').eq('8').find('input').val("{{ itemslb.quantiteColisRecu|safe }}");
+                    $("select.desif:last").parent('td').nextAll('td').eq('9').find('input').val("{{ itemslb.quantiteProduitAlivrer|safe }}");
+                    $("select.desif:last").parent('td').nextAll('td').eq('10').find('input').val("{{ itemslb.quantiteColisAlivrer|safe }}");
+                    $("select.desif:last").parent('td').nextAll('td').eq('11').find('input').val("{{ itemslb.quantiteColisLitige|safe }}");
+                    $("select.desif:last").parent('td').nextAll('td').eq('12').find('input').val("{{ itemslb.quantiteProduitLitige|safe }}");
+                    $("select.desif:last").parent('td').nextAll('td').eq('13').find('input').val("{{ itemslb.quantiteDifferenceAutre|safe }}");
+                    $("select.desif:last").parent('td').nextAll('td').eq('14').find('input').val("{{ itemslb.quantiteDifference|safe }}");
+                    $("select.desif:last").parent('td').nextAll('td').eq('15').find('input').val("{{ itemslb.quantiteDifferenceRestante|safe }}");
+
+                    for (var a = idx; a != 0; a--) {
+                        $("#blfournisseur" + a).combobox();
+                    }
+                    $("#toggle").on("click", function () {
+                        for (var a = idx; a != 0; a--) {
+                            $("#blfournisseur" + a).toggle();
+                        }
+                    });
+                    for (var a = idx; a != 0; a--) {
+                        $("#iddesif" + a).combobox();
+                    }
+                    $(" #toggle").on("click", function () {
+                        for (var a = idx; a != 0; a--) {
+                            $("#iddesif" + a).toggle();
+                        }
+                    });
+                    $(".fournise").combobox({
+                        select: function (event, ui) {
+                            '{% for items in art %}'
+                            if ('{{ items.codeFournisseur }}' == this.value) {
+                                $(this).closest('td').next().find('select').find('option').remove();
+                                $(this).closest('td').next().find('select').append(new Option("{{ items.designationClient|safe }}", "{{ items.designationClient|safe }}"));
+                            }
+                            '{% endfor %}'
+                        }
+                    });
+                    $(".desif").combobox({
+                        select: function (event, ui) {
+                            '{% for items in art %}'
+                            if ('{{ items.designationClient|safe }}' == this.value) {
+                                $(this).closest('td').prev().find('select').find('option').remove();
+                                $(this).closest('td').prev().find('select').append(new Option("{{ items.codeFournisseur|safe }}", "{{ items.codeFournisseur|safe }}"));
+                            }
+                            '{% endfor %}'
+                        }
+                    });
+                    $('.resetb').click(function () {
+                        $(this).closest('td').parent().find('td').eq(0).next().find('select').find('option').remove();
+                        $(this).closest('td').parent().find('td').eq(1).next().find('select').find('option').remove();
+                        '{% for items in art %}'
+                        $(this).closest('td').parent().find('td').eq(0).next().find('select').append(new Option("{{ items.codeFournisseur|safe }}", "{{ items.codeFournisseur|safe }}"));
+                        $(this).closest('td').parent().find('td').eq(1).next().find('select').append(new Option("{{ items.designationClient|safe }}", "{{ items.designationClient|safe }}"));
+                        '{% endfor %}'
+                    });
+                }
+            }
+        });
         $("#addume").click(function () {
             $.ajax({
                 type: "POST",    //type de requête utilisé par ajax
@@ -464,10 +601,10 @@
                 $('#zone').val('{{ itemscli.fk_TypeZone.nom|safe }}');
                 $('#zatt').empty();
                 '{% for itemsz in zoned %}'
-                    '{% if itemsz.fk_TypeZoneDepot.nom == itemscli.fk_TypeZone.nom %}'
-                        console.log("there{{ itemscli.fk_TypeZone.nom|safe }}");
-                        $("#zatt").append(new Option("{{ itemsz.nom|safe }}", "{{ itemsz.nom|safe }}"));
-                    '{% endif %}'
+                '{% if itemsz.fk_TypeZoneDepot.nom == itemscli.fk_TypeZone.nom %}'
+                console.log("there{{ itemscli.fk_TypeZone.nom|safe }}");
+                $("#zatt").append(new Option("{{ itemsz.nom|safe }}", "{{ itemsz.nom|safe }}"));
+                '{% endif %}'
                 '{% endfor %}'
             }
             '{% endfor %}'
