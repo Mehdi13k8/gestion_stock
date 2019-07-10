@@ -44,7 +44,7 @@
 
                 <div class="col-4">
                     <div class="form-group form-inline">
-                        <label for="blum"><button class="btn btn-sm btn-light">
+                        <label for="blum"><button id="blbut" class="btn btn-sm btn-light">
                             <i class="fa fa-chevron-right" style="font-size: 15px;"></i>
                         </button>bon de livraison: </label>
                         <input type="text" class="form-control w-25" id="blum" disabled>
@@ -319,6 +319,11 @@
 
 <script>
     $(document).ready(function() {
+        $('#blbut').click(function () {
+            alert("gg");
+            window.location.href = "{% url 'bonLivraisonEntreemodify' %}?id=" + $('#blum').val();
+            console.log("redirection");
+        });
         var firstoldline = 1;
         var litige = [];
         var decilitige = [];
@@ -329,30 +334,6 @@
             lastcolisid = parseInt('{{ items.idColis }}', 10);
         }
         "{% endfor %}"
-        //sorting (trie) du tableau par rapport a ncolis
-        if ($('#tabbl').length > 0) {
-            var table, rows, switching, i, x, y, shouldSwitch;
-            table = document.getElementById("tabbl");
-            switching = true;
-            while (switching) {
-                switching = false;
-                rows = table.rows;
-                for (i = 1; i < (rows.length - 1); i++) {
-                    shouldSwitch = false;
-                    x = rows[i].getElementsByTagName("TD")[2];
-                    y = rows[i + 1].getElementsByTagName("TD")[2];
-                    if (x.innerHTML > y.innerHTML) {
-                        shouldSwitch = true;
-                        break;
-                    }
-                }
-                if (shouldSwitch) {
-                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-                    switching = true;
-                }
-            }
-        }
-
         '{% for items in colis %}'
         '{% if items.fk_UniteManutentionEntree.idUniteManutentionEntree == id %}'
         litige[firstoldline - 1] = colis.fk_litige;
@@ -405,6 +386,7 @@
             $(".ui-dialog-titlebar").hide();
             firstoldline++;
         });
+
         $('.addmodal').click(function () {
             if ($(this).attr('id') <= firstoldline)
                 $('#newDialogText' + $(this).attr('id')).dialog("open");
@@ -982,11 +964,12 @@
         }
         '{% endfor %}'
 
+        $("#seldep").val("");
         '{% for items in ume %}'
         if ('{{ items.idUniteManutentionEntree }}' == '{{id}}') {
             '{% for itemszdt in zdt %}'
 
-            '{% if items.fk_BonLivraisonEntree.fk_ZoneDepot_pour_TypeZoneDepot.nom|safe == itemszdt.nom|safe %}'
+            '{% if items.fk_ZoneDepot.nom|safe == itemszdt.nom|safe %}'
             $("#seldep").val('{{ itemszdt.nom|safe }}');
             '{% endif %}'
             '{% endfor %}'
@@ -1015,6 +998,34 @@
                 }
             });
         });
+
+        //sorting (trie) du tableau par rapport a ncolis, je recois des objets en js, puis les passe en jquery avec le $ pour utiliser les fonctions jquery
+        if ($('#tabbl').length > 0) {
+            var table, rows, switching, i, x, y, shouldSwitch;
+            table = document.getElementById("tabbl");
+            switching = true;
+            while (switching) {
+                switching = false;
+                rows = table.rows;
+                for (i = 1; i < (rows.length - 1); i++) {
+                    shouldSwitch = false;
+                    x = rows[i].getElementsByTagName("TD")[2];
+                    var xx = $(x);
+                    y = rows[i + 1].getElementsByTagName("TD")[2];
+                    var yy = $(y);
+                    //if (x.innerHTML > y.innerHTML) {
+                    //alert(xx.find('input').val().trim());
+                    if (parseInt(xx.find('input').val().trim()) > parseInt(yy.find('input').val().trim())) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+                if (shouldSwitch) {
+                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                    switching = true;
+                }
+            }
+        }
     });
 </script>
 

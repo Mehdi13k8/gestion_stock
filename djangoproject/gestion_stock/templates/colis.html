@@ -74,10 +74,10 @@
                             <td> {{ items.numeroLot|safe }} </td>
                             <td> {{ items.datePeremption }} </td>
                             <td> {{ items.quantiteProduit }} </td>
-                            <td> {{ items.fk_ZoneDepot.nom|safe }} </td>
+                            <td> {{ items.fk_UniteManutentionEntree.fk_ZoneDepot.nom|safe }} </td>
                             <td> {{ items.fk_UniteManutentionEntree.idUniteManutentionEntree }} </td>
                             <td> {{ items.fk_UniteManutentionSortie.idUniteManutentionSortie }} </td>
-                            <td> {{ items.fk_Destinataire.codeUM }} </td>
+                            <td> {{ items.fk_UniteManutentionEntree.fk_BonLivraisonEntree.fk_Destinataire.codeUM }} </td>
                             <td> {{ items.fk_UniteManutentionSortie.dateExpedition }} </td>
                             <td> {{ items.emplacementConfirme }} </td>
                             <!--<td> <button id='{{ items.idArticle }}' class="dynad"> X </button> </td>-->

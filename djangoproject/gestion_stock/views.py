@@ -131,11 +131,6 @@ class BonCommandeEntreemodify(ListView):
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 from .forms import UploadFileForm
 
-def handle_uploaded_file(f):
-    with open('some/file/name.txt', 'wb+') as destination:
-        for chunk in f.chunks():
-            destination.write(chunk)
-
 class bonCommandeSortie(ListView):
     template_name = "bonCommandeSortie.html"
 
@@ -621,6 +616,7 @@ class bonLivraisonentreemodify(ListView):
             ume.idUniteManutentionEntree = str(id)
             ume.numero = numum
             ume.fk_BonLivraisonEntree = BonLivraisonEntree.objects.get(idBonLivraisonEntree=showlist[0])
+            ume.fk_ZoneDepot = None
             ume.save()
 
             return HttpResponse("Created !")
@@ -653,10 +649,6 @@ class bonLivraisonentreemodify(ListView):
             for items in cli:
                 if showlist[1] == items.nom:
                     bonle.fk_Client = items
-                    #= items
-                #for myzone in zne:
-                #if showlist[4] == items.nom:
-                #bonle.fk_TypeZone = items
             for items in fourtype:
                 if showlist[2] == items.nom:
                     bonle.fk_Fournisseur = items
@@ -708,6 +700,39 @@ class bonLivraisonentreemodify(ListView):
         }
         return render(request, self.template_name, context)
 
+def upload_blef(request):
+    template_name = "upload_blentree.html" #Ce template me sert juste a faire une "redirection" avec des params GET pour tomber sur la même page avant l'upload
+    if "GET" == request.method:
+        data = {
+            'entree' : BonLivraisonEntree.objects.all(),
+            'umentree' : UniteManutentionEntree.objects.all(),
+            'col' : Colis.objects.all(),
+            'art' : Article.objects.all(),
+            'cli' : Client.objects.all(),
+            'des' : Destinataire.objects.all(),
+            'four' : Fournisseur.objects.all(),
+            'typef': TypeFournisseur_pour_Fournisseur.objects.all(),
+            'zoned': ZoneDepot_pour_TypeZoneDepot.objects.all(),
+            #'lve' : LettreVoitureEntree.objects.all(),
+            'entreeligne' : LigneBonLivraisonEntree_pour_BonLivraisonEntree.objects.all(),
+            'id' :request.GET.get('id'),
+            'settings' : menuimages.objects.all(),
+            'activate' : 'on',
+        }
+    try:
+        file = request.FILES["file"]
+        photo = request.FILES["photo"]
+        if (not csv_file.name.endswith('.tab')):
+            messages.error(request,'File is not a Tab type') #j'envoie une erreur au panel admin si ce n'est pas un '.tab'
+            print ("File push is not a tab "+csv_file.name.endswith('.tab')+" !!!") #message dans la console pour mon debug
+            return HttpResponseRedirect(reverse('bonLivraisonEntreemodify', kwargs={'idBonLivraisonEntree':request.POST.get('idinput')}))
+        if csv_file.multiple_chunks():
+            messages.error(request,"Uploaded file is too big (%.2f MB)." % (csv_file.size/(1000*1000),))
+            print ("Uploaded file is too big")
+            file_data = csv_file.read().decode('utf-8', errors='ignore') #ici je veux récuperer les "datas" présentes dans le csv, de préférence en utf-8 car majoritairement les tech utilisent utf-8, j'ignore les erreurs pour gagner du temps
+    except Exception as e:
+        return HttpResponseRedirect(reverse('bonLivraisonEntreemodify', kwargs={'id':request.POST.get('idinput')}))
+    return HttpResponseRedirect(reverse('bonLivraisonEntreemodify', kwargs={'id':request.POST.get('idinput')}))
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
 class bonLivraisonEntreeadd(ListView):
@@ -908,9 +933,11 @@ class article(ListView):
             myarticle.quantiteColisStockComplet = 0
             myarticle.quantiteProduitStockIncomplet = 0
             myarticle.quantiteColisStockIncomplet =  0
+            myarticle.save()
 
         for items in col:
             for myarticle in article:
+                print("gggggggggggggggggg2")
                 if items.fk_Article.designationClient == myarticle.designationClient: #je suis dans une "ligne" de colis ici, dedans je vais chercher dans les colis non expedié (umsortie) pour avoir le stock
                     for myume in ume:
                         if str(items.fk_UniteManutentionEntree) == myume.idUniteManutentionEntree:
@@ -2195,17 +2222,11 @@ class umemodify(ListView):
                 ume.afficherQuantiteProduits = showlist[5]
                 ume.dateReception = showlist[3]
                 try:
-                    ble = BonLivraisonEntree.objects.get(idBonLivraisonEntree=showlist[7])
-                    ble.dateReception = showlist[3] #si on change la date de reception elle doit aussi changer celle du ble
-                    try:
-                        zonedp = ZoneDepot_pour_TypeZoneDepot.objects.get(nom=showlist[6]) #on change la zone de dépots du BL entree donc "ou" va être la palette
-                        ble.fk_ZoneDepot_pour_TypeZoneDepot = zonedp
-                        print("gg")
-                    except Exception as e:
-                        print("error1 -- " + str(e))
-                    ble.save()
-                except:
-                    print("error2")
+                    zonedp = ZoneDepot_pour_TypeZoneDepot.objects.get(nom=showlist[6]) #on change la zone de dépots du BL entree donc "ou" va être la palette
+                    ume.fk_ZoneDepot = zonedp
+                    print("zone ok gg!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+                except Exception as e:
+                    print("error1 -- " + str(e))
             except UniteManutentionEntree.DoesNotExist:
                 print ("error3")
                 return HttpResponse("Error ume Not found.")

@@ -937,7 +937,7 @@ class TypeBonCommandeSortie_pour_BonCommandeSortie(models.Model):
 class UniteManutentionEntree(models.Model):
     idUniteManutentionEntree = models.CharField(max_length=150, default=0)
     fk_BonLivraisonEntree = models.ForeignKey('BonLivraisonEntree', on_delete=models.SET_NULL, default=0, blank=True, null=True)
-    #fk_ZoneDepot = models.ForeignKey('ZoneDepot_pour_TypeZoneDepot', on_delete=models.SET_NULL, default=0, blank=True, null=True)
+    fk_ZoneDepot = models.ForeignKey('ZoneDepot_pour_TypeZoneDepot', on_delete=models.SET_NULL, default=0, blank=True, null=True)
     #fk_Etiquette = models.ForeignKey('EtiquetteUniteManutentionEntree_pour_UniteManutentionEntree', on_delete=models.SET_NULL, default=1)
     c_nom = models.CharField(max_length=150, default=0)
     c_nomCompte = models.CharField(max_length=150, default=0)
@@ -1210,7 +1210,7 @@ class UniteManutentionEntree(models.Model):
 #début Colis
 class Colis(models.Model):
     idColis = models.CharField(max_length=150, default=0)
-    fk_UniteManutentionEntree = models.ForeignKey('UniteManutentionEntree', on_delete=models.SET_NULL, default=0, blank=True, null=True)
+    fk_UniteManutentionEntree = models.ForeignKey('UniteManutentionEntree', on_delete=models.CASCADE    , default=0, blank=True, null=True)
     fk_UniteManutentionSortie = models.ForeignKey('UniteManutentionSortie', on_delete=models.SET_NULL, default=0, blank=True, null=True)
     fk_Article = models.ForeignKey('Article', on_delete=models.SET_NULL, default=0, blank=True, null=True)
     #fk_Article = models.ForeignKey('Article', on_delete=models.SET_NULL, default=0, blank=True, null=True)
@@ -1378,6 +1378,8 @@ class BonLivraisonEntree(models.Model):
     numeroBonLivraison = models.CharField(max_length=150, default=0)
     quantitePalette = models.CharField(max_length=150, default=0)
     commentaire = models.CharField(max_length=150, default=0)
+    fichier = models.ImageField(upload_to='media_ble/', default=None, blank=True, null=True)
+    photo = models.ImageField(upload_to='media_ble/', default=None, blank=True, null=True)
     def __str__(self):
         return self.idBonLivraisonEntree
 
@@ -1465,7 +1467,7 @@ class UniteManutentionSortie(models.Model):
     #fk_UniteManutentionEntre = models.ForeignKey('UniteManutentionEntree', on_delete=models.SET_NULL, default=0, blank=True, null=True)
     #fk_Etiquette = models.ForeignKey('EtiquetteUniteManutentionEntree_pour_UniteManutentionEntree', on_delete=models.SET_NULL, default=1)
     #fk_TypeUniteManutention_pour_UniteManutentionSortie = models.ForeignKey('TypeUniteManutention_pour_UniteManutentionSortie', on_delete=models.SET_NULL, default=0, blank=True, null=True)
-    fk_BonCommandeSortie = models.ForeignKey('BonCommandeSortie', on_delete=models.SET_NULL, default=0, blank=True, null=True)
+    fk_BonCommandeSortie = models.ForeignKey('BonCommandeSortie', on_delete=models.CASCADE, default=0, blank=True, null=True)
     fk_BonLivraisonSortie = models.ForeignKey('BonLivraisonSortie', on_delete=models.SET_NULL, default=0, blank=True, null=True)
     c_nom = models.CharField(max_length=150, default=0)
     c_nomCompte = models.CharField(max_length=150, default=0)

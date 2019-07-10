@@ -112,6 +112,7 @@ urlpatterns = [
     path('ligneble/create/', views.bonLivraisonEntreeadd.createligne),
     path('ligneble/delete/', views.bonLivraisonEntreeadd.deleteligne),
     path('bonLivraisonentree/modify/createume/', views.bonLivraisonentreemodify.createume),
+    path('upload_blef/', views.upload_blef),#pour sauvegarder les images stocké dans les ble
 
     path('article', views.article.as_view(), name='article'),
     path('article/delete/', views.article.delete),

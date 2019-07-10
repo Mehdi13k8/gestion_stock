@@ -9,6 +9,7 @@
 
   {% load staticfiles %}
   {% load fontawesome_5 %}
+  {% load crispy_forms_tags %}
 
   {% load static %}
   {% fontawesome_5_static %}
@@ -36,6 +37,9 @@
   -->
 </header>
 <style>
+  .asteriskField {
+    display: none;
+  }
   .custom-combobox {
     position: relative;
     display: inline-block;
