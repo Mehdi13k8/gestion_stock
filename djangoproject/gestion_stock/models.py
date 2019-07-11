@@ -920,7 +920,7 @@ class Fournisseur(models.Model):
     def __str__(self):
         return self.nom
 
-class TypeBonCommandeSortie_pour_BonCommandeSortie(models.Model):
+class TypeBonCommandeSortie_pour_BonCommandeSortie(models.Model): #pas utilisé !
     c_nom = models.CharField(max_length=150, default=0)
     c_nomCompte = models.CharField(max_length=150, default=0)
     c_horodatage = models.CharField(max_length=150, default=0)
