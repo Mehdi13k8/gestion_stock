@@ -103,7 +103,7 @@ urlpatterns = [
 
     path('bonLivraisonentree', views.bonLivraisonEntree.as_view(), name='bonLivraisonEntree'),
     path('bonLivraisonentree/add', views.bonLivraisonEntreeadd.as_view(), name='bonLivraisonEntreeadd'),
-    path('bonLivraisonentree/modify', views.bonLivraisonentreemodify.as_view(), name='bonLivraisonEntreemodify'),
+    path('bonLivraisonentree/modify/', views.bonLivraisonentreemodify.as_view(), name='bonLivraisonEntreemodify'),
     path('right_ble/', views.bonLivraisonentreemodify.right),
     path('left_ble/', views.bonLivraisonentreemodify.left),
     path('ble/modify/', views.bonLivraisonentreemodify.modify),
@@ -113,6 +113,7 @@ urlpatterns = [
     path('ligneble/delete/', views.bonLivraisonEntreeadd.deleteligne),
     path('bonLivraisonentree/modify/createume/', views.bonLivraisonentreemodify.createume),
     path('upload_blef/', views.upload_blef),#pour sauvegarder les images stocké dans les ble
+    #path('upload_blef/redirect', views.upload_blef_redirect, name='uploadbleredirect'),#pour sauvegarder les images stocké dans les ble
 
     path('article', views.article.as_view(), name='article'),
     path('article/delete/', views.article.delete),

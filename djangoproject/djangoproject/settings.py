@@ -84,7 +84,7 @@ TEMPLATES = [
     },
 ]
 
-MEDIA_URL = '/media/'
+MEDIA_URL = '/media/' # le chemin ou je stock les "images" de la bdd hors fichier static type css, js et images de menus
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 WSGI_APPLICATION = 'djangoproject.wsgi.application'

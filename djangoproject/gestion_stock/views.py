@@ -701,38 +701,38 @@ class bonLivraisonentreemodify(ListView):
         return render(request, self.template_name, context)
 
 def upload_blef(request):
+    fichier = request.FILES.get('file', False)
+    photo = request.FILES.get('photo', False)
+    idinput = request.POST.get('idinput')
+    ble = BonLivraisonEntree.objects.get(idBonLivraisonEntree=idinput)
+    ble.fichier = None
+    ble.fichier = fichier
+    ble.photo = None
+    ble.photo = photo
+    ble.save()
+    return redirect(reverse('bonLivraisonEntreemodify')+"?id="+ble.idBonLivraisonEntree)
+    #return reverse('bonLivraisonEntreemodify', kwargs={'pk': 5})
+
+'''def upload_blef_redirect(request):
     template_name = "upload_blentree.html" #Ce template me sert juste a faire une "redirection" avec des params GET pour tomber sur la même page avant l'upload
-    if "GET" == request.method:
-        data = {
-            'entree' : BonLivraisonEntree.objects.all(),
-            'umentree' : UniteManutentionEntree.objects.all(),
-            'col' : Colis.objects.all(),
-            'art' : Article.objects.all(),
-            'cli' : Client.objects.all(),
-            'des' : Destinataire.objects.all(),
-            'four' : Fournisseur.objects.all(),
-            'typef': TypeFournisseur_pour_Fournisseur.objects.all(),
-            'zoned': ZoneDepot_pour_TypeZoneDepot.objects.all(),
-            #'lve' : LettreVoitureEntree.objects.all(),
-            'entreeligne' : LigneBonLivraisonEntree_pour_BonLivraisonEntree.objects.all(),
-            'id' :request.GET.get('id'),
-            'settings' : menuimages.objects.all(),
-            'activate' : 'on',
-        }
-    try:
-        file = request.FILES["file"]
-        photo = request.FILES["photo"]
-        if (not csv_file.name.endswith('.tab')):
-            messages.error(request,'File is not a Tab type') #j'envoie une erreur au panel admin si ce n'est pas un '.tab'
-            print ("File push is not a tab "+csv_file.name.endswith('.tab')+" !!!") #message dans la console pour mon debug
-            return HttpResponseRedirect(reverse('bonLivraisonEntreemodify', kwargs={'idBonLivraisonEntree':request.POST.get('idinput')}))
-        if csv_file.multiple_chunks():
-            messages.error(request,"Uploaded file is too big (%.2f MB)." % (csv_file.size/(1000*1000),))
-            print ("Uploaded file is too big")
-            file_data = csv_file.read().decode('utf-8', errors='ignore') #ici je veux récuperer les "datas" présentes dans le csv, de préférence en utf-8 car majoritairement les tech utilisent utf-8, j'ignore les erreurs pour gagner du temps
-    except Exception as e:
-        return HttpResponseRedirect(reverse('bonLivraisonEntreemodify', kwargs={'id':request.POST.get('idinput')}))
-    return HttpResponseRedirect(reverse('bonLivraisonEntreemodify', kwargs={'id':request.POST.get('idinput')}))
+    context = {
+        'entree' : BonLivraisonEntree.objects.all(),
+        'umentree' : UniteManutentionEntree.objects.all(),
+        'col' : Colis.objects.all(),
+        'art' : Article.objects.all(),
+        'cli' : Client.objects.all(),
+        'des' : Destinataire.objects.all(),
+        'four' : Fournisseur.objects.all(),
+        'typef': TypeFournisseur_pour_Fournisseur.objects.all(),
+        'zoned': ZoneDepot_pour_TypeZoneDepot.objects.all(),
+        #'lve' : LettreVoitureEntree.objects.all(),
+        'entreeligne' : LigneBonLivraisonEntree_pour_BonLivraisonEntree.objects.all(),
+        'id' :request.GET.get('id'),
+        'settings' : menuimages.objects.all(),
+        'activate' : 'on',
+    }
+    return render(request, template_name, context)'''
+
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
 class bonLivraisonEntreeadd(ListView):
