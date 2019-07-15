@@ -100,6 +100,7 @@ urlpatterns = [
     path('lettrevoitureentree/add', views.lettrevoitureentreeadd.as_view(), name='lveadd'),
     path('lve/create/', views.lettrevoitureentreeadd.create),
     path('lve/delete/', views.lettrevoitureentree.delete),
+    path('upload_lvef/', views.lettrevoitureentreemodify.upload_lvef),#pour sauvegarder les images stocké dans les ble
 
     path('bonLivraisonentree', views.bonLivraisonEntree.as_view(), name='bonLivraisonEntree'),
     path('bonLivraisonentree/add', views.bonLivraisonEntreeadd.as_view(), name='bonLivraisonEntreeadd'),

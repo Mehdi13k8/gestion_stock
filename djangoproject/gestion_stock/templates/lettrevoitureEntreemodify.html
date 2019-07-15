@@ -26,15 +26,83 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-3 mx-auto">
+
+        <div class="col-auto mx-auto">
             <div class="border shadow-lg p-2 mb-3 bg-white rounded">
                 <div class="col">
                     <h5 class="text-center"> <u> fichiers </u></h5>
                     <div class="container">
                         <div class="row">
                             <div class="mx-auto">
-                                <p style="cursor: pointer;">fichier <i class="fa fa-file"></i></p>
-                                <p>photo <i class="far fa-image"></i></p>
+                                <div class="col-auto">
+                                    <form action="/upload_lvef/?" method="POST" enctype="multipart/form-data" class="form-horizontal">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            <p>fichier <i style="cursor: pointer;" class="fa fa-file" id="fichpop"></i></p>
+                                            <div class="col-auto">
+                                                <input type="file" name="file" id="file" required="True" class="form-control-file">
+                                            </div>
+                                            <p>photo <i style="cursor: pointer;" class="far fa-image" id="photopop"></i></p>
+                                            <div class="col-auto">
+                                                <input type="file" name="photo" id="photo" required="True" class="form-control-file">
+                                            </div>
+                                        </div>
+                                        {% for items in lve %}
+                                        {% if items.idLettreVoitureEntree == id%}
+                                        {% if items.fichier %}
+                                        <img id="imgfichier" src="{{ items.fichier.url }}" >
+                                        <script>
+                                            $('#imgfichier').hide();
+                                            $("#fichpop").css("color", "green");
+                                            $('#fichpop').click(function () {
+                                                var src = $('#imgfichier').attr('src');
+                                                $('<div>').css({
+                                                    background: 'RGBA(0,0,0,.5) url('+src+') no-repeat center',
+                                                    backgroundSize: 'contain',
+                                                    width:'100%', height:'100%',
+                                                    position:'fixed',
+                                                    zIndex:'10000',
+                                                    top:'0', left:'0',
+                                                    cursor: 'zoom-out'
+                                                }).click(function(){
+                                                    $(this).remove();
+                                                }).appendTo('body');
+                                            });
+                                        </script>
+                                        {% endif %}
+                                        {% if items.photo %}
+                                        <img id="imgphoto" src="{{ items.photo.url }}" hidden>
+                                        <script>
+                                            $("#photopop").css("color", "green");
+                                            $('#photopop').click(function () {
+                                                var src = $('#imgphoto').attr('src');
+                                                $('<div>').css({
+                                                    background: 'RGBA(0,0,0,.5) url('+src+') no-repeat center',
+                                                    backgroundSize: 'contain',
+                                                    width:'100%', height:'100%',
+                                                    position:'fixed',
+                                                    zIndex:'10000',
+                                                    top:'0', left:'0',
+                                                    cursor: 'zoom-out'
+                                                }).click(function(){
+                                                    $(this).remove();
+                                                }).appendTo('body');
+                                            });
+
+                                        </script>
+                                        {% endif %}
+                                        {% endif %}
+                                        {% endfor %}
+                                        <div class="form-group">
+                                            <div class="col-md-3 col-sm-3 col-xs-12 col-md-offset-3" style="margin-bottom:10px;">
+                                                <button class="btn btn-primary btn-sm">
+                                                    <span class="fa fa-upload" style="margin-right:5px;"></span>
+                                                    Upload</button>
+                                            </div>
+                                        </div>
+                                        <input type="text" hidden value="{{ id }}" name="idinput" id="idinput">
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>

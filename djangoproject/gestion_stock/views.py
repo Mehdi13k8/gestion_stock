@@ -345,6 +345,7 @@ def uploadbc(request):
                                     items.fk_UniteManutentionSortie = UniteManutentionSortie.objects.get(fk_BonCommandeSortie=mylbc.fk_BonCommandeSortie)
                                     mylbc.quantiteProduitCommande = str(int(mylbc.quantiteProduitCommande) - int(items.quantiteProduit))
                                     mylbc.quantiteProduitLivre = str(int(mylbc.quantiteProduitLivre) + int(items.quantiteProduit))
+                                    mylbc.quantiteColisLivre = str(int(mylbc.quantiteColisLivre) + int(1))
                                     mylbc.save()
                                     #items.save()
                                     print ("LBC CHANGED")
@@ -499,6 +500,20 @@ class lettrevoitureentreemodify(ListView):
             #ble = BonLivraisonEntree.objects.get(idBonLivraisonEntree=request.POST['id'])
             #article.delete()
             return HttpResponse("Deleted !")
+        return HttpResponse("No Authorized Access !")
+
+    def upload_lvef(request):
+        if request.method == 'POST':
+            fichier = request.FILES.get('file', False)
+            photo = request.FILES.get('photo', False)
+            idinput = request.POST.get('idinput')
+            lve = LettreVoitureEntree.objects.get(idLettreVoitureEntree=idinput)
+            lve.fichier = None
+            lve.fichier = fichier
+            lve.photo = None
+            lve.photo = photo
+            lve.save()
+            return redirect(reverse('lvemodify')+"?id="+lve.idLettreVoitureEntree)
         return HttpResponse("No Authorized Access !")
 
     def get(self, request):
@@ -861,8 +876,14 @@ class bonLivraisonEntreeadd(ListView):
 
     def deleteligne(request):
         if request.method == 'POST':
-            ligne = LigneBonLivraisonEntree_pour_BonLivraisonEntree.objects.all()
-            return HttpResponse("Created !")
+            showlist = [request.POST.get('id')]
+            try:
+                ligne = LigneBonLivraisonEntree_pour_BonLivraisonEntree.objects.get(idLigneBonLivraisonEntree=showlist[0])
+                ligne.delete()
+                return HttpResponse("deleted !")
+            except LigneBonLivraisonEntree_pour_BonLivraisonEntree.DoesNotExist:
+                ligne = None
+            return HttpResponse("error !")
         return HttpResponse("No Authorized Access !")
 
     def get(self, request):

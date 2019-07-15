@@ -349,6 +349,8 @@ class LettreVoitureEntree(models.Model):
     reclaquantitecolis = models.CharField(max_length=150, default=0)
     reclacomm = models.CharField(max_length=150, default=0)
     fk_Transporteur = models.ForeignKey('Transporteur', on_delete=models.SET_NULL, null=True, blank=True)
+    fichier = models.ImageField(upload_to='media_lve/', default=None, blank=True, null=True)
+    photo = models.ImageField(upload_to='media_lve/', default=None, blank=True, null=True)
     def __str__(self):
         return self.idLettreVoitureEntree
 

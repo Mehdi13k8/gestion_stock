@@ -217,3 +217,26 @@ table.dataTable thead .sorting_desc_disabled:before {
   right:249px;
   top:10px;
 }*/
+
+.vertical-menu {
+  width: 200px;
+  height: 450px;
+  overflow-y: auto;
+}
+
+.vertical-menu a {
+  background-color: #eee;
+  color: black;
+  display: block;
+  padding: 12px;
+  text-decoration: none;
+}
+
+.vertical-menu a:hover {
+  background-color: #ccc;
+}
+
+.vertical-menu a.active {
+  background-color: #4CAF50;
+  color: white;
+}

@@ -303,9 +303,9 @@
                                             </div>
                                         </div>
                                         {% for items in entree %}
-                                            {% if items.idBonLivraisonEntree == id%}
-                                                {% if items.fichier %}
-                                                <img id="imgfichier" src="{{ items.fichier.url }}" >
+                                        {% if items.idBonLivraisonEntree == id%}
+                                        {% if items.fichier %}
+                                        <img id="imgfichier" src="{{ items.fichier.url }}" >
                                         <script>
                                             $('#imgfichier').hide();
                                             $("#fichpop").css("color", "green");
@@ -324,24 +324,24 @@
                                                 }).appendTo('body');
                                             });
                                         </script>
-                                                {% endif %}
-                                                {% if items.photo %}
-                                                <img id="imgphoto" src="{{ items.photo.url }}" hidden>
+                                        {% endif %}
+                                        {% if items.photo %}
+                                        <img id="imgphoto" src="{{ items.photo.url }}" hidden>
                                         <script>
                                             $("#photopop").css("color", "green");
                                             $('#photopop').click(function () {
-                                            var src = $('#imgphoto').attr('src');
-                                            $('<div>').css({
-                                                background: 'RGBA(0,0,0,.5) url('+src+') no-repeat center',
-                                                backgroundSize: 'contain',
-                                                width:'100%', height:'100%',
-                                                position:'fixed',
-                                                zIndex:'10000',
-                                                top:'0', left:'0',
-                                                cursor: 'zoom-out'
-                                            }).click(function(){
-                                                $(this).remove();
-                                            }).appendTo('body');
+                                                var src = $('#imgphoto').attr('src');
+                                                $('<div>').css({
+                                                    background: 'RGBA(0,0,0,.5) url('+src+') no-repeat center',
+                                                    backgroundSize: 'contain',
+                                                    width:'100%', height:'100%',
+                                                    position:'fixed',
+                                                    zIndex:'10000',
+                                                    top:'0', left:'0',
+                                                    cursor: 'zoom-out'
+                                                }).click(function(){
+                                                    $(this).remove();
+                                                }).appendTo('body');
                                             });
 
                                         </script>
@@ -353,7 +353,7 @@
                                                 <button class="btn btn-primary btn-sm">
                                                     <span class="fa fa-upload" style="margin-right:5px;"></span>
                                                     Upload</button>
-                                             </div>
+                                            </div>
                                         </div>
                                         <input type="text" hidden value="{{ id }}" name="idinput" id="idinput">
                                     </form>
@@ -479,6 +479,34 @@
                 var foundarticle = 0;
                 var nbr = 0;
                 if (window.confirm("\"Vous allez recréer le BL à partir des UM entrée. Les valeurs précédemment saisies seront remplacées par le contenu des UM entrée liées à ce BL?")) {
+                    $('#tabbl tr').each(function (a, b) {  //recupère les  entrée dans la table
+                        if (a === 0 || a === 1) {
+                            // Je ne prends pas en compte le "thead".
+                        }
+                        else {
+                            $(this).find('td').each(function(a, b) {
+                                if (a === 7) {
+                                    console.log($(this).find('button').attr('id'));
+                                    $.ajax({
+                                        type: "POST",    //type de requête utilisé par ajax
+                                        url: "/ligneble/delete/", //lien de la view qui gère la requête post pour delete les lignes du bl
+                                        data: {
+                                            'id': $(this).find('button').attr('id'),
+                                            csrfmiddlewaretoken: '{{ csrf_token }}',
+                                        },
+                                        success: function (msg, data, settings) {
+                                            console.log("gg " + msg);
+                                            //location.reload();
+                                        },
+                                        failure: function () {
+                                            console.log("fail");
+                                        }
+                                    });
+                                }
+                            });
+                            $(this).remove();
+                        }
+                    });
                     '{% for colis in col %}'
                     '{% for items in umentree %}'
                     '{% if colis.fk_UniteManutentionEntree|safe == items.idUniteManutentionEntree|safe %}'

@@ -196,9 +196,9 @@
 </div>
 </div>
 
-<div class="container text-center">
+<div class="container text-center" style="width: 100%;">
     <div class="row">
-        <div class="col-6">
+        <div class="col-auto">
             <div class="border shadow-lg p-3 mb-5 bg-white rounded">
                 <div class="table-responsive">
                     <h4 class="text-center"><b>Lignes bon de commande sortie</b></h4>
@@ -241,13 +241,13 @@
                                     <td> {{ items.fk_Article.designationClient }} </td>
                                     <td> {{ items.quantiteProduitCommande }} </td>
                                     <td> {{ items.quantiteColisCommande }} </td>
-                                    <td> {{ items.quantiteProduitALivrer }} </td>
+                                    <td class="text-center"> <input class="form-control-plaintext text-center prodaliv" value="{{ items.quantiteProduitALivrer }}"></td>
                                     <td> {{ items.quantiteCommandePotentiel }} </td>
-                                    <td> {{ items.quantiteProduitPotentielle }} </td>
-                                    <td> {{ items.quantiteColisPotentielle }} </td>
-                                    <td> {{ items.differenceCommandeLivre }} </td>
                                     <td> {{ items.quantiteProduitLivre }} </td>
                                     <td> {{ items.quantiteColisLivre }} </td>
+                                    <td> {{ items.differenceCommandeLivre }} </td>
+                                    <td> {{ items.quantiteProduitPotentielle }} </td>
+                                    <td> {{ items.quantiteColisPotentielle }} </td>
                                     <td> {{ items.priorite }} </td>
                                     {% if items.termine == '0' %}
                                         <td> <button id='{{ items.idLigneBonCommandeSortie }}' class="termin btn btn-sm btn-outline-grey rounded-pill"> <i class="fa fa-pen"></i></button> </td>
@@ -292,7 +292,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-6">
+        <div class="col-auto">
             <div class="border shadow-lg p-3 mb-5 bg-white rounded">
                 <div class="table-responsive">
                     <h4 class="text-center"><b>Bons de livraison sortie</b></h4>
@@ -385,6 +385,14 @@
             $("#transsel").toggle();
         });
 
+        $('.prodaliv').change(function () {
+            if (parseInt($(this).val()) == parseInt($(this).closest('td').parent().find('td').eq(6).text())) {
+                console.log("gg  " + $(this).closest('td').parent().find('td').eq(6).text());
+            } else {
+                console.log("no gg " + $(this).closest('td').parent().find('td').eq(6).text());
+            }
+            $(this).closest('td').parent().find('td').eq(5).text(parseInt($(this).val()) - parseInt($(this).closest('td').parent().find('td').eq(6).text()));
+        })
     });
 
     $("#create-row").click(function() {

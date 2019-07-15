@@ -59,7 +59,7 @@
 </style>
 <body>
 
-<div class="container jumbotron">
+<div class="container jumbotron" style="height: 180px;" id="containerelement">
   <div class="row">
     <div class="col">
       <h2 class="pl-3">Welcome</h2>
@@ -70,15 +70,130 @@
     Hi {{ user.username }}!
     <p><a href="{% url 'logout' %}">logout</a></p>
   </div>
+  <div class="col text-right">
+    <i id="settings" class="fa fa-cog" style="cursor: pointer;"></i>
+  </div>
   {% endif %}
   <div class="row">
     <div class="col">
       <!--Navbar-->
       {% if user.is_authenticated %}
+      <div>
+        <button class="navbar-toggler first-button" type="button" data-toggle="collapse" data-target="#collapsible1" id="openmenu">
+          <div class="animated-icon1"><span></span><span></span><span></span></div>
+        </button>
+      </div>
+
+      <div class="" style="position:relative;" id="navb">
+        <div id="collapsible1" class="vertical-menu navbar navbar-dark indigo mb-2 rounded-lg collapse navbar-collapse" style="z-index: 1">
+          <a class="nav-link text-center" href="{% url 'lve' %}">
+            <div class="col">
+              <div class="mx-auto">
+                <img src="{{ STATIC_URL }} /static/img/p-red-truck.png" class="img-fluid rounded text-left" alt="promotion-produit" height="75" width="75">
+              </div>
+            </div>
+            <div class="col">
+              <p>Lettre de voiture entree</p>
+              <hr>
+            </div>
+          </a>
+          <a class="nav-link text-center col" href="{% url 'bonLivraisonEntree' %}">
+            <img src="{{ STATIC_URL }} /static/img/normal_ian-symbol-vehicle-suv.png" class="img-fluid rounded text-left" alt="bonlivraison4x4" height="75" width="75">
+            <div class="col">
+              <p>Bon de livraison Entree </p>
+              <hr>
+            </div>
+          </a>
+          <a class="nav-link text-center col" href="{% url 'unitemanutentionentree' %}">
+            <img src="{{ STATIC_URL }} /static/img/lift.jpg" class="img-fluid rounded text-left" alt="unitemanutentionentree" height="75" width="75">
+            <div class="col">
+              <p>U.M Entrée</p>
+              <hr>
+            </div>
+          </a>
+          <a class="nav-link text-center col" href="{% url 'colis' %}">
+            <img src="{{ STATIC_URL }} /static/img/promotion-produit.png" class="img-fluid rounded text-left" alt="promotion-produit" height="75" width="75">
+            <div class="col">
+              <p>Colis</p>
+              <hr>
+            </div>
+          </a>
+          <a class="nav-link text-center col" href="{% url 'bonCommandeSortie' %}">
+            <img src="{{ STATIC_URL }} /static/img/ordre_du_jour.jpg" class="img-fluid rounded text-left my_img" alt="boncommandesortie" height="75" width="75">
+            <div class="col">
+              <p>Bon de commande Sortie</p>
+              <hr>
+            </div>
+          </a>
+          <a class="nav-link text-center col" href="{% url 'unitemanutentionsortie' %}">
+            <img src="{{ STATIC_URL }} /static/img/p-red-truck.png" class="img-fluid rounded text-left" alt="promotion-produit" height="75" width="75">
+            <div class="col">
+              <p>U.M Sortie </p>
+              <hr>
+            </div>
+          </a>
+          <a class="nav-link text-center col" href="{% url 'bonLivraisonSortie' %}">
+            <img src="{{ STATIC_URL }} /static/img/normal_ian-symbol-vehicle-suv.png" class="img-fluid rounded text-left" alt="bonlivraisonsortie" height="75" width="75">
+            <div class="col">
+              <p>Bon de livraison Sortie </p>
+              <hr>
+            </div>
+          </a>
+          <a class="text-center rounded col" href="{% url 'index' %}">
+            <img src="{{ STATIC_URL }} /static/img/mailbox.jpg" class="img-fluid rounded text-left my_img" alt="accueil" height="75" width="75">
+            <div class="col">
+              <p>Accueil</p>
+              <hr>
+            </div>
+          </a>
+          <a class="nav-link text-center col" href="{% url 'bonCommandeEntree' %}">
+            <img src="{{ STATIC_URL }} /static/img/Liste des points à traiter.png" class="img-fluid rounded text-left" alt="boncommandeentree" height="75" width="75">
+            <div class="col">
+              <p>Bon de commande Entree</p>
+              <hr>
+            </div>
+          </a>
+          <a class="text-center col" href="{% url 'article' %}">
+            <img src="{{ STATIC_URL }} /static/img/AWS-icon.png" class="img-fluid rounded text-left my_img" alt="boncommandesortie" height="75" width="75">
+            <div class="col">
+              <p>Article</p>
+              <hr>
+            </div>
+          </a>
+          <a class="nav-link text-center col" href="{% url 'client' %}">
+            <img src="{{ STATIC_URL }} /static/img/client-est-roi1.jpg" class="img-fluid rounded text-left" alt="clients" height="75" width="75">
+            <div class="col">
+              <p>Clients</p>
+              <hr>
+            </div>
+          </a>
+
+          <a class="nav-link text-center col" href="{% url 'destinataire' %}">
+            <img src="{{ STATIC_URL }} /static/img/mailbox.jpg" class="img-fluid rounded" alt="Destinatairest" height="75" width="75">
+            <div class="col">
+              <p>Destinataires</p>
+              <hr>
+            </div>
+          </a>
+          <a class="nav-link text-center col" href="{% url 'transporteur' %}">
+            <img src="{{ STATIC_URL }} /static/img/Isuzu-removal-truck.jpg" class="img-fluid rounded" alt="Transporteurs"  height="75" width="75">
+            <div class="col">
+              <p>Transporteurs</p>
+              <hr>
+            </div>
+          </a>
+          <a class="nav-link text-center col"  href="{% url 'fournisseur' %}">
+            <img src="{{ STATIC_URL }} /static/img/supplier-management.jpg" class="img-fluid rounded" alt="Fournisseurs"  height="75" width="75">
+            <div class="col">
+              <p>Fournisseurs</p>
+              <hr>
+            </div></a>
+        </div>
+      </div>
       <!-- Navbar brand -->
-      <nav class="navbar navbar-dark  indigo mb-2" id="hidenot">
+      <!--<nav class="navbar navbar-dark  indigo mb-2" id="hidenot">
         <span  class="navbar-brand">Menu</span>
-        <!-- Collapse button -->
+        </!-- Collapse button --/>
         <div class="col text-right">
           <i id="settings" class="fa fa-cog" style="cursor: pointer;"></i>
         </div>
@@ -88,9 +203,9 @@
           <div class="animated-icon1"><span></span><span></span><span></span></div>
         </button>
 
-        <!-- Collapsible content -->
+        </!-- Collapsible content --/>
         <div class="collapse navbar-collapse" id="navbarSupportedContent20">
-          <!-- Links -->
+          </!-- Links --/>
           {% block sidebar %}
           <div class="row">
             <div class="col">
@@ -112,7 +227,7 @@
                       </a>
                     </div>
                   </div>
-                  <!--<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>-->
+                  </!--<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>--/>
                 </li>
 
                 <li class="nav-item"  style="height: 148px;" id="article">
@@ -337,10 +452,10 @@
             </div>
           </div>
           {% endblock %}
-          <!-- Links -->
+          </!-- Links --/>
         </div>
-        <!-- Collapsible content -->
-      </nav>
+        </!-- Collapsible content --/>
+      </nav>-->
       {% else %}
       <p>Please login to enter in sesame .</p>
       {% endif %}
@@ -379,6 +494,7 @@
 
 <script>
   $(document).ready(function () {
+
     $("ul li div div a").on({
       mouseenter: function () {
         $(this).fadeTo("slow", 0.5);
@@ -493,9 +609,9 @@
     });
 
 
- /*   $(document).ajaxStop(function() {
-      window.location.reload();
-    });*///fonction pour recharger les datas après certains ajax successfull, car asynchrone, donc doit avoir la sécurité de ajaxstop
+    /*   $(document).ajaxStop(function() {
+         window.location.reload();
+       });*///fonction pour recharger les datas après certains ajax successfull, car asynchrone, donc doit avoir la sécurité de ajaxstop
   });
 
   //ce widget permet d'avoir des input qui servent aussi de select donc 2 en 1 je l'utilise dans plusieurs templates il vient de JQuery UI
