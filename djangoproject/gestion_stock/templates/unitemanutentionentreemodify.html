@@ -171,7 +171,7 @@
                                     <th scope="col" class="text-center"><i class="fa fa-plus"></i></th>
                                     <th scope="col" class="text-center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n°colis&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
                                     <th scope="col" class="text-center">code fournisseur</th>
-                                    <th scope="col" class="text-center">&nbsp;désignation&nbsp;</th>
+                                    <th scope="col" class="text-center pl-5 pr-3">&nbsp;désignation&nbsp;</th>
                                     <th scope="col" class="text-center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n°lot&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
                                     <th scope="col" class="text-center">date péremption</th>
                                     <th scope="col" class="text-center">qte<br>par colis</th>
@@ -196,9 +196,9 @@
                                 <tr>
                                     <td><button class='duplique btn btn-sm  btn-outline-grey rounded-pill w-25' id="duplicate{{ items.idColis }}"><i class="fa fa-copy ml-n2" style='font-size: 15px;cursor:pointer;'></i></button></td>
                                     <td><button class='ajout btn btn-sm rounded-pill btn-outline-grey w-25' id="add{{ items.idColis }}"><i class="fa fa-plus ml-n1" style='font-size: 15px;cursor:pointer;'></i></button></td>
-                                    <td><input class='form-control' disabled id='ncolis{{items.idColis}}' value="{{ items.idColis }}"></td>
-                                    <td><select class="form-control fournise" id="blfournisseur{{items.idColis}}"></select></td>
-                                    <td><select class="form-control desif" id="iddesif{{items.idColis}}"></select></td>
+                                    <td><input class='form-control text-center' disabled id='ncolis{{items.idColis}}' value="{{ items.idColis }}"></td>
+                                    <td><select class="form-control fournise text-center" id="blfournisseur{{items.idColis}}"></select></td>
+                                    <td><select class="form-control desif text-center" id="iddesif{{items.idColis}}"></select></td>
                                     <td><input class='form-control' value='{{ items.numeroLot }}'></td>
                                     <td><input type="date" class="date rounded" class="form-control" value='{{ items.datePeremption }}'></td>
                                     <td><input type="text" class="form-control" value='{{ items.quantiteProduit }}'></td>
@@ -1058,16 +1058,40 @@
             colid++;
             $("#ncolis" + nbr).val(colid);
 
-            //console.log("there " + $(this).parent().parent().find('td').eq(3).text()); //celui qui duplique
-            //console.log($('#tabbl tr').last().find('td').eq(2).find('input').val()); celui qui est dupliqué
-
-            $("#blfournisseur" + nbr).combobox();
-            $("#iddesif" + nbr).combobox();
+            console.log("there " + $(this).parent().parent().find('td').eq(3).find('input').val()); //celui qui duplique
+            console.log($('#tabbl tr').last().find('td').eq(2).find('input').val()); //celui qui est dupliqué
+            //$("#blfournisseur" + nbr).combobox();
+            //$("#iddesif" + nbr).combobox();
+            $(".desif").combobox({
+                select: function (event, ui) {
+                    '{% for items in article %}'
+                    if ('{{ items.designationClient  }}' == this.value) {
+                        $(this).closest('td').prev().find('select').find('option').remove();
+                        $(this).closest('td').prev().find('select').append(new Option("{{ items.codeFournisseur }}", "{{ items.codeFournisseur }}"));
+                    }
+                    '{% endfor %}'
+                }
+            });
+            $(".fournise").combobox({
+                select: function (event, ui) {
+                    '{% for items in article %}'
+                    if ('{{ items.codeFournisseur }}' == this.value) {
+                        $(this).closest('td').next().find('select').find('option').remove();
+                        $(this).closest('td').next().find('select').append(new Option("{{ items.designationClient }}", "{{ items.designationClient }}"));
+                    }
+                    '{% endfor %}'
+                }
+            });
             $("#toggle").on("click", function () {
                 $("#blfournisseur" + nbr).toggle();
                 $("#iddesif" + nbr).toggle();
             });
-            //$(this).parent().parent().find('td').eq(3).val();
+            $('#tabbl tr').last().find('td').eq(3).find('input').val($(this).parent().parent().find('td').eq(3).find('input').val().trim()).trigger('change'); //code fournisseur
+            $('#tabbl tr').last().find('td').eq(4).find('input').val($(this).parent().parent().find('td').eq(4).find('input').val().trim()); //désignation
+            $('#tabbl tr').last().find('td').eq(5).find('input').val($(this).parent().parent().find('td').eq(5).find('input').val().trim()); //Num de lot
+            $('#tabbl tr').last().find('td').eq(6).find('input').val($(this).parent().parent().find('td').eq(6).find('input').val().trim()); //date
+            $('#tabbl tr').last().find('td').eq(7).find('input').val($(this).parent().parent().find('td').eq(7).find('input').val().trim()); // qte / colis
+            console.log($(this).parent().parent().find('td').eq(7).find('input').val().trim());
         });
         //sorting (trie) du tableau par rapport a ncolis, je recois des objets en js, puis les passe en jquery avec le $ pour utiliser les fonctions jquery
         if ($('#tabbl').length > 0) {

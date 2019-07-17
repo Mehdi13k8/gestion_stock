@@ -88,6 +88,7 @@ urlpatterns = [
     path('delete_bon_sortie/', views.bonCommandeSortie.delete),
 
     path('uploadbc/', views.uploadbc),
+    path('upload_bcsf/', views.bonCommandeSortie.upload_bcsf),#pour sauvegarder les images stockée dans les bcs
 
 
     path('bonLivraisonsortie', views.bonLivraisonSortie.as_view(), name='bonLivraisonSortie'),

@@ -295,7 +295,7 @@
                                         <div class="form-group">
                                             <p>fichier <i style="cursor: pointer;" class="fa fa-file" id="fichpop"></i></p>
                                             <div class="col-auto">
-                                                <input type="file" name="fichier" id="file" required="True" class="form-control-file">
+                                                <input type="file" name="file" id="file" required="True" class="form-control-file">
                                             </div>
                                             <p>photo <i style="cursor: pointer;" class="far fa-image" id="photopop"></i></p>
                                             <div class="col-auto">
@@ -859,10 +859,10 @@
                             } else {
                                 stock = $(this).find('input').val();
                                 if (a === 1) {
-                                    codefournisseur = $(this).text();
+                                    codefournisseur = stock;
                                 }
                                 if (a === 2) {
-                                    designation = $(this).text();
+                                    designation = stock;
                                     //designation = $(this).find('input').val();
                                     //console.log("desi == " + designation);
                                 }

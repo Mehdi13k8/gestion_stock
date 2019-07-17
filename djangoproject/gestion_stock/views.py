@@ -140,6 +140,19 @@ class bonCommandeSortie(ListView):
             one_task = BonCommandeSortie.objects.get(idBonCommandeSortie=request.POST['id'])
             one_task.delete()
             return HttpResponse("deleted !")
+        return HttpResponse("No access !")
+
+    def upload_bcsf(request):
+        if request.method == 'POST':
+            fichier = request.FILES.get('file', False)
+            idinput = request.POST.get('idinput')
+            bcs = BonCommandeSortie.objects.get(idBonCommandeSortie=idinput)
+            bcs.fichier = None
+            bcs.fichier = fichier
+            bcs.save()
+            print("gg fichier sauvegarder !!!!!!!!!!!!!!!!!!!!!!!!!")
+            return redirect(reverse('bonCommandeSortiemodify')+"?id="+bcs.idBonCommandeSortie)
+        return HttpResponse("No access authorized !")
 
     def get(self, request):
         context = {
@@ -147,7 +160,7 @@ class bonCommandeSortie(ListView):
             'activate' : 'on',
             'settings' : menuimages.objects.all(),
             'form'     : UploadFileForm(),
-            #'order'    : 'Order of CSV should be idBonCommandeSortie, Client, Destinataire, codeDestinataire, Transporteur, numeroCommande, dateCommande, source',
+            #'order'   : 'Order of CSV should be idBonCommandeSortie, Client, Destinataire, codeDestinataire, Transporteur, numeroCommande, dateCommande, source',
         }
         return render(request, self.template_name, context)
 
@@ -329,31 +342,34 @@ def uploadbc(request):
     for mylbc in lbc:
         for items in colis:
             print(items.quantiteProduit)
-            if items.fk_UniteManutentionSortie == None:
-                print ("THERE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-                if int(mylbc.quantiteProduitALivrer) - int(mylbc.quantiteProduitCommande) < 0:
-                    if mylbc.fk_Article == items.fk_Article:
-                        print ("GG FOUND !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!") #article correspondant a la ligne bon commande trouver dans les articles
-                        print (mylbc.quantiteProduitCommande + " !!!!!!! " + items.quantiteProduit)
-                        print ("Colis ! " + items.idColis) #article correspondant a la ligne bon commande trouver dans les articles
-                        if int(mylbc.quantiteProduitCommande) >= int(items.quantiteProduit): #verif que ça valeur du colis est tjr + petite que demander
-                            print ("GG2 FOUND  !!!!!!!!!!!!!!!!!!" + mylbc.quantiteProduitCommande + " and " + mylbc.quantiteProduitLivre)
-                            if int(mylbc.quantiteProduitCommande) >= int(mylbc.quantiteProduitLivre): #verif que la ligne a encore besoin d'un colis en comparant ce qui a été donné a ce qui doit être donné
-                                print (mylbc.quantiteProduitLivre +" + " + items.quantiteProduit + " <= " + mylbc.quantiteProduitCommande)
-                                #Maintenant je dois sortir de le colis dans une Ums adéquate donc celle du bon de commande mylbc actuelle mais je dois vérifié que si je rajoute 1 colis je dépasse pas
-                                if (int(mylbc.quantiteProduitLivre) + int(items.quantiteProduit)) < int(mylbc.quantiteProduitCommande):
-                                    items.fk_UniteManutentionSortie = UniteManutentionSortie.objects.get(fk_BonCommandeSortie=mylbc.fk_BonCommandeSortie)
-                                    mylbc.quantiteProduitCommande = str(int(mylbc.quantiteProduitCommande) - int(items.quantiteProduit))
-                                    mylbc.quantiteProduitLivre = str(int(mylbc.quantiteProduitLivre) + int(items.quantiteProduit))
-                                    mylbc.quantiteColisLivre = str(int(mylbc.quantiteColisLivre) + int(1))
-                                    mylbc.save()
-                                    #items.save()
-                                    print ("LBC CHANGED")
-                                else:
-                                    print (str(int(mylbc.quantiteProduitLivre) + int(items.quantiteProduit)) + " Not changed quantite " + mylbc.quantiteProduitCommande)
-                else:
-                        print ("NOT FOUND !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-            items.save()
+            try:
+                if items.fk_UniteManutentionSortie == None:
+                    print ("THERE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+                    if int(mylbc.quantiteProduitALivrer) - int(mylbc.quantiteProduitCommande) < 0:
+                        if mylbc.fk_Article == items.fk_Article:
+                            print ("GG FOUND !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!") #article correspondant a la ligne bon commande trouver dans les articles
+                            print (mylbc.quantiteProduitCommande + " !!!!!!! " + items.quantiteProduit)
+                            print ("Colis ! " + items.idColis) #article correspondant a la ligne bon commande trouver dans les articles
+                            if int(mylbc.quantiteProduitCommande) >= int(items.quantiteProduit): #verif que ça valeur du colis est tjr + petite que demander
+                                print ("GG2 FOUND  !!!!!!!!!!!!!!!!!!" + mylbc.quantiteProduitCommande + " and " + mylbc.quantiteProduitLivre)
+                                if int(mylbc.quantiteProduitCommande) >= int(mylbc.quantiteProduitLivre): #verif que la ligne a encore besoin d'un colis en comparant ce qui a été donné a ce qui doit être donné
+                                    print (mylbc.quantiteProduitLivre +" + " + items.quantiteProduit + " <= " + mylbc.quantiteProduitCommande)
+                                    #Maintenant je dois sortir de le colis dans une Ums adéquate donc celle du bon de commande mylbc actuelle mais je dois vérifié que si je rajoute 1 colis je dépasse pas
+                                    if (int(mylbc.quantiteProduitLivre) + int(items.quantiteProduit)) < int(mylbc.quantiteProduitCommande):
+                                        items.fk_UniteManutentionSortie = UniteManutentionSortie.objects.get(fk_BonCommandeSortie=mylbc.fk_BonCommandeSortie)
+                                        mylbc.quantiteProduitCommande = str(int(mylbc.quantiteProduitCommande) - int(items.quantiteProduit))
+                                        mylbc.quantiteProduitLivre = str(int(mylbc.quantiteProduitLivre) + int(items.quantiteProduit))
+                                        mylbc.quantiteColisLivre = str(int(mylbc.quantiteColisLivre) + int(1))
+                                        mylbc.save()
+                                        #items.save()
+                                        print ("LBC CHANGED")
+                                    else:
+                                        print (str(int(mylbc.quantiteProduitLivre) + int(items.quantiteProduit)) + " Not changed quantite " + mylbc.quantiteProduitCommande)
+                    else:
+                            print ("NOT FOUND !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+                items.save()
+            except Exception as e:
+                print("error1 -- " + str(e))
     return HttpResponseRedirect(reverse("bonCommandeSortie"))
 
 class bonCommandeSortieadd(ListView):
@@ -513,7 +529,7 @@ class lettrevoitureentreemodify(ListView):
             lve.photo = None
             lve.photo = photo
             lve.save()
-            return redirect(reverse('lvemodify')+"?id="+lve.idLettreVoitureEntree)
+            return redirect(reverse('lvemodify')+"?id="+lve.idLettreVoitureEntree) #ici on fait un "redirect" (qui va renvoyer vers une page) qui utilise reverse (reverse) qui permet d'utiliser le nom de l'url
         return HttpResponse("No Authorized Access !")
 
     def get(self, request):

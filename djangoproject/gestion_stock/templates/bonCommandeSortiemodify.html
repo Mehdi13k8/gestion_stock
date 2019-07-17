@@ -127,9 +127,48 @@
                         </select>
                         <br>
                         <br>
-                        <label for="btnfile">fichier :</label>
-                        <br>
-                        <button id="btnfile" class="btn btn-sm btn-outline-blue-grey"><i class="fas fa-file-archive"></i></button>
+                        <form action="/upload_bcsf/?" method="POST" enctype="multipart/form-data" class="form-horizontal">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <p>fichier <i style="cursor: pointer;" class="fa fa-file" id="fichpop"></i></p>
+                                <div class="col-auto">
+                                    <input type="file" name="file" id="file" required="True" class="form-control-file">
+                                </div>
+                            </div>
+                            {% for items in bcs %}
+                            {% if items.idBonCommandeSortie == id%}
+                            {% if items.fichier %}
+                            <img id="imgfichier" src="{{ items.fichier.url }}" >
+                            <script>
+                                $('#imgfichier').hide();
+                                $("#fichpop").css("color", "green");
+                                $('#fichpop').click(function () {
+                                    var src = $('#imgfichier').attr('src');
+                                    $('<div>').css({
+                                        background: 'RGBA(0,0,0,.5) url('+src+') no-repeat center', // .5 rends à moitié "transparent" car le 4 paramètre est = a l'opacité de la couleur
+                                        backgroundSize: 'contain',
+                                        width:'100%', height:'100%',
+                                        position:'fixed',
+                                        zIndex:'10000',
+                                        top:'0', left:'0',
+                                        cursor: 'zoom-out'
+                                    }).click(function(){
+                                        $(this).remove();
+                                    }).appendTo('body');
+                                });
+                            </script>
+                            {% endif %}
+                            {% endif %}
+                            {% endfor %}
+                            <div class="form-group">
+                                <div class="col-md-3 col-sm-3 col-xs-12 col-md-offset-3" style="margin-bottom:10px;">
+                                    <button class="btn btn-primary btn-sm">
+                                        <span class="fa fa-upload" style="margin-right:5px;"></span>
+                                        Upload</button>
+                                </div>
+                            </div>
+                            <input type="text" hidden value="{{ id }}" name="idinput" id="idinput">
+                        </form>
                     </div>
                 </div>
                 <br>
@@ -154,24 +193,24 @@
                         </thead>
                         <tbody>
                         {% for items in ums %}
-                            {% if items.fk_BonCommandeSortie.idBonCommandeSortie == id %}
-                                <tr>
-                                    <td> <a href='{% url "unitemanutentionsortiemodify" %}?id={{items.idUniteManutentionSortie|safe }}'><button type="button" id='{{ items.idUniteManutentionSortie }}' class="dyna btn btn-sm btn-outline-grey rounded"> <i class="fa fa-arrow-right"></i> </button></a></td>
+                        {% if items.fk_BonCommandeSortie.idBonCommandeSortie == id %}
+                        <tr>
+                            <td> <a href='{% url "unitemanutentionsortiemodify" %}?id={{items.idUniteManutentionSortie|safe }}'><button type="button" id='{{ items.idUniteManutentionSortie }}' class="dyna btn btn-sm btn-outline-grey rounded"> <i class="fa fa-arrow-right"></i> </button></a></td>
 
-                                    {% for clients in cli %}
-                                        {% if clients.fk_TypeDestinataire.nom == items.fk_BonCommandeSortie.fk_Destinataire.fk_TypeDestinataire.nom  %}
-                                            <td> {{ clients.nom }} </td>
-                                        {% endif %}
-                                    {% endfor %}
-
-                                    <td> {{ items.fk_BonCommandeSortie.fk_Destinataire.codeUM }} </td>
-                                    <td> {{ items.fk_BonCommandeSortie.dateCommande }} </td>
-                                    <td> {{ items.fk_BonCommandeSortie.numeroCommande }} </td>
-                                    <td> {{ items.fk_BonCommandeSortie.idBonCommandeSortie }} </td>
-                                    <td> {{ items.fk_BonCommandeSortie.termine }} </td>
-                                    <td> <button id='{{ items.idBonCommandeSortie  }}' class="dynad btn btn-sm btn-outline-grey rounded-pill"> <i class="fa fa-minus"></i>   </button> </td>
-                                </tr>
+                            {% for clients in cli %}
+                            {% if clients.fk_TypeDestinataire.nom == items.fk_BonCommandeSortie.fk_Destinataire.fk_TypeDestinataire.nom  %}
+                            <td> {{ clients.nom }} </td>
                             {% endif %}
+                            {% endfor %}
+
+                            <td> {{ items.fk_BonCommandeSortie.fk_Destinataire.codeUM }} </td>
+                            <td> {{ items.fk_BonCommandeSortie.dateCommande }} </td>
+                            <td> {{ items.fk_BonCommandeSortie.numeroCommande }} </td>
+                            <td> {{ items.fk_BonCommandeSortie.idBonCommandeSortie }} </td>
+                            <td> {{ items.fk_BonCommandeSortie.termine }} </td>
+                            <td> <button id='{{ items.idBonCommandeSortie  }}' class="dynad btn btn-sm btn-outline-grey rounded-pill"> <i class="fa fa-minus"></i>   </button> </td>
+                        </tr>
+                        {% endif %}
                         {% endfor %}
                         </tbody>
                         <tfoot>
@@ -234,39 +273,39 @@
                         </thead>
                         <tbody>
                         {% for items in lbcs %}
-                            {% if items.fk_BonCommandeSortie.idBonCommandeSortie|safe == id %}
-                                <tr class="">
-                                    <!--<td> <button type="button" id='{{ items.idBonCommandeSortie }}' class="dyna btn btn-sm btn-outline-grey rounded"> <i class="fa fa-arrow-right"></i> </button></td>-->
-                                    <td> {{ items.fk_Article.codeClient }} </td>
-                                    <td> {{ items.fk_Article.designationClient }} </td>
-                                    <td> {{ items.quantiteProduitCommande }} </td>
-                                    <td> {{ items.quantiteColisCommande }} </td>
-                                    <td class="text-center"> <input class="form-control-plaintext text-center prodaliv" value="{{ items.quantiteProduitALivrer }}"></td>
-                                    <td> {{ items.quantiteCommandePotentiel }} </td>
-                                    <td> {{ items.quantiteProduitLivre }} </td>
-                                    <td> {{ items.quantiteColisLivre }} </td>
-                                    <td> {{ items.differenceCommandeLivre }} </td>
-                                    <td> {{ items.quantiteProduitPotentielle }} </td>
-                                    <td> {{ items.quantiteColisPotentielle }} </td>
-                                    <td> {{ items.priorite }} </td>
-                                    {% if items.termine == '0' %}
-                                        <td> <button id='{{ items.idLigneBonCommandeSortie }}' class="termin btn btn-sm btn-outline-grey rounded-pill"> <i class="fa fa-pen"></i></button> </td>
-                                    {% else %}
-                                        <td> <button id='{{ items.idLigneBonCommandeSortie }}' class="termin btn btn-sm btn-outline-red rounded-pill"> <i class="fa fa-pen"></i></button> </td>
-                                    {% endif %}
-                                    <td> <button id='{{ items.idLigneBonCommandeSortie }}' class="dynad btn btn-sm btn-outline-red rounded-pill"> <i class="fa fa-minus"></i></button> </td>
-                                    <td> {{ items.idLigneBonCommandeSortie }} </td>
-                                <!--<tr>
-                                    <td> <button type="button" id='{{ items.idBonCommandeSortie }}' class="dyna btn btn-sm btn-outline-grey rounded"> <i class="fa fa-arrow-right"></i> </button></td>
-                                    <td> {{ items.fk_Destinataire.fk_TypeDestinataire.nom }} </td>
-                                    <td> {{ items.fk_Destinataire.codeUM }} </td>
-                                    <td> {{ items.dateCommande }} </td>
-                                    <td> {{ items.numeroCommande }} </td>
-                                    <td> {{ items.idBonCommandeSortie }} </td>
-                                    <td> {{ items.termine }} </td>
-                                    <td> <button id='{{ items.idBonCommandeSortie  }}' class="dynad btn btn-sm btn-outline-grey rounded-pill"> <i class="fa fa-minus"></i>   </button> </td>                            -->
-                                </tr>
+                        {% if items.fk_BonCommandeSortie.idBonCommandeSortie|safe == id %}
+                        <tr class="">
+                            <!--<td> <button type="button" id='{{ items.idBonCommandeSortie }}' class="dyna btn btn-sm btn-outline-grey rounded"> <i class="fa fa-arrow-right"></i> </button></td>-->
+                            <td> {{ items.fk_Article.codeClient }} </td>
+                            <td> {{ items.fk_Article.designationClient }} </td>
+                            <td> {{ items.quantiteProduitCommande }} </td>
+                            <td> {{ items.quantiteColisCommande }} </td>
+                            <td class="text-center"> <input class="form-control-plaintext text-center prodaliv" value="{{ items.quantiteProduitALivrer }}"></td>
+                            <td> {{ items.quantiteCommandePotentiel }} </td>
+                            <td> {{ items.quantiteProduitLivre }} </td>
+                            <td> {{ items.quantiteColisLivre }} </td>
+                            <td> {{ items.differenceCommandeLivre }} </td>
+                            <td> {{ items.quantiteProduitPotentielle }} </td>
+                            <td> {{ items.quantiteColisPotentielle }} </td>
+                            <td> {{ items.priorite }} </td>
+                            {% if items.termine == '0' %}
+                            <td> <button id='{{ items.idLigneBonCommandeSortie }}' class="termin btn btn-sm btn-outline-grey rounded-pill"> <i class="fa fa-pen"></i></button> </td>
+                            {% else %}
+                            <td> <button id='{{ items.idLigneBonCommandeSortie }}' class="termin btn btn-sm btn-outline-red rounded-pill"> <i class="fa fa-pen"></i></button> </td>
                             {% endif %}
+                            <td> <button id='{{ items.idLigneBonCommandeSortie }}' class="dynad btn btn-sm btn-outline-red rounded-pill"> <i class="fa fa-minus"></i></button> </td>
+                            <td> {{ items.idLigneBonCommandeSortie }} </td>
+                            <!--<tr>
+                                <td> <button type="button" id='{{ items.idBonCommandeSortie }}' class="dyna btn btn-sm btn-outline-grey rounded"> <i class="fa fa-arrow-right"></i> </button></td>
+                                <td> {{ items.fk_Destinataire.fk_TypeDestinataire.nom }} </td>
+                                <td> {{ items.fk_Destinataire.codeUM }} </td>
+                                <td> {{ items.dateCommande }} </td>
+                                <td> {{ items.numeroCommande }} </td>
+                                <td> {{ items.idBonCommandeSortie }} </td>
+                                <td> {{ items.termine }} </td>
+                                <td> <button id='{{ items.idBonCommandeSortie  }}' class="dynad btn btn-sm btn-outline-grey rounded-pill"> <i class="fa fa-minus"></i>   </button> </td>                            -->
+                        </tr>
+                        {% endif %}
                         {% endfor %}
                         </tbody>
                         <tfoot>
@@ -290,6 +329,7 @@
                         </tfoot>
                     </table>
                 </div>
+                <button type="button" id="recalculate" class="btn btn-default btn-rounded btn-outline-dark">Re-Calculer &nbsp; <i class="fas fa-cogs"></i></button>
             </div>
         </div>
         <div class="col-auto">
@@ -392,11 +432,14 @@
                 console.log("no gg " + $(this).closest('td').parent().find('td').eq(6).text());
             }
             $(this).closest('td').parent().find('td').eq(5).text(parseInt($(this).val()) - parseInt($(this).closest('td').parent().find('td').eq(6).text()));
-        })
-    });
+        });
+        $("#create-row").click(function() {
+            location.href = "{% url 'bonCommandeSortieadd' %}";
+        });
+        $('#recalculate').click(function () {
+            console.log("there");
+        });
 
-    $("#create-row").click(function() {
-        location.href = "{% url 'bonCommandeSortieadd' %}";
     });
 </script>
 {% endblock %}

@@ -1355,6 +1355,7 @@ class LigneBonLivraisonSortie_pour_BonLivraisonSortie(models.Model):
 class BonCommandeSortie(models.Model):
     idBonCommandeSortie = models.CharField(max_length=150, default=0)
     termine = models.CharField(max_length=150, default=0)
+    fichier = models.ImageField(upload_to='media_bcs/', default=None, blank=True, null=True)
     source = models.CharField(max_length=150, default=0)
     identifiantSource = models.CharField(max_length=150, default=0)
     numeroCommande = models.CharField(max_length=150, default=0)

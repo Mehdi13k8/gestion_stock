@@ -34,29 +34,29 @@ z
                     <div class="col">
                         <div class="form-group text-left ml-5">
                             <label for="idums"> identifiant:&nbsp; </label>
-                            <input type="text" class="form-control" id="idums" placeholder="0" style="width: 90px;" disabled>
+                            <input type="text" class="form-control text-center w-responsive" id="idums" placeholder="0" style="" disabled>
                         </div>
-                        <div class="form-group text-left ml-5">
+                        <div class="form-group">
                             <label for="desti"> destinataire:&nbsp; </label>
-                            <input type="text" class="form-control" id="desti" placeholder="0" style="width: 90px;" disabled>
+                            <input type="text" class="form-control input-lg text-center" id="desti" readonly="readonly">
                         </div>
                         <div class="form-group text-left ml-5">
                             <label for="bcsid"> Bon commande :&nbsp; </label>
-                            <input type="text" class="form-control" id="bcsid" placeholder="0" style="width: 90px;" disabled>
+                            <input type="text" class="form-control text-center w-responsive" id="bcsid" placeholder="0" style="" disabled>
                         </div>
                         <div class="form-group text-left ml-5">
                             <label for="blsid"> Bon livraison :&nbsp; </label>
-                            <input type="text" class="form-control" id="blsid" placeholder="0" style="width: 90px;" disabled>
+                            <input type="text" class="form-control" id="blsid" placeholder="0" style="" disabled>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-group text-left ml-5">
                             <label for="codeum"> Code UM : &nbsp; </label>
-                            <input type="text" class="form-control" id="codeum" placeholder="0" style="width: 90px;" disabled>
+                            <input type="text" class="form-control" id="codeum" placeholder="0" style="" disabled>
                         </div>
                         <div class="form-group text-left ml-5">
                             <label for="umsnum"> numéro : &nbsp; </label>
-                            <input type="text" class="form-control" id="umsnum" placeholder="0" style="width: 90px;" disabled>
+                            <input type="text" class="form-control" id="umsnum" placeholder="0" style="" disabled>
                         </div>
                     </div>
                 </div>
@@ -129,7 +129,7 @@ z
                                     <th scope="col" class="text-center"><i class="fa fa-copy"></i></th>
                                     <th scope="col" class="text-center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n°colis&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
                                     <th scope="col" class="text-center">code fournisseur</th>
-                                    <th scope="col" class="text-center">&nbsp;désignation&nbsp;</th>
+                                    <th scope="col" class="text-center pl-5 pr-5">&nbsp;désignation&nbsp;</th>
                                     <th scope="col" class="text-center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n°lot&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
                                     <th scope="col" class="text-center">date péremption</th>
                                     <th scope="col" class="text-center">qte<br>par colis</th>
@@ -144,7 +144,6 @@ z
                                     <th scope="col" class="text-center"><i class="fa fa-unlink"></i></th>
                                     <th scope="col" class="text-center">Retour ancien<br>n° colis</th>
                                     <th scope="col" class="text-center"><i class="fa fa-trash"></i></th>
-
                                 </tr>
                                 </thead>
                                 <tbody id="tabblbody">
@@ -259,6 +258,34 @@ z
         '{% endfor %}'
         //Impression de l'etiquette UM  via le button UM
         //Impression des listes de colisages via le button LC
+
+        //sorting (trie) du tableau par rapport a ncolis, je recois des objets en js, puis les passe en jquery avec le $ pour utiliser les fonctions jquery
+        if ($('#tabblbody').length > 0) {
+            var table, rows, switching, i, x, y, shouldSwitch;
+            table = document.getElementById("tabbl");
+            switching = true;
+            while (switching) {
+                switching = false;
+                rows = table.rows;
+                for (i = 1; i < (rows.length - 1); i++) {
+                    shouldSwitch = false;
+                    x = rows[i].getElementsByTagName("TD")[1];
+                    var xx = $(x);
+                    y = rows[i + 1].getElementsByTagName("TD")[1];
+                    var yy = $(y);
+                    //if (x.innerHTML > y.innerHTML) {
+                    //alert(xx.find('input').val().trim());
+                    if (parseInt(xx.find('input').val().trim()) > parseInt(yy.find('input').val().trim())) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+                if (shouldSwitch) {
+                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                    switching = true;
+                }
+            }
+        }
     });
 </script>
 
