@@ -93,6 +93,7 @@ class LigneBonCommandeSortie_pour_BonCommandeSortie(models.Model):
     m_horodatage = models.CharField(max_length=150, default=0)
     idLigneBonCommandeSortie = models.CharField(max_length=150, default=0)
     quantiteProduitCommande = models.CharField(max_length=150, default=0)
+    quantiteProduitCommandestats = models.CharField(max_length=150, default=0)
     quantiteColisCommande  = models.CharField(max_length=150, default=0)
     quantiteProduitALivrer = models.CharField(max_length=150, default=0)
     quantiteProduitLivre = models.CharField(max_length=150, default=0)
@@ -1212,7 +1213,7 @@ class UniteManutentionEntree(models.Model):
 #début Colis
 class Colis(models.Model):
     idColis = models.CharField(max_length=150, default=0)
-    fk_UniteManutentionEntree = models.ForeignKey('UniteManutentionEntree', on_delete=models.CASCADE    , default=0, blank=True, null=True)
+    fk_UniteManutentionEntree = models.ForeignKey('UniteManutentionEntree', on_delete=models.CASCADE, default=0, blank=True, null=True)
     fk_UniteManutentionSortie = models.ForeignKey('UniteManutentionSortie', on_delete=models.SET_NULL, default=0, blank=True, null=True)
     fk_Article = models.ForeignKey('Article', on_delete=models.SET_NULL, default=0, blank=True, null=True)
     #fk_Article = models.ForeignKey('Article', on_delete=models.SET_NULL, default=0, blank=True, null=True)

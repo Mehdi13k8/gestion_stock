@@ -410,12 +410,6 @@
         }
         '{% endfor %}'
 
-        if ($('#dtBasicExample body tr').find('td').find('.fa-toggle-on').length > 0) {
-            console.log();
-        } else {
-            console.log();
-        }
-
         $("#client").combobox();
         $("#destinataire").combobox();
         $("#transsel").combobox();
@@ -437,7 +431,67 @@
             location.href = "{% url 'bonCommandeSortieadd' %}";
         });
         $('#recalculate').click(function () {
-            console.log("there");
+            var codcli = 0;
+            var desicl = 0;
+            var qtecom = 0;
+            var qtecol = 0;
+            var qteatt = 0;
+            var diff = 0;
+            var idligne = 0;
+            $('#dtBasicExample tr').each(function (a, b) {  //recupère les  entrée dans la table
+                if (a === 0 || a === 1) {
+                    // Je ne prends pas en compte le "thead".
+                }
+                else {
+                    $(this).find('td').each(function(a, b) {
+                        if (a === 0) {
+                            codcli = $(this).text().trim();
+                        }
+                        if (a === 1) {
+                            desicl = $(this).text().trim();
+                        }
+                        if (a === 2) {
+                            qtecom = $(this).text().trim();
+                        }
+                        if (a === 3) {
+                            qtecol = $(this).text().trim();
+                        }
+                        if (a === 4) {
+                            qteatt = $(this).find('input').val().trim();
+                        }
+                        if (a === 5) {
+                            diff = $(this).text().trim();
+                        }
+                        if (a === 14) {
+                            idligne = $(this).text().trim();
+                        }
+                    });
+                    console.log($('#idbcs').val() + codcli + desicl + " " + qtecom + " " + qtecol + " " + qteatt + " " + diff);
+                    $.ajax({
+                        type: "POST",    //type de requête utilisé par ajax
+                        url: "/bon_sortie/modify/recalcule/", //lien de la view qui gère la requête post pour delete les lignes du bl
+                        data: {
+                            'idbcs' : $('#idbcs').val(),
+                            'codecli': codcli,
+                            'desicl': desicl,
+                            'qtecom': qtecom,
+                            'qtecol': qtecol,
+                            'qteatt': qteatt,
+                            'diff': diff,
+                            'idligne': idligne,
+                            csrfmiddlewaretoken: '{{ csrf_token }}',
+                        },
+                        success: function (msg, data, settings) {
+                            console.log("gg " + msg);
+                            //location.reload();
+                        },
+                        failure: function () {
+                            console.log("fail");
+                        }
+                    });
+                    //$(this).remove();
+                }
+            });
         });
 
     });
