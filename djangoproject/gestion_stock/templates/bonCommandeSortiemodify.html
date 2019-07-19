@@ -430,6 +430,7 @@
         $("#create-row").click(function() {
             location.href = "{% url 'bonCommandeSortieadd' %}";
         });
+
         $('#recalculate').click(function () {
             var codcli = 0;
             var desicl = 0;
@@ -471,7 +472,7 @@
                         type: "POST",    //type de requête utilisé par ajax
                         url: "/bon_sortie/modify/recalcule/", //lien de la view qui gère la requête post pour delete les lignes du bl
                         data: {
-                            'idbcs' : $('#idbcs').val(),
+                            'idbcs' : $('#ncom').val(),
                             'codecli': codcli,
                             'desicl': desicl,
                             'qtecom': qtecom,
