@@ -94,7 +94,6 @@
             type:"POST",    //type de requête utilisé par ajax
             url:"/sort_cols/", //lien de la view qui gère la requête post pour trier les colis des um entree vers des bcs avec une ums ouverte
             data: {
-                'token': "tries_des_colis",
                 csrfmiddlewaretoken: '{{ csrf_token }}'
             },
             success: function(msg, data, settings){

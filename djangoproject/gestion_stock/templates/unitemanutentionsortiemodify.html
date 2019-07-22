@@ -15,7 +15,7 @@
 
 <div class="container"><h1 class="text-center"> modif U.M Sortie</h1></div>
 <br>
-z
+
 <div class="container">
     <div class="form-group row text-center">
         <div class="col">
@@ -251,11 +251,72 @@ z
              $('#blsid').val("{{ items.fk_BonLivraisonSortie.idBonBonLivraisonSortie|safe }}");
              $('#codeum').val("{{ items.fk_BonCommandeSortie.fk_Destinataire.codeUM|safe }}");
              $('#umsnum').val("{{ items.numero|safe }}");
-             $('#dateo').val("{{ items.dateOuverture }}");
+             //alert("{{ items.dateOuverture }}");
+             $('#dateo').val("{{ items.dateOuverture|safe }}");
              $('#datef').val("{{ items.dateFermeture }}");
              $('#datee').val("{{ items.dateExpedition }}");
          }
         '{% endfor %}'
+        $('#dateo').change(function () {
+            //alert($('#dateo').val());
+            $.ajax({
+                type:"POST",    //type de requête utilisé par ajax
+                url:"/umsortie/modify/dateouverture/", //lien de la view qui gère la requête post pour trier les colis des um entree vers des bcs avec une ums ouverte
+                data: {
+                    'id' : $('#idums').val(),
+                    'dateouverture' : $('#dateo').val(),
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
+                success: function(msg, data, settings){
+                    console.log("gg " + msg);
+                    //location.reload();
+                },
+                failure: function() {
+                    console.log("fail");
+                    //location.reload();
+                }
+            });
+        });
+        $('#datef').change(function () {
+            $.ajax({
+                type:"POST",    //type de requête utilisé par ajax
+                url:"/umsortie/modify/datefermeture/", //lien de la view qui gère la requête post pour trier les colis des um entree vers des bcs avec une ums ouverte
+                data: {
+                    'id' : $('#idums').val(),
+                    'datefermeture' : $('#datef').val(),
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
+                success: function(msg, data, settings){
+                    console.log("gg " + msg);
+                    //location.reload();
+                },
+                failure: function() {
+                    console.log("fail");
+                    //location.reload();
+                }
+            });
+            //alert($('#datef').val());
+        });
+        $('#datee').change(function () {
+            $.ajax({
+                type:"POST",    //type de requête utilisé par ajax
+                url:"/umsortie/modify/dateexpedition/", //lien de la view qui gère la requête post pour trier les colis des um entree vers des bcs avec une ums ouverte
+                data: {
+                    'id' : $('#idums').val(),
+                    'dateexpedition' : $('#datee').val(),
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
+                success: function(msg, data, settings){
+                    console.log("gg " + msg);
+                    //location.reload();
+                },
+                failure: function() {
+                    console.log("fail");
+                    //location.reload();
+                }
+            });
+            //alert($('#datee').val());
+        });
         //Impression de l'etiquette UM  via le button UM
         //Impression des listes de colisages via le button LC
 

@@ -220,7 +220,7 @@ table.dataTable thead .sorting_desc_disabled:before {
 
 .vertical-menu {
   width: 200px;
-  height: 450px;
+  height: 40vw;
   overflow-y: auto;
 }
 

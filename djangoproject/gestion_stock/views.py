@@ -556,14 +556,18 @@ def sortcolis(request):
                                         print (mylbc.quantiteProduitLivre +" + " + items.quantiteProduit + " <= " + mylbc.quantiteProduitCommandestats)
                                         #Maintenant je dois sortir de le colis dans une Ums adéquate donc celle du bon de commande mylbc actuelle mais je dois vérifié que si je rajoute 1 colis je dépasse pas
                                         #if (int(mylbc.quantiteProduitLivre) + int(items.quantiteProduit)) < int(mylbc.quantiteProduitCommandestats): Quand je fais mes checks de sécurité ça bug !
-                                        items.fk_UniteManutentionSortie = UniteManutentionSortie.objects.get(fk_BonCommandeSortie=mylbc.fk_BonCommandeSortie)
-                                        mylbc.quantiteProduitCommandestats = str(int(mylbc.quantiteProduitCommandestats) - int(items.quantiteProduit))
-                                        mylbc.quantiteProduitLivre = str(int(mylbc.quantiteProduitLivre) + int(items.quantiteProduit))
-                                        mylbc.quantiteColisLivre = str(int(mylbc.quantiteColisLivre) + int(1))
-                                        mylbc.save()
-                                        items.save()
-                                        print ("LBC CHANGED")
-                                        nombrecolisf += 1
+                                        if items.fk_UniteManutentionSortie.dateFermeture:
+                                            items.fk_UniteManutentionSortie = UniteManutentionSortie.objects.get(fk_BonCommandeSortie=mylbc.fk_BonCommandeSortie)
+                                            mylbc.quantiteProduitCommandestats = str(int(mylbc.quantiteProduitCommandestats) - int(items.quantiteProduit))
+                                            mylbc.quantiteProduitLivre = str(int(mylbc.quantiteProduitLivre) + int(items.quantiteProduit))
+                                            mylbc.quantiteColisLivre = str(int(mylbc.quantiteColisLivre) + int(1))
+                                            mylbc.save()
+                                            items.save()
+                                            #sinon je dois crée un "ums" et relancer l'algo
+                                            print ("LBC CHANGED")
+                                            nombrecolisf += 1
+                                        else:
+                                            prin("there i need to recreat a UMS")
                                         #break
                                         #else:
                                         #print (str(int(mylbc.quantiteProduitLivre) + int(items.quantiteProduit)) + " Not changed quantite " + mylbc.quantiteProduitCommandestats)
@@ -3136,7 +3140,7 @@ class umsmodify(ListView):
             mycolis.fk_litige = None
             for items in alitige:
                 if items.nom == showlist[11]:
-                    print ("GG FGOZE9PUAZ9EU F9PUAZ9")
+                    print ("Found")
                     mycolis.fk_litige = Litige.objects.get(nom=showlist[11])
 
             mycolis.fk_LitigeDecision = None
@@ -3147,6 +3151,42 @@ class umsmodify(ListView):
             print ("decilitige == " + str(showlist[12]))
             #mycolis.save()
             return HttpResponse("road to create ume.")
+        return HttpResponse("Error.")
+
+    def dateouverture(request):
+        if request.method == 'POST':
+            print(request.POST.get('dateouverture'))
+        try:
+            ums = UniteManutentionSortie.objects.get(idUniteManutentionSortie=request.POST.get('id'))
+            ums.dateOuverture = request.POST.get('dateouverture')
+            ums.save()
+        except menuimages.DoesNotExist:
+            ums = None
+            return HttpResponse("good.")
+        return HttpResponse("Error.")
+
+    def datefermeture(request):
+        if request.method == 'POST':
+            print(request.POST.get('datefermeture'))
+        try:
+            ums = UniteManutentionSortie.objects.get(idUniteManutentionSortie=request.POST.get('id'))
+            ums.dateFermeture = request.POST.get('datefermeture')
+            ums.save()
+        except menuimages.DoesNotExist:
+            ums = None
+            return HttpResponse("good.")
+        return HttpResponse("Error.")
+
+    def dateexpedition(request):
+        if request.method == 'POST':
+            print(request.POST.get('dateexpedition'))
+        try:
+            ums = UniteManutentionSortie.objects.get(idUniteManutentionSortie=request.POST.get('id'))
+            ums.dateExpedition = request.POST.get('dateexpedition')
+            ums.save()
+        except menuimages.DoesNotExist:
+            ums = None
+            return HttpResponse("good.")
         return HttpResponse("Error.")
 
     def get(self, request):

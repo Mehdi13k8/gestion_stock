@@ -188,6 +188,9 @@ urlpatterns = [
     path('ums/delete_col/', views.umsmodify.delete_colis),
     path('create_ums/', views.umsadd.create),
     path('delete_ums/', views.ums.delete),
+    path('umsortie/modify/dateouverture/', views.umsmodify.dateouverture),
+    path('umsortie/modify/datefermeture/', views.umsmodify.datefermeture),
+    path('umsortie/modify/dateexpedition/', views.umsmodify.dateexpedition),
 
     #path('bon/add/<int:month>/', views.),
     path('etiquetteUMs/', views.etiquetteums.as_view(), name='etiquetteUMs'),
