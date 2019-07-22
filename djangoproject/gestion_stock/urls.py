@@ -90,6 +90,7 @@ urlpatterns = [
 
     path('uploadbc/', views.uploadbc),
     path('upload_bcsf/', views.bonCommandeSortie.upload_bcsf),#pour sauvegarder les images stockée dans les bcs
+    path('sort_cols/', views.sortcolis),
 
 
     path('bonLivraisonsortie', views.bonLivraisonSortie.as_view(), name='bonLivraisonSortie'),
