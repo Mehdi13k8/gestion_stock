@@ -414,6 +414,49 @@ class bonCommandeSortieadd(ListView):
 class bonCommandeSortiemodify(ListView):
     template_name = "bonCommandeSortiemodify.html"
 
+
+    def creebonlivraisonsortie(request):
+        if request.method == 'POST':
+            showlist = [request.POST.get('idbcs'), request.POST.get('transporteur'),
+                        request.POST.get('destinataire')]
+            print ("there " + showlist[0])
+
+            ums = UniteManutentionSortie.objects.all()
+            bcs = BonCommandeSortie.objects.all()
+            umsopen = 0
+            for myums in ums:
+                if myums.fk_BonCommandeSortie.idBonCommandeSortie == showlist[0]:
+                    print ("found good ums linked to this bcs now check if it is an 'open' one")
+                    if (myums.dateFermeture == None) or (myums.dateFermeture == ""):
+                        print ("this Ums is open")
+                        #grace a ça je crée un bl car il y a au moins 1 ums ouvert
+                        umsopen += 1
+                    else:
+                        print ("this Ums is closed "+ myums.dateFermeture)
+                #else:
+                    #print ("Not found ums not linked to this bcs")
+            blsid = 0
+            if umsopen != 0:
+                bls = BonLivraisonSortie()
+                allbls = BonLivraisonSortie.objects.all()
+                blsid = 1
+                for mybls in allbls:
+                    if blsid < int(mybls.idBonLivraisonSortie):
+                        id = int(myart.idBonLivraisonSortie)
+                blsid += 1
+                bls.idBonLivraisonSortie = str(blsid)
+                bls.fk_BonCommandeSortie = BonCommandeSortie.objects.get(idBonCommandeSortie = showlist[0])
+                bls.fk_LettreVoitureSortie = None
+                bls.save()
+                for myums in ums:
+                    if myums.fk_BonCommandeSortie.idBonCommandeSortie == showlist[0]:
+                        print ("found good ums linked to this bcs now check if it is an 'open' one")
+                        if (myums.dateFermeture == None) or (myums.dateFermeture == ""):
+                            myums.fk_BonLivraisonSortie == BonLivraisonSortie.objects.get(idBonLivraisonSortie = str(blsid))
+                            myums.save()
+            return HttpResponse("Good access !")
+        return HttpResponse("No access there !")
+
     def recalcule(request):
         if request.method == 'POST':
             showlist = [request.POST.get('idbcs'), request.POST.get('codecli'),
@@ -432,9 +475,8 @@ class bonCommandeSortiemodify(ListView):
                             showlist[6] = str(abs(int(showlist[6])))
                             print("there " + showlist[6])
                             go.quantiteProduitCommandestats = str(int(showlist[6]))
-                            #je libère les colis qui doivent l'être vue que je "réduits" la quantité attribué manuellement dans le template
+                            #je libère les colis qui doivent l'être je "réduits" la quantité attribué manuellement dans le template
                             colis = Colis.objects.all().order_by("datePeremption", "fk_UniteManutentionEntree", "fk_Article", "quantiteProduit") #Je recup la liste de colis, ordonnée par date peremption, umentree, article, et quantiteproduit decroissant
-                            repeatif = 0
                             while int(go.quantiteProduitLivre) > int(go.quantiteProduitCommandestats):
                                 for items in colis:
                                     if items.fk_UniteManutentionSortie and \
@@ -477,7 +519,7 @@ class bonCommandeSortiemodify(ListView):
             except LigneBonCommandeSortie_pour_BonCommandeSortie.DoesNotExist:
                     go = None
             #trie de sortie
-            colis = Colis.objects.all().order_by("datePeremption", "fk_UniteManutentionEntree", "fk_Article", "-quantiteProduit") #Je recup la liste de colis, ordonnée par date peremption, umentree, article, et quantiteproduit decroissant
+            '''colis = Colis.objects.all().order_by("datePeremption", "fk_UniteManutentionEntree", "fk_Article", "-quantiteProduit") #Je recup la liste de colis, ordonnée par date peremption, umentree, article, et quantiteproduit decroissant
             lbc = LigneBonCommandeSortie_pour_BonCommandeSortie.objects.all().order_by("-priorite") #Je recup la liste de colis, ordonnée par la case priorite decroissante
             nombrecolisf = 0
             for items in colis:
@@ -512,12 +554,13 @@ class bonCommandeSortiemodify(ListView):
                         #items.save()
                 except Exception as e:
                     print("error1 -- " + str(e))
-            print ("So i had " + str(nombrecolisf) + " colis placed !")
+            print ("So i had " + str(nombrecolisf) + " colis placed !")''' #je ne dois aps trié "ici" mais via le button dans la pages des unite manutention entree!
         return HttpResponse("No access there !")
 
     def get(self, request):
         context = {
             'bcs' : BonCommandeSortie.objects.all(),
+            'bls' : BonLivraisonSortie.objects.all(),
             'ums' : UniteManutentionSortie.objects.all(),
             'lbcs' : LigneBonCommandeSortie_pour_BonCommandeSortie.objects.all(),
             'trans' : Transporteur.objects.all(),
@@ -1075,16 +1118,31 @@ class bonLivraisonEntreeadd(ListView):
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
-#c'est le bon de sortie pour les commande
 class bonLivraisonSortie(ListView):
     template_name = "bonLivraisonSortie.html"
 
     def get(self, request):
         context = {
-            'sortie' :BonLivraisonSortie.objects.all().select_related('fk_BonCommandeSortie', 'fk_LettreVoitureSortie'),
-            'sortieligne' :LigneBonLivraisonSortie_pour_BonLivraisonSortie.objects.all().select_related('fk_Article', 'fk_BonLivraisonSortie'),
+            'blsortie' : BonLivraisonSortie.objects.all(),
+            'sortieligne' : LigneBonLivraisonSortie_pour_BonLivraisonSortie.objects.all(),
             'settings' : menuimages.objects.all(),
             'activate' : 'on',
+        }
+        return render(request, self.template_name, context)
+
+class bonLivraisonSortiemodify(ListView):
+    template_name = "bonLivraisonSortiemodify.html"
+
+    def get(self, request):
+        context = {
+            'sortie' : BonLivraisonSortie.objects.all(),
+            'sortieligne' : LigneBonLivraisonSortie_pour_BonLivraisonSortie.objects.all(),
+            'settings' : menuimages.objects.all(),
+            'activate' : 'on',
+            'id' : request.GET.get('id'),
+            'cli' : Client.objects.all(),
+            'dest' : Destinataire.objects.all(),
+            'trans' : Transporteur.objects.all(),
         }
         return render(request, self.template_name, context)
 

@@ -1291,7 +1291,6 @@ class LitigeDecision(models.Model):
     source = models.CharField(max_length=150, default=0)
     identifiantSource = models.CharField(max_length=150, default=0)'''
 
-
 #fin
 #début Bon Livraison Sortie
 
@@ -1304,6 +1303,7 @@ class BonLivraisonSortie(models.Model):
     prixExpedition = models.CharField(max_length=150, default=0)
     codeTracking = models.CharField(max_length=150, default=0)
     c_horodatage = models.CharField(max_length=150, default=0)
+    qtecolis = models.CharField(max_length=150, default=0)
     #fk_Transporteur = models.ForeignKey('', on_delete=models.SET_NULL, default=1)
 
 '''class UniteManutentionSortie_pour_BonLivraisonSortie(models.Model):
