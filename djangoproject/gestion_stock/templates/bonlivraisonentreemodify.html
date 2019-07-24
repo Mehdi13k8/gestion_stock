@@ -567,7 +567,6 @@
                             "<td><input class='form-control'></td>" +
                             "<td><input class='form-control'></td>");
                         nbr++;
-
                         '{% for itemsart in art %}'
                         $("select.fournise:last").append(new Option("{{ itemsart.codeFournisseur|safe }}", "{{ itemsart.codeFournisseur|safe }}"));
                         $("select.desif:last").append(new Option("{{ itemsart.designationClient|safe }}", "{{ itemsart.designationClient|safe }}"));

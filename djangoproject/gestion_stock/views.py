@@ -414,8 +414,7 @@ class bonCommandeSortieadd(ListView):
 class bonCommandeSortiemodify(ListView):
     template_name = "bonCommandeSortiemodify.html"
 
-
-    def creebonlivraisonsortie(request):
+    def creebonlivraisonsortie(request): #c'est ici que le bouton "crée bl sorties" renvoi
         if request.method == 'POST':
             showlist = [request.POST.get('idbcs'), request.POST.get('transporteur'),
                         request.POST.get('destinataire')]
@@ -427,23 +426,23 @@ class bonCommandeSortiemodify(ListView):
             for myums in ums:
                 if myums.fk_BonCommandeSortie.idBonCommandeSortie == showlist[0]:
                     print ("found good ums linked to this bcs now check if it is an 'open' one")
-                    if (myums.dateFermeture == None) or (myums.dateFermeture == ""):
+                    if myums.dateFermeture == "0" and myums.fk_BonLivraisonSortie is None:
                         print ("this Ums is open")
                         #grace a ça je crée un bl car il y a au moins 1 ums ouvert
                         umsopen += 1
                     else:
-                        print ("this Ums is closed "+ myums.dateFermeture)
+                        print ("this Ums is closed " + myums.dateFermeture)
                 #else:
                     #print ("Not found ums not linked to this bcs")
             blsid = 0
             if umsopen != 0:
                 bls = BonLivraisonSortie()
                 allbls = BonLivraisonSortie.objects.all()
-                blsid = 1
+                blsid = 0
                 for mybls in allbls:
                     if blsid < int(mybls.idBonLivraisonSortie):
-                        id = int(myart.idBonLivraisonSortie)
-                blsid += 1
+                        blsid = int(mybls.idBonLivraisonSortie)
+                blsid = blsid + 1
                 bls.idBonLivraisonSortie = str(blsid)
                 bls.fk_BonCommandeSortie = BonCommandeSortie.objects.get(idBonCommandeSortie = showlist[0])
                 bls.fk_LettreVoitureSortie = None
@@ -451,9 +450,57 @@ class bonCommandeSortiemodify(ListView):
                 for myums in ums:
                     if myums.fk_BonCommandeSortie.idBonCommandeSortie == showlist[0]:
                         print ("found good ums linked to this bcs now check if it is an 'open' one")
-                        if (myums.dateFermeture == None) or (myums.dateFermeture == ""):
-                            myums.fk_BonLivraisonSortie == BonLivraisonSortie.objects.get(idBonLivraisonSortie = str(blsid))
+                        if myums.dateFermeture == "0" and myums.fk_BonLivraisonSortie is None:
+                            myums.fk_BonLivraisonSortie = BonLivraisonSortie.objects.get(idBonLivraisonSortie=bls.idBonLivraisonSortie)
                             myums.save()
+                #vue que j'ai crée le bl sortie adéquat et que je lui ai donnée un um sortie ouvert et pas fermée et non expédiée je vais faire les lignes de ce bls maintenant
+
+                col = Colis.objects.all()
+                umsortie = UniteManutentionSortie.objects.all()
+                art = Article.objects.all()
+                try:
+                    for colis in col:
+                        print ("bucle")
+                        for items in umsortie:
+                            if colis.fk_UniteManutentionSortie is not None:
+                                if colis.fk_UniteManutentionSortie.idUniteManutentionSortie == items.idUniteManutentionSortie:
+                                    if items.fk_BonLivraisonEntree.idBonLivraisonEntree == bls.idBonLivraisonSortie: #reprends ici demain
+                                        print ("gg")
+                except Exception as e:
+                    print ("Error " + str(e))
+                    bls.delete()
+                '''
+                '{% for colis in col %}'
+                    '{% for items in umentree %}'
+                    '{% if colis.fk_UniteManutentionEntree|safe == items.idUniteManutentionEntree|safe %}'
+                    '{% if items.fk_BonLivraisonEntree.idBonLivraisonEntree == id %}'
+                    '{% for article in art %}'
+                    '{% if article.idArticle == colis.fk_Article.idArticle %}'
+                    foundarticle = 0;
+                    for (var idx = 0; idx != arr.length; idx++) {
+                    if (arr[idx].name == '{{ colis.fk_Article|safe }}') {//je gère ici si l'article a déjà été trouver ou pas, si il existe je mets direct la quantité dedans
+                    foundarticle = 1;
+                    arr[idx].quantiteproduit += parseInt('{{ colis.quantiteProduit|safe }}');
+                    arr[idx].colis += 1;
+                    }
+                    }
+                    if (foundarticle == 0) {
+                    arr.push({name : '{{ colis.fk_Article|safe }}',
+                                     quantiteproduit : parseInt('{{ colis.quantiteProduit|safe }}'),
+                                                       colis : 1});
+                    foundarticle = 1;
+                    }
+                    '{% endif %}'
+                    '{% endfor %}'
+                    /*for (var idx = 0; idx != arr.length; idx++) {
+                    $('#tabblbody').last('tr').find('td').eq(1).find('select').append(new Option(, )); //rempli le code fournisseur une fois le colis trouvé
+                    $("#iddesif").append(new Option("{{ colis.id|safe }}", "{{ colis.id|safe }}"));
+                    }*/
+                    '{% endif %}'
+                    '{% endif %}'
+                    '{% endfor %}'
+                    '{% endfor %}'
+                '''
             return HttpResponse("Good access !")
         return HttpResponse("No access there !")
 
@@ -599,7 +646,7 @@ def sortcolis(request):
                                         print (mylbc.quantiteProduitLivre +" + " + items.quantiteProduit + " <= " + mylbc.quantiteProduitCommandestats)
                                         #Maintenant je dois sortir de le colis dans une Ums adéquate donc celle du bon de commande mylbc actuelle mais je dois vérifié que si je rajoute 1 colis je dépasse pas
                                         #if (int(mylbc.quantiteProduitLivre) + int(items.quantiteProduit)) < int(mylbc.quantiteProduitCommandestats): Quand je fais mes checks de sécurité ça bug !
-                                        if items.fk_UniteManutentionSortie.dateFermeture:
+                                        if UniteManutentionSortie.objects.get(fk_BonCommandeSortie=mylbc.fk_BonCommandeSortie).dateFermeture == "0": #l'ums ne doit pas être fermé, soit il est à 0
                                             items.fk_UniteManutentionSortie = UniteManutentionSortie.objects.get(fk_BonCommandeSortie=mylbc.fk_BonCommandeSortie)
                                             mylbc.quantiteProduitCommandestats = str(int(mylbc.quantiteProduitCommandestats) - int(items.quantiteProduit))
                                             mylbc.quantiteProduitLivre = str(int(mylbc.quantiteProduitLivre) + int(items.quantiteProduit))
@@ -609,8 +656,9 @@ def sortcolis(request):
                                             #sinon je dois crée un "ums" et relancer l'algo
                                             print ("LBC CHANGED")
                                             nombrecolisf += 1
+                                            break
                                         else:
-                                            prin("there i need to recreat a UMS")
+                                            print("there i need to recreat a UMS")
                                         #break
                                         #else:
                                         #print (str(int(mylbc.quantiteProduitLivre) + int(items.quantiteProduit)) + " Not changed quantite " + mylbc.quantiteProduitCommandestats)
@@ -1133,10 +1181,25 @@ class bonLivraisonSortie(ListView):
 class bonLivraisonSortiemodify(ListView):
     template_name = "bonLivraisonSortiemodify.html"
 
+    def upload_blsf(request):
+        if request.method == 'POST':
+            fichier = request.FILES.get('file', False)
+            idinput = request.POST.get('idinput')
+            bls = BonLivraisonSortie.objects.get(idBonLivraisonSortie=idinput)
+            bls.fichier = None
+            if fichier:
+                bls.fichier = fichier
+            bls.save()
+            print("gg fichier sauvegarder !!!!!!!!!!!!!!!!!!!!!!!!!")
+            return redirect(reverse('bonLivraisonSortiemodify')+"?id="+bls.idBonLivraisonSortie)
+        return HttpResponse("No access authorized !")
+
     def get(self, request):
         context = {
             'sortie' : BonLivraisonSortie.objects.all(),
             'sortieligne' : LigneBonLivraisonSortie_pour_BonLivraisonSortie.objects.all(),
+            'bcs' : BonCommandeSortie.objects.all(),
+            'ums' : UniteManutentionSortie.objects.all(),
             'settings' : menuimages.objects.all(),
             'activate' : 'on',
             'id' : request.GET.get('id'),

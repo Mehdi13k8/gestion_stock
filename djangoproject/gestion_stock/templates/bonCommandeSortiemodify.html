@@ -355,9 +355,9 @@
                         {% for items in bls %}
                         {% if items.fk_BonCommandeSortie.idBonCommandeSortie == id %}
                         <tr>
-                            <td> <a href='{% url "bonLivraisonSortiemodify" %}?id={{items.fk_BonCommandeSortie.idBonCommandeSortie|safe }}'><button type="button" id='{{ items.idBonCommandeSortie }}' class="dyna btn btn-sm btn-outline-grey rounded"> <i class="fa fa-arrow-right"></i> </button></a></td>
-                            <td> {{ items.fk_BonCommandeSortie.idBonCommandeSortie }} </td>
-                            <td> {{ items.fk_BonCommandeSortie.c_horodatage }} </td>
+                            <td> <a href='{% url "bonLivraisonSortiemodify" %}?id={{items.idBonLivraisonSortie|safe }}'><button type="button" id='{{ items.idBonLivraisonSortie }}' class="dyna btn btn-sm btn-outline-grey rounded"> <i class="fa fa-arrow-right"></i> </button></a></td>
+                            <td> {{ items.idBonLivraisonSortie }} </td>
+                            <td> {{ items.c_horodatage }} </td>
                         </tr>
                         {% endif %}
                         {% endfor %}

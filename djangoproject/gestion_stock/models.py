@@ -1304,6 +1304,7 @@ class BonLivraisonSortie(models.Model):
     codeTracking = models.CharField(max_length=150, default=0)
     c_horodatage = models.CharField(max_length=150, default=0)
     qtecolis = models.CharField(max_length=150, default=0)
+    fichier = models.ImageField(upload_to='media_bls/', default=None, blank=True, null=True)
     #fk_Transporteur = models.ForeignKey('', on_delete=models.SET_NULL, default=1)
 
 '''class UniteManutentionSortie_pour_BonLivraisonSortie(models.Model):

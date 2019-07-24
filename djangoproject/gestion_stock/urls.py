@@ -91,12 +91,12 @@ urlpatterns = [
 
     path('uploadbc/', views.uploadbc),
     path('upload_bcsf/', views.bonCommandeSortie.upload_bcsf),#pour sauvegarder les images stockée dans les bcs
-    path('sort_cols/', views.sortcolis),
-
+    path('sort_cols/', views.sortcolis), #appel l'algo qui va trier les "colis" pour les sortir dans les lbcs
 
     path('bonLivraisonsortie', views.bonLivraisonSortie.as_view(), name='bonLivraisonSortie'),
     path('bonLivraisonsortie/add', views.bonLivraisonSortieadd.as_view(), name='bonLivraisonSortieadd'),
     path('bonLivraisonsortie/modify', views.bonLivraisonSortiemodify.as_view(), name='bonLivraisonSortiemodify'),
+    path('upload_blsf/', views.bonLivraisonSortiemodify.upload_blsf),#pour sauvegarder les images stockée dans les bcs
 
     path('lettrevoitureentree', views.lettrevoitureentree.as_view(), name='lve'),
     path('lettrevoitureentree/modify', views.lettrevoitureentreemodify.as_view(), name='lvemodify'),
