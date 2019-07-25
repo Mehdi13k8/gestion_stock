@@ -6,6 +6,7 @@ from datetime import date
 from django import forms
 # Create your models here.
 
+#Les données avec les c_ comme les horodates nom etc... serviront a "tracé" qui a fait quoi et quand ça à été fait
 '''class User(models.Model):
     users = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
     is_partenaire = models.BooleanField(default=False)
@@ -83,7 +84,7 @@ class import_LigneBonCommandeSortie_pour_import_BonCommandeSortie(models.Model):
         return self.idBonCommandeSortie'''
 
 class LigneBonCommandeSortie_pour_BonCommandeSortie(models.Model):
-    fk_BonCommandeSortie = models.ForeignKey('BonCommandeSortie', on_delete=models.SET_NULL, default=0, blank=True, null=True)
+    fk_BonCommandeSortie = models.ForeignKey('BonCommandeSortie', on_delete=models.CASCADE, default=0, blank=True, null=True)
     fk_Article = models.ForeignKey('Article', on_delete=models.SET_NULL, default=0, blank=True, null=True)
     c_nom = models.CharField(max_length=150, default=0)
     c_nomCompte = models.CharField(max_length=150, default=0)
@@ -1296,7 +1297,7 @@ class LitigeDecision(models.Model):
 
 class BonLivraisonSortie(models.Model):
     idBonLivraisonSortie = models.CharField(max_length=150, default=0)
-    fk_BonCommandeSortie = models.ForeignKey('BonCommandeSortie', on_delete=models.SET_NULL, default=0, blank=True, null=True)
+    fk_BonCommandeSortie = models.ForeignKey('BonCommandeSortie', on_delete=models.CASCADE, default=0, blank=True, null=True)
     fk_LettreVoitureSortie = models.ForeignKey('LettreVoitureSortie', on_delete=models.SET_NULL, default=0, blank=True, null=True)
     dateImpression = models.CharField(max_length=150, default=0)
     numeroBonLivraison = models.CharField(max_length=150, default=0)
@@ -1322,11 +1323,11 @@ class BonLivraisonSortie(models.Model):
 
 class LigneBonLivraisonSortie_pour_BonLivraisonSortie(models.Model):
     idLigneBonLivraisonSortie = models.CharField(max_length=150, default=0)
-    fk_BonLivraisonSortie = models.ForeignKey('BonLivraisonSortie', on_delete=models.SET_NULL, default=0, blank=True, null=True)
+    fk_BonLivraisonSortie = models.ForeignKey('BonLivraisonSortie', on_delete=models.CASCADE, default=0, blank=True, null=True)
     fk_Article = models.ForeignKey('Article', on_delete=models.SET_NULL, default=0, blank=True, null=True)
-    fk_Transporteur = models.ForeignKey('Transporteur', on_delete=models.SET_NULL, default=0, blank=True, null=True)
+    quantiteProduit = models.CharField(max_length=150, default=0)
     quantiteColis = models.CharField(max_length=150, default=0)
-    stat_quantiteColis = models.CharField(max_length=150, default=0)
+    stat_quantiteColis = models.CharField(max_length=150, default=0) #pas utilisé
 
 '''class Article_pour_BonLivraisonSortie(models.Model):
     idArticle = models.CharField(max_length=150, default=0)'''

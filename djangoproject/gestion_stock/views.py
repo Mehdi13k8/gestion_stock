@@ -15,6 +15,7 @@ from django.urls import reverse, reverse_lazy # new
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 import csv, io
+import time
 #https://realpython.com/django-and-ajax-form-submissions/ faut aller apprendre la connection | plus besoin, connection acquise
 #https://code.djangoproject.com/wiki/AjaxDojoLogin
 
@@ -290,6 +291,7 @@ def uploadbc(request):
                                     go.idUniteManutentionSortie = str(1)
                                 go.fk_BonCommandeSortie = var #les try et except me permettent d'éviter une "erreur" dans
                                 go.fk_BonLivraisonSortie = None
+                                go.dateOuverture = time.strftime("%Y-%m-%d")
                             go.save()
                             #ums.idUniteManutentionSortie = UniteManutentionSortie.objects.latest('idUniteManutentionSortie')
                             messages.success(request,"Succès -> Donnees du Csv ont ete ajoutees aux  tarifs")
@@ -454,18 +456,62 @@ class bonCommandeSortiemodify(ListView):
                             myums.fk_BonLivraisonSortie = BonLivraisonSortie.objects.get(idBonLivraisonSortie=bls.idBonLivraisonSortie)
                             myums.save()
                 #vue que j'ai crée le bl sortie adéquat et que je lui ai donnée un um sortie ouvert et pas fermée et non expédiée je vais faire les lignes de ce bls maintenant
-
                 col = Colis.objects.all()
                 umsortie = UniteManutentionSortie.objects.all()
                 art = Article.objects.all()
                 try:
+                    arrayofname = []
+                    arrayofcolis = []
+                    arrayofquantiteproduit = [] #c'est compliqué d'utilisé des dictionnaires avec 2 profondeurs, donc je crée 3 arrays qui stock 1 donnée chacuns
                     for colis in col:
-                        print ("bucle")
                         for items in umsortie:
                             if colis.fk_UniteManutentionSortie is not None:
                                 if colis.fk_UniteManutentionSortie.idUniteManutentionSortie == items.idUniteManutentionSortie:
-                                    if items.fk_BonLivraisonEntree.idBonLivraisonEntree == bls.idBonLivraisonSortie: #reprends ici demain
-                                        print ("gg")
+                                    if items.fk_BonLivraisonSortie is not None:
+                                        if items.fk_BonLivraisonSortie.idBonLivraisonSortie == bls.idBonLivraisonSortie:
+                                            for article in art:
+                                                if article.idArticle == colis.fk_Article.idArticle:
+                                                    foundarticle = 0
+                                                    idx = 0
+                                                    while idx < len(arrayofname):
+                                                        if arrayofname[idx] == colis.fk_Article: #je gère ici si l'article a déjà été trouver ou pas, si il existe je mets direct la quantité dedans
+                                                            foundarticle = 1
+                                                            arrayofquantiteproduit[idx] += int(colis.quantiteProduit)
+                                                            arrayofcolis[idx] += 1
+                                                        idx += 1
+                                                    if foundarticle == 0:
+                                                        arrayofname.append(colis.fk_Article)
+                                                        arrayofquantiteproduit.append(int(colis.quantiteProduit))
+                                                        arrayofcolis.append(1)
+                                                        foundarticle = 1
+                    idx = 0
+                    alllignebls = LigneBonLivraisonSortie_pour_BonLivraisonSortie.objects.all()
+                    art = Article.objects.all()
+                    while idx < len(arrayofname):
+                        id = 0
+                        for lbls in alllignebls:
+                            if id < int(lbls.idLigneBonLivraisonSortie):
+                                id = int(lbls.idLigneBonLivraisonSortie)
+                        id += 1
+                        lignebls = LigneBonLivraisonSortie_pour_BonLivraisonSortie()
+                        lignebls.idLigneBonLivraisonSortie = str(id)
+                        lignebls.fk_Article = None
+                        lignebls.fk_BonLivraisonSortie = None
+                        for items in art:
+                            print("so " + str(items.designationClient) + "X " + str(arrayofname[idx]) + "X")
+                            if str(items.designationClient) == str(arrayofname[idx]):
+                                print("good")
+                                lignebls.fk_Article = items
+                        if lignebls.fk_Article == None:
+                            return HttpResponse("error1 !")
+                        lignebls.fk_BonLivraisonSortie = bls
+                        lignebls.quantiteProduit = str(arrayofquantiteproduit[idx])
+                        lignebls.quantiteColis = str(arrayofcolis[idx])
+                        lignebls.save()
+                        print("name == " + str(arrayofname[idx]))
+                        print("qteprod == " + str(arrayofquantiteproduit[idx]))
+                        print("colisnbr == " + str(arrayofcolis[idx]))
+                        idx += 1
                 except Exception as e:
                     print ("Error " + str(e))
                     bls.delete()
@@ -620,53 +666,88 @@ class bonCommandeSortiemodify(ListView):
         return render(request, self.template_name, context)
 
 #c'est le bon de sortie pour les commande
+
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 #ici fonction de trie pour les colis a -> tier vers les bcs qui ont des lignes encore ouvertes
+
+
 def sortcolis(request):
     if request.method == 'POST':
+        ume = UniteManutentionEntree.objects.get(idUniteManutentionEntree=request.POST.get('id'))
         colis = Colis.objects.all().order_by("datePeremption", "fk_UniteManutentionEntree", "fk_Article", "-quantiteProduit") #Je recup la liste de colis, ordonnée par date peremption, umentree, article, et quantiteproduit decroissant
         lbc = LigneBonCommandeSortie_pour_BonCommandeSortie.objects.all().order_by("-priorite") #Je recup la liste de colis, ordonnée par la case priorite decroissante
+        bcs = BonCommandeSortie.objects.all()
+        ums = UniteManutentionSortie.objects.all()
         nombrecolisf = 0
         for items in colis:
-            print ("GG FOUND !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1") #article correspondant a la ligne bon commande trouver dans les articles
-            print(items.quantiteProduit)
-            try:
-                if not items.fk_UniteManutentionSortie:
-                    print ("GG FOUND !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1")
-                    for mylbc in lbc:
-                        if mylbc.termine != 1:
-                            if int(mylbc.quantiteProduitALivrer) - int(mylbc.quantiteProduitCommandestats) < 0:
-                                if mylbc.fk_Article == items.fk_Article:
-                                    print ("GG FOUND !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!") #article correspondant a la ligne bon commande trouver dans les articles
-                                    print (mylbc.quantiteProduitCommandestats + " !!!!!!! " + items.quantiteProduit)
-                                    print ("Colis ! " + items.idColis) #article correspondant a la ligne bon commande trouver dans les articles
-                                    if int(mylbc.quantiteProduitCommandestats) >= int(items.quantiteProduit): #verif que ça valeur du colis est tjr + petite que demander
-                                        print ("GG2 FOUND  !!!!!!!!!!!!!!!!!!" + mylbc.quantiteProduitCommandestats + " and " + mylbc.quantiteProduitLivre)
-                                        #if int(mylbc.quantiteProduitCommandestats) >= int(mylbc.quantiteProduitLivre): #verif que la ligne a encore besoin d'un colis en comparant ce qui a été donné a ce qui doit être donné
-                                        print (mylbc.quantiteProduitLivre +" + " + items.quantiteProduit + " <= " + mylbc.quantiteProduitCommandestats)
-                                        #Maintenant je dois sortir de le colis dans une Ums adéquate donc celle du bon de commande mylbc actuelle mais je dois vérifié que si je rajoute 1 colis je dépasse pas
-                                        #if (int(mylbc.quantiteProduitLivre) + int(items.quantiteProduit)) < int(mylbc.quantiteProduitCommandestats): Quand je fais mes checks de sécurité ça bug !
-                                        if UniteManutentionSortie.objects.get(fk_BonCommandeSortie=mylbc.fk_BonCommandeSortie).dateFermeture == "0": #l'ums ne doit pas être fermé, soit il est à 0
-                                            items.fk_UniteManutentionSortie = UniteManutentionSortie.objects.get(fk_BonCommandeSortie=mylbc.fk_BonCommandeSortie)
-                                            mylbc.quantiteProduitCommandestats = str(int(mylbc.quantiteProduitCommandestats) - int(items.quantiteProduit))
-                                            mylbc.quantiteProduitLivre = str(int(mylbc.quantiteProduitLivre) + int(items.quantiteProduit))
-                                            mylbc.quantiteColisLivre = str(int(mylbc.quantiteColisLivre) + int(1))
-                                            mylbc.save()
-                                            items.save()
-                                            #sinon je dois crée un "ums" et relancer l'algo
-                                            print ("LBC CHANGED")
-                                            nombrecolisf += 1
-                                            break
-                                        else:
-                                            print("there i need to recreat a UMS")
-                                        #break
-                                        #else:
-                                        #print (str(int(mylbc.quantiteProduitLivre) + int(items.quantiteProduit)) + " Not changed quantite " + mylbc.quantiteProduitCommandestats)
-                            else:
-                                print ("NOT FOUND !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-                    #items.save()
-            except Exception as e:
-                print("error1x -- " + str(e))
+            if items.fk_UniteManutentionEntree.idUniteManutentionEntree == ume.idUniteManutentionEntree:
+                print ("GG FOUND !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1") #article correspondant a la ligne bon commande trouver dans les articles
+                print(items.quantiteProduit)
+                try:
+                    if not items.fk_UniteManutentionSortie:
+                        print ("GG FOUND !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1")
+                        exitFlag = False # me sert a casser des boucles
+                        for mylbc in lbc:
+                            if mylbc.termine != 1:
+                                if int(mylbc.quantiteProduitALivrer) - int(mylbc.quantiteProduitCommandestats) < 0:
+                                    if mylbc.fk_Article == items.fk_Article:
+                                        print ("GG FOUND !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!") #article correspondant a la ligne bon commande trouver dans les articles
+                                        print (mylbc.quantiteProduitCommandestats + " !!!!!!! " + items.quantiteProduit)
+                                        print ("Colis ! " + items.idColis) #article correspondant a la ligne bon commande trouver dans les articles
+                                        if int(mylbc.quantiteProduitCommandestats) >= int(items.quantiteProduit): #verif que ça valeur du colis est tjr + petite que demander
+                                            print ("GG2 FOUND  !!!!!!!!!!!!!!!!!!" + mylbc.quantiteProduitCommandestats + " and " + mylbc.quantiteProduitLivre)
+                                            #if int(mylbc.quantiteProduitCommandestats) >= int(mylbc.quantiteProduitLivre): #verif que la ligne a encore besoin d'un colis en comparant ce qui a été donné a ce qui doit être donné
+                                            print (mylbc.quantiteProduitLivre +" + " + items.quantiteProduit + " <= " + mylbc.quantiteProduitCommandestats)
+                                            #Maintenant je dois sortir de le colis dans une Ums adéquate donc celle du bon de commande mylbc actuelle
+                                            #if (int(mylbc.quantiteProduitLivre) + int(items.quantiteProduit)) < int(mylbc.quantiteProduitCommandestats): plus besoin!
+                                            #if UniteManutentionSortie.objects.get(fk_BonCommandeSortie=mylbc.fk_BonCommandeSortie).dateFermeture == "0": #l'ums ne doit pas être fermé, soit il est à 0
+                                            for mybcs in bcs:
+                                                for myums in ums:
+                                                    if myums.fk_BonCommandeSortie == mybcs.idBonCommandeSortie and myums.dateFermeture  == "0":
+                                                        items.fk_UniteManutentionSortie = myums
+                                                        mylbc.quantiteProduitCommandestats = str(int(mylbc.quantiteProduitCommandestats) - int(items.quantiteProduit))
+                                                        mylbc.quantiteProduitLivre = str(int(mylbc.quantiteProduitLivre) + int(items.quantiteProduit))
+                                                        mylbc.quantiteColisLivre = str(int(mylbc.quantiteColisLivre) + int(1))
+                                                        mylbc.save()
+                                                        items.save()
+                                                        #sinon je dois crée un "ums" et relancer l'algo
+                                                        print ("LBC CHANGED")
+                                                        nombrecolisf += 1
+                                                        exitFlag = True
+                                                        break
+                                                    else:
+                                                        go = UniteManutentionSortie()
+                                                        try:
+                                                            go.idUniteManutentionSortie = str(UniteManutentionSortie.objects.latest('idUniteManutentionSortie'))
+                                                            go.idUniteManutentionSortie = str(int(go.idUniteManutentionSortie) + int(1))
+                                                        except UniteManutentionSortie.DoesNotExist:
+                                                            go.idUniteManutentionSortie = str(1)
+                                                        go.fk_BonCommandeSortie = mylbc.fk_BonCommandeSortie
+                                                        go.fk_BonLivraisonSortie = None
+                                                        go.dateOuverture = time.strftime("%Y-%m-%d")
+                                                        go.save()
+                                                        items.fk_UniteManutentionSortie = go
+                                                        mylbc.quantiteProduitCommandestats = str(int(mylbc.quantiteProduitCommandestats) - int(items.quantiteProduit))
+                                                        mylbc.quantiteProduitLivre = str(int(mylbc.quantiteProduitLivre) + int(items.quantiteProduit))
+                                                        mylbc.quantiteColisLivre = str(int(mylbc.quantiteColisLivre) + int(1))
+                                                        mylbc.save()
+                                                        items.save()
+                                                        nombrecolisf += 1
+                                                        exitFlag = True
+                                                        break
+                                                        print ("there i need to recreat a UMS")
+                                                if exitFlag:
+                                                    break
+                                            if exitFlag:
+                                                break
+                                            #break
+                                            #else:
+                                            #print (str(int(mylbc.quantiteProduitLivre) + int(items.quantiteProduit)) + " Not changed quantite " + mylbc.quantiteProduitCommandestats)
+                                else:
+                                    print ("NOT FOUND !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+                        #items.save()
+                except Exception as e:
+                    print("error1x -- " + str(e))
         print ("So i had " + str(nombrecolisf) + " colis placed !")
         return HttpResponse("good !")
     return HttpResponse("No Authorized Access !")

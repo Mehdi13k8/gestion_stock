@@ -301,6 +301,9 @@
                                 </tbody>
                             </table>
                         </div>
+                        <div class="text-center">
+                            <button type="button" id="tricol" class="btn btn-default btn-rounded btn-outline-dark">Trier colis libre</button>
+                        </div>
                     </div>
                 </div>
                 <button class="btn btn-sm btn-dark" id="addligne"><i class="fa fa-plus"></i></button>
@@ -1093,6 +1096,26 @@
             $('#tabbl tr').last().find('td').eq(7).find('input').val($(this).parent().parent().find('td').eq(7).find('input').val().trim()); // qte / colis
             console.log($(this).parent().parent().find('td').eq(7).find('input').val().trim());
         });
+
+        $("#tricol").click(function() {
+            $.ajax({
+                type:"POST",    //type de requête utilisé par ajax
+                url:"/sort_cols/", //lien de la view qui gère la requête post pour trier les colis des um entree vers des bcs avec une ums ouverte
+                data: {
+                    'id': '{{id}}',
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
+                success: function(msg, data, settings){
+                    console.log("gg " + msg);
+                    location.reload();
+                },
+                failure: function() {
+                    console.log("fail");
+                    location.reload();
+                }
+            });
+        });
+
         //sorting (trie) du tableau par rapport a ncolis, je recois des objets en js, puis les passe en jquery avec le $ pour utiliser les fonctions jquery
         if ($('#tabbl').length > 0) {
             var table, rows, switching, i, x, y, shouldSwitch;

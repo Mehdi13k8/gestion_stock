@@ -262,33 +262,33 @@
                             <th scope="col" class="th-sm"> code fournisseur </th>
                             <th scope="col" class="th-sm"> code client </th>
                             <th scope="col" class="th-sm"> désignation fournisseur </th>
-                            <th scope="col" class="th-sm"> qte prodits </th>
+                            <th scope="col" class="th-sm"> qte produits </th>
                             <th scope="col" class="th-sm"> qte colis </th>
                             <th scope="col" class="th-sm"> delete </th>
                         </tr>
                         </thead>
                         <tbody>
                         {% for items in sortieligne %}
-                        {% if items.fk_BonCommandeSortie.idBonCommandeSortie|safe == id %}
+                        {% if items.fk_BonLivraisonSortie.idBonLivraisonSortie|safe == id %}
                         <tr class="">
+                            <td> {{ items.fk_Article.codeFournisseur }} </td>
                             <td> {{ items.fk_Article.codeClient }} </td>
-                            <td> {{ items.fk_Article.designationClient }} </td>
-                            <td> {{ items.quantiteProduitCommande }} </td>
-                            <td> {{ items.quantiteColisCommande }} </td>
-                            <td> {{ items.quantiteProduitLivre }} </td>
-                            <td> <button id='' class="dynad btn btn-sm btn-outline-red rounded-pill"> <i class="fa fa-minus"></i></button> </td>
+                            <td> {{ items.fk_Article.designationFournisseur }} </td>
+                            <td> {{ items.quantiteProduit }} </td>
+                            <td> {{ items.quantiteColis }} </td>
+                            <td> <button id='' class="deletelbls btn btn-sm btn-outline-red rounded-pill"> <i class="fa fa-minus"></i></button> </td>
                         </tr>
                         {% endif %}
                         {% endfor %}
                         </tbody>
                         <tfoot>
                         <tr>
+                            <th> code fournisseur </th>
                             <th> code client </th>
-                            <th> qte commandée </th>
+                            <th> désignation fournisseur </th>
+                            <th> qte produits </th>
                             <th> qte colis </th>
-                            <th> qte attribuée </th>
-                            <th> <-diff-> </th>
-                            <th> ID.Ligne bls </th>
+                            <th> delete </th>
                         </tr>
                         </tfoot>
                     </table>

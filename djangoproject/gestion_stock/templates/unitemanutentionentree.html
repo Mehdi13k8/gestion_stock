@@ -10,9 +10,6 @@
 <div class="container">
     <div class="form-group row text-center">
         <div class="col">
-            <button type="button" id="tricol" class="btn btn-default btn-rounded btn-outline-dark">Trier colis libre</button>
-        </div>
-        <div class="col">
             <button type="button" id="create-row" class="btn btn-success btn-rounded btn-outline-dark">Ajouter</button>
         </div>
     </div>
@@ -87,24 +84,6 @@
 
     $("#create-row").click(function() {
         location.href = "{% url 'unitemanutentionentreeadd' %}";
-    });
-
-    $("#tricol").click(function() {
-        $.ajax({
-            type:"POST",    //type de requête utilisé par ajax
-            url:"/sort_cols/", //lien de la view qui gère la requête post pour trier les colis des um entree vers des bcs avec une ums ouverte
-            data: {
-                csrfmiddlewaretoken: '{{ csrf_token }}'
-            },
-            success: function(msg, data, settings){
-                console.log("gg " + msg);
-                location.reload();
-            },
-            failure: function() {
-                console.log("fail");
-                location.reload();
-            }
-        });
     });
 
     $(document).on("click", "button.dyna" , function(e) { // event pour modifier les entree transporteur
