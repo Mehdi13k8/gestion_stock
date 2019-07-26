@@ -428,7 +428,7 @@ class bonCommandeSortiemodify(ListView):
             for myums in ums:
                 if myums.fk_BonCommandeSortie.idBonCommandeSortie == showlist[0]:
                     print ("found good ums linked to this bcs now check if it is an 'open' one")
-                    if myums.dateFermeture == "0" and myums.fk_BonLivraisonSortie is None:
+                    if myums.dateFermeture != "0" and myums.fk_BonLivraisonSortie is None and myums.dateExpedition == "0":
                         print ("this Ums is open")
                         #grace a ça je crée un bl car il y a au moins 1 ums ouvert
                         umsopen += 1
@@ -452,8 +452,9 @@ class bonCommandeSortiemodify(ListView):
                 for myums in ums:
                     if myums.fk_BonCommandeSortie.idBonCommandeSortie == showlist[0]:
                         print ("found good ums linked to this bcs now check if it is an 'open' one")
-                        if myums.dateFermeture == "0" and myums.fk_BonLivraisonSortie is None:
+                        if myums.dateFermeture != "0" and myums.fk_BonLivraisonSortie is None and myums.dateExpedition == "0":
                             myums.fk_BonLivraisonSortie = BonLivraisonSortie.objects.get(idBonLivraisonSortie=bls.idBonLivraisonSortie)
+                            myums.dateExpedition = time.strftime("%Y-%m-%d")
                             myums.save()
                 #vue que j'ai crée le bl sortie adéquat et que je lui ai donnée un um sortie ouvert et pas fermée et non expédiée je vais faire les lignes de ce bls maintenant
                 col = Colis.objects.all()

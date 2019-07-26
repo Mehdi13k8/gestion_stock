@@ -210,7 +210,6 @@
                         <tbody>
                         {% for items in ums %}
                         {% if items.fk_BonLivraisonSortie.idBonLivraisonSortie == id %}
-                        azeaz
                         <tr>
                             <td> <a href='{% url "unitemanutentionsortiemodify" %}?id={{items.idUniteManutentionSortie|safe }}'><button type="button" id='{{ items.idUniteManutentionSortie }}' class="dyna btn btn-sm btn-outline-grey rounded"> <i class="fa fa-arrow-right"></i> </button></a></td>
 
