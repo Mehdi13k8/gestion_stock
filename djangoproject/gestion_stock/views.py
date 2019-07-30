@@ -671,7 +671,6 @@ class bonCommandeSortiemodify(ListView):
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 #ici fonction de trie pour les colis a -> tier vers les bcs qui ont des lignes encore ouvertes
 
-
 def sortcolis(request):
     if request.method == 'POST':
         ume = UniteManutentionEntree.objects.get(idUniteManutentionEntree=request.POST.get('id'))
@@ -698,49 +697,44 @@ def sortcolis(request):
                                         if int(mylbc.quantiteProduitCommandestats) >= int(items.quantiteProduit): #verif que ça valeur du colis est tjr + petite que demander
                                             print ("GG2 FOUND  !!!!!!!!!!!!!!!!!!" + mylbc.quantiteProduitCommandestats + " and " + mylbc.quantiteProduitLivre)
                                             #if int(mylbc.quantiteProduitCommandestats) >= int(mylbc.quantiteProduitLivre): #verif que la ligne a encore besoin d'un colis en comparant ce qui a été donné a ce qui doit être donné
-                                            print (mylbc.quantiteProduitLivre +" + " + items.quantiteProduit + " <= " + mylbc.quantiteProduitCommandestats)
+                                            print (mylbc.quantiteProduitLivre + " + " + items.quantiteProduit + " <= " + mylbc.quantiteProduitCommandestats)
                                             #Maintenant je dois sortir de le colis dans une Ums adéquate donc celle du bon de commande mylbc actuelle
                                             #if (int(mylbc.quantiteProduitLivre) + int(items.quantiteProduit)) < int(mylbc.quantiteProduitCommandestats): plus besoin!
                                             #if UniteManutentionSortie.objects.get(fk_BonCommandeSortie=mylbc.fk_BonCommandeSortie).dateFermeture == "0": #l'ums ne doit pas être fermé, soit il est à 0
-                                            for mybcs in bcs:
-                                                for myums in ums:
-                                                    if myums.fk_BonCommandeSortie == mybcs.idBonCommandeSortie and myums.dateFermeture  == "0":
-                                                        items.fk_UniteManutentionSortie = myums
-                                                        mylbc.quantiteProduitCommandestats = str(int(mylbc.quantiteProduitCommandestats) - int(items.quantiteProduit))
-                                                        mylbc.quantiteProduitLivre = str(int(mylbc.quantiteProduitLivre) + int(items.quantiteProduit))
-                                                        mylbc.quantiteColisLivre = str(int(mylbc.quantiteColisLivre) + int(1))
-                                                        mylbc.save()
-                                                        items.save()
-                                                        #sinon je dois crée un "ums" et relancer l'algo
-                                                        print ("LBC CHANGED")
-                                                        nombrecolisf += 1
-                                                        exitFlag = True
-                                                        break
-                                                    else:
-                                                        go = UniteManutentionSortie()
-                                                        try:
-                                                            go.idUniteManutentionSortie = str(UniteManutentionSortie.objects.latest('idUniteManutentionSortie'))
-                                                            go.idUniteManutentionSortie = str(int(go.idUniteManutentionSortie) + int(1))
-                                                        except UniteManutentionSortie.DoesNotExist:
-                                                            go.idUniteManutentionSortie = str(1)
-                                                        go.fk_BonCommandeSortie = mylbc.fk_BonCommandeSortie
-                                                        go.fk_BonLivraisonSortie = None
-                                                        go.dateOuverture = time.strftime("%Y-%m-%d")
-                                                        go.save()
-                                                        items.fk_UniteManutentionSortie = go
-                                                        mylbc.quantiteProduitCommandestats = str(int(mylbc.quantiteProduitCommandestats) - int(items.quantiteProduit))
-                                                        mylbc.quantiteProduitLivre = str(int(mylbc.quantiteProduitLivre) + int(items.quantiteProduit))
-                                                        mylbc.quantiteColisLivre = str(int(mylbc.quantiteColisLivre) + int(1))
-                                                        mylbc.save()
-                                                        items.save()
-                                                        nombrecolisf += 1
-                                                        exitFlag = True
-                                                        break
-                                                        print ("there i need to recreat a UMS")
-                                                if exitFlag:
-                                                    break
-                                            if exitFlag:
-                                                break
+                                            for myums in ums:
+                                                if myums.fk_BonCommandeSortie.idBonCommandeSortie == mylbc.fk_BonCommandeSortie.idBonCommandeSortie and myums.dateFermeture  == "0":
+                                                    items.fk_UniteManutentionSortie = myums
+                                                    mylbc.quantiteProduitCommandestats = str(int(mylbc.quantiteProduitCommandestats) - int(items.quantiteProduit))
+                                                    mylbc.quantiteProduitLivre = str(int(mylbc.quantiteProduitLivre) + int(items.quantiteProduit))
+                                                    mylbc.quantiteColisLivre = str(int(mylbc.quantiteColisLivre) + int(1))
+                                                    mylbc.save()
+                                                    items.save()
+                                                    #sinon je dois crée un "ums" et relancer l'algo
+                                                    print ("LBC CHANGED")
+                                                    nombrecolisf += 1
+                                                    exitFlag = True
+                                                else:
+                                                    print("nope")
+                                            if nombrecolisf == 0:
+                                                go = UniteManutentionSortie()
+                                                try:
+                                                    go.idUniteManutentionSortie = str(UniteManutentionSortie.objects.latest('idUniteManutentionSortie'))
+                                                    go.idUniteManutentionSortie = str(int(go.idUniteManutentionSortie) + int(1))
+                                                except UniteManutentionSortie.DoesNotExist:
+                                                    go.idUniteManutentionSortie = str(1)
+                                                go.fk_BonCommandeSortie = mylbc.fk_BonCommandeSortie
+                                                go.fk_BonLivraisonSortie = None
+                                                go.dateOuverture = time.strftime("%Y-%m-%d")
+                                                go.save()
+                                                items.fk_UniteManutentionSortie = go
+                                                mylbc.quantiteProduitCommandestats = str(int(mylbc.quantiteProduitCommandestats) - int(items.quantiteProduit))
+                                                mylbc.quantiteProduitLivre = str(int(mylbc.quantiteProduitLivre) + int(items.quantiteProduit))
+                                                mylbc.quantiteColisLivre = str(int(mylbc.quantiteColisLivre) + int(1))
+                                                mylbc.save()
+                                                items.save()
+                                                nombrecolisf += 1
+                                                exitFlag = True
+                                                print ("there i need to recreat a UMS")
                                             #break
                                             #else:
                                             #print (str(int(mylbc.quantiteProduitLivre) + int(items.quantiteProduit)) + " Not changed quantite " + mylbc.quantiteProduitCommandestats)
