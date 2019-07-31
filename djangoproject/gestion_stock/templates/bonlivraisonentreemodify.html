@@ -1,8 +1,6 @@
 {% extends user.is_authenticated|yesno:"base_generic.html,empty.html" %}
 
 {% block content %}
-{% load crispy_forms_tags %}
-<html>
 
 <style>
     .ui-dialog-titlebar-close {
@@ -366,366 +364,198 @@
         </div>
     </div>
 
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <div class="border shadow-lg p-2 mb-3 bg-white rounded">
-                    <div class="col">
-                        <h5 class="text-center"> <u> Lignes du BL</u></h5>
-                        <div class="container">
-                            <div class="row">
-                                <div class="container">
-                                    <div class="border shadow-lg p-2 mb-3 bg-white rounded">
-                                        <div class="table-responsive text-nowrap">
-                                            <table id="tabbl" class="table table-condensed table-striped table-bordered" cellspacing="0" width="100%">
-                                                <thead>
-                                                <tr>
-                                                    <th colspan="8"><button class="btn btn-sm btn-dark" id="copyum">Copy um entree</button>
-                                                        <button class="btn btn-sm btn-dark">copy BCE</button>
-                                                        <button class="btn btn-sm btn-dark">calcul quantité</button>
-                                                    </th>
-                                                    <th colspan="2" class="text-center"><button class="btn btn-sm btn-dark">calcul quantité</button></th>
-                                                    <th colspan="2" class="text-center">qte reçue</th>
-                                                    <th colspan="2" class="text-center">qte à livrer</th>
-                                                    <th colspan="5"><h5 class="text-center"><u>Comparaison réel</u></h5></th>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="col"><i class="fa fa-redo"></i></th>
-                                                    <th scope="col">code fournisseur</i></th>
-                                                    <th scope="col">désignation</th>
-                                                    <th scope="col">qte produits</th>
-                                                    <th scope="col"><button class="btn btn-sm btn-dark"><i class="fa fa-sync"></i></button><br>
-                                                        qte colis</th>
-                                                    <th scope="col">contrôle</th>
-                                                    <th scope="col">terminé</th>
-                                                    <th scope="col"> <i class="fa fa-trash"></i> </th>
-                                                    <th scope="col">Comm. attendu</th>
-                                                    <th scope="col">Comm. reçus</th>
-                                                    <th scope="col">produits</th>
-                                                    <th scope="col">&nbsp; &nbsp; colis &nbsp;&nbsp; </th>
-                                                    <th scope="col">produits</th>
-                                                    <th scope="col">&nbsp; &nbsp; colis &nbsp;&nbsp; </th>
-                                                    <th scope="col">colis litigieux</th>
-                                                    <th scope="col">produits litigieux</th>
-                                                    <th scope="col">autre différence</th>
-                                                    <th scope="col">différence produit</th>
-                                                    <th scope="col">diff. non-expliquée</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody id="tabblbody">
-                                                {% for items in entreeligne %}
-                                                <!--<tr>
-                                                    <td> <button id='{{ items.idBonLivraisonEntree }}' class="dyna"> -> </button></td>
-                                                    <td> {{ items.fk_TypeZoneDepot.nom }} </td>
-                                                        <td> {{ items.dateReception }} </td>
-                                                    <td> {{ items.numeroBonLivraison }} </td>
-                                                    <td> <button id='{{ items.idBonLivraisonEntree  }}' class="dynad"> X </button> </td>
-                                                </tr>
-                                                -->
-                                                {% endfor %}
-                                                </tbody>
-                                            </table>
-                                        </div>
+    <div class="row">
+        <div class="col">
+            <div class="border shadow-lg p-2 mb-3 bg-white rounded">
+                <div class="col">
+                    <h5 class="text-center"> <u> Lignes du BL</u></h5>
+                    <div class="container">
+                        <div class="row">
+                            <div class="container">
+                                <div class="border shadow-lg p-2 mb-3 bg-white rounded">
+                                    <div class="table-responsive text-nowrap">
+                                        <table id="tabbl" class="table table-condensed table-striped table-bordered" cellspacing="0" width="100%">
+                                            <thead>
+                                            <tr>
+                                                <th colspan="8"><button class="btn btn-sm btn-dark" id="copyum">Copy um entree</button>
+                                                    <button class="btn btn-sm btn-dark">copy BCE</button>
+                                                    <button class="btn btn-sm btn-dark">calcul quantité</button>
+                                                </th>
+                                                <th colspan="2" class="text-center"><button class="btn btn-sm btn-dark">calcul quantité</button></th>
+                                                <th colspan="2" class="text-center">qte reçue</th>
+                                                <th colspan="2" class="text-center">qte à livrer</th>
+                                                <th colspan="5"><h5 class="text-center"><u>Comparaison réel</u></h5></th>
+                                            </tr>
+                                            <tr>
+                                                <th scope="col"><i class="fa fa-redo"></i></th>
+                                                <th scope="col">code fournisseur</i></th>
+                                                <th scope="col">désignation</th>
+                                                <th scope="col">qte produits</th>
+                                                <th scope="col"><button class="btn btn-sm btn-dark"><i class="fa fa-sync"></i></button><br>
+                                                    qte colis</th>
+                                                <th scope="col">contrôle</th>
+                                                <th scope="col">terminé</th>
+                                                <th scope="col"> <i class="fa fa-trash"></i> </th>
+                                                <th scope="col">Comm. attendu</th>
+                                                <th scope="col">Comm. reçus</th>
+                                                <th scope="col">produits</th>
+                                                <th scope="col">&nbsp; &nbsp; colis &nbsp;&nbsp; </th>
+                                                <th scope="col">produits</th>
+                                                <th scope="col">&nbsp; &nbsp; colis &nbsp;&nbsp; </th>
+                                                <th scope="col">colis litigieux</th>
+                                                <th scope="col">produits litigieux</th>
+                                                <th scope="col">autre différence</th>
+                                                <th scope="col">différence produit</th>
+                                                <th scope="col">diff. non-expliquée</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody id="tabblbody">
+                                            {% for items in entreeligne %}
+                                            <!--<tr>
+                                                <td> <button id='{{ items.idBonLivraisonEntree }}' class="dyna"> -> </button></td>
+                                                <td> {{ items.fk_TypeZoneDepot.nom }} </td>
+                                                    <td> {{ items.dateReception }} </td>
+                                                <td> {{ items.numeroBonLivraison }} </td>
+                                                <td> <button id='{{ items.idBonLivraisonEntree  }}' class="dynad"> X </button> </td>
+                                            </tr>
+                                            -->
+                                            {% endfor %}
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
-                                <button class="btn btn-sm btn-dark" id="addligne">+</button>
                             </div>
+                            <button class="btn btn-sm btn-dark" id="addligne">+</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <div id="dialog-confirm" title="Ajouter des lignes">
-        Combien de lignes faut-il ajouter ?</p>
-        <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>
-            <input id="numberligne" type="text" pattern="[0-9]+">
-    </div>
-    <br>
-    <br>
-    <script>
-        $(document).ready(function() {
-            $('');
-            $("#back-row").click(function () {
-                location.href = "{% url 'bonLivraisonEntree' %}";
-            });
-            $("#create-row").click(function () {
-                location.href = "{% url 'bonLivraisonEntreeadd' %}";
-            });
-            $(".fa-chevron-circle-right").click(function () {
-                $.ajax({
-                    type: "POST",    //type de requête utilisé par ajax
-                    url: "/right_ble/", //lien de la view qui gère la requête post
-                    data: {
-                        'id': $('#umid').val(), // id acquis grace a js
-                        csrfmiddlewaretoken: '{{ csrf_token }}',
-                    },
-                    success: function (msg, data, settings) {
-                        console.log("gg " + msg);
-                        if (msg != "fail")
-                            window.location.href = "{% url 'bonLivraisonEntreemodify' %}?id=" + msg;
-                    },
-                    failure: function () {
-                        console.log("fail");
-                    }
-                });
-            });
-            $("#copyum").click(function () { //copier le contenu des ume dans le ble
-                console.log("copy ume");
-                var article = [{}];
-                var idx = 0;
-                var arr = [];
-                var foundarticle = 0;
-                var nbr = 0;
-                if (window.confirm("\"Vous allez recréer le BL à partir des UM entrée. Les valeurs précédemment saisies seront remplacées par le contenu des UM entrée liées à ce BL?")) {
-                    $('#tabbl tr').each(function (a, b) {  //recupère les  entrée dans la table
-                        if (a === 0 || a === 1) {
-                            // Je ne prends pas en compte le "thead".
-                        }
-                        else {
-                            $(this).find('td').each(function(a, b) {
-                                if (a === 7) {
-                                    console.log($(this).find('button').attr('id'));
-                                    $.ajax({
-                                        type: "POST",    //type de requête utilisé par ajax
-                                        url: "/ligneble/delete/", //lien de la view qui gère la requête post pour delete les lignes du bl
-                                        data: {
-                                            'id': $(this).find('button').attr('id'),
-                                            csrfmiddlewaretoken: '{{ csrf_token }}',
-                                        },
-                                        success: function (msg, data, settings) {
-                                            console.log("gg " + msg);
-                                            //location.reload();
-                                        },
-                                        failure: function () {
-                                            console.log("fail");
-                                        }
-                                    });
-                                }
-                            });
-                            $(this).remove();
-                        }
-                    });
-                    '{% for colis in col %}'
-                    '{% for items in umentree %}'
-                    '{% if colis.fk_UniteManutentionEntree|safe == items.idUniteManutentionEntree|safe %}'
-                    '{% if items.fk_BonLivraisonEntree.idBonLivraisonEntree == id %}'
-                    '{% for article in art %}'
-                    '{% if article.idArticle == colis.fk_Article.idArticle %}'
-                    foundarticle = 0;
-                    for (var idx = 0; idx != arr.length; idx++) {
-                        if (arr[idx].name == '{{ colis.fk_Article|safe }}') {//je gère ici si l'article a déjà été trouver ou pas, si il existe je mets direct la quantité dedans
-                            foundarticle = 1;
-                            arr[idx].quantiteproduit += parseInt('{{ colis.quantiteProduit|safe }}');
-                            arr[idx].colis += 1;
-                        }
-                    }
-                    if (foundarticle == 0) {
-                        arr.push({name : '{{ colis.fk_Article|safe }}',
-                            quantiteproduit : parseInt('{{ colis.quantiteProduit|safe }}'),
-                            colis : 1});
-                        foundarticle = 1;
-                    }
-                    '{% endif %}'
-                    '{% endfor %}'
-                    /*for (var idx = 0; idx != arr.length; idx++) {
-                    $('#tabblbody').last('tr').find('td').eq(1).find('select').append(new Option(, )); //rempli le code fournisseur une fois le colis trouvé
-                    $("#iddesif").append(new Option("{{ colis.id|safe }}", "{{ colis.id|safe }}"));
-                    }*/
-                    '{% endif %}'
-                    '{% endif %}'
-                    '{% endfor %}'
-                    '{% endfor %}'
 
-                    var upperid = "0";
-                    "{% for items in entreeligne %}"
-                    if (parseInt(upperid, 10) < parseInt('{{ items.idLigneBonLivraisonEntree }}', 10)) {
-                        upperid = parseInt('{{ items.idLigneBonLivraisonEntree }}', 10);
-                    }
-                    "{% endfor %}"
-                    for (var idx = 0; idx != arr.length; idx++) {
-                        console.log(arr[idx]);
-                        upperid++;
-                        $('#tabblbody').append("<tr><td><button class='resetb' id=\"reset" + idx + "\"><i class=\"fa fa-redo\"></i></button></td>" +
-                            "<td><select class=\"form-control fournise\" id=\"blfournisseur" + idx + "\"></select></td>" +
-                            "<td><select class=\"form-control desif\" id=\"iddesif" + idx + "\"></select></td>" +
-                            "<td><input class='form-control'></td>" +
-                            "<td><input class='form-control'></td>" +
-                            "<td><button type=\"button\" class=\"btn btn-light btn-sm butctrl \"><i class=\"far fa-thumbs-down\" aria-hidden=\"true\"></i></button></td>" +
-                            "<td><input type=\"checkbox\" class=\"form-control\"></td>" +
-                            "<td><button class=\"deleteur exist\" id=\""+ upperid + "\"> X </button> </td>" +
-                            "<td><input class='form-control'></td>" +
-                            "<td><input class='form-control'></td>" +
-                            "<td><input class='form-control'></td>" +
-                            "<td><input class='form-control'></td>" +
-                            "<td><input class='form-control'></td>" +
-                            "<td><input class='form-control'></td>" +
-                            "<td><input class='form-control'></td>" +
-                            "<td><input class='form-control'></td>" +
-                            "<td><input class='form-control'></td>" +
-                            "<td><input class='form-control'></td>" +
-                            "<td><input class='form-control'></td>");
-                        nbr++;
-                        '{% for itemsart in art %}'
-                        $("select.fournise:last").append(new Option("{{ itemsart.codeFournisseur|safe }}", "{{ itemsart.codeFournisseur|safe }}"));
-                        $("select.desif:last").append(new Option("{{ itemsart.designationClient|safe }}", "{{ itemsart.designationClient|safe }}"));
+<div id="dialog-confirm" title="Ajouter des lignes">
+    Combien de lignes faut-il ajouter ?</p>
+    <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>
+        <input id="numberligne" type="text" pattern="[0-9]+">
+</div>
+<br>
+<br>
 
-                        if ('{{ itemsart }}' == arr[idx].name) {
-                            $("select.fournise:last").val("{{ itemsart.codeFournisseur|safe }}");
-                            $("select.desif:last").val("{{ itemsart.designationClient|safe }}");
-                        }
+<script>
+    $(document).ready(function() {
 
-                        '{% endfor %}'
-                        $("select.desif:last").parent('td').nextAll('td').eq('0').find('input').val(arr[idx].quantiteproduit);
-                        $("select.desif:last").parent('td').nextAll('td').eq('1').find('input').val(arr[idx].colis);
-                        $("select.desif:last").parent('td').nextAll('td').eq('5').find('input').val("{{ itemslb.quantiteCommande|safe }}");
-                        $("select.desif:last").parent('td').nextAll('td').eq('6').find('input').val("{{ itemslb.quantiteCommandeRecue|safe }}");
-                        $("select.desif:last").parent('td').nextAll('td').eq('7').find('input').val("{{ itemslb.quantiteProduitRecu|safe }}");
-                        $("select.desif:last").parent('td').nextAll('td').eq('8').find('input').val("{{ itemslb.quantiteColisRecu|safe }}");
-                        $("select.desif:last").parent('td').nextAll('td').eq('9').find('input').val("{{ itemslb.quantiteProduitAlivrer|safe }}");
-                        $("select.desif:last").parent('td').nextAll('td').eq('10').find('input').val("{{ itemslb.quantiteColisAlivrer|safe }}");
-                        $("select.desif:last").parent('td').nextAll('td').eq('11').find('input').val("{{ itemslb.quantiteColisLitige|safe }}");
-                        $("select.desif:last").parent('td').nextAll('td').eq('12').find('input').val("{{ itemslb.quantiteProduitLitige|safe }}");
-                        $("select.desif:last").parent('td').nextAll('td').eq('13').find('input').val("{{ itemslb.quantiteDifferenceAutre|safe }}");
-                        $("select.desif:last").parent('td').nextAll('td').eq('14').find('input').val("{{ itemslb.quantiteDifference|safe }}");
-                        $("select.desif:last").parent('td').nextAll('td').eq('15').find('input').val("{{ itemslb.quantiteDifferenceRestante|safe }}");
 
-                        for (var a = idx; a != 0; a--) {
-                            $("#blfournisseur" + a).combobox();
-                        }
-                        $("#toggle").on("click", function () {
-                            for (var a = idx; a != 0; a--) {
-                                $("#blfournisseur" + a).toggle();
-                            }
-                        });
-                        for (var a = idx; a != 0; a--) {
-                            $("#iddesif" + a).combobox();
-                        }
-                        $(" #toggle").on("click", function () {
-                            for (var a = idx; a != 0; a--) {
-                                $("#iddesif" + a).toggle();
-                            }
-                        });
-                        $(".fournise").combobox({
-                            select: function (event, ui) {
-                                '{% for items in art %}'
-                                if ('{{ items.codeFournisseur }}' == this.value) {
-                                    $(this).closest('td').next().find('select').find('option').remove();
-                                    $(this).closest('td').next().find('select').append(new Option("{{ items.designationClient|safe }}", "{{ items.designationClient|safe }}"));
-                                }
-                                '{% endfor %}'
-                            }
-                        });
-                        $(".desif").combobox({
-                            select: function (event, ui) {
-                                '{% for items in art %}'
-                                if ('{{ items.designationClient|safe }}' == this.value) {
-                                    $(this).closest('td').prev().find('select').find('option').remove();
-                                    $(this).closest('td').prev().find('select').append(new Option("{{ items.codeFournisseur|safe }}", "{{ items.codeFournisseur|safe }}"));
-                                }
-                                '{% endfor %}'
-                            }
-                        });
-                        $('.resetb').click(function () {
-                            $(this).closest('td').parent().find('td').eq(0).next().find('select').find('option').remove();
-                            $(this).closest('td').parent().find('td').eq(1).next().find('select').find('option').remove();
-                            '{% for items in art %}'
-                            $(this).closest('td').parent().find('td').eq(0).next().find('select').append(new Option("{{ items.codeFournisseur|safe }}", "{{ items.codeFournisseur|safe }}"));
-                            $(this).closest('td').parent().find('td').eq(1).next().find('select').append(new Option("{{ items.designationClient|safe }}", "{{ items.designationClient|safe }}"));
-                            '{% endfor %}'
-                        });
-                    }
+        $("#back-row").click(function () {
+            location.href = "{% url 'bonLivraisonEntree' %}";
+        });
+
+        $("#create-row").click(function () {
+            location.href = "{% url 'bonLivraisonEntreeadd' %}";
+        });
+        $(".fa-chevron-circle-right").click(function () {
+            $.ajax({
+                type: "POST",    //type de requête utilisé par ajax
+                url: "/right_ble/", //lien de la view qui gère la requête post
+                data: {
+                    'id': $('#umid').val(), // id acquis grace a js
+                    csrfmiddlewaretoken: '{{ csrf_token }}',
+                },
+                success: function (msg, data, settings) {
+                    console.log("gg " + msg);
+                    if (msg != "fail")
+                        window.location.href = "{% url 'bonLivraisonEntreemodify' %}?id=" + msg;
+                },
+                failure: function () {
+                    console.log("fail");
                 }
             });
-            $("#addume").click(function () {
-                $.ajax({
-                    type: "POST",    //type de requête utilisé par ajax
-                    url: "/bonLivraisonentree/modify/createume/", //lien de la view qui gère la requête post
-                    data: {
-                        'id': $('#umid').val(),
-                        csrfmiddlewaretoken: '{{ csrf_token }}',
-                    },
-                    success: function (msg, data, settings) {
-                        console.log("gg " + msg);
-                        location.reload();
-                    },
-                    failure: function () {
-                        console.log("fail");
-                    }
-                });
-            });
-
-
-            $(".fa-chevron-circle-left").click(function () {
-                $.ajax({
-                    type: "POST",    //type de requête utilisé par ajax
-                    url: "/left_ble/", //lien de la view qui gère la requête post
-                    data: {
-                        'id': $('#umid').val(),
-                        csrfmiddlewaretoken: '{{ csrf_token }}',
-                    },
-                    success: function (msg, data, settings) {
-                        console.log("gg " + msg);
-                        if (msg != "fail")
-                            window.location.href = "{% url 'bonLivraisonEntreemodify' %}?id=" + msg;
-                    },
-                    failure: function () {
-                        console.log("fail");
-                    }
-                });
-            });
-
-            var upperid = "0";
-            "{% for items in entreeligne %}"
-            if (parseInt(upperid, 10) < parseInt('{{ items.idLigneBonLivraisonEntree }}', 10)) {
-                upperid = parseInt('{{ items.idLigneBonLivraisonEntree }}', 10);
-            }
-            "{% endfor %}"
-
-            $("#zatt").val("");
-            $("#fournisseur").val("");
-            $("#litiges").val("");
-            $('#client').val("");
-            $("#umid").val('{{ id }}');
-            $('#zone').val("");
+        });
+        $("#copyum").click(function () { //copier le contenu des ume dans le ble
+            console.log("copy ume");
+            var article = [{}];
+            var idx = 0;
+            var arr = [];
+            var foundarticle = 0;
             var nbr = 0;
-            '{% for items in entree %}'
-            if ('{{ items.idBonLivraisonEntree }}' == $('#umid').val()) {
-                $('#client').val('{{ items.fk_Client.nom|safe }}');
-                $('#lveinput').val('{{ items.fk_LettreVoitureEntree }}');
-                '{% for itemscli in cli %}'
-                if ('{{ itemscli.nom }}' == $('#client').val()) {
-                    $('#zone').val('{{ itemscli.fk_TypeZone.nom|safe }}');
-                    $('#zatt').empty();
-                    '{% for itemsz in zoned %}'
-                    '{% if itemsz.fk_TypeZoneDepot.nom == itemscli.fk_TypeZone.nom %}'
-                    console.log("there{{ itemscli.fk_TypeZone.nom|safe }}");
-                    $("#zatt").append(new Option("{{ itemsz.nom|safe }}", "{{ itemsz.nom|safe }}"));
-                    '{% endif %}'
-                    '{% endfor %}'
+            if (window.confirm("\"Vous allez recréer le BL à partir des UM entrée. Les valeurs précédemment saisies seront remplacées par le contenu des UM entrée liées à ce BL?")) {
+                $('#tabbl tr').each(function (a, b) {  //recupère les  entrée dans la table
+                    if (a === 0 || a === 1) {
+                        // Je ne prends pas en compte le "thead".
+                    }
+                    else {
+                        $(this).find('td').each(function(a, b) {
+                            if (a === 7) {
+                                console.log($(this).find('button').attr('id'));
+                                $.ajax({
+                                    type: "POST",    //type de requête utilisé par ajax
+                                    url: "/ligneble/delete/", //lien de la view qui gère la requête post pour delete les lignes du bl
+                                    data: {
+                                        'id': $(this).find('button').attr('id'),
+                                        csrfmiddlewaretoken: '{{ csrf_token }}',
+                                    },
+                                    success: function (msg, data, settings) {
+                                        console.log("gg " + msg);
+                                        //location.reload();
+                                    },
+                                    failure: function () {
+                                        console.log("fail");
+                                    }
+                                });
+                            }
+                        });
+                        $(this).remove();
+                    }
+                });
+                '{% for colis in col %}'
+                '{% for items in umentree %}'
+                '{% if colis.fk_UniteManutentionEntree|safe == items.idUniteManutentionEntree|safe %}'
+                '{% if items.fk_BonLivraisonEntree.idBonLivraisonEntree == id %}'
+                '{% for article in art %}'
+                '{% if article.idArticle == colis.fk_Article.idArticle %}'
+                foundarticle = 0;
+                for (var idx = 0; idx != arr.length; idx++) {
+                    if (arr[idx].name == '{{ colis.fk_Article|safe }}') {//je gère ici si l'article a déjà été trouver ou pas, si il existe je mets direct la quantité dedans
+                        foundarticle = 1;
+                        arr[idx].quantiteproduit += parseInt('{{ colis.quantiteProduit|safe }}');
+                        arr[idx].colis += 1;
+                    }
                 }
+                if (foundarticle == 0) {
+                    arr.push({name : '{{ colis.fk_Article|safe }}',
+                        quantiteproduit : parseInt('{{ colis.quantiteProduit|safe }}'),
+                        colis : 1});
+                    foundarticle = 1;
+                }
+                '{% endif %}'
                 '{% endfor %}'
-                $("#zatt").val("");
+                /*for (var idx = 0; idx != arr.length; idx++) {
+                $('#tabblbody').last('tr').find('td').eq(1).find('select').append(new Option(, )); //rempli le code fournisseur une fois le colis trouvé
+                $("#iddesif").append(new Option("{{ colis.id|safe }}", "{{ colis.id|safe }}"));
+                }*/
+                '{% endif %}'
+                '{% endif %}'
+                '{% endfor %}'
+                '{% endfor %}'
 
-                $("#fournisseur").val("{{ items.fk_Fournisseur.nom|safe }}");
-                $("#inputMDEx").val("{{ items.dateReception|safe }}");
-                $("#inputqpl").val("{{ items.quantitePalette|safe }}");
-                $("#inputnbl").val("{{ items.numeroBonLivraison|safe }}");
-                $("#litiges").val("{{ items.fk_Destinataire|safe }}");
-                $("#client").val("{{ items.fk_Client|safe }}");
-                $("#zatt").val("{{ items.fk_ZoneDepot_pour_TypeZoneDepot|safe }}");
-
-                '{% for itemslb in entreeligne %}'
-                if ('{{ itemslb.fk_BonLivraisonEntree }}' == '{{ items.idBonLivraisonEntree }}') {
-                    $('#tabblbody').append("<tr><td><button class='resetb' id=\"reset" + nbr + "\"><i class=\"fa fa-redo\"></i></button></td>" +
-                        "<td><select class=\"form-control fournise\" id=\"blfournisseur" + nbr + "\"></select></td>" +
-                        "<td><select class=\"form-control desif\" id=\"iddesif" + nbr + "\"></select></td>" +
+                var upperid = "0";
+                "{% for items in entreeligne %}"
+                if (parseInt(upperid, 10) < parseInt('{{ items.idLigneBonLivraisonEntree }}', 10)) {
+                    upperid = parseInt('{{ items.idLigneBonLivraisonEntree }}', 10);
+                }
+                "{% endfor %}"
+                for (var idx = 0; idx != arr.length; idx++) {
+                    console.log(arr[idx]);
+                    upperid++;
+                    $('#tabblbody').append("<tr><td><button class='resetb' id=\"reset" + idx + "\"><i class=\"fa fa-redo\"></i></button></td>" +
+                        "<td><select class=\"form-control fournise\" id=\"blfournisseur" + idx + "\"></select></td>" +
+                        "<td><select class=\"form-control desif\" id=\"iddesif" + idx + "\"></select></td>" +
                         "<td><input class='form-control'></td>" +
                         "<td><input class='form-control'></td>" +
                         "<td><button type=\"button\" class=\"btn btn-light btn-sm butctrl \"><i class=\"far fa-thumbs-down\" aria-hidden=\"true\"></i></button></td>" +
                         "<td><input type=\"checkbox\" class=\"form-control\"></td>" +
-                        "<td><button class=\"deleteur exist\" id=\"{{ itemslb.idLigneBonLivraisonEntree }}\"> X </button> </td>" +
+                        "<td><button class=\"deleteur exist\" id=\""+ upperid + "\"> X </button> </td>" +
                         "<td><input class='form-control'></td>" +
                         "<td><input class='form-control'></td>" +
                         "<td><input class='form-control'></td>" +
@@ -738,25 +568,18 @@
                         "<td><input class='form-control'></td>" +
                         "<td><input class='form-control'></td>");
                     nbr++;
-                    //upperid++;
                     '{% for itemsart in art %}'
                     $("select.fournise:last").append(new Option("{{ itemsart.codeFournisseur|safe }}", "{{ itemsart.codeFournisseur|safe }}"));
                     $("select.desif:last").append(new Option("{{ itemsart.designationClient|safe }}", "{{ itemsart.designationClient|safe }}"));
-                    //console.log("{{ itemsart.idArticle }} and {{ itemslb.fk_Article.idArticle }}");
-                    if ('{{ itemsart.idArticle }}' == '{{ itemslb.fk_Article.idArticle }}') {
+
+                    if ('{{ itemsart }}' == arr[idx].name) {
                         $("select.fournise:last").val("{{ itemsart.codeFournisseur|safe }}");
                         $("select.desif:last").val("{{ itemsart.designationClient|safe }}");
                     }
+
                     '{% endfor %}'
-                    $("select.desif:last").parent('td').nextAll('td').eq('0').find('input').val("{{ itemslb.quantiteProduit|safe }}");
-                    $("select.desif:last").parent('td').nextAll('td').eq('1').find('input').val("{{ itemslb.quantiteColis|safe }}");
-                    if ('{{ itemslb.controle }}' == 1) {
-                        $("select.desif:last").parent('td').nextAll('td').eq('2').find('button').attr('class', 'btn btn-sm butctrl btn-success');
-                        $("select.desif:last").parent('td').nextAll('td').eq('2').find('i').attr('class', 'far fa-thumbs-up');
-                    }
-                    if ('{{ itemslb.termine }}' == 1) {
-                        $("select.desif:last").parent('td').nextAll('td').eq('3').find('input').prop('checked', true);
-                    }
+                    $("select.desif:last").parent('td').nextAll('td').eq('0').find('input').val(arr[idx].quantiteproduit);
+                    $("select.desif:last").parent('td').nextAll('td').eq('1').find('input').val(arr[idx].colis);
                     $("select.desif:last").parent('td').nextAll('td').eq('5').find('input').val("{{ itemslb.quantiteCommande|safe }}");
                     $("select.desif:last").parent('td').nextAll('td').eq('6').find('input').val("{{ itemslb.quantiteCommandeRecue|safe }}");
                     $("select.desif:last").parent('td').nextAll('td').eq('7').find('input').val("{{ itemslb.quantiteProduitRecu|safe }}");
@@ -769,19 +592,19 @@
                     $("select.desif:last").parent('td').nextAll('td').eq('14').find('input').val("{{ itemslb.quantiteDifference|safe }}");
                     $("select.desif:last").parent('td').nextAll('td').eq('15').find('input').val("{{ itemslb.quantiteDifferenceRestante|safe }}");
 
-                    for (var a = nbr; a != 0; a--) {
+                    for (var a = idx; a != 0; a--) {
                         $("#blfournisseur" + a).combobox();
                     }
                     $("#toggle").on("click", function () {
-                        for (var a = nbr; a != 0; a--) {
+                        for (var a = idx; a != 0; a--) {
                             $("#blfournisseur" + a).toggle();
                         }
                     });
-                    for (var a = nbr; a != 0; a--) {
+                    for (var a = idx; a != 0; a--) {
                         $("#iddesif" + a).combobox();
                     }
                     $(" #toggle").on("click", function () {
-                        for (var a = nbr; a != 0; a--) {
+                        for (var a = idx; a != 0; a--) {
                             $("#iddesif" + a).toggle();
                         }
                     });
@@ -814,392 +637,569 @@
                         '{% endfor %}'
                     });
                 }
+            }
+        });
+        $("#addume").click(function () {
+            $.ajax({
+                type: "POST",    //type de requête utilisé par ajax
+                url: "/bonLivraisonentree/modify/createume/", //lien de la view qui gère la requête post
+                data: {
+                    'id': $('#umid').val(),
+                    csrfmiddlewaretoken: '{{ csrf_token }}',
+                },
+                success: function (msg, data, settings) {
+                    console.log("gg " + msg);
+                    location.reload();
+                },
+                failure: function () {
+                    console.log("fail");
+                }
+            });
+        });
+
+
+        $(".fa-chevron-circle-left").click(function () {
+            $.ajax({
+                type: "POST",    //type de requête utilisé par ajax
+                url: "/left_ble/", //lien de la view qui gère la requête post
+                data: {
+                    'id': $('#umid').val(),
+                    csrfmiddlewaretoken: '{{ csrf_token }}',
+                },
+                success: function (msg, data, settings) {
+                    console.log("gg " + msg);
+                    if (msg != "fail")
+                        window.location.href = "{% url 'bonLivraisonEntreemodify' %}?id=" + msg;
+                },
+                failure: function () {
+                    console.log("fail");
+                }
+            });
+        });
+
+        var upperid = "0";
+        "{% for items in entreeligne %}"
+        if (parseInt(upperid, 10) < parseInt('{{ items.idLigneBonLivraisonEntree }}', 10)) {
+            upperid = parseInt('{{ items.idLigneBonLivraisonEntree }}', 10);
+        }
+        "{% endfor %}"
+
+        $("#zatt").val("");
+        $("#fournisseur").val("");
+        $("#litiges").val("");
+        $('#client').val("");
+        $("#umid").val('{{ id }}');
+        $('#zone').val("");
+        var nbr = 0;
+        '{% for items in entree %}'
+        if ('{{ items.idBonLivraisonEntree }}' == $('#umid').val()) {
+            $('#client').val('{{ items.fk_Client.nom|safe }}');
+            $('#lveinput').val('{{ items.fk_LettreVoitureEntree }}');
+            '{% for itemscli in cli %}'
+            if ('{{ itemscli.nom }}' == $('#client').val()) {
+                $('#zone').val('{{ itemscli.fk_TypeZone.nom|safe }}');
+                $('#zatt').empty();
+                '{% for itemsz in zoned %}'
+                '{% if itemsz.fk_TypeZoneDepot.nom == itemscli.fk_TypeZone.nom %}'
+                console.log("there{{ itemscli.fk_TypeZone.nom|safe }}");
+                $("#zatt").append(new Option("{{ itemsz.nom|safe }}", "{{ itemsz.nom|safe }}"));
+                '{% endif %}'
                 '{% endfor %}'
             }
             '{% endfor %}'
+            $("#zatt").val("");
 
-            $('#addble').click(function() {
-                var idx = 0;
-                "{% for items in four %}"
-                /*var name = $("#nom").val();
-                if (name == "{{ items.nom }}") {
-                  alert(name);
-                }*/
-                "{% endfor %}"
-                var typef = $('#fournisseur').val();
-                var codefournisseur = "";
-                var designation = "";
-                var qteproduits = "";
-                var qtecolis = "";
-                var contrôle = "";
-                var terminé = "";
-                var commattendu = "";
-                var commrecus = "";
-                var produitsrec = "";
-                var colisrec = "";
-                var produitsali = "";
-                var colisali = "";
-                var colislitigieux = "";
-                var produitslitigieux = "";
-                var autrediff = "";
-                var diffproduit = "";
-                var diffnexp = "";
-                var id = "";
-                var ligne = {};
+            $("#fournisseur").val("{{ items.fk_Fournisseur.nom|safe }}");
+            $("#inputMDEx").val("{{ items.dateReception|safe }}");
+            $("#inputqpl").val("{{ items.quantitePalette|safe }}");
+            $("#inputnbl").val("{{ items.numeroBonLivraison|safe }}");
+            $("#litiges").val("{{ items.fk_Destinataire|safe }}");
+            $("#client").val("{{ items.fk_Client|safe }}");
+            $("#zatt").val("{{ items.fk_ZoneDepot_pour_TypeZoneDepot|safe }}");
 
-                $('#tabbl tr').each(function (a, b) {  //recupère les  entrée dans la table
-                    if (a === 0 || a === 1) {
-                        // Je ne prends pas en compte le "thead".
-                    }
-                    else {
-                        var stock = "";
-                        $(this).find('td').each(function(a, b) {
-                            if (a === 0) {
-                            } else {
-                                stock = $(this).find('input').val();
-                                if (a === 1) {
-                                    codefournisseur = stock;
-                                }
-                                if (a === 2) {
-                                    designation = stock;
-                                    //designation = $(this).find('input').val();
-                                    //console.log("desi == " + designation);
-                                }
-                                if (a === 3) {
-                                    qteproduits = stock;
-                                }
-                                if (a === 4) {
-                                    qtecolis = stock;
-                                }
-                                if (a === 5) {
-                                    if ($(this).find('button').hasClass('btn btn-sm butctrl btn-light')) {
-                                        contrôle = 0;
-                                    }
-                                    else {
-                                        contrôle = 1;
-                                    }
-                                }
-                                if (a === 6) {
-                                    if($(this).find('input').is(':checked'))
-                                        terminé = 1;
-                                    else
-                                        terminé = 0;
-                                }
-                                if (a === 7) {
-                                    id = $(this).find('button').attr('id');
-                                    console.log(id);
-                                }
-                                if (a === 8) {
-                                    commattendu = stock;
-                                }
-                                if (a === 9) {
-                                    commrecus = stock;
-                                }
-                                if (a === 10) {
-                                    produitsrec = stock;
-                                }
-                                if (a === 11) {
-                                    colisrec = stock;
-                                }
-                                if (a === 12) {
-                                    produitsali = stock;
-                                }
-                                if (a === 13) {
-                                    colisali = stock;
-                                }
-                                if (a === 14) {
-                                    colislitigieux = stock;
-                                }
-                                if (a === 15) {
-                                    produitslitigieux = stock;
-                                }
-                                if (a === 16) {
-                                    autrediff = stock;
-                                }
-                                if (a === 17) {
-                                    diffproduit = stock;
-                                }
-                                if (a === 18) {
-                                    diffnexp = stock;
-                                }
-                            }
-                        });
-                        ligne[idx] = {"codefour": codefournisseur.trim(), "desicli": designation.trim(), "quantiteprod": qteproduits,
-                            "quantitecolis": qtecolis, "controle": contrôle, "termine": terminé, "commattendu": commattendu,
-                            "commrecus": commrecus, "produitsrecu": produitsrec, "colisrecu": colisrec,
-                            "produitsalivrer": produitsali, "colisalivrer": colisali, "colislitigieux": colislitigieux,
-                            "produitslitgieux": produitslitigieux,"autrediffs": autrediff,
-                            "diffproduit": diffproduit, "diffnonexp": diffnexp, "id": id};
-                        idx++;
+            '{% for itemslb in entreeligne %}'
+            if ('{{ itemslb.fk_BonLivraisonEntree }}' == '{{ items.idBonLivraisonEntree }}') {
+                $('#tabblbody').append("<tr><td><button class='resetb' id=\"reset" + nbr + "\"><i class=\"fa fa-redo\"></i></button></td>" +
+                    "<td><select class=\"form-control fournise\" id=\"blfournisseur" + nbr + "\"></select></td>" +
+                    "<td><select class=\"form-control desif\" id=\"iddesif" + nbr + "\"></select></td>" +
+                    "<td><input class='form-control'></td>" +
+                    "<td><input class='form-control'></td>" +
+                    "<td><button type=\"button\" class=\"btn btn-light btn-sm butctrl \"><i class=\"far fa-thumbs-down\" aria-hidden=\"true\"></i></button></td>" +
+                    "<td><input type=\"checkbox\" class=\"form-control\"></td>" +
+                    "<td><button class=\"deleteur exist\" id=\"{{ itemslb.idLigneBonLivraisonEntree }}\"> X </button> </td>" +
+                    "<td><input class='form-control'></td>" +
+                    "<td><input class='form-control'></td>" +
+                    "<td><input class='form-control'></td>" +
+                    "<td><input class='form-control'></td>" +
+                    "<td><input class='form-control'></td>" +
+                    "<td><input class='form-control'></td>" +
+                    "<td><input class='form-control'></td>" +
+                    "<td><input class='form-control'></td>" +
+                    "<td><input class='form-control'></td>" +
+                    "<td><input class='form-control'></td>" +
+                    "<td><input class='form-control'></td>");
+                nbr++;
+                //upperid++;
+                '{% for itemsart in art %}'
+                $("select.fournise:last").append(new Option("{{ itemsart.codeFournisseur|safe }}", "{{ itemsart.codeFournisseur|safe }}"));
+                $("select.desif:last").append(new Option("{{ itemsart.designationClient|safe }}", "{{ itemsart.designationClient|safe }}"));
+                //console.log("{{ itemsart.idArticle }} and {{ itemslb.fk_Article.idArticle }}");
+                if ('{{ itemsart.idArticle }}' == '{{ itemslb.fk_Article.idArticle }}') {
+                    $("select.fournise:last").val("{{ itemsart.codeFournisseur|safe }}");
+                    $("select.desif:last").val("{{ itemsart.designationClient|safe }}");
+                }
+                '{% endfor %}'
+                $("select.desif:last").parent('td').nextAll('td').eq('0').find('input').val("{{ itemslb.quantiteProduit|safe }}");
+                $("select.desif:last").parent('td').nextAll('td').eq('1').find('input').val("{{ itemslb.quantiteColis|safe }}");
+                if ('{{ itemslb.controle }}' == 1) {
+                    $("select.desif:last").parent('td').nextAll('td').eq('2').find('button').attr('class', 'btn btn-sm butctrl btn-success');
+                    $("select.desif:last").parent('td').nextAll('td').eq('2').find('i').attr('class', 'far fa-thumbs-up');
+                }
+                if ('{{ itemslb.termine }}' == 1) {
+                    $("select.desif:last").parent('td').nextAll('td').eq('3').find('input').prop('checked', true);
+                }
+                $("select.desif:last").parent('td').nextAll('td').eq('5').find('input').val("{{ itemslb.quantiteCommande|safe }}");
+                $("select.desif:last").parent('td').nextAll('td').eq('6').find('input').val("{{ itemslb.quantiteCommandeRecue|safe }}");
+                $("select.desif:last").parent('td').nextAll('td').eq('7').find('input').val("{{ itemslb.quantiteProduitRecu|safe }}");
+                $("select.desif:last").parent('td').nextAll('td').eq('8').find('input').val("{{ itemslb.quantiteColisRecu|safe }}");
+                $("select.desif:last").parent('td').nextAll('td').eq('9').find('input').val("{{ itemslb.quantiteProduitAlivrer|safe }}");
+                $("select.desif:last").parent('td').nextAll('td').eq('10').find('input').val("{{ itemslb.quantiteColisAlivrer|safe }}");
+                $("select.desif:last").parent('td').nextAll('td').eq('11').find('input').val("{{ itemslb.quantiteColisLitige|safe }}");
+                $("select.desif:last").parent('td').nextAll('td').eq('12').find('input').val("{{ itemslb.quantiteProduitLitige|safe }}");
+                $("select.desif:last").parent('td').nextAll('td').eq('13').find('input').val("{{ itemslb.quantiteDifferenceAutre|safe }}");
+                $("select.desif:last").parent('td').nextAll('td').eq('14').find('input').val("{{ itemslb.quantiteDifference|safe }}");
+                $("select.desif:last").parent('td').nextAll('td').eq('15').find('input').val("{{ itemslb.quantiteDifferenceRestante|safe }}");
+
+                for (var a = nbr; a != 0; a--) {
+                    $("#blfournisseur" + a).combobox();
+                }
+                $("#toggle").on("click", function () {
+                    for (var a = nbr; a != 0; a--) {
+                        $("#blfournisseur" + a).toggle();
                     }
                 });
-                idx = 0;
-                var myidx = 0;
+                for (var a = nbr; a != 0; a--) {
+                    $("#iddesif" + a).combobox();
+                }
+                $(" #toggle").on("click", function () {
+                    for (var a = nbr; a != 0; a--) {
+                        $("#iddesif" + a).toggle();
+                    }
+                });
+                $(".fournise").combobox({
+                    select: function (event, ui) {
+                        '{% for items in art %}'
+                        if ('{{ items.codeFournisseur }}' == this.value) {
+                            $(this).closest('td').next().find('select').find('option').remove();
+                            $(this).closest('td').next().find('select').append(new Option("{{ items.designationClient|safe }}", "{{ items.designationClient|safe }}"));
+                        }
+                        '{% endfor %}'
+                    }
+                });
+                $(".desif").combobox({
+                    select: function (event, ui) {
+                        '{% for items in art %}'
+                        if ('{{ items.designationClient|safe }}' == this.value) {
+                            $(this).closest('td').prev().find('select').find('option').remove();
+                            $(this).closest('td').prev().find('select').append(new Option("{{ items.codeFournisseur|safe }}", "{{ items.codeFournisseur|safe }}"));
+                        }
+                        '{% endfor %}'
+                    }
+                });
+                $('.resetb').click(function () {
+                    $(this).closest('td').parent().find('td').eq(0).next().find('select').find('option').remove();
+                    $(this).closest('td').parent().find('td').eq(1).next().find('select').find('option').remove();
+                    '{% for items in art %}'
+                    $(this).closest('td').parent().find('td').eq(0).next().find('select').append(new Option("{{ items.codeFournisseur|safe }}", "{{ items.codeFournisseur|safe }}"));
+                    $(this).closest('td').parent().find('td').eq(1).next().find('select').append(new Option("{{ items.designationClient|safe }}", "{{ items.designationClient|safe }}"));
+                    '{% endfor %}'
+                });
+            }
+            '{% endfor %}'
+        }
+        '{% endfor %}'
+
+        $('#addble').click(function() {
+            var idx = 0;
+            "{% for items in four %}"
+            /*var name = $("#nom").val();
+            if (name == "{{ items.nom }}") {
+              alert(name);
+            }*/
+            "{% endfor %}"
+            var typef = $('#fournisseur').val();
+            var codefournisseur = "";
+            var designation = "";
+            var qteproduits = "";
+            var qtecolis = "";
+            var contrôle = "";
+            var terminé = "";
+            var commattendu = "";
+            var commrecus = "";
+            var produitsrec = "";
+            var colisrec = "";
+            var produitsali = "";
+            var colisali = "";
+            var colislitigieux = "";
+            var produitslitigieux = "";
+            var autrediff = "";
+            var diffproduit = "";
+            var diffnexp = "";
+            var id = "";
+            var ligne = {};
+
+            $('#tabbl tr').each(function (a, b) {  //recupère les  entrée dans la table
+                if (a === 0 || a === 1) {
+                    // Je ne prends pas en compte le "thead".
+                }
+                else {
+                    var stock = "";
+                    $(this).find('td').each(function(a, b) {
+                        if (a === 0) {
+                        } else {
+                            stock = $(this).find('input').val();
+                            if (a === 1) {
+                                codefournisseur = stock;
+                            }
+                            if (a === 2) {
+                                designation = stock;
+                                //designation = $(this).find('input').val();
+                                //console.log("desi == " + designation);
+                            }
+                            if (a === 3) {
+                                qteproduits = stock;
+                            }
+                            if (a === 4) {
+                                qtecolis = stock;
+                            }
+                            if (a === 5) {
+                                if ($(this).find('button').hasClass('btn btn-sm butctrl btn-light')) {
+                                    contrôle = 0;
+                                }
+                                else {
+                                    contrôle = 1;
+                                }
+                            }
+                            if (a === 6) {
+                                if($(this).find('input').is(':checked'))
+                                    terminé = 1;
+                                else
+                                    terminé = 0;
+                            }
+                            if (a === 7) {
+                                id = $(this).find('button').attr('id');
+                                console.log(id);
+                            }
+                            if (a === 8) {
+                                commattendu = stock;
+                            }
+                            if (a === 9) {
+                                commrecus = stock;
+                            }
+                            if (a === 10) {
+                                produitsrec = stock;
+                            }
+                            if (a === 11) {
+                                colisrec = stock;
+                            }
+                            if (a === 12) {
+                                produitsali = stock;
+                            }
+                            if (a === 13) {
+                                colisali = stock;
+                            }
+                            if (a === 14) {
+                                colislitigieux = stock;
+                            }
+                            if (a === 15) {
+                                produitslitigieux = stock;
+                            }
+                            if (a === 16) {
+                                autrediff = stock;
+                            }
+                            if (a === 17) {
+                                diffproduit = stock;
+                            }
+                            if (a === 18) {
+                                diffnexp = stock;
+                            }
+                        }
+                    });
+                    ligne[idx] = {"codefour": codefournisseur.trim(), "desicli": designation.trim(), "quantiteprod": qteproduits,
+                        "quantitecolis": qtecolis, "controle": contrôle, "termine": terminé, "commattendu": commattendu,
+                        "commrecus": commrecus, "produitsrecu": produitsrec, "colisrecu": colisrec,
+                        "produitsalivrer": produitsali, "colisalivrer": colisali, "colislitigieux": colislitigieux,
+                        "produitslitgieux": produitslitigieux,"autrediffs": autrediff,
+                        "diffproduit": diffproduit, "diffnonexp": diffnexp, "id": id};
+                    idx++;
+                }
+            });
+            idx = 0;
+            var myidx = 0;
+            $.ajax({
+                type:"POST",    //type de requête utilisé par ajax
+                url:"/ble/modify/", //lien de la view qui gère la requête post
+                data: {
+                    'id': $('#umid').val(),
+                    'client': $('#client').val(),
+                    'fourtype': $('#fournisseur').val(),
+                    'lettre': $('#lveinput').val(),
+                    'zone': $('#zone').val(),
+                    'numerobl': $('#inputnbl').val(),
+                    'daterecep': $('#inputMDEx').val(),
+                    'quantitepale': $('#inputqpl').val(),
+                    'destinataireretour': $('#litiges').val(),
+                    'zoneatt': $('#zatt').val(),
+                    csrfmiddlewaretoken: '{{ csrf_token }}',
+                },
+                success: function(msg, data, settings){
+                    console.log("success: " + msg);
+                    if (Object.keys(ligne).length > 0) {
+                        for (key in ligne) {
+                            totalligne = 0;
+                            '{% for items in entreeligne %}'
+                            totalligne++;
+                            '{% endfor %}'
+                            envoilignes();
+                            myidx++;
+                        }
+                        myidx = 0;
+                    }
+                },
+                failure: function() {
+                    alert("fail");
+                }
+            });
+
+            function envoilignes() {
+                totalligne = 1;
+                '{% for items in entreeligne %}'
+                if ('{{ items.idLigneBonLivraisonEntree }}' >= totalligne) {
+                    totalligne = parseInt('{{ items.idLigneBonLivraisonEntree }}', 10);
+                }
+                '{% endfor %}'
                 $.ajax({
-                    type:"POST",    //type de requête utilisé par ajax
-                    url:"/ble/modify/", //lien de la view qui gère la requête post
+                    type:"POST",
+                    url:"/ligneble/create/",
                     data: {
                         'id': $('#umid').val(),
-                        'client': $('#client').val(),
-                        'fourtype': $('#fournisseur').val(),
-                        'lettre': $('#lveinput').val(),
-                        'zone': $('#zone').val(),
-                        'numerobl': $('#inputnbl').val(),
-                        'daterecep': $('#inputMDEx').val(),
-                        'quantitepale': $('#inputqpl').val(),
-                        'destinataireretour': $('#litiges').val(),
-                        'zoneatt': $('#zatt').val(),
+                        "lbid": ligne[myidx].id,
+                        "codefour": ligne[myidx].codefour,
+                        "desicli": ligne[myidx].desicli,
+                        "quantiteprod": ligne[myidx].quantiteprod,
+                        "quantitecolis": ligne[myidx].quantitecolis,
+                        "controle": ligne[myidx].controle,
+                        "termine": ligne[myidx].termine,
+                        "commattendu": ligne[myidx].commattendu,
+                        "commrecus": ligne[myidx].commrecus,
+                        "produitsrecu": ligne[myidx].produitsrecu,
+                        "colisrecu": ligne[myidx].colisrecu,
+                        "produitsalivrer": ligne[myidx].produitsalivrer,
+                        "colisalivrer": ligne[myidx].colisalivrer,
+                        "colislitigieux": ligne[myidx].colislitigieux,
+                        "produitslitgieux": ligne[myidx].produitslitgieux,
+                        "autrediffs": ligne[myidx].autrediffs,
+                        "diffproduit": ligne[myidx].diffproduit,
+                        "diffnonexp": ligne[myidx].diffnonexp,
+                        'totalligne': totalligne+1,
                         csrfmiddlewaretoken: '{{ csrf_token }}',
                     },
                     success: function(msg, data, settings){
-                        console.log("success: " + msg);
-                        if (Object.keys(ligne).length > 0) {
-                            for (key in ligne) {
-                                totalligne = 0;
-                                '{% for items in entreeligne %}'
-                                totalligne++;
-                                '{% endfor %}'
-                                envoilignes();
-                                myidx++;
-                            }
-                            myidx = 0;
-                        }
+                        console.log(msg);
                     },
                     failure: function() {
                         alert("fail");
                     }
                 });
+            }
+        });
 
-                function envoilignes() {
-                    totalligne = 1;
-                    '{% for items in entreeligne %}'
-                    if ('{{ items.idLigneBonLivraisonEntree }}' >= totalligne) {
-                        totalligne = parseInt('{{ items.idLigneBonLivraisonEntree }}', 10);
+        var nbrligne = 0;
+        $("#dialog-confirm").dialog({
+            resizable: false,
+            height: "auto",
+            width: 400,
+            modal: true,
+            buttons: {
+                "Annuler": function() {
+                    $('#numberligne').val("");
+                    $(this).dialog("close");
+                },
+                ok: function() {
+                    nbrligne = $('#numberligne').val();
+                    $('#numberligne').val("");
+                    $(this).dialog("close");
+                    for (var mynbr = nbrligne; mynbr > 0; mynbr--) {
+                        upperid++;
+                        $('#tabblbody').append("<tr><td><button class='resetb' id=\"reset" + mynbr+nbr + "\"><i class=\"fa fa-redo\"></i></button></td>" +
+                            "<td><select class=\"form-control fournise\" id=\"blfournisseur" + mynbr+nbr + "\"></select></td>" +
+                            "<td><select class=\"form-control desif\" id=\"iddesif" + mynbr+nbr + "\"></select></td>" +
+                            "<td><input class='form-control'></td>" +
+                            "<td><input class='form-control'></td>" +
+                            "<td><button type=\"button\" class=\"btn btn-light btn-sm butctrl \"><i class=\"far fa-thumbs-down\" aria-hidden=\"true\"></i></button></td>" +
+                            "<td><input type=\"checkbox\" class=\"form-control\"></td>" +
+                            "<td><button class=\"deleteur\" id=\""+ upperid +"\"> X </button> </td>" +
+                            "<td><input class='form-control'></td>" +
+                            "<td><input class='form-control'></td>" +
+                            "<td><input class='form-control'></td>" +
+                            "<td><input class='form-control'></td>" +
+                            "<td><input class='form-control'></td>" +
+                            "<td><input class='form-control'></td>" +
+                            "<td><input class='form-control'></td>" +
+                            "<td><input class='form-control'></td>" +
+                            "<td><input class='form-control'></td>" +
+                            "<td><input class='form-control'></td>" +
+                            "<td><input class='form-control'></td>");
+                        '{% for items in art %}'
+                        $("select.fournise:last").append(new Option("{{ items.codeFournisseur|safe }}", "{{ items.codeFournisseur|safe }}"));
+                        $("select.desif:last").append(new Option("{{ items.designationClient|safe }}", "{{ items.designationClient|safe }}"));
+                        $("select.fournise:last").val("");
+                        $("select.desif:last").val("");
+                        '{% endfor %}'
                     }
-                    '{% endfor %}'
-                    $.ajax({
-                        type:"POST",
-                        url:"/ligneble/create/",
-                        data: {
-                            'id': $('#umid').val(),
-                            "lbid": ligne[myidx].id,
-                            "codefour": ligne[myidx].codefour,
-                            "desicli": ligne[myidx].desicli,
-                            "quantiteprod": ligne[myidx].quantiteprod,
-                            "quantitecolis": ligne[myidx].quantitecolis,
-                            "controle": ligne[myidx].controle,
-                            "termine": ligne[myidx].termine,
-                            "commattendu": ligne[myidx].commattendu,
-                            "commrecus": ligne[myidx].commrecus,
-                            "produitsrecu": ligne[myidx].produitsrecu,
-                            "colisrecu": ligne[myidx].colisrecu,
-                            "produitsalivrer": ligne[myidx].produitsalivrer,
-                            "colisalivrer": ligne[myidx].colisalivrer,
-                            "colislitigieux": ligne[myidx].colislitigieux,
-                            "produitslitgieux": ligne[myidx].produitslitgieux,
-                            "autrediffs": ligne[myidx].autrediffs,
-                            "diffproduit": ligne[myidx].diffproduit,
-                            "diffnonexp": ligne[myidx].diffnonexp,
-                            'totalligne': totalligne+1,
-                            csrfmiddlewaretoken: '{{ csrf_token }}',
-                        },
-                        success: function(msg, data, settings){
-                            console.log(msg);
-                        },
-                        failure: function() {
-                            alert("fail");
+                    //code fournisseur
+                    for (var a = nbrligne; a != 0; a--) {
+                        $("#blfournisseur" + a).combobox();
+                    }
+                    $("#toggle").on("click", function () {
+                        for (var a = nbrligne; a != 0; a--) {
+                            $("#blfournisseur" + a).toggle();
                         }
                     });
-                }
-            });
-
-            var nbrligne = 0;
-            $("#dialog-confirm").dialog({
-                resizable: false,
-                height: "auto",
-                width: 400,
-                modal: true,
-                buttons: {
-                    "Annuler": function() {
-                        $('#numberligne').val("");
-                        $(this).dialog("close");
-                    },
-                    ok: function() {
-                        nbrligne = $('#numberligne').val();
-                        $('#numberligne').val("");
-                        $(this).dialog("close");
-                        for (var mynbr = nbrligne; mynbr > 0; mynbr--) {
-                            upperid++;
-                            $('#tabblbody').append("<tr><td><button class='resetb' id=\"reset" + mynbr+nbr + "\"><i class=\"fa fa-redo\"></i></button></td>" +
-                                "<td><select class=\"form-control fournise\" id=\"blfournisseur" + mynbr+nbr + "\"></select></td>" +
-                                "<td><select class=\"form-control desif\" id=\"iddesif" + mynbr+nbr + "\"></select></td>" +
-                                "<td><input class='form-control'></td>" +
-                                "<td><input class='form-control'></td>" +
-                                "<td><button type=\"button\" class=\"btn btn-light btn-sm butctrl \"><i class=\"far fa-thumbs-down\" aria-hidden=\"true\"></i></button></td>" +
-                                "<td><input type=\"checkbox\" class=\"form-control\"></td>" +
-                                "<td><button class=\"deleteur\" id=\""+ upperid +"\"> X </button> </td>" +
-                                "<td><input class='form-control'></td>" +
-                                "<td><input class='form-control'></td>" +
-                                "<td><input class='form-control'></td>" +
-                                "<td><input class='form-control'></td>" +
-                                "<td><input class='form-control'></td>" +
-                                "<td><input class='form-control'></td>" +
-                                "<td><input class='form-control'></td>" +
-                                "<td><input class='form-control'></td>" +
-                                "<td><input class='form-control'></td>" +
-                                "<td><input class='form-control'></td>" +
-                                "<td><input class='form-control'></td>");
-                            '{% for items in art %}'
-                            $("select.fournise:last").append(new Option("{{ items.codeFournisseur|safe }}", "{{ items.codeFournisseur|safe }}"));
-                            $("select.desif:last").append(new Option("{{ items.designationClient|safe }}", "{{ items.designationClient|safe }}"));
-                            $("select.fournise:last").val("");
-                            $("select.desif:last").val("");
-                            '{% endfor %}'
-                        }
-                        //code fournisseur
-                        for (var a = nbrligne; a != 0; a--) {
-                            $("#blfournisseur" + a).combobox();
-                        }
-                        $("#toggle").on("click", function () {
-                            for (var a = nbrligne; a != 0; a--) {
-                                $("#blfournisseur" + a).toggle();
-                            }
-                        });
-                        for (var a = nbrligne; a != 0; a--) {
-                            $("#iddesif" + a).combobox();
-                        }
-                        $("#toggle").on("click", function () {
-                            for (var a = nbrligne; a != 0; a--) {
-                                $("#iddesif" + a).toggle();
-                            }
-                        });
-                        $(".fournise").combobox({
-                            select: function (event, ui) {
-                                '{% for items in art %}'
-                                if ('{{ items.codeFournisseur|safe }}' == this.value) {
-                                    //$(this).closest('td').next().find('select').val('{{ items.designationClient }}');
-                                    //$(this).closest('td').next().find('select').find('option').remove();
-                                    $(this).closest('td').next().find('select').find('option').remove();
-                                    $(this).closest('td').next().find('select').append(new Option("{{ items.designationClient|safe }}", "{{ items.designationClient|safe }}"));
-                                }
-                                '{% endfor %}'
-                            }
-                        });
-                        $(".desif").combobox({
-                            select: function (event, ui) {
-                                '{% for items in art %}'
-                                if ('{{ items.designationClient|safe }}' == this.value) {
-                                    //$(this).closest('td').next().find('select').val('{{ items.designationClient }}');
-                                    //$(this).closest('td').next().find('select').find('option').remove();
-                                    $(this).closest('td').prev().find('select').find('option').remove();
-                                    $(this).closest('td').prev().find('select').append(new Option("{{ items.codeFournisseur|safe }}", "{{ items.codeFournisseur|safe }}"));
-                                }
-                                '{% endfor %}'
-                            }
-                        });
-                        $('.resetb').click(function () {
-                            //alert("gg " + $(this).attr('id'));
-                            //var id = $(this).attr('id');
-                            $(this).closest('td').parent().find('td').eq(0).next().find('select').find('option').remove();
-                            $(this).closest('td').parent().find('td').eq(1).next().find('select').find('option').remove();
-                            '{% for items in art %}'
-                            $(this).closest('td').parent().find('td').eq(0).next().find('select').append(new Option("{{ items.codeFournisseur|safe }}", "{{ items.codeFournisseur|safe }}"));
-                            $(this).closest('td').parent().find('td').eq(1).next().find('select').append(new Option("{{ items.designationClient|safe }}", "{{ items.designationClient|safe }}"));
-                            '{% endfor %}'
-                        });
+                    for (var a = nbrligne; a != 0; a--) {
+                        $("#iddesif" + a).combobox();
                     }
-                },
-            });
-
-            $("#dialog-confirm").dialog("close");
-            $('body').on('click', '.butctrl', function() {
-                if ($(this).hasClass("btn-light")) {
-                    $(this).removeClass("btn-light");
-                    $(this).addClass("btn-success");
-                    $(this).find($("i")).removeClass('fa-thumbs-down').addClass('fa-thumbs-up');
-                }
-                else
-                {
-                    $(this).removeClass("btn-success");
-                    $(this).addClass("btn-light");
-                    $(this).find($("i")).removeClass('fa-thumbs-up').addClass('fa-thumbs-down');
-                }
-            });
-
-            $("#client").combobox({
-                select: function (event, ui) {
-                    '{% for items in cli %}'
-                    if ('{{ items.nom|safe }}' == this.value) {
-                        $('#zone').val('{{ items.fk_TypeZone.nom|safe }}');
-                        '{% for items in zoned %}'
-                        $("#zatt").append(new Option("{{ items.nom|safe }}", "{{ items.nom|safe }}"));
+                    $("#toggle").on("click", function () {
+                        for (var a = nbrligne; a != 0; a--) {
+                            $("#iddesif" + a).toggle();
+                        }
+                    });
+                    $(".fournise").combobox({
+                        select: function (event, ui) {
+                            '{% for items in art %}'
+                            if ('{{ items.codeFournisseur|safe }}' == this.value) {
+                                //$(this).closest('td').next().find('select').val('{{ items.designationClient }}');
+                                //$(this).closest('td').next().find('select').find('option').remove();
+                                $(this).closest('td').next().find('select').find('option').remove();
+                                $(this).closest('td').next().find('select').append(new Option("{{ items.designationClient|safe }}", "{{ items.designationClient|safe }}"));
+                            }
+                            '{% endfor %}'
+                        }
+                    });
+                    $(".desif").combobox({
+                        select: function (event, ui) {
+                            '{% for items in art %}'
+                            if ('{{ items.designationClient|safe }}' == this.value) {
+                                //$(this).closest('td').next().find('select').val('{{ items.designationClient }}');
+                                //$(this).closest('td').next().find('select').find('option').remove();
+                                $(this).closest('td').prev().find('select').find('option').remove();
+                                $(this).closest('td').prev().find('select').append(new Option("{{ items.codeFournisseur|safe }}", "{{ items.codeFournisseur|safe }}"));
+                            }
+                            '{% endfor %}'
+                        }
+                    });
+                    $('.resetb').click(function () {
+                        //alert("gg " + $(this).attr('id'));
+                        //var id = $(this).attr('id');
+                        $(this).closest('td').parent().find('td').eq(0).next().find('select').find('option').remove();
+                        $(this).closest('td').parent().find('td').eq(1).next().find('select').find('option').remove();
+                        '{% for items in art %}'
+                        $(this).closest('td').parent().find('td').eq(0).next().find('select').append(new Option("{{ items.codeFournisseur|safe }}", "{{ items.codeFournisseur|safe }}"));
+                        $(this).closest('td').parent().find('td').eq(1).next().find('select').append(new Option("{{ items.designationClient|safe }}", "{{ items.designationClient|safe }}"));
                         '{% endfor %}'
-                        //$("#").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
-                    }
-                    '{% endfor %}'
+                    });
                 }
-            });
-
-            $("#client").combobox();
-            $("#fournisseur").combobox();
-            $("#litiges").combobox();
-            $("#zatt").combobox();
-            $("#toggle").on("click", function() {
-                $("#client").toggle();
-                $("#fournisseur").toggle();
-                $("#litiges").toggle();
-                $("#zatt").toggle();
-            });
-            //$("body #blfournisseur").combobox();
-
-            $(document).on("input", "input", function (event) {
-                if (this.checkValidity()) {
-                    $(this).data('last-valid', this.value);
-                }
-                else {
-                    var myvalue = $(this).text();
-                    if($.isNumeric($('#numberligne').val())) {
-                        console.log("numeric");
-                    } else {
-                        console.log("not numeric");
-                        $('#numberligne').popover({
-                            trigger: 'manual',
-                            title: 'Warning!',
-                            content: 'Value can not be empty',
-                            placement: 'left',
-                        }).popover('show');
-                        setTimeout(closederror, 2000);
-                    }
-                    this.value = $(this).data('last-valid') || "";
-                }
-            });
-
-            function checkligne() {
-                $("#numberligne").popover({trigger: 'manual', content: "Input only numbers!", placement : 'right'});
-                $("#numberligne").popover('show');
-            };
-            function closederror() {
-                $("#numberligne").popover('dispose');
-            };
-
-            $('#addligne').click(function() {
-                $("#dialog-confirm").dialog("open");
-            });
-            $('#tabblbody').on('click', '.deleteur', function() {
-                $(this).parent().parent().remove();
-            });
-
-            $('#accesslve').click(function () {
-                window.location.href = "{% url 'lvemodify' %}?id=" + $('#lveinput').val();
-            });
-            $('#accesscli').click(function () {
-                console.log("redirect to cli");
-                '{% for items in cli %}'
-                if ('{{ items.nom|safe }}' == $('#client').val())
-                    window.location.href = "{% url 'clientmodify' %}?id=" + '{{ items.idClient }}';
-                '{% endfor %}'
-            });
+            },
         });
-    </script>
-</html>
+
+        $("#dialog-confirm").dialog("close");
+        $('body').on('click', '.butctrl', function() {
+            if ($(this).hasClass("btn-light")) {
+                $(this).removeClass("btn-light");
+                $(this).addClass("btn-success");
+                $(this).find($("i")).removeClass('fa-thumbs-down').addClass('fa-thumbs-up');
+            }
+            else
+            {
+                $(this).removeClass("btn-success");
+                $(this).addClass("btn-light");
+                $(this).find($("i")).removeClass('fa-thumbs-up').addClass('fa-thumbs-down');
+            }
+        });
+
+        $("#client").combobox({
+            select: function (event, ui) {
+                '{% for items in cli %}'
+                if ('{{ items.nom|safe }}' == this.value) {
+                    $('#zone').val('{{ items.fk_TypeZone.nom|safe }}');
+                    '{% for items in zoned %}'
+                    $("#zatt").append(new Option("{{ items.nom|safe }}", "{{ items.nom|safe }}"));
+                    '{% endfor %}'
+                    //$("#").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                }
+                '{% endfor %}'
+            }
+        });
+
+        $("#client").combobox();
+        $("#fournisseur").combobox();
+        $("#litiges").combobox();
+        $("#zatt").combobox();
+        $("#toggle").on("click", function() {
+            $("#client").toggle();
+            $("#fournisseur").toggle();
+            $("#litiges").toggle();
+            $("#zatt").toggle();
+        });
+        //$("body #blfournisseur").combobox();
+
+        $(document).on("input", "input", function (event) {
+            if (this.checkValidity()) {
+                $(this).data('last-valid', this.value);
+            }
+            else {
+                var myvalue = $(this).text();
+                if($.isNumeric($('#numberligne').val())) {
+                    console.log("numeric");
+                } else {
+                    console.log("not numeric");
+                    $('#numberligne').popover({
+                        trigger: 'manual',
+                        title: 'Warning!',
+                        content: 'Value can not be empty',
+                        placement: 'left',
+                    }).popover('show');
+                    setTimeout(closederror, 2000);
+                }
+                this.value = $(this).data('last-valid') || "";
+            }
+        });
+
+        function checkligne() {
+            $("#numberligne").popover({trigger: 'manual', content: "Input only numbers!", placement : 'right'});
+            $("#numberligne").popover('show');
+        };
+        function closederror() {
+            $("#numberligne").popover('dispose');
+        };
+
+        $('#addligne').click(function() {
+            $("#dialog-confirm").dialog("open");
+        });
+        $('#tabblbody').on('click', '.deleteur', function() {
+            $(this).parent().parent().remove();
+        });
+
+        $('#accesslve').click(function () {
+            window.location.href = "{% url 'lvemodify' %}?id=" + $('#lveinput').val();
+        });
+        $('#accesscli').click(function () {
+            console.log("redirect to cli");
+            '{% for items in cli %}'
+            if ('{{ items.nom|safe }}' == $('#client').val())
+                window.location.href = "{% url 'clientmodify' %}?id=" + '{{ items.idClient }}';
+            '{% endfor %}'
+        });
+    });
+</script>
 {% endblock %}

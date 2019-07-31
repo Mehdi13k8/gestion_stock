@@ -285,6 +285,37 @@
 <br>
 <script>
     $(document).ready(function() {
+
+        $("#tabblbody").on( "click", ".dynad", function() {
+            '{% for items in entree %}'
+            if ('{{ items.idBonLivraisonEntree|safe }}' == $(this).attr('id')) {
+                $.ajax({
+                    type:"POST",
+                    url:"/lve/modify/deletebl/",
+                    data: {
+                        'id': '{{ items.idBonLivraisonEntree }}',
+                        csrfmiddlewaretoken: '{{ csrf_token }}',
+                    },
+                    success: function(msg, data, settings) {
+                        console.log("success: " + msg);
+                    },
+                    failure: function() {
+                        alert("fail");
+                    }
+                });
+            }
+            '{% endfor %}'
+        });
+
+        $('#accesslve').click(function () {
+            '{% for items in trans %}'
+            if ('{{ items.nom|safe }}' == $('#transporteur').val().trim()) {
+                //alert("there");
+                window.location.href = "{% url 'transporteurmodify' %}?id={{ items.idTransporteur }}";
+            }
+            '{% endfor %}'
+        });
+
         $("#back-row").click( function() {
             location.href = "{% url 'lve' %}";
         });
@@ -615,7 +646,7 @@
             var idClicked = $(this).attr('id');
             var name = "";
             var trueid = 0;
-            alert(idClicked);
+            //alert(idClicked);
             "{% for items in entree %}"
             if ('{{ items.id }}' == idClicked) {
                 name = '{{ items.nom }}';

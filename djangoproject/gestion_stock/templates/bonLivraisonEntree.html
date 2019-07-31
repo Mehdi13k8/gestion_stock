@@ -84,48 +84,44 @@
         $('#dtBasicExample').DataTable();
         $('.dataTables_length').addClass('bs-select');
         $('#bonlivraisonentree').fadeTo("slow", 0.5);
-    });
 
-    $("#create-row").click(function() {
-        location.href = "{% url 'bonLivraisonEntreeadd' %}";
-    });
-
-    $(document).on("click", "button.dyna" , function(e) { // event pour modifier les entree transporteur
-        var idClicked = e.target.id;
-        var name = "";
-        var trueid = 0;
-        alert(idClicked);
-        "{% for items in entree %}"
-        if ('{{ items.idBonLivraisonEntree }}' == idClicked) {
-            name = '{{ items.nom }}';
-            trueid = '{{ items.id }}';
-        }
-        "{% endfor %}"
-        window.location.href = "{% url 'bonLivraisonEntreemodify' %}?id=" + idClicked + "&" + "name=" + name + "&" + "trueid=" + trueid;
-    });
-
-    $(document).on("click", "button.dynad" , function(e) { // event pour delete la ligne sélectionner
-        var idClicked = e.target.id;
-        alert(idClicked);
-        $.ajax({
-            type:"POST",    //type de requête utilisé par ajax
-            url:"/ble/delete/", //lien de la view qui gère la requête post pour supprimer une entree
-            data: {
-                'name': $('#nom').val(), // nom du transporteur récuperer dans le input #nom
-                'id': idClicked,
-                csrfmiddlewaretoken: '{{ csrf_token }}'
-            },
-            success: function(msg, data, settings){
-                alert("gg " + msg);
-            },
-            failure: function() {
-                alert("fail");
-            }
+        $("#create-row").click(function() {
+            location.href = "{% url 'bonLivraisonEntreeadd' %}";
         });
 
+        $(document).on("click", "button.dyna" , function(e) { // event pour modifier les entree transporteur
+            var idClicked = e.target.id;
+            var name = "";
+            var trueid = 0;
+            //alert(idClicked);
+            "{% for items in entree %}"
+            if ('{{ items.idBonLivraisonEntree }}' == idClicked) {
+                name = '{{ items.nom }}';
+                trueid = '{{ items.id }}';
+            }
+            "{% endfor %}"
+            window.location.href = "{% url 'bonLivraisonEntreemodify' %}?id=" + idClicked + "&" + "name=" + name + "&" + "trueid=" + trueid;
+        });
 
-
+        $(document).on("click", "button.dynad" , function(e) { // event pour delete la ligne sélectionner
+            var idClicked = e.target.id;
+            //alert(idClicked);
+            $.ajax({
+                type:"POST",    //type de requête utilisé par ajax
+                url:"/ble/delete/", //lien de la view qui gère la requête post pour supprimer une entree
+                data: {
+                    'name': $('#nom').val(), // nom du transporteur récuperer dans le input #nom
+                    'id': idClicked,
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
+                success: function(msg, data, settings){
+                    alert("gg " + msg);
+                },
+                failure: function() {
+                    alert("fail");
+                }
+            });
+        });
     });
-
 </script>
 {% endblock %}

@@ -794,6 +794,16 @@ class lettrevoitureentreeadd(ListView):
 class lettrevoitureentreemodify(ListView):
     template_name = "lettrevoitureentreemodify.html"
 
+    def deletebl(request):
+        if request.method == 'POST':
+            showlist = [request.POST.get('id')]
+            ble = BonLivraisonEntree.objects.all()
+            for items in ble:
+                if items.idBonLivraisonEntree == showlist[0]:
+                    items.delete()
+            return HttpResponse("Delete successfull")
+        return HttpResponse("No Authorized Access !")
+
     def createbl(request):
         if request.method == 'POST':
             showlist = [request.POST.get('id'), request.POST.get('trueid'),]

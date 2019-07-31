@@ -177,12 +177,12 @@
                             </thead>
                             <tbody>
                             {% for items in bcs %}
-                                {% if items.fk_Client.id|safe == id %}
-                                    <tr>
-                                        <td class='text-center'><a href='{% url "bonCommandeSortiemodify" %}?id={{items.idBonCommandeSortie|safe }}'><button class='dynacli' id="{{ items.idBonCommandeSortie }}"><i class="fa fa-arrow-right"></i></button></a></td>
-                                        <td class="text-center">{{ items.idBonCommandeSortie }}</td><td><button class="deleteur">X</button></td>
-                                    </tr>
-                                {% endif %}
+                            {% if items.fk_Client.id|safe == id %}
+                            <tr>
+                                <td class='text-center'><a href='{% url "bonCommandeSortiemodify" %}?id={{items.idBonCommandeSortie|safe }}'><button class='dynacli' id="{{ items.idBonCommandeSortie }}"><i class="fa fa-arrow-right"></i></button></a></td>
+                                <td class="text-center">{{ items.idBonCommandeSortie }}</td><td><button class="deleteur">X</button></td>
+                            </tr>
+                            {% endif %}
                             {% endfor %}
                             </tbody>
                         </table>
@@ -298,6 +298,9 @@
 
 <script>
     $(document).ready(function() {
+        $("#dtBasicExample2").on( "click", ".resetb", function() {
+            alert("clicked");
+        });
 
         $(".fa-chevron-circle-right").click(function() {
             $.ajax({
@@ -498,18 +501,18 @@
         "scrollY": 200,
       });*/
         '{% for items in entree %}'
-            console.log("entree");
-            if ('{{ items.fk_Client.nom }}' == $('#nom').val()) {
-                $('#dtBasicExample2')
-                    .append('<tr><td class=\'text-center\'><button class=\'resetb dyna\' id=\"{{ items.idBonLivraisonEntree }}\"><i class=\"fa fa-arrow-right\"></i></button></td>' +
-                        '<td class=\'text-center\'>{{ items.numeroBonLivraison }}</td><td><button class=\'resetb btn btn-light btn-sm dynad\' id=\"{{ items.idBonLivraisonEntree }}\"><i class=\"fa fa-trash-alt\"></i></button></td></tr>');
-            }
+        console.log("entree");
+        if ('{{ items.fk_Client.nom }}' == $('#nom').val()) {
+            $('#dtBasicExample2')
+                .append('<tr><td class=\'text-center\'><button class=\'resetb dyna\' id=\"{{ items.idBonLivraisonEntree }}\"><i class=\"fa fa-arrow-right\"></i></button></td>' +
+                    '<td class=\'text-center\'>{{ items.numeroBonLivraison }}</td><td><button class=\'resetb btn btn-light btn-sm dynad\' id=\"{{ items.idBonLivraisonEntree }}\"><i class=\"fa fa-trash-alt\"></i></button></td></tr>');
+        }
         '{% endfor %}'
 
         '{% for items in bcs %}'
         console.log("entree");
         //$('#dtBasicExample1')
-            //.append('<tr><td><td contenteditable=\'true\'></td><td><button class="deleteur">X</button></td></tr>');
+        //.append('<tr><td><td contenteditable=\'true\'></td><td><button class="deleteur">X</button></td></tr>');
         '{% endfor %}'
 
         '{% for items in odt %}'

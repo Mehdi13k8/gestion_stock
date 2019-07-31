@@ -102,6 +102,7 @@ urlpatterns = [
     path('lettrevoitureentree/modify', views.lettrevoitureentreemodify.as_view(), name='lvemodify'),
     path('lve/modify/', views.lettrevoitureentreemodify.modify),
     path('lve/modify/createbl/', views.lettrevoitureentreemodify.createbl),
+    path('lve/modify/deletebl/', views.lettrevoitureentreemodify.deletebl),
     path('lettrevoitureentree/add', views.lettrevoitureentreeadd.as_view(), name='lveadd'),
     path('lve/create/', views.lettrevoitureentreeadd.create),
     path('lve/delete/', views.lettrevoitureentree.delete),
