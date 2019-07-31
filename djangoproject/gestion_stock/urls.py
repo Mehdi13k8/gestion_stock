@@ -119,6 +119,7 @@ urlpatterns = [
     path('ligneble/create/', views.bonLivraisonEntreeadd.createligne),
     path('ligneble/delete/', views.bonLivraisonEntreeadd.deleteligne),
     path('bonLivraisonentree/modify/createume/', views.bonLivraisonentreemodify.createume),
+    path('bonLivraisonentree/modify/deleteume/', views.bonLivraisonentreemodify.deleteume),
     path('upload_blef/', views.upload_blef),#pour sauvegarder les images stocké dans les ble
     #path('upload_blef/redirect', views.upload_blef_redirect, name='uploadbleredirect'),#pour sauvegarder les images stocké dans les ble
 

@@ -445,7 +445,22 @@
 
 <script>
     $(document).ready(function() {
-
+        $("#tabume tbody").on("click", ".dynad", function() {
+            $.ajax({
+                type: "POST",
+                url: "/bonLivraisonentree/modify/deleteume/",
+                data: {
+                    'id': $(this).attr('id'),
+                    csrfmiddlewaretoken: '{{ csrf_token }}',
+                },
+                success: function (msg, data, settings) {
+                    console.log("gg " + msg);
+                },
+                failure: function () {
+                    console.log("fail");
+                }
+            });
+        });
 
         $("#back-row").click(function () {
             location.href = "{% url 'bonLivraisonEntree' %}";

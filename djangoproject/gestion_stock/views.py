@@ -981,8 +981,16 @@ class bonLivraisonentreemodify(ListView):
             ume.fk_BonLivraisonEntree = BonLivraisonEntree.objects.get(idBonLivraisonEntree=showlist[0])
             ume.fk_ZoneDepot = None
             ume.save()
-
             return HttpResponse("Created !")
+        return HttpResponse("No Authorized Access !")
+
+    def deleteume(request):
+        if request.method == 'POST':
+            showlist = [request.POST.get('id')]
+            for myume in UniteManutentionEntree.objects.all():
+                if myume.idUniteManutentionEntree == showlist[0]:
+                    myume.delete()
+            return HttpResponse("delete ume successfull !")
         return HttpResponse("No Authorized Access !")
 
     def modify(request):
