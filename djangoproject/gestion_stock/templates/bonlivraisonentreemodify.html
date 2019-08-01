@@ -445,16 +445,18 @@
 
 <script>
     $(document).ready(function() {
-        $("#tabume tbody").on("click", ".dynad", function() {
+        $("#tabblbody").on("click", ".deleteur", function() {
+            var object = $(this);
             $.ajax({
                 type: "POST",
-                url: "/bonLivraisonentree/modify/deleteume/",
+                url: "/ligneble/delete/",
                 data: {
-                    'id': $(this).attr('id'),
+                    'id': object.attr('id'),
                     csrfmiddlewaretoken: '{{ csrf_token }}',
                 },
                 success: function (msg, data, settings) {
                     console.log("gg " + msg);
+                    object.parent().parent().remove(); // pour delete la ligne du bl via la "croix"
                 },
                 failure: function () {
                     console.log("fail");
@@ -1201,10 +1203,6 @@
         $('#addligne').click(function() {
             $("#dialog-confirm").dialog("open");
         });
-        $('#tabblbody').on('click', '.deleteur', function() {
-            $(this).parent().parent().remove();
-        });
-
         $('#accesslve').click(function () {
             window.location.href = "{% url 'lvemodify' %}?id=" + $('#lveinput').val();
         });

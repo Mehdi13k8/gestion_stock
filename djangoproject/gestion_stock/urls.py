@@ -44,8 +44,6 @@ urlpatterns = [
     path('pays/create_pays/', views.pays.create),
     path('pays/delete_pays/', views.pays.delete),
 
-
-
     path('settings/litiges', views.litiges.as_view(), name='litiges'),
 
     path('settings/litiges/addlitige', views.litigesadd.as_view(), name='litigesadd'),
@@ -180,7 +178,9 @@ urlpatterns = [
     path('umentree/modify/', views.umemodify.as_view(), name='unitemanutentionentreemodify'),
     path('modify_ume/', views.umemodify.modify),
     path('ligneume/create/', views.umemodify.createligne),
+    path('ume/col/print/', views.umemodify.printer),
     path('ume/delete_col/', views.umemodify.delete_colis),
+    path('ume/delieums/', views.umemodify.delieums),
     path('create_ume/', views.umeadd.create),
     path('delete_ume/', views.ume.delete),
 
@@ -197,6 +197,8 @@ urlpatterns = [
     path('umsortie/modify/dateexpedition/', views.umsmodify.dateexpedition),
 
     #path('bon/add/<int:month>/', views.),
+    path('etiquetteUMe/', views.etiquetteume.as_view(), name='etiquetteUMe'),
+    path('etiquetteUMe/colis', views.etiquetteumecolis.as_view(), name='etiquetteUMecol'),
     path('etiquetteUMs/', views.etiquetteums.as_view(), name='etiquetteUMs'),
     path('etiquetteUMs/colissage/', views.etiquetteumscolissage.as_view(), name='etiquetteUMscolissage'),
 ]

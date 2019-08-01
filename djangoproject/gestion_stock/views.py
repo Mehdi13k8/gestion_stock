@@ -2615,6 +2615,40 @@ class umemodify(ListView):
             return HttpResponse("colis removed.")
         return HttpResponse("Error.")
 
+    def printer(request): #mets la valeur imprime a 1 pour géré si on peut coller ou pas l'etiquette
+        if request.method == 'POST':
+            showlist = [request.POST.get('id')]
+            colis = Colis.objects.get(idColis=showlist[0])
+            colis.imprime = "1"
+            colis.save()
+            return HttpResponse("colis removed.")
+        return HttpResponse("Error.")
+
+    def delieums(request): #on va chercher le colis dans l'unite de manutention sortie pui dans la ligne bon commande sortie pour lui "enliever" la qte et le colis, puis son fk unitemanutentionsortie est a None
+        if request.method == 'POST':
+            showlist = [request.POST.get('id')]
+            colis = Colis.objects.get(idColis=showlist[0])
+            ums = UniteManutentionSortie.objects.all()
+            bcs = BonCommandeSortie.objects.all()
+            lbcs = LigneBonCommandeSortie_pour_BonCommandeSortie.objects.all()
+            for myums in ums:
+                if colis.fk_UniteManutentionSortie:
+                    if colis.fk_UniteManutentionSortie.idUniteManutentionSortie == myums.idUniteManutentionSortie:
+                        for mybcs in bcs:
+                            if myums.fk_BonCommandeSortie.idBonCommandeSortie == mybcs.idBonCommandeSortie:
+                                for mylbcs in lbcs:
+                                    if mylbcs.fk_BonCommandeSortie.idBonCommandeSortie == mybcs.idBonCommandeSortie:
+                                        if mylbcs.fk_Article == colis.fk_Article:
+                                            print("found !!!!!!!!!!! at the line of bon de commande sortie " + str(mylbcs))
+                                            mylbcs.quantiteProduitLivre = str(int(mylbcs.quantiteProduitLivre) - int(colis.quantiteProduit))
+                                            mylbcs.quantiteColisLivre = str(int(mylbcs.quantiteColisLivre) - 1)
+                                            mylbcs.quantiteProduitCommandestats = str(int(mylbcs.quantiteProduitCommandestats) + int(colis.quantiteProduit))
+                                            colis.fk_UniteManutentionSortie = None
+                                            mylbcs.save()
+                                            colis.save()
+            return HttpResponse("colis removed out of this UMs.")
+        return HttpResponse("Error.")
+
     def modify(request):
         if request.method == 'POST':
             showlist = [request.POST.get('id'), request.POST.get('uminc'),
@@ -3417,7 +3451,37 @@ class umsmodify(ListView):
         }
         return render(request, self.template_name, context)
 
-#etiquette Um (impression pdf)~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+#etiquette Um (impression) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
+class etiquetteume(ListView):
+    template_name = "etiquetteume.html"
+
+    def get(self, request):
+        context = {
+            'activate' : 'on',
+            'settings' : menuimages.objects.all(),
+            'col' : Colis.objects.all(),
+            'ume' : UniteManutentionEntree.objects.all(),
+            'id' :request.GET.get('id'),
+            'vuegen' :request.GET.get('vuegen'),
+            'creation' :request.GET.get('creation'),
+        }
+        return render(request, self.template_name, context)
+
+class etiquetteumecolis(ListView):
+    template_name = "etiquetteumecolis.html"
+
+    def get(self, request):
+        context = {
+            'activate' : 'on',
+            'settings' : menuimages.objects.all(),
+            'col' : Colis.objects.all(),
+            'ume' : UniteManutentionEntree.objects.all(),
+            'id' :request.GET.get('id'),
+            'vuegen' :request.GET.get('vuegen'),
+            'creation' :request.GET.get('creation'),
+        }
+        return render(request, self.template_name, context)
 
 class etiquetteums(ListView):
     template_name = "etiquetteums.html"

@@ -38,7 +38,7 @@
                         {% for items in ume %}
                         <tr>
                             <td> <button type="button" id='{{ items.idUniteManutentionEntree }}' class="dyna btn btn-sm btn-outline-grey rounded"> <i class="fa fa-arrow-right"></i> </button></td>
-                            <td> {{ items.fk_BonLivraisonEntree.fk_ZoneDepot_pour_TypeZoneDepot }} </td>
+                            <td> {{ items.fk_ZoneDepot.nom }} </td>
                             <td> {{ items.fk_BonLivraisonEntree.fk_ZoneDepot_pour_TypeZoneDepot.fk_TypeZoneDepot.nom }} </td>
                             <td> {{ items.fk_BonLivraisonEntree.numeroBonLivraison }} </td>
                             <td> {{ items.c_horodatage }} </td>

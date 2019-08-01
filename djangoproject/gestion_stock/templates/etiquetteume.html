@@ -1,0 +1,66 @@
+{% extends user.is_authenticated|yesno:"base_generic.html,empty.html" %}
+
+{% block content %}
+<script type="text/javascript">
+    window.onload = function() {
+        $('.jumbotron').hide();
+        $('footer').hide();
+    }
+</script>
+
+<br>
+{% for items in ume %}
+{% if items.idUniteManutentionEntree == id %}
+<div class="container text-center" style="position:absolute; margin-left: 1%">
+    <div class="row">
+        <div class="col-3 border rounded border-dark h-responsive" style="min-width: 213px; min-height: 90px">
+            <h5 class="text-center mt-2"><b>Client</b></h5>
+            <p>{{ items.fk_BonLivraisonEntree.fk_Client.nom }}</p>
+        </div>
+        <div class="col-3 border rounded border-dark h-responsive" style="min-width: 213px; min-height: 90px">
+            <h5 class="text-center mt-2"><b>N° UM</b></h5>
+            <p>{{ items.numero }}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-3 border rounded border-dark h-responsive" style="min-width: 213px; min-height: 90px">
+            <h5 class="text-center mt-2"><b>Zone</b></h5>
+            <p>{{ items.fk_ZoneDepot.nom }}</p>
+        </div>
+        <div class="col-3 border rounded border-dark h-responsive" style="min-width: 213px; min-height: 90px">
+            <h5 class="text-center mt-2"><b>Fournisseur</b></h5>
+            <p>{{ items.fk_BonLivraisonEntree.fk_Fournisseur.nom }}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1 border rounded border-dark h-responsive" style="min-width: 213px; min-height: 150px">
+            <h5 class="text-center mt-2"><b>Qte Colis</b></h5>
+            <p style="font-size: 50px" id="nbrcolis"><b>{{ items.fk_BonLivraisonEntree.fk_Destinataire.codeUM }}</b></p>
+            <script>
+            var nbrcolis = 0;
+            '{% for colis in col %}'
+                '{% if colis.fk_UniteManutentionEntree.idUniteManutentionEntree|safe == id %}'
+                    console.log("++");
+                    nbrcolis++;
+                '{% endif %}'
+            '{% endfor %}'
+            $('#nbrcolis').text(nbrcolis);
+            </script>
+
+        </div>
+        <div class="col-sm-1 border rounded border-dark h-responsive" style="min-width: 180px; min-height: 150px">
+            <h5 class="text-center mt-2"><b>Date réception</b></h5>
+            <p>{{ items.fk_BonLivraisonEntree.dateReception }}</p>
+        </div>
+        <div class="col-sm-1 border rounded border-dark h-responsive" style="min-width: 176px; min-height: 150px">
+            <h5 class="text-center mt-2"><b>Nom Compte</b></h5>
+            <p> {{ user.username }} </p>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% empty %}
+<h5 class="text-danger"> There is no U.Ms </h5>
+{% endfor %}
+
+{% endblock %}

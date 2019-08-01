@@ -1236,6 +1236,7 @@ class Colis(models.Model):
     quantiteProduit = models.CharField(max_length=150, default=0)
     colle = models.CharField(max_length=150, default=0)
     numerotation = models.CharField(max_length=150, default=0)
+    imprime = models.CharField(max_length=150, default="0")
     def __str__(self):
         if self.fk_UniteManutentionSortie != None:
             return str("colis " + self.idColis + " expedié UMs : " + self.fk_UniteManutentionSortie.idUniteManutentionSortie)

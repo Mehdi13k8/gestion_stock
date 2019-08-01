@@ -1,0 +1,98 @@
+{% extends user.is_authenticated|yesno:"base_generic.html,empty.html" %}
+
+{% block content %}
+<script type="text/javascript">
+    window.onload = function() {
+        $('.jumbotron').hide();
+        $('footer').hide();
+    }
+</script>
+
+<br>
+{% for items in col %}
+{% if items.idColis == id %}
+<div class="container text-center" style="position:absolute; margin-left: 1%">
+    <div class="row">
+        <div class="col-3 border rounded border-dark h-responsive" style="min-width: 213px; min-height: 90px">
+            <div class="row">
+                <div class="container">
+                    <h5 class="text-center mt-2"><b>Expéditeur</b></h5>
+                    <p>{{ items.fk_UniteManutentionEntree.fk_BonLivraisonEntree.fk_Client.nom }}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="container border-top border-dark">
+                    <p class="mt-2"> {{ user.username }} </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-3 border rounded border-dark h-responsive" style="min-width: 280px; min-height: 90px">
+            <div class="row border-bottom border-dark">
+                <div class="col">
+                    <h5 class="text-left mt-2"><b>Réf. colis</b></h5>
+                </div>
+                <div class="col">
+                    <p class="text-right mt-2"><b>{{ items.idColis }}</b></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h5 class="text-center mt-2"><b>N° lot</b></h5>
+                    <p>{{ items.numeroLot }}</p>
+                </div>
+                <div class="col">
+                    <h5 class="text-center mt-2"><b>DLUO</b></h5>
+                    <p>{{ items.datePeremption }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-1 border rounded border-dark h-responsive" style="min-width: 190px; min-height: 90px">
+            <h5 class="text-center mt-2"><b>Code article</b></h5>
+            <p>{{ items.fk_Article.codeClient }}</p>
+        </div>
+        <div class="col-1 border rounded border-dark h-responsive" style="min-width: 190px; min-height: 90px">
+            <h5 class="text-center mt-2"><b>Qte</b></h5>
+            <p>{{ items.quantiteProduit }}</p>
+            <p><b>{{ items.numerotation }}</b> / <b id="qtetotal"> </b></p>
+            <script>
+                var nbrcolis = 0;
+                var ume;
+                '{% for colis in col %}'
+                    '{% if colis.idColis|safe == id %}'
+                        ume = '{{ colis.fk_UniteManutentionEntree.idUniteManutentionEntree }}';
+                    '{% endif %}'
+                '{% endfor %}'
+                '{% for colis in col %}'
+                    if ('{{ colis.fk_UniteManutentionEntree.idUniteManutentionEntree|safe }}' == ume) {
+                        nbrcolis++;
+                    }
+                '{% endfor %}'
+                $('#qtetotal').text(nbrcolis);
+            </script>
+        </div>
+        <div class="col-1 border rounded border-dark h-responsive" style="min-width: 190px; min-height: 90px">
+            <h5 class="text-center mt-2"><b>Désignation</b></h5>
+            <p>{{ items.fk_Article.designationClient }}</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-1 border rounded border-dark h-responsive" style="min-width: 569px; min-height: 150px">
+            <h5 class="text-center mt-2"><b>Nom Compte</b></h5>
+            {% for colis in col %}
+            {% if colis.idColis|safe == id %}
+            {{ colis.fk_UniteManutentionEntree.fk_BonLivraisonEntree.fk_Destinataire }}
+            <h1 style="font-size: 150px"><b>{{ colis.fk_UniteManutentionEntree.fk_BonLivraisonEntree.fk_Destinataire.codeUM }}</b></h1>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endif %}
+{% empty %}
+<h5 class="text-danger"> There is no U.Ms </h5>
+{% endfor %}
+
+{% endblock %}

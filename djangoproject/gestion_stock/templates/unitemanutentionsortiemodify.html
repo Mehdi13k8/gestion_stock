@@ -108,6 +108,8 @@
                         </div>
                     </div>
                 </div>
+                <!--Impression de l'etiquette UM  via le button UM
+                Impression des listes de colisages via le button LC-->
                 <a target="_blank" rel="noopener noreferrer" href="{% url 'etiquetteUMs' %}?id={{id}}"><button class="btn btn-outline-light-blue" type="button" id="umetiquette"><i class="fa fa-print" style="font-size: 20px"></i><br>UM</button></a>
                 <a target="_blank" rel="noopener noreferrer" href="{% url 'etiquetteUMscolissage' %}?id={{id}}"><button class="btn btn-light-blue" type="button" id="umetiquettelc"><i class="fa fa-print" style="font-size: 20px"></i><br>LC</button></a>
             </div>
@@ -317,8 +319,6 @@
             });
             //alert($('#datee').val());
         });
-        //Impression de l'etiquette UM  via le button UM
-        //Impression des listes de colisages via le button LC
 
         //sorting (trie) du tableau par rapport a ncolis, je recois des objets en js, puis les passe en jquery avec le $ pour utiliser les fonctions jquery
         if ($('#tabblbody').length > 0) {

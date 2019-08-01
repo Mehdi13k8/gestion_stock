@@ -69,7 +69,7 @@
 
                 <div class="col-auto">
                     <br>
-                    <button class="btn btn-outline-blue-grey"><i class="fa fa-print" style="color: darkblue; font-size: 20px;"></i></button>
+                    <a target="_blank" rel="noopener noreferrer" href="{% url 'etiquetteUMe' %}?id={{id}}"><button class="btn btn-outline-blue-grey" type="button" id="umetiquette"><i class="fa fa-print" style="color: darkblue; font-size: 20px;"></i><br></button></a>
                 </div>
 
                 <div class="col-auto">
@@ -176,7 +176,7 @@
                                     <th scope="col" class="text-center">date péremption</th>
                                     <th scope="col" class="text-center">qte<br>par colis</th>
                                     <th scope="col" class="text-center">litige</th>
-                                    <th scope="col" class="text-center">numéroter</th>
+                                    <th scope="col" class="text-center">numéroter &nbsp;<button class="btn-sm btn-info rounded-pill renumerote"><i class="fa fa-redo"></i></button></th>
                                     <th scope="col" class="text-center"><i class="fa fa-arrow-right"></i></th>
                                     <th scope="col" class="text-center"><i class="fa fa-redo"></i> </th>
                                     <th scope="col" class="text-center">U.M sortie</th>
@@ -194,34 +194,32 @@
                                 {% for items in colis %}
                                 {% if items.fk_UniteManutentionEntree.idUniteManutentionEntree == id %}
                                 <tr>
-                                    <td><button class='duplique btn btn-sm  btn-outline-grey rounded-pill w-25' id="duplicate{{ items.idColis }}"><i class="fa fa-copy ml-n2" style='font-size: 15px;cursor:pointer;'></i></button></td>
-                                    <td><button class='ajout btn btn-sm rounded-pill btn-outline-grey w-25' id="add{{ items.idColis }}"><i class="fa fa-plus ml-n1" style='font-size: 15px;cursor:pointer;'></i></button></td>
-                                    <td><input class='form-control text-center' disabled id='ncolis{{items.idColis}}' value="{{ items.idColis }}"></td>
-                                    <td><select class="form-control fournise text-center" id="blfournisseur{{items.idColis}}"></select></td>
-                                    <td><select class="form-control desif text-center" id="iddesif{{items.idColis}}"></select></td>
-                                    <td><input class='form-control' value='{{ items.numeroLot }}'></td>
-                                    <td><input type="date" class="date rounded" class="form-control" value='{{ items.datePeremption }}'></td>
-                                    <td><input type="text" class="form-control" value='{{ items.quantiteProduit }}'></td>
-
-                                    <td><!--<button type="button" class="btn btn-grey btn-sm addmodal" data-toggle="popover" id="{{ items.idColis }}">Litiges</button><div id="newDialogText{{ items.idColis }}">Litige<br>-->
-                                        litige <select class="myselect form-control-sm w-75" id="litigebox{{ items.idColis }}">
+                                    <td class="text-center"><button class='duplique btn btn-sm  btn-outline-grey rounded-pill w-25' id="duplicate{{ items.idColis }}"><i class="fa fa-copy ml-n2" style='font-size: 15px;cursor:pointer;'></i></button></td>
+                                    <td class="text-center"><button class='ajout btn btn-sm rounded-pill btn-outline-grey w-25' id="add{{ items.idColis }}"><i class="fa fa-plus ml-n1" style='font-size: 15px;cursor:pointer;'></i></button></td>
+                                    <td class="text-center"><input class='form-control text-center' disabled id='ncolis{{items.idColis}}' value="{{ items.idColis }}"></td>
+                                    <td class=""><select class="form-control fournise text-center" id="blfournisseur{{items.idColis}}"></select></td>
+                                    <td class=""><select class="form-control desif text-center" id="iddesif{{items.idColis}}"></select></td>
+                                    <td class="text-center"><input class='form-control text-center' value='{{ items.numeroLot }}'></td>
+                                    <td class="text-center"><input type="date" class="date rounded pt-2 pb-2" class="form-control" value='{{ items.datePeremption }}'></td>
+                                    <td class="text-center"><input type="text" class="form-control text-center" value='{{ items.quantiteProduit }}'></td>
+                                    <td class="text-center"><!--<button type="button" class="btn btn-grey btn-sm addmodal" data-toggle="popover" id="{{ items.idColis }}">Litiges</button><div id="newDialogText{{ items.idColis }}">Litige<br>-->
+                                        litige <select class="myselect form-control-sm w-75 text-center" id="litigebox{{ items.idColis }}">
                                         </select><br>déci. litige
-                                        <select class="myselect2 form-control-sm" id="decilitigebox{{ items.idColis }}" ></select></td>
-
-                                    <td><input class='form-control' value='{{ items.numerotation }}'></td>
-                                    <td><button type="button" class="btn btn-grey btn-sm"><i class="fa fa-arrow-right" style='color: deepskyblue;font-size: 15px'></i></button></td>
-                                    <td><a href="{% url 'unitemanutentionsortie' %}"><button type="button" class="btn btn-grey btn-sm"><i class="fa fa-redo" style="color: deepskyblue;font-size: 15px"></i></button></a></td>
-                                    <td><input class='form-control' disabled value='{{ items.fk_UniteManutentionSortie.idUniteManutentionSortie }}'></td>
-                                    <td><input class='form-control' disabled value='{{ items.fk_UniteManutentionSortie.numero }}'></td>
+                                        <select class="myselect2 form-control-sm text-center" id="decilitigebox{{ items.idColis }}" ></select></td>
+                                    <td><input class='form-control text-center' value='{{ items.numerotation }}'></td>
+                                    <td><a href="{% url 'unitemanutentionsortiemodify' %}?id={{ items.fk_UniteManutentionSortie.idUniteManutentionSortie }}"><button type="button" class="btn btn-grey btn-sm"><i class="fa fa-arrow-right" style='color: deepskyblue;font-size: 15px'></i></button></a></td>
+                                    <td><button type="button" class="btn btn-grey btn-sm"><i class="fa fa-redo" style="color: deepskyblue;font-size: 15px"></i></button></td>
+                                    <td><input class='form-control text-center' disabled value='{{ items.fk_UniteManutentionSortie.idUniteManutentionSortie }}'></td>
+                                    <td><input class='form-control text-center' disabled value='{{ items.fk_UniteManutentionSortie.numero }}'></td>
                                     {% if items.emplacementConfirme == "1" %}
                                     <td class='text-center'><i class="fa fa-toggle-on mt-2" style='font-size: 25px;cursor:pointer;'></i></td>
                                     {% endif %}
                                     {% if items.emplacementConfirme == "0" %}
                                     <td class='text-center'><i class="fa fa-toggle-off mt-2" style='font-size: 25px;cursor:pointer;'></i></td>
                                     {% endif %}
-                                    <td><input class='form-control' disabled value='{{ items.fk_UniteManutentionSortie.dateExpedition }}'></td>
-                                    <td><button class='btn btn-sm rounded-pill'><i class="fa fa-unlink" style='font-size: 20px;cursor:pointer;color: red;'></i></button></td>
-                                    <td><input class='form-control' value='0'></td>
+                                    <td><input class='form-control text-center' disabled value='{{ items.fk_UniteManutentionSortie.dateExpedition }}'></td>
+                                    <td><button class='btn btn-sm rounded-pill delieums'><i class="fa fa-unlink" style='font-size: 20px;cursor:pointer;color: red;'></i></button></td>
+                                    <td><input class='form-control text-center' value='0'></td>
                                     <td><button class="deleteur btn btn-sm rounded-pill" id="{{ items.idColis }}"> <i class="fa fa-trash" style='font-size: 24px;cursor:pointer;color: orangered;'></i> </button> </td>
                                     {% if items.colle == "1" %}
                                     <td class='text-center'><i class="fa fa-leaf mt-2" style='font-size: 25px;cursor:pointer;color: green;'></i></td>
@@ -322,6 +320,72 @@
 
 <script>
     $(document).ready(function() {
+
+        $("#tabblbody").on("click", ".print", function() {
+            //alert($(this).parent().parent().find('td').eq(2).find('input').val().trim());
+            window.open("{% url 'etiquetteUMecol' %}?id=" + $(this).parent().parent().find('td').eq(2).find('input').val().trim(), "_blank");
+            $.ajax({
+                type:"POST",    //type de requête utilisé par ajax
+                url:"/ume/col/print/", //lien de la view qui gère la requête post
+                data: {
+                    'id': $(this).parent().parent().find('td').eq(2).find('input').val().trim(),
+                    csrfmiddlewaretoken: '{{ csrf_token }}',
+                },
+                success: function(msg, data, settings) {
+                    console.log("success: " + msg);
+                    location.reload();
+                },
+                failure: function() {
+                    alert("fail");
+                }
+            });
+        });
+
+        $('body').on('click', '.fa-leaf', function () {
+            if ($(this).css('color') == "rgb(0, 0, 0)") { //je ne laisse collé l'etiquette que si elle est "imprimé" et je dois checker la valeur "imprime" dans la base de donnée entre 1 ou 0!
+                '{% for items in colis %}'
+                    if ('{{ items.idColis }}' == $(this).parent().parent().find('td').eq(2).find('input').val().trim()) {
+                        '{% if items.imprime == "1" %}'
+                        console.log($(this).css('color'));
+                        console.log("there " + $(this).parent().parent().find('td').eq(2).find('input').val().trim() + " " + '{{ items.idColis }}');
+                        $(this).css('color', 'green');
+                        '{% endif %}'
+                    }
+                '{% endfor %}'
+            } else {
+                $(this).css('color', 'black');
+            }
+        });
+
+        $('.renumerote').click(function () {
+            var idx = 1;
+            $('#tabblbody tr').each(function (a, b) {  //va dans chaque tr de la table et renumerotte les colis par "id"
+                console.log($(this).find('td').eq(9).find('input').val(idx));
+                idx++;
+            });
+        });
+
+        $(".delieums").on("click", function () {
+            var object = $(this);
+            console.log("clicked " + object.parent().parent().find('td').eq(2).find('input').val().trim());
+            $.ajax({
+                type:"POST",    //type de requête utilisé par ajax
+                url:"/ume/delieums/", //lien de la view qui gère la requête post pour trier les colis des um entree vers des bcs avec une ums ouverte
+                data: {
+                    'id': object.parent().parent().find('td').eq(2).find('input').val().trim(),
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
+                success: function(msg, data, settings){
+                    console.log("gg " + msg);
+                    //location.reload();
+                },
+                failure: function() {
+                    console.log("fail");
+                    //location.reload();
+                }
+            });
+        });
+
         $('#blbut').click(function () {
             alert("gg");
             window.location.href = "{% url 'bonLivraisonEntreemodify' %}?id=" + $('#blum').val();
@@ -897,15 +961,6 @@
                 $(this).find($("i")).removeClass('fa-thumbs-up').addClass('fa-thumbs-down');
             }
         });
-        $('body').on('click', '.fa-leaf', function () {
-            if ($(this).css('color') == "rgb(0, 0, 0)") {
-                console.log($(this).css('color'));
-                $(this).css('color', 'green');
-            } else {
-                $(this).css('color', 'black');
-            }
-
-        });
         $(document).on("input", "input", function (event) {
             if (this.checkValidity()) {
                 $(this).data('last-valid', this.value);
@@ -1005,7 +1060,104 @@
         var colid = "0";
         var a = 0;
         var b = 0;
+
         $(".duplique").on("click", function () {
+            var txt;
+            var nbrduplique = prompt("Combien de fois voulez vous dupliquez ?", "1");
+            if (nbrduplique == null || nbrduplique == "") {
+                //cancel
+            } else {
+                //yes
+                txt = "Hello " + nbrduplique + "! How are you today?";
+                for (var idx = parseInt(nbrduplique); idx != 0; idx--) {
+                    "{% for items in colis %}"
+                    if (parseInt(nbr, 10) < parseInt('{{ items.idColis }}', 10)) {
+                        nbr  = parseInt('{{ items.idColis }}', 10);
+                    }
+                    nbr++;
+                    "{% endfor %}"
+                    console.log("dup " + nbr);
+                    $('#tabblbody').append("<tr><td><button class='duplique btn btn-sm  btn-outline-grey rounded-pill w-25' id=\"duplicate" + nbr + "\"><i class=\"fa fa-copy\"></i></button></td>" +
+                        "<td><button class='ajout btn btn-sm rounded-pill btn-outline-grey w-25' id=\"addx" + nbr + "\"><i class=\"fa fa-plus\"></i></button></td>" +
+                        "<td><input class='form-control' disabled id=\"ncolis" + nbr + "\"></td>" +
+                        "<td><select class=\"form-control fournise\" id=\"blfournisseur" + nbr + "\"></select></td>" +
+                        "<td><select class=\"form-control desif\" id=\"iddesif" + nbr + "\"></select></td>" +
+                        "<td><input class='form-control'></td>" +
+                        "<td><input type=\"date\" class=\"date rounded\" class=\"form-control\"></td>" +
+                        "<td><input type=\"text\" class=\"form-control\"></td>" +
+                        "<td>litige <select class=\"myselect form-control-sm w-75\" id=\"litigebox" + nbr + "\">" +
+                        "</select><br>déci. litige <select class=\"myselect2 form-control-sm\" id=\"decilitigebox" + nbr + "\"></select></td>" +
+                        "<td><input class='form-control'></td>" +
+                        "<td><button type=\"button\" class=\"btn btn-grey btn-sm\"><i class=\"fa fa-arrow-right\" style='color: deepskyblue;'></i></button></td>" +
+                        "<td><button type=\"button\" class=\"btn btn-grey btn-sm\"><i class=\"fa fa-redo\" style='color: deepskyblue;'></i></button></td>" +
+                        "<td><input class='form-control' disabled></td>" +
+                        "<td><input class='form-control' disabled></td>" +
+                        "<td class='text-center'><i class=\"fa fa-toggle-off mt-2\" style='font-size: 25px;cursor:pointer;'></i></td>" +
+                        "<td><input class='form-control' disabled></td>" +
+                        "<td><button class='btn btn-sm rounded-pill'><i class=\"fa fa-unlink\" style='color: red;'></i></button></td>" +
+                        "<td><input class='form-control'></td>" +
+                        "<td><button class=\"deleteur btn btn-sm rounded-pill\"> <i class=\"fa fa-trash\" style='color: red;'></i> </button> </td>" +
+                        "<td class='text-center'><i class=\"fa fa-leaf mt-2\" style='font-size: 25px;cursor:pointer;color: black;'></i></td>" +
+                        "<td><button class=\"print btn btn-sm rounded-pill\"> <i class=\"fa fa-print\" style='color: lightblue;font-size: 25px;'></i></button></td></tr>");
+                    '{% for items in article %}'
+                    $("#blfournisseur" + nbr).append(new Option("{{ items.codeFournisseur }}", "{{ items.codeFournisseur }}"));
+                    $("#iddesif" + nbr).append(new Option("{{ items.designationClient }}", "{{ items.designationClient }}"));
+                    $("#blfournisseur" + nbr).val("");
+                    $("#iddesif" + nbr).val("");
+                    '{% endfor %}'
+                    '{% for itemsli in litige %}'
+                    $("#litigebox" + nbr).append(new Option("{{ itemsli.nom|safe }}", "{{ itemsli.nom|safe }}"));
+                    '{% endfor %}'
+                    '{% for itemsdli in decilitige %}'
+                    $("#decilitigebox" + nbr).append(new Option("{{ itemsdli.nom|safe }}", "{{ itemsdli.nom|safe }}"));
+                    '{% endfor %}'
+
+                    $("#litigebox" + nbr).append(new Option("0", "0", true, true));
+                    $("#decilitigebox" + nbr).append(new Option("0", "0", true, true));
+                    "{% for items in colis %}"
+                    if (parseInt(colid, 10) < parseInt('{{ items.idColis }}', 10)) {
+                        colid = parseInt('{{ items.idColis }}', 10);
+                    }
+                    "{% endfor %}"
+                    colid++;
+                    $("#ncolis" + nbr).val(colid);
+                    console.log("there " + $(this).parent().parent().find('td').eq(3).find('input').val()); //celui qui duplique
+                    console.log($('#tabbl tr').last().find('td').eq(2).find('input').val()); //celui qui est dupliqué
+                    $(".desif").combobox({
+                        select: function (event, ui) {
+                            '{% for items in article %}'
+                            if ('{{ items.designationClient  }}' == this.value) {
+                                $(this).closest('td').prev().find('select').find('option').remove();
+                                $(this).closest('td').prev().find('select').append(new Option("{{ items.codeFournisseur }}", "{{ items.codeFournisseur }}"));
+                            }
+                            '{% endfor %}'
+                        }
+                    });
+                    $(".fournise").combobox({
+                        select: function (event, ui) {
+                            '{% for items in article %}'
+                            if ('{{ items.codeFournisseur }}' == this.value) {
+                                $(this).closest('td').next().find('select').find('option').remove();
+                                $(this).closest('td').next().find('select').append(new Option("{{ items.designationClient }}", "{{ items.designationClient }}"));
+                            }
+                            '{% endfor %}'
+                        }
+                    });
+                    $("#toggle").on("click", function () {
+                        $("#blfournisseur" + nbr).toggle();
+                        $("#iddesif" + nbr).toggle();
+                    });
+                    $('#tabbl tr').last().find('td').eq(3).find('input').val($(this).parent().parent().find('td').eq(3).find('input').val().trim()).trigger('change'); //code fournisseur
+                    $('#tabbl tr').last().find('td').eq(4).find('input').val($(this).parent().parent().find('td').eq(4).find('input').val().trim()); //désignation
+                    $('#tabbl tr').last().find('td').eq(5).find('input').val($(this).parent().parent().find('td').eq(5).find('input').val().trim()); //Num de lot
+                    $('#tabbl tr').last().find('td').eq(6).find('input').val($(this).parent().parent().find('td').eq(6).find('input').val().trim()); //date
+                    $('#tabbl tr').last().find('td').eq(7).find('input').val($(this).parent().parent().find('td').eq(7).find('input').val().trim()); // qte / colis
+                    console.log($(this).parent().parent().find('td').eq(7).find('input').val().trim());
+                }
+            }
+            //if (window.confirm("\"Vous allez recréer le BL à partir des UM entrée. Les valeurs précédemment saisies seront remplacées par le contenu des UM entrée liées à ce BL?")) {
+        });
+        $(".ajout").on("click", function () {
             "{% for items in colis %}"
             if (parseInt(nbr, 10) < parseInt('{{ items.idColis }}', 10)) {
                 nbr  = parseInt('{{ items.idColis }}', 10);
