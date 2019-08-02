@@ -13,6 +13,8 @@
     .ui-dialog {overflow: visible;}
 </style>
 
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <div class="container"><h1 class="text-center"> modif U.M Sortie</h1></div>
 <br>
 
@@ -117,125 +119,117 @@
     </div>
 </div>
 
-<div class="container">
-    <div class="border shadow-lg p-2 mb-3 bg-white rounded">
-        <h5 class="text-center"> <u> Lignes U.M Sorties</u> (colis)</h5>
-        <div class="container">
-            <div class="row">
-                <div class="container">
-                    <div class="border shadow-lg p-2 mb-3 bg-white rounded">
-                        <div class="table-responsive text-nowrap">
-                            <table id="tabbl" class="table table-condensed table-sm table-striped table-bordered" cellspacing="0" width="100%">
-                                <thead>
-                                <tr>
-                                    <th scope="col" class="text-center"><i class="fa fa-copy"></i></th>
-                                    <th scope="col" class="text-center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n°colis&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-                                    <th scope="col" class="text-center">code fournisseur</th>
-                                    <th scope="col" class="text-center pl-5 pr-5">&nbsp;désignation&nbsp;</th>
-                                    <th scope="col" class="text-center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n°lot&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-                                    <th scope="col" class="text-center">date péremption</th>
-                                    <th scope="col" class="text-center">qte<br>par colis</th>
-                                    <th scope="col" class="text-center">litige</th>
-                                    <th scope="col" class="text-center">numéroter</th>
-                                    <th scope="col" class="text-center"><i class="fa fa-arrow-right"></i></th>
-                                    <th scope="col" class="text-center"><i class="fa fa-redo"></i> </th>
-                                    <th scope="col" class="text-center">U.M sortie</th>
-                                    <th scope="col" class="text-center">numéro </th>
-                                    <th scope="col" class="text-center">confirmer</th>
-                                    <th scope="col" class="text-center">date expédition</th>
-                                    <th scope="col" class="text-center"><i class="fa fa-unlink"></i></th>
-                                    <th scope="col" class="text-center">Retour ancien<br>n° colis</th>
-                                    <th scope="col" class="text-center"><i class="fa fa-trash"></i></th>
-                                </tr>
-                                </thead>
-                                <tbody id="tabblbody">
-                                {% for items in colis %}
-                                {% if items.fk_UniteManutentionSortie.idUniteManutentionSortie == id %}
-                                <tr>
-                                    <td><button class='duplique btn btn-sm  btn-outline-grey rounded-pill w-25' id="duplicate{{ items.idColis }}"><i class="fa fa-copy ml-n2" style='font-size: 15px;cursor:pointer;'></i></button></td>
-                                    <td><input class='form-control' disabled id='ncolis{{items.idColis}}' value="{{ items.idColis }}"></td>
-                                    <td><select class="form-control fournise" id="blfournisseur{{items.idColis}}"></select></td>
-                                    <td><select class="form-control desif" id="iddesif{{items.idColis}}"></select></td>
-                                    <td><input class='form-control' value='{{ items.numeroLot }}'></td>
-                                    <td><input type="date" class="date rounded" class="form-control" value='{{ items.datePeremption }}'></td>
-                                    <td><input type="text" class="form-control" value='{{ items.quantiteProduit }}'></td>
 
-                                    <td><!--<button type="button" class="btn btn-grey btn-sm addmodal" data-toggle="popover" id="{{ items.idColis }}">Litiges</button><div id="newDialogText{{ items.idColis }}">Litige<br>-->
-                                        litige <select class="myselect form-control-sm w-75" id="litigebox{{ items.idColis }}">
-                                        </select><br>déci. litige
-                                        <select class="myselect2 form-control-sm" id="decilitigebox{{ items.idColis }}" ></select></td>
+<div class="container-fluid">
+    <div class="row">
+        <div class="border shadow-lg p-2 mb-3 bg-white rounded mx-auto rounded">
+            <div class="table-responsive text-nowrap">
+            <h5 class="text-center"> <u> Lignes U.M Sorties</u> (colis)</h5>
+                <table id="tabbl" class="table table-condensed table-sm table-striped table-bordered rounded" cellspacing="0" width="100%">
+                    <thead>
+                    <tr>
+                        <th scope="col" class="text-center"><i class="fa fa-copy"></i></th>
+                        <th scope="col" class="text-center">&nbsp;&nbsp;&nbsp;n°colis&nbsp;&nbsp;&nbsp;</th>
+                        <th scope="col" class="text-center">code client</th>
+                        <th scope="col" class="text-center">&nbsp;désignation&nbsp;</th>
+                        <th scope="col" class="text-center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n°lot&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                        <th scope="col" class="text-center">date péremption</th>
+                        <th scope="col" class="text-center">qte<br>par colis</th>
+                        <th scope="col" class="text-center">litige</th>
+                        <th scope="col" class="text-center">confirmer</th>
+                        <th scope="col" class="text-center"><i class="">Délier UM.s</i></th>
+                    </tr>
+                    </thead>
+                    <tbody id="tabblbody">
+                    {% for items in colis %}
+                    {% if items.fk_UniteManutentionSortie.idUniteManutentionSortie == id %}
+                    <tr>
+                        <td><a target="_blank" rel="noopener noreferrer" href="{% url 'unitemanutentionentreemodify' %}?id={{ items.fk_UniteManutentionEntree.idUniteManutentionEntree }}"> <button class='btn btn-sm  btn-outline-grey rounded-pill w-25' id="{{ items.idColis }}"><i class="fa fa-copy ml-n2" style='cursor:pointer;'><br>um.e</i></button></a></td>
+                        <td><input class='form-control w-responsive' disabled id='ncolis{{items.idColis}}' value="{{ items.idColis }}"></td>
+                        <td><select class="form-control fournise" id="blfournisseur{{items.idColis}}"></select></td>
+                        <td><select class="form-control desif" id="iddesif{{items.idColis}}"></select></td>
+                        <td><input class='form-control w-responsive' value='{{ items.numeroLot }}'></td>
+                        <td><input type="date" class="date rounded" class="form-control" value='{{ items.datePeremption }}'></td>
+                        <td><input type="text" class="form-control w-responsive" value='{{ items.quantiteProduit }}'></td>
 
-                                    <td><input class='form-control' value='{{ items.numerotation }}'></td>
-                                    <td><button type="button" class="btn btn-grey btn-sm"><i class="fa fa-arrow-right" style='color: deepskyblue;font-size: 15px'></i></button></td>
-                                    <td><a href="{% url 'unitemanutentionsortie' %}"><button type="button" class="btn btn-grey btn-sm"><i class="fa fa-redo" style="color: deepskyblue;font-size: 15px"></i></button></a></td>
-                                    <td><input class='form-control' disabled value='{{ items.fk_UniteManutentionSortie.idUniteManutentionSortie }}'></td>
-                                    <td><input class='form-control' disabled value='{{ items.fk_UniteManutentionSortie.numero }}'></td>
-                                    {% if items.emplacementConfirme == "1" %}
-                                    <td class='text-center'><i class="fa fa-toggle-on mt-2" style='font-size: 25px;cursor:pointer;'></i></td>
-                                    {% endif %}
-                                    {% if items.emplacementConfirme == "0" %}
-                                    <td class='text-center'><i class="fa fa-toggle-off mt-2" style='font-size: 25px;cursor:pointer;'></i></td>
-                                    {% endif %}
-                                    <td><input class='form-control' disabled value='{{ items.fk_UniteManutentionSortie.dateExpedition }}'></td>
-                                    <td><button class='btn btn-sm rounded-pill'><i class="fa fa-unlink" style='font-size: 20px;cursor:pointer;color: red;'></i></button></td>
-                                    <td><input class='form-control' value='0'></td>
-                                    <td><button class="deleteur btn btn-sm rounded-pill" id="{{ items.idColis }}"> <i class="fa fa-trash" style='font-size: 24px;cursor:pointer;color: orangered;'></i> </button> </td>
-                                </tr>
-                                {% endif %}
-                                {% endfor %}
-                                <script>
-                                    $(document).ready(function() {
-                                        '{% for items in colis %}'
-                                        '{% for itemsart in article %}'
-                                        if ('{{ items.fk_Article.codeFournisseur}}' == '{{ itemsart.codeFournisseur}}') {
-                                            $("#blfournisseur"+"{{items.idColis}}").append(new Option("{{itemsart.codeFournisseur}}", "{{itemsart.codeFournisseur}}", true, true));
-                                            $("#iddesif" + "{{items.idColis}}").append(new Option("{{ itemsart.designationClient }}", "{{itemsart.designationClient}}", true, true));
-                                        }
-                                        else {
-                                            $("#blfournisseur" + "{{items.idColis}}").append(new Option("{{ itemsart.codeFournisseur }}", "{{itemsart.codeFournisseur}}"));
-                                            $("#iddesif" + "{{items.idColis}}").append(new Option("{{ itemsart.designationClient }}", "{{itemsart.designationClient}}"));
-                                        }
-                                        '{% endfor %}'
-                                        $("#blfournisseur"+"{{items.idColis}}").combobox();
-                                        $("#iddesif"+"{{items.idColis}}").combobox();
-                                        $("#toggle").on("click", function () {
-                                            $("#blfournisseur"+"{{items.idColis}}").toggle();
-                                            $("#iddesif"+"{{items.idColis}}").toggle();
-                                        });
-                                        '{% endfor %}'
-                                        $(".desif").combobox({
-                                            select: function (event, ui) {
-                                                '{% for items in article %}'
-                                                console.log("desii");
-                                                if ('{{ items.designationClient }}' == $(this).val()) {
-                                                    $(this).closest('td').prev().find('select').find('option').remove();
-                                                    $(this).closest('td').prev().find('select').append(new Option("{{ items.codeFournisseur }}", "{{ items.codeFournisseur }}"));
-                                                }
-                                                '{% endfor %}'
-                                            }
-                                        });
-                                        $(".fournise").combobox({
-                                            select: function (event, ui) {
-                                                '{% for items in article %}'
-                                                console.log("fourni");
-                                                if ('{{ items.codeFournisseur }}' == this.value) {
-                                                    $(this).closest('td').next().find('select').find('option').remove();
-                                                    $(this).closest('td').next().find('select').append(new Option("{{ items.designationClient }}", "{{ items.designationClient }}"));
-                                                }
-                                                '{% endfor %}'
-                                            }
-                                        });
-                                    });
-                                </script>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
+                        <td><!--<button type="button" class="btn btn-grey btn-sm addmodal" data-toggle="popover" id="{{ items.idColis }}">Litiges</button><div id="newDialogText{{ items.idColis }}">Litige<br>-->
+                            litige <select class="myselect form-control-sm w-75" id="litigebox{{ items.idColis }}">
+                            </select><br>déci. litige
+                            <select class="myselect2 form-control-sm" id="decilitigebox{{ items.idColis }}" ></select></td>
+                        {% if items.emplacementConfirme == "1" %}
+                        <td class='text-center'><i class="fa fa-toggle-on mt-2" style='font-size: 25px;cursor:pointer;'></i></td>
+                        {% endif %}
+                        {% if items.emplacementConfirme == "0" %}
+                        <td class='text-center'><i class="fa fa-toggle-off mt-2" style='font-size: 25px;cursor:pointer;'></i></td>
+                        {% endif %}
+                        <td><button class="deleteur btn btn-sm rounded-pill" id="{{ items.idColis }}"> <i class="fa fa-unlink" style='font-size: 24px;cursor:pointer;color: orangered;'></i> </button> </td>
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+
+                    <script>
+                        $(document).ready(function() {
+                            '{% for items in colis %}'
+                            '{% for itemsart in article %}'
+                            if ('{{ items.fk_Article.codeFournisseur}}' == '{{ itemsart.codeFournisseur}}') {
+                                $("#blfournisseur"+"{{items.idColis}}").append(new Option("{{itemsart.codeFournisseur}}", "{{itemsart.codeFournisseur}}", true, true));
+                                $("#iddesif" + "{{items.idColis}}").append(new Option("{{ itemsart.designationClient }}", "{{itemsart.designationClient}}", true, true));
+                            }
+                            else {
+                                $("#blfournisseur" + "{{items.idColis}}").append(new Option("{{ itemsart.codeFournisseur }}", "{{itemsart.codeFournisseur}}"));
+                                $("#iddesif" + "{{items.idColis}}").append(new Option("{{ itemsart.designationClient }}", "{{itemsart.designationClient}}"));
+                            }
+
+
+                            '{% endfor %}'
+                            '{% for itemsli in litige %}'
+                            $("#litigebox" + '{{items.idColis}}').append(new Option("{{ itemsli.nom|safe }}", "{{ itemsli.nom|safe }}"));
+                            '{% endfor %}'
+
+                            '{% for itemsdli in decilitige %}'
+                            $("#decilitigebox" + '{{items.idColis}}').append(new Option("{{ itemsdli.nom|safe }}", "{{ itemsdli.nom|safe }}"));
+                            '{% endfor %}'
+                            $("#litigebox" + '{{items.idColis}}').append(new Option("0", "0", true, true));
+                            $("#decilitigebox" + '{{items.idColis}}').append(new Option("0", "0", true, true));
+                            $("#blfournisseur"+"{{items.idColis}}").combobox();
+                            $("#iddesif"+"{{items.idColis}}").combobox();
+                            $("#toggle").on("click", function () {
+                                $("#blfournisseur"+"{{items.idColis}}").toggle();
+                                $("#iddesif"+"{{items.idColis}}").toggle();
+                            });
+                            '{% endfor %}'
+                            $(".desif").combobox({
+                                select: function (event, ui) {
+                                    '{% for items in article %}'
+                                    console.log("desii");
+                                    if ('{{ items.designationClient }}' == $(this).val()) {
+                                        $(this).closest('td').prev().find('select').find('option').remove();
+                                        $(this).closest('td').prev().find('select').append(new Option("{{ items.codeFournisseur }}", "{{ items.codeFournisseur }}"));
+                                    }
+                                    '{% endfor %}'
+                                }
+                            });
+                            $(".fournise").combobox({
+                                select: function (event, ui) {
+                                    '{% for items in article %}'
+                                    console.log("fourni");
+                                    if ('{{ items.codeFournisseur }}' == this.value) {
+                                        $(this).closest('td').next().find('select').find('option').remove();
+                                        $(this).closest('td').next().find('select').append(new Option("{{ items.designationClient }}", "{{ items.designationClient }}"));
+                                    }
+                                    '{% endfor %}'
+                                }
+                            });
+
+                        });
+                    </script>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
 </div>
+
 <br>
 <br>
 
@@ -246,18 +240,18 @@
         });
 
         '{% for items in ums %}'
-         if ('{{ items.idUniteManutentionSortie }}' == '{{ id }}') {
-             $('#idums').val("{{ items.idUniteManutentionSortie }}");
-             $('#desti').val("{{ items.fk_BonCommandeSortie.fk_Destinataire.nom|safe }}");
-             $('#bcsid').val("{{ items.fk_BonCommandeSortie.idBonCommandeSortie|safe }}");
-             $('#blsid').val("{{ items.fk_BonLivraisonSortie.idBonBonLivraisonSortie|safe }}");
-             $('#codeum').val("{{ items.fk_BonCommandeSortie.fk_Destinataire.codeUM|safe }}");
-             $('#umsnum').val("{{ items.numero|safe }}");
-             //alert("{{ items.dateOuverture }}");
-             $('#dateo').val("{{ items.dateOuverture|safe }}");
-             $('#datef').val("{{ items.dateFermeture }}");
-             $('#datee').val("{{ items.dateExpedition }}");
-         }
+        if ('{{ items.idUniteManutentionSortie }}' == '{{ id }}') {
+            $('#idums').val("{{ items.idUniteManutentionSortie }}");
+            $('#desti').val("{{ items.fk_BonCommandeSortie.fk_Destinataire.nom|safe }}");
+            $('#bcsid').val("{{ items.fk_BonCommandeSortie.idBonCommandeSortie|safe }}");
+            $('#blsid').val("{{ items.fk_BonLivraisonSortie.idBonBonLivraisonSortie|safe }}");
+            $('#codeum').val("{{ items.fk_BonCommandeSortie.fk_Destinataire.codeUM|safe }}");
+            $('#umsnum').val("{{ items.numero|safe }}");
+            //alert("{{ items.dateOuverture }}");
+            $('#dateo').val("{{ items.dateOuverture|safe }}");
+            $('#datef').val("{{ items.dateFermeture }}");
+            $('#datee').val("{{ items.dateExpedition }}");
+        }
         '{% endfor %}'
         $('#dateo').change(function () {
             //alert($('#dateo').val());

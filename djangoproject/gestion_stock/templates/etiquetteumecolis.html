@@ -80,10 +80,10 @@
 
     <div class="row">
         <div class="col-sm-1 border rounded border-dark h-responsive" style="min-width: 569px; min-height: 150px">
-            <h5 class="text-center mt-2"><b>Nom Compte</b></h5>
+            <h5 class="text-center mt-2"><b>codeUM</b></h5>
             {% for colis in col %}
             {% if colis.idColis|safe == id %}
-            {{ colis.fk_UniteManutentionEntree.fk_BonLivraisonEntree.fk_Destinataire }}
+            <!--{{ colis.fk_UniteManutentionEntree.fk_BonLivraisonEntree.fk_Destinataire }}-->
             <h1 style="font-size: 150px"><b>{{ colis.fk_UniteManutentionEntree.fk_BonLivraisonEntree.fk_Destinataire.codeUM }}</b></h1>
             {% endif %}
             {% endfor %}
