@@ -678,29 +678,29 @@ def sortcolis(request):
         lbc = LigneBonCommandeSortie_pour_BonCommandeSortie.objects.all().order_by("-priorite") #Je recup la liste de colis, ordonnée par la case priorite decroissante
         bcs = BonCommandeSortie.objects.all()
         ums = UniteManutentionSortie.objects.all()
-        nombrecolisf = 0
         for items in colis:
             if items.fk_UniteManutentionEntree.idUniteManutentionEntree == ume.idUniteManutentionEntree:
-                print ("GG FOUND !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1") #article correspondant a la ligne bon commande trouver dans les articles
+                print ("11") #article correspondant a la ligne bon commande trouver dans les articles
                 print(items.quantiteProduit)
                 try:
                     if not items.fk_UniteManutentionSortie:
-                        print ("GG FOUND !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1")
+                        print ("22")
                         exitFlag = False # me sert a casser des boucles
                         for mylbc in lbc:
                             if mylbc.termine != 1:
                                 if int(mylbc.quantiteProduitALivrer) - int(mylbc.quantiteProduitCommandestats) < 0:
                                     if mylbc.fk_Article == items.fk_Article:
-                                        print ("GG FOUND !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!") #article correspondant a la ligne bon commande trouver dans les articles
+                                        print ("333") #article correspondant a la ligne bon commande trouver dans les articles
                                         print (mylbc.quantiteProduitCommandestats + " !!!!!!! " + items.quantiteProduit)
                                         print ("Colis ! " + items.idColis) #article correspondant a la ligne bon commande trouver dans les articles
                                         if int(mylbc.quantiteProduitCommandestats) >= int(items.quantiteProduit): #verif que ça valeur du colis est tjr + petite que demander
-                                            print ("GG2 FOUND  !!!!!!!!!!!!!!!!!!" + mylbc.quantiteProduitCommandestats + " and " + mylbc.quantiteProduitLivre)
+                                            print ("/// " + mylbc.quantiteProduitCommandestats + " and " + mylbc.quantiteProduitLivre)
                                             #if int(mylbc.quantiteProduitCommandestats) >= int(mylbc.quantiteProduitLivre): #verif que la ligne a encore besoin d'un colis en comparant ce qui a été donné a ce qui doit être donné
                                             print (mylbc.quantiteProduitLivre + " + " + items.quantiteProduit + " <= " + mylbc.quantiteProduitCommandestats)
                                             #Maintenant je dois sortir de le colis dans une Ums adéquate donc celle du bon de commande mylbc actuelle
                                             #if (int(mylbc.quantiteProduitLivre) + int(items.quantiteProduit)) < int(mylbc.quantiteProduitCommandestats): plus besoin!
                                             #if UniteManutentionSortie.objects.get(fk_BonCommandeSortie=mylbc.fk_BonCommandeSortie).dateFermeture == "0": #l'ums ne doit pas être fermé, soit il est à 0
+                                            nombrecolisf = 0
                                             for myums in ums:
                                                 if myums.fk_BonCommandeSortie.idBonCommandeSortie == mylbc.fk_BonCommandeSortie.idBonCommandeSortie and myums.dateFermeture  == "0":
                                                     items.fk_UniteManutentionSortie = myums
@@ -716,6 +716,7 @@ def sortcolis(request):
                                                 else:
                                                     print("nope")
                                             if nombrecolisf == 0:
+                                                print("there create !" + str(mylbc.fk_BonCommandeSortie))
                                                 go = UniteManutentionSortie()
                                                 try:
                                                     go.idUniteManutentionSortie = str(UniteManutentionSortie.objects.latest('idUniteManutentionSortie'))
@@ -727,6 +728,7 @@ def sortcolis(request):
                                                 go.dateOuverture = time.strftime("%Y-%m-%d")
                                                 go.save()
                                                 items.fk_UniteManutentionSortie = go
+                                                print("there create !" + str(go.idUniteManutentionSortie))
                                                 mylbc.quantiteProduitCommandestats = str(int(mylbc.quantiteProduitCommandestats) - int(items.quantiteProduit))
                                                 mylbc.quantiteProduitLivre = str(int(mylbc.quantiteProduitLivre) + int(items.quantiteProduit))
                                                 mylbc.quantiteColisLivre = str(int(mylbc.quantiteColisLivre) + int(1))
@@ -1372,6 +1374,20 @@ class article(ListView):
         }
         return render(request, self.template_name, context)
 
+class articleemplacement(ListView):
+    template_name = "articleemplacement.html"
+
+    def get(self, request):
+        context = {
+            'art' : Article.objects.all(),
+            'zndp' : ZoneDepot_pour_TypeZoneDepot.objects.all(),
+            'ume' : UniteManutentionEntree.objects.all(),
+            'col' : Colis.objects.all(),
+            'name' :request.GET.get('name'),
+            'settings' : menuimages.objects.all(),
+            'activate' : 'on',
+        }
+        return render(request, self.template_name, context)
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
 class articleadd(ListView):
@@ -2544,6 +2560,17 @@ class clientadd(ListView):
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 #unitemanutention
+
+class umereference(ListView):
+    template_name = "unitemanutentionentreereference.html"
+
+    def get(self, request):
+        context = {
+            'activate' : 'on',
+            'ume' : UniteManutentionEntree.objects.all(),
+            'settings' : menuimages.objects.all(),
+        }
+        return render(request, self.template_name, context)
 
 class ume(ListView):
     template_name = "unitemanutentionentree.html"

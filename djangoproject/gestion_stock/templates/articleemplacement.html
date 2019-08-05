@@ -1,0 +1,152 @@
+{% extends user.is_authenticated|yesno:"base_generic.html,empty.html" %}
+
+{% block content %}
+
+<style>
+    .ui-dialog-titlebar-close {
+        visibility: hidden;
+    }
+    input.text { margin-bottom:12px; width:95%; padding: .4em; }
+    fieldset { padding:0; border:0; margin-top:25px; }
+    .ui-dialog .ui-state-error { padding: .3em; }
+    .validateTips { border: 1px solid transparent; padding: 0.3em;}
+    table.dataTable thead .sorting:after,
+    table.dataTable thead .sorting:before,
+    table.dataTable thead .sorting_asc:after,
+    table.dataTable thead .sorting_asc:before,
+    table.dataTable thead .sorting_asc_disabled:after,
+    table.dataTable thead .sorting_asc_disabled:before,
+    table.dataTable thead .sorting_desc:after,
+    table.dataTable thead .sorting_desc:before,
+    table.dataTable thead .sorting_desc_disabled:after,
+    table.dataTable thead .sorting_desc_disabled:before {
+        bottom: .5em;
+    }
+</style>
+
+<div class="container"><h1 class="text-center"> Liste des Articles </h1></div>
+<br>
+
+<div class="container">
+    <div class="form-group row text-center">
+
+        <div class="col">
+            <button type="button" id="back-row" class="btn btn-default btn-rounded btn-outline-dark">Retour</button>
+        </div>
+        <div class="col">
+            <select id="selectzone" class="form-control-plaintext"> <option>Tout</option></select>
+        </div>
+        <div class="col">
+            <button type="button" id="create-row" class="btn btn-success btn-rounded btn-outline-dark">Ajouter</button>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="border shadow-lg p-3 mb-5 bg-white rounded">
+        <div class="row">
+            <div class="container">
+                <div class="table-responsive">
+                    <table id="dtBasicExample" class="table table-striped text-center table-bordered table-sm" cellspacing="0" width="100%">
+                        <thead>
+                        <tr>
+                            <th scope="col" class="th-sm"> zone </th>
+                            <th scope="col" class="th-sm"> article </th>
+                            <th scope="col" class="th-sm"> désignation </th>
+                            <th scope="col" class="th-sm"> Qte unités </th>
+                            <th scope="col" class="th-sm"> Qte colis </th>
+                            <th scope="col" class="th-sm"> N° lot</th>
+                            <th scope="col" class="th-sm"> DLUO </th>
+                            <th scope="col" class="th-sm"> liste UMe </th>
+                        </tr>
+                        </thead>
+                        <tbody id="bodytable">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        //<span class="sr-only">(current)</span>
+        $("#create-row").click(function() {
+            location.href = "{% url 'articleadd' %}";
+        });
+
+        var arrayofname = [];
+        var arrayofcolisid = [];
+        var arrayofcolis = [];
+        var arrayofquantiteproduit = [];
+        if ('{{ name }}') {
+            '{% for colis in col %}'
+            '{% for items in ume %}'
+            if ('{{ items.fk_ZoneDepot.nom }}' == '{{ name }}') {
+                if ('{{ colis.fk_UniteManutentionEntree.idUniteManutentionEntree }}' == '{{ items.idUniteManutentionEntree }}') {
+                    '{% for article in art %}'
+                    if ('{{article.idArticle}}' == '{{colis.fk_Article.idArticle}}') {
+                        var foundarticle = 0;
+                        for (var idx = 0; idx < arrayofname.length; idx++) {
+                            if (arrayofname[idx] == '{{colis.fk_Article}}') { //je gère ici si l'article a déjà été trouver ou pas, si il existe je mets direct la quantité dedans
+                                foundarticle = 1;
+                                arrayofquantiteproduit[idx] += parseInt('{{colis.quantiteProduit|safe}}');
+                                //arrayofcolisid[idx] += parseInt('{{ colis.idColis|safe }}');
+                                arrayofcolis[idx] += 1;
+                                idx += 1;
+                            }
+                        }
+                        if (foundarticle == 0) {
+                            arrayofname.push('{{colis.fk_Article.designationClient|safe}}');
+                            arrayofquantiteproduit.push(parseInt('{{colis.quantiteProduit|safe}}'));
+                            arrayofcolisid.push(parseInt('{{ colis.idColis|safe }}'));
+                            arrayofcolis.push(1);
+                            foundarticle = 1;
+                        }
+                    }
+                    '{% endfor %}'
+                }
+            }
+            '{% endfor %}'
+            '{% endfor %}'
+        }
+
+        for (var lgth = 0; lgth < arrayofname.length; lgth++) {
+            '{% for article in art %}'
+            if ('{{ article.designationClient }}' == arrayofname[lgth]) {
+                $('#bodytable').append("<tr>\n" +
+                    "        <td class='text-center'> {{ name }} </td>\n" +
+                    "        <td class='text-center'> {{ article.codeClient }} </td>\n" +
+                    "        <td class='text-center'> {{ article.designationClient }} </td>\n" +
+                    "        <td class='text-center'> " + arrayofquantiteproduit[lgth] + " </td>\n" +
+                    "        <td class='text-center'> " + arrayofcolis[lgth] + " </td>\n" +
+                    "        <td class='text-center'> {% for colis in col %} " + ('{{ colis.idColis }}' == arrayofcolisid[lgth] ? '{{ colis.numeroLot }}' : '') + " {% endfor %} </td>\n" +
+                    "        <td class='text-center'> {% for colis in col %} " + ('{{ colis.idColis }}' == arrayofcolisid[lgth] ? '{{ colis.datePeremption }}' : '') + " {% endfor %} </td>\n" +
+                    "        <td class='text-center'> {{ items.quantiteUniteManutentionSortie }} </td>\n" +
+                    "        </tr>");
+            }
+            //alert(arrayofcolisid[lgth]);
+            '{% endfor %}'
+        }
+
+        '{% for items in zndp %}'
+        $("#selectzone").append(new Option("{{ items.nom|safe }}", "{{ items.nom|safe }}"));
+        '{% endfor %}'
+
+        $("#selectzone").change(function() {
+            location.href = "{% url 'articleparemplacement' %}?name=" + $(this).val();
+        });
+
+        $("#toggle").on("click", function() {
+            $("#selectzone").toggle();
+        });
+
+        $("#back-row").click(function() {
+            location.href = "{% url 'article' %}";
+        });
+        $('#dtBasicExample').DataTable();
+        $('.dataTables_length').addClass('bs-select');
+    });
+</script>
+{% endblock %}

@@ -1230,7 +1230,7 @@ class Colis(models.Model):
     m_horodatage = models.CharField(max_length=150, default=0)
     #fk_EtiquetteColis= models.ForeignKey('', on_delete=models.SET_NULL, default=1)
     #fk_ColisStandard = models.ForeignKey('', on_delete=models.SET_NULL, default=1)
-    fk_ZoneDepot = models.ForeignKey('ZoneDepot_pour_TypeZoneDepot', on_delete=models.SET_NULL, default=0, blank=True, null=True)
+    fk_ZoneDepot = models.ForeignKey('ZoneDepot_pour_TypeZoneDepot', on_delete=models.SET_NULL, default=0, blank=True, null=True) #pas utilisé j'utilise celui de l'ume
     emplacementConfirme = models.CharField(max_length=150, default=0)
     datePeremption = models.CharField(max_length=150, default=0)
     quantiteProduit = models.CharField(max_length=150, default=0)

@@ -122,6 +122,7 @@ urlpatterns = [
     #path('upload_blef/redirect', views.upload_blef_redirect, name='uploadbleredirect'),#pour sauvegarder les images stocké dans les ble
 
     path('article', views.article.as_view(), name='article'),
+    path('article/emplacement', views.articleemplacement.as_view(), name='articleparemplacement'),
     path('article/delete/', views.article.delete),
     path('article/add', views.articleadd.as_view(), name='articleadd'),
     path('article/add/create/', views.articleadd.create),
@@ -174,6 +175,7 @@ urlpatterns = [
     path('colis/add', views.colisadd.as_view(), name='colisadd'),
 
     path('umentree', views.ume.as_view(), name='unitemanutentionentree'),
+    path('umentree/reference', views.umereference.as_view(), name='unitemanutentionentreereference'),
     path('umentree/add', views.umeadd.as_view(), name='unitemanutentionentreeadd'),
     path('umentree/modify/', views.umemodify.as_view(), name='unitemanutentionentreemodify'),
     path('modify_ume/', views.umemodify.modify),
