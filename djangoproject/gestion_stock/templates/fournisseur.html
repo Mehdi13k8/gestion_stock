@@ -90,7 +90,7 @@
       var idClicked = e.target.id;
       var name = "";
       var trueid = 0;
-      alert(idClicked);
+      //alert(idClicked);
       "{% for items in four %}"
       if ('{{ items.idFournisseur }}' == idClicked) {
         name = '{{ items.nom|safe }}';
@@ -103,7 +103,7 @@
     //code pour delete
     $(document).on("click", "button.dynad" , function(e) { // event pour delete la ligne sélectionner
       var idClicked = e.target.id;
-      alert(idClicked);
+      //alert(idClicked);
 
       $.ajax({
         type:"POST",    //type de requête utilisé par ajax
@@ -114,7 +114,7 @@
           csrfmiddlewaretoken: '{{ csrf_token }}'
         },
         success: function(msg, data, settings){
-          alert("gg " + msg);
+          //alert("gg " + msg);
         },
         failure: function() {
           alert("fail");

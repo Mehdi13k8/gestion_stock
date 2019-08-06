@@ -100,7 +100,7 @@
         var idClicked = e.target.id;
         var name = "";
         var trueid = 0;
-        alert(idClicked);
+        //alert(idClicked);
         "{% for items in ums %}"
         if ('{{ items.idUniteManutentionSortie }}' == idClicked) {
             name = '{{ items.nom }}';
@@ -112,7 +112,7 @@
 
     $(document).on("click", "button.dynad" , function(e) { // event pour delete la ligne sélectionner
         var idClicked = e.target.id;
-        alert(idClicked);
+        //alert(idClicked);
         $.ajax({
             type:"POST",    //type de requête utilisé par ajax
             url:"/delete_ums/", //lien de la view qui gère la requête post pour supprimer une sortie

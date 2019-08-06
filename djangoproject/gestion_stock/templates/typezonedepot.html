@@ -155,7 +155,7 @@
         var idClicked = e.target.id;
         var name = "";
         var trueid = 0;
-        alert(idClicked);
+        //alert(idClicked);
         "{% for items in typez %}"
         if ('{{ items.idTypeZoneDepot }}' == idClicked) {
             name = '{{ items.nom }}';
@@ -167,7 +167,7 @@
 
     $(document).on("click", "button.dynad" , function(e) {
         var idClicked = e.target.id;
-        alert(idClicked);
+        //alert(idClicked);
         $.ajax({
             type:"POST",
             url:"/type_zone/delete_typezone/",

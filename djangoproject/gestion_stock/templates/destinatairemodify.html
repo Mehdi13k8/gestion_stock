@@ -377,7 +377,7 @@
             var bool = 0;
             "{% for items in trans %}"
             if (name == "{{ items.nom|safe }}") {
-                alert(name);
+                //alert(name);
                 bool = 1;
             }
             "{% endfor %}"
@@ -422,7 +422,7 @@
                     csrfmiddlewaretoken: '{{ csrf_token }}'
                 },
                 success: function(msg, data, settings){
-                    alert("gg " + msg);
+                    //alert("gg " + msg);
                 },
                 failure: function() {
                     alert("fail");

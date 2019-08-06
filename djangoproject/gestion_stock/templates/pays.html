@@ -156,7 +156,7 @@
         var idClicked = e.target.id;
         var name = "";
         var trueid = 0;
-        alert(idClicked);
+        //alert(idClicked);
         "{% for items in pays %}"
         if ('{{ items.idPays }}' == idClicked) {
             name = '{{ items.nom }}';
@@ -167,7 +167,7 @@
     });
     $(document).on("click", "button.dynad" , function(e) {
         var idClicked = e.target.id;
-        alert(idClicked);
+        //alert(idClicked);
         $.ajax({
             type:"POST",
             url:"/pays/delete_pays/",

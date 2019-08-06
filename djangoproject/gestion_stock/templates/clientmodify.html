@@ -299,7 +299,7 @@
 <script>
     $(document).ready(function() {
         $("#dtBasicExample2").on( "click", ".resetb", function() {
-            alert("clicked");
+            //alert("clicked");
         });
 
         $(".fa-chevron-circle-right").click(function() {
@@ -530,7 +530,7 @@
             var idClicked = $(this).attr('id');
             var name = "";
             var trueid = 0;
-            alert(idClicked);
+            //alert(idClicked);
             "{% for items in entree %}"
             if ('{{ items.idBonLivraisonEntree }}' == idClicked) {
                 name = '{{ items.nom }}';

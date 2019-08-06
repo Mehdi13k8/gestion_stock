@@ -409,7 +409,7 @@
         }
         $('#saveume').click(function () {
             var date = $('#date').val().trim();
-            alert(date);
+            //alert(date);
             date = date.split("-").reverse().join("-");
             $.ajax({
                 type:"POST",    //type de requête utilisé par ajax

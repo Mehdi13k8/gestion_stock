@@ -1099,26 +1099,6 @@ def upload_blef(request):
     return redirect(reverse('bonLivraisonEntreemodify')+"?id="+ble.idBonLivraisonEntree)
     #return reverse('bonLivraisonEntreemodify', kwargs={'pk': 5})
 
-'''def upload_blef_redirect(request):
-    template_name = "upload_blentree.html" #Ce template me sert juste a faire une "redirection" avec des params GET pour tomber sur la même page avant l'upload
-    context = {
-        'entree' : BonLivraisonEntree.objects.all(),
-        'umentree' : UniteManutentionEntree.objects.all(),
-        'col' : Colis.objects.all(),
-        'art' : Article.objects.all(),
-        'cli' : Client.objects.all(),
-        'des' : Destinataire.objects.all(),
-        'four' : Fournisseur.objects.all(),
-        'typef': TypeFournisseur_pour_Fournisseur.objects.all(),
-        'zoned': ZoneDepot_pour_TypeZoneDepot.objects.all(),
-        #'lve' : LettreVoitureEntree.objects.all(),
-        'entreeligne' : LigneBonLivraisonEntree_pour_BonLivraisonEntree.objects.all(),
-        'id' :request.GET.get('id'),
-        'settings' : menuimages.objects.all(),
-        'activate' : 'on',
-    }
-    return render(request, template_name, context)'''
-
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
 class bonLivraisonEntreeadd(ListView):
