@@ -412,6 +412,7 @@
                             },
                             success: function(msg, data, settings) {
                                 console.log("success: " + msg);
+                                $('#tabblbody').find('tr').last().find('td').eq(1).find('input').val("test");
                             },
                             failure: function() {
                                 alert("fail");
