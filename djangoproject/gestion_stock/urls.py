@@ -83,6 +83,7 @@ urlpatterns = [
     path('bon_sortie/add', views.bonCommandeSortieadd.as_view(), name='bonCommandeSortieadd'),
     path('bon_sortie/adding/', views.bonCommandeSortieadd.add),
     path('bon_sortie/modify', views.bonCommandeSortiemodify.as_view(), name='bonCommandeSortiemodify'),
+    path('bon_sortie/modify/termin/', views.bonCommandeSortiemodify.termin),
     path('bon_sortie/modify/creebls/', views.bonCommandeSortiemodify.creebonlivraisonsortie),
     path('bon_sortie/modify/recalcule/', views.bonCommandeSortiemodify.recalcule),
     path('delete_bon_sortie/', views.bonCommandeSortie.delete),

@@ -298,7 +298,7 @@
                             {% if items.termine == '0' %}
                             <td> <button id='{{ items.idLigneBonCommandeSortie }}' class="termin btn btn-sm btn-outline-grey rounded-pill"> <i class="fa fa-pen"></i></button> </td>
                             {% else %}
-                            <td> <button id='{{ items.idLigneBonCommandeSortie }}' class="termin btn btn-sm btn-outline-red rounded-pill"> <i class="fa fa-pen"></i></button> </td>
+                            <td> <button id='{{ items.idLigneBonCommandeSortie }}' class="termin btn btn-sm btn-outline-light-blue rounded-pill"> <i class="fa fa-pen"></i></button> </td>
                             {% endif %}
                             <td> <button id='{{ items.idLigneBonCommandeSortie }}' class="dynad btn btn-sm btn-outline-red rounded-pill"> <i class="fa fa-minus"></i></button> </td>
                             <td> {{ items.idLigneBonCommandeSortie }} </td>
@@ -380,6 +380,26 @@
         $('#back-row').click(function () {
             location.href = "{% url 'bonCommandeSortie' %}";
         });
+
+        $('.termin').click(function () {
+            var id = $(this).attr('id');
+            $.ajax({
+                type: "POST",
+                url: "/bon_sortie/modify/termin/", //lien de la view qui va faire qu'une ligne est "terminé"
+                data: {
+                    'idbcs': id,
+                    csrfmiddlewaretoken: '{{ csrf_token }}',
+                },
+                success: function (msg, data, settings) {
+                    console.log("gg " + msg);
+                    location.reload();
+                },
+                failure: function () {
+                    console.log("fail");
+                }
+            });
+        });
+
         $('#createbls').click(function () {
             if (window.confirm("\"Vous allez créer le BLs à partir des UM sorties ?")) {
                 $.ajax({

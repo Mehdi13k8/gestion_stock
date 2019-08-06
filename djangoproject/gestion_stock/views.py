@@ -416,6 +416,18 @@ class bonCommandeSortieadd(ListView):
 class bonCommandeSortiemodify(ListView):
     template_name = "bonCommandeSortiemodify.html"
 
+    def termin(request):
+        if request.method == 'POST':
+            lbcs = LigneBonCommandeSortie_pour_BonCommandeSortie.objects.get(idLigneBonCommandeSortie=request.POST.get('idbcs'))
+            if lbcs.termine == "0":
+                lbcs.termine = "1"
+            else:
+                lbcs.termine = "0"
+            lbcs.save()
+            print ("LBCS OK ! " + request.POST.get('idbcs') + " " + lbcs.termine)
+            return HttpResponse("Good access !")
+        return HttpResponse("No access there !")
+
     def creebonlivraisonsortie(request): #c'est ici que le bouton "crée bl sorties" renvoi
         if request.method == 'POST':
             showlist = [request.POST.get('idbcs'), request.POST.get('transporteur'),
@@ -678,6 +690,7 @@ def sortcolis(request):
         lbc = LigneBonCommandeSortie_pour_BonCommandeSortie.objects.all().order_by("-priorite") #Je recup la liste de colis, ordonnée par la case priorite decroissante
         bcs = BonCommandeSortie.objects.all()
         ums = UniteManutentionSortie.objects.all()
+        nombrecolisf = 0
         for items in colis:
             if items.fk_UniteManutentionEntree.idUniteManutentionEntree == ume.idUniteManutentionEntree:
                 print ("11") #article correspondant a la ligne bon commande trouver dans les articles
@@ -687,7 +700,7 @@ def sortcolis(request):
                         print ("22")
                         exitFlag = False # me sert a casser des boucles
                         for mylbc in lbc:
-                            if mylbc.termine != 1:
+                            if mylbc.termine == "0":
                                 if int(mylbc.quantiteProduitALivrer) - int(mylbc.quantiteProduitCommandestats) < 0:
                                     if mylbc.fk_Article == items.fk_Article:
                                         print ("333") #article correspondant a la ligne bon commande trouver dans les articles
@@ -716,7 +729,7 @@ def sortcolis(request):
                                                 else:
                                                     print("nope")
                                             if nombrecolisf == 0:
-                                                print("there create !" + str(mylbc.fk_BonCommandeSortie))
+                                                #print("there create !" + str(mylbc.fk_BonCommandeSortie))
                                                 go = UniteManutentionSortie()
                                                 try:
                                                     go.idUniteManutentionSortie = str(UniteManutentionSortie.objects.latest('idUniteManutentionSortie'))
@@ -728,7 +741,7 @@ def sortcolis(request):
                                                 go.dateOuverture = time.strftime("%Y-%m-%d")
                                                 go.save()
                                                 items.fk_UniteManutentionSortie = go
-                                                print("there create !" + str(go.idUniteManutentionSortie))
+                                                #print("there create !" + str(go.idUniteManutentionSortie))
                                                 mylbc.quantiteProduitCommandestats = str(int(mylbc.quantiteProduitCommandestats) - int(items.quantiteProduit))
                                                 mylbc.quantiteProduitLivre = str(int(mylbc.quantiteProduitLivre) + int(items.quantiteProduit))
                                                 mylbc.quantiteColisLivre = str(int(mylbc.quantiteColisLivre) + int(1))
@@ -2568,6 +2581,11 @@ class umereference(ListView):
         context = {
             'activate' : 'on',
             'ume' : UniteManutentionEntree.objects.all(),
+            'col' : Colis.objects.all(),
+            'art' : Article.objects.all(),
+            'bcs' : BonCommandeSortie.objects.all(),
+            'lbcs' : LigneBonCommandeSortie_pour_BonCommandeSortie.objects.all(),
+            'name' : request.GET.get('name'),
             'settings' : menuimages.objects.all(),
         }
         return render(request, self.template_name, context)
