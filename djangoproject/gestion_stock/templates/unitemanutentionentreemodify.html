@@ -76,9 +76,9 @@
                     <br>
                     <label for="divbtns">filtrer litiges :&nbsp;</label>
                     <div class="btn-group" role="group" aria-label="Basic example" id="divbtns">
-                        <button type="button" class="btn btn-sm btn-cyan">tout</button>
-                        <button type="button" class="btn btn-sm btn-cyan">livrable</button>
-                        <button type="button" class="btn btn-sm btn-cyan">litige</button>
+                        <button id="tout" type="button" class="btn btn-sm btn-cyan">tout</button>
+                        <button id="livrable" type="button" class="btn btn-sm btn-cyan">livrable</button>
+                        <button id="litige" type="button" class="btn btn-sm btn-cyan">litige</button>
                     </div>
                 </div>
 
@@ -333,7 +333,8 @@
                 },
                 success: function(msg, data, settings) {
                     console.log("success: " + msg);
-                    location.reload();
+                    window.location.reload();
+                    //location.reload();
                 },
                 failure: function() {
                     alert("fail");
@@ -344,13 +345,13 @@
         $('body').on('click', '.fa-leaf', function () {
             if ($(this).css('color') == "rgb(0, 0, 0)") { //je ne laisse collé l'etiquette que si elle est "imprimé" et je dois checker la valeur "imprime" dans la base de donnée entre 1 ou 0!
                 '{% for items in colis %}'
-                    if ('{{ items.idColis }}' == $(this).parent().parent().find('td').eq(2).find('input').val().trim()) {
-                        '{% if items.imprime == "1" %}'
-                        console.log($(this).css('color'));
-                        console.log("there " + $(this).parent().parent().find('td').eq(2).find('input').val().trim() + " " + '{{ items.idColis }}');
-                        $(this).css('color', 'green');
-                        '{% endif %}'
-                    }
+                if ('{{ items.idColis }}' == $(this).parent().parent().find('td').eq(2).find('input').val().trim()) {
+                    '{% if items.imprime == "1" %}'
+                    console.log($(this).css('color'));
+                    console.log("there " + $(this).parent().parent().find('td').eq(2).find('input').val().trim() + " " + '{{ items.idColis }}');
+                    $(this).css('color', 'green');
+                    '{% endif %}'
+                }
                 '{% endfor %}'
             } else {
                 $(this).css('color', 'black');
@@ -378,6 +379,7 @@
                 success: function(msg, data, settings){
                     console.log("gg " + msg);
                     //location.reload();
+                    window.location.reload();
                 },
                 failure: function() {
                     console.log("fail");
@@ -781,6 +783,7 @@
             var date = $('#date').val();
             console.log(date);
             date = date.split("-").reverse().join("-");
+            var colisidx = 0;
             $.ajax({
                 type: "POST",    //type de requête utilisé par ajax
                 url: "/modify_ume/", //lien de la view qui gère la requête post
@@ -805,12 +808,12 @@
                         }
                         myidx = 0;
                     }
+                    //refreshit();
                 },
                 failure: function () {
                     alert("fail");
-                }
+                },
             });
-
             function envoilignes() {
                 console.log(ligne[myidx].ncolis);
                 $.ajax({
@@ -837,6 +840,12 @@
                     },
                     failure: function () {
                         alert("fail");
+                    },
+                    complete: function () {
+                        colisidx++;
+                        if (colisidx == Object.keys(ligne).length)
+                            window.location.reload();
+                        //alert("so i have " + colisidx)
                     }
                 });
             }
@@ -858,7 +867,7 @@
                     //console.log($(this).find('label').text());
                 });
             }
-            else if($(this).is(":not(:checked)")){
+            else if($(this).is(":not(:checked)")) {
                 console.log("uncheck");
                 var namearticle =  $(this).attr("name");
                 console.log($(this).find('input[type="checkbox"]').is(":checked"));
@@ -1048,7 +1057,7 @@
                 success: function(msg, data, settings){
                     console.log("success: " + msg);
                     $(this).parent().parent().remove();
-                    location.reload();
+                    window.location.reload();
                 },
                 failure: function() {
                     alert("fail");
@@ -1259,11 +1268,11 @@
                 },
                 success: function(msg, data, settings){
                     console.log("gg " + msg);
-                    location.reload();
+                    window.location.reload();
                 },
                 failure: function() {
                     console.log("fail");
-                    location.reload();
+                    window.location.reload();
                 }
             });
         });
@@ -1295,6 +1304,37 @@
                 }
             }
         }
+
+        $('#tout').click(function () {
+            $('#tabblbody tr').each(function (a, b) {
+                //console.log("litige = " + $(this).find('td').eq(8).find('select').val());
+                //console.log("decilitige = " + $(this).find('td').eq(8).find('select').eq(1).val());
+                    $(this).show();
+                if ($(this).find('td').eq(8).find('select').val() != "0" || $(this).find('td').eq(8).find('select').eq(1).val() != "0") {
+                    console.log("gggg3");
+                }
+            });
+        });
+        $('#livrable').click(function () {
+            $('#tabblbody tr').each(function (a, b) {
+                if ($(this).find('td').eq(8).find('select').val() != "0" || $(this).find('td').eq(8).find('select').eq(1).val() != "0") {
+                    $(this).hide();
+                    console.log("gggg3");
+                }
+                else
+                    $(this).show();
+            });
+        });
+        $('#litige').click(function () {
+            $('#tabblbody tr').each(function (a, b) {
+                if ($(this).find('td').eq(8).find('select').val() != "0" || $(this).find('td').eq(8).find('select').eq(1).val() != "0") {
+                    $(this).show();
+                    console.log("gggg3");
+                }
+                else
+                    $(this).hide();
+            });
+        });
     });
 </script>
 

@@ -285,10 +285,10 @@
 <br>
 <script>
     $(document).ready(function() {
-
         $("#tabblbody").on( "click", ".dynad", function() {
             '{% for items in entree %}'
             if ('{{ items.idBonLivraisonEntree|safe }}' == $(this).attr('id')) {
+                var object = $(this);
                 $.ajax({
                     type:"POST",
                     url:"/lve/modify/deletebl/",
@@ -298,6 +298,7 @@
                     },
                     success: function(msg, data, settings) {
                         console.log("success: " + msg);
+                        object.parent().parent().remove();
                     },
                     failure: function() {
                         alert("fail");
@@ -338,6 +339,7 @@
                 },
                 success: function(msg, data, settings) {
                     console.log("success: " + msg);
+                    window.location.reload();
                 },
                 failure: function() {
                     alert("fail");
@@ -394,6 +396,7 @@
                         upperid = parseInt('{{ items.idBonLivraisonEntree }}', 10);
                     }
                     "{% endfor %}"
+                    var created = 0;
                     for (var nbr = nbrligne; nbr > 0; nbr--) {
                         upperid++;
                         $('#tabblbody').append("<tr><td class='text-center'><button class='resetb dyna' id=\""+upperid+"\"><i class=\"fa fa-arrow-right\"></i></button></td>"+
@@ -402,6 +405,7 @@
                             "<td><input disabled class='form-control'></td>" +
                             "<td><input disabled class='form-control'></td>" +
                             "<td class='text-center'><button class='resetb btn btn-light btn-sm dynad' id=\""+upperid+"\"><i class=\"fa fa-trash-alt\"></i></button></td>");
+                        var success = 0;
                         $.ajax({
                             type:"POST",
                             url:"/lve/modify/createbl/",
@@ -412,12 +416,35 @@
                             },
                             success: function(msg, data, settings) {
                                 console.log("success: " + msg);
-                                $('#tabblbody').find('tr').last().find('td').eq(1).find('input').val("test");
+                                //window.location.reload();
+                                //issucess();
+                                created++;
+                                creattest();
                             },
                             failure: function() {
                                 alert("fail");
                             }
                         });
+                        function creattest() {
+                            if (created == nbrligne) {
+                                window.location.reload();
+                            }
+                        }
+                        /*function issucess() {
+                            '{% for items in entree %}'
+                            '{% if forloop.last %}'
+                            $('#tabblbody').find('tr').last().find('td').eq(0).find('button').attr("id", "{{ items.idBonLivraisonEntree }}");
+                            $('#tabblbody').find('tr').last().find('td').eq(1).find('input').val("{{ items.fk_Client.nom }}");
+                            $('#tabblbody').find('tr').last().find('td').eq(2).find('input').val("{{ items.dateReception }}");
+                            $('#tabblbody').find('tr').last().find('td').eq(3).find('input').val("{{ items.numeroBonLivraison }}");
+                            $('#tabblbody').find('tr').last().find('td').eq(4).find('input').val("{{ items.quantitePalette }}");
+                            $('#tabblbody').find('tr').last().find('td').eq(5).find('button').attr("id", "{{ items.idBonLivraisonEntree }}");
+                            alert('{{ items.idBonLivraisonEntree }} 1');
+                            '{% else %}'
+                            alert('{{ items.idBonLivraisonEntree }} 2');
+                            '{% endif %}'
+                            '{% endfor %}'
+                        }*/
                     }
                     //code fournisseur
                     for (var a = nbrligne; a != 0; a--) {
