@@ -84,7 +84,7 @@
             {% for colis in col %}
             {% if colis.idColis|safe == id %}
             <!--{{ colis.fk_UniteManutentionEntree.fk_BonLivraisonEntree.fk_Destinataire }}-->
-            <h1 style="font-size: 150px"><b>{{ colis.fk_UniteManutentionEntree.fk_BonLivraisonEntree.fk_Destinataire.codeUM }}</b></h1>
+            <h1 style="font-size: 150px"><b>{{ colis.fk_UniteManutentionSortie.fk_BonCommandeSortie.fk_Destinataire.codeUM }}</b></h1>
             {% endif %}
             {% endfor %}
         </div>

@@ -90,7 +90,6 @@ urlpatterns = [
 
     path('uploadbc/', views.uploadbc),
     path('upload_bcsf/', views.bonCommandeSortie.upload_bcsf),#pour sauvegarder les images stockée dans les bcs
-    path('sort_cols/', views.sortcolis), #appel l'algo qui va trier les "colis" pour les sortir dans les lbcs
 
     path('bonLivraisonsortie', views.bonLivraisonSortie.as_view(), name='bonLivraisonSortie'),
     path('bonLivraisonsortie/add', views.bonLivraisonSortieadd.as_view(), name='bonLivraisonSortieadd'),
@@ -186,6 +185,8 @@ urlpatterns = [
     path('ume/delieums/', views.umemodify.delieums),
     path('create_ume/', views.umeadd.create),
     path('delete_ume/', views.ume.delete),
+    path('sort_cols/', views.sortcolis), #appel l'algo qui va trier les "colis" pour les sortir dans les lbcs
+    path('ume/sortOnecolis/', views.sortOnecolis), #appel l'algo qui va trier un seul "coli" pour le sortir dans les lbcs
 
     path('umsortie', views.ums.as_view(), name='unitemanutentionsortie'),
     path('umsortie/add', views.umsadd.as_view(), name='unitemanutentionsortieadd'),

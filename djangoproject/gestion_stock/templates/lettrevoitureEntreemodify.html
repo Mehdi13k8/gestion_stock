@@ -307,7 +307,6 @@
             }
             '{% endfor %}'
         });
-
         $('#accesslve').click(function () {
             '{% for items in trans %}'
             if ('{{ items.nom|safe }}' == $('#transporteur').val().trim()) {
@@ -316,11 +315,9 @@
             }
             '{% endfor %}'
         });
-
         $("#back-row").click( function() {
             location.href = "{% url 'lve' %}";
         });
-
         $('#savelve').click(function() {
             $.ajax({
                 type:"POST",
@@ -359,7 +356,6 @@
             $("#transporteur").val("{{ items.fk_Transporteur|escapejs }}");
         }
         '{% endfor %}'
-
         '{% for items in entree %}'
         if ('{{ items.fk_LettreVoitureEntree.idLettreVoitureEntree }}' == $("#umid").val()) {
             console.log("bl in lv charge");

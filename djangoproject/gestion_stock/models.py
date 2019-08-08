@@ -937,7 +937,6 @@ class TypeBonCommandeSortie_pour_BonCommandeSortie(models.Model): #pas utilisé 
         return self.nom
 
 #Unitemanutentionentree debut
-
 class UniteManutentionEntree(models.Model):
     idUniteManutentionEntree = models.CharField(max_length=150, default=0)
     fk_BonLivraisonEntree = models.ForeignKey('BonLivraisonEntree', on_delete=models.SET_NULL, default=0, blank=True, null=True)
