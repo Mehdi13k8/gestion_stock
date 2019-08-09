@@ -150,7 +150,7 @@ urlpatterns = [
     path('delete_trans/', views.delete_trans),
 
     path('destinataire', views.destinataire.as_view(), name='destinataire'),
-    path('destinataire/modify', views.destinatairemodify.as_view(), name='destinatairemodify'),
+    path('destinataire/modify/', views.destinatairemodify.as_view(), name='destinatairemodify'),
     path('right_destinataire/', views.destinatairemodify.right),
     path('left_destinataire/', views.destinatairemodify.left),
 
