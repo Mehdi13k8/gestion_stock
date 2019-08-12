@@ -48,7 +48,7 @@
                         </div>
                         <div class="form-group text-left ml-5">
                             <label for="blsid"> Bon livraison :&nbsp; </label>
-                            <input type="text" class="form-control" id="blsid" placeholder="0" style="" disabled>
+                            <input type="text" class="form-control" id="blsid" placeholder="0" style="cursor: pointer" readonly="readonly">
                         </div>
                     </div>
                     <div class="col">
@@ -244,7 +244,7 @@
             $('#idums').val("{{ items.idUniteManutentionSortie }}");
             $('#desti').val("{{ items.fk_BonCommandeSortie.fk_Destinataire.nom|safe }}");
             $('#bcsid').val("{{ items.fk_BonCommandeSortie.idBonCommandeSortie|safe }}");
-            $('#blsid').val("{{ items.fk_BonLivraisonSortie.idBonBonLivraisonSortie|safe }}");
+            $('#blsid').val("{{ items.fk_BonLivraisonSortie.idBonLivraisonSortie|safe }}");
             $('#codeum').val("{{ items.fk_BonCommandeSortie.fk_Destinataire.codeUM|safe }}");
             $('#umsnum').val("{{ items.numero|safe }}");
             //alert("{{ items.dateOuverture }}");
@@ -345,6 +345,17 @@
             '{% endfor %}'
             if (iddes != "0") {
                 window.location.href = "{% url 'destinatairemodify' %}?id=" + iddes;
+            }
+        });
+        $('#blsid').click(function () {
+            var idbls = "0";
+            '{% for items in ums %}'
+            if ('{{ items.idUniteManutentionSortie }}' == '{{ id }}') {
+                idbls = '{{ items.fk_BonLivraisonSortie.idBonLivraisonSortie|safe }}';
+            }
+            '{% endfor %}'
+            if (idbls != "0") {
+                window.location.href = "{% url 'bonLivraisonSortiemodify' %}?id=" + idbls;
             }
         });
         $('#bcsid').click(function () {

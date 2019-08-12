@@ -434,6 +434,12 @@ class Article(models.Model):
     def __str__(self):
         return self.designationClient
 
+class Article_Destinataire_pour_Article(models.Model):
+    idArticle_Destinataire = models.CharField(max_length=150, default=0)
+    delaiPeremption = models.CharField(max_length=150, default=0)
+    fk_Article = models.ForeignKey('Article', on_delete=models.SET_NULL, default=0, blank=True, null=True)
+    fk_Destinataire = models.ForeignKey('Destinataire', on_delete=models.SET_NULL, default=0, blank=True, null=True)
+
 '''class Colis_pour_Article(models.Model):
     fk_Article = models.ForeignKey('Article', on_delete=models.SET_NULL, default=0)
     c_nom = models.CharField(max_length=150, default=0)

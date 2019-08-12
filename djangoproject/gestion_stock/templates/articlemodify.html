@@ -60,7 +60,7 @@
                     désignation: <br><input class="form-control" type="text" id="desigfour" name="designation four">
                 </div>
                 <br>
-                <input type="button" class="form-control" class="btn btn-primary" id="addart" value="Save">
+                <button type="button" id="addart" class="btn btn-outline-red">Save &nbsp;<i class="fa fa-save"></i></button>
             </form>
         </div>
         <div class="border shadow-lg bg-white rounded col">
@@ -164,9 +164,38 @@
     </div>
 
     <hr>
-    <div class="row justify-content-md-center">
-        <div class="col-8">
-            <div class="border shadow-lg bg-white rounded col">
+    <div class="row">
+        <div class="col-6">
+            <div class="border shadow-lg bg-white rounded container pb-5">
+                <!--<h5 class="text-center"> <u>destinataires</u> </h5>-->
+                <br>
+                <div>
+                    <table id="articledest" class="table table-striped" cellspacing="0" width="100%">
+                        <thead>
+                        <tr>
+                            <th scope="col" class="th-sm"> Code UM </th>
+                            <th scope="col" class="th-sm"> Destinataire </th>
+                            <th scope="col" class="th-sm"> Délai [jours] </th>
+                            <th scope="col" class="th-sm"> <i class="fa fa-trash"></i> </th>
+                        </tr>
+                        </thead>
+                        <tbody id="articledestbody">
+                        {% for items in ardes %}
+                        <tr>
+                            <td><input class="form-control" readonly="readonly"></td>
+                            <td><select id="{{ items.idArticle_Destinataire }}"  class="form-control destiselect"> </select></td>
+                            <td><input class="form-control"></td>
+                            <td><button class="deleting" id="{{ items.idArticle_Destinataire }}" type="button"><i class="fa fa-backspace"></i></button></td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    <button type="button" id="adddestinators" class="btn-sm btn-outline-success mb-2 float-right">+</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="border shadow-lg bg-white rounded col-auto">
                 <h5 class="text-center"> <u>Historique</u> </h5>
                 <table id="dtBasicExample" class="table table-striped table-responsive table-bordered table-sm" cellspacing="0" width="100%">
                     <thead>
@@ -208,39 +237,77 @@
                 <button type="button" class="btn btn-outline-success mb-2">+</button>
             </div>
         </div>
-        <div class="col-sm-4">
-            <div class="border shadow-lg bg-white rounded container">
-                <h5 class="text-center"> <u>destinataires</u> </h5>
-                <table id="dtBasicExample2" class="table table-striped table-responsive table-bordered table-sm" cellspacing="0" width="100%">
-                    <thead>
-                    <tr>
-                        <th scope="col" class="th-sm"> <i class="fa fa-cog"></i> </th>
-                        <th scope="col" class="th-sm"> stock </th>
-                        <th scope="col" class="th-sm"> type article </th>
-                        <th scope="col" class="th-sm"> fournisseur </th>
-                        <th scope="col" class="th-sm"> X </th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <!--
-                        <td> <button id='{{ items.idArticle }}' class="dyna"> -> </button></td>
-                        <td> {{ items.stock }} </td>
-                        <td> {{ items.fk_TypeArticle.nom }} </td>
-                        <td> {{ items.fk_Fournisseur.nom }} </td>
-                        <td> <button id='{{ items.idArticle }}' class="dynad"> X </button> </td>-->
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
     </div>
 </div>
 <br>
 <script>
+    var selectid = 0;
     $(document).ready(function() {
+        $('#articledest tr').each(function (a, b) {  //recupère la taille de la table pour les "appends" via id
+            for (selectid; selectid < $(this).find('td').eq(1).find('select').attr('id'); selectid++) {}
+            selectid++
+            '{% for items in des %}'
+            $(this).find('td').eq(1).find('select').append(new Option("{{ items.nom|safe }}", "{{ items.nom|safe }}"));
+            '{% endfor %}'
+
+            '{% for items in ardes %}'
+            console.log("abcd");
+            if ('{{ items.idArticle_Destinataire }}' == $(this).find('td').eq(1).find('select').attr('id')) {
+                $(this).find('td').eq(1).find('select').val("{{ items.fk_Destinataire.nom }}");
+                $(this).find('td').eq(0).find('input').val("{{ items.fk_Destinataire.codeUM }}");
+                $(this).find('td').eq(2).find('input').val("{{ items.delaiPeremption }}");
+            }
+            '{% endfor %}'
+        });
+        $("#adddestinators").click(function() {
+            var table = $('#articledest').DataTable();
+            table.rows.add($(
+                '<tr>'+
+                '  <td><input class="form-control" readonly="readonly"></td>'+
+                '  <td><select id=\"' + selectid + '\"  class="form-control destiselect"> </select></td>'+
+                '  <td><input class="form-control"></td>'+
+                '<td><button class="deletingtemporary" id=\"' + selectid + '\" type="button"><i class="fa fa-backspace"></i></button></td>'+
+                '</tr>')).draw();
+
+            '{% for items in des %}'
+            $('#'+selectid).append(new Option("{{ items.nom|safe }}", "{{ items.nom|safe }}"));
+            '{% endfor %}'
+            $('#'+selectid).val("");
+            selectid++;
+        });
+
         $("#create-row").click(function() {
             location.href = "{% url 'articleadd' %}";
+        });
+
+        $(document).on('click','.deletingtemporary', function () {
+            var table = $('#articledest').DataTable();
+            table.row( $(this).parents('tr')).remove().draw();
+        });
+        $(document).on('click','.deleting',function () {
+            //alert("gg " + $(this).attr('id'));
+            $.ajax({
+                type:"POST",
+                url:"/delete_article_pour_destinataire/",
+                data: {
+                    'id': $(this).attr('id'),
+                    csrfmiddlewaretoken: '{{ csrf_token }}',
+                },
+                success: function(msg, data, settings){
+                    console.log("gg " + msg);
+                },
+                failure: function() {
+                    console.log("fail");
+                }
+            });
+        });
+
+        $(document).on('change','.destiselect',function () {
+            '{% for items in des %}'
+            if ('{{ items.nom|safe }}' == $(this).val().trim()) {
+                $('#' + $(this).attr('id')).parent().parent().find('td').eq(0).find('input').val("{{ items.codeUM }}");
+            }
+            '{% endfor %}'
         });
 
         $(".fa-chevron-circle-right").click(function() {
@@ -344,6 +411,50 @@
                     alert("fail");
                 }
             });
+            //$('#des').
+            $('#articledest tr').each(function (a, b) {  //recupère les  entrée dans la table
+                var umcode = "";
+                var desti = "";
+                var delai = "";
+                if (a === 0) {
+                    // Je ne prends pas en compte le "thead".
+                }
+                else {
+                    $(this).find('td').each(function(a, b) {
+                        if (a === 0) {
+                            umcode = $(this).find('input').val();
+                            console.log($(this).find('input').val());
+                        }
+                        if (a === 1) {
+                            desti = $(this).find('select').val();
+                            console.log($(this).find('select').val());
+                        }
+                        if (a === 2) {
+                            delai = $(this).find('input').val();
+                            console.log($(this).find('input').val());
+                        }
+                    });
+                    alert("test");
+                    $.ajax({
+                        type: "POST",
+                        url: "/article_destinataire/create/",
+                        data: {
+                            'umcode': umcode,
+                            'desti': desti,
+                            'delai': delai,
+                            'idart': '{{ id }}',
+                            csrfmiddlewaretoken: '{{ csrf_token }}',
+                        },
+                        success: function (msg, data, settings) {
+                            console.log("gg " + msg);
+                        },
+                        failure: function () {
+                            console.log("fail");
+                        }
+                    });
+                }
+            });
+            //location.reload();
         });
 
         $("#fournitype").combobox();
@@ -352,8 +463,9 @@
             $("#fournitype").combobox();
             $("#artitype").combobox();
         });
+        $('#articledest').DataTable();
+        $('.dataTables_length').addClass('bs-select');
     });
-
 </script>
 </html>
 {% endblock %}

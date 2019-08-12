@@ -78,12 +78,16 @@
                         </thead>
                         <tbody>
                         {% for items in umsortie %}
-                        <tr>
-                            <td> <button id='{{ items.id }}' class="dyna"> -> </button></td>
-                            <td> {{ items.numero|safe }} </td>
-                            <td> {{ items.dateOuverture|safe }} </td>
-                            <td> {{ items.dateFermeture|safe }} </td>
-                        </tr>
+                            {% if items.fk_BonCommandeSortie.fk_Destinataire.idDestinataire == id %}
+                                {% if items.dateExpedition == "0" or items.dateExpedition == "" %}
+                                <tr>
+                                    <td> <a href="{% url 'unitemanutentionsortiemodify' %}?id={{items.idUniteManutentionSortie}}"><button id='{{ items.id }}' class="dyna"> -> </button></a></td>
+                                    <td> {{ items.numero|safe }} </td>
+                                    <td> {{ items.dateOuverture|safe }} </td>
+                                    <td> {{ items.dateFermeture|safe }} </td>
+                                </tr>
+                                {% endif %}
+                            {% endif %}
                         {% endfor %}
                         </tbody>
 

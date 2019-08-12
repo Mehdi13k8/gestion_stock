@@ -126,11 +126,13 @@
             produitarticle = 0;
             goodume = 0;
             '{% for colis in col %}'
-            '{% if colis.emplacementConfirme == "1" %}'
+            '{% if colis.emplacementConfirme == "0" %}'
             if ('{{ items.idUniteManutentionEntree|safe }}' == '{{ colis.fk_UniteManutentionEntree.idUniteManutentionEntree|safe }}') {
                 if ('{{ colis.fk_Article|safe }}' == '{{ article|safe }}') {
+                    '{% if colis.fk_UniteManutentionSortie %}'
+                    '{% else %}'
                     goodume = 1;
-                    //console.log("found2" + '{{ colis.quantiteProduit|safe }}');
+                    console.log("found2" + '{{ colis.quantiteProduit|safe }}');
                     if (article) {
                         foundarticle = 0;
                         if (article == '{{ colis.fk_Article|safe }}') {
@@ -144,6 +146,7 @@
                         colisarticle += 1;
                         produitarticle = parseInt('{{ colis.quantiteProduit|safe }}');
                     }
+                    '{% endif %}'
                 }
             }
             '{% endif %}'
@@ -154,8 +157,11 @@
                 //console.log(produitarticle);
                 $('#tabume').append('<tr><td class="text-center"> <a href="{% url "unitemanutentionentreemodify" %}?id={{ items.idUniteManutentionEntree }}"> <button type="button" class="btn-sm btn-info"> <i class="fa fa-arrow-right"></i> </button></a></td><td class="text-center">{{ items.idUniteManutentionEntree }}</td><td class="text-center">{{ items.fk_ZoneDepot }}</td><td class="text-center">' + produitarticle + '</td><td class="text-center">' + colisarticle + '</td><td class="text-center">{{ items.dateReception }}</td><td class="text-center">{{ items.stock }}</td></tr>');
             }
+            else {
+                console.log(produitarticle);
+            }
             '{% endfor %}'
-         }
+        }
         '{% endfor %}'
         '{% endif %}'
 
@@ -163,14 +169,14 @@
 
         '{% for items in lbcs %}' //remplissage des lignes des bc qui font appelle a cet article
         '{% if items.termine == "0" %}'
-            '{% for article in art %}'
-                '{% if article.codeClient == name %}'
-                        console.log("article in lbc");
-                    '{% if items.fk_Article == article %}'
-                        $('#tablbc').append('<tr><td class="text-center"> <a href="{% url "bonCommandeSortiemodify" %}?id={{ items.fk_BonCommandeSortie.idBonCommandeSortie }}"> <button type="button" class="btn-sm btn-info"> <i class="fa fa-arrow-right"></i> </button></a></td><td class="text-center">{{ items.fk_BonCommandeSortie.fk_Destinataire.codeUM }}</td><td class="text-center">{{ items.fk_BonCommandeSortie.fk_Destinataire.nom }}</td><td class="text-center"> {{ items.fk_BonCommandeSortie.numeroCommande }} </td><td class="text-center"> {{ items.quantiteProduitCommandestats }}</td><td class="text-center"> 0 </td></tr>');
-                    '{% endif %}'
-                '{% endif %}'
-            '{% endfor %}'
+        '{% for article in art %}'
+        '{% if article.codeClient == name %}'
+        console.log("article in lbc");
+        '{% if items.fk_Article == article %}'
+        $('#tablbc').append('<tr><td class="text-center"> <a href="{% url "bonCommandeSortiemodify" %}?id={{ items.fk_BonCommandeSortie.idBonCommandeSortie }}"> <button type="button" class="btn-sm btn-info"> <i class="fa fa-arrow-right"></i> </button></a></td><td class="text-center">{{ items.fk_BonCommandeSortie.fk_Destinataire.codeUM }}</td><td class="text-center">{{ items.fk_BonCommandeSortie.fk_Destinataire.nom }}</td><td class="text-center"> {{ items.fk_BonCommandeSortie.numeroCommande }} </td><td class="text-center"> {{ items.quantiteProduitCommandestats }}</td><td class="text-center"> 0 </td></tr>');
+        '{% endif %}'
+        '{% endif %}'
+        '{% endfor %}'
         '{% endif %}'
         '{% endfor %}'
 

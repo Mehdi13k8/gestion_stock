@@ -130,6 +130,8 @@ urlpatterns = [
     path('article/modify/modif/', views.articlemodify.modif),
     path('right_article/', views.articlemodify.right),
     path('left_article/', views.articlemodify.left),
+    path('article_destinataire/create/', views.articlemodify.updatedestinator),
+    path('delete_article_pour_destinataire/', views.articlemodify.deletedestinator),
 
     path('fournisseur', views.fournisseur.as_view(), name='fournisseur'),
     path('fournisseur/add', views.fournisseuradd.as_view(), name='fournisseuradd'),

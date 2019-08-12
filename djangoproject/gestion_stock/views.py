@@ -1498,6 +1498,48 @@ class articleadd(ListView):
 class articlemodify(ListView):
     template_name = "articlemodify.html"
 
+    def updatedestinator(request):
+        if request.method == 'POST':
+            showlist = [request.POST.get('umcode'), request.POST.get('desti'),
+                        request.POST.get('delai'), request.POST.get('idart')]
+            artdesall = Article_Destinataire_pour_Article.objects.all()
+            id = 1
+            for items in artdesall:
+                if id < int(items.idArticle_Destinataire):
+                    id = int(items.idArticle_Destinataire)
+            id += 1
+
+            try:
+                articledpa = Article_Destinataire_pour_Article.objects.get(idArticle_Destinataire=showlist[3])
+            except Article_Destinataire_pour_Article.DoesNotExist:
+                articledpa = Article_Destinataire_pour_Article()
+                articledpa.idArticle_Destinataire = str(id)
+
+            try:
+                article = Article.objects.get(idArticle=showlist[3])
+                destinataire = Destinataire.objects.get(nom=showlist[1])
+                articledpa.fk_Article = article
+                articledpa.fk_Destinataire = destinataire
+                articledpa.delaiPeremption = showlist[2]
+                articledpa.save()
+            except Article.DoesNotExist:
+                print ("error article issue check the \"id\" in your page !" + str(showlist[3]))
+            except Destinataire.DoesNotExist:
+                print ("error destinator not found check the \"name\" of your destinator !" + str(showlist[1]))
+            return HttpResponse("article modified !")
+        return HttpResponse("Unauthorized page !")
+
+    def deletedestinator(request):
+        if request.method == 'POST':
+            showlist = [request.POST.get('id')]
+            try:
+                destiarticle = Article_Destinataire_pour_Article.objects.get(idArticle_Destinataire=showlist[0])
+                destiarticle.delete()
+            except Article_Destinataire_pour_Article.DoesNotExist:
+                print ("error article issue check the \"id\" in your page !" + str(showlist[0]))
+            return HttpResponse("article modified !")
+        return HttpResponse("Unauthorized page !")
+
     def modif(request):
         if request.method == 'POST':
             showlist = [request.POST.get('name'), request.POST.get('id'),
@@ -1541,9 +1583,10 @@ class articlemodify(ListView):
         context = {
             'art' : Article.objects.all(),
             'typeart' : typeArticle_pour_Article.objects.all(),
-            'desart' : Destinataire.objects.all(),
+            'des' : Destinataire.objects.all(),
             'histoart ' : Article_historique_pour_Article.objects.all(),
             'four' : Fournisseur.objects.all(),
+            'ardes' : Article_Destinataire_pour_Article.objects.all(),
             'settings' : menuimages.objects.all(),
             'id' :request.GET.get('id'),
             'activate' : 'on',
@@ -1866,7 +1909,6 @@ class destinatairemodify(ListView):
             destinataire.adresseLivraison_codePostal = showlist[12]
             destinataire.adresseLivraison_localite = showlist[13]
 
-
             destinataire.fk_Pays = None
             destinataire.fk_TypeDestinataire = None
 
@@ -1936,7 +1978,7 @@ class destinatairemodify(ListView):
             'name' :request.GET.get('name'),
             'settings' : menuimages.objects.all(),
             'id' :request.GET.get('id'),
-            #'umsortie' :UniteManutentionSortie_pour_Destinataire.objects.all().select_related('fk_BonCommandeSortie'),
+            'umsortie' : UniteManutentionSortie.objects.all(),
             'activate' : 'on',
         }
         return render(request, self.template_name, context)
