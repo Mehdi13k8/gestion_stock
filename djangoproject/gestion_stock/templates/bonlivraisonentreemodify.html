@@ -170,7 +170,6 @@
                                 '{% endif %}'
                                 $('#tabume').find('tr').last().find('td').eq(3).append(arname);
                                 '{% endfor %}'
-
                             </script>
                             </tbody>
                         </table>
@@ -658,8 +657,8 @@
         });
         $("#addume").click(function () {
             $.ajax({
-                type: "POST",    //type de requête utilisé par ajax
-                url: "/bonLivraisonentree/modify/createume/", //lien de la view qui gère la requête post
+                type: "POST",
+                url: "/bonLivraisonentree/modify/createume/",
                 data: {
                     'id': $('#umid').val(),
                     csrfmiddlewaretoken: '{{ csrf_token }}',
@@ -673,7 +672,6 @@
                 }
             });
         });
-
 
         $(".fa-chevron-circle-left").click(function () {
             $.ajax({
@@ -1212,6 +1210,54 @@
             if ('{{ items.nom|safe }}' == $('#client').val())
                 window.location.href = "{% url 'clientmodify' %}?id=" + '{{ items.idClient }}';
             '{% endfor %}'
+        });
+
+        //sorting (trie) du tableau par rapport a ncolis, je recois des objets en js, puis les passe en jquery avec le $ pour utiliser les fonctions jquery
+        if ($('#tabume').length > 0) {
+            var table, rows, switching, i, x, y, shouldSwitch;
+            table = document.getElementById("tabume");
+            switching = true;
+            while (switching) {
+                switching = false;
+                rows = table.rows;
+                for (i = 1; i < (rows.length - 1); i++) {
+                    shouldSwitch = false;
+                    x = rows[i].getElementsByTagName("TD")[1];
+                    var xx = $(x);
+                    y = rows[i + 1].getElementsByTagName("TD")[1];
+                    var yy = $(y);
+                    //if (x.innerHTML > y.innerHTML) {
+                    //alert(xx.find('input').val().trim());
+                    if (parseInt(xx.text().trim()) > parseInt(yy.text().trim())) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+                if (shouldSwitch) {
+                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                    switching = true;
+                }
+            }
+        }
+
+        $("#tabume tbody").on("click", ".dynad", function() {
+            var object = $(this);
+            $.ajax({
+                type: "POST",
+                url: "/bonLivraisonentree/modify/deleteume/",
+                data: {
+                    'id': object.attr('id'),
+                    csrfmiddlewaretoken: '{{ csrf_token }}',
+                },
+                success: function (msg, data, settings) {
+                    console.log("gg " + msg);
+                    object.parent().parent().remove(); // pour delete la ligne du bl via la "croix"
+                    window.location.reload();
+                },
+                failure: function () {
+                    console.log("fail");
+                }
+            });
         });
     });
 </script>

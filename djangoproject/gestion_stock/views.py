@@ -166,7 +166,8 @@ class bonCommandeSortie(ListView):
         return render(request, self.template_name, context)
 
 # fonction qui gère l'envoi d'un fichier csv qu'il soit bon de commande sortie ou ligne bon de commande sortie
-from datetime import datetime
+from datetime import datetime, date
+
 def uploadbc(request):
     data = {
         'bone' : BonCommandeEntree.objects.all(),
@@ -764,7 +765,7 @@ def sortcolis(request):
 
 def sortOnecolis(request):
     if request.method == 'POST':
-        ume = UniteManutentionEntree.objects.get(idUniteManutentionEntree=request.POST.get('id'))
+        ume = UniteManutentionEntree.objects.get(idUniteManutentionEntree=request.POST.get('umeid'))
         items = Colis.objects.get(idColis=request.POST.get('id'))
         lbc = LigneBonCommandeSortie_pour_BonCommandeSortie.objects.all().order_by("-priorite") #Je recup la liste de colis, ordonnée par la case priorite decroissante
         bcs = BonCommandeSortie.objects.all()
@@ -782,14 +783,44 @@ def sortOnecolis(request):
                                     for myums in ums:
                                         if myums.fk_BonCommandeSortie.idBonCommandeSortie == mylbc.fk_BonCommandeSortie.idBonCommandeSortie:
                                             if myums.dateFermeture == "0" or myums.dateFermeture == "":
-                                                items.fk_UniteManutentionSortie = myums
-                                                mylbc.quantiteProduitCommandestats = str(int(mylbc.quantiteProduitCommandestats) - int(items.quantiteProduit))
-                                                mylbc.quantiteProduitLivre = str(int(mylbc.quantiteProduitLivre) + int(items.quantiteProduit))
-                                                mylbc.quantiteColisLivre = str(int(mylbc.quantiteColisLivre) + int(1))
-                                                mylbc.save()
-                                                items.save()
-                                                print ("LBC CHANGED")
+                                                articledestinataire = Article_Destinataire_pour_Article.objects.all()
+                                                today = datetime.now()
                                                 nombrecolisf += 1
+                                                for arpd in articledestinataire:
+                                                    noarticledestinataire = 0
+                                                    if arpd.fk_Destinataire == mylbc.fk_BonCommandeSortie.fk_Destinataire:
+                                                        print("Destinator found ! " + arpd.delaiPeremption + " " + str(today) + " diff " + str((datetime.strptime(items.datePeremption, "%Y-%m-%d") - today).days))
+                                                        mydateitem = datetime.strptime(items.datePeremption, "%Y-%m-%d")
+                                                        mydate = str((mydateitem - today).days)
+                                                        print("her " + str(mydate) + " delai i got " + arpd.delaiPeremption)
+                                                        if int(mydate) >= int(arpd.delaiPeremption):
+                                                            print("good if")
+                                                            articledestinataire = 1
+                                                            break
+                                                if articledestinataire == 1: #date de peremption personalisé ok
+                                                    print("In inf " + str(mydate) + " . " + str(mylbc.fk_Article.delaiPeremption))
+                                                    items.fk_UniteManutentionSortie = myums
+                                                    mylbc.quantiteProduitCommandestats = str(int(mylbc.quantiteProduitCommandestats) - int(items.quantiteProduit))
+                                                    mylbc.quantiteProduitLivre = str(int(mylbc.quantiteProduitLivre) + int(items.quantiteProduit))
+                                                    mylbc.quantiteColisLivre = str(int(mylbc.quantiteColisLivre) + int(1))
+                                                    mylbc.save()
+                                                    items.save()
+                                                    print ("LBC CHANGED 1")
+                                                else: #ici pas de date perso on prend la date par "défaut"
+                                                    if mylbc.fk_Article.delaiPeremption != "" or mylbc.fk_Article.delaiPeremption != "0":
+                                                        mydateitem = datetime.strptime(items.datePeremption, "%Y-%m-%d")
+                                                        mydate = str((mydateitem - today).days)
+                                                        print("her " + str(mydate) + " delai i got " + mylbc.fk_Article.delaiPeremption)
+                                                        if int(mydate) >= int(mylbc.fk_Article.delaiPeremption):
+                                                            items.fk_UniteManutentionSortie = myums
+                                                            mylbc.quantiteProduitCommandestats = str(int(mylbc.quantiteProduitCommandestats) - int(items.quantiteProduit))
+                                                            mylbc.quantiteProduitLivre = str(int(mylbc.quantiteProduitLivre) + int(items.quantiteProduit))
+                                                            mylbc.quantiteColisLivre = str(int(mylbc.quantiteColisLivre) + int(1))
+                                                            mylbc.save()
+                                                            items.save()
+                                                            print ("LBC CHANGED 2")
+                                                        else:
+                                                            print("DLUO ISSUE " + items.idColis)
                                             else:
                                                 print("nope")
                                     if nombrecolisf == 0:
@@ -816,7 +847,7 @@ def sortOnecolis(request):
                                 print ("NOT FOUND !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
         except Exception as e:
             print("error1x -- " + str(e))
-        print ("So i had " + str(nombrecolisf) + " colis placed !")
+        #print ("So i had " + str(nombrecolisf) + " colis placed !")
         return HttpResponse("good !")
     return HttpResponse("No Authorized Access !")
 
@@ -847,8 +878,22 @@ class lettrevoitureentreeadd(ListView):
             lettre.reclaquantitecolis = showlist[6]
             lettre.reclaquantitepalette = showlist[7]
             lettre.reclacomm = showlist[8]
+
+            id = 0
+            try:
+                go = LettreVoitureEntree.objects.get(idLettreVoitureEntree=showlist[0])
+                for mylve in lve:
+                    if id < int(mylve.idLettreVoitureEntree):
+                        id = int(mylve.idLettreVoitureEntree)
+                id+=1
+                lettre.idLettreVoitureEntree = str(id) #je gère que cet id est déjà prit
+            except LettreVoitureEntree.DoesNotExist:
+                '''ici je fais rien car il n'y a pas de "lve" avec un id déjà pris, donc je peux laisser le lve se faire save ;)'''
             lettre.save()   #quand toute les variables a modifié l'ont été je sauvegard mon "object" qui devient un nouvel enregistrement dans ma BDD
-            return HttpResponse("Created !")    #retours pour signifier un succès
+            if id == 0:
+                return HttpResponse(showlist[0])    #retours pour signifier un succès
+            else:
+                return HttpResponse(str(id))    #retours pour signifier un succès
         return HttpResponse("No Authorized Access !")
 
     def get(self, request): #get équivaut a un "main" on lui envoi les ressource nécessaire a la completion de la page, par ex lve pourra être utiliser dans le template html
@@ -1061,7 +1106,7 @@ class bonLivraisonentreemodify(ListView):
         if request.method == 'POST':
             showlist = [request.POST.get('id')]
             for myume in UniteManutentionEntree.objects.all():
-                if myume.idUniteManutentionEntree == showlist[0]:
+                if myume.idUniteManutentionEntree == showlist[0]: #équivalent du "objects.get()" de django permet d'éviter de faire des try catch
                     myume.delete()
             return HttpResponse("delete ume successfull !")
         return HttpResponse("No Authorized Access !")
@@ -1180,9 +1225,9 @@ class bonLivraisonEntreeadd(ListView):
                         request.POST.get('zone'), request.POST.get('numerobl'),
                         request.POST.get('daterecep'), request.POST.get('quantitepale'),
                         request.POST.get('destinataireretour'), request.POST.get('zoneatt')]
-            for items in ble:
+            '''for items in ble:
                 if showlist[0] == items.idBonLivraisonEntree:
-                    return HttpResponse("Ble aldready existing !")
+                    return HttpResponse("Ble aldready existing !")'''
             bonle.idBonLivraisonEntree = showlist[0]
             bonle.fk_Client = None
             bonle.fk_Fournisseur = None
@@ -1225,8 +1270,22 @@ class bonLivraisonEntreeadd(ListView):
                     bonle.fk_ZoneDepot_pour_TypeZoneDepot = zone
                 if request.POST.get('zoneatt') == "":
                     bonle.fk_ZoneDepot_pour_TypeZoneDepot = None
-            bonle.save()
-            return HttpResponse("Created !")
+            id = 0
+            try:
+                go = BonLivraisonEntree.objects.get(idBonLivraisonEntree=showlist[0])
+                for myble in ble:
+                    if id < int(myble.idBonLivraisonEntree):
+                        id = int(myble.idBonLivraisonEntree)
+                id+=1
+                bonle.idBonLivraisonEntree = str(id) #je gère que cet id est déjà prit
+            except BonLivraisonEntree.DoesNotExist:
+                '''ici je fais rien car il n'y a pas de "lve" avec un id déjà pris, donc je peux laisser le lve se faire save ;)'''
+            bonle.save() #quand toute les variables a modifié l'ont été je sauvegard mon "object" qui devient un nouvel enregistrement dans ma BDD
+            if id == 0:
+                return HttpResponse(showlist[0])    #retours pour signifier un succès
+            else:
+                return HttpResponse(str(id))    #retours pour signifier un succès
+            #return HttpResponse("Created !")
         return HttpResponse("No Authorized Access !")
 
     def createligne(request):
@@ -1501,31 +1560,42 @@ class articlemodify(ListView):
     def updatedestinator(request):
         if request.method == 'POST':
             showlist = [request.POST.get('umcode'), request.POST.get('desti'),
-                        request.POST.get('delai'), request.POST.get('idart')]
+                        request.POST.get('delai'), request.POST.get('idart'), request.POST.get('artdesid')]
             artdesall = Article_Destinataire_pour_Article.objects.all()
             id = 1
             for items in artdesall:
                 if id < int(items.idArticle_Destinataire):
                     id = int(items.idArticle_Destinataire)
             id += 1
-
             try:
-                articledpa = Article_Destinataire_pour_Article.objects.get(idArticle_Destinataire=showlist[3])
+                articledpa = Article_Destinataire_pour_Article.objects.get(idArticle_Destinataire=showlist[4])
+                print("found")
+                try:
+                    article = Article.objects.get(idArticle=showlist[3])
+                    destinataire = Destinataire.objects.get(nom=showlist[1])
+                    articledpa.fk_Article = article
+                    articledpa.fk_Destinataire = destinataire
+                    articledpa.delaiPeremption = showlist[2]
+                    articledpa.save()
+                except Article.DoesNotExist:
+                    print ("error article issue check the \"id\" in your page !" + str(showlist[3]))
+                except Destinataire.DoesNotExist:
+                    print ("error destinator not found check the \"name\" of your destinator !" + str(showlist[1]))
             except Article_Destinataire_pour_Article.DoesNotExist:
                 articledpa = Article_Destinataire_pour_Article()
                 articledpa.idArticle_Destinataire = str(id)
-
-            try:
-                article = Article.objects.get(idArticle=showlist[3])
-                destinataire = Destinataire.objects.get(nom=showlist[1])
-                articledpa.fk_Article = article
-                articledpa.fk_Destinataire = destinataire
-                articledpa.delaiPeremption = showlist[2]
-                articledpa.save()
-            except Article.DoesNotExist:
-                print ("error article issue check the \"id\" in your page !" + str(showlist[3]))
-            except Destinataire.DoesNotExist:
-                print ("error destinator not found check the \"name\" of your destinator !" + str(showlist[1]))
+                print("not found")
+                try:
+                    article = Article.objects.get(idArticle=showlist[3])
+                    destinataire = Destinataire.objects.get(nom=showlist[1])
+                    articledpa.fk_Article = article
+                    articledpa.fk_Destinataire = destinataire
+                    articledpa.delaiPeremption = showlist[2]
+                    articledpa.save()
+                except Article.DoesNotExist:
+                    print ("error article issue check the \"id\" in your page !" + str(showlist[3]))
+                except Destinataire.DoesNotExist:
+                    print ("error destinator not found check the \"name\" of your destinator !" + str(showlist[1]))
             return HttpResponse("article modified !")
         return HttpResponse("Unauthorized page !")
 

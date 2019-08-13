@@ -181,12 +181,14 @@
                         </thead>
                         <tbody id="articledestbody">
                         {% for items in ardes %}
-                        <tr>
-                            <td><input class="form-control" readonly="readonly"></td>
-                            <td><select id="{{ items.idArticle_Destinataire }}"  class="form-control destiselect"> </select></td>
-                            <td><input class="form-control"></td>
-                            <td><button class="deleting" id="{{ items.idArticle_Destinataire }}" type="button"><i class="fa fa-backspace"></i></button></td>
-                        </tr>
+                            {% if items.fk_Article.idArticle == id %}
+                            <tr>
+                                <td><input class="form-control" readonly="readonly"></td>
+                                <td><select id="{{ items.idArticle_Destinataire }}"  class="form-control destiselect"> </select></td>
+                                <td><input class="form-control"></td>
+                                <td><button class="deleting btn btn-sm btn-outline-deep-orange" id="{{ items.idArticle_Destinataire }}" type="button"><i class="fa fa-backspace"></i></button></td>
+                            </tr>
+                            {% endif %}
                         {% endfor %}
                         </tbody>
                     </table>
@@ -266,7 +268,7 @@
                 '  <td><input class="form-control" readonly="readonly"></td>'+
                 '  <td><select id=\"' + selectid + '\"  class="form-control destiselect"> </select></td>'+
                 '  <td><input class="form-control"></td>'+
-                '<td><button class="deletingtemporary" id=\"' + selectid + '\" type="button"><i class="fa fa-backspace"></i></button></td>'+
+                '<td><button class="deletingtemporary btn btn-sm btn-outline-deep-orange" id=\"' + selectid + '\" type="button"><i class="fa fa-backspace"></i></button></td>'+
                 '</tr>')).draw();
 
             '{% for items in des %}'
@@ -415,6 +417,7 @@
             $('#articledest tr').each(function (a, b) {  //recupère les  entrée dans la table
                 var umcode = "";
                 var desti = "";
+                var artdesid = "";
                 var delai = "";
                 if (a === 0) {
                     // Je ne prends pas en compte le "thead".
@@ -427,6 +430,7 @@
                         }
                         if (a === 1) {
                             desti = $(this).find('select').val();
+                            artdesid = $(this).find('select').attr('id');
                             console.log($(this).find('select').val());
                         }
                         if (a === 2) {
@@ -434,7 +438,7 @@
                             console.log($(this).find('input').val());
                         }
                     });
-                    alert("test");
+                    alert("test {{ id }}");
                     $.ajax({
                         type: "POST",
                         url: "/article_destinataire/create/",
@@ -442,6 +446,7 @@
                             'umcode': umcode,
                             'desti': desti,
                             'delai': delai,
+                            'artdesid': artdesid,
                             'idart': '{{ id }}',
                             csrfmiddlewaretoken: '{{ csrf_token }}',
                         },

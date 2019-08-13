@@ -1341,29 +1341,13 @@
             });
         });
         $('.resorting').click(function () {
-            var objectid = $(this).parent().parent().find('td').eq(2).find('input').val();
-            $.ajax({
-                type:"POST",    //type de requête utilisé par ajax
-                url:"/ume/delieums/", //lien de la view qui gère la requête post pour trier les colis des um entree vers des bcs avec une ums ouverte
-                data: {
-                    'id': objectid,
-                    csrfmiddlewaretoken: '{{ csrf_token }}'
-                },
-                success: function(msg, data, settings){
-                    console.log("gg " + msg);
-                    //location.reload();
-                    window.location.reload();
-                },
-                failure: function() {
-                    console.log("fail");
-                    //location.reload();
-                }
-            });
+            var objectid = $(this);
             $.ajax({
                 type:"POST",    //type de requête utilisé par ajax
                 url:"/ume/sortOnecolis/", //lien de la view qui gère la requête post pour trier les colis des um entree vers des bcs avec une ums ouverte
                 data: {
-                    'id': objectid,
+                    'id': objectid.parent().parent().find('td').eq(2).find('input').val().trim(),
+                    'umeid': '{{ id }}',
                     csrfmiddlewaretoken: '{{ csrf_token }}'
                 },
                 success: function(msg, data, settings){

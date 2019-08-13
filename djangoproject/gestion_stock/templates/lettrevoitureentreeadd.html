@@ -250,6 +250,7 @@
                 },
                 success: function(msg, data, settings){
                     console.log("success: " + msg);
+                    location.href = "{% url 'lvemodify' %}?id=" + msg;
                 },
                 failure: function() {
                     alert("fail");

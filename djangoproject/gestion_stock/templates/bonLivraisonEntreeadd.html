@@ -505,6 +505,9 @@
                 success: function(msg, data, settings){
                     console.log("success: " + msg + $('#fournisseur').val());
                     idx = 0;
+                    location.href = "{% url 'bonLivraisonEntreemodify' %}?id=" + msg;
+
+                    //pas utilisé dans la création du bl
                     if (Object.keys(ligne).length > 0) {
                         console.log("create contacts");
                         for (key in ligne) {
