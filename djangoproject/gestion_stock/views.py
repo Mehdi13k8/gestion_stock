@@ -2787,8 +2787,23 @@ class umeadd(ListView):
             ume.m_nom = ""
             ume.m_nomCompte = ""
             ume.m_horodatage = ""
+
+            id = 0
+            try:
+                go = UniteManutentionEntree.objects.get(idUniteManutentionEntree=showlist[0])
+                for myume in umentree:
+                    if id < int(myume.idUniteManutentionEntree):
+                        id = int(myume.idUniteManutentionEntree)
+                id+=1
+                ume.idUniteManutentionEntree = str(id) #je gère que cet id est déjà prit
+            except UniteManutentionEntree.DoesNotExist:
+                '''ici je fais rien car il n'y a pas d'"ume" avec un id déjà pris, donc je peux laisser le lve se faire save ;)'''
             ume.save()
-            return HttpResponse("road to create ume.")
+            if id == 0:
+                return HttpResponse(showlist[0]) #retours pour signifier un succès
+            else:
+                return HttpResponse(str(id)) #retours pour signifier un succès
+            #return HttpResponse("road to create ume.")
         return HttpResponse("Error on delete.")
 
     def get(self, request):
@@ -2879,12 +2894,18 @@ class umemodify(ListView):
                         request.POST.get('confirme'), request.POST.get('retourncolis'),
                         request.POST.get('colle'), request.POST.get('litige'),
                         request.POST.get('decilitige')]
+            goodcolis = 0
             try:
                 mycolis = Colis.objects.get(idColis=showlist[1])
+                print("Before - " + str(mycolis.fk_UniteManutentionEntree.idUniteManutentionEntree) + " AFTER - " + str(showlist[0]))
+                if mycolis.fk_UniteManutentionEntree.idUniteManutentionEntree != showlist[0]:
+                    print("COLIS NOT IN THIS UME SO I DO A NEW ONE")
+                    mycolis = Colis()
+                    mycolis.fk_UniteManutentionSortie = None
+                    goodcolis = 1
             except Colis.DoesNotExist:
                 mycolis = Colis()
                 mycolis.fk_UniteManutentionSortie = None
-            mycolis.fk_UniteManutentionEntree = UniteManutentionEntree.objects.get(idUniteManutentionEntree=showlist[0])
             mycolis.idColis = showlist[1]
             #mycolis.fk_ZoneDepot = UniteManutentionEntree.objects.get(idUniteManutentionEntree=showlist[0]).fk_BonLivraisonEntree.fk_ZoneDepot_pour_TypeZoneDepot
             mycolis.fk_ZoneDepot = None
@@ -2896,6 +2917,7 @@ class umemodify(ListView):
             #mycolis. = showlist[9]
             mycolis.colle = showlist[10]
 
+            allcol = Colis.objects.all()
             alitige = Litige.objects.all()
             dlitige = LitigeDecision.objects.all()
             carticle = Article.objects.all()
@@ -2915,6 +2937,7 @@ class umemodify(ListView):
             for items in dlitige:
                 if items.nom == showlist[12]:
                     mycolis.fk_LitigeDecision = LitigeDecision.objects.get(nom=showlist[12])
+
             '''print ("id == " + showlist[0])
             print ("ncol == " + str(showlist[1]))
             print ("codef == " + str(showlist[2]))
@@ -2929,8 +2952,25 @@ class umemodify(ListView):
             '''
             print ("litige == " + str(showlist[11]))
             print ("decilitige == " + str(showlist[12]))
+
+            id = 0
+            if mycolis.fk_UniteManutentionEntree.idUniteManutentionEntree != showlist[0]:
+                try:
+                    go = Colis.objects.get(idColis=showlist[1])
+                    for colis in allcol:
+                        if id < int(colis.idColis):
+                            id = int(colis.idColis)
+                    id+=1
+                    mycolis.idColis = str(id) #je gère que cet id est déjà prit
+                except Colis.DoesNotExist:
+                    '''ici je fais rien car il n'y a pas d'"ume" avec un id déjà pris, donc je peux laisser le lve se faire save ;)'''
+            mycolis.fk_UniteManutentionEntree = UniteManutentionEntree.objects.get(idUniteManutentionEntree=showlist[0])
             mycolis.save()
-            return HttpResponse("road to create ume.")
+            if id == 0:
+                return HttpResponse(showlist[0]) #retours pour signifier un succès
+            else:
+                return HttpResponse(str(id)) #retours pour signifier un succès
+            #return HttpResponse("road to create ume.")
         return HttpResponse("Error not a post.")
 
     def get(self, request):

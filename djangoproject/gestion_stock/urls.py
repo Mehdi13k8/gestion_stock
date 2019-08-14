@@ -181,7 +181,7 @@ urlpatterns = [
     path('umentree/add', views.umeadd.as_view(), name='unitemanutentionentreeadd'),
     path('umentree/modify/', views.umemodify.as_view(), name='unitemanutentionentreemodify'),
     path('modify_ume/', views.umemodify.modify),
-    path('ligneume/create/', views.umemodify.createligne),
+    path('ligneume/create/', views.umemodify.createligne), #crée 1 colis
     path('ume/col/print/', views.umemodify.printer),
     path('ume/delete_col/', views.umemodify.delete_colis),
     path('ume/delieums/', views.umemodify.delieums),

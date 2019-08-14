@@ -426,7 +426,7 @@
                 },
                 success: function(msg, data, settings){
                     console.log("gg " + msg);
-                    window.location.href = "{% url 'unitemanutentionentreemodify' %}?id=" + $('#umid').val() + "&" + "name=" + null + "&" + "trueid=" + null;
+                    window.location.href = "{% url 'unitemanutentionentreemodify' %}?id=" + msg + "&" + "name=" + null + "&" + "trueid=" + null;
                 },
                 failure: function() {
                     console.log("fail");

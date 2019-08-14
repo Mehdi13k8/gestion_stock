@@ -156,12 +156,12 @@
     </div>
 </div>
 
-<div class="row">
+<div class="container-fluid">
     <div class="border shadow-lg p-2 mb-3 bg-white rounded col-auto mx-auto">
         <h5 class="text-center"> <u> Lignes U.M entree</u> (colis)</h5>
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
-                <div class="container">
+                <div class="container-fluid">
                     <div class="border shadow-lg p-2 mb-3 bg-white rounded">
                         <div class="table-responsive text-nowrap">
                             <table id="tabbl" class="table table-condensed table-sm table-striped table-bordered" cellspacing="0" width="100%">
@@ -1344,7 +1344,7 @@
             var objectid = $(this);
             $.ajax({
                 type:"POST",    //type de requête utilisé par ajax
-                url:"/ume/sortOnecolis/", //lien de la view qui gère la requête post pour trier les colis des um entree vers des bcs avec une ums ouverte
+                url:"/ume/sortOnecolis/", //lien de la view qui gère la requête post pour trier ! 1 seul colis ! des um entree vers des bcs avec une ums ouverte
                 data: {
                     'id': objectid.parent().parent().find('td').eq(2).find('input').val().trim(),
                     'umeid': '{{ id }}',
