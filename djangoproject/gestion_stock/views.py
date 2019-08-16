@@ -2820,7 +2820,7 @@ class umemodify(ListView):
     def delete_colis(request):
         if request.method == 'POST':
             showlist = [request.POST.get('id'),]
-            colis = Colis.objects.get(idColis=showlist[0])
+            colis = Colis.objects.get(id=showlist[0])
             colis.delete()
             return HttpResponse("colis removed.")
         return HttpResponse("Error.")
@@ -2894,15 +2894,16 @@ class umemodify(ListView):
                         request.POST.get('confirme'), request.POST.get('retourncolis'),
                         request.POST.get('colle'), request.POST.get('litige'),
                         request.POST.get('decilitige')]
-            goodcolis = 0
+            existcoli = 0
             try:
                 mycolis = Colis.objects.get(idColis=showlist[1])
+                existcoli = 1
                 print("Before - " + str(mycolis.fk_UniteManutentionEntree.idUniteManutentionEntree) + " AFTER - " + str(showlist[0]))
                 if mycolis.fk_UniteManutentionEntree.idUniteManutentionEntree != showlist[0]:
+                    existcoli = 2
                     print("COLIS NOT IN THIS UME SO I DO A NEW ONE")
                     mycolis = Colis()
                     mycolis.fk_UniteManutentionSortie = None
-                    goodcolis = 1
             except Colis.DoesNotExist:
                 mycolis = Colis()
                 mycolis.fk_UniteManutentionSortie = None
@@ -2954,17 +2955,31 @@ class umemodify(ListView):
             print ("decilitige == " + str(showlist[12]))
 
             id = 0
-            if mycolis.fk_UniteManutentionEntree.idUniteManutentionEntree != showlist[0]:
+            if existcoli == 0:
                 try:
                     go = Colis.objects.get(idColis=showlist[1])
                     for colis in allcol:
                         if id < int(colis.idColis):
-                            id = int(colis.idColis)
+                            id += int(colis.idColis)
                     id+=1
                     mycolis.idColis = str(id) #je gère que cet id est déjà prit
                 except Colis.DoesNotExist:
                     '''ici je fais rien car il n'y a pas d'"ume" avec un id déjà pris, donc je peux laisser le lve se faire save ;)'''
+
+            if existcoli == 2:
+                try:
+                    go = Colis.objects.get(idColis=showlist[1])
+                    for colis in allcol:
+                        if id < int(colis.idColis):
+                            id += int(colis.idColis)
+                    id+=1
+                    mycolis.idColis = str(id) #je gère que cet id est déjà prit
+                except Colis.DoesNotExist:
+                    '''ici je fais rien car il n'y a pas d'"ume" avec un id déjà pris, donc je peux laisser le lve se faire save ;)'''
+
             mycolis.fk_UniteManutentionEntree = UniteManutentionEntree.objects.get(idUniteManutentionEntree=showlist[0])
+            mycolis.save()
+            mycolis.idColis = str(mycolis.id)
             mycolis.save()
             if id == 0:
                 return HttpResponse(showlist[0]) #retours pour signifier un succès
