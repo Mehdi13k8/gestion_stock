@@ -600,7 +600,8 @@
           // Only send the token to relative URLs i.e. locally.
           xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
         }
-      }
+      },
+      async: false
     });
     $('#settings').click(function() {
       '{% for items in settings %}'
