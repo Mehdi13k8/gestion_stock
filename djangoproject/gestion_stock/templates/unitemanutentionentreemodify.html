@@ -804,10 +804,10 @@
                 success: function (msg, data, settings) {
                     console.log("success: " + msg);
                     if (Object.keys(ligne).length > 0) {
-                        myidx = Object.keys(ligne).length - 1;
+                        //myidx = Object.keys(ligne).length - 1;
                         for (key in ligne) {
                             envoilignes();
-                            myidx--;
+                            myidx++;
                         }
                         myidx = 0;
                     }
@@ -846,8 +846,8 @@
                     },
                     complete: function () {
                         colisidx++;
-                        if (colisidx == Object.keys(ligne).length)
-                            window.location.reload();
+                        //if (colisidx == Object.keys(ligne).length)
+                            //window.location.reload();
                         //alert("so i have " + colisidx)
                     }
                 });
