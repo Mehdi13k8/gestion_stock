@@ -3189,19 +3189,27 @@ class zonesdepot(ListView):
         if request.method == 'POST':
             showlist = [request.POST.get('id'), request.POST.get('client'), request.POST.get('name'),]
             data = ZoneDepot_pour_TypeZoneDepot()
+            zndid = 0
             if (showlist[1] != '---'):
                 cli = Client.objects.get(idClient=showlist[1])
             else:
                 cli = None
             data.nom = showlist[2]
-            data.idZoneDepot = showlist[0]
-            if (cli != None):
-                data.fk_Client = cli
+            allznd = ZoneDepot_pour_TypeZoneDepot.objects.all()
+            for myznd in allznd:
+                if zndid < int(myznd.idZoneDepot):
+                    zndid = int(myznd.idZoneDepot)
+            zndid = zndid + 1
+            data.idZoneDepot = str(zndid)
+
+            if cli != None:
+                data.fk_TypeZoneDepot = cli.fk_TypeZone
+                print("there")
             else:
                 data.fk_Client = None
             #print("id == " + showlist[0] + "cli == " + cli.nom + "name == " + showlist[2])
             data.save()
-            return HttpResponse("delete successfull.")
+            return HttpResponse(str(zndid))
         return HttpResponse("Error ZONE RESTRICTED.")
 
     def get(self, request):
@@ -3233,13 +3241,21 @@ class typedest(ListView):
             try:
                 data = TypeDestinataire_pour_Destinataire.objects.get(idTypeDestinataire =showlist[0])
                 print("found")
+                tdid = showlist[0]
             except TypeDestinataire_pour_Destinataire.DoesNotExist:
                 print("create")
                 data = TypeDestinataire_pour_Destinataire()
-                data.idTypeDestinataire = showlist[0]
+                alltd = TypeDestinataire_pour_Destinataire.objects.all()
+                tdid = 0
+                for mytd in alltd:
+                    if tdid < int(mytd.idTypeDestinataire):
+                        tdid = int(mytd.idTypeDestinataire)
+                tdid = tdid + 1
+                data.idTypeDestinataire = str(tdid)
+
             data.nom = showlist[1]
             data.save()
-            return HttpResponse("delete successfull.")
+            return HttpResponse(str(tdid))
         return HttpResponse("Error ZONE RESTRICTED.")
 
     def get(self, request):
@@ -3267,16 +3283,23 @@ class typeart(ListView):
     def create(request):
         if request.method == 'POST':
             showlist = [request.POST.get('id'), request.POST.get('name'),]
+            tartid = 0
             try:
                 data = typeArticle_pour_Article.objects.get(idTypeArticle=showlist[0])
+                tartid = showlist[0]
                 print("found")
             except typeArticle_pour_Article.DoesNotExist:
                 print("create")
                 data = typeArticle_pour_Article()
-                data.idTypeArticle = showlist[0]
+                alltart = typeArticle_pour_Article.objects.all()
+                for mytar in alltart:
+                    if tartid < int(mytar.idTypeArticle):
+                        tartid = int(mytar.idTypeArticle)
+                tartid = tartid + 1
+                data.idTypeArticle = str(tartid)
             data.nom = showlist[1]
             data.save()
-            return HttpResponse("delete successfull.")
+            return HttpResponse(str(tartid))
         return HttpResponse("Error ZONE RESTRICTED.")
 
     def get(self, request):

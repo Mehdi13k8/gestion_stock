@@ -123,7 +123,6 @@
     else
         $("#idtyped").val(upperid + 1);
     '{% endif %}'
-
     $('#savenewzone').click(function () {
         $.ajax({
             type:"POST",
@@ -134,11 +133,14 @@
                 csrfmiddlewaretoken: '{{ csrf_token }}'
             },
             success: function(msg, data, settings) {
-                console.log("gg " + msg);
-                location.reload();
+                console.log("gg there " + msg);
+                //alert(msg);
+                window.location.href = "{% url 'typedest' %}?id=" + msg + "&" + "vuegen=ok" ;
+                //location.reload();
             },
             failure: function() {
                 console.log("fail");
+                alert(msg);
                 location.reload();
             }
         });
@@ -177,9 +179,9 @@
                 'id': idClicked,
                 csrfmiddlewaretoken: '{{ csrf_token }}'
             },
-            success: function(msg, data, settings){
+            success: function(msg, data, settings) {
                 console.log("gg " + msg);
-                location.reload();
+                window.location.href = "{% url 'typedest' %}" ;
             },
             failure: function() {
                 console.log("fail");

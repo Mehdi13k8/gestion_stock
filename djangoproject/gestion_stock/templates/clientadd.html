@@ -336,6 +336,7 @@
                             contactnb++;
                         }
                     }
+                    location.href = "{% url 'clientmodify' %}?id=" + $('#umid').val();
                 },
                 failure: function() {
                     alert("fail");

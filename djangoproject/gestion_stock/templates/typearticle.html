@@ -134,7 +134,7 @@
             },
             success: function(msg, data, settings) {
                 console.log("gg " + msg);
-                location.reload();
+                window.location.href = "{% url 'typeart' %}?id=" + msg + "&" + "vuegen=ok" ;
             },
             failure: function() {
                 console.log("fail");

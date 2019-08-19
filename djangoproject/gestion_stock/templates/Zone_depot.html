@@ -2,7 +2,15 @@
 
 {% block content %}
 
-<div class="container"><h1 class="text-center"> Liste des zones de dépôts</h1></div>
+{% if vuegen == "ok" %}
+    {% if id %}
+        <div class="container"><h1 class="text-center"> Modification d'une zone de dépot</h1></div>
+    {% else%}
+        <div class="container"><h1 class="text-center"> Liste des zones de dépôts</h1></div>
+    {% endif %}
+    {% else %}
+        <div class="container"><h1 class="text-center"> Liste des zones de dépôts</h1></div>
+{% endif %}
 <br>
 
 <div class="container">
@@ -10,13 +18,9 @@
         <div class="col">
             <button type="button" id="back-row" class="btn btn-success btn-rounded btn-outline-dark">Tout</button>
         </div>
-    {% for items in cli %}
-        {% if id == items.idClient %}
             <div class="col">
                 <button type="button" id="create-row" class="btn btn-success btn-rounded btn-outline-dark">Ajouter</button>
             </div>
-        {% endif %}
-    {% endfor %}
         {% if id == '0' %}
         <div class="col">
             <button type="button" id="create-row" class="btn btn-success btn-rounded btn-outline-dark">Ajouter</button>
@@ -392,8 +396,9 @@
                 csrfmiddlewaretoken: '{{ csrf_token }}'
             },
             success: function(msg, data, settings){
-                console.log("gg " + msg);
-                location.reload();
+                console.log("gg && " + msg);
+                window.location.href = "{% url 'zonedepot' %}?id=" + msg + "&" + "vuegen=ok" ;
+                //location.reload();
             },
             failure: function() {
                 console.log("fail");
