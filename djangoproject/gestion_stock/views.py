@@ -3188,28 +3188,46 @@ class zonesdepot(ListView):
     def createnewzone(request):
         if request.method == 'POST':
             showlist = [request.POST.get('id'), request.POST.get('client'), request.POST.get('name'),]
-            data = ZoneDepot_pour_TypeZoneDepot()
             zndid = 0
-            if (showlist[1] != '---'):
-                cli = Client.objects.get(idClient=showlist[1])
-            else:
-                cli = None
-            data.nom = showlist[2]
-            allznd = ZoneDepot_pour_TypeZoneDepot.objects.all()
-            for myznd in allznd:
-                if zndid < int(myznd.idZoneDepot):
-                    zndid = int(myznd.idZoneDepot)
-            zndid = zndid + 1
-            data.idZoneDepot = str(zndid)
+            try:
+                data = ZoneDepot_pour_TypeZoneDepot.objects.get(idZoneDepot=showlist[0])
+                print("found")
+                data.idZoneDepot = showlist[0]
+                if (showlist[1] != '---'):
+                    cli = Client.objects.get(idClient=showlist[1])
+                else:
+                    cli = None
+                data.nom = showlist[2]
 
-            if cli != None:
-                data.fk_TypeZoneDepot = cli.fk_TypeZone
-                print("there")
-            else:
-                data.fk_Client = None
+                if cli != None:
+                    data.fk_TypeZoneDepot = cli.fk_TypeZone
+                    print("there")
+                else:
+                    data.fk_Client = None
+                data.save()
+                return HttpResponse(showlist[0])
+            except ZoneDepot_pour_TypeZoneDepot.DoesNotExist:
+                data = ZoneDepot_pour_TypeZoneDepot()
+                allznd = ZoneDepot_pour_TypeZoneDepot.objects.all()
+                for myznd in allznd:
+                    if zndid < int(myznd.idZoneDepot):
+                        zndid = int(myznd.idZoneDepot)
+                zndid = zndid + 1
+                data.idZoneDepot = str(zndid)
+                if (showlist[1] != '---'):
+                    cli = Client.objects.get(idClient=showlist[1])
+                else:
+                    cli = None
+                data.nom = showlist[2]
+
+                if cli != None:
+                    data.fk_TypeZoneDepot = cli.fk_TypeZone
+                    print("there")
+                else:
+                    data.fk_Client = None
+                data.save()
+                return HttpResponse(str(zndid))
             #print("id == " + showlist[0] + "cli == " + cli.nom + "name == " + showlist[2])
-            data.save()
-            return HttpResponse(str(zndid))
         return HttpResponse("Error ZONE RESTRICTED.")
 
     def get(self, request):
@@ -3433,16 +3451,16 @@ class litiges(ListView):
 
     def deletelitige(request):
         if request.method == 'POST':
-            showlist = [request.POST.get('nom')]
-            data = Litige.objects.get(nom=showlist[0])
+            showlist = [request.POST.get('id')]
+            data = Litige.objects.get(idLitige=showlist[0])
             data.delete()
             return HttpResponse("delete successfull.")
         return HttpResponse("Error ZONE RESTRICTED.")
 
     def deletedecilitige(request):
         if request.method == 'POST':
-            showlist = [request.POST.get('nom')]
-            data = LitigeDecision.objects.get(nom=showlist[0])
+            showlist = [request.POST.get('id')]
+            data = LitigeDecision.objects.get(idLitige=showlist[0])
             data.delete()
             return HttpResponse("delete successfull.")
         return HttpResponse("Error ZONE RESTRICTED.")
@@ -3463,9 +3481,20 @@ class litigesadd(ListView):
     def create(request):
         if request.method == 'POST':
             showlist = [request.POST.get('name'),request.POST.get('id')]
-            data = Litige()
-            data.nom = showlist[0]
-            data.idLitige = showlist[1]
+            try:
+                data = Litige.objects.get(idLitige=showlist[0])
+                data.nom = showlist[0]
+                print("found")
+            except Litige.DoesNotExist:
+                data = Litige()
+                data.nom = showlist[0]
+                ltgid = 0
+                alllitige = Litige.objects.all()
+                for myltg in alllitige:
+                    if ltgid < int(myltg.idLitige):
+                        ltgid = int(myltg.idLitige)
+                ltgid = ltgid + 1
+                data.idLitige = str(ltgid)
             data.save()
             return HttpResponse("added successfully.")
         return HttpResponse("Error ZONE RESTRICTED.")
@@ -3485,11 +3514,24 @@ class decilitigesadd(ListView):
     def create(request):
         if request.method == 'POST':
             showlist = [request.POST.get('name'),request.POST.get('id')]
-            data = LitigeDecision()
-            data.nom = showlist[0]
-            data.idLitige = showlist[1]
-            data.save()
-            return HttpResponse("added successfully.")
+            try:
+                data = LitigeDecision.objects.get(idLitige=showlist[1])
+                data.nom = showlist[0]
+                print("found")
+                data.save()
+                return HttpResponse(data.idLitige)
+            except LitigeDecision.DoesNotExist:
+                data = LitigeDecision()
+                data.nom = showlist[0]
+                ltgid = 0
+                alldecilitige = LitigeDecision.objects.all()
+                for myltg in alldecilitige:
+                    if ltgid < int(myltg.idLitige):
+                        ltgid = int(myltg.idLitige)
+                ltgid = ltgid + 1
+                data.idLitige = str(ltgid)
+                data.save()
+                return HttpResponse(data.idLitige)
         return HttpResponse("Error ZONE RESTRICTED.")
 
     def get(self, request):

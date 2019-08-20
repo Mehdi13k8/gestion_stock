@@ -69,7 +69,7 @@
             },
             success: function(msg, data, settings) {
                 console.log("gg " + msg);
-                location.reload();
+                window.location.href = "{% url 'decilitigesmodify' %}?id=" + msg;
             },
             failure: function() {
                 console.log("fail");

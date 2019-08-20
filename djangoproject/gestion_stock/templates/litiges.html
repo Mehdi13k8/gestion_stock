@@ -8,7 +8,7 @@
 <div class="container">
     <div class="row text-center">
         <div class="col">
-           <hr><br> <h4><b>Veuillez choisir quelle catégorie vous voulez administrez.</b></h4>
+            <hr><br> <h4><b>Veuillez choisir quelle catégorie vous voulez administrez.</b></h4>
         </div>
     </div>
     <br><hr>
@@ -47,7 +47,7 @@
                     <tr>
                         <td> <a href='{% url "litigesmodify" %}?id={{items.idLitige|safe }}'><button id='{{ items.idLitige }}' class="dyna"> -> </button></a></td>
                         <td> {{ items.nom }} </td>
-                        <td> <button id='{{ items.idLitige }}' class="dynad"> X </button> </td>
+                        <td> <button id='{{ items.idLitige }}' class="dynadlitige"> X </button> </td>
                     </tr>
                     {% endfor %}
                     </tbody>
@@ -73,7 +73,7 @@
                     <tr>
                         <td> <a href='{% url "decilitigesmodify" %}?id={{items.idLitige|safe }}'><button id='{{ items.idLitige }}' class="dyna"> -> </button></a></td>
                         <td> {{ items.nom }} </td>
-                        <td> <button id='{{ items.idLitige }}' class="dynad"> X </button> </td>
+                        <td> <button id='{{ items.idLitige }}' class="dynaddeci"> X </button> </td>
                     </tr>
                     {% endfor %}
                     </tbody>
@@ -108,31 +108,72 @@
             $('#chooselit').hide();
 
             $('#litiges').DataTable();
-        ajout = 2;
-        console.log("tab litige show");
+            ajout = 2;
+            console.log("tab litige show");
         });
 
-    $('#choosedeci').click(function () {
-        $('#maindiv').show();
-        $('#decilitiges').show();
-        $('#create').show();
-        $('#choosedeci').hide();
-        $('#chooselit').hide();
-        $('#decilitiges').DataTable();
-        ajout = 1;
+        $('#choosedeci').click(function () {
+            $('#maindiv').show();
+            $('#decilitiges').show();
+            $('#create').show();
+            $('#choosedeci').hide();
+            $('#chooselit').hide();
+            $('#decilitiges').DataTable();
+            ajout = 1;
+        });
+
+        $('#create').click(function () {
+            if (ajout == 0) {
+
+            } else if (ajout == 1) {
+                window.location.href = "{% url 'decilitigesadd' %}";
+            }
+            if (ajout == 2) {
+                window.location.href = "{% url 'litigesadd' %}";
+            }
+        });
+
+        $(document).on("click", "button.dynadlitige" , function(e) {
+            var idClicked = e.target.id;
+            $.ajax({
+                type:"POST",
+                url:"/settings/litiges/delete/",
+                data: {
+                    'name': $('#nom').val(),
+                    'id': idClicked,
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
+                success: function(msg, data, settings){
+                    console.log("gg " + msg);
+                    location.reload();
+                },
+                failure: function() {
+                    console.log("fail");
+                    location.reload();
+                }
+            });
+        });
+
+        $(document).on("click", "button.dynaddeci" , function(e) {
+            var idClicked = e.target.id;
+            $.ajax({
+                type:"POST",
+                url:"/settings/litiges/deletedeci/",
+                data: {
+                    'name': $('#nom').val(),
+                    'id': idClicked,
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
+                success: function(msg, data, settings){
+                    console.log("gg " + msg);
+                    location.reload();
+                },
+                failure: function() {
+                    console.log("fail");
+                    location.reload();
+                }
+            });
+        });
     });
-
-    $('#create').click(function () {
-        if (ajout == 0) {
-
-        } else if (ajout == 1) {
-            window.location.href = "{% url 'decilitigesadd' %}";
-        }
-        if (ajout == 2) {
-            window.location.href = "{% url 'litigesadd' %}";
-        }
-    });
-
-});
 </script>
 {% endblock %}
