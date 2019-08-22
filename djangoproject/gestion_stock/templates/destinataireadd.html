@@ -320,28 +320,10 @@
         $("#nom").change(function() {
             console.log($(this).val());
         });
-        $('#post-form').on('submit', function(event){
-            event.preventDefault();
-            console.log("form submitted!")  // sanity check
-            create_post();
-        });
-        function create_post() {
-            console.log("create post is working!") // sanity check
-            console.log($('#post-text').val())
-        };
 
         $('#modify').click(function() {
             console.log("form submitted!")  // sanity check
             var name = $("#nom").val();
-            var bool = 0;
-            "{% for items in trans %}"
-            if (name == "{{ items.nom }}") {
-                //alert(name);
-                bool = 1;
-            }
-            "{% endfor %}"
-            if (bool == 0) {
-            }
             //recupération des variables de la page destinataire modify
             $.ajax({
                 type:"POST",    //type de requête utilisé par ajax
@@ -379,8 +361,8 @@
                     'pays': $('#paysid').val(),
                     csrfmiddlewaretoken: '{{ csrf_token }}'
                 },
-                success: function(msg, data, settings){
-                    //alert("gg " + msg);
+                success: function(msg, data, settings) {
+                    //location.href = "{% url 'destinataire' %}";
                 },
                 failure: function() {
                     alert("fail");

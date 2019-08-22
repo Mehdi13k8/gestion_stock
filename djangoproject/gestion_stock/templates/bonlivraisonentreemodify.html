@@ -236,7 +236,7 @@
                                     var name = "{{ items.nom|safe }}";
                                     var oldname;
                                     "{% for ble in entree %}"
-                                    "{% if ble.fk_Client.fk_TypeDestinataire.nom == items.fk_TypeDestinataire.nom %}"
+                                    "{% if ble.fk_Client.fk_TypeDestinataire.nom|safe == items.fk_TypeDestinataire.nom|safe %}"
                                     if (i == 0)
                                         $("#litiges").append(new Option("{{ items.nom|safe }}", "{{ items.nom|safe }}"));
                                     else if (name != oldname)

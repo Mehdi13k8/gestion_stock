@@ -1720,8 +1720,15 @@ def create_four(request):
     typefournisseur = TypeFournisseur_pour_Fournisseur.objects.all()
     if request.method == 'POST':
         fournisseur = Fournisseur()
-        fournisseur.idFournisseur = request.POST['id']
         fournisseur.nom =  request.POST['name']
+        allfour = Fournisseur.objects.all()
+        id = 0
+        for myfour in allfour:
+            if id < int(myfour.idFournisseur):
+                id = int(myfour.idFournisseur)
+        id += 1
+        fournisseur.idFournisseur = str(id)
+
         for items in typefournisseur:
             if items.nom == request.POST.get('fourtype'):
                 fournisseur.fk_TypeFournisseur = items
@@ -1730,9 +1737,10 @@ def create_four(request):
 
 def delete_four(request):
     if request.method == 'POST':
+        print("there")
         fournisseur = Fournisseur.objects.get(idFournisseur=request.POST['id'])
         fournisseur.delete()
-    return HttpResponse("New fournisseur " + request.POST.get['name'] + " del !")
+    return HttpResponse("delete fournisseur !")
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
@@ -2060,6 +2068,7 @@ class destinataireadd(ListView):
 
     def create(request):
         if request.method == 'POST':
+            print("i'm there !")
             destinataire = Destinataire()
             showlist = [request.POST.get('name'), request.POST.get('identifiantBL'),
                         request.POST.get('telephone'), request.POST.get('email'),
@@ -2107,9 +2116,9 @@ class destinataireadd(ListView):
             for items in typedest:
                 if items.nom == request.POST.get('typedest'):
                     destinataire.fk_TypeDestinataire = items
-                    return HttpResponse("It has been posted by lapost")
             destinataire.save()
-            return HttpResponse("Error " + request.POST.get('typedest') + " "+ items.nom)
+            return HttpResponse("destinataire good " + request.POST.get('typedest') + " "+ items.nom)
+        return HttpResponse("destinataire good " + request.POST.get('typedest') + " "+ items.nom)
 
     def get(self, request):
         context = {
@@ -3165,6 +3174,16 @@ class create_typef_add(ListView):
 class modif_typef(ListView):
     template_name = "modif_type_fournisseur.html"
 
+    def saveit(request):
+        if request.method == 'POST':
+            showlist = [request.POST.get('id'), request.POST.get('name')]
+            data = TypeFournisseur_pour_Fournisseur.objects.get(idTypeFournisseur=showlist[0])
+            data.nom = showlist[1]
+            data.save()
+            print("good")
+            return HttpResponse("good save.")
+        return HttpResponse("No access.")
+
     def get(self, request):
         context = {
             'activate' : 'on',
@@ -3349,13 +3368,16 @@ class typezone(ListView):
             try:
                 data = TypeZoneDepot.objects.get(idTypeZoneDepot=showlist[0])
                 print("found")
+                data.nom = showlist[1]
+                data.save()
+                return HttpResponse("save successfull.")
             except TypeZoneDepot.DoesNotExist:
                 print("create")
                 data = TypeZoneDepot()
                 data.idTypeZoneDepot = showlist[0]
-            data.nom = showlist[1]
-            data.save()
-            return HttpResponse("delete successfull.")
+                data.nom = showlist[1]
+                data.save()
+                return HttpResponse("save new successfull.")
         return HttpResponse("Error ZONE RESTRICTED.")
 
     def get(self, request):

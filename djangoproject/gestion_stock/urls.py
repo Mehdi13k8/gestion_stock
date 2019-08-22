@@ -18,7 +18,7 @@ urlpatterns = [
     path('delete_typefour/delete/', views.create_typef.delete),
 
     path('modif_typefour/', views.modif_typef.as_view(), name='modif_typefour'),
-    path('modif_typefour/save/', views.modif_typef.as_view(), name='modif_typefour_save'),
+    path('modif_typefour/save/', views.modif_typef.saveit),
 
     path('zone_depot/', views.zonesdepot.as_view(), name='zonedepot'),
     path('zone_depot/create_zone/', views.zonesdepot.createnewzone),

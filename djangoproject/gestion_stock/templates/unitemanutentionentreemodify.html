@@ -812,6 +812,7 @@
                         myidx = 0;
                     }
                     //refreshit();
+                    window.location.href = "{% url 'unitemanutentionentreemodify' %}?id=" + $('#umid').val();
                 },
                 failure: function () {
                     alert("fail");

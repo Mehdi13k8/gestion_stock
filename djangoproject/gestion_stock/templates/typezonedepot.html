@@ -34,7 +34,7 @@
                 <div class="w-75 mx-auto">
                     <br>
                     <div class="input-default-wrapper w-75 mx-auto">
-                        <label for="idtypea">ID : </label>
+                        <label for="idtypez">ID : </label>
                         <input type="text" class="form-control w-25 mt-n2 ml-4" placeholder="ID" aria-label="identifiant" aria-describedby="basic-addon1"  disabled id="idtypez" value="{{ items.idTypeZoneDepot }}">
                     </div>
                     <br>
@@ -54,13 +54,13 @@
                 <div class="w-75 mx-auto">
                     <br>
                     <div class="input-default-wrapper w-75 mx-auto">
-                        <label for="idtypea">ID : </label>
-                        <input type="text" class="form-control w-25 mt-n2 ml-4" placeholder="ID" aria-label="identifiant" aria-describedby="basic-addon1"  disabled id="idtypea" value="{{ items.idTypeZoneDepot }}">
+                        <label for="idtypez">ID : </label>
+                        <input type="text" class="form-control w-25 mt-n2 ml-4" placeholder="ID" aria-label="identifiant" aria-describedby="basic-addon1"  disabled id="idtypez" value="{{ items.idTypeZoneDepot }}">
                     </div>
                     <br>
                     <div class="input-default-wrapper w-75 mx-auto">
-                        <label for="nametypea">nom : &nbsp;</label>
-                        <input type="text" class="form-control w-50 mt-n2" placeholder="XX-XX" aria-label="nom" id="nametypea" value="{{ items.nom|safe }}">
+                        <label for="nametypez">nom : &nbsp;</label>
+                        <input type="text" class="form-control w-50 mt-n2" placeholder="XX-XX" aria-label="nom" id="nametypez" value="{{ items.nom|safe }}">
                     </div>
                     <br>
                     <div class="input-group-append w-75 mx-auto">
@@ -118,9 +118,9 @@
     "{% endfor %}"
 
     if (upperid == 0)
-        $("#idtypea").val(1);
+        $("#idtypez").val(1);
     else
-        $("#idtypea").val(upperid + 1);
+        $("#idtypez").val(upperid + 1);
     '{% endif %}'
 
     $('#savenewzone').click(function () {
@@ -128,8 +128,8 @@
             type:"POST",
             url:"/type_zone/create_typezone/",
             data: {
-                'id': $('#idtypea').val(),
-                'name': $('#nametypea').val(),
+                'id': $('#idtypez').val(),
+                'name': $('#nametypez').val(),
                 csrfmiddlewaretoken: '{{ csrf_token }}'
             },
             success: function(msg, data, settings) {

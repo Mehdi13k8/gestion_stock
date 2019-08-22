@@ -35,7 +35,7 @@
             </div>
             <br>
             <br>
-            <form action="/create_trans/" method="POST" id="post-form">
+            <form action="#" method="POST" id="post-form">
                 <br>
                 <div class="">
                     identifiant:<br><input class="text-center" type="text" id="umid" name="id_typef" disabled>
@@ -64,11 +64,11 @@
               $("#nom").val("{{ items.nom|safe }}");
             }
             "{% endfor %}"
-        $('#addtransp').click(function() {
+        $('#savetypefour').click(function() {
             console.log($('#nom').val());
             $.ajax({
                 type:"POST",    //type de requête utilisé par ajax
-                url:"/modif_typefour_save/", //lien de la view qui gère la requête post
+                url:"/modif_typefour/save/", //lien de la view qui gère la requête post
                 data: {
                     'name': $('#nom').val(), // nom récuperer dans le input #nom
                     'id': $('#umid').val(), // id  acquis grace a une incrementation en js
@@ -76,7 +76,7 @@
                 },
                 success: function(msg, data, settings){
                     console.log("gg " + msg);
-                    window.location.href = "{% url 'create_typefour' %}?id=" + $('#umid').val();
+                    location.reload();
                 },
                 failure: function() {
                     console.log("fail");

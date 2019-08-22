@@ -114,6 +114,7 @@
           csrfmiddlewaretoken: '{{ csrf_token }}'
         },
         success: function(msg, data, settings){
+          location.reload();
           //alert("gg " + msg);
         },
         failure: function() {
