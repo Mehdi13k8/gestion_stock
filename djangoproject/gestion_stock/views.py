@@ -910,7 +910,7 @@ class lettrevoitureentreeadd(ListView):
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
 class lettrevoitureentreemodify(ListView):
-    template_name = "lettrevoitureentreemodify.html"
+    template_name = "lettrevoitureEntreemodify.html"
 
     def deletebl(request):
         if request.method == 'POST':
