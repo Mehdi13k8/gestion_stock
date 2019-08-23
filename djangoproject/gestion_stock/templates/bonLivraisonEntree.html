@@ -110,7 +110,6 @@
                 type:"POST",    //type de requête utilisé par ajax
                 url:"/ble/delete/", //lien de la view qui gère la requête post pour supprimer une entree
                 data: {
-                    'name': $('#nom').val(), // nom du transporteur récuperer dans le input #nom
                     'id': idClicked,
                     csrfmiddlewaretoken: '{{ csrf_token }}'
                 },

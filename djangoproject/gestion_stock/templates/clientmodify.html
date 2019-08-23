@@ -298,8 +298,23 @@
 
 <script>
     $(document).ready(function() {
-        $("#dtBasicExample2").on( "click", ".resetb", function() {
-            //alert("clicked");
+        $("#dtBasicExample2").on( "click", ".resetb", function(e) {
+            var idClicked = e.target.id;
+            $.ajax({
+                type:"POST",    //type de requête utilisé par ajax
+                url:"/ble/delete/", //lien de la view qui gère la requête post pour supprimer une entree
+                data: {
+                    'id': idClicked,
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
+                success: function(msg, data, settings){
+                    //alert("gg " + msg);
+                    window.location.reload();
+                },
+                failure: function() {
+                    alert("fail");
+                }
+            });
         });
 
         $(".fa-chevron-circle-right").click(function() {
