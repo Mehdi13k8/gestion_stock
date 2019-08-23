@@ -69,7 +69,7 @@
                             <td> <a href='{% url "unitemanutentionentreemodify" %}?id={{ items.fk_UniteManutentionEntree.idUniteManutentionEntree }}'><button  type="button" id='{{ items.idColi }}' class="dyna rounded-pill btn- btn-outline-info"> <i class="fa fa-arrow-right"></i> </button></a></td>
                             <td> {{ items.idColis }} </td>
                             <td> {{ items.fk_Article.designationFournisseur|safe }} </td>
-                            <td> {{ items.fk_UniteManutentionEntree.fk_BonLivraisonEntree.fk_Client.nom }} </td>
+                            <td> {{ items.fk_Article.codeClient }} </td>
                             <td> {{ items.numeroLot|safe }} </td>
                             <td> {{ items.datePeremption }} </td>
                             <td> {{ items.quantiteProduit }} </td>
