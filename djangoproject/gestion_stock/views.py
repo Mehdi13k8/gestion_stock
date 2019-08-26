@@ -1157,15 +1157,16 @@ class bonLivraisonentreemodify(ListView):
                     print ("print "+ items.nom + "  et0  "+ showlist[9])
                     for initems in zne:
                         #print ("print !!!! "+ initems.nom + "  !!!!et  " + str(items.fk_TypeZoneDepot))
-                        if initems.nom == items.fk_TypeZoneDepot.nom:
-                            bonle.fk_TypeZoneDepot = initems
-
+                        '''if initems.nom == items.fk_TypeZoneDepot.nom:
+                            bonle.fk_TypeZoneDepot = initems'''
             inzone = ZoneDepot_pour_TypeZoneDepot.objects.all()
             for zone in inzone:
                 if request.POST.get('zoneatt') == zone.nom:
                     bonle.fk_ZoneDepot_pour_TypeZoneDepot = zone
                 if request.POST.get('zoneatt') == "":
                     bonle.fk_ZoneDepot_pour_TypeZoneDepot = None
+            if bonle.fk_TypeZoneDepot == None:
+                bonle.fk_TypeZoneDepot = bonle.fk_ZoneDepot_pour_TypeZoneDepot.fk_TypeZoneDepot
             bonle.save()
             return HttpResponse("Created !")
         return HttpResponse("No Authorized Access !")

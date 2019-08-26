@@ -235,12 +235,14 @@
                                     //to change
                                     var name = "{{ items.nom|safe }}";
                                     var oldname;
-                                    "{% for ble in entree %}"
-                                    "{% if ble.fk_Client.fk_TypeDestinataire.nom|safe == items.fk_TypeDestinataire.nom|safe %}"
                                     if (i == 0)
                                         $("#litiges").append(new Option("{{ items.nom|safe }}", "{{ items.nom|safe }}"));
                                     else if (name != oldname)
                                         $("#litiges").append(new Option("{{ items.nom|safe }}", "{{ items.nom|safe }}"));
+                                    "{% for ble in entree %}"
+                                    "{% if ble.idBonLivraisonEntree == id %}"
+                                    $("#litiges").val('{{ ble.fk_Destinataire.nom|safe }}');
+                                    console.log("there1");
                                     oldname = name;
                                     i = 1;
                                     "{% endif %}"
@@ -259,11 +261,13 @@
                             <script type="text/javascript">
                                 $(document).ready(function() {
                                     var i = 0;
-                                    "{% for items in des %}"
+                                    "{% for items in zoned %}"
                                     //to change
                                     var name = "{{ items.nom|safe }}";
                                     var oldname;
-                                    /*if (i == 0)
+                                    if (!'{{ items.fk_TypeZoneDepot.nom }}') {
+                                        $("#zatt").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                                    }                                    /*if (i == 0)
                                      $("#zatt").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
                                      else if (name != oldname)
                                      $("#zatt").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
@@ -713,10 +717,9 @@
             '{% for itemscli in cli %}'
             if ('{{ itemscli.nom }}' == $('#client').val()) {
                 $('#zone').val('{{ itemscli.fk_TypeZone.nom|safe }}');
-                $('#zatt').empty();
                 '{% for itemsz in zoned %}'
                 '{% if itemsz.fk_TypeZoneDepot.nom == itemscli.fk_TypeZone.nom %}'
-                console.log("there{{ itemscli.fk_TypeZone.nom|safe }}");
+                  console.log("there{{ itemscli.fk_TypeZone.nom|safe }}");
                 $("#zatt").append(new Option("{{ itemsz.nom|safe }}", "{{ itemsz.nom|safe }}"));
                 '{% endif %}'
                 '{% endfor %}'
@@ -1144,11 +1147,18 @@
 
         $("#client").combobox({
             select: function (event, ui) {
+                console.log(this.value);
+                $('#zatt')[0].options.length = 0;
                 '{% for items in cli %}'
-                if ('{{ items.nom|safe }}' == this.value) {
-                    $('#zone').val('{{ items.fk_TypeZone.nom|safe }}');
+                if ('{{ items.nom }}' == this.value) {
+                    console.log('{{ items.fk_TypeZone.nom }}');
+                    $('#zone').val('{{ items.fk_TypeZone.nom }}');
                     '{% for items in zoned %}'
-                    $("#zatt").append(new Option("{{ items.nom|safe }}", "{{ items.nom|safe }}"));
+                    if ('{{ items.fk_TypeZoneDepot.nom }}' == $('#zone').val().trim() || !'{{ items.fk_TypeZoneDepot.nom }}') {
+                        //$('#zone').val('{{ items.fk_TypeZone.nom }}');
+                        console.log("gg");
+                        $("#zatt").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
+                    }
                     '{% endfor %}'
                     //$("#").append(new Option("{{ items.nom }}", "{{ items.nom }}"));
                 }

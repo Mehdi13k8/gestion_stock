@@ -86,10 +86,11 @@
 
       <div class="" style="position:relative;" id="navb">
         <div id="collapsible1" class="vertical-menu navbar navbar-dark indigo mb-2 rounded-lg collapse navbar-collapse" style="z-index: 1">
+
           <a class="nav-link text-center" href="{% url 'lve' %}">
             <div class="col">
               <div class="mx-auto">
-                <img src="{{ STATIC_URL }} /static/img/p-red-truck.png" class="img-fluid rounded text-left" alt="promotion-produit" height="75" width="75">
+                <img id="lveimg" src="{{ STATIC_URL }} /static/img/p-red-truck.png" class="img-fluid rounded text-left" alt="promotion-produit" height="75" width="75">
               </div>
             </div>
             <div class="col">
@@ -97,71 +98,81 @@
               <hr>
             </div>
           </a>
+
           <a class="nav-link text-center col" href="{% url 'bonLivraisonEntree' %}">
-            <img src="{{ STATIC_URL }} /static/img/normal_ian-symbol-vehicle-suv.png" class="img-fluid rounded text-left" alt="bonlivraison4x4" height="75" width="75">
+            <img id="bleimg" src="{{ STATIC_URL }} /static/img/normal_ian-symbol-vehicle-suv.png" class="img-fluid rounded text-left" alt="bonlivraison4x4" height="75" width="75">
             <div class="col">
               <p>Bon de livraison Entree </p>
               <hr>
             </div>
           </a>
+
           <a class="nav-link text-center col" href="{% url 'unitemanutentionentree' %}">
-            <img src="{{ STATIC_URL }} /static/img/lift.jpg" class="img-fluid rounded text-left" alt="unitemanutentionentree" height="75" width="75">
+            <img id="umeimg" src="{{ STATIC_URL }} /static/img/lift.jpg" class="img-fluid rounded text-left" alt="unitemanutentionentree" height="75" width="75">
             <div class="col">
               <p>U.M Entrée</p>
               <hr>
             </div>
           </a>
+
           <a class="nav-link text-center col" href="{% url 'colis' %}">
-            <img src="{{ STATIC_URL }} /static/img/promotion-produit.png" class="img-fluid rounded text-left" alt="promotion-produit" height="75" width="75">
+            <img id="colisimg" src="{{ STATIC_URL }} /static/img/promotion-produit.png" class="img-fluid rounded text-left" alt="promotion-produit" height="75" width="75">
             <div class="col">
               <p>Colis</p>
               <hr>
             </div>
           </a>
+
           <a class="nav-link text-center col" href="{% url 'bonCommandeSortie' %}">
-            <img src="{{ STATIC_URL }} /static/img/ordre_du_jour.jpg" class="img-fluid rounded text-left my_img" alt="boncommandesortie" height="75" width="75">
+            <img id="bcsimg" src="{{ STATIC_URL }} /static/img/ordre_du_jour.jpg" class="img-fluid rounded text-left my_img" alt="boncommandesortie" height="75" width="75">
             <div class="col">
               <p>Bon de commande Sortie</p>
               <hr>
             </div>
           </a>
+
           <a class="nav-link text-center col" href="{% url 'unitemanutentionsortie' %}">
-            <img src="{{ STATIC_URL }} /static/img/p-red-truck.png" class="img-fluid rounded text-left" alt="promotion-produit" height="75" width="75">
+            <img id="umsimg" src="{{ STATIC_URL }} /static/img/p-red-truck.png" class="img-fluid rounded text-left" alt="promotion-produit" height="75" width="75">
             <div class="col">
               <p>U.M Sortie </p>
               <hr>
             </div>
           </a>
+
           <a class="nav-link text-center col" href="{% url 'bonLivraisonSortie' %}">
-            <img src="{{ STATIC_URL }} /static/img/normal_ian-symbol-vehicle-suv.png" class="img-fluid rounded text-left" alt="bonlivraisonsortie" height="75" width="75">
+            <img id="blsimg" src="{{ STATIC_URL }} /static/img/normal_ian-symbol-vehicle-suv.png" class="img-fluid rounded text-left" alt="bonlivraisonsortie" height="75" width="75">
             <div class="col">
               <p>Bon de livraison Sortie </p>
               <hr>
             </div>
           </a>
+
           <a class="text-center rounded col" href="{% url 'index' %}">
-            <img src="{{ STATIC_URL }} /static/img/mailbox.jpg" class="img-fluid rounded text-left my_img" alt="accueil" height="75" width="75">
+            <img id="accimg" src="{{ STATIC_URL }} /static/img/mailbox.jpg" class="img-fluid rounded text-left my_img" alt="accueil" height="75" width="75">
             <div class="col">
               <p>Accueil</p>
               <hr>
             </div>
           </a>
+
           <a class="nav-link text-center col" href="{% url 'bonCommandeEntree' %}">
-            <img src="{{ STATIC_URL }} /static/img/Liste des points à traiter.png" class="img-fluid rounded text-left" alt="boncommandeentree" height="75" width="75">
+            <img id="bceimg" src="{{ STATIC_URL }} /static/img/Liste des points à traiter.png" class="img-fluid rounded text-left" alt="boncommandeentree" height="75" width="75">
             <div class="col">
               <p>Bon de commande Entree</p>
               <hr>
             </div>
           </a>
+
           <a class="text-center col" href="{% url 'article' %}">
-            <img src="{{ STATIC_URL }} /static/img/AWS-icon.png" class="img-fluid rounded text-left my_img" alt="boncommandesortie" height="75" width="75">
+            <img id="artimg" src="{{ STATIC_URL }} /static/img/AWS-icon.png" class="img-fluid rounded text-left my_img" alt="article" height="75" width="75">
             <div class="col">
               <p>Article</p>
               <hr>
             </div>
           </a>
+
           <a class="nav-link text-center col" href="{% url 'client' %}">
-            <img src="{{ STATIC_URL }} /static/img/client-est-roi1.jpg" class="img-fluid rounded text-left" alt="clients" height="75" width="75">
+            <img id="cliimg" src="{{ STATIC_URL }} /static/img/client-est-roi1.jpg" class="img-fluid rounded text-left" alt="clients" height="75" width="75">
             <div class="col">
               <p>Clients</p>
               <hr>
@@ -169,21 +180,23 @@
           </a>
 
           <a class="nav-link text-center col" href="{% url 'destinataire' %}">
-            <img src="{{ STATIC_URL }} /static/img/mailbox.jpg" class="img-fluid rounded" alt="Destinatairest" height="75" width="75">
+            <img id="destimg" src="{{ STATIC_URL }} /static/img/mailbox.jpg" class="img-fluid rounded" alt="Destinatairest" height="75" width="75">
             <div class="col">
               <p>Destinataires</p>
               <hr>
             </div>
           </a>
+
           <a class="nav-link text-center col" href="{% url 'transporteur' %}">
-            <img src="{{ STATIC_URL }} /static/img/Isuzu-removal-truck.jpg" class="img-fluid rounded" alt="Transporteurs"  height="75" width="75">
+            <img id="tranimg" src="{{ STATIC_URL }} /static/img/Isuzu-removal-truck.jpg" class="img-fluid rounded" alt="Transporteurs"  height="75" width="75">
             <div class="col">
               <p>Transporteurs</p>
               <hr>
             </div>
           </a>
+
           <a class="nav-link text-center col"  href="{% url 'fournisseur' %}">
-            <img src="{{ STATIC_URL }} /static/img/supplier-management.jpg" class="img-fluid rounded" alt="Fournisseurs"  height="75" width="75">
+            <img id="fourimg" src="{{ STATIC_URL }} /static/img/supplier-management.jpg" class="img-fluid rounded" alt="Fournisseurs"  height="75" width="75">
             <div class="col">
               <p>Fournisseurs</p>
               <hr>
@@ -533,46 +546,46 @@
     '{% for items in settings %}'
     if ('{{ items.id }}' == 1) {
       '{% if items.cover1 %}'
-      $('#accueil img').attr('src', '{{ items.cover1.url }}');
+      $('#accimg').attr('src', '{{ items.cover1.url }}');
       '{% endif%}'
       '{% if items.cover2 %}'
-      $('#umentree img').attr('src', '{{ items.cover2.url }}');
+      $('#umeimg').attr('src', '{{ items.cover2.url }}');
       '{% endif%}'
       '{% if items.cover3 %}'
-      $('#article img').attr('src', '{{ items.cover3.url }}');
+      $('#artimg').attr('src', '{{ items.cover3.url }}');
       '{% endif%}'
       '{% if items.cover4 %}'
-      $('#client img').attr('src', '{{ items.cover4.url }}');
+      $('#cliimg').attr('src', '{{ items.cover4.url }}');
       '{% endif%}'
       '{% if items.cover5 %}'
-      $('#boncommandesortie img').attr('src', '{{ items.cover5.url }}');
+      $('#bcsimg').attr('src', '{{ items.cover5.url }}');
       '{% endif%}'
       '{% if items.cover6 %}'
-      $('#destinataires img').attr('src', '{{ items.cover6.url }}');
+      $('#destimg').attr('src', '{{ items.cover6.url }}');
       '{% endif%}'
       '{% if items.cover7 %}'
-      $('#boncommandeentree img').attr('src', '{{ items.cover7.url }}');
+      $('#bceimg').attr('src', '{{ items.cover7.url }}');
       '{% endif%}'
       '{% if items.cover8 %}'
-      $('#transporteurs img').attr('src', '{{ items.cover8.url }}');
+      $('#tranimg img').attr('src', '{{ items.cover8.url }}');
       '{% endif%}'
       '{% if items.cover9 %}'
-      $('#bonlivraisonsortie img').attr('src', '{{ items.cover9.url }}');
+      $('#blsimg').attr('src', '{{ items.cover9.url }}');
       '{% endif%}'
       '{% if items.cover10 %}'
-      $('#fournisseurs img').attr('src', '{{ items.cover10.url }}');
+      $('#fourimg').attr('src', '{{ items.cover10.url }}');
       '{% endif%}'
       '{% if items.cover11 %}'
-      $('#bonlivraisonentree img').attr('src', '{{ items.cover11.url }}');
+      $('#bleimg').attr('src', '{{ items.cover11.url }}');
       '{% endif%}'
       '{% if items.cover12 %}'
-      $('#colis img').attr('src', '{{ items.cover12.url }}');
+      $('#colisimg').attr('src', '{{ items.cover12.url }}');
       '{% endif%}'
       '{% if items.cover13 %}'
-      $('#lve img').attr('src', '{{ items.cover13.url }}');
+      $('#lveimg').attr('src', '{{ items.cover13.url }}');
       '{% endif%}'
       '{% if items.cover14 %}'
-      $('#umsg img').attr('src', '{{ items.cover14.url }}');
+      $('#umsgimg').attr('src', '{{ items.cover14.url }}');
       '{% endif%}'
       $('img').height('75');
     }
