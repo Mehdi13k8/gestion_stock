@@ -1,7 +1,7 @@
 Admin
 yQU7zR9BuQ
 
-vs code keybinding
+vs code keybinding pour les ctrl tab
  {
         "key": "ctrl+tab",
         "command": "workbench.action.nextEditor"

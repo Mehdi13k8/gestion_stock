@@ -144,7 +144,6 @@
                 console.log("imgcreat");
                 var image = $('<img />', {
                     id:'preview_gallery_image_',
-                    class: 'admin-hotel-gallery-image' ,
                     src: '{{ items.cover1.url }}'
                 });
                 var imageDiv = $('<div >',{
@@ -156,19 +155,14 @@
                 });
                 imageDiv.appendTo(finalElement);
                 finalElement.appendTo($('body').find('div').eq(0));
-                //$('dv').append('<img id="img1" src="{{ items.cover1.url }}" class="img-fluid rounded text-left" alt="promotion-produit" height="75" width="75">');
-
                 '{% else %}'
-
                 console.log("imgcreat");
                 var image = $('<img />', {
                     id:'preview_gallery_image_',
-                    class: 'admin-hotel-gallery-image' ,
-                    src: '{{ STATIC_URL }} /static/img/normal_ian-symbol-vehicle-suv.png'
+                    src: '{{ STATIC_URL }} /static/img/mailbox.jpg'
                 });
                 var imageDiv = $('<div >',{
                     id: 'preview_gallery_image_wrapper_'
-                    //background: url("{{ STATIC_URL }} /static/img/normal_ian-symbol-vehicle-suv.png"),
                 });
                 image.appendTo(imageDiv);
                 var finalElement = $('<div/>',{
@@ -176,19 +170,17 @@
                 });
                 imageDiv.appendTo(finalElement);
                 finalElement.appendTo($('body').find('div').eq(0));
-                //$('dv').append('<img id="img1" src="{{ STATIC_URL }} /static/img/normal_ian-symbol-vehicle-suv.png" class="img-fluid rounded text-left" alt="promotion-produit" height="75" width="75">');
                 '{% endif %}'
-                $('#preview_gallery_image_wrapper_').css({'margin': '0 auto',
-                    'top': '0 auto',});
+                $('#preview_gallery_image_').height('200px');
+                $('#preview_gallery_image_').css('float','right');
             }
             '{% endfor %}'
         });
-        $('table tbody').find('tr').eq(0).mouseenter(function () {
+        $('table tbody').find('tr').eq(0).mouseleave(function () {
             $('#gallery-wrapper').remove();
         });
 
-        $('label').eq(2).mouseenter(function () {
-            alert("there");
+        $('table tbody').find('tr').eq(1).mouseenter(function () {
             $('#preview_gallery_image_wrapper_').remove();
             '{% for items in settings %}'
             if ('{{ items.id }}' == 1) {
@@ -196,7 +188,6 @@
                 console.log("imgcreat");
                 var image = $('<img />', {
                     id:'preview_gallery_image_',
-                    class: 'admin-hotel-gallery-image' ,
                     src: '{{ items.cover2.url }}'
                 });
                 var imageDiv = $('<div >',{
@@ -212,7 +203,6 @@
                 console.log("imgcreat");
                 var image = $('<img />', {
                     id:'preview_gallery_image_',
-                    class: 'admin-hotel-gallery-image' ,
                     src: '{{ STATIC_URL }} /static/img/lift.jpg'
                 });
                 var imageDiv = $('<div >',{
@@ -225,14 +215,543 @@
                 imageDiv.appendTo(finalElement);
                 finalElement.appendTo($('body').find('div').eq(0));
                 '{% endif %}'
-                $('#preview_gallery_image_wrapper_').css({'margin': '0 auto',
-                    'top': '0 auto',});
+                $('#preview_gallery_image_').height('200px');
+                $('#preview_gallery_image_').css('float','right');
             }
             '{% endfor %}'
         });
-        $('label').eq(1).mouseleave(function () {
+        $('table tbody').find('tr').eq(1).mouseleave(function () {
             $('#gallery-wrapper').remove();
         });
+
+        $('table tbody').find('tr').eq(2).mouseenter(function () {
+            $('#preview_gallery_image_wrapper_').remove();
+            '{% for items in settings %}'
+            if ('{{ items.id }}' == 1) {
+                '{% if items.cover3 %}'
+                console.log("imgcreat");
+                var image = $('<img />', {
+                    id:'preview_gallery_image_',
+                    src: '{{ items.cover3.url }}'
+                });
+                var imageDiv = $('<div >',{
+                    id: 'preview_gallery_image_wrapper_',
+                });
+                image.appendTo(imageDiv);
+                var finalElement = $('<div/>',{
+                    id: 'gallery-wrapper'
+                });
+                imageDiv.appendTo(finalElement);
+                finalElement.appendTo($('body').find('div').eq(0));
+                '{% else %}'
+                console.log("imgcreat");
+                var image = $('<img />', {
+                    id:'preview_gallery_image_',
+                    src: '{{ STATIC_URL }} /static/img/AWS-icon.png'
+                });
+                var imageDiv = $('<div >',{
+                    id: 'preview_gallery_image_wrapper_'
+                });
+                image.appendTo(imageDiv);
+                var finalElement = $('<div/>',{
+                    id: 'gallery-wrapper'
+                });
+                imageDiv.appendTo(finalElement);
+                finalElement.appendTo($('body').find('div').eq(0));
+                '{% endif %}'
+                $('#preview_gallery_image_').height('200px');
+                $('#preview_gallery_image_').css('float','right');
+            }
+            '{% endfor %}'
+        });
+        $('table tbody').find('tr').eq(2).mouseleave(function () {
+            $('#gallery-wrapper').remove();
+        });
+
+        $('table tbody').find('tr').eq(3).mouseenter(function () {
+            $('#preview_gallery_image_wrapper_').remove();
+            '{% for items in settings %}'
+            if ('{{ items.id }}' == 1) {
+                '{% if items.cover4 %}'
+                console.log("imgcreat");
+                var image = $('<img />', {
+                    id:'preview_gallery_image_',
+                    src: '{{ items.cover4.url }}'
+                });
+                var imageDiv = $('<div >',{
+                    id: 'preview_gallery_image_wrapper_',
+                });
+                image.appendTo(imageDiv);
+                var finalElement = $('<div/>',{
+                    id: 'gallery-wrapper'
+                });
+                imageDiv.appendTo(finalElement);
+                finalElement.appendTo($('body').find('div').eq(0));
+                '{% else %}'
+                console.log("imgcreat");
+                var image = $('<img />', {
+                    id:'preview_gallery_image_',
+                    src: '{{ STATIC_URL }} /static/img/client-est-roi1.jpg'
+                });
+                var imageDiv = $('<div >',{
+                    id: 'preview_gallery_image_wrapper_'
+                });
+                image.appendTo(imageDiv);
+                var finalElement = $('<div/>',{
+                    id: 'gallery-wrapper'
+                });
+                imageDiv.appendTo(finalElement);
+                finalElement.appendTo($('body').find('div').eq(0));
+                '{% endif %}'
+                $('#preview_gallery_image_').height('200px');
+                $('#preview_gallery_image_').css('float','right');
+            }
+            '{% endfor %}'
+        });
+        $('table tbody').find('tr').eq(3).mouseleave(function () {
+            $('#gallery-wrapper').remove();
+        });
+
+        $('table tbody').find('tr').eq(4).mouseenter(function () {
+            $('#preview_gallery_image_wrapper_').remove();
+            '{% for items in settings %}'
+            if ('{{ items.id }}' == 1) {
+                '{% if items.cover5 %}'
+                console.log("imgcreat");
+                var image = $('<img />', {
+                    id:'preview_gallery_image_',
+                    src: '{{ items.cover5.url }}'
+                });
+                var imageDiv = $('<div >',{
+                    id: 'preview_gallery_image_wrapper_',
+                });
+                image.appendTo(imageDiv);
+                var finalElement = $('<div/>',{
+                    id: 'gallery-wrapper'
+                });
+                imageDiv.appendTo(finalElement);
+                finalElement.appendTo($('body').find('div').eq(0));
+                '{% else %}'
+                console.log("imgcreat");
+                var image = $('<img />', {
+                    id:'preview_gallery_image_',
+                    src: '{{ STATIC_URL }} /static/img/ordre_du_jour.jpg'
+                });
+                var imageDiv = $('<div >',{
+                    id: 'preview_gallery_image_wrapper_'
+                });
+                image.appendTo(imageDiv);
+                var finalElement = $('<div/>',{
+                    id: 'gallery-wrapper'
+                });
+                imageDiv.appendTo(finalElement);
+                finalElement.appendTo($('body').find('div').eq(0));
+                '{% endif %}'
+                $('#preview_gallery_image_').height('200px');
+                $('#preview_gallery_image_').css('float','right');
+            }
+            '{% endfor %}'
+        });
+        $('table tbody').find('tr').eq(4).mouseleave(function () {
+            $('#gallery-wrapper').remove();
+        });
+
+        $('table tbody').find('tr').eq(5).mouseenter(function () {
+            $('#preview_gallery_image_wrapper_').remove();
+            '{% for items in settings %}'
+            if ('{{ items.id }}' == 1) {
+                '{% if items.cover6 %}'
+                console.log("imgcreat");
+                var image = $('<img />', {
+                    id:'preview_gallery_image_',
+                    src: '{{ items.cover6.url }}'
+                });
+                var imageDiv = $('<div >',{
+                    id: 'preview_gallery_image_wrapper_',
+                });
+                image.appendTo(imageDiv);
+                var finalElement = $('<div/>',{
+                    id: 'gallery-wrapper'
+                });
+                imageDiv.appendTo(finalElement);
+                finalElement.appendTo($('body').find('div').eq(0));
+                '{% else %}'
+                console.log("imgcreat");
+                var image = $('<img />', {
+                    id:'preview_gallery_image_',
+                    src: '{{ STATIC_URL }} /static/img/mailbox.jpg'
+                });
+                var imageDiv = $('<div >',{
+                    id: 'preview_gallery_image_wrapper_'
+                });
+                image.appendTo(imageDiv);
+                var finalElement = $('<div/>',{
+                    id: 'gallery-wrapper'
+                });
+                imageDiv.appendTo(finalElement);
+                finalElement.appendTo($('body').find('div').eq(0));
+                '{% endif %}'
+                $('#preview_gallery_image_').height('200px');
+                $('#preview_gallery_image_').css('float','right');
+            }
+            '{% endfor %}'
+        });
+        $('table tbody').find('tr').eq(5).mouseleave(function () {
+            $('#gallery-wrapper').remove();
+        });
+
+        $('table tbody').find('tr').eq(6).mouseenter(function () {
+            $('#preview_gallery_image_wrapper_').remove();
+            '{% for items in settings %}'
+            if ('{{ items.id }}' == 1) {
+                '{% if items.cover7 %}'
+                console.log("imgcreat");
+                var image = $('<img />', {
+                    id:'preview_gallery_image_',
+                    src: '{{ items.cover7.url }}'
+                });
+                var imageDiv = $('<div >',{
+                    id: 'preview_gallery_image_wrapper_',
+                });
+                image.appendTo(imageDiv);
+                var finalElement = $('<div/>',{
+                    id: 'gallery-wrapper'
+                });
+                imageDiv.appendTo(finalElement);
+                finalElement.appendTo($('body').find('div').eq(0));
+                '{% else %}'
+                console.log("imgcreat");
+                var image = $('<img />', {
+                    id:'preview_gallery_image_',
+                    src: '{{ STATIC_URL }} /static/img/Liste des points à traiter.png'
+                });
+                var imageDiv = $('<div >',{
+                    id: 'preview_gallery_image_wrapper_'
+                });
+                image.appendTo(imageDiv);
+                var finalElement = $('<div/>',{
+                    id: 'gallery-wrapper'
+                });
+                imageDiv.appendTo(finalElement);
+                finalElement.appendTo($('body').find('div').eq(0));
+                '{% endif %}'
+                $('#preview_gallery_image_').height('200px');
+                $('#preview_gallery_image_').css('float','right');
+            }
+            '{% endfor %}'
+        });
+        $('table tbody').find('tr').eq(6).mouseleave(function () {
+            $('#gallery-wrapper').remove();
+        });
+
+        $('table tbody').find('tr').eq(7).mouseenter(function () {
+            $('#preview_gallery_image_wrapper_').remove();
+            '{% for items in settings %}'
+            if ('{{ items.id }}' == 1) {
+                '{% if items.cover8 %}'
+                console.log("imgcreat");
+                var image = $('<img />', {
+                    id:'preview_gallery_image_',
+                    src: '{{ items.cover8.url }}'
+                });
+                var imageDiv = $('<div >',{
+                    id: 'preview_gallery_image_wrapper_',
+                });
+                image.appendTo(imageDiv);
+                var finalElement = $('<div/>',{
+                    id: 'gallery-wrapper'
+                });
+                imageDiv.appendTo(finalElement);
+                finalElement.appendTo($('body').find('div').eq(0));
+                '{% else %}'
+                console.log("imgcreat");
+                var image = $('<img />', {
+                    id:'preview_gallery_image_',
+                    src: '{{ STATIC_URL }} /static/img/Isuzu-removal-truck.jpg'
+                });
+                var imageDiv = $('<div >',{
+                    id: 'preview_gallery_image_wrapper_'
+                });
+                image.appendTo(imageDiv);
+                var finalElement = $('<div/>',{
+                    id: 'gallery-wrapper'
+                });
+                imageDiv.appendTo(finalElement);
+                finalElement.appendTo($('body').find('div').eq(0));
+                '{% endif %}'
+                $('#preview_gallery_image_').height('200px');
+                $('#preview_gallery_image_').css('float','right');
+            }
+            '{% endfor %}'
+        });
+        $('table tbody').find('tr').eq(7).mouseleave(function () {
+            $('#gallery-wrapper').remove();
+        });
+
+        $('table tbody').find('tr').eq(8).mouseenter(function () {
+            $('#preview_gallery_image_wrapper_').remove();
+            '{% for items in settings %}'
+            if ('{{ items.id }}' == 1) {
+                '{% if items.cover9 %}'
+                console.log("imgcreat");
+                var image = $('<img />', {
+                    id:'preview_gallery_image_',
+                    src: '{{ items.cover9.url }}'
+                });
+                var imageDiv = $('<div >',{
+                    id: 'preview_gallery_image_wrapper_',
+                });
+                image.appendTo(imageDiv);
+                var finalElement = $('<div/>',{
+                    id: 'gallery-wrapper'
+                });
+                imageDiv.appendTo(finalElement);
+                finalElement.appendTo($('body').find('div').eq(0));
+                '{% else %}'
+                console.log("imgcreat");
+                var image = $('<img />', {
+                    id:'preview_gallery_image_',
+                    src: '{{ STATIC_URL }} /static/img/normal_ian-symbol-vehicle-suv.png'
+                });
+                var imageDiv = $('<div >',{
+                    id: 'preview_gallery_image_wrapper_'
+                });
+                image.appendTo(imageDiv);
+                var finalElement = $('<div/>',{
+                    id: 'gallery-wrapper'
+                });
+                imageDiv.appendTo(finalElement);
+                finalElement.appendTo($('body').find('div').eq(0));
+                '{% endif %}'
+                $('#preview_gallery_image_').height('200px');
+                $('#preview_gallery_image_').css('float','right');
+            }
+            '{% endfor %}'
+        });
+        $('table tbody').find('tr').eq(8).mouseleave(function () {
+            $('#gallery-wrapper').remove();
+        });
+
+        $('table tbody').find('tr').eq(9).mouseenter(function () {
+            $('#preview_gallery_image_wrapper_').remove();
+            '{% for items in settings %}'
+            if ('{{ items.id }}' == 1) {
+                '{% if items.cover10 %}'
+                console.log("imgcreat");
+                var image = $('<img />', {
+                    id:'preview_gallery_image_',
+                    src: '{{ items.cover10.url }}',
+                });
+                var imageDiv = $('<div >',{
+                    id: 'preview_gallery_image_wrapper_',
+                });
+                image.appendTo(imageDiv);
+                var finalElement = $('<div/>',{
+                    id: 'gallery-wrapper',
+                });
+                imageDiv.appendTo(finalElement);
+                finalElement.appendTo($('body').find('div').eq(0));
+                '{% else %}'
+                console.log("imgcreat");
+                var image = $('<img />', {
+                    id:'preview_gallery_image_',
+                    src: '{{ STATIC_URL }} /static/img/supplier-management.jpg'
+                });
+                var imageDiv = $('<div >',{
+                    id: 'preview_gallery_image_wrapper_'
+                });
+                image.appendTo(imageDiv);
+                var finalElement = $('<div/>',{
+                    id: 'gallery-wrapper',
+                });
+                imageDiv.appendTo(finalElement);
+                finalElement.appendTo($('body').find('div').eq(0));
+                '{% endif %}'
+                $('#preview_gallery_image_').height('200px');
+                $('#preview_gallery_image_').css('float','right');
+            }
+            '{% endfor %}'
+        });
+        $('table tbody').find('tr').eq(9).mouseleave(function () {
+            $('#gallery-wrapper').remove();
+        });
+
+        $('table tbody').find('tr').eq(10).mouseenter(function () {
+            $('#preview_gallery_image_wrapper_').remove();
+            '{% for items in settings %}'
+            if ('{{ items.id }}' == 1) {
+                '{% if items.cover11 %}'
+                console.log("imgcreat");
+                var image = $('<img />', {
+                    id:'preview_gallery_image_',
+                    src: '{{ items.cover11.url }}',
+                });
+                var imageDiv = $('<div >',{
+                    id: 'preview_gallery_image_wrapper_',
+                });
+                image.appendTo(imageDiv);
+                var finalElement = $('<div/>',{
+                    id: 'gallery-wrapper',
+                });
+                imageDiv.appendTo(finalElement);
+                finalElement.appendTo($('body').find('div').eq(0));
+                '{% else %}'
+                console.log("imgcreat");
+                var image = $('<img />', {
+                    id:'preview_gallery_image_',
+                    src: '{{ STATIC_URL }} /static/img/normal_ian-symbol-vehicle-suv.png'
+                });
+                var imageDiv = $('<div >',{
+                    id: 'preview_gallery_image_wrapper_'
+                });
+                image.appendTo(imageDiv);
+                var finalElement = $('<div/>',{
+                    id: 'gallery-wrapper',
+                });
+                imageDiv.appendTo(finalElement);
+                finalElement.appendTo($('body').find('div').eq(0));
+                '{% endif %}'
+                $('#preview_gallery_image_').height('200px');
+                $('#preview_gallery_image_').css('float','right');
+            }
+            '{% endfor %}'
+        });
+        $('table tbody').find('tr').eq(10).mouseleave(function () {
+            $('#gallery-wrapper').remove();
+        });
+
+        $('table tbody').find('tr').eq(11).mouseenter(function () {
+            $('#preview_gallery_image_wrapper_').remove();
+            '{% for items in settings %}'
+            if ('{{ items.id }}' == 1) {
+                '{% if items.cover12 %}'
+                console.log("imgcreat");
+                var image = $('<img />', {
+                    id:'preview_gallery_image_',
+                    src: '{{ items.cover12.url }}',
+                });
+                var imageDiv = $('<div >',{
+                    id: 'preview_gallery_image_wrapper_',
+                });
+                image.appendTo(imageDiv);
+                var finalElement = $('<div/>',{
+                    id: 'gallery-wrapper',
+                });
+                imageDiv.appendTo(finalElement);
+                finalElement.appendTo($('body').find('div').eq(0));
+                '{% else %}'
+                console.log("imgcreat");
+                var image = $('<img />', {
+                    id:'preview_gallery_image_',
+                    src: '{{ STATIC_URL }} /static/img/promotion-produit.png'
+                });
+                var imageDiv = $('<div >',{
+                    id: 'preview_gallery_image_wrapper_'
+                });
+                image.appendTo(imageDiv);
+                var finalElement = $('<div/>',{
+                    id: 'gallery-wrapper',
+                });
+                imageDiv.appendTo(finalElement);
+                finalElement.appendTo($('body').find('div').eq(0));
+                '{% endif %}'
+                $('#preview_gallery_image_').height('200px');
+                $('#preview_gallery_image_').css('float','right');
+            }
+            '{% endfor %}'
+        });
+        $('table tbody').find('tr').eq(11).mouseleave(function () {
+            $('#gallery-wrapper').remove();
+        });
+
+        $('table tbody').find('tr').eq(12).mouseenter(function () {
+            $('#preview_gallery_image_wrapper_').remove();
+            '{% for items in settings %}'
+            if ('{{ items.id }}' == 1) {
+                '{% if items.cover13 %}'
+                console.log("imgcreat");
+                var image = $('<img />', {
+                    id:'preview_gallery_image_',
+                    src: '{{ items.cover13.url }}',
+                });
+                var imageDiv = $('<div >',{
+                    id: 'preview_gallery_image_wrapper_',
+                });
+                image.appendTo(imageDiv);
+                var finalElement = $('<div/>',{
+                    id: 'gallery-wrapper',
+                });
+                imageDiv.appendTo(finalElement);
+                finalElement.appendTo($('body').find('div').eq(0));
+                '{% else %}'
+                console.log("imgcreat");
+                var image = $('<img />', {
+                    id:'preview_gallery_image_',
+                    src: '{{ STATIC_URL }} /static/img/p-red-truck.png'
+                });
+                var imageDiv = $('<div >',{
+                    id: 'preview_gallery_image_wrapper_'
+                });
+                image.appendTo(imageDiv);
+                var finalElement = $('<div/>',{
+                    id: 'gallery-wrapper',
+                });
+                imageDiv.appendTo(finalElement);
+                finalElement.appendTo($('body').find('div').eq(0));
+                '{% endif %}'
+                $('#preview_gallery_image_').height('200px');
+                $('#preview_gallery_image_').css('float','right');
+            }
+            '{% endfor %}'
+        });
+        $('table tbody').find('tr').eq(12).mouseleave(function () {
+            $('#gallery-wrapper').remove();
+        });
+
+        $('table tbody').find('tr').eq(13).mouseenter(function () {
+            $('#preview_gallery_image_wrapper_').remove();
+            '{% for items in settings %}'
+            if ('{{ items.id }}' == 1) {
+                '{% if items.cover14 %}'
+                console.log("imgcreat");
+                var image = $('<img />', {
+                    id:'preview_gallery_image_',
+                    src: '{{ items.cover14.url }}',
+                });
+                var imageDiv = $('<div >',{
+                    id: 'preview_gallery_image_wrapper_',
+                });
+                image.appendTo(imageDiv);
+                var finalElement = $('<div/>',{
+                    id: 'gallery-wrapper',
+                });
+                imageDiv.appendTo(finalElement);
+                finalElement.appendTo($('body').find('div').eq(0));
+                '{% else %}'
+                console.log("imgcreat");
+                var image = $('<img />', {
+                    id:'preview_gallery_image_',
+                    src: '{{ STATIC_URL }} /static/img/p-red-truck.png'
+                });
+                var imageDiv = $('<div >',{
+                    id: 'preview_gallery_image_wrapper_'
+                });
+                image.appendTo(imageDiv);
+                var finalElement = $('<div/>',{
+                    id: 'gallery-wrapper',
+                });
+                imageDiv.appendTo(finalElement);
+                finalElement.appendTo($('body').find('div').eq(0));
+                '{% endif %}'
+                $('#preview_gallery_image_').height('200px');
+                $('#preview_gallery_image_').css('float','right');
+            }
+            '{% endfor %}'
+        });
+        $('table tbody').find('tr').eq(13).mouseleave(function () {
+            $('#gallery-wrapper').remove();
+        });
+
     });
 </script>
 {% endblock %}
