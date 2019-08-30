@@ -13,39 +13,42 @@
         <button id="resetimg" type="button" class="btn btn-outline-blue-grey btn-sm"><i class="fa fa-undo"></i></button>
     </form>
 
+    <div class="container">
     <div class="row">
-        <div class="col mx-auto">
-            <button type="button" title="Crée ou géré les utilisateurs" id="createuserbtn" class="btn btn-info"><i class="fa fa-user-plus" style="font-size: 30px"></i></button>
+        <div class="col-md-2">
+            <button type="button" title="Crée ou géré les utilisateurs" id="createuserbtn" class="btn btn-info"><i class="fa fa-user-plus mr-n3" style="font-size: 30px"></i></button>
         </div>
-        <div class="col mx-auto">
+        <div class="col-md-2">
             <button type="button" id="createtypefournisseur" title="Crée les types de fournisseurs." class="btn btn-info"><i class="fa fa-user-tie" style="font-size: 30px"></i></button>
         </div>
-        <div class="col mx-auto">
-            <button type="button" id="createzone" class="btn btn-info" title="crée des zonnes de dépots"><i class="fa fa-warehouse" style="font-size: 30px"></i></button>
+        <div class="col-md-2">
+            <button type="button" id="createzone" class="btn btn-info" title="crée des zonnes de dépots"><i class="fa fa-warehouse mr-n3" style="font-size: 30px;"></i></button>
         </div>
-        <div class="col mx-auto">
+        <div class="col-md-2">
             <button type="button" id="createtypedes" class="btn btn-info" title="Crée les types de destinataires"><i class="fa fa-parachute-box" style="font-size: 30px"></i></button>
         </div>
-        <div class="col mx-auto">
-            <button type="button" id="createtypeart" class="btn btn-info" title="Crée les types d'articles"><i class="fa fa-boxes" style="font-size: 30px"></i></button>
+        <div class="col-md-2">
+            <button type="button" id="createtypeart" class="btn btn-info" title="Crée les types d'articles"><i class="fa fa-boxes mr-n1 ml-n1" style="font-size: 30px"></i></button>
         </div>
     </div>
     <div class="row">
-        <div class="col mx-auto">
-            <button type="button" title="Crée ou géré les types de Zones" id="createzonetype" class="btn btn-info"><i class="fa fa-file-prescription" style="font-size: 40px"></i></button>
+        <div class="col-md-2">
+            <button type="button" title="Crée ou géré les types de Zones" id="createzonetype" class="btn btn-info"><i class="fa fa-file-prescription" style="font-size: 30px"></i></button>
         </div>
-        <div class="col mx-auto">
+        <div class="col-md-2">
             <button type="button" id="createtypecontact" title="Crée les types de contactes." class="btn btn-info"><i class="fa fa-address-book" style="font-size: 30px"></i></button>
         </div>
-        <div class="col mx-auto">
-            <button type="button" id="createpays" title="Crée les pays pour destinataires." class="btn btn-info"><i class="fa fa-flag" style="font-size: 37px"></i></button>
+        <div class="col-md-2">
+            <button type="button" id="createpays" title="Crée les pays pour destinataires." class="btn btn-info"><i class="fa fa-flag" style="font-size: 30px"></i></button>
         </div>
 
-        <div class="col mx-auto">
-            <button type="button" id="createlitiges" title="Crée ou modif. des Litiges, Lit.Decisions..." class="btn btn-info"><i class="fa fa-project-diagram" style="font-size: 30px; width: 30px"></i></button>
+        <div class="col-md-2">
+            <button type="button" id="createlitiges" title="Crée ou modif. des Litiges, Lit.Decisions..." class="btn btn-info"><i class="fa fa-project-diagram mr-n2" style="font-size: 30px"></i></button>
         </div>
-        <div class="col mx-auto">
+        <div class="col-md-2">
+            <button type="button" id="fake" title="fake button css..." class="btn btn-info" hidden><i class="fa fa-project-diagram" style="font-size: 30px"></i></button>
         </div>
+    </div>
     </div>
 </div>
 </body>
@@ -569,6 +572,7 @@
                 '{% endif %}'
                 $('#preview_gallery_image_').height('200px');
                 $('#preview_gallery_image_').css('float','right');
+
             }
             '{% endfor %}'
         });

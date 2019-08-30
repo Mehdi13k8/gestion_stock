@@ -28,34 +28,30 @@
     <div class="row">
         <div class="border shadow-lg p-3 mb-5 bg-white rounded col-md-auto table-responsive">
             <div class="row">
-                <div class="col-auto">
+                <div class="col">
                     <label for="compum">UM incomplets: </label>
                     <button id="compum" class='btn btn-sm btn-success'>
                         <i class="fa fa-thumbs-up"></i>
                     </button>
                 </div>
-
-                <div class="col-2">
+                <div class="col">
                     <div class="form-group form-inline">
                         <label for="numum">n° UM : </label>
-                        <input type="text" class="form-control w-50 input-group-sm" id="numum" placeholder="N°UM">
+                        <input type="text" class="form-control input-group" id="numum" placeholder="N°UM">
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <div class="form-group">
+                        <button type="button" class="btn btn-sm btn-light"><i class="fa fa-chevron-right" style="font-size: 15px;"></i></button>
+                        <label for="blum">B.L.E: </label>
+                        <input type="text" class="form-control" id="blum" readonly="">
                     </div>
                 </div>
 
-                <div class="col-4">
-                    <div class="form-group form-inline">
-                        <label for="blum"><button id="blbut" class="btn btn-sm btn-light">
-                            <i class="fa fa-chevron-right" style="font-size: 15px;"></i>
-                        </button>bon de livraison: </label>
-                        <input type="text" class="form-control w-25" id="blum" disabled>
-                    </div>
-                </div>
-
-                <div class="col">
-                    <br>
-                    <div class="form-group form-inline mt-n3 ml-n5">
+                <div class="col-auto">
+                    <div class="form-group">
                         <label for="seldep">zone dépôt :&nbsp;</label>
-                        <select type="text" class="form-control w-25" id="seldep"></select>
+                        <select type="text" class="form-control" id="seldep"></select>
                     </div>
                 </div>
 
@@ -208,7 +204,7 @@
                                         </select><br>déci. litige
                                         <select class="myselect2 form-control-sm text-center" id="decilitigebox{{ items.idColis }}" ></select></td>
                                     <td><input class='form-control text-center' value='{{ items.numerotation }}'></td>
-                                        <td><a href="{% url 'unitemanutentionsortiemodify' %}?id={{ items.fk_UniteManutentionSortie.idUniteManutentionSortie }}"><button type="button" class="btn btn-grey btn-sm"><i class="fa fa-arrow-right" style='color: deepskyblue;font-size: 15px'></i></button></a></td>
+                                    <td><a href="{% url 'unitemanutentionsortiemodify' %}?id={{ items.fk_UniteManutentionSortie.idUniteManutentionSortie }}"><button type="button" class="btn btn-grey btn-sm"><i class="fa fa-arrow-right" style='color: deepskyblue;font-size: 15px'></i></button></a></td>
                                     <td><button type="button" class="btn btn-grey btn-sm resorting"><i class="fa fa-redo" style="color: deepskyblue;font-size: 15px"></i></button></td>
                                     <td><input class='form-control text-center' disabled value='{{ items.fk_UniteManutentionSortie.idUniteManutentionSortie }}'></td>
                                     <td><input class='form-control text-center' disabled value='{{ items.fk_UniteManutentionSortie.numero }}'></td>
@@ -848,7 +844,7 @@
                     complete: function () {
                         colisidx++;
                         //if (colisidx == Object.keys(ligne).length)
-                            //window.location.reload();
+                        //window.location.reload();
                         //alert("so i have " + colisidx)
                     }
                 });
@@ -1022,7 +1018,7 @@
             if ('{{ items.fk_BonLivraisonEntree.idBonLivraisonEntree }}') {
                 $("#blum").val('{{ items.fk_BonLivraisonEntree.idBonLivraisonEntree }}');
                 '{% for itemszdt in zdt %}'
-                '{% if itemszdt.fk_TypeZoneDepot.nom == items.fk_BonLivraisonEntree.fk_TypeZoneDepot.nom %}'
+                '{% if items.fk_BonLivraisonEntree.fk_Client.fk_TypeZone.nom|safe == itemszdt.fk_TypeZoneDepot.nom|safe %}'
                 $("#seldep").append(new Option("{{ itemszdt.nom|safe }}", "{{ itemszdt.nom|safe }}", true, true));
                 '{% endif %}'
                 '{% endfor %}'
@@ -1036,14 +1032,13 @@
 
         $("#seldep").val("");
         '{% for items in ume %}'
-        if ('{{ items.idUniteManutentionEntree }}' == '{{id}}') {
+        if ('{{ items.idUniteManutentionEntree|safe }}' == '{{id}}') {
             '{% for itemszdt in zdt %}'
-
-            '{% if items.fk_ZoneDepot.nom|safe == itemszdt.nom|safe %}'
-            $("#seldep").val('{{ itemszdt.nom|safe }}');
-            '{% endif %}'
+            if ('{{ itemszdt.idZoneDepot|safe }}' == '{{ items.fk_ZoneDepot.id|safe }}') {
+                $("#seldep").val('{{ itemszdt.nom|safe }}');
+                console.log("found + {{itemszdt.nom}}");
+            }
             '{% endfor %}'
-
         }
         '{% endfor %}'
 
@@ -1315,7 +1310,7 @@
             $('#tabblbody tr').each(function (a, b) {
                 //console.log("litige = " + $(this).find('td').eq(8).find('select').val());
                 //console.log("decilitige = " + $(this).find('td').eq(8).find('select').eq(1).val());
-                    $(this).show();
+                $(this).show();
                 if ($(this).find('td').eq(8).find('select').val() != "0" || $(this).find('td').eq(8).find('select').eq(1).val() != "0") {
                     console.log("gggg3");
                 }

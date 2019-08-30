@@ -1,7 +1,6 @@
 {% extends user.is_authenticated|yesno:"base_generic.html,empty.html" %}
 
 {% block content %}
-
 <style>
     .ui-dialog-titlebar-close {
         visibility: hidden;
@@ -40,105 +39,109 @@
     <div class="row">
         <div class="col">
             <div class="border shadow-lg p-2 mb-3 bg-white rounded">
-                <div class="row">
-                    <div class="col">
-                        <h3 class="text-center"> identification BL</h3>
-                    </div>
-                </div>
-                <br>
+                <h3 class="text-center"> identification BL</h3>
                 <div class="container">
                     <div class="row">
-                        <div class="text-center">
-                            <div class="row">
-                                <div class="col-4">
-                                    identifiant:<br><input type="text" id="umid" disabled class="form-control mx-auto w-responsive">
-                                </div>
-
-                                <div class="col">
-                                    <div class="input-group">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-default btn-sm mb-n5 w-25" id="accesscli" type="button"><i class="fa fa-arrow-right"></i></button>
-                                    </span>
-                                        <div class="selsel w-25">
-                                            Client:<br><select class="form-control" id="client">
-                                            <script type="text/javascript">
-                                                $(document).ready(function() {
-                                                    var i = 0;
-                                                    "{% for items in cli %}"
-                                                    //to change
-                                                    var name = "{{ items.nom|safe }}";
-                                                    var oldname;
-                                                    if (i == 0)
-                                                        $("#client").append(new Option("{{ items.nom|safe }}", "{{ items.nom|safe }}"));
-                                                    else if (name != oldname)
-                                                        $("#client").append(new Option("{{ items.nom|safe }}", "{{ items.nom|safe }}"));
-                                                    oldname = name;
-                                                    i = 1;
-                                                    "{% endfor %}"
-                                                });
-                                            </script>
-                                        </select>
-                                        </div>
-                                    </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="umid">identifiant:</label>
+                                    <input type="text" id="umid" disabled class="form-control">
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-3">
-                                    lettre de voiture :
-                                    <br><input type="text" id="lveinput" class="form-control w-responsive mx-auto text-center" disabled>
-                                    <button class="btn btn-default btn-sm w-25" id="accesslve" type="button"><i class="fa fa-arrow-up"></i></button>
-                                </div>
-                                <div class="col-3">zone:<br><input type="text" id="zone" disabled class="form-control">
-                                </div>
-                                <div class="col-4 mr-4">
-                                    <div class="selsel">
-                                        fournisseur:<br><select class="form-control" id="fournisseur">
+                            <div class="col">
+                                <div class="form-group">
+                                    <button class="btn-outline-teal btn-sm" id="accesscli"><i class="fa fa-arrow-right"></i></button>
+                                    <label for="client">Client:</label><br>
+                                    <select class="form-control" id="client">
                                         <script type="text/javascript">
                                             $(document).ready(function() {
                                                 var i = 0;
-                                                "{% for items in four %}"
+                                                "{% for items in cli %}"
                                                 //to change
                                                 var name = "{{ items.nom|safe }}";
                                                 var oldname;
                                                 if (i == 0)
-                                                    $("#fournisseur").append(new Option("{{ items.nom|safe }}", "{{ items.nom|safe }}"));
+                                                    $("#client").append(new Option("{{ items.nom|safe }}", "{{ items.nom|safe }}"));
                                                 else if (name != oldname)
-                                                    $("#fournisseur").append(new Option("{{ items.nom|safe }}", "{{ items.nom|safe }}"));
+                                                    $("#client").append(new Option("{{ items.nom|safe }}", "{{ items.nom|safe }}"));
                                                 oldname = name;
                                                 i = 1;
                                                 "{% endfor %}"
                                             });
                                         </script>
                                     </select>
-                                    </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col">
-                                    <label for="inputnbl">numéro de Bl :</label>
-                                    <input id="inputnbl" class="form-control">
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <button class="btn-default btn-sm" id="accesslve"><i class="fa fa-arrow-right"></i></button>
+                                    <label for="lveinput">L.V.E :</label>
+                                    <br><input type="text" id="lveinput" class="form-control text-center" disabled>
                                 </div>
-                                <div class="col">
-                                    <label for="inputMDEx">date de réception:</label>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="lveinput">Zone:</label>
+                                    <br><input type="text" id="zone" readonly class="form-control">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="fournisseur">fournisseur:</label>
+                                    <br><select class="form-control" id="fournisseur">
+                                    <script type="text/javascript">
+                                        $(document).ready(function() {
+                                            var i = 0;
+                                            "{% for items in four %}"
+                                            //to change
+                                            var name = "{{ items.nom|safe }}";
+                                            var oldname;
+                                            if (i == 0)
+                                                $("#fournisseur").append(new Option("{{ items.nom|safe }}", "{{ items.nom|safe }}"));
+                                            else if (name != oldname)
+                                                $("#fournisseur").append(new Option("{{ items.nom|safe }}", "{{ items.nom|safe }}"));
+                                            oldname = name;
+                                            i = 1;
+                                            "{% endfor %}"
+                                        });
+                                    </script>
+                                </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                <label for="inputnbl">num BL:</label>
+                                <input id="inputnbl" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="inputMDEx">date réception:</label>
                                     <input type="date" id="inputMDEx" class="form-control">
                                 </div>
-                                <div class="col">
-                                    <label for="inputqpl">quantité de palettes:</label>
-                                    <input id="inputqpl" class="form-control">
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                <label for="inputqpl">qte de palettes:</label>
+                                <input id="inputqpl" class="form-control">
                                 </div>
                             </div>
-                            <br>
-                            <div class="row">
-                                <div class="col">
-                                    <input type="button" class="btn btn-primary" id="addble" value="Save">
-                                </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <input type="button" class="btn btn-primary" id="addble" value="Save">
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-5">
+        <div class="col-auto">
             <div class="border shadow-lg p-2 mb-3 bg-white rounded">
                 <h5 class="text-center"> <u>Unitées de manutention entrée </u></h5>
                 <div class="container">
@@ -719,7 +722,7 @@
                 $('#zone').val('{{ itemscli.fk_TypeZone.nom|safe }}');
                 '{% for itemsz in zoned %}'
                 '{% if itemsz.fk_TypeZoneDepot.nom == itemscli.fk_TypeZone.nom %}'
-                  console.log("there{{ itemscli.fk_TypeZone.nom|safe }}");
+                console.log("there{{ itemscli.fk_TypeZone.nom|safe }}");
                 $("#zatt").append(new Option("{{ itemsz.nom|safe }}", "{{ itemsz.nom|safe }}"));
                 '{% endif %}'
                 '{% endfor %}'

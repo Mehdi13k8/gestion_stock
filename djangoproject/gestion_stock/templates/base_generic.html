@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<header>
+<head >
   {% block title %}<title>Salut, {{user}}</title>{% endblock %}
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,6 +19,8 @@
   <link href=" {{ STATIC_URL }} /static/css/addons/datatables.min.css" rel="stylesheet">
   <link rel="stylesheet" href="{{ STATIC_URL }} /static/css/mdb.min.css">
 
+  <link rel="shortcut icon" type="image/png" href="{{ STATIC_URL }} /static/img/favicon.ico" />
+
   <script src="{{ STATIC_URL }} /static/js/jquery-1.12.4.js"></script>
   <script type="text/javascript" src="{{ STATIC_URL }} /static/js/popper.min.js"></script>
   <script type="text/javascript" src="{{ STATIC_URL }} /static/js/bootstrap.min.js"></script>
@@ -35,7 +37,7 @@
 
   https://pypi.org/project/django-fontawesome-5/
   -->
-</header>
+</head>
 <style>
   .asteriskField {
     display: none;

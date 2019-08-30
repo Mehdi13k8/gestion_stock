@@ -46,7 +46,7 @@
                 <div class="table-responsive">
                     <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
                         <thead>
-                        <tr>
+                        <tr class="text-center">
                             <th scope="col" class="th-sm"><i class="fa fa-cog"></i></th>
                             <th scope="col" class="th-sm"> date </th>
                             <th scope="col" class="th-sm"> n° réception </th>
@@ -62,18 +62,18 @@
                         </thead>
                         <tbody>
                         {% for items in lve %}
-                        <tr>
-                            <td> <button id='{{ items.idLettreVoitureEntree }}' class="dyna"> -> </button></td>
-                            <td> {{ items.datereception }} </td>
-                            <td> {{ items.numerorecepisse }} </td>
-                            <td> {{ items.fk_Fournisseur.nom }} </td>
-                            <td> {{ items.quantitecolis }} </td>
+                        <tr class="text-center">
+                            <td> <button id='{{ items.idLettreVoitureEntree }}' class="dyna btn-sm rounded-0 btn-outline-light-blue"><i class="fa fa-arrow-right"></i> </button></td>
+                            <td> <input class="form-control-plaintext text-center" value="{{ items.datereception }}" disabled=""></td>
+                            <td> <input class="form-control-plaintext text-center" value="{{ items.numerorecepisse }}" disabled=""></td>
+                            <td> <input class="form-control-plaintext text-center" value="{{ items.fk_Fournisseur.nom }}" disabled=""></td>
+                            <td> <input class="form-control-plaintext text-center" value="{{ items.quantitecolis }}" disabled=""></td>
                             <td> {{ items.quantitepalette }} </td>
                             <td> {{ items.reclacomm }} </td>
                             <td> {{ items.reclaquantitecolis }} </td>
                             <td> {{ items.reclaquantitepalette }} </td>
                             <td> {{ items.idLettreVoitureEntree }} </td>
-                            <td> <button id='{{ items.idLettreVoitureEntree }}' class="dynad"> X </button> </td>
+                            <td> <button id='{{ items.idLettreVoitureEntree }}' class="dynad rounded btn-sm btn-outline-red"> <i class="fa fa-minus"></i> </button> </td>
                         </tr>
                         {% endfor %}
                         </tbody>

@@ -47,7 +47,7 @@
                 <div class="table-responsive">
                     <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
                         <thead>
-                        <tr>
+                        <tr class="text-center">
                             <th scope="col" class="th-sm"><i class="fa fa-cog"></i></th>
                             <th scope="col" class="th-sm"> dossier </th>
                             <th scope="col" class="th-sm"> date </th>
@@ -60,15 +60,15 @@
                         </thead>
                         <tbody>
                         {% for items in entree %}
-                        <tr>
-                            <td> <button id='{{ items.idBonLivraisonEntree }}' class="dyna"> -> </button></td>
-                            <td> {{ items.fk_TypeZoneDepot.nom }} </td>
+                        <tr class="text-center">
+                            <td> <button id='{{ items.idBonLivraisonEntree }}' class="dyna btn-sm btn-outline-light-blue border-0"> -> </button></td>
+                            <td> {{ items.fk_Client.fk_TypeZone.nom }} </td>
                             <td> {{ items.dateReception }} </td>
                             <td> {{ items.numeroBonLivraison }} </td>
                             <td> {{ items.quantitePalette }} </td>
                             <td> {{ items.fk_Fournisseur.nom }} </td>
                             <td> {{ items.idBonLivraisonEntree }} </td>
-                            <td> <button id='{{ items.idBonLivraisonEntree  }}' class="dynad"> X </button> </td>
+                            <td> <button id='{{ items.idBonLivraisonEntree  }}' class="dynad btn-sm btn-outline-red border"> <i class="fa fa-minus"></i> </button> </td>
                         </tr>
                         {% endfor %}
                         </tbody>
