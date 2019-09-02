@@ -1,5 +1,4 @@
 {% extends user.is_authenticated|yesno:"base_generic.html,empty.html" %}
-
 {% block content %}
 
 <div class="container"><h1 class="text-center"> Liste des roles pour contacts</h1></div>
@@ -27,7 +26,7 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <div class="border shadow-lg p-3 mb-5 bg-white rounded">
+            <div class="border shadow-lg p-3 mb-5 bg-white rounded table-responsive">
                 {% if vuegen == "ok" %}
                 {% for items in rlc %}
                 {% if items.idRoleContact == id %}
@@ -35,7 +34,7 @@
                     <br>
                     <div class="input-default-wrapper w-75 mx-auto">
                         <label for="idtypea">ID : </label>
-                        <input type="text" class="form-control w-25 mt-n2 ml-4" placeholder="ID" aria-label="identifiant" aria-describedby="basic-addon1"  disabled id="idtypea" value="{{ items.idRoleContact }}">
+                        <input type="text" class="text-center form-control w-25 mt-n2 ml-4" placeholder="ID" aria-label="identifiant" aria-describedby="basic-addon1"  disabled id="idtypea" value="{{ items.idRoleContact }}">
                     </div>
                     <br>
                     <div class="input-default-wrapper w-75 mx-auto">
@@ -80,9 +79,9 @@
                     <tbody>
                     {% for itemsz in rlc %}
                     <tr>
-                        <td> <button id='{{ itemsz.idRoleContact }}' class="dyna"> -> </button></td>
-                        <td> {{ itemsz.nom|safe }} </td>
-                        <td> <button id='{{ itemsz.idRoleContact }}' class="dynad"> X </button> </td>
+                        <td> <button id='{{ itemsz.idRoleContact }}' class="dyna btn-sm btn-outline-blue-grey"> <i class="fa fa-edit"></i> </button></td>
+                        <td class="text-center"> {{ itemsz.nom|safe }} </td>
+                        <td class="text-right"> <button id='{{ itemsz.idRoleContact }}' class="dynad btn-sm btn-outline-red"> <i class="fa fa-minus"></i> </button> </td>
                     </tr>
                     {% endfor %}
                     </tbody>

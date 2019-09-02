@@ -111,8 +111,9 @@
                 </div>
 
 
-                <div class="col-2 border shadow-lg rounded table-responsive ml-1">
-                    <div class="border shadow-sm mt-1 text-center mb-1">
+                <div class="col border shadow-lg rounded ">
+                    <br>
+                    <div class="shadow-sm">
                         <p> Quantités dans les colis affichés</p>
                     </div>
 
@@ -133,7 +134,7 @@
                 <div class="col">
                     <br>
                     <label for="divbtns">filtrer emplacement confirmé :&nbsp;</label>
-                    <div class="btn-group" role="group" aria-label="Basic example" id="divbtns">
+                    <div class="btn-group flex-wrap" role="group" aria-label="Basic example" id="divbtns">
                         <button type="button" class="btn btn-sm btn-cyan">tout</button>
                         <button type="button" class="btn btn-sm btn-cyan">stock</button>
                         <button type="button" class="btn btn-sm btn-cyan">assigné</button>
@@ -318,6 +319,12 @@
 
 <script>
     $(document).ready(function() {
+        '{% for itemszdt in zdt %}'
+            '{% if itemszdt.fk_TypeZoneDepot %}'
+            '{% else %}'
+                $("#seldep").append(new Option("{{ itemszdt.nom|safe }}", "{{ itemszdt.nom|safe }}", true, true));
+            '{% endif %}'
+        '{% endfor %}'
 
         $("#tabblbody").on("click", ".print", function() {
             //alert($(this).parent().parent().find('td').eq(2).find('input').val().trim());

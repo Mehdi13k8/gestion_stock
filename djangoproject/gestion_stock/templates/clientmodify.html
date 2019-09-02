@@ -162,7 +162,7 @@
             <button type="button" class="btn btn-primary" id="sendclient"> Sauvegarde </button>
         </div>
 
-        <div class="col-5">
+        <div class="col">
             <div class="row">
                 <div class="col-12 col-md-auto border shadow-lg p-3 mb-5 bg-white rounded ml-2">
                     Bons de commande sortie
@@ -179,8 +179,9 @@
                             {% for items in bcs %}
                             {% if items.fk_Client.id|safe == id %}
                             <tr>
-                                <td class='text-center'><a href='{% url "bonCommandeSortiemodify" %}?id={{items.idBonCommandeSortie|safe }}'><button class='dynacli' id="{{ items.idBonCommandeSortie }}"><i class="fa fa-arrow-right"></i></button></a></td>
-                                <td class="text-center">{{ items.idBonCommandeSortie }}</td><td><button class="deleteur">X</button></td>
+                                <td class='text-center'><a href='{% url "bonCommandeSortiemodify" %}?id={{items.idBonCommandeSortie|safe }}'><button class='dynacli btn-sm btn-outline-blue-grey' id="{{ items.idBonCommandeSortie }}"><i class="fa fa-edit"></i></button></a></td>
+                                <td class="text-center">{{ items.idBonCommandeSortie }}</td>
+                                <td class="text-center"><button id="{{ items.idBonCommandeSortie|safe }}" class="deletbcs btn-sm btn-outline-red"><i class="fa fa-minus"></i></button></td>
                             </tr>
                             {% endif %}
                             {% endfor %}
@@ -189,7 +190,7 @@
 
                     </div>
                 </div>
-                <div class="col-md-auto border shadow-lg p-3 mb-5 bg-white rounded mr-2 ml-1">
+                <div class="col border shadow-lg p-3 mb-5 bg-white rounded mr-2 ml-1">
                     Bons de livraison entree
                     <div class="table-responsive">
                         <table id="dtBasicExample2" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
@@ -205,7 +206,7 @@
                         </table>
                     </div>
                 </div>
-                <div class="col-md-auto border shadow-lg p-3 mb-5 bg-white rounded mr-2 ml-1">
+                <div class="col border shadow-lg p-3 mb-5 bg-white rounded mr-2 ml-1">
                     Ordre de transport
                     <div class="table-responsive">
                         <table id="dtBasicExample3" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
@@ -223,13 +224,10 @@
                 </div>
             </div>
         </div>
-
-        <div class="col-4">
-            <div class="col-12 col-md-auto border shadow-lg p-3 mb-5 bg-white rounded">
-                <div class="row">
-                    <div class="col-md-auto">
-                        Contact
-                        <table id="contacttable" class="table  table-hover table-responsive table-bordered " cellspacing="0" width="100%">
+        <div class="col-md-4">
+            <div class="border shadow-lg p-3 mb-5 bg-white rounded table-responsive">
+                <h4>Contact</h4>
+                        <table id="contacttable" class="table  table-hover table-bordered " cellspacing="0" width="100%">
                             <thead>
                             <tr>
                                 <th scope="col" class="th-sm"> role </th>
@@ -282,9 +280,7 @@
                                 '{% endfor %}'
                             </script>
                         </table>
-                    </div>
-                    <button class="btn btn-secondary right-align" id="tableadd"> Add Contact </button>
-                </div>
+                    <button class="btn btn-secondary btn-sm" id="tableadd"> Add Contact </button>
             </div>
             <div class="border shadow-lg p-3 mb-5 bg-white rounded ml-1">
                 <div class="row">
@@ -298,6 +294,25 @@
 
 <script>
     $(document).ready(function() {
+        $("#dtBasicExample1").on( "click", ".deletbcs", function(e) {
+            var idClicked = e.target.id;
+            $.ajax({
+                type:"POST",
+                url:"/delete_bon_sortie/",
+                data: {
+                    'id': idClicked,
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
+                success: function(msg, data, settings){
+                    //alert("gg " + msg);
+                    window.location.reload();
+                },
+                failure: function() {
+                    alert("fail");
+                }
+            });
+        });
+
         $("#dtBasicExample2").on( "click", ".resetb", function(e) {
             var idClicked = e.target.id;
             $.ajax({
@@ -519,8 +534,8 @@
         console.log("entree");
         if ('{{ items.fk_Client.nom }}' == $('#nom').val()) {
             $('#dtBasicExample2')
-                .append('<tr><td class=\'text-center\'><button class=\'resetb dyna\' id=\"{{ items.idBonLivraisonEntree }}\"><i class=\"fa fa-arrow-right\"></i></button></td>' +
-                    '<td class=\'text-center\'>{{ items.numeroBonLivraison }}</td><td><button class=\'resetb btn btn-light btn-sm dynad\' id=\"{{ items.idBonLivraisonEntree }}\"><i class=\"fa fa-trash-alt\"></i></button></td></tr>');
+                .append('<tr><td class=\'text-center\'><button class=\'resetb dyna btn-sm btn-outline-blue-grey \' id=\"{{ items.idBonLivraisonEntree }}\"><i class=\"fa fa-arrow-right\"></i></button></td>' +
+                    '<td class=\'text-center\'>{{ items.numeroBonLivraison }}</td><td class="text-center"><button class=\'resetb btn btn-light btn-sm dynad\' id=\"{{ items.idBonLivraisonEntree }}\"><i class=\"fa fa-trash-alt\"></i></button></td></tr>');
         }
         '{% endfor %}'
 

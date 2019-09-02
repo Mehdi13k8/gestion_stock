@@ -33,7 +33,7 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <div class="border shadow-lg p-3 mb-5 bg-white rounded">
+            <div class="border shadow-lg p-3 mb-5 bg-white rounded table-responsive">
                 {% if vuegen == "ok" %}
                 {% if id %}
                 <div class="w-75 mx-auto"> <!-- si aucun type zone est select (clients) , Dans cette page je fais tout dans le même template
@@ -76,21 +76,23 @@
                     </thead>
                     <tbody>
                     {% for itemsz in zoned %}
-                    <tr>
-                        <td> <button id='{{ itemsz.idZoneDepot }}' class="dyna"> -> </button></td>
+                    <tr class="text-center">
+                        <td><button id='{{ itemsz.idZoneDepot }}' class="dyna btn-sm btn-outline-info"> -> </button></td>
                         {% if itemsz.fk_TypeZoneDepot == None %}
                             <td> ---/--- </td>
                         {% else %}
                             <td> {{ itemsz.fk_TypeZoneDepot.nom }} </td>
                         {% endif %}
                         <td> {{ itemsz.nom }} </td>
-                        <td> <button id='{{ itemsz.idZoneDepot }}' class="dynad"> X </button> </td>
+                        <td> <button id='{{ itemsz.idZoneDepot }}' class="dynad btn-sm rounded btn-outline-red"> <i class="fa fa-minus"></i> </button> </td>
                     </tr>
                     {% endfor %}
                     </tbody>
                     <tfoot>
                     <tr>
                         <th> modify
+                        </th>
+                        <th>nom
                         </th>
                         <th>nom
                         </th>
@@ -104,9 +106,9 @@
 
                 {% if id %}
                     {% for items in cli %}
-
                         {% if id == "0" %}
                         {% if creation == 'ok' %}
+                            {% if forloop.counter ==  1 %}
                             <div class="w-75 mx-auto"> <!-- si aucun type zone est select (clients) , Dans cette page je fais tout dans le même template
                             comme ça vous avez toutes les manières de dev avec django que ce soit avec des templates spécifique a une action
                             ou un template capable de faire plusieurs actions en un seul template "intelligent"-->
@@ -134,7 +136,7 @@
                                 <button class="btn-outline-unique mx-auto" type="button" id="savenewzone">Sauvegarder</button>
                             </div>
                         </div>
-
+                        {% endif%}
                         {% else %}
                             {% if forloop.counter ==  1 %}
                                     <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
@@ -149,13 +151,12 @@
                                 {% for items in zoned %}
                                     {% if items.fk_TypeZoneDepot == None %}
                                         <tr>
-                                            <td> <button id='{{ items.idZoneDepot }}' class="dyna"> -> </button></td>
-                                            <td> {{ items.nom }} </td>
-                                            <td> <button id='{{ items.idZoneDepot }}' class="dynad"> X </button> </td>
+                                            <td> <button id='{{ items.idZoneDepot }}' class="dyna btn-sm btn-outline-blue-grey"> -> </button></td>
+                                            <td class="text-center"> {{ items.nom }} </td>
+                                            <td> <button id='{{ items.idZoneDepot }}' class="dynad btn-sm btn-outline-red text-right"> X </button> </td>
                                         </tr>
                                         {% else %}
                                     {% endif %}
-
                                 {% endfor %}
                                 </tbody>
                                 <tfoot>
@@ -219,10 +220,10 @@
                                     {% if items.idClient == id %}
                                         {% for itemsz in zoned %}
                                             {% if itemsz.fk_TypeZoneDepot.nom == items.fk_TypeZone.nom %}
-                                            <tr>
-                                                <td> <button id='{{ itemsz.idZoneDepot }}' class="dyna"> -> </button></td>
-                                                <td> {{ itemsz.nom }} </td>
-                                                <td> <button id='{{ itemsz.idZoneDepot }}' class="dynad"> X </button> </td>
+                                            <tr class="">
+                                                <td class="text-left"> <button id='{{ itemsz.idZoneDepot }}' class="dyna btn-sm btn-outline-blue-grey"><i class="fa fa-edit"></i></button></td>
+                                                <td class="text-center"> {{ itemsz.nom }} </td>
+                                                <td class="text-right"> <button id='{{ itemsz.idZoneDepot }}' class="dynad btn-sm btn-outline-red"> <i class="fa fa-trash"></i> </button> </td>
                                             </tr>
                                             {% endif %}
                                         {% endfor %}
@@ -276,7 +277,6 @@
                         <button class="btn-outline-unique mx-auto" type="button" id="savenewzone">Sauvegarder</button>
                     </div>
                 </div>
-
                 {% else %}
                 <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
                     <thead>
@@ -290,9 +290,9 @@
                     {% for items in zoned %}
                     {% if items.fk_TypeZoneDepot == None %}
                     <tr>
-                        <td> <button id='{{ items.idZoneDepot }}' class="dyna"> -> </button></td>
-                        <td> {{ items.nom }} </td>
-                        <td> <button id='{{ items.idZoneDepot }}' class="dynad"> X </button> </td>
+                        <td> <button id='{{ items.idZoneDepot }}' class="dyna btn-sm btn-outline-blue-grey"> <i class="fa fa-edit"></i> </button></td>
+                        <td class="text-center"> {{ items.nom }} </td>
+                        <td class="text-right"> <button id='{{ items.idZoneDepot }}' class="dynad btn-sm btn-outline-red"> <i class="fa fa-minus"></i> </button> </td>
                     </tr>
                     {% else %}
                     {% endif %}

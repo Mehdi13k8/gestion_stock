@@ -43,7 +43,7 @@
                             <input type="text" class="form-control input-lg text-center" id="desti" readonly="readonly" style="cursor: pointer;">
                         </div>
                         <div class="form-group text-left ml-5">
-                            <label for="bcsid"> Bon commande :&nbsp; </label>
+                            <label for="bcsid">Bon&nbsp;commande:&nbsp; </label>
                             <input type="text" class="form-control text-center w-responsive" id="bcsid" placeholder="0" readonly="readonly" style="cursor: pointer;">
                         </div>
                         <div class="form-group text-left ml-5">
@@ -66,19 +66,19 @@
                 <h6><u> poids [kg] </u></h6>
                 <div class="row text-left">
                     <div class="col">
-                        <label for="pbrute"> brute : &nbsp; </label>
+                        <label for="pbrute"> brute:&nbsp; </label>
                         <input type="text" class="form-control" id="pbrute" placeholder="0">
                     </div>
                     <div class="col">
-                        <label for="ptare"> tare : &nbsp; </label>
+                        <label for="ptare"> tare:&nbsp; </label>
                         <input type="text" class="form-control" id="ptare" placeholder="0">
                     </div>
                     <div class="col">
-                        <label for="pnet"> net : &nbsp; </label>
+                        <label for="pnet"> net:&nbsp; </label>
                         <input type="text" class="form-control" id="pnet" placeholder="0" disabled>
                     </div>
                     <div class="col">
-                        <label for="pdiff"> diff : &nbsp; </label>
+                        <label for="pdiff"> diff:&nbsp; </label>
                         <input type="text" class="form-control" id="pdiff" placeholder="0">
                     </div>
                 </div>
@@ -119,22 +119,21 @@
     </div>
 </div>
 
-
-<div class="container-fluid">
+<div class="container">
     <div class="row">
-        <div class="border shadow-lg p-2 mb-3 bg-white rounded mx-auto rounded">
-            <div class="table-responsive text-nowrap">
-                <h5 class="text-center"> <u> Lignes U.M Sorties</u> (colis)</h5>
-                <table id="tabbl" class="table table-condensed table-sm table-striped table-bordered rounded" cellspacing="0" width="100%">
+        <div class="border shadow-lg p-2 mb-3 bg-white rounded mx-auto rounded table-responsive">
+            <h5 class="text-center"> <u> Lignes U.M Sorties</u> (colis)</h5>
+            <div class="">
+                <table id="tabbl" class="table table-sm table-striped table-bordered rounded" cellspacing="0" width="100%">
                     <thead>
                     <tr>
                         <th scope="col" class="text-center"><i class="fa fa-copy"></i></th>
                         <th scope="col" class="text-center">&nbsp;&nbsp;&nbsp;n°colis&nbsp;&nbsp;&nbsp;</th>
-                        <th scope="col" class="text-center">code client</th>
+                        <th scope="col" class="text-center">&nbsp;code&nbsp;client&nbsp;:</th>
                         <th scope="col" class="text-center">&nbsp;désignation&nbsp;</th>
-                        <th scope="col" class="text-center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n°lot&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                        <th scope="col" class="text-center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n°lot&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
                         <th scope="col" class="text-center">date péremption</th>
-                        <th scope="col" class="text-center">qte<br>par colis</th>
+                        <th scope="col" class="text-center">qte<br>par&nbsp;colis</th>
                         <th scope="col" class="text-center">litige</th>
                         <th scope="col" class="text-center">confirmer</th>
                         <th scope="col" class="text-center"><i class="">Délier UM.s</i></th>
@@ -145,12 +144,12 @@
                     {% if items.fk_UniteManutentionSortie.idUniteManutentionSortie == id %}
                     <tr>
                         <td><a target="_blank" rel="noopener noreferrer" href="{% url 'unitemanutentionentreemodify' %}?id={{ items.fk_UniteManutentionEntree.idUniteManutentionEntree }}"> <button class='btn btn-sm  btn-outline-grey rounded-pill w-25' id="{{ items.idColis }}"><i class="fa fa-copy ml-n2" style='cursor:pointer;'><br>um.e</i></button></a></td>
-                        <td><input class='form-control w-responsive' disabled id='ncolis{{items.idColis}}' value="{{ items.idColis }}"></td>
-                        <td><select class="form-control fournise" id="blfournisseur{{items.idColis}}"></select></td>
+                        <td><input class='form-control' disabled id='ncolis{{items.idColis}}' value="{{ items.idColis }}"></td>
+                        <td><select class="form-control fournise " id="blfournisseur{{items.idColis}}"></select></td>
                         <td><select class="form-control desif" id="iddesif{{items.idColis}}"></select></td>
-                        <td><input class='form-control w-responsive' value='{{ items.numeroLot }}'></td>
+                        <td><input class='form-control' value='{{ items.numeroLot }}'></td>
                         <td><input type="date" class="date rounded" class="form-control" value='{{ items.datePeremption }}'></td>
-                        <td><input type="text" class="form-control w-responsive" value='{{ items.quantiteProduit }}'></td>
+                        <td><input type="text" class="form-control" value='{{ items.quantiteProduit }}'></td>
 
                         <td><!--<button type="button" class="btn btn-grey btn-sm addmodal" data-toggle="popover" id="{{ items.idColis }}">Litiges</button><div id="newDialogText{{ items.idColis }}">Litige<br>-->
                             litige <select class="myselect form-control-sm w-75" id="litigebox{{ items.idColis }}">
@@ -166,7 +165,6 @@
                     </tr>
                     {% endif %}
                     {% endfor %}
-
                     <script>
                         $(document).ready(function() {
                             '{% for items in colis %}'
@@ -179,8 +177,6 @@
                                 $("#blfournisseur" + "{{items.idColis}}").append(new Option("{{ itemsart.codeFournisseur }}", "{{itemsart.codeFournisseur}}"));
                                 $("#iddesif" + "{{items.idColis}}").append(new Option("{{ itemsart.designationClient }}", "{{itemsart.designationClient}}"));
                             }
-
-
                             '{% endfor %}'
                             '{% for itemsli in litige %}'
                             $("#litigebox" + '{{items.idColis}}').append(new Option("{{ itemsli.nom|safe }}", "{{ itemsli.nom|safe }}"));

@@ -27,7 +27,7 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <div class="border shadow-lg p-3 mb-5 bg-white rounded">
+            <div class="border shadow-lg p-3 mb-5 bg-white rounded table-responsive">
                 {% if vuegen == "ok" %}
                 {% for items in typea %}
                 {% if items.idTypeArticle == id %}
@@ -71,7 +71,7 @@
                 {% else %}
                 <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
                     <thead>
-                    <tr>
+                    <tr class="text-center">
                         <th scope="col" class="th-sm"> modify </th>
                         <th scope="col" class="th-sm"> nom </th>
                         <th scope="col" class="th-sm"> delete </th>
@@ -80,13 +80,13 @@
                     <tbody>
                     {% for itemsz in typea %}
                     <tr>
-                        <td> <button id='{{ itemsz.idTypeArticle }}' class="dyna"> -> </button></td>
-                        <td> {{ itemsz.nom }} </td>
-                        <td> <button id='{{ itemsz.idTypeArticle }}' class="dynad"> X </button> </td>
+                        <td> <button id='{{ itemsz.idTypeArticle }}' class="dyna btn-sm btn-outline-blue-grey"> <i class="fa fa-edit"></i> </button></td>
+                        <td class="text-center"> {{ itemsz.nom }} </td>
+                        <td class="text-right"> <button id='{{ itemsz.idTypeArticle }}' class="dynad btn-sm btn-outline-red"> <i class="fa fa-minus"></i> </button> </td>
                     </tr>
                     {% endfor %}
                     </tbody>
-                    <tfoot>
+                    <tfoot class="text-center">
                     <tr>
                         <th> modify</th>
                         <th>nom</th>

@@ -27,7 +27,7 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <div class="border shadow-lg p-3 mb-5 bg-white rounded">
+            <div class="border shadow-lg p-3 mb-5 bg-white rounded table-responsive">
                 {% if vuegen == "ok" %}
                     {% for items in typed %}
                         {% if items.idTypeDestinataire == id %}
@@ -80,9 +80,9 @@
                     <tbody>
                     {% for itemsz in typed %}
                     <tr>
-                        <td> <button id='{{ itemsz.idTypeDestinataire }}' class="dyna"> -> </button></td>
-                        <td> {{ itemsz.nom }} </td>
-                        <td> <button id='{{ itemsz.idTypeDestinataire }}' class="dynad"> X </button> </td>
+                        <td> <button id='{{ itemsz.idTypeDestinataire }}' class="dyna btn-sm btn-outline-blue-grey"> <i class="fa fa-edit"></i></button></td>
+                        <td class="text-center"> {{ itemsz.nom }} </td>
+                        <td class="text-right"> <button id='{{ itemsz.idTypeDestinataire }}' class="dynad btn-sm btn-outline-red"> <i class="fa fa-minus"></i> </button></td>
                     </tr>
                     {% endfor %}
                     </tbody>

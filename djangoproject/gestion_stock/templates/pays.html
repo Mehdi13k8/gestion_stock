@@ -27,7 +27,7 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <div class="border shadow-lg p-3 mb-5 bg-white rounded">
+            <div class="border shadow-lg p-3 mb-5 bg-white rounded table-responsive">
                 {% if vuegen == "ok" %}
                 {% for items in pays %}
                 {% if items.idPays == id %}
@@ -35,7 +35,7 @@
                     <br>
                     <div class="input-default-wrapper w-75 mx-auto">
                         <label for="idtyped">ID : </label>
-                        <input type="text" class="form-control w-25 mt-n2 ml-4" placeholder="ID" aria-label="identifiant" aria-describedby="basic-addon1"  disabled id="idtyped" value="{{ items.idPays }}">
+                        <input type="text" class="form-control text-center w-25 mt-n2 ml-4" placeholder="ID" aria-label="identifiant" aria-describedby="basic-addon1"  disabled id="idtyped" value="{{ items.idPays }}">
                     </div>
                     <br>
                     <div class="input-default-wrapper w-75 mx-auto">
@@ -80,9 +80,9 @@
                     <tbody>
                     {% for itemsz in pays %}
                     <tr>
-                        <td> <button id='{{ itemsz.idPays }}' class="dyna"> -> </button></td>
-                        <td> {{ itemsz.nom }} </td>
-                        <td> <button id='{{ itemsz.idPays }}' class="dynad"> X </button> </td>
+                        <td> <button id='{{ itemsz.idPays }}' class="dyna btn-sm btn-outline-blue-grey"><i class="fa fa-edit"></i></button></td>
+                        <td class="text-center1"> {{ itemsz.nom }} </td>
+                        <td class="text-right"> <button id='{{ itemsz.idPays }}' class="dynad btn-sm btn-outline-red"> <i class="fa fa-minus"></i></button> </td>
                     </tr>
                     {% endfor %}
                     </tbody>

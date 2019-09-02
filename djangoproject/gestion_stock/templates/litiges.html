@@ -32,7 +32,7 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <div class="border shadow-lg p-3 mb-5 bg-white rounded" id="maindiv">
+            <div class="border shadow-lg p-3 mb-5 bg-white rounded table-responsive" id="maindiv">
 
                 <table id="litiges" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
                     <thead>
@@ -45,9 +45,9 @@
                     <tbody>
                     {% for items in litige %}
                     <tr>
-                        <td> <a href='{% url "litigesmodify" %}?id={{items.idLitige|safe }}'><button id='{{ items.idLitige }}' class="dyna"> -> </button></a></td>
-                        <td> {{ items.nom }} </td>
-                        <td> <button id='{{ items.idLitige }}' class="dynadlitige"> X </button> </td>
+                        <td> <a href='{% url "litigesmodify" %}?id={{items.idLitige|safe }}'><button id='{{ items.idLitige }}' class="dyna btn-sm btn-outline-blue-grey"> <i class="fa fa-edit"></i> </button></a></td>
+                        <td class="text-center"> {{ items.nom }} </td>
+                        <td class="text-right"> <button id='{{ items.idLitige }}' class="dynadlitige btn-sm btn-outline-red"> <i class="fa fa-minus"></i> </button> </td>
                     </tr>
                     {% endfor %}
                     </tbody>
@@ -71,9 +71,9 @@
                     <tbody>
                     {% for items in decilitige %}
                     <tr>
-                        <td> <a href='{% url "decilitigesmodify" %}?id={{items.idLitige|safe }}'><button id='{{ items.idLitige }}' class="dyna"> -> </button></a></td>
-                        <td> {{ items.nom }} </td>
-                        <td> <button id='{{ items.idLitige }}' class="dynaddeci"> X </button> </td>
+                        <td> <a href='{% url "decilitigesmodify" %}?id={{items.idLitige|safe }}'><button id='{{ items.idLitige }}' class="dyna btn-sm btn-outline-blue-grey"> <i class="fa fa-edit"></i> </button></a></td>
+                        <td class="text-center"> {{ items.nom }} </td>
+                        <td class="text-right"> <button id='{{ items.idLitige }}' class="dynaddeci btn-sm btn-outline-red"><i class="fa fa-minus"></i> </button> </td>
                     </tr>
                     {% endfor %}
                     </tbody>
