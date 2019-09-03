@@ -85,7 +85,7 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label for="lveinput">Zone:</label>
-                                    <br><input type="text" id="zone" readonly class="form-control">
+                                    <br><input type="text" id="zone" readonly="" class="form-control">
                                 </div>
                             </div>
                             <div class="col">
@@ -162,7 +162,7 @@
                                 '{% for myitems in umentree %}'
                                 var iteration = 0;
                                 '{% if myitems.fk_BonLivraisonEntree.idBonLivraisonEntree == id %}'
-                                $('#tabume').append("<tr><td><a href=\"{% url 'unitemanutentionentreemodify' %}?id={{ myitems.idUniteManutentionEntree}}\"><button id='{{ myitems.idBonLivraisonEntree }}' class=\"dyna\"> -> </button></a></td><td>{{ myitems.numero }}</td><td>{{ myitems.fk_ZoneDepot_pour_TypeZoneDepot }}</td><td></td><td> <button id='{{ myitems.idUniteManutentionEntree  }}' class=\"dynad\"> X </button> </td></tr>");
+                                $('#tabume').append("<tr><td><a href=\"{% url 'unitemanutentionentreemodify' %}?id={{ myitems.idUniteManutentionEntree}}\"><button id='{{ myitems.idBonLivraisonEntree }}' class=\"dyna btn-sm btn-outline-blue-grey\"> <i class='fa fa-edit'></i> </button></a></td><td>{{ myitems.numero }}</td><td>{{ myitems.fk_ZoneDepot_pour_TypeZoneDepot }}</td><td></td><td> <button id='{{ myitems.idUniteManutentionEntree  }}' class=\"dynad btn-sm btn-outline-red\"> <i class='fa fa-minus'></i> </button> </td></tr>");
                                 '{% for colis in col %}'
                                 '{% if colis.fk_UniteManutentionEntree.fk_BonLivraisonEntree.idBonLivraisonEntree == id %}'
                                 '{% if colis.fk_UniteManutentionSortie == None %}'
@@ -224,7 +224,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-5">
+        <div class="col-auto">
             <div class="border shadow-lg p-2 mb-3 bg-white rounded">
                 <div class="row">
                     <div class="col">

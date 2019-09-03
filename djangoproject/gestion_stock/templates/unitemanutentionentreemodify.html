@@ -42,7 +42,7 @@
                 </div>
                 <div class="col-auto">
                     <div class="form-group">
-                        <button type="button" class="btn btn-sm btn-light"><i class="fa fa-chevron-right" style="font-size: 15px;"></i></button>
+                        <button type="button" id="blumbtn" class="btn btn-sm btn-light"><i class="fa fa-chevron-right" style="font-size: 15px;"></i></button>
                         <label for="blum">B.L.E: </label>
                         <input type="text" class="form-control" id="blum" readonly="">
                     </div>
@@ -393,9 +393,9 @@
             });
         });
 
-        $('#blbut').click(function () {
+        $('#blumbtn').click(function () {
             //alert("gg");
-            window.location.href = "{% url 'bonLivraisonEntreemodify' %}?id=" + $('#blum').val();
+            window.location.href = "{% url 'bonLivraisonEntreemodify' %}?id=" + $('#blum').val().trim();
             console.log("redirection");
         });
         var firstoldline = 1;
