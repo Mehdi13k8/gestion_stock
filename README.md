@@ -1,6 +1,6 @@
 # Gestion_stock
 
-Gestion stock is an api using django, postegresql,
+Gestion stock is an application using django, postegresql,
 html, javascript, jquery controlled by python
 
 Look how easy it is to use
